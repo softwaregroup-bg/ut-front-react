@@ -1,0 +1,41 @@
+.titledContentWrap {
+    width: 100%;
+    border: 1px solid #D6D6D6;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.titledContentWrap .headerWrap {
+    width: 100%;
+    padding: 20px 3%;
+    display: block;
+    border-bottom: 1px solid #D6D6D6;
+    background: #F9F9F9;
+    overflow: hidden;
+}
+
+.titledContentWrap .headerWrap .title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #595959;
+    float: left;
+}
+
+.titledContentWrap .headerWrap .titleCentered {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #595959;
+    text-align: center;
+}
+
+.titledContentWrap .headerWrap .rightWrap {
+    float: right;
+}
+
+.titledContentWrap .contentWrap {
+    padding: 0 3%;
+    background: #fff;
+}

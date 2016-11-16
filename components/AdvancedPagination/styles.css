@@ -1,0 +1,167 @@
+.bold {
+    font-weight: bold;
+}
+.leftFloat {
+    float: left;
+}
+
+.lighColor {
+    color: #afafaf;
+}
+
+.paginationWrap {
+    width: 100%;
+    position: relative;
+}
+
+.pageSwitherWrap {
+    position: absolute; /* otherwise pageBoxesWrap will be on top of it */
+    z-index: 10;
+    top: 0;
+    left: 0;
+    margin-top: 2px;
+    overflow: hidden;
+    clear: both;
+}
+
+.pageBoxesWrap {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 2;
+}
+
+.pageSizeBoxWrap {
+    position: absolute; /* otherwise pageBoxesWrap will be on top of it */
+    z-index: 10;
+    margin-top: 1px;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+/* Specific  */
+.pageSwitherWrap .numberInputWrap {
+    width: 60px;
+    float: left;
+}
+.pageSwitherWrap .numberInputWrap .numberInput {
+    width: 90%;
+    padding: 1% 5%;
+    border: 1px solid #cccccc;
+    height: 20px;
+}
+.pageSwitherWrap .numberInputWrap .numberInput::-webkit-inner-spin-button, 
+.pageSwitherWrap .numberInputWrap .numberInput::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.pageSwitherWrap .rightWrap {
+    float: left;
+    margin-top: 1px;
+}
+
+.pageBoxesWrap .pageBoxesWrapInnerWrap{
+    display: inline-block;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox {
+    min-width: 34px;
+    padding: 1px 9px;
+    border: 1px solid #cccccc;
+    border-left: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently */
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:first-child {
+    border-left: 1px solid #cccccc;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:hover {
+    background: #ffffff;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .active {
+    background: #e63b91 !important;
+    color: #ffffff !important;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .arrowWrap {
+    width: 20px;
+    height: 10px;
+    position: absolute;
+    bottom: 26px;
+    background-image: url('./images/arrow-icon.png');
+    z-index: 91;
+    display: none;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap {
+    position: absolute;
+    bottom: 35px;
+    left: -61px;
+    z-index: 90;
+    padding: 1px;
+    border: 1px solid #cccccc;
+    background: #f2f2f2;
+    overflow: hidden;
+    display: none;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .show {
+    display: inline !important;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox {
+    min-width: 37px;
+    padding: 1px 9px;
+    border: 1px solid #cccccc;
+    border-left: none;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    border-top: none;
+
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently */
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(1),
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(2),
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(3),
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(4) {
+    border-top: 1px solid #cccccc;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:hover {
+    background: #ffffff;
+}
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(1),
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(5),
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(9),
+.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(13){
+    border-left: 1px solid #cccccc;
+}
+
+.pageSizeBoxWrap .totalItemsWrap {
+    float: left;
+    margin-top: 1px;
+    margin-right: 10px;
+}
+.pageSizeBoxWrap .itemPerPageDDWrap {
+    width: 67px;
+    display: block;
+    margin-right: 5px;
+    float: left;
+}
+.pageSizeBoxWrap .perPageWrap {
+    float: left;
+    margin-top: 1px;
+}

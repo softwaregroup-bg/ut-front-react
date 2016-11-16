@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'glyphicons';
+    src: url('./fonts/TuneIcons.eot');
+    src: url('./fonts/TuneIcons.eot') format('embedded-opentype'),
+        url('./fonts/TuneIcons.ttf') format('truetype'),
+        url('./fonts/TuneIcons.woff') format('woff'),
+        url('./fonts/TuneIcons.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.defaultRules {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'glyphicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    display: inline-block;
+}
+
+.checkbox_checked:before {
+    content: "\e907";
+}
+
+.checkbox_empty:before {
+    content: "\e908";
+}
+
+.close:before {
+    content: "\e909";
+}
+
+.done_with_background:before {
+    content: "\e90a";
+}
+
+.error:before {
+    content: "\e90b";
+}
+
+.fail:before {
+    content: "\e90c";
+}
+
+.fingerprint:before {
+    content: "\e90d";
+}
+
+.arrow_down:before {
+    content: "\e90e";
+}
+
+.arrow_up:before {
+    content: "\e90f";
+}
+
+.arrow_left {
+    transform: rotate(270deg);
+}
+
+.arrow_left:before {
+    content: "\e90f";
+}
+
+.arrow_right {
+    transform: rotate(90deg);
+}
+
+.arrow_right:before {
+    content: "\e90f";
+}
+
+.import_by_folder:before {
+    content: "\e910";
+}
+
+.scanobject:before {
+    content: "\e911";
+}
+
+.locked:before {
+    content: "\e912";
+}
+
+.notification:before {
+    content: "\e913";
+}
+
+.option:before {
+    content: "\e914";
+}
+
+.paper_clip:before {
+    content: "\e915";
+}
+
+.phone:before {
+    content: "\e916";
+}
+
+.add:before {
+    content: "\e917";
+}
+
+.radiobutton_checked:before {
+    content: "\e918";
+}
+
+.radiobutton_empty:before {
+    content: "\e919";
+}
+
+.reject:before {
+    content: "\e91a";
+}
+
+.scan_activated:before {
+    content: "\e91b";
+}
+
+.search:before {
+    content: "\e91c";
+}
+
+.shutter:before {
+    content: "\e91d";
+}
+
+.sort_down:before {
+    content: "\e91e";
+}
+
+.sort_up:before {
+    content: "\e91f";
+}
+
+.crop:before {
+    content: "\e920";
+}
+
+.finger_left:before {
+    content: "\e921";
+}
+
+.finger_right:before {
+    content: "\e922";
+}
+
+.icn_step_phone:before {
+    content: "\e923";
+}
+
+.message:before {
+    content: "\e924";
+}
+
+.success_arrow:before {
+    content: "\e925";
+}
+
+.validate_arrow:before {
+    content: "\e926";
+}
+

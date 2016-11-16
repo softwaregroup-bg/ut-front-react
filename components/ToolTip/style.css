@@ -1,0 +1,20 @@
+.toolTipWrap {
+    display: inline-block;
+}
+
+.iconWrapper {
+    vertical-align: middle;
+}
+
+.toolTipBox {
+    top: 45px;
+    max-width: 300px;
+    max-height: 330px;
+    border: 1px solid #D9D9D9;
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 9999;
+    padding: 30px 26px;
+    text-align: center;
+    font-weight: normal;
+}

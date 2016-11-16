@@ -1,0 +1,55 @@
+.loginTitleContainer, .loginBiometricSubmit {
+    margin-bottom: 50px;
+}
+
+.loginSubmitContainer {
+    margin-bottom: 60px;
+}
+
+.loginInputContainer {
+    margin-bottom: 8px;
+}
+
+.loginErrorContainerTextContainer{
+    margin-bottom: 50px;
+}
+
+.loginInputContainer input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #AFB3B4;
+}
+
+.otpLoginSubtitle {
+    font-size: 18px;
+}
+
+.loginOtpInput input {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #AFB3B4;
+}
+
+.otpSubmitContainer button {
+    width: 60%;
+}
+
+.otpInput:valid {
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.loginPageLogo {
+    background: url(./images/logoTop.png) no-repeat center center;
+    margin: 50px auto;
+    width: 500px;
+    height: 100px;
+}
+
+.footerLogoContainer {
+    background: url(./images/logoBottom.png) no-repeat center center;
+    margin: 30px auto;
+    width: 500px;
+    height: 100px;
+}

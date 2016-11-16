@@ -1,0 +1,254 @@
+/* Default Style */
+
+.icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+/* Icon Size */
+
+.iconSmall {
+    width: 16px;
+    height: 16px;
+    /*background-size: 16px 16px;*/
+}
+
+.iconNormal {
+    width: 24px;
+    height: 24px;
+    /*background-size: 24px 24px;*/
+}
+
+.iconLarge {
+    width: 36px;
+    height: 36px;
+    /*background-size: 36px 36px;*/
+}
+
+.iconXLarge {
+    width: 60px;
+    height: 60px;
+}
+
+.iconXXLarge {
+    width: 72px;
+    height: 72px;
+}
+
+.iconXXXLarge {
+    width: 80px;
+    height: 80px;
+}
+
+/* Icon Type */
+
+.iconClose {
+    background-image: url('./images/close.png');
+}
+
+.iconCloseToolTip {
+    background-image: url('./images/closeToolTip.png');
+}
+
+.iconCloseToolTip:hover {
+    background-image: url('./images/closeToolTipHover.png');
+}
+
+.iconClose.hover:hover {
+    background-image: url('./images/icn_close_form_mc.svg');
+}
+
+.iconDone {
+    background-image: url('./images/accessCodeSent.png');
+}
+
+.iconAccessConfirmed {
+    background-image: url('./images/accessConfimed.png');
+}
+
+.iconAccessFailure {
+    background-image: url('./images/accessFaillure.png');
+}
+
+.iconAccountArrowDown {
+    background-image: url('./images/accountArrowDown.png');
+}
+
+.iconAccountArrowUp {
+    background-image: url('./images/accountArrowTop.png');
+}
+
+.iconAdd {
+    background-image: url('./images/addDefault.png');
+}
+
+.iconAddHover {
+    background-image: url('./images/addHover.png');
+}
+
+.iconArrowDown {
+    background-image: url('./images/headerArrownDown.png');
+}
+
+.iconArrowUp {
+    background-image: url('./images/headerArrownUp.png');
+}
+
+.iconArrowLeft {
+    background-image: url('./images/icn_left_arrow_mc.png');
+}
+
+.iconArrowUpPink {
+    background-image: url('./images/arrowUpPink.png');
+}
+
+.iconArrowRightPink {
+    background-image: url('./images/arrowRightPink.png');
+}
+
+.iconArrowDownPink {
+    background-image: url('./images/arrowDownPink.png');
+}
+
+.iconArrowLeftPink {
+    background-image: url('./images/arrowLeftPink.png');
+}
+
+.iconImportCamera {
+    background-image: url('./images/importCamera.png');
+}
+
+.iconImportFolder {
+    background-image: url('./images/importFolder.png');
+}
+
+.iconImportScanner {
+    background-image: url('./images/importScanner.png');
+}
+
+.iconInfoToolTip {
+    background-image: url('./images/infoToolTip.png')
+}
+
+.iconLock {
+    background-image: url('./images/headerLockPink.png');
+}
+
+.iconLogout {
+    background-image: url('./images/headerLogoutDefault.png');
+}
+.iconLogout.hover {
+    background-image: url('./images/headerLogoutHover.png');
+}
+
+.iconPadlock {
+    background-image: url('./images/headerPadlockDefault.png');
+}
+.iconPadlock.hover {
+    background-image: url('./images/headerPadlockHover.png');
+}
+
+.iconClientFileStatus {
+    background-image: url('./images/clientFileStatus.png');
+}
+
+.iconReject {
+    background-image: url('./images/reject.png');
+}
+
+.iconStepCropOff {
+    background-image: url('./images/stepCropOff.png');
+}
+
+.iconStepCropOn {
+    background-image: url('./images/stepCropOn.png');
+}
+
+.iconStepCropDone {
+    background-image: url('./images/stepCropDone.png');
+}
+
+.iconStepFingerLeftOff {
+    background-image: url('./images/stepFingerLeftOff.png');
+}
+
+.iconStepFingerLeftOn {
+    background-image: url('./images/stepFingerLeftOn.png');
+}
+
+.iconStepFingerLeftDone {
+    background-image: url('./images/stepFingerLeftDone.png');
+}
+
+.iconStepFingerRightOff {
+    background-image: url('./images/stepFingerRightOff.png');
+}
+
+.iconStepFingerRightOn {
+    background-image: url('./images/stepFingerRightOn.png');
+}
+
+.iconStepFingerRightDone {
+    background-image: url('./images/stepFingerRightDone.png');
+}
+
+.iconStepImportOff {
+    background-image: url('./images/stepImportOff.png');
+}
+
+.iconStepImportOn {
+    background-image: url('./images/stepImportOn.png');
+}
+
+.iconStepImportDone {
+    background-image: url('./images/stepImportDone.png');
+}
+
+.iconStepPhoneOff {
+    background-image: url('./images/stepPhoneNumberOff.png');
+}
+
+.iconStepPhoneOn {
+    background-image: url('./images/stepPhoneNumberOn.png');
+}
+
+.iconSettingsTable {
+    background-image: url('./images/settings_table.png');
+}
+
+.arrowTableTree {
+    background-image: url('./images/arrow_table_tree.png');
+}
+
+.iconStepPhoneDone {
+    background-image: url('./images/stepPhoneNumberDone.png');
+}
+
+.iconStepScanDefault {
+    background-image: url('./images/stepScanDefault.png');
+}
+
+.iconStepShutterDefault {
+    background-image: url('./images/stepShutterDefault.png');
+}
+
+.iconStepSmsOff {
+    background-image: url('./images/stepSmsCodeOff.png');
+}
+
+.iconStepSmsOn {
+    background-image: url('./images/stepSmsCodeOn.png');
+}
+
+.iconStepSmsDone {
+    background-image: url('./images/stepSmsCodeDone.png');
+}
+
+.iconValidate {
+    background-image: url('./images/filterValidate.png');
+}
+
+.iconEdit {
+    background-image: url('./images/icn_edit_mc.png');
+}

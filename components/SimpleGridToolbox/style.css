@@ -1,0 +1,17 @@
+.simpleToolbox {
+    display: none;
+}
+.simpleToolbox.opened {
+    display: block;
+    padding: 12px 0 0 0;
+}
+.simpleToolbox .label {
+    float: left;
+    width: 10%;
+    padding: 5px 0 0 0;
+    cursor: pointer;
+}
+.simpleToolbox .content {
+    float: right;
+    width: auto;
+}

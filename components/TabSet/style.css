@@ -1,0 +1,34 @@
+.tabSet {
+    height: 60px;
+}
+
+.tabSet div {
+    line-height: 60px;
+    padding: 0 20px;
+    margin-right: 2px;
+    display: inline-block;
+    background: white;
+    cursor: pointer;
+    color: #AAA;
+    background: #FAFAFA;
+}
+
+.tabSet div:hover {
+    color: #000;
+}
+
+.tabSet div.active {
+    cursor: default;
+    color: #000;
+    background: #FFFFFF;
+}
+
+.tabSet div span {
+    padding: 0 15px;
+}
+
+.tabSet div span.count,
+.tabSet div span.count span {
+    color: pink;
+    padding: 0;
+}

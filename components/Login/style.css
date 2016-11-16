@@ -1,0 +1,77 @@
+.loginBiometricTitle {
+    margin-top: 15px;
+    margin-bottom: 62px;
+    color: #818181;
+    font-size: 12px;
+}
+.loginBiometricSubmit {
+    margin-bottom: 50px;
+}
+.loginPassTitle {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    color: #818181;
+    font-size: 12px;
+}
+.loginInputContainer {
+    margin-bottom: 8px;
+}
+.loginInputContainer input {
+    width: 100%;
+    padding: 10px;
+}
+.loginSubmitContainer {
+    margin-top: 16px;
+}
+.loginSubmitContainer button {
+    width: 100%;
+    padding: 10px 0;
+}
+.otpLoginSubtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.loginOtpInput input {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+.otpSubmitContainer {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.otpSubmitContainer button {
+    width: 60%;
+}
+.heading{
+    text-align: center;
+    color: #717592;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 50px 0;
+    display: block;
+}
+
+.heading {
+    color: #707579,#707579;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: OpenSans, Arial, Helvetica, sans-serif;
+}
+
+.nextButton {
+    width: 60%;
+    margin: 15px 20% 60px;
+    color: white;
+    background: #E70276;
+    border: none;
+    padding: 14px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nextButton:hover {
+    background: #CC0066;
+}

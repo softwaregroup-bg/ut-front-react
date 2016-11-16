@@ -1,0 +1,197 @@
+.tabSetWrapper {
+    height: 42px;
+    width: 100%;
+    position: relative;
+}
+
+.tabMenu {
+    position: relative;
+    border-bottom: 1px solid #D7D6D6;
+    background: #F9F9F9;
+    height: 40px;
+}
+
+.tabNavbar {
+    background: #F9F9F9;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+
+    position: absolute;
+    left: 0px;
+    transition: all 0.5s;
+}
+
+.tabMenuWrap {
+    position: relative;
+    background: #EEEEEE;
+    display: inline-block;
+    border-right: 1px solid #D7D6D6;
+    border-bottom: 1px solid #D7D6D6;
+    cursor: pointer;
+    color: #373a3c;
+    width: 100%;
+    height: 100%;
+}
+a.tabMenuWrap:hover,
+a.tabMenuWrap:focus,
+.tabMenuWrap:hover {
+    text-decoration: none!important;
+    background: #DFDFDF;
+    color: #373a3c;
+}
+a.tabMenuWrap.tabMenuWrapSelected,
+.tabMenuWrap.tabMenuWrapSelected {
+    background: white;
+    color: #014c8c !important;
+    text-decoration: none!important;
+}
+a.tabMenuWrap:hover.tabMenuWrapSelected,
+.tabMenuWrap:hover.tabMenuWrapSelected {
+    color: #014c8c !important;
+}
+.tabMenuWrap .tabMenuItemContent {
+    padding: 10px 29px 10px 10px;
+}
+.tabMenuWrapSelected:after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: -1px;
+    background: #ffffff;
+    height: 1px;
+}
+.tabMenuWrap .xicon {
+    position: absolute;
+    top: 12px;
+    right: 6px;
+    width: 17px;
+    height: 17px;
+    margin-top: 1px;
+    cursor: pointer;
+    background-image: url('./images/closeTab.png');
+    background-repeat: no-repeat;
+    background-size: 9px 9px;
+    background-position: center;
+    background-color: transparent;
+    border-radius: 2px;
+    transition: background-color .3s;
+}
+
+.tabMenuWrap:hover.tabMenuWrapSelected .xicon {
+    background-image: url('./images/closeTab.png');
+    background-color: transparent;
+}
+
+.tabMenuWrap.tabMenuWrapSelected .xicon:hover {
+    background-color: #E5E5E5;
+}
+
+.tabMenuWrap.tabMenuWrapSelected .xicon:active {
+    background-color: #D9D9D9;
+}
+
+.tabMenuWrap .xicon:hover {
+    background-image: url('./images/closeTabHover.png');
+    background-color: #C8C8C8;
+}
+
+.tabMenuWrap .xicon:active {
+    background-color: #BEBEBE;
+}
+
+.tabSelectorWrapper {
+    width: 32px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+/* TabDropDown styles */
+
+.tabDdBtn {
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/openTabs.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #EEEEEE;
+    border: none;
+    border-right: 1px solid #D7D6D6;
+    border-bottom: 1px solid #D7D6D6;
+    border-left: 1px solid #D7D6D6;
+}
+
+.tabDdBtn:hover {
+    background-color: #DFDFDF;
+}
+
+.tabDdBtn:hover {
+    cursor: pointer;
+}
+
+.tabDdList {
+    width: 220px;
+    float: right;
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 10px 5px #e4e4e4;
+    list-style-type: none;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-padding-start: 0px;
+    padding: 5px 0px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.tabDdListItem {
+    height: 40px;
+}
+
+.tabDdLink {
+    color: #373a3c;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px 10px 30px;
+    background-color: #FFFFFF;
+}
+
+.tabDdLink.tabMenuWrapSelected {
+    background-image: url('./images/selectedTab.png');
+    background-repeat: no-repeat;
+    background-size: 14px 11px;
+    background-position: 10px 15px;
+}
+
+.tabDdLink:hover {
+    color: #373a3c;
+    text-decoration: none!important;
+    background-color: #f0f0f0;
+}
+
+.tabDdLink:active {
+    color: #FFFFFF;
+    text-decoration: none!important;
+    background-color: #014c8c;
+}
+
+.tabDdLink.tabMenuWrapSelected:active {
+    background-image: url('./images/selectedTabDown.png');
+}
+
+/* end TabDropDown styles */
+
+.tabMenuItem {
+    display: block;
+    height: 40px;
+    width: 100%;
+    float: left;
+    white-space: nowrap;
+}

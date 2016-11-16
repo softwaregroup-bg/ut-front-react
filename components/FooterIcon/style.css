@@ -1,0 +1,14 @@
+.lineIcon {
+    vertical-align: baseline;
+    display: inline-block;
+    width: 15px;
+    border-top: 2px solid #E6E6E6;
+}
+
+.singleIconMargin {
+    margin-top: 4px;
+}
+
+.doubleIconMargin {
+    margin-top: 16px;
+}

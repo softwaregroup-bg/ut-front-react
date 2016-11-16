@@ -1,0 +1,66 @@
+.box {
+    border: 1px solid #E6E6E6;
+    background: #FFFFFF;
+}
+
+.boxFull {
+    padding: 0px;
+    position: relative;
+}
+
+.boxTransparent {
+    background: none;
+    border: none;
+}
+
+.boxMarginBottom {
+    margin: 0px;
+}
+
+.boxInnerPadding {
+    padding: 20px;
+}
+
+.boxTitle {
+    background: #FAFAFA;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.boxTitleSmall {
+    text-align: center;
+}
+
+.ballancer {
+    padding-left: 76px;
+}
+
+.boxTitleClose {
+    float: right;
+    display: block;
+    padding: 0px 30px;
+}
+
+.buttonWrapper {
+    display: inline;
+    margin-right: 14px;
+    line-height: 1.5;
+}
+
+.activeLinkButton {
+    color: #373a3c;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.arrowBox {
+    display: inline;
+}
+
+.activeLinkButton:hover {
+    color: #E93591;
+    text-decoration: underline;
+    cursor: pointer;
+}

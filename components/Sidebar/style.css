@@ -1,0 +1,58 @@
+.menuWrapper {
+    position: relative;
+    width: 245px;
+}
+
+.menu {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 100%;
+    padding-top: 6px;
+    padding-bottom: 14px;
+    background-color: #FFFFFF;
+    z-index: 998;
+}
+
+.menu ul {
+    list-style: none;
+    -webkit-padding-start: 0px;
+    padding-left: 30px;
+}
+
+.menu ul li a {
+    display: inline-block;
+    color: #4E535B;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-right: 20px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.menu ul li a.active {
+    color: #E72A88;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #E72A88;
+    background-image: url("./images/menuPinkArrow.png");
+    background-repeat: no-repeat;
+    background-size: 6px 10px;
+    background-position: 185px 50%;
+}
+
+.menu ul li a span{
+    color: #4E535B;
+}
+
+.menu ul li a.active span, .menu ul li a span.postFix{
+    color: #E72A88;
+}
+
+.menu ul li a.active span.postFix{ 
+    color: #4E535B;
+}
+
+.menu ul li a:hover {
+    text-decoration: none;
+}

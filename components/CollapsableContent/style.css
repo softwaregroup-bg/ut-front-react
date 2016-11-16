@@ -1,0 +1,76 @@
+.collapsableContentContainer {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #F9F9F9;
+	position: relative;
+}
+
+.collapsableContentContainer .heading {
+    position: relative;
+    z-index: 3;
+    padding: 3px 0 3px 0px;
+    border-bottom: 1px solid #D7D6D6;
+    color: #7B7B7B;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #F9F9F9;
+    cursor: pointer;
+}
+
+.collapsableContentContainer .heading .textWrap {
+    display: inline-block;
+}
+
+.collapsableContentContainer .heading .toolTipWrap {
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.collapsableContentContainer .headingLeftArrow {
+    padding-left: 8px !important; 
+}
+
+.collapsableContentContainer .headingRightArrow {
+    padding-left: 25px !important;
+}
+
+.collapsableContentContainer .collapseArrowWrap {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    top: 7px;
+    cursor: pointer;
+    background-image: url('./images/collapsable.png');
+    background-repeat: no-repeat;
+}
+
+.collapsableContentContainer .leftArrow {
+    right: 8px;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.collapsableContentContainer .rightArrow {
+    left: 5px;
+}
+
+.collapsableContentContainer .collapsedArrowWrap {
+    width: 13px !important;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.collapsableContentContainer .collapsedArrowWrap img {
+    width: 100%;
+}
+
+.collapsableContentContainer .collapsedrightArrow {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.collapsableContentContainer .childWrap {
+    margin-top: 16px;
+}

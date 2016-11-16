@@ -1,0 +1,43 @@
+.searchBoxWrap {
+    width: 100%;
+    position: relative;
+    font-weight: normal;
+    height: 30px;
+}
+.searchBox {
+    position: relative;
+    width: 66%;
+    border: 1px solid #D7D6D6;
+    font-weight: normal;
+    float: left;
+}
+
+.searchBox.searchBoxNoLabel {
+    width: 100%;
+}
+
+.searchBoxWrapInput {
+    width: 100%;
+    padding: 0px 36px 4px 10px;
+    border: none;
+    height: 28px;
+}
+
+.searchBoxWrap .label {
+    float: left;
+    width: 30%;
+    margin: 5px 4% 0 0;
+}
+
+.searchBoxWrap button {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    border: none;
+    background: #0074ba;
+    background-image: url('./images/search.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}

@@ -1,0 +1,32 @@
+.error {
+    border-color: #ff3333 !important;
+}
+
+.editedInputStyle {
+    background: #fff4a3 !important;
+}
+
+/* Dropdown */
+.dropdownWrap {
+    width: 100%;
+    position: relative;
+    border: 1px solid #D6D6D6;
+}
+
+.dropdownWrap div {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 18px !important;
+    border: none !important;
+    color: #595959 !important;
+    text-align: left !important;
+}
+
+.dropdownWrap .dropDownRoot {
+    width: 100% !important;
+    height: 18px !important;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-left: 10px !important;
+}

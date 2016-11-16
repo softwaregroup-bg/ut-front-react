@@ -1,0 +1,59 @@
+.overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(240, 240, 240, .8);
+    text-align: center;
+    z-index: 100000;
+}
+
+.overlayDialog {
+    min-width: 450px;
+    max-width: 600px;
+    min-height: 100px;
+    margin: 0px auto;
+    display: inline-block;
+    margin-top: 160px;
+    cursor: auto;
+}
+
+@media (max-width: 1679px) {
+    .overlayDialog {
+        margin-top: 80px;
+    }
+}
+
+.showDialog {
+    display: inherit;
+}
+
+.hideDialog {
+    display: none;
+}
+
+.modalFooterWrapper {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    min-height: 70px;
+    background-color: #FAFAFA;
+    border-top: 1px solid #E6E6E6;
+}
+
+.successText {
+    color: #7EC13F;
+}
+
+.errorText{
+    color: #E94848;
+}
+
+.messageBody {
+    margin-right: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    line-height: 1.5em;
+}

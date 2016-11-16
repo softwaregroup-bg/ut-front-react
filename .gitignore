@@ -1,0 +1,6 @@
+node_modules/**
+
+*.log
+styleguidist/node_modules
+.idea
+.vscode/**

@@ -1,0 +1,111 @@
+.wrap {
+    width: 100%;
+    padding: 0;
+}
+
+.innerWrap {
+    padding: 0 16px;
+}
+
+.progressWrap {
+    display: block;
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Text */
+.rowWrap {
+    margin-bottom: 15px;
+}
+.rowWrap .title {
+    color: #656565;
+    font-weight: bold;
+    margin-bottom: -3px;
+}
+
+/* Link */
+a.link {
+    width: 100%;
+    display: block;
+    background: #F4F4F4;
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    color: #595959;
+    padding: 8px 0;
+    font-size: 13px;
+    cursor: pointer;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+a.link:hover {
+    text-decoration: none;
+}
+
+/* Heading */
+.heading {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #656565;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Image */
+.imageWrap {
+    width: 100%;
+    height: 170px;
+    border: 1px solid #D7D6D6;
+    background-image: url('./images/avatar.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+/* Checked */
+.checkedWrap {
+    color: #656565 !important;
+}
+.checkedItemsNumber {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.checkedItemsWrap {
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.checkedItemProp {
+    float: left;
+    margin-left: 10px;
+}
+
+/* Selected */
+
+/* Selected & Checked */
+.selectedAndCheckedSelectedWrap {
+    margin-top: 30px;
+}
+.selectedAndCheckeLabel {
+    margin-bottom: 15px;
+    border: 1px solid #D7D6D6;
+    border-left: none;
+    border-right: none;
+    padding: 2px 7%;
+    background: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    color: #999999;
+    text-transform: uppercase;
+}
+
+.noSelectedData {
+    color: #BDBDBD ;
+}

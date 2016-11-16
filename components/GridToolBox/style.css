@@ -1,0 +1,114 @@
+.toolbarWrap {
+    display: block;
+    overflow: hidden;
+}
+
+.toolbarWrap .toolbarElement {
+    float: left;
+    margin: 12px 20px 0 0;
+}
+
+.toolbarWrap .toolbarElement:last-child {
+    margin-right: 0;
+}
+
+.toolbarWrap .label {
+    margin-top: 18px;
+}
+
+.toolbarWrap .link {
+    color: #E93591;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.toolbarWrap .link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.toolbarWrap .minWidthed {
+    min-width: 240px;
+}
+
+.toolbarWrap .pullRight {
+    float: right;
+}
+
+.toolbarWrap .noRightMargin {
+    margin-right: 0;
+}
+
+.toolbarWrap .closeArrow {
+    width: 28px;
+    height: 28px;
+    margin-top: 13px;
+    background-color: #F4F4F4;
+    background-image: url('./images/clearfilters-arrow.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.advancedSearchIconWrapper {
+    display: inline-block;
+    margin-left: 10px;
+    width: 28px;
+    height: 28px;
+}
+
+.advancedSearchIcon {
+    width: 28px;
+    height: 28px;
+    margin-top: 13px;
+    background-color: #E93591;
+    background-image: url('./images/search.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.toolbarWrap .closeArrow:hover {
+    background-color: #E8E8E8;
+}
+
+.toolbarWrap .button {
+    margin: 12px 0 0 10px;
+}
+
+.toolbarWrap .leftFloat {
+    float: left;
+}
+
+.advancedSearchPopOver {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 5px;
+    background-color: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    z-index: 1;
+    padding: 5px;
+}
+
+.advancedSearchIcon:hover ~ .advancedSearchPopOver{
+    visibility: visible;
+}
+
+.advancedSearchInputWrapper {
+    width: 60%;
+    text-align: center;
+    margin: 5px auto;
+}
+
+.bold {
+    font-weight: bold;
+}

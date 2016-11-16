@@ -1,0 +1,90 @@
+.scrollableTreeWrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    overflow: auto;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.scrollableTreeWrap::-webkit-scrollbar-track {
+	border: 1px solid #D7D6D6;
+	background-color: #FFFFFF;
+}
+.scrollableTreeWrap::-webkit-scrollbar {
+	width: 8px;
+    height: 8px;
+    border-radius: 8px;
+	background-color: #A6A6A6;
+}
+.scrollableTreeWrap::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+	background-color: #A6A6A6;
+}
+
+.innerTrWrap {
+    margin-left: 8px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.rowBox {
+    margin: 10px 0;
+    padding-left: 16px;
+    position: relative;
+    font-size: 13px !important;
+    cursor: pointer;
+}
+
+.parent {
+    overflow: hidden;
+    font-size: 13px !important;
+}
+
+.parent .arrow {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: 0;
+    top: 3px;
+    background-image: url('./assets/arrow_down.png');
+    background-size: cover;
+    background-position: center center;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.parent .arrowOpen {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.childrenWrap {
+    width: 107%;
+    display: block;
+    margin: 0 0 0 1%;
+    padding-left: 5px;
+    /*background: rgba(0, 0, 0, 0.04);*/
+    border-left: 1px solid #d7d6d6;
+    overflow: hidden;
+}
+
+.closed {
+    display: none;
+}
+
+.open {
+    margin-top: 5px;
+    display: block;
+}
+
+.isActive {
+    color: #E30474;
+}

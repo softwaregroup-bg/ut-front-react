@@ -1,0 +1,54 @@
+#mainContentWrap {
+    width: 100%;
+    height: 100%;
+    display: table;
+    background: #f2f2f2;
+    border-top: 1px solid #D7D6D6;
+}
+
+#mainContentWrap .col {
+    display: table-cell;
+    position: relative; /* for resizor absolute position */
+    overflow: hidden;
+}
+
+#mainContentWrap .col .innerCol {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#mainContentWrap .col .innerCol .contentWrap {
+    width: 100%;
+    height: 100%;
+}
+
+.resizor {
+	width: 9px; /* 1 line, 3 offset, 2 dots, 3 offset */
+    height: auto;
+    z-index: 4;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+	cursor: col-resize;
+}
+.resizor .visibleResizor {
+    width: 1px;
+    margin-left: 0px; /* 1 line, 3 offset, 2 dots, 3 offset */
+    height: 25px;
+    display: block;
+	background-color: #D7D6D6;
+}
+.resizor .resizorDots {
+    width: 2px;
+    height: 12px;
+    background-image: url('./images/dots.png');
+    position: absolute;
+    right: 3px;
+    top: 50px;
+}
