@@ -4,6 +4,8 @@ export const validationTypes = {
     text: 'text',
     array: 'array',
     arrayWithTextElements: 'arrayWithTextElements', // keyArray, keyText
+    arrayWithTextElementsOptional: 'arrayWithTextElementsOptional', // keyArray, keyText, shouldValidateProp
+    arrayWithDropdownElements: 'arrayWithDropdownElements', // keyArray, keyText
     arrayWithArrayElements: 'arrayWithArrayElements', // keyArray, keyText
     dropdown: 'dropdown',
     defaultRole: 'defaultRole'

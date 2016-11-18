@@ -82,7 +82,71 @@ export const arrayWithTextLengthRule = (array, textProp, minVal, maxVal, rule, r
     });
 };
 
-export const arrayWithTextIsRequiredRule = (array, textProp, rule, result) => {
+export const arrayWithTextisRequiredRule = (array, textProp, rule, result) => {
+    checkPasedResultObject(result);
+
+    array.forEach((item, index) => {
+        let currentValue = item.getIn(textProp);
+        let trimmed = currentValue ? currentValue.trim() : '';
+        if (!currentValue || trimmed.length === 0) {
+            result.isValid = false;
+            rule.index = index;
+            result.errors.push(getErrorObject(rule));
+        }
+    });
+};
+
+export const arrayWithTextisRequiredRuleOptional = (array, textProp, shouldValidateProp, rule, result) => {
+    checkPasedResultObject(result);
+
+    array.forEach((item, index) => {
+        let shouldValidate = item.getIn(shouldValidateProp);
+        if (!shouldValidate) {
+            return;
+        }
+        let currentValue = item.getIn(textProp);
+        let trimmed = currentValue ? currentValue.trim() : '';
+        if (!currentValue || trimmed.length === 0) {
+            result.isValid = false;
+            rule.index = index;
+            result.errors.push(getErrorObject(rule));
+        }
+    });
+};
+
+export const arrayWithTextisNumberOnlyRuleOptional = (array, textProp, shouldValidateProp, rule, result) => {
+    checkPasedResultObject(result);
+
+    array.forEach((item, index) => {
+        let shouldValidate = item.getIn(shouldValidateProp);
+        if (!shouldValidate) {
+            return;
+        }
+        let currentValue = item.getIn(textProp);
+        let regex = /^[0-9]+$/;
+        if (currentValue !== '' && !(regex.test(currentValue))) {
+            result.isValid = false;
+            rule.index = index;
+            result.errors.push(getErrorObject(rule));
+        }
+    });
+};
+
+export const arrayWithTextisNumberOnlyRule = (array, textProp, rule, result) => {
+    checkPasedResultObject(result);
+
+    array.forEach((item, index) => {
+        let currentValue = item.getIn(textProp);
+        let regex = /^[0-9]+$/;
+        if (currentValue !== '' && !(regex.test(currentValue))) {
+            result.isValid = false;
+            rule.index = index;
+            result.errors.push(getErrorObject(rule));
+        }
+    });
+};
+
+export const arrayWithArrayIsRequiredRule = (array, textProp, rule, result) => {
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
@@ -94,6 +158,20 @@ export const arrayWithTextIsRequiredRule = (array, textProp, rule, result) => {
         }
     });
 };
+
+export const arrayWithDropdownIsRequiredRule = (array, textProp, rule, result) => {
+    checkPasedResultObject(result);
+
+    array.forEach((item, index) => {
+        let currentValue = item.getIn(textProp);
+        if (!currentValue) {
+            result.isValid = false;
+            rule.index = index;
+            result.errors.push(getErrorObject(rule));
+        }
+    });
+};
+
 /* End array with text validation */
 
 /* Dropdown Validation */
