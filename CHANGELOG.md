@@ -1,3 +1,8 @@
+<a name="5.42.1"></a>
+## 5.42.1 (2016-11-18)
+
+
+
 <a name="5.42.0"></a>
 # [5.42.0](https://git.softwaregroup-bg.com/ut5/ut-front-react/compare/v5.41.0...v5.42.0) (2016-11-16)
 
