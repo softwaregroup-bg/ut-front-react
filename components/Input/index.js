@@ -103,7 +103,7 @@ class TextField extends Component {
 }
 
 TextField.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     keyProp: PropTypes.string,
     label: PropTypes.string,
     type: PropTypes.string,
