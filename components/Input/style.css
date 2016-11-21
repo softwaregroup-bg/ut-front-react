@@ -155,7 +155,7 @@ span.checkBoxWrapper p {
     padding: 0;
 }
 
-span.checkBoxWrapper input.checkBox + label span {
+span.checkBoxWrapper .checkBoxSpanWrapper {
     width: 18px;
     height: 18px;
     display: inline-block;
@@ -166,7 +166,26 @@ span.checkBoxWrapper input.checkBox + label span {
     border: 1px solid #D7D7D7;
 }
 
-span.checkBoxWrapper input.checkBox:checked + label span {
+span.checkBoxWrapper .innerWrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+span.checkBoxWrapper .innerWrap .checkBoxWrap {
+    display: table-cell;
+    width: 40px;
+    vertical-align: top;
+}
+
+span.checkBoxWrapper .innerWrap .lableWrap {
+    width: 100%;
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 1px;
+}
+
+span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     background: url('./images/checkbox.png');
     background-position: center center;
     background-size: 18px 18px;
