@@ -278,10 +278,16 @@ class GridToolBox extends Component {
         let labelClass = this.haveSelectedOrChecked() ? style.link : '';
         let toggle = () => this.haveSelectedOrChecked() && this.setState({showFilters: false});
         let filtersNumber = 0;
+        let leftSide;
+        if (this.props.filterElements.length === 1 && this.props.filterElements[0]['type'] === filterElementTypes.searchBox) {
+            leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : '';
+        } else {
+            leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : 'Filter by';
+        }
         return (
             <div className={style.toolbarWrap}>
                 <div className={classnames(style.toolbarElement, style.label, labelClass)} onClick={toggle}>
-                    {this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : 'Filter by'}
+                    {leftSide}
                 </div>
 
                 <div className={style.pullRight}>
