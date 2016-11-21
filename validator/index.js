@@ -105,7 +105,12 @@ export const arrayWithTextisRequiredRuleOptional = (array, textProp, shouldValid
             return;
         }
         let currentValue = item.getIn(textProp);
-        let trimmed = currentValue ? currentValue.trim() : '';
+        let trimmed;
+        if (isNaN(currentValue)) {
+            trimmed = currentValue ? currentValue.trim() : '';
+        } else {
+            trimmed = currentValue;
+        }
         if (!currentValue || trimmed.length === 0) {
             result.isValid = false;
             rule.index = index;
