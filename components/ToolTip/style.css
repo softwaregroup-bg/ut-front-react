@@ -4,6 +4,7 @@
 
 .iconWrapper {
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .toolTipBox {
