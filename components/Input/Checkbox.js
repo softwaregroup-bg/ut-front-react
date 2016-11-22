@@ -18,8 +18,10 @@ const Checkbox = (props) => {
     return (
         <span className={classnames(style.checkBoxWrapper, isDisabledClass)} onTouchTap={isDisabled ? noop : props.onClick}>
             <input {...propsLeft} type='checkbox' onChange={noop} className={classnames(style.checkBox, isDisabledClass)} />
-            <label><span className={isDisabledClass} /></label>
-            {label}
+            <div className={style.innerWrap}>
+                <label className={style.checkBoxWrap}><span className={classnames(style.checkBoxSpanWrapper, isDisabledClass)} /></label>
+                <div className={style.lableWrap}>{label}</div>
+            </div>
         </span>
     );
 };

@@ -1,3 +1,13 @@
+<a name="5.42.7"></a>
+## [5.42.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.6...v5.42.7) (2016-11-21)
+
+
+### Bug Fixes
+
+* UIS-396 remove filterBy label when there is only a searchbox available ([29bb610](https://github.com/softwaregroup-bg/ut-front-react/commit/29bb610))
+
+
+
 <a name="5.42.6"></a>
 ## [5.42.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.5...v5.42.6) (2016-11-21)
 
