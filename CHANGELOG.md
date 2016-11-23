@@ -1,3 +1,13 @@
+<a name="5.42.12"></a>
+## [5.42.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.11...v5.42.12) (2016-11-23)
+
+
+### Bug Fixes
+
+* error window will not hide automatically ([dc2fbd0](https://github.com/softwaregroup-bg/ut-front-react/commit/dc2fbd0))
+
+
+
 <a name="5.42.11"></a>
 ## [5.42.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.10...v5.42.11) (2016-11-23)
 
