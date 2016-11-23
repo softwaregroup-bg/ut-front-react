@@ -5,7 +5,7 @@ module.exports = {
     start: function() {
         return this && this.registerRequestHandler && this.registerRequestHandler([{
             method: 'GET',
-            path: '/s/bs/{p*}',
+            path: '/static/assets/{p*}',
             config: {auth: false},
             handler: {
                 directory: {
@@ -17,7 +17,7 @@ module.exports = {
             }
         }, {
             method: 'GET',
-            path: '/s/bs/debug.html',
+            path: '/',
             config: {auth: false},
             handler: (request, reply) => {
                 this.config['utfront.pack'](merge({}, this.config, {minifyJS: false, bundlingEnabled: false}))
@@ -36,7 +36,7 @@ module.exports = {
                                     <title>UnderTree</title>
 
                                     <!-- Bootstrap CSS -->
-                                    <link rel="stylesheet" href="css/bootstrap.min.css">
+                                    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
                                     ${pack.head}
                                 </head>
                                 <body class="ut5">
