@@ -1,3 +1,13 @@
+<a name="5.42.13"></a>
+## [5.42.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.12...v5.42.13) (2016-11-23)
+
+
+### Bug Fixes
+
+* translation fetch ([f216e6b](https://github.com/softwaregroup-bg/ut-front-react/commit/f216e6b))
+
+
+
 <a name="5.42.12"></a>
 ## [5.42.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.11...v5.42.12) (2016-11-23)
 
