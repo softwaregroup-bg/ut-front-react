@@ -1,3 +1,13 @@
+<a name="5.42.8"></a>
+## [5.42.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.7...v5.42.8) (2016-11-23)
+
+
+### Bug Fixes
+
+* cleanup ([97fd40d](https://github.com/softwaregroup-bg/ut-front-react/commit/97fd40d))
+
+
+
 <a name="5.42.7"></a>
 ## [5.42.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.6...v5.42.7) (2016-11-21)
 
