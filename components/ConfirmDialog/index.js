@@ -30,13 +30,11 @@ export default class DialogExampleModal extends Component {
     }
 
     render() {
-        const actions = [
-            <FlatButton label={this.props.cancelLabel || 'No'} primary onTouchTap={this.close} />
-        ];
-
+        const actions = [];
         if (!this.props.cannotSubmit) {
             actions.push(<FlatButton label={this.props.submitLabel || 'Yes'} disabled={this.props.cannotSubmit} onTouchTap={this.submit} />);
         }
+        actions.push(<FlatButton label={this.props.cancelLabel || 'No'} primary onTouchTap={this.close} />);
 
         return (
             <div>
