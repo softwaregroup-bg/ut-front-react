@@ -1,3 +1,16 @@
+<a name="5.42.9"></a>
+## [5.42.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.8...v5.42.9) (2016-11-23)
+
+
+### Bug Fixes
+
+* MCTUNE-1188 enlarge drop down wrapper width (to avoid material x-overflow-scroll) ([#7](https://github.com/softwaregroup-bg/ut-front-react/issues/7)) ([a6d5f38](https://github.com/softwaregroup-bg/ut-front-react/commit/a6d5f38))
+* MCTUNE-1190: reduce default items per page options ([#8](https://github.com/softwaregroup-bg/ut-front-react/issues/8)) ([4f1a753](https://github.com/softwaregroup-bg/ut-front-react/commit/4f1a753))
+* MCTUNE-1202 make tool tip icon to be pointer on hover ([#5](https://github.com/softwaregroup-bg/ut-front-react/issues/5)) ([088d386](https://github.com/softwaregroup-bg/ut-front-react/commit/088d386))
+* MCTUNE-1403 reorder actions buttons to keep consistency - all close, no, etc. buttons on the right side ([#6](https://github.com/softwaregroup-bg/ut-front-react/issues/6)) ([acb6d82](https://github.com/softwaregroup-bg/ut-front-react/commit/acb6d82))
+
+
+
 <a name="5.42.8"></a>
 ## [5.42.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.7...v5.42.8) (2016-11-23)
 
