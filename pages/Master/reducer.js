@@ -79,7 +79,7 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
 
 const mapErrorMessage = (resp) => {
     var returnMsg = resp.message;
-    if (resp.validation) {
+    if (resp.validation && resp.validation.keys && resp.validation.keys.length > 0) {
         returnMsg = resp.validation.keys.reduce((prev, cur) => {
             prev.push(cur);
             return prev;
