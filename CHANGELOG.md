@@ -1,3 +1,13 @@
+<a name="5.42.14"></a>
+## [5.42.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.13...v5.42.14) (2016-11-25)
+
+
+### Bug Fixes
+
+* error display ([1abf551](https://github.com/softwaregroup-bg/ut-front-react/commit/1abf551))
+
+
+
 <a name="5.42.13"></a>
 ## [5.42.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.12...v5.42.13) (2016-11-23)
 
