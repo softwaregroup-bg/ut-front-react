@@ -45,7 +45,7 @@ module.exports = {
                                 </body>
                             </html>
                         `)
-                        .header('ut-version', package.version);
+                        .header('ut-impl-version', package.version);
                         return;
                     })
                     .catch((e) => {
