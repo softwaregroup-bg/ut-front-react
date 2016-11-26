@@ -1,5 +1,6 @@
 var path = require('path');
 var merge = require('lodash.merge');
+var package = require(path.join(path.dirname(require.main.filename), 'package.json'));
 
 module.exports = {
     start: function() {
@@ -43,7 +44,8 @@ module.exports = {
                                     ${pack.body}
                                 </body>
                             </html>
-                        `);
+                        `)
+                        .header('ut-version', package.version);
                         return;
                     })
                     .catch((e) => {
