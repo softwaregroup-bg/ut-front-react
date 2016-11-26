@@ -1,3 +1,15 @@
+<a name="5.42.15"></a>
+## [5.42.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.14...v5.42.15) (2016-11-26)
+
+
+### Bug Fixes
+
+* add impl version in headers ([33748f7](https://github.com/softwaregroup-bg/ut-front-react/commit/33748f7))
+* name fix ([419524d](https://github.com/softwaregroup-bg/ut-front-react/commit/419524d))
+* typo ([3314c28](https://github.com/softwaregroup-bg/ut-front-react/commit/3314c28))
+
+
+
 <a name="5.42.14"></a>
 ## [5.42.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.13...v5.42.14) (2016-11-25)
 
