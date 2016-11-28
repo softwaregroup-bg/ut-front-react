@@ -325,7 +325,7 @@ class Container extends Component {
         });
 
         return (
-            <div style={{padding: '0 0 30px 0', height: this.state.height}}>
+            <div style={{height: this.state.height}}>
                 <div ref='tableWrap' id={style.mainContentWrap}>
                     {renderCols}
                 </div>
