@@ -1,3 +1,13 @@
+<a name="5.42.20"></a>
+## [5.42.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.19...v5.42.20) (2016-11-28)
+
+
+### Bug Fixes
+
+* unknown padding removed ([d7e525f](https://github.com/softwaregroup-bg/ut-front-react/commit/d7e525f))
+
+
+
 <a name="5.42.19"></a>
 ## [5.42.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.18...v5.42.19) (2016-11-28)
 
