@@ -1,3 +1,13 @@
+<a name="5.42.19"></a>
+## [5.42.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.18...v5.42.19) (2016-11-28)
+
+
+### Bug Fixes
+
+* remove impl version from headers, breaks tests; will be available as service @ root/currentVersion ([3d429be](https://github.com/softwaregroup-bg/ut-front-react/commit/3d429be))
+
+
+
 <a name="5.42.18"></a>
 ## [5.42.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.17...v5.42.18) (2016-11-28)
 
