@@ -1,3 +1,13 @@
+<a name="5.42.21"></a>
+## [5.42.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.20...v5.42.21) (2016-11-28)
+
+
+### Bug Fixes
+
+* zIndex, error window should always above all ([f3e1206](https://github.com/softwaregroup-bg/ut-front-react/commit/f3e1206))
+
+
+
 <a name="5.42.20"></a>
 ## [5.42.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.19...v5.42.20) (2016-11-28)
 
