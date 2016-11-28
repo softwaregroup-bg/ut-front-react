@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 const ErrorWindow = ({open = true, message, close, title}) => {
     return (
       <Dialog
+        style={{zIndex: 9999}}
         open={open}
         title={title || 'ERROR'}
         actions={[
