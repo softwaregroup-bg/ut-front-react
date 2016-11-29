@@ -297,3 +297,13 @@ div:global(.submenuLink) a {
     display: block;
     cursor: pointer;
 }
+
+#header #headProfileWrap .helpWrap {
+    width: 20px;
+    height: 20px;
+    margin-top: 12px;
+    margin-right: 20px;
+    background: url('./images/help.png');
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

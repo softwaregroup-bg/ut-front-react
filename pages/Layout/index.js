@@ -103,7 +103,7 @@ class Layout extends Component {
         if (result) {
             return (
                 <div>
-                    <Header personInfo={result.toJS()} onLogOut={this.props.logOut} style={{height: '59px'}}>
+                    <Header personInfo={result.toJS()} onLogOut={this.props.logOut} style={{height: '59px'}} currentLocation={this.props.location.pathname}>
                         {this.context.mainTabset.map((tab, i) => <Tab key={i} tabData={tab} currentLocation={this.props.location.pathname} />)}
                     </Header>
                     <TabMenu defaultLocation={this.context.mainUrl} />
@@ -124,10 +124,12 @@ Layout.contextTypes = {
     mainUrl: PropTypes.string
 };
 export default connect(
-    (state) => ({
-        tabs: state.tabMenu.tabs,
-        login: state.login
-    }),
+    (state) => {
+        return {
+            tabs: state.tabMenu.tabs,
+            login: state.login
+        };
+    },
     (dispatch) => (
         {
             logOut: () => dispatch({

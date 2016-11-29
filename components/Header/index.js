@@ -6,6 +6,7 @@ import get from 'lodash.get';
 import Avatar from 'material-ui/Avatar';
 import profilePicture from './images/profile_picture.png';
 import style from './style.css';
+import docsConfig from './../../config/docs.config';
 
 const Header = React.createClass({
     propTypes: {
@@ -17,7 +18,8 @@ const Header = React.createClass({
             }).isRequired
         }).isRequired,
         version: PropTypes.string,
-        onLogOut: PropTypes.func
+        onLogOut: PropTypes.func,
+        currentLocation: PropTypes.state
     },
     contextTypes: {
         mainUrl: PropTypes.string,
@@ -53,6 +55,12 @@ const Header = React.createClass({
     },
     componentWillMount() {
         this.setState({userMenu: {open: false}});
+    },
+    openHelp() {
+        const { currentLocation } = this.props;
+        const url = docsConfig[currentLocation];
+
+        window.open(url, '_blank');
     },
     render() {
         let { children, personInfo, onLogOut } = this.props;
@@ -108,6 +116,7 @@ const Header = React.createClass({
                         </div>
                     </div>
                     <div className={this.getStyle('tasksWrap')} />
+                    <div onClick={this.openHelp} className={this.getStyle('helpWrap')} />
                 </div>
             </div>
         );
