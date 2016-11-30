@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Route } from 'react-router';
-import { Login, Gate, Master, Layout } from './pages';
+import { Gate, Master, Layout } from './pages';
+import LoginForm from './containers/LoginForm';
 
 const App = ({routes, extLayout, extMaster}) => {
     return (
         <Route>
-            <Route path='/login' component={Login} />
+            <Route path='/login' component={LoginForm} />
             <Route component={Gate}>
                 <Route component={extMaster || Master}>
                     <Route component={extLayout || Layout}>
