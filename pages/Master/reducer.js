@@ -60,24 +60,18 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
                 .set('message', '');
         }
         if (action.type === actions.ERROR_WINDOW_TOGGLE) {
-            let message = mapErrorMessage(action.message) || mapErrorMessage(state.get('message'));
+            let message = (mapErrorMessage(action.message) || mapErrorMessage(state.get('message')));
             return state
                 .set('open', !state.get('open'))
                 .delete('title')
                 .set('message', message);
         }
         if (action.error) {
-            let message = mapErrorMessage(action.error) || mapErrorMessage(state.get('message'));
+            let msg = (mapErrorMessage(action.error) || mapErrorMessage(state.get('message')));
             return state
                 .set('open', true)
                 .set('title', `${action.error.statusMessage}(${action.error.statusCode})`)
-                .set('message', message);
-        }
-        if (action.type && !action.error && state.get('open')) {
-            return state
-                .set('open', false)
-                .delete('title')
-                .set('message', '');
+                .set('message', msg);
         }
     }
     return state;
@@ -85,7 +79,7 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
 
 const mapErrorMessage = (resp) => {
     var returnMsg = resp.message;
-    if (resp.validation) {
+    if (resp.validation && resp.validation.keys && resp.validation.keys.length > 0) {
         returnMsg = resp.validation.keys.reduce((prev, cur) => {
             prev.push(cur);
             return prev;

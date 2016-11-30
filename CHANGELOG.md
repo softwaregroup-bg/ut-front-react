@@ -1,3 +1,158 @@
+<a name="5.42.26"></a>
+## [5.42.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.25...v5.42.26) (2016-11-29)
+
+
+
+<a name="5.42.25"></a>
+## [5.42.25](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.24...v5.42.25) (2016-11-29)
+
+
+
+<a name="5.42.24"></a>
+## [5.42.24](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.23...v5.42.24) (2016-11-29)
+
+
+
+<a name="5.42.23"></a>
+## [5.42.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.22...v5.42.23) (2016-11-28)
+
+
+
+<a name="5.42.22"></a>
+## [5.42.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.21...v5.42.22) (2016-11-28)
+
+
+
+<a name="5.42.21"></a>
+## [5.42.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.20...v5.42.21) (2016-11-28)
+
+
+### Bug Fixes
+
+* zIndex, error window should always above all ([f3e1206](https://github.com/softwaregroup-bg/ut-front-react/commit/f3e1206))
+
+
+
+<a name="5.42.20"></a>
+## [5.42.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.19...v5.42.20) (2016-11-28)
+
+
+### Bug Fixes
+
+* unknown padding removed ([d7e525f](https://github.com/softwaregroup-bg/ut-front-react/commit/d7e525f))
+
+
+
+<a name="5.42.19"></a>
+## [5.42.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.18...v5.42.19) (2016-11-28)
+
+
+### Bug Fixes
+
+* remove impl version from headers, breaks tests; will be available as service @ root/currentVersion ([3d429be](https://github.com/softwaregroup-bg/ut-front-react/commit/3d429be))
+
+
+
+<a name="5.42.18"></a>
+## [5.42.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.17...v5.42.18) (2016-11-28)
+
+
+### Bug Fixes
+
+* babel packages upgrade ([84f5df9](https://github.com/softwaregroup-bg/ut-front-react/commit/84f5df9))
+
+
+
+<a name="5.42.17"></a>
+## [5.42.17](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.16...v5.42.17) (2016-11-28)
+
+
+
+<a name="5.42.16"></a>
+## [5.42.16](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.15...v5.42.16) (2016-11-28)
+
+
+
+<a name="5.42.15"></a>
+## [5.42.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.14...v5.42.15) (2016-11-26)
+
+
+### Bug Fixes
+
+* add impl version in headers ([33748f7](https://github.com/softwaregroup-bg/ut-front-react/commit/33748f7))
+* name fix ([419524d](https://github.com/softwaregroup-bg/ut-front-react/commit/419524d))
+* typo ([3314c28](https://github.com/softwaregroup-bg/ut-front-react/commit/3314c28))
+
+
+
+<a name="5.42.14"></a>
+## [5.42.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.13...v5.42.14) (2016-11-25)
+
+
+### Bug Fixes
+
+* error display ([1abf551](https://github.com/softwaregroup-bg/ut-front-react/commit/1abf551))
+
+
+
+<a name="5.42.13"></a>
+## [5.42.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.12...v5.42.13) (2016-11-23)
+
+
+### Bug Fixes
+
+* translation fetch ([f216e6b](https://github.com/softwaregroup-bg/ut-front-react/commit/f216e6b))
+
+
+
+<a name="5.42.12"></a>
+## [5.42.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.11...v5.42.12) (2016-11-23)
+
+
+### Bug Fixes
+
+* error window will not hide automatically ([dc2fbd0](https://github.com/softwaregroup-bg/ut-front-react/commit/dc2fbd0))
+
+
+
+<a name="5.42.11"></a>
+## [5.42.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.10...v5.42.11) (2016-11-23)
+
+
+
+<a name="5.42.10"></a>
+## [5.42.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.9...v5.42.10) (2016-11-23)
+
+
+### Bug Fixes
+
+* versions bump ([ac50358](https://github.com/softwaregroup-bg/ut-front-react/commit/ac50358))
+
+
+
+<a name="5.42.9"></a>
+## [5.42.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.8...v5.42.9) (2016-11-23)
+
+
+### Bug Fixes
+
+* MCTUNE-1188 enlarge drop down wrapper width (to avoid material x-overflow-scroll) ([#7](https://github.com/softwaregroup-bg/ut-front-react/issues/7)) ([a6d5f38](https://github.com/softwaregroup-bg/ut-front-react/commit/a6d5f38))
+* MCTUNE-1190: reduce default items per page options ([#8](https://github.com/softwaregroup-bg/ut-front-react/issues/8)) ([4f1a753](https://github.com/softwaregroup-bg/ut-front-react/commit/4f1a753))
+* MCTUNE-1202 make tool tip icon to be pointer on hover ([#5](https://github.com/softwaregroup-bg/ut-front-react/issues/5)) ([088d386](https://github.com/softwaregroup-bg/ut-front-react/commit/088d386))
+* MCTUNE-1403 reorder actions buttons to keep consistency - all close, no, etc. buttons on the right side ([#6](https://github.com/softwaregroup-bg/ut-front-react/issues/6)) ([acb6d82](https://github.com/softwaregroup-bg/ut-front-react/commit/acb6d82))
+
+
+
+<a name="5.42.8"></a>
+## [5.42.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.7...v5.42.8) (2016-11-23)
+
+
+### Bug Fixes
+
+* cleanup ([97fd40d](https://github.com/softwaregroup-bg/ut-front-react/commit/97fd40d))
+
+
+
 <a name="5.42.7"></a>
 ## [5.42.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.6...v5.42.7) (2016-11-21)
 

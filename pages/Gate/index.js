@@ -90,7 +90,7 @@ const Gate = React.createClass({
                     languageId: newProps.login.getIn(['result', 'language', 'languageId']),
                     itemTypeName: 'text',
                     keyValue: true,
-                    isEnabled: 1,
+                    isEnabled: true,
                     pageSize: 10000
                 });
             }

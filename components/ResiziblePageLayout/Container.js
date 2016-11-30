@@ -6,7 +6,7 @@ import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';
 import style from './style.css';
 
-const heightToSubtratc = 59 + 22 + 61;
+const heightToSubtratc = 59 + 22 + 91;
 const defaultColWidth = 200;
 const defaultMinWidth = 10;
 
@@ -325,7 +325,7 @@ class Container extends Component {
         });
 
         return (
-            <div style={{padding: '0 0 30px 0', height: this.state.height}}>
+            <div style={{height: this.state.height}}>
                 <div ref='tableWrap' id={style.mainContentWrap}>
                     {renderCols}
                 </div>

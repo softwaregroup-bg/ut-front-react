@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "5.42.7",
+  "version": "5.42.26",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
@@ -45,11 +45,11 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^1.36.0",
-    "babel-preset-es2015-without-strict": "0.0.2",
-    "babel-preset-stage-0": "6.5.0",
+    "babel-preset-es2015-without-strict": "0.0.4",
+    "babel-preset-stage-0": "6.16.0",
     "css-loader": "0.23.1",
     "style-loader": "0.13.1",
-    "ut-tools": "^5.10.6"
+    "ut-tools": "^5.10.8"
   },
   "peerDependencies": {
     "ut-front": "^5.5.1"
