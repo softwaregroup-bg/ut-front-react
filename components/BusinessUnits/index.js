@@ -35,9 +35,12 @@ class BusinessUnits extends Component {
         }
     }
 
-    componentWillReceiveProps({active}) {
+    componentWillReceiveProps({active, requiresFetch, isLoading}) {
         if (active !== this.props.active) {
             this.setState({selected: active});
+        }
+        if (requiresFetch && !isLoading) {
+            this.props.fetchBusinessUnits();
         }
     }
 
@@ -132,6 +135,7 @@ BusinessUnits.propTypes = {
     // Data from state
     unitsTree: Tree.propTypes.data,
     isLoading: PropTypes.bool,
+    requiresFetch: PropTypes.bool,
 
     // Data from passed (own) props
     active: Tree.propTypes.active,
@@ -153,7 +157,8 @@ BusinessUnits.defaultProps = {
         main: {}
     },
     requiresUnitsFetch: false,
-    setRequiresBusinessUnitsFetch: () => {}
+    setRequiresBusinessUnitsFetch: () => {},
+    requiresFetch: false
 };
 
 export default BusinessUnits;
