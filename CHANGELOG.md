@@ -1,3 +1,14 @@
+<a name="5.42.31"></a>
+## [5.42.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.30...v5.42.31) (2016-11-30)
+
+
+### Bug Fixes
+
+* MCTUNE-1594 fix lint ([b6b08b8](https://github.com/softwaregroup-bg/ut-front-react/commit/b6b08b8))
+* MCTUNE-1594 MCTUNE-1595 add policy credentials to tab validations add new validation ([7983828](https://github.com/softwaregroup-bg/ut-front-react/commit/7983828))
+
+
+
 <a name="5.42.30"></a>
 ## [5.42.30](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.29...v5.42.30) (2016-11-30)
 
