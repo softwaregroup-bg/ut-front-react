@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .searchBoxWrap {
     width: 100%;
     position: relative;
@@ -7,7 +10,7 @@
 .searchBox {
     position: relative;
     width: 66%;
-    border: 1px solid #D7D6D6;
+    border: 1px solid var(--ut-front-react-standardAutoCompleteSearchBorderColor);
     font-weight: normal;
     float: left;
 }
@@ -36,7 +39,7 @@
     top: 1px;
     right: 1px;
     border: none;
-    background: #0074ba;
+    background: var(--ut-front-react-standardSearchBoxColor);
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
     background-position: center center;

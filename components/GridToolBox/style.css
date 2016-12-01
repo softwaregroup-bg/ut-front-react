@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .toolbarWrap {
     display: block;
     overflow: hidden;
@@ -17,7 +20,7 @@
 }
 
 .toolbarWrap .link {
-    color: #E93591;
+    color: var(--ut-front-react-standardGridToolBoxToolbarWrapLinkColor);
     cursor: pointer;
     text-decoration: none;
 }
@@ -43,11 +46,11 @@
     width: 28px;
     height: 28px;
     margin-top: 13px;
-    background-color: #F4F4F4;
+    background-color: var(--ut-front-react-standardGridToolBoxCloseArrowBackgroundColor);
     background-image: url('./images/clearfilters-arrow.png');
     background-repeat: no-repeat;
     background-position: center center;
-    border: 1px solid #CCCCCC;
+    border: 1px solid var(--ut-front-react-standardGridToolBoxBorderColor);
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -65,11 +68,11 @@
     width: 28px;
     height: 28px;
     margin-top: 13px;
-    background-color: #E93591;
+    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
     background-position: center center;
-    border: 1px solid #CCCCCC;
+    border: 1px solid var(--ut-front-react-standardGridToolBoxBorderColor);
     cursor: pointer;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -77,7 +80,7 @@
 }
 
 .toolbarWrap .closeArrow:hover {
-    background-color: #E8E8E8;
+    background-color: var(--ut-front-react-standardGridToolBoxCloseArrowHoverBackgroundColor);
 }
 
 .toolbarWrap .button {
@@ -93,8 +96,8 @@
     position: absolute;
     top: 40px;
     right: 5px;
-    background-color: #FFFFFF;
-    border: 1px solid #D9D9D9;
+    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchBackgroundColor);
+    border: 1px solid var(--ut-front-react-standardGridToolBoxAdvancedSearchBorderColor);
     z-index: 1;
     padding: 5px;
 }

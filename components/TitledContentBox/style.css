@@ -1,6 +1,9 @@
+@import './default-config.css';
+@import 'config.css';
+
 .titledContentWrap {
     width: 100%;
-    border: 1px solid #D6D6D6;
+    border: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -10,8 +13,8 @@
     width: 100%;
     padding: 20px 3%;
     display: block;
-    border-bottom: 1px solid #D6D6D6;
-    background: #F9F9F9;
+    border-bottom: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
+    background: var(--ut-front-react-standardTitledContentBoxHeaderBackgroundColor);
     overflow: hidden;
 }
 
@@ -19,7 +22,7 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
-    color: #595959;
+    color: var(--ut-front-react-standardTitledContentBoxTextColor);
     float: left;
 }
 
@@ -27,7 +30,7 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
-    color: #595959;
+    color: var(--ut-front-react-standardTitledContentBoxTextColor);
     text-align: center;
 }
 
@@ -37,5 +40,5 @@
 
 .titledContentWrap .contentWrap {
     padding: 0 3%;
-    background: #fff;
+    background: var(--ut-front-react-standardTitledContentBoxBackgroundColor);
 }

@@ -1,4 +1,7 @@
 /* Common */
+@import './default-config.css';
+@import 'config.css';
+
 .input {
     width: 100%;
     height: 30px;
@@ -257,8 +260,12 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     padding-right: 1px !important;
 }
 
+.dropdownIconBackground svg { /* pass over material ui styling limitations */
+    background-color: var(--ut-front-react-standardDropdownIconColor);
+}
+
 .inputWrap {
-    position: relative;
+    position: relative; 
     display: block;
 }
 .inputWrap .tooltiptext {

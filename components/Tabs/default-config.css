@@ -1,0 +1,14 @@
+:root {
+    /*colors*/
+    --ut-front-react-standardTabTextSelectedColor: #2881ec;
+    --ut-front-react-standardTabNavbarBackgroundColor: #f9f9f9;
+    --ut-front-react-standardTabNavbarBorderColor: #d7d6d6;
+    --ut-front-react-standardTabMenuBackgroundColor: #eee;
+    --ut-front-react-standardTabMenuTextColor: #373a3c;
+    --ut-front-react-standardTabHoverBackgroundColor: #dfdfdf;
+    --ut-front-react-standardTabSelectedBackgroundColor: #fff;
+    --ut-front-react-standardTabErrorBoxBackgroundColor: #ff3848;
+    --ut-front-react-standardTabErrorBoxTextColor: #fff;
+    --ut-front-react-standardTabSelectedColor: #2881ec;
+    --ut-front-react-standardTabSelectedBorderColor: #2881ec;
+}

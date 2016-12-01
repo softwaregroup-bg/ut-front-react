@@ -1,12 +1,15 @@
+@import './default-config.css';
+@import 'config.css';
+
 table.dataGridTable {
     width: 100%;
     font-family: Roboto,Arial;
-    border: 1px solid #D7D6D6;
+    border: 1px solid var(--ut-front-react-standardGridTableBorderColor);
     font-size: 14px;
 }
 
 table.dataGridTable a {
-    color: #E93591;
+    color: var(--ut-front-react-standardDataGridTableLinkColor);
     text-decoration: none;
 }
 
@@ -19,8 +22,8 @@ table.dataGridTable tr td, table.dataGridTable tr, th {
 }
 
 table.dataGridTable tr {
-    background: #FFFFFF;
-    border-bottom: 1px solid #D7D6D6;
+    background: var(--ut-front-react-standardGridTableBackgroundOddColor);
+    border-bottom: 1px solid var(--ut-front-react-standardGridTableBorderColor);
     -webkit-transition: background 0.2s ease-in-out;
     transition: background 0.2s ease-in-out;
 }
@@ -38,32 +41,31 @@ table.dataGridTable thead {
 }
 
 table.dataGridTable tr:nth-child(2n) {
-    background: #FDFDFD;
+    background: var(--ut-front-react-standardGridTableBackgroundEvenColor);
 }
 
 table.dataGridTable tr.checked {
-    background: #FFFBEF !important;
+    /*background: #FFFBEF !important;*/
+    background: var(--ut-front-react-standardGridTableBackgroundCheckedColor);
 }
 
 table.dataGridTable tr.selected {
-    background: #FFFFCC !important; /* FFFCE5 */
+    background: var(--ut-front-react-standardGridTableBackgroundSelectedColor); /* FFFCE5 */
 }
 
-
-table.dataGridTable tr.checked {
-    background: #FFFCEB;
-}
-
+/*table.dataGridTable tr.checked {
+    background: #FFFCEB; 
+}*/
 
 table.dataGridTable tr:hover {
-    background: #F7F7F7;
+    background: var(--ut-front-react-standardGridTableBackgroundHoverColor);
 }
 
 table.dataGridTable thead,
 table.dataGridTable thead tr,
 table.dataGridTable thead tr td {
-    background: #F9F9F9;
-    color: #595959;
+    background: var(--ut-front-react-standardGridTableTheadBackgroundColor);
+    color: var(--ut-front-react-standardGridTableTheadColor);
     font-weight: bold;
 }
 
@@ -132,7 +134,7 @@ table.dataGridTable tr th .refreshDataButton {
 }
 
 .link {
-    color: #E93591;
+    color: var(--ut-front-react-standardGridLinkColor);
     text-decoration: none;
 }
 .link:hover {

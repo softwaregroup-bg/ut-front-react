@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .tabSetWrapper {
     height: 42px;
     width: 100%;
@@ -36,19 +39,19 @@
 a.tabMenuWrap:hover,
 a.tabMenuWrap:focus,
 .tabMenuWrap:hover {
-    text-decoration: none!important;
+    text-decoration: none;
     background: #DFDFDF;
     color: #373a3c;
 }
 a.tabMenuWrap.tabMenuWrapSelected,
 .tabMenuWrap.tabMenuWrapSelected {
-    background: white;
-    color: #014c8c !important;
-    text-decoration: none!important;
+    background: var(--ut-front-react-standardTabMenuBackgroundColor);
+    color: var(--ut-front-react-standardTabMenuColor);
+    text-decoration: none;
 }
 a.tabMenuWrap:hover.tabMenuWrapSelected,
 .tabMenuWrap:hover.tabMenuWrapSelected {
-    color: #014c8c !important;
+    color: var(--ut-front-react-standardTabMenuColor);
 }
 .tabMenuWrap .tabMenuItemContent {
     padding: 10px 29px 10px 10px;

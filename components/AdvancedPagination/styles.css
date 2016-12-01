@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .bold {
     font-weight: bold;
 }
@@ -6,7 +9,7 @@
 }
 
 .lighColor {
-    color: #afafaf;
+    color: var(--ut-front-react-standardPaginationLightColor);
 }
 
 .paginationWrap {
@@ -50,7 +53,7 @@
 .pageSwitherWrap .numberInputWrap .numberInput {
     width: 90%;
     padding: 1% 5%;
-    border: 1px solid #cccccc;
+    border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
     height: 20px;
 }
 .pageSwitherWrap .numberInputWrap .numberInput::-webkit-inner-spin-button, 
@@ -69,7 +72,7 @@
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox {
     min-width: 34px;
     padding: 1px 9px;
-    border: 1px solid #cccccc;
+    border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
     border-left: none;
     display: inline-block;
     cursor: pointer;
@@ -82,14 +85,14 @@
     user-select: none;           /* Non-prefixed version, currently */
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:first-child {
-    border-left: 1px solid #cccccc;
+    border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:hover {
-    background: #ffffff;
+    background: var(--ut-front-react-standardPaginationBackgroundHoverColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .active {
-    background: #e63b91 !important;
-    color: #ffffff !important;
+    background: var(--ut-front-react-standardPaginationBackgroundActiveColor);
+    color: var(--ut-front-react-standardPaginationTextActiveColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .arrowWrap {
     width: 20px;
@@ -106,8 +109,8 @@
     left: -61px;
     z-index: 90;
     padding: 1px;
-    border: 1px solid #cccccc;
-    background: #f2f2f2;
+    border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
+    background: var(--ut-front-react-standardPaginationPagesWrapColor);
     overflow: hidden;
     display: none;
 
@@ -121,7 +124,7 @@
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox {
     min-width: 37px;
     padding: 1px 9px;
-    border: 1px solid #cccccc;
+    border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
     border-left: none;
     float: left;
     cursor: pointer;
@@ -138,16 +141,16 @@
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(2),
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(3),
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(4) {
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:hover {
-    background: #ffffff;
+    background: var(--ut-front-react-standardPaginationBackgroundHoverColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(1),
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(5),
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(9),
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .morePagesWrap .morePageBox:nth-child(13){
-    border-left: 1px solid #cccccc;
+    border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 
 .pageSizeBoxWrap .totalItemsWrap {
