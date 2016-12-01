@@ -1,3 +1,13 @@
+<a name="5.44.0"></a>
+# [5.44.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.6...v5.44.0) (2016-12-01)
+
+
+### Features
+
+* UIS-450 add update title action for the tabmenu container ([9b837fb](https://github.com/softwaregroup-bg/ut-front-react/commit/9b837fb))
+
+
+
 <a name="5.43.6"></a>
 ## [5.43.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.5...v5.43.6) (2016-12-01)
 
