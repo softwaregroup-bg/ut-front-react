@@ -78,8 +78,8 @@ class Dropdown extends Component {
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
         let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
         let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
+        let iconBackground = style.dropdownIconBackground;
         let iconStyles = {
-            background: '#E93591',
             fill: '#FFF',
             right: '0px',
             top: '1px',
@@ -102,7 +102,7 @@ class Dropdown extends Component {
                   onChange={this.handleChange}
                   autoWidth={false}
                   disabled={this.props.disabled}
-                  className={ddstyles.dropDownRoot}
+                  className={classnames(iconBackground, ddstyles.dropDownRoot)}
                   iconStyle={iconStyles}
                   maxHeight={300}
                 >

@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 #header {
     height: 58px;
     width: 100%;
@@ -55,7 +58,7 @@ div:global(.submenuLink) a {
 }
 
 #header #mainNavigationWrap div:global(.active), #header #mainNavigationWrap a:global(.active) {
-    color: #014c8c;
+    color: var(--ut-front-react-standardMainNavigationLinkColor);
 }
 
 #header #searchWrap {
@@ -228,7 +231,7 @@ div:global(.submenuLink) a {
 
 #header #headProfileWrap .profileWrap #headProfileInfoWrap .topWrap .innerWrap #infoWrap .roles {
     margin-top: 5px;
-    color: #014c8c;
+    color: #014c8c; /* is this used somewhere? */
 }
 
 #header #headProfileWrap .profileWrap #headProfileInfoWrap .topWrap .innerWrap #infoWrap .myAccountBtnWrap {

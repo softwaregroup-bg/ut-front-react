@@ -170,6 +170,7 @@ class GridToolBox extends Component {
                     <Dropdown
                       {...filterElement}
                       data={filterElement.data}
+                    //   style={{color: '#0074ba'}}
                       customTheme
                       placeholder={filterElement.placeholder}
                       defaultSelected={value}
