@@ -47,6 +47,15 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
             }
         };
     }
+    if (action.type === actionTypes.UPDATE_TAB_TITLE) {
+        for (let i = 0; i < state.tabs.length; i++) {
+            if (action.pathname === state.tabs[i].pathname) {
+                state.tabs[i].title = action.newTitle;
+                break;
+            }
+        }
+        return state;
+    }
     return state;
 };
 

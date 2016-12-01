@@ -15,3 +15,11 @@ export function removeTab(pathname) {
         pathname: pathname
     };
 }
+
+export function updateTabTitle(pathname, newTitle) {
+    return {
+        type: actionTypes.UPDATE_TAB_TITLE,
+        pathname: pathname,
+        newTitle: newTitle
+    };
+}
