@@ -1,3 +1,13 @@
+<a name="5.43.0"></a>
+# [5.43.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.33...v5.43.0) (2016-12-01)
+
+
+### Features
+
+* add minDate property in Simple DatePicker component ([25433ed](https://github.com/softwaregroup-bg/ut-front-react/commit/25433ed))
+
+
+
 <a name="5.42.33"></a>
 ## [5.42.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.32...v5.42.33) (2016-11-30)
 
