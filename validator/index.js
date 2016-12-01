@@ -43,6 +43,18 @@ export const isUniqueValueRule = (val, values, rule, result) => {
     }
 };
 
+export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result) => {
+    if (!shouldValidateProp) {
+        return;
+    }
+    checkPasedResultObject(result);
+
+    let trimmed = prop ? prop.trim() : '';
+    if (!prop || trimmed.length === 0 || prop === '__placeholder__') {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
 /* End text validation */
 
 /* Array Validation */
