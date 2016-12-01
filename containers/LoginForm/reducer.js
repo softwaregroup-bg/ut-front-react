@@ -30,7 +30,6 @@ export const login = (state = defaultLoginState, action) => {
         default:
             return state;
     }
-    return state;
 };
 
 export const loginData = (state = defaultLoginDataState, action) => {
