@@ -23,7 +23,7 @@ export const cookieCheck = () => ({
 });
 
 export const setLoginData = (data) => ({
-    type: LOGIN_DATA,
+    type: SET_LOGIN_DATA,
     data: (data instanceof Array) ? data : [data]
 });
 
