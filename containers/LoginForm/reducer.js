@@ -1,1 +1,2 @@
-import { LOGIN, LOGOUT, CHECK_COOKIE, SET_LOGIN_DATA } from './actionTypes';
+import Immutable from 'immutable';
+import { LOGIN, CHECK_COOKIE, SET_LOGIN_DATA, LOGOUT } from './actionTypes';
