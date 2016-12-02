@@ -25,7 +25,7 @@ export const login = (state = defaultLoginState, action) => {
             return state;
         case LOGIN:
             return state;
-        case COOKIE_CHECK:
+        case CHECK_COOKIE:
             return state;
         default:
             return state;

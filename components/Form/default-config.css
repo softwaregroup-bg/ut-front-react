@@ -2,4 +2,7 @@
     --ut-front-react-loginFormWidth: 450px;
     --ut-front-react-loginFormHeight: 340px;
     --ut-front-react-loginFormMargin: -170px 0 0 -225px;
+    --ut-front-react-loginFormBgColor: #FFFFFF;
+    --ut-front-react-loginFormBoxShadowColor: #E9E9E9;
+    --ut-front-react-loginTitleHeight: 90px;
 }

@@ -1,32 +1,21 @@
-import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
+import React, { PropTypes } from 'react';
 import buttonStyles from './styles.css';
+import { getClass } from '../../utils/helpers';
 
-export default class Button extends Component {
-    constructor(props) {
-        super(props);
-
-        this.getClassName = this.getClassName.bind(this);
-    }
-
-    getClassName() {
-        let { className } = this.props;
-
-        return classnames(buttonStyles.standardBtn, Array.isArray(className) ? className.map(name => buttonStyles[name]) : buttonStyles[className]);
-    }
-
-    render() {
-        let { type, label, onClick } = this.props;
-
-        return (
-            <button type={type} className={this.getClassName()} onClick={onClick} onTouchTap={onClick}>{label}</button>
-        );
-    }
-}
+const Button = ({
+    type,
+    label,
+    onClick,
+    className
+}) => (
+    <button type={type} className={getClass(buttonStyles, className)} onClick={onClick} onTouchTap={onClick}>
+        {label}
+    </button>
+);
 
 Button.propTypes = {
     type: PropTypes.string,
-    className: PropTypes.oneOf([ PropTypes.string, PropTypes.Array ]),
+    className: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func
 };
@@ -34,5 +23,7 @@ Button.propTypes = {
 Button.defaultProps = {
     type: 'button',
     className: 'standardBtn',
-    onClick: () => { }
+    onClick: () => {}
 };
+
+export default Button;

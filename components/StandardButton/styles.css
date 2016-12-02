@@ -3,51 +3,28 @@
 /* implementation config; in every implementation the file must be named exactly config.css in order for the theming to work */
 @import 'config.css';
 
-.standardBtn {
-    width: var(--ut-front-react-standardBtnWidth);
-    height: var(--ut-front-react-standardBtnHeight);
+.button {
     border: var(--ut-front-react-standardBtnBorder);
     border-radius: var(--ut-front-react-standardBtnBorderRadius);
-    color: var(--ut-front-react-standardBtnFontColor);
-    background-color: var(--ut-front-react-standardBtnBgColor);
     font-family: OpenSans;
     font-size: var(--ut-front-react-standardBtnFontSize);
     font-weight: 600;
     text-transform: var(--ut-front-react-standardBtnTransform);
 }
 
-.standardBtn:focus {
-    outline: var(--ut-front-react-standardBtnOutline);
-    outline: 5px auto -webkit-focus-ring-color;
+.standardBtn {
+    composes: button;
+    width: var(--ut-front-react-loginButtonWidth);
+    height: var(--ut-front-react-loginButtonHeight);
+    margin-bottom: 60px;
+    background-color: var(--ut-front-react-standardBtnBgColor);
+    color: var(--ut-front-react-standardBtnTextColor);
 }
 
 .standardBtn:hover {
-    background-color: var(--ut-front-react-standardBtnHoverBgColor);
-}
-.connectBtn {
-    background-color: var(--ut-front-react-connectBtnBgColor);
+    background-color: var(--ut-front-react-standardBtnHoverColor);
 }
 
-.connectBtn:hover {
-    background-color: var(--ut-front-react-connectBtnHoverBgColor);
-}
-
-.standardBtn:disabled,.standardBtn:disabled:hover {
-    background-color: var(--ut-standardBtnDisabledBgColor);
-    cursor: pointer;
-}
-
-.smallBtn {
-    padding: var(--ut-smallBtnPadding);
-    font-size: var(--ut-smallBtnFontSize);
-    line-height: var(--ut-smallBtnLineHeight);
-}
-
-.fullWidthBtn {
-    width: 100%;
-}
-
-.loginBtn {
-    composes: connectBtn fullWidthBtn;
-    margin-bottom: 60px;
+.standardBtn:active {
+    background-color: var(--ut-front-react-standardBtnActiveColor);
 }

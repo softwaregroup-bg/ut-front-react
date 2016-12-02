@@ -1,0 +1,13 @@
+@import './default-config.css';
+@import 'config.css';
+
+.title {
+    color: var(--ut-front-react-titleTextColor);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.loginTitle {
+    composes: title;
+    line-height: var(--ut-front-react-loginTitleHeight);
+}

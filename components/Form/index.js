@@ -3,28 +3,32 @@ import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';
 import styles from './styles.css';
+import { getClass } from '../../utils/helpers';
 
 const Form = ({
     className,
-    handleSubmit,
     title,
     inputs,
-    buttons
+    buttons,
+    handleSubmit
 }) => {
     return (
-        <div className={styles[className]}>
+        <div className={getClass(styles, className)}>
             <form onSubmit={handleSubmit}>
-                { title ? <Title text={title}/> : false }
-                { inputs.map(input => <FormInput {...input} />) }
-                { buttons.map(button => <Button {...button} />) }
+                { title ? <Title className={title.className} text={title.text} /> : false }
+                { inputs.map((input, index) => <FormInput key={index} {...input} />) }
+                { buttons.map((button, index) => <Button key={index} {...button} />) }
             </form>
         </div>
     );
-}
+};
 
 Form.propTypes = {
     className: PropTypes.string,
+    title: PropTypes.string,
+    inputs: PropTypes.array,
+    buttons: PropTypes.array,
     handleSubmit: PropTypes.func.isRequired
-}
+};
 
 export default Form;

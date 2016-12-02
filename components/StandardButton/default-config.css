@@ -1,12 +1,10 @@
 /* button default colors and configuration*/
 :root {
     /*colors*/
-    --ut-front-react-standardBtnFontColor: #FFFFFF;
-    --ut-front-react-standardBtnOutlineColor: #014c8c;
-    --ut-front-react-standardBtnBgColor: #7EC241;
-    --ut-front-react-standardBtnHoverBgColor: #72A73F;
-    --ut-front-react-connectBtnBgColor: #0074ba;
-    --ut-front-react-connectBtnHoverBgColor: #0067a6;
+    --ut-front-react-standardBtnBgColor: #4096fd;
+    --ut-front-react-standardBtnHoverColor: #4f9efc;
+    --ut-front-react-standardBtnActiveColor: #3d8dee;
+    --ut-front-react-standardBtnTextColor: #FFFFFF;
 
     /* config */
     --ut-front-react-standardBtnWidth: 146px;
@@ -19,4 +17,6 @@
     --ut-front-react-smallBtnPadding: 8px 10px;
     --ut-front-react-smallBtnFontSize: 11px;
     --ut-front-react-smallBtnLineHeight: 11px;
+    --ut-front-react-loginButtonWidth: 315px;
+    --ut-front-react-loginButtonHeight: 50px;
 }

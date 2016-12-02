@@ -16,7 +16,7 @@ export const identityCheck = (params) => ({
 });
 
 export const cookieCheck = () => ({
-    type: COOKIE_CHECK,
+    type: CHECK_COOKIE,
     method: 'identity.check',
     suppressErrorWindow: true,
     params: {}

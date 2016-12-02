@@ -5,10 +5,12 @@ import Form from '../../components/Form';
 export default connect(
     (state) => ({
         className: 'loginForm',
-        title: 'Login',
+        title: {
+            className: 'loginTitle',
+            text: 'Login'
+        },
         inputs: [],
         buttons: [{
-            className: 'connectBtn',
             label: 'Next'
         }]
     }),

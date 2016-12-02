@@ -1,13 +1,17 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
 import Text from '../Text';
-import style from './styles.css';
+import styles from './styles.css';
+import { getClass } from '../../utils/helpers';
 
 const Title = ({ className, text }) => (
-    <div className={style[className]}>
+    <div className={getClass(styles, className)}>
         <Text>{text}</Text>
     </div>
 );
+
+Title.defaultProps = {
+    className: 'title'
+};
 
 Title.propTypes = {
     className: PropTypes.string,

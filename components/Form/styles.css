@@ -2,14 +2,16 @@
 @import 'config.css';
 
 .loginForm {
-    display: flex;
-    flex-direction: column;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: var(--ut-front-react-loginFormMargin);
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
     width: var(--ut-front-react-loginFormWidth);
     height: var(--ut-front-react-loginFormHeight);
-    box-sizing: border-box;
+    margin: var(--ut-front-react-loginFormMargin);
+    box-shadow: 0 0 2px var(--ut-front-react-loginFormBoxShadowColor);
+    background-color: var(--ut-front-react-loginFormBgColor);
 }
