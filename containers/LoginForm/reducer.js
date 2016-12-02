@@ -12,20 +12,7 @@ const defaultLoginState = Immutable.fromJS({
     loginResultId: 0,
     logOutResultId: 0,
     cookieCheckResultId: 0,
-    loginForm: {
-        isValid: true,
-        fileds: [{
-            name: 'username',
-            type: 'text',
-            value: '',
-            error: '',
-            validations: {
-                isRequired: true,
-                minLength: 2,
-                maxLength: 30
-            }
-        }]
-    }
+    loginForm: null
 });
 
 const defaultLoginDataState = Immutable.fromJS({

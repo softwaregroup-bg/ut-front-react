@@ -1,10 +1,5 @@
 import { INIT_FORM, LOGIN, CHECK_COOKIE, SET_LOGIN_DATA, LOGOUT } from './actionTypes';
 
-const initForm = (inputs) => ({
-    type: INIT_FORM,
-    inputs
-});
-
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
     let sign = offset > 0 ? '-' : '+';
@@ -12,6 +7,11 @@ const getTimezone = () => {
     let minutes = Math.abs(offset) - (hours * 60);
     return `${sign}${('00' + hours.toString()).substr(-2)}:${('00' + minutes.toString()).substr(-2)}`;
 };
+
+export const initForm = (inputs) => ({
+    type: INIT_FORM,
+    inputs
+});
 
 export const identityCheck = (params) => ({
     type: LOGIN,
