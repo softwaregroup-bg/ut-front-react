@@ -1,3 +1,16 @@
+<a name="5.44.3"></a>
+## [5.44.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.2...v5.44.3) (2016-12-02)
+
+
+### Bug Fixes
+
+* added dashboard; typo fixes ([cd39a18](https://github.com/softwaregroup-bg/ut-front-react/commit/cd39a18))
+* pass header text from outside ([44ff059](https://github.com/softwaregroup-bg/ut-front-react/commit/44ff059))
+* paths ([7c790f2](https://github.com/softwaregroup-bg/ut-front-react/commit/7c790f2))
+* paths ([2c0ad57](https://github.com/softwaregroup-bg/ut-front-react/commit/2c0ad57))
+
+
+
 <a name="5.44.2"></a>
 ## [5.44.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.1...v5.44.2) (2016-12-02)
 
