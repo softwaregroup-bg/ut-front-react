@@ -13,7 +13,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        debugger;
         return (
             <Form
                 className="loginForm"

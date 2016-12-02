@@ -14,10 +14,18 @@ const Form = ({
 }) => {
     return (
         <div className={getClass(styles, className)}>
+            { title ? <Title className={title.className} text={title.text} /> : false }
             <form onSubmit={handleSubmit}>
-                { title ? <Title className={title.className} text={title.text} /> : false }
-                { inputs.map((input, index) => <FormInput key={index} {...input} />) }
-                { buttons.map((button, index) => <Button key={index} {...button} />) }
+                <div className={styles.formBody}>
+                    { inputs.map((input, index) =>
+                        <FormInput key={index}
+                                   className="loginInput"
+                                   type={input.get('type')}
+                                   label={input.get('label')}
+                                   placeholder={input.get('placeholder')} />
+                    )}
+                    { buttons.map((button, index) => <Button key={index} {...button} />) }
+                </div>
             </form>
         </div>
     );
@@ -26,7 +34,7 @@ const Form = ({
 Form.propTypes = {
     className: PropTypes.string,
     title: PropTypes.object,
-    inputs: PropTypes.array,
+    inputs: PropTypes.object,
     buttons: PropTypes.array,
     handleSubmit: PropTypes.func.isRequired
 };

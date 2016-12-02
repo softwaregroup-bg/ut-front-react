@@ -10,13 +10,18 @@ const FormInput = ({
     onBlur,
     onChange,
     onFocus
-}) => (
-    <div className={getClass(styles, className)}>
-        { label ? <label className='label' placeholder={placeholder}>{label}</label> : false }
-        <input type={type} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
-    </div>
+}) => {
+    return (
+        <div className={getClass(styles, className)}>
+            { label ? <label className='label' placeholder={placeholder}>{label}</label> : false }
+            <input type={type} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+        </div>
+    )
+}
 
-);
+FormInput.defaultProps = {
+    className: "formInput"
+}
 
 FormInput.propTypes = {
     type: PropTypes.string,

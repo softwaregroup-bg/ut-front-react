@@ -6,7 +6,9 @@ import {
     SET_LOGIN_DATA,
     LOGOUT
 } from './actionTypes';
-import { getInputs } from './config';
+import {
+    getInputs
+} from './config';
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -27,9 +29,7 @@ const defaultLoginDataState = Immutable.fromJS({
 export const login = (state = defaultLoginState, action) => {
     switch (action.type) {
         case INIT_FORM:
-            var obj =  Immutable.fromJS(getInputs(action.inputs));
-            return obj;
-            debugger;
+            return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(action.inputs)));
         case LOGOUT:
             return state;
         case LOGIN:
