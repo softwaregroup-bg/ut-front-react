@@ -120,7 +120,7 @@ Layout.propTypes = {
     children: PropTypes.any,
     login: PropTypes.object,
     location: PropTypes.object,
-    headerCellText: PropTypes.string,
+    headerCellText: PropTypes.object,
     logOut: PropTypes.func
 };
 Layout.contextTypes = {
