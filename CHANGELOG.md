@@ -1,3 +1,14 @@
+<a name="5.45.0"></a>
+# [5.45.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.3...v5.45.0) (2016-12-02)
+
+
+### Features
+
+* UIS-451: add separate default colors for implementations ([296a9ec](https://github.com/softwaregroup-bg/ut-front-react/commit/296a9ec))
+* UIS-451: change colors ([2e8ee6a](https://github.com/softwaregroup-bg/ut-front-react/commit/2e8ee6a))
+
+
+
 <a name="5.44.3"></a>
 ## [5.44.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.2...v5.44.3) (2016-12-02)
 
