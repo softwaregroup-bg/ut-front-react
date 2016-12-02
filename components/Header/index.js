@@ -9,7 +9,7 @@ import style from './style.css';
 
 const Header = React.createClass({
     propTypes: {
-        headerCellText: PropTypes.string,
+        headerCellText: PropTypes.object,
         children: PropTypes.any,
         personInfo: PropTypes.shape({
             person: PropTypes.shape({
