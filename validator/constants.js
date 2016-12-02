@@ -28,7 +28,8 @@ export const arrayValidations = {
 };
 
 export const dropdownValidations = {
-    isRequired: 'isRequired'
+    isRequired: 'isRequired',
+    isRequiredOnCondition: 'isRequiredOnCondition'
 };
 
 export const defaultRoleValidations = {
