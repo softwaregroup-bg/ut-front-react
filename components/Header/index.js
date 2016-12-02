@@ -9,6 +9,7 @@ import style from './style.css';
 
 const Header = React.createClass({
     propTypes: {
+        headerCellText: PropTypes.object,
         children: PropTypes.any,
         personInfo: PropTypes.shape({
             person: PropTypes.shape({
@@ -68,7 +69,7 @@ const Header = React.createClass({
                     <Link to={this.context.mainUrl} id={this.getStyle('logo')}>
                         &nbsp;
                     </Link>
-                    <h2 className='f-semibold'>Platform <br /> Administration</h2>
+                    <h2 className='f-semibold'>{this.props.headerCellText}</h2>
                     {version && <span className={this.getStyle('version')}>{version}</span>}
                 </div>
 

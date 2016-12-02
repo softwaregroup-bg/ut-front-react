@@ -1,3 +1,117 @@
+<a name="5.44.3"></a>
+## [5.44.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.2...v5.44.3) (2016-12-02)
+
+
+### Bug Fixes
+
+* added dashboard; typo fixes ([cd39a18](https://github.com/softwaregroup-bg/ut-front-react/commit/cd39a18))
+* pass header text from outside ([44ff059](https://github.com/softwaregroup-bg/ut-front-react/commit/44ff059))
+* paths ([7c790f2](https://github.com/softwaregroup-bg/ut-front-react/commit/7c790f2))
+* paths ([2c0ad57](https://github.com/softwaregroup-bg/ut-front-react/commit/2c0ad57))
+
+
+
+<a name="5.44.2"></a>
+## [5.44.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.1...v5.44.2) (2016-12-02)
+
+
+
+<a name="5.44.1"></a>
+## [5.44.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.44.0...v5.44.1) (2016-12-02)
+
+
+
+<a name="5.44.0"></a>
+# [5.44.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.6...v5.44.0) (2016-12-01)
+
+
+### Features
+
+* UIS-450 add update title action for the tabmenu container ([9b837fb](https://github.com/softwaregroup-bg/ut-front-react/commit/9b837fb))
+
+
+
+<a name="5.43.6"></a>
+## [5.43.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.5...v5.43.6) (2016-12-01)
+
+
+
+<a name="5.43.5"></a>
+## [5.43.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.4...v5.43.5) (2016-12-01)
+
+
+
+<a name="5.43.4"></a>
+## [5.43.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.3...v5.43.4) (2016-12-01)
+
+
+
+<a name="5.43.3"></a>
+## [5.43.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.2...v5.43.3) (2016-12-01)
+
+
+
+<a name="5.43.2"></a>
+## [5.43.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.1...v5.43.2) (2016-12-01)
+
+
+
+<a name="5.43.1"></a>
+## [5.43.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.43.0...v5.43.1) (2016-12-01)
+
+
+
+<a name="5.43.0"></a>
+# [5.43.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.33...v5.43.0) (2016-12-01)
+
+
+### Features
+
+* add minDate property in Simple DatePicker component ([25433ed](https://github.com/softwaregroup-bg/ut-front-react/commit/25433ed))
+
+
+
+<a name="5.42.33"></a>
+## [5.42.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.32...v5.42.33) (2016-11-30)
+
+
+
+<a name="5.42.32"></a>
+## [5.42.32](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.31...v5.42.32) (2016-11-30)
+
+
+
+<a name="5.42.31"></a>
+## [5.42.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.30...v5.42.31) (2016-11-30)
+
+
+### Bug Fixes
+
+* MCTUNE-1594 fix lint ([b6b08b8](https://github.com/softwaregroup-bg/ut-front-react/commit/b6b08b8))
+* MCTUNE-1594 MCTUNE-1595 add policy credentials to tab validations add new validation ([7983828](https://github.com/softwaregroup-bg/ut-front-react/commit/7983828))
+
+
+
+<a name="5.42.30"></a>
+## [5.42.30](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.29...v5.42.30) (2016-11-30)
+
+
+
+<a name="5.42.29"></a>
+## [5.42.29](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.28...v5.42.29) (2016-11-30)
+
+
+
+<a name="5.42.28"></a>
+## [5.42.28](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.27...v5.42.28) (2016-11-30)
+
+
+
+<a name="5.42.27"></a>
+## [5.42.27](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.26...v5.42.27) (2016-11-30)
+
+
+
 <a name="5.42.26"></a>
 ## [5.42.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.42.25...v5.42.26) (2016-11-29)
 
