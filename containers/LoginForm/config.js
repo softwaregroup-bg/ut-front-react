@@ -22,3 +22,7 @@ export const inputs = {
         }
     }
 };
+
+export const getInputs = (inputNames) => {
+    return inputNames.map(name => inputs[name]);
+}

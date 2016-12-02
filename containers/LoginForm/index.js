@@ -13,20 +13,22 @@ class LoginForm extends Component {
     }
 
     render() {
+        debugger;
         return (
             <Form
                 className="loginForm"
                 inputs={this.props.inputs}
                 title={{className: 'loginTitle', text: 'Login'}}
-                buttons={[{label: 'Next'}]} />
+                buttons={[{label: 'Next'}]}
+                handleSubmit={() => {}} />
         );
     }
 }
 // TODO: extract constants in separate file
 export default connect(
-    ({ loginForm }) => {
+    ({ login }) => {
         return {
-          inputs: loginForm.inputs
+          inputs: login.get('loginForm').get('inputs')
         };
     },
     { initForm }

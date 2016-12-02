@@ -1,7 +1,5 @@
-export const actionList = {
-    INIT_FORM: Symbol('INIT_FORM'),
-    LOGIN: Symbol('LOGIN'),
-    CHECK_COOKIE: Symbol('CHECK_COOKIE'),
-    SET_LOGIN_DATA: Symbol('SET_LOGIN_DATA'),
-    LOGOUT: Symbol('LOGOUT')
-};
+export const INIT_FORM = Symbol('INIT_FORM');
+export const LOGIN = Symbol('LOGIN');
+export const CHECK_COOKIE = Symbol('CHECK_COOKIE');
+export const SET_LOGIN_DATA = Symbol('SET_LOGIN_DATA');
+export const LOGOUT = Symbol('LOGOUT');

@@ -1,10 +1,12 @@
 import Immutable from 'immutable';
 import {
+    INIT_FORM,
     LOGIN,
     CHECK_COOKIE,
     SET_LOGIN_DATA,
     LOGOUT
 } from './actionTypes';
+import { getInputs } from './config';
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -12,7 +14,9 @@ const defaultLoginState = Immutable.fromJS({
     loginResultId: 0,
     logOutResultId: 0,
     cookieCheckResultId: 0,
-    loginForm: null
+    loginForm: {
+        inputs: []
+    }
 });
 
 const defaultLoginDataState = Immutable.fromJS({
@@ -22,6 +26,10 @@ const defaultLoginDataState = Immutable.fromJS({
 
 export const login = (state = defaultLoginState, action) => {
     switch (action.type) {
+        case INIT_FORM:
+            var obj =  Immutable.fromJS(getInputs(action.inputs));
+            return obj;
+            debugger;
         case LOGOUT:
             return state;
         case LOGIN:
