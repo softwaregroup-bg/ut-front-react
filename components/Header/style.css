@@ -5,13 +5,12 @@
     height: 58px;
     width: 100%;
     border-bottom: 1px solid #CCCBCB;
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
     box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
     display: table;
     /* fix box-shadow */
     position: relative;
     z-index: 5;
+    color: var(--ut-front-react-standardMainNavigationTextColor);
     background: var(--ut-front-react-standardMainNavigationBackground);
 }
 
