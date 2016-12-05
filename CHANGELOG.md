@@ -1,3 +1,21 @@
+<a name="5.46.0"></a>
+# [5.46.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.45.2...v5.46.0) (2016-12-05)
+
+
+### Bug Fixes
+
+* favicon ([7105b21](https://github.com/softwaregroup-bg/ut-front-react/commit/7105b21))
+* start refactoring header component ([2fe3681](https://github.com/softwaregroup-bg/ut-front-react/commit/2fe3681))
+* start refactoring header component ([653b304](https://github.com/softwaregroup-bg/ut-front-react/commit/653b304))
+* start refactoring header component ([a8a6e24](https://github.com/softwaregroup-bg/ut-front-react/commit/a8a6e24))
+
+
+### Features
+
+* UIS-367: add docs directory with sample user documentation ([#29](https://github.com/softwaregroup-bg/ut-front-react/issues/29)) ([3f26e5f](https://github.com/softwaregroup-bg/ut-front-react/commit/3f26e5f))
+
+
+
 <a name="5.45.2"></a>
 ## [5.45.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.45.1...v5.45.2) (2016-12-02)
 
