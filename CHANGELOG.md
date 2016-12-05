@@ -1,3 +1,13 @@
+<a name="5.46.1"></a>
+## [5.46.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.0...v5.46.1) (2016-12-05)
+
+
+### Bug Fixes
+
+* separate header ([b24e80f](https://github.com/softwaregroup-bg/ut-front-react/commit/b24e80f))
+
+
+
 <a name="5.46.0"></a>
 # [5.46.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.45.2...v5.46.0) (2016-12-05)
 
