@@ -1,4 +1,5 @@
 :root {
     /*colors*/
     --ut-front-react-standardMainNavigationLinkColor: #2281ec;
+    --ut-front-react-standardMainNavigationBackground: none;
 }
