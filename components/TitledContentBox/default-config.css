@@ -1,0 +1,7 @@
+:root {
+    /*colors*/
+    --ut-front-react-standardTitledContentBoxBorderColor: #d6d6d6;
+    --ut-front-react-standardTitledContentBoxTextColor: #595959;
+    --ut-front-react-standardTitledContentBoxHeaderBackgroundColor: #f9f9f9;
+    --ut-front-react-standardTitledContentBoxBackgroundColor: #fff;
+}

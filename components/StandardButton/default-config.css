@@ -1,0 +1,22 @@
+/* button default colors and configuration*/
+:root {
+    /*colors*/
+    --ut-front-react-standardBtnFontColor: #FFFFFF;
+    --ut-front-react-standardBtnOutlineColor: #014c8c;
+    --ut-front-react-standardBtnBgColor: #7EC241;
+    --ut-front-react-standardBtnHoverBgColor: #72A73F;
+    --ut-front-react-connectBtnBgColor: #0074ba;
+    --ut-front-react-connectBtnHoverBgColor: #0067a6;
+
+    /* config */
+    --ut-front-react-standardBtnWidth: 146px;
+    --ut-front-react-standardBtnHeight: 46px;
+    --ut-front-react-standardBtnTransform: uppercase;
+    --ut-front-react-standardBtnFontSize: 14px;
+    --ut-front-react-standardBtnBorder: none;
+    --ut-front-react-standardBtnBorderRadius: 2px;
+    --ut-front-react-standardBtnOutline: 1px dotted var(--ut-standardBtnOutlineColor);
+    --ut-front-react-smallBtnPadding: 8px 10px;
+    --ut-front-react-smallBtnFontSize: 11px;
+    --ut-front-react-smallBtnLineHeight: 11px;
+}

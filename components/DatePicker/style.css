@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .dpBoxWrap {
     width: 100%;
     position: relative;
@@ -42,7 +45,7 @@
     top: 1px;
     right: 1px;
     border: none;
-    background: #E93591;
+    background: var(--ut-front-react-standardDatePickerBackgroundColor);
     background-image: url('./images/calendar.png');
     background-repeat: no-repeat;
     background-position: center center;
@@ -109,7 +112,7 @@
     height: 26px;
     width: 26px;
     margin: 2px;
-    background: #E93591;
+    background: var(--ut-front-react-standardDatePickerBackgroundColor);
     background-image: url('./images/calendar.png');
     background-repeat: no-repeat;
     background-position: center center;
