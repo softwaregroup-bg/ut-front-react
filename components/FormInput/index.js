@@ -5,6 +5,7 @@ import { getClass } from '../../utils/helpers';
 const FormInput = ({
     type,
     label,
+    name,
     placeholder,
     className,
     onBlur,
@@ -14,7 +15,7 @@ const FormInput = ({
     return (
         <div className={getClass(styles, className)}>
             { label ? <label className='label' placeholder={placeholder}>{label}</label> : false }
-            <input type={type} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+            <input name={name} type={type} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
         </div>
     )
 }

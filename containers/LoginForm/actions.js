@@ -1,4 +1,4 @@
-import { INIT_FORM, LOGIN, CHECK_COOKIE, SET_LOGIN_DATA, LOGOUT } from './actionTypes';
+import { INIT_FORM, LOGIN, CHECK_COOKIE, SET_LOGIN_DATA, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -14,6 +14,12 @@ export const initForm = (inputs) => {
         inputs
     }
 };
+
+export const setInputValue = ({ input, value }) => ({
+    type: SET_INPUT_VALUE,
+    input,
+    value
+})
 
 export const identityCheck = (params) => ({
     type: LOGIN,

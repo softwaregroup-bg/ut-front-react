@@ -24,5 +24,8 @@ export const inputs = {
 };
 
 export const getInputs = (inputNames) => {
-    return inputNames.map(name => inputs[name]);
+    return inputNames.reduce((memo, current) => {
+      memo[current] = inputs[current];
+        return memo;
+    }, {});
 }

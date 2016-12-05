@@ -5,7 +5,7 @@ import {
     connect
 } from 'react-redux';
 import Form from '../../components/Form';
-import { initForm } from './actions';
+import { initForm, setInputValue } from './actions';
 
 class LoginForm extends Component {
     componentWillMount() {
@@ -13,13 +13,24 @@ class LoginForm extends Component {
     }
 
     render() {
+      const { setInputValue } = this.props;
+
         return (
             <Form
                 className="loginForm"
                 inputs={this.props.inputs}
                 title={{className: 'loginTitle', text: 'Login'}}
                 buttons={[{label: 'Next'}]}
-                handleSubmit={() => {}} />
+                onChange={(event) => {
+                    const { name, value } = event.target;
+
+                    setInputValue({
+                        input: name,
+                        value
+                    });
+                }}
+                onBlur={(event) => {debugger;}}
+                onSubmit={(event) => {debugger;}} />
         );
     }
 }
@@ -30,5 +41,5 @@ export default connect(
           inputs: login.get('loginForm').get('inputs')
         };
     },
-    { initForm }
+    { initForm, setInputValue }
 )(LoginForm);

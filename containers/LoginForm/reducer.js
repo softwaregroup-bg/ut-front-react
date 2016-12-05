@@ -2,6 +2,7 @@ import Immutable from 'immutable';
 import {
     INIT_FORM,
     LOGIN,
+    SET_INPUT_VALUE,
     CHECK_COOKIE,
     SET_LOGIN_DATA,
     LOGOUT
@@ -34,6 +35,8 @@ export const login = (state = defaultLoginState, action) => {
             return state;
         case LOGIN:
             return state;
+        case SET_INPUT_VALUE:
+            return state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
         case CHECK_COOKIE:
             return state;
         default:

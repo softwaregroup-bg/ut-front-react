@@ -10,19 +10,25 @@ const Form = ({
     title,
     inputs,
     buttons,
-    handleSubmit
+    onSubmit,
+    onBlur,
+    onChange
 }) => {
+  debugger;
     return (
         <div className={getClass(styles, className)}>
             { title ? <Title className={title.className} text={title.text} /> : false }
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
                 <div className={styles.formBody}>
                     { inputs.map((input, index) =>
                         <FormInput key={index}
                                    className="loginInput"
                                    type={input.get('type')}
                                    label={input.get('label')}
-                                   placeholder={input.get('placeholder')} />
+                                   name={input.get('name')}
+                                   placeholder={input.get('placeholder')}
+                                   onChange={onChange}
+                                   onBlur={onBlur} />
                     )}
                     { buttons.map((button, index) => <Button key={index} {...button} />) }
                 </div>
@@ -36,7 +42,9 @@ Form.propTypes = {
     title: PropTypes.object,
     inputs: PropTypes.object,
     buttons: PropTypes.array,
-    handleSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default Form;
