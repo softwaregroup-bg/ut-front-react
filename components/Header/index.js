@@ -64,7 +64,7 @@ const Header = React.createClass({
         let headProfileInfoWrapStyles = this.state.userMenu.open ? '' : this.getStyle('hidden');
         let version = this.props.version;
         return (
-            <div id={this.getStyle('header')}>
+            <div className={[this.getStyle('header'), this.getStyle('headerHolder')].join(' ')}>
                 <div id={this.getStyle('logoWrap')} className={this.getStyle('headerCell')}>
                     <Link to={this.context.mainUrl} id={this.getStyle('logo')}>
                         &nbsp;
