@@ -131,10 +131,12 @@ Layout.contextTypes = {
 };
 
 export default connect(
-    (state) => ({
-        tabs: state.tabMenu.tabs,
-        login: state.login
-    }),
+    (state) => {
+        return {
+            tabs: state.tabMenu.tabs,
+            login: state.login
+        };
+    },
     (dispatch) => (
         {
             logOut: () => dispatch({
