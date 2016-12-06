@@ -1,3 +1,14 @@
+<a name="5.46.5"></a>
+## [5.46.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.4...v5.46.5) (2016-12-06)
+
+
+### Bug Fixes
+
+* UIS-487 fix contextTypes definitions ([ee5307c](https://github.com/softwaregroup-bg/ut-front-react/commit/ee5307c))
+* UIS-487 fix lint ([a4fff96](https://github.com/softwaregroup-bg/ut-front-react/commit/a4fff96))
+
+
+
 <a name="5.46.4"></a>
 ## [5.46.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.3...v5.46.4) (2016-12-06)
 
