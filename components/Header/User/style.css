@@ -1,0 +1,171 @@
+.headerCellProfileWrapHidden {
+    display: none;
+}
+
+.headerCellProfileWrapInfo {
+    width: 332px;
+    border: 1px solid #CCCCCC;
+    border-top: none;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    z-index: 9999;
+}
+
+.headerCellProfileWrapInfoTopWrap {
+    width: 100%;
+    height: 140px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.headerCellProfileWrapInfoTopWrapUpArrow {
+    width: 14px;
+    height: 9px;
+    position: absolute;
+    top: -9px;
+    right: 29px;
+    background: url('./images/arrow_profile_box.png');
+}
+
+.headerCellProfileWrapInfoTopWrapInner {
+    width: 100%;
+    height: 100px;
+    display: table;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerProfileImage {
+    width: 100px;
+    display: table-cell;
+    position: relative;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerProfileImage .profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url('./images/profile_picture_big.png');
+    cursor: pointer;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerProfileImage:hover .changeButton {
+    opacity: 1;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerProfileImage .changeButton {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    background: red;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    padding-top: 70px;
+    bottom: 0;
+    left: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+44,000000+100&0+46,0.69+100 */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, 0.69) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 44%,rgba(0, 0, 0, 0) 46%,rgba(0, 0, 0, 0.69) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 44%,rgba(0, 0, 0, 0) 46%,rgba(0, 0, 0, 0.69) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b0000000', GradientType=0 ); /* IE6-9 */
+    transition: opacity 0.25s;
+    -webkit-transition: opacity 0.25s; /* Safari */
+}
+
+.headerCellProfileWrapInfoTopWrapInnerInfoWrap {
+    width: auto;
+    display: table-cell;
+    padding-left: 20px;
+    vertical-align: top;
+    overflow: hidden;
+    text-align: left;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerInfoWrap .longDOttedText {
+    width: 172px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerInfoWrap .fullName {
+    color: #595959;
+    font-weight: bold;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerInfoWrap .email {
+    margin-top: -2px;
+    color: #989898;
+}
+
+.headerCellProfileWrapInfoTopWrapInnerInfoWrap .roles {
+    margin-top: 5px;
+    color: #014c8c; /* is this used somewhere? */
+}
+
+.headerCellProfileWrapInfoTopWrapInnerInfoWrap .myAccountBtnWrap {
+    margin-top: 10px;
+}
+
+.headerCellProfileWrapInfo .bottomWrap {
+    width: 100%;
+    height: 50px;
+    padding: 10px 20px;
+    overflow: hidden;
+    border-top: 1px solid #CCCCCC;
+    background: #F5F3F2;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.headerCellProfileWrapInfo .bottomWrap .button {
+    float: right;
+}
+
+.headerCellProfileWrap .image {
+    width: 26px;
+    height: 26px;
+    background-image: url('./images/profile_picture.png');
+    background-size: 26px 26px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.headerCellProfileWrap .username {
+    margin: 2px 7px;
+    float: left;
+}
+
+.headerCellProfileWrap .arrow {
+    width: 14px;
+    height: 14px;
+    margin-top: 7px;
+    float: left;
+    background: url('./images/arrow_black_base.png') no-repeat;
+    background-size: 14px 14px;
+}
+
+.headerCellProfile img {
+    float: right;
+    width: 98px;
+}
+
+.header .nameWrap {
+    float: right;
+    margin: 5px 4px 0 8px;
+}
+
+.headerCellProfile .navigationExpandMoreIcon {
+    background: url('./images/arrow_black_base.png') no-repeat 36px 8px;
+    overflow: hidden;
+    padding-right: 21px;
+    display: block;
+    cursor: pointer;
+}

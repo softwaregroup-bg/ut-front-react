@@ -41,6 +41,7 @@ export default class DatePicker extends Component {
                   mode={this.props.mode}
                   onChange={this.handleChange()}
                   firstDayOfWeek={this.props.firstDayOfWeek}
+                  minDate={this.props.minDate}
                 />
             </div>
         );
@@ -65,7 +66,8 @@ DatePicker.propTypes = {
     DateTimeFormat: PropTypes.func,
     onChange: PropTypes.func,
     wrapperStyles: PropTypes.object,
-    iconStyles: PropTypes.object
+    iconStyles: PropTypes.object,
+    minDate: PropTypes.object
 };
 
 DatePicker.contextTypes = {
