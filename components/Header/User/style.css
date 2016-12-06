@@ -30,7 +30,7 @@
     position: absolute;
     top: -9px;
     right: 29px;
-    background: url('./images/arrow_profile_box.png');
+    background: inline('arrow_profile_box.png');
 }
 
 .headerCellProfileWrapInfoTopWrapInner {
@@ -49,7 +49,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-image: url('./images/profile_picture_big.png');
+    background-image: inline('profile_picture_big.png');
     cursor: pointer;
 }
 
@@ -132,7 +132,7 @@
 .headerCellProfileWrap .image {
     width: 26px;
     height: 26px;
-    background-image: url('./images/profile_picture.png');
+    background-image: inline('profile_picture.png');
     background-size: 26px 26px;
     background-repeat: no-repeat;
     float: left;
@@ -148,7 +148,7 @@
     height: 14px;
     margin-top: 7px;
     float: left;
-    background: url('./images/arrow_black_base.png') no-repeat;
+    background: inline('arrow_black_base.png') no-repeat;
     background-size: 14px 14px;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .headerCellProfile .navigationExpandMoreIcon {
-    background: url('./images/arrow_black_base.png') no-repeat 36px 8px;
+    background: inline('arrow_black_base.png') no-repeat 36px 8px;
     overflow: hidden;
     padding-right: 21px;
     display: block;

@@ -5,7 +5,7 @@
 }
 
 .dashboardImg {
-    background: url('./dasboard_graphic.png');
+    background: inline('dashboard_admin.png');
 }
 
 .dashboardText {

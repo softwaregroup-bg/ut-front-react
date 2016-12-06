@@ -88,6 +88,7 @@
     border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:hover {
+    color: var(--ut-front-react-standardPaginationTextHoverColor);
     background: var(--ut-front-react-standardPaginationBackgroundHoverColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .active {

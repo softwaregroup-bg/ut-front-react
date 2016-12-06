@@ -289,7 +289,7 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     left: 50%;
     border-width: 5px;
     border-style: solid;
-    border-color: #D9D9D9 transparent transparent  transparent;
+    border-color: #D9D9D9 transparent transparent transparent;
 }
 .inputWrap:hover .tooltiptext {
     display: block;
@@ -346,4 +346,21 @@ input:read-only{
 
 .lableWrap{
     padding: 5px 0 0 0;
+}
+
+/* Magic: do NOT touch! */
+div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
+    color: var(--ut-front-react-standardDropdownSelectedColor) !important;
+}
+
+.checked {
+    width: 20px;
+    height: 20px;
+    background: inline('enrollment_checked.png');
+}
+
+.unchecked {
+    width: 20px;
+    height: 20px;
+    background: inline('enrollment_unchecked.png');
 }

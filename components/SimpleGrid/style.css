@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .dataGridTable {
     width: 100%;
     font-family: Roboto,Arial;
@@ -6,7 +9,7 @@
 }
 
 .dataGridTable a {
-    color: #0074ba;
+    color: var(--ut-front-react-standardDataGridTableColor);
     text-decoration: none;
 }
 
