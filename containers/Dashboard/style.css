@@ -1,0 +1,15 @@
+.dashboardBg {
+    margin: 150px auto 0;
+    width: 205px;
+    height: 136px;
+}
+
+.dashboardImg {
+    background: inline('dashboard_admin.png');
+}
+
+.dashboardText {
+    display: block;
+    text-align: center;
+    margin: 25px 0 0 0;
+}

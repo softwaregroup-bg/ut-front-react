@@ -1,0 +1,13 @@
+:root {
+    /*colors*/
+    --ut-front-react-standardDataGridTableLinkColor: #2281ec;
+    --ut-front-react-standardGridTableBorderColor: #d7d6d6;
+    --ut-front-react-standardGridTableBackgroundOddColor: #fff;
+    --ut-front-react-standardGridTableBackgroundEvenColor: #fdfdfd;
+    --ut-front-react-standardGridTableBackgroundCheckedColor: #fffbef;
+    --ut-front-react-standardGridTableBackgroundSelectedColor: #ffffcc;
+    --ut-front-react-standardGridTableBackgroundHoverColor: #f7f7f7;
+    --ut-front-react-standardGridTableTheadBackgroundColor: #f9f9f9;
+    --ut-front-react-standardGridTableTheadColor: #595959;
+    --ut-front-react-standardGridLinkColor: #2281ec; 
+}
