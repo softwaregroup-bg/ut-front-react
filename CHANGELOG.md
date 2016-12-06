@@ -1,3 +1,13 @@
+<a name="5.47.0"></a>
+# [5.47.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.7...v5.47.0) (2016-12-06)
+
+
+### Features
+
+* UIS-451: change all images in standard implementation ([26012fe](https://github.com/softwaregroup-bg/ut-front-react/commit/26012fe))
+
+
+
 <a name="5.46.7"></a>
 ## [5.46.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.6...v5.46.7) (2016-12-06)
 
