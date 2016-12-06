@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .box {
     border: 1px solid #E6E6E6;
     background: #FFFFFF;
@@ -60,7 +63,7 @@
 }
 
 .activeLinkButton:hover {
-    color: #E93591;
+    color: var(--ut-front-react-standardBoxLinkHoverColor);
     text-decoration: underline;
     cursor: pointer;
 }

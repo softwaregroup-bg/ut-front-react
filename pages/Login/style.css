@@ -41,14 +41,14 @@
 }
 
 .loginPageLogo {
-    background: url(./images/logoTop.png) no-repeat center center;
+    background: inline('logoTop.png') no-repeat center center;
     margin: 50px auto;
     width: 500px;
     height: 100px;
 }
 
 .footerLogoContainer {
-    background: url(./images/logoBottom.png) no-repeat center center;
+    background: inline('logoBottom.png') no-repeat center center;
     margin: 30px auto;
     width: 500px;
     height: 100px;

@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .autoComplete {
     width: 100%;
     height: 30px;
@@ -28,7 +31,7 @@
     height: 26px;
     width: 26px;
     margin: 2px;
-    background: #E93591;
+    background: var(--ut-front-react-standardAutoCompleteSearchBackgroundColor);
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
     background-position: center center;

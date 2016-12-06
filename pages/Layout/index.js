@@ -98,11 +98,14 @@ Tab.contextTypes = {
 };
 
 class Layout extends Component {
+    getStyle(name) {
+        return (this.context.implementationStyle && this.context.implementationStyle[name]) || '';
+    }
     render() {
         let result = this.props.login.get('result');
         if (result) {
             return (
-                <div>
+                <div className={this.getStyle('implWrapper')}>
                     <Header personInfo={result.toJS()} onLogOut={this.props.logOut} style={{height: '59px'}} headerCellText={this.props.headerCellText}>
                         {this.context.mainTabset.map((tab, i) => <Tab key={i} tabData={tab} currentLocation={this.props.location.pathname} />)}
                     </Header>
@@ -120,21 +123,24 @@ Layout.propTypes = {
     children: PropTypes.any,
     login: PropTypes.object,
     location: PropTypes.object,
-    headerCellText: PropTypes.string,
+    headerCellText: PropTypes.object,
     logOut: PropTypes.func
 };
 Layout.contextTypes = {
     router: PropTypes.any,
+    implementationStyle: PropTypes.object,
     mainTabset: PropTypes.array,
     checkPermission: PropTypes.func,
     mainUrl: PropTypes.string
 };
 
 export default connect(
-    (state) => ({
-        tabs: state.tabMenu.tabs,
-        login: state.login
-    }),
+    (state) => {
+        return {
+            tabs: state.tabMenu.tabs,
+            login: state.login
+        };
+    },
     (dispatch) => (
         {
             logOut: () => dispatch({

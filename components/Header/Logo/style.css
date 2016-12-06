@@ -1,0 +1,24 @@
+@import '../default-config.css';
+@import 'config.css';
+
+.headerCellLogoLink {
+    width: 58px;
+    height: 58px;
+    float: left;
+    background: inline('logo.png') no-repeat center center;
+    margin-right: 10px;
+    padding: 0;
+}
+
+.headerCellLogoH2 {
+    margin-top: 12px;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.headerCellLogoVersion {
+    display: inline-block;
+    margin-top: 28px;
+    margin-left: 10px;
+}
