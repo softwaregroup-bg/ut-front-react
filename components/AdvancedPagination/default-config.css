@@ -1,6 +1,7 @@
 :root {
     /*colors*/
-    --ut-front-react-standardPaginationBackgroundActiveColor: #0074ba;
+    --ut-front-react-standardPaginationBackgroundActiveColor: #3d8dee;
+    --ut-front-react-standardPaginationTextHoverColor: #2881ec;
     --ut-front-react-standardPaginationBackgroundHoverColor: #fff;
     --ut-front-react-standardPaginationTextActiveColor: #fff;
     --ut-front-react-standardPaginationBorderColor: #ccc;
