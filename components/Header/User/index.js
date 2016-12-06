@@ -39,7 +39,6 @@ export default class User extends React.Component {
         let firstEmail = get(personInfo, 'emails[0].value');
         let roles = get(personInfo, 'roles').map((role) => role.name).join(', ');
         let headProfileInfoWrapStyles = this.state.userMenu.open ? '' : this.getStyle('headerCellProfileWrapHidden');
-
         return (
             <div className={this.getStyle('headerCellProfile')}>
                 <div onClick={this.toggleProfileInfoMenu} className={this.getStyle('navigationExpandMoreIcon')}>
@@ -82,5 +81,7 @@ User.propTypes = {
 
 User.contextTypes = {
     mainUrl: PropTypes.string,
+    assets: PropTypes.object,
+    implementationStyle: PropTypes.object,
     router: PropTypes.object.isRequired
 };
