@@ -82,5 +82,6 @@ User.propTypes = {
 
 User.contextTypes = {
     mainUrl: PropTypes.string,
+    implementationStyle: PropTypes.object,
     router: PropTypes.object.isRequired
 };
