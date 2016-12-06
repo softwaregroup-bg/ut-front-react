@@ -1,3 +1,13 @@
+<a name="5.46.4"></a>
+## [5.46.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.3...v5.46.4) (2016-12-06)
+
+
+### Bug Fixes
+
+* pass context ([85ba2f5](https://github.com/softwaregroup-bg/ut-front-react/commit/85ba2f5))
+
+
+
 <a name="5.46.3"></a>
 ## [5.46.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.2...v5.46.3) (2016-12-06)
 
