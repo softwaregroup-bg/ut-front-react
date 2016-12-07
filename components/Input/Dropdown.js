@@ -74,7 +74,8 @@ class Dropdown extends Component {
 
     renderDropDown() {
         let menuItems = this.getMenuItems();
-        let ddstyles = this.props.cssStyle ? this.props.cssStyle : style;
+        let { cssStyle, mergeStyles } = this.props;
+        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
         let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
         let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
@@ -113,8 +114,8 @@ class Dropdown extends Component {
     }
 
     render() {
-        let { label, cssStyle } = this.props;
-        let ddstyles = cssStyle || style;
+        let { label, cssStyle, mergeStyles } = this.props;
+        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let { isValid, errorMessage } = this.state.valid;
         let invalidStyle = isValid ? ddstyles.hiddenHeight : '';
 
@@ -157,6 +158,7 @@ Dropdown.propTypes = {
     canSelectPlaceholder: PropTypes.bool,
     onSelect: PropTypes.func,
     disabled: PropTypes.bool,
+    mergeStyles: PropTypes.object,
     iconStyles: PropTypes.object,
     // if you want to style the width of the dropdown, add a wrapper element that has min-width and max-width properties
     cssStyle: PropTypes.any, // css file to take styles [Should have the same classes/divs like in styles.css]

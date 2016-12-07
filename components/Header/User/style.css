@@ -137,6 +137,9 @@
     background-repeat: no-repeat;
     float: left;
 }
+.avatar {
+    background: inline('profile_picture.png');
+}
 
 .headerCellProfileWrap .username {
     margin: 2px 7px;
