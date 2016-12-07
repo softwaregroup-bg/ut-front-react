@@ -3,6 +3,7 @@
 
 .titledContentWrap {
     width: 100%;
+    /*min-width: 540px;*/
     border: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
     box-sizing: border-box;
     -moz-box-sizing: border-box;
