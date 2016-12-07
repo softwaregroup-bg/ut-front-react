@@ -13,8 +13,9 @@ export default class TabLink extends React.Component {
         } else {
             currentClassName = className;
         }
+        debugger;
         return (
-            <Link {...propsLeft} className={currentClassName} activeClassName=''>
+            <Link {...propsLeft} className={currentClassName} activeClassName={this.props.activeClassName}>
                 {children}
             </Link>
         );
