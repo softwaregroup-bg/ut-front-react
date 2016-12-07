@@ -1,3 +1,24 @@
+<a name="5.48.1"></a>
+## [5.48.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.0...v5.48.1) (2016-12-07)
+
+
+### Bug Fixes
+
+* expose avatar image ([8bd0847](https://github.com/softwaregroup-bg/ut-front-react/commit/8bd0847))
+* expose main logo width ([21b22df](https://github.com/softwaregroup-bg/ut-front-react/commit/21b22df))
+
+
+
+<a name="5.48.0"></a>
+# [5.48.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.47.0...v5.48.0) (2016-12-06)
+
+
+### Features
+
+* UI-467 add mergeStyles object to the dropdown component ([d26e6a7](https://github.com/softwaregroup-bg/ut-front-react/commit/d26e6a7))
+
+
+
 <a name="5.47.0"></a>
 # [5.47.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.46.7...v5.47.0) (2016-12-06)
 

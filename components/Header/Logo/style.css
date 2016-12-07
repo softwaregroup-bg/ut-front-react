@@ -2,7 +2,7 @@
 @import 'config.css';
 
 .headerCellLogoLink {
-    width: 58px;
+    width: var(--ut-front-react-standardMainLogoWidth);
     height: 58px;
     float: left;
     background: inline('logo.png') no-repeat center center;
