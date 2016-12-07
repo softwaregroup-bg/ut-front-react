@@ -1,3 +1,23 @@
+<a name="5.48.8"></a>
+## [5.48.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.7...v5.48.8) (2016-12-07)
+
+
+
+<a name="5.48.7"></a>
+## [5.48.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.6...v5.48.7) (2016-12-07)
+
+
+
+<a name="5.48.6"></a>
+## [5.48.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.5...v5.48.6) (2016-12-07)
+
+
+
+<a name="5.48.5"></a>
+## [5.48.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.4...v5.48.5) (2016-12-07)
+
+
+
 <a name="5.48.4"></a>
 ## [5.48.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.3...v5.48.4) (2016-12-07)
 
