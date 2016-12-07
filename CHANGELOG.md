@@ -1,3 +1,13 @@
+<a name="5.48.2"></a>
+## [5.48.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.1...v5.48.2) (2016-12-07)
+
+
+### Bug Fixes
+
+* use setState method ([fdcfc5d](https://github.com/softwaregroup-bg/ut-front-react/commit/fdcfc5d))
+
+
+
 <a name="5.48.1"></a>
 ## [5.48.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.0...v5.48.1) (2016-12-07)
 
