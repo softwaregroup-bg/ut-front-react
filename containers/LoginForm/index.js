@@ -35,15 +35,18 @@ class LoginForm extends Component {
     }
 
     render() {
+        let { inputs, error } = this.props;
+
         return (
             <Form
               className='loginForm'
-              inputs={this.props.inputs}
+              inputs={inputs}
               title={{className: 'loginTitle', text: 'Login'}}
               buttons={[{label: 'Next', className: 'standardBtn loginBtn'}]}
               onChange={this.onChange}
               onBlur={this.onBlur}
-              onSubmit={this.onSubmit} />
+              onSubmit={this.onSubmit}
+              error={error} />
         );
     }
 }
@@ -51,20 +54,16 @@ class LoginForm extends Component {
 export default connect(
     ({ login }) => {
         return {
-            inputs: login.get('loginForm').get('inputs')
+            inputs: login.get('loginForm').get('inputs'),
+            error: login.get('loginForm').get('formError')
         };
     },
     { initForm, setInputValue }
 )(LoginForm);
 
 LoginForm.propTypes = {
-    className: PropTypes.string,
     inputs: PropTypes.object,
-    title: PropTypes.string,
-    buttons: PropTypes.object,
-    onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    onSubmit: PropTypes.func.isRequired,
     initForm: PropTypes.func.isRequired,
-    setInputValue: PropTypes.func.isRequired
+    setInputValue: PropTypes.func.isRequired,
+    error: PropTypes.string
 };

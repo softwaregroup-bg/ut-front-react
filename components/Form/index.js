@@ -31,11 +31,12 @@ export default class Form extends Component {
     }
 
     render() {
-        let { className, title, buttons, onSubmit } = this.props;
+        let { className, title, error, buttons, onSubmit } = this.props;
 
         return (
             <div className={getClass(styles, className)}>
                 { title ? <Title className={title.className} text={title.text} /> : false }
+                { error ? <div>shit happens</div> : false }
                 <form className={styles.formContainer} onSubmit={onSubmit}>
                     <div className={styles.formBody}>
                         { this.renderInputs() }
@@ -50,6 +51,7 @@ export default class Form extends Component {
 Form.propTypes = {
     className: PropTypes.string,
     title: PropTypes.object,
+    error: PropTypes.string,
     inputs: PropTypes.object,
     buttons: PropTypes.array,
     onSubmit: PropTypes.func.isRequired,
