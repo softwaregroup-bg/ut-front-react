@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Form from '../../components/Form';
 import { initForm, setInputValue } from './actions';
@@ -35,15 +35,18 @@ class LoginForm extends Component {
     }
 
     render() {
+        let { inputs, error } = this.props;
+
         return (
             <Form
-                className="loginForm"
-                inputs={this.props.inputs}
-                title={{className: 'loginTitle', text: 'Login'}}
-                buttons={[{label: 'Next'}]}
-                onChange={this.onChange}
-                onBlur={this.onBlur}
-                onSubmit={this.onSubmit} />
+              className='loginForm'
+              inputs={inputs}
+              title={{className: 'loginTitle', text: 'Login'}}
+              buttons={[{label: 'Next', className: 'standardBtn loginBtn'}]}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              onSubmit={this.onSubmit}
+              error={error} />
         );
     }
 }
@@ -51,8 +54,16 @@ class LoginForm extends Component {
 export default connect(
     ({ login }) => {
         return {
-          inputs: login.get('loginForm').get('inputs')
+            inputs: login.get('loginForm').get('inputs'),
+            error: login.get('loginForm').get('formError')
         };
     },
     { initForm, setInputValue }
 )(LoginForm);
+
+LoginForm.propTypes = {
+    inputs: PropTypes.object,
+    initForm: PropTypes.func.isRequired,
+    setInputValue: PropTypes.func.isRequired,
+    error: PropTypes.string
+};

@@ -62,7 +62,8 @@ const defaultLoginState = Immutable.fromJS({
     logOutResultId: 0,
     cookieCheckResultId: 0,
     loginForm: {
-        inputs: {}
+        inputs: {},
+        formError: ''
     }
 });
 

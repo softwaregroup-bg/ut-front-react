@@ -9,5 +9,7 @@
 
 .loginTitle {
     composes: title;
+    flex-basis: var(--ut-front-react-loginTitleHeight);
     line-height: var(--ut-front-react-loginTitleHeight);
+    margin-bottom: var(--ut-front-react-loginMarginBottom);
 }
