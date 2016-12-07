@@ -1,20 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import classnames from 'classnames';
 
 export default class TabLink extends React.Component {
     render() {
-        let {to, className, activeClassName, children} = this.props;
+        let {to, className, children} = this.props;
         let {wideMatch, ...propsLeft} = this.props;
-        let currentClassName = '';
         let pathname = typeof to === 'object' ? to.pathname : to;
-        if (this.context.router.isActive(pathname, !wideMatch)) {
-            currentClassName = classnames(className, activeClassName);
-        } else {
-            currentClassName = className;
-        }
+        let isActive = this.context.router.isActive(pathname, !wideMatch);
+
         return (
-            <Link {...propsLeft} className={currentClassName} activeClassName={this.props.activeClassName}>
+            <Link {...propsLeft} className={className} activeClassName={isActive ? this.props.activeClassName : ''}>
                 {children}
             </Link>
         );
