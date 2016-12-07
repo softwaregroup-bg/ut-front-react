@@ -1,3 +1,13 @@
+<a name="5.49.0"></a>
+# [5.49.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.8...v5.49.0) (2016-12-07)
+
+
+### Features
+
+* include title style logic ([4e4dfb8](https://github.com/softwaregroup-bg/ut-front-react/commit/4e4dfb8))
+
+
+
 <a name="5.48.8"></a>
 ## [5.48.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.7...v5.48.8) (2016-12-07)
 
