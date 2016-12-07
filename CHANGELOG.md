@@ -1,3 +1,13 @@
+<a name="5.49.1"></a>
+## [5.49.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.0...v5.49.1) (2016-12-07)
+
+
+### Bug Fixes
+
+* toolbox title underline on hover ([9662185](https://github.com/softwaregroup-bg/ut-front-react/commit/9662185))
+
+
+
 <a name="5.49.0"></a>
 # [5.49.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.8...v5.49.0) (2016-12-07)
 
