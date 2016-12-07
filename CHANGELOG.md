@@ -1,3 +1,64 @@
+<a name="5.49.0"></a>
+# [5.49.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.8...v5.49.0) (2016-12-07)
+
+
+### Features
+
+* include title style logic ([4e4dfb8](https://github.com/softwaregroup-bg/ut-front-react/commit/4e4dfb8))
+
+
+
+<a name="5.48.8"></a>
+## [5.48.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.7...v5.48.8) (2016-12-07)
+
+
+
+<a name="5.48.7"></a>
+## [5.48.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.6...v5.48.7) (2016-12-07)
+
+
+
+<a name="5.48.6"></a>
+## [5.48.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.5...v5.48.6) (2016-12-07)
+
+
+
+<a name="5.48.5"></a>
+## [5.48.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.4...v5.48.5) (2016-12-07)
+
+
+
+<a name="5.48.4"></a>
+## [5.48.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.3...v5.48.4) (2016-12-07)
+
+
+
+<a name="5.48.3"></a>
+## [5.48.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.2...v5.48.3) (2016-12-07)
+
+
+
+<a name="5.48.2"></a>
+## [5.48.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.1...v5.48.2) (2016-12-07)
+
+
+### Bug Fixes
+
+* use setState method ([fdcfc5d](https://github.com/softwaregroup-bg/ut-front-react/commit/fdcfc5d))
+
+
+
+<a name="5.48.1"></a>
+## [5.48.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.0...v5.48.1) (2016-12-07)
+
+
+### Bug Fixes
+
+* expose avatar image ([8bd0847](https://github.com/softwaregroup-bg/ut-front-react/commit/8bd0847))
+* expose main logo width ([21b22df](https://github.com/softwaregroup-bg/ut-front-react/commit/21b22df))
+
+
+
 <a name="5.48.0"></a>
 # [5.48.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.47.0...v5.48.0) (2016-12-06)
 

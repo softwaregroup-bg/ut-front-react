@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import get from 'lodash.get';
 import Avatar from 'material-ui/Avatar';
-import profilePicture from './images/profile_picture.png';
 import style from './style.css';
 
 export default class User extends React.Component {
@@ -42,7 +41,7 @@ export default class User extends React.Component {
         return (
             <div className={this.getStyle('headerCellProfile')}>
                 <div onClick={this.toggleProfileInfoMenu} className={this.getStyle('navigationExpandMoreIcon')}>
-                    <Avatar src={(this.context.assets && this.context.assets.headerMenu && this.context.assets.headerMenu.profilePicture) || profilePicture} size={30} />
+                    <Avatar className={style.avatar} size={30} />
                 </div>
 
                 <div className={classnames(headProfileInfoWrapStyles, this.getStyle('headerCellProfileWrapInfo'))}>

@@ -132,10 +132,13 @@
 .headerCellProfileWrap .image {
     width: 26px;
     height: 26px;
-    background-image: inline('profile_picture.png');
+    /*background-image: inline('profile_picture.png');*/
     background-size: 26px 26px;
     background-repeat: no-repeat;
     float: left;
+}
+.avatar {
+    background: inline('profile_picture.png');
 }
 
 .headerCellProfileWrap .username {

@@ -1,0 +1,11 @@
+.submenuLink {
+    text-align: center;
+}
+
+.submenuLink a {
+    cursor: pointer;
+    color: #595959;
+    padding: 16px 0;
+    line-height: 46px;
+    text-decoration: none;
+}

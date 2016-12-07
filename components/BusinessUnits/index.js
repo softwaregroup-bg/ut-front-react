@@ -31,7 +31,7 @@ class BusinessUnits extends Component {
 
     componentWillUpdate(nextProps, nextState) {
         if (this.state.reset) {
-            this.state.reset = false;
+            this.setState({reset: false});
         }
     }
 
