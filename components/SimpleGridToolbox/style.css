@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .simpleToolbox {
     display: none;
 }
@@ -5,11 +8,14 @@
     display: block;
     padding: 12px 0 0 0;
 }
-.simpleToolbox .label {
+.simpleToolbox .label, .simpleToolbox .link {
     float: left;
     width: 10%;
     padding: 5px 0 0 0;
+}
+.simpleToolbox .link {
     cursor: pointer;
+    color: var(--ut-front-react-standardToolboxLinkColor);
 }
 .simpleToolbox .content {
     float: right;
