@@ -7,6 +7,7 @@ import { getLink } from 'ut-front/react/routerHelper';
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import {actionList} from '../Login/actions';
+import style from './style.css';
 
 class Tab extends Component {
     constructor(props) {
@@ -72,7 +73,7 @@ class Tab extends Component {
                                 >
                                     <Menu>
                                         {this.props.tabData.multi.map((tab, i) => (
-                                            <div key={i} onTouchTap={this.handleRequestClose} className='submenuLink'>
+                                            <div key={i} onTouchTap={this.handleRequestClose} className={style.submenuLink}>
                                                 <Tab tabData={tab} currentLocation={this.props.currentLocation} />
                                             </div>
                                         ))}
