@@ -11,49 +11,9 @@ import {
     getInputs,
     inputs as inputsConfig
 } from './config';
+import { createValidatorPerForm } from './../../utils/validator';
 
-const validators = {
-    isRequired: (value) => {
-        return !!value;
-    },
-    minLength: (value, minLength) => {
-        return value.length > minLength;
-    },
-    maxLength: (value, maxLength) => {
-        return value.length < maxLength;
-    }
-};
-
-const errorMapping = {
-    isRequired: ({ input }) => {
-        return `Field ${input} is required.`;
-    },
-    minLength: ({ input, minLength }) => {
-        return `Min length for ${input} is ${minLength}`;
-    },
-    maxLength: ({ input, maxLength }) => {
-        return `Max length for ${input} is ${maxLength}`;
-    }
-};
-
-const validate = (input, value) => {
-    const { validations, validateOrder } = inputsConfig[input];
-    let error = null;
-
-    validateOrder.every((validationRule) => {
-        let isValid = validators[validationRule](value, validations[validationRule]);
-        if (!isValid) {
-            error = errorMapping[validationRule]( {...validations, input} );
-        }
-
-        return validators[validationRule](input, value);
-    });
-
-    return {
-        isValid: !error,
-        error
-    };
-};
+const validator = createValidatorPerForm(inputsConfig);
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -82,13 +42,12 @@ export const login = (state = defaultLoginState, action) => {
             return state;
         case SET_INPUT_VALUE:
             let { input, value } = action;
-            let { isValid, error } = validate(input, value);
+            let { isValid, error } = validator(input, value);
 
-            if (isValid) {
-                return state.setIn(['loginForm', 'inputs', input, 'value'], value);
-            } else {
-                return state.setIn(['loginForm', 'inputs', input, 'error'], error);
-            }
+            return state.setIn(
+                ['loginForm', 'inputs', input, isValid ? 'value' : 'error'],
+                isValid ? value : error
+            );
         case CHECK_COOKIE:
             return state;
         default:
