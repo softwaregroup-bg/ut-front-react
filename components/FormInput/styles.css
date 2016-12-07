@@ -8,6 +8,7 @@
 
 .loginInput {
     composes: formInput;
+    margin-bottom: var(--ut-front-react-loginInputMarginBottom);
     width: var(--ut-front-react-loginInputWidth);
     height: var(--ut-front-react-loginInputHeight);
     border: 2px solid var(--ut-front-react-loginInputBorderColor);

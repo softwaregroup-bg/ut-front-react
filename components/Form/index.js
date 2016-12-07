@@ -18,24 +18,25 @@ export default class Form extends Component {
 
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput key={index}
-                       className="loginInput"
-                       type={input.get('type')}
-                       label={input.get('label')}
-                       name={input.get('name')}
-                       placeholder={input.get('placeholder')}
-                       onChange={onChange}
-                       onBlur={onBlur} />)
-        })
+              className='loginInput'
+              type={input.get('type')}
+              label={input.get('label')}
+              name={input.get('name')}
+              placeholder={input.get('placeholder')}
+              onChange={onChange}
+              onBlur={onBlur} />);
+        });
+
         return inputNodes;
     }
 
     render() {
-        let { className, title, buttons, onSubmit } =  this.props;
+        let { className, title, buttons, onSubmit } = this.props;
 
         return (
             <div className={getClass(styles, className)}>
                 { title ? <Title className={title.className} text={title.text} /> : false }
-                <form onSubmit={onSubmit}>
+                <form className={styles.formContainer} onSubmit={onSubmit}>
                     <div className={styles.formBody}>
                         { this.renderInputs() }
                         { buttons.map((button, index) => <Button key={index} {...button} />) }

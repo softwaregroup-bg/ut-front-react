@@ -17,15 +17,16 @@ const FormInput = ({
             { label ? <label className='label' placeholder={placeholder}>{label}</label> : false }
             <input name={name} type={type} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
         </div>
-    )
-}
+    );
+};
 
 FormInput.defaultProps = {
-    className: "formInput"
-}
+    className: 'formInput'
+};
 
 FormInput.propTypes = {
     type: PropTypes.string,
+    name: PropTypes.string,
     label: PropTypes.string,
     placeholder: PropTypes.string,
     className: PropTypes.string,

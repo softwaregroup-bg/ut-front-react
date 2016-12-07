@@ -1,5 +1,7 @@
 :root {
     --ut-front-react-loginInputWidth: 315px;
     --ut-front-react-loginInputHeight: 50px;
+    --ut-front-react-loginInputBorderColor: 10px;
     --ut-front-react-loginInputBorderColor: #C7C7C7;
+    --ut-front-react-loginInputMarginBottom: 10px;
 }

@@ -12,14 +12,14 @@ export const initForm = (inputs) => {
     return {
         type: INIT_FORM,
         inputs
-    }
+    };
 };
 
 export const setInputValue = ({ input, value }) => ({
     type: SET_INPUT_VALUE,
     input,
     value
-})
+});
 
 export const identityCheck = (params) => ({
     type: LOGIN,

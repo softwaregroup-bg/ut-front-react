@@ -16,7 +16,6 @@
     composes: button;
     width: var(--ut-front-react-loginButtonWidth);
     height: var(--ut-front-react-loginButtonHeight);
-    margin-bottom: 60px;
     background-color: var(--ut-front-react-standardBtnBgColor);
     color: var(--ut-front-react-standardBtnTextColor);
 }
@@ -27,4 +26,8 @@
 
 .standardBtn:active {
     background-color: var(--ut-front-react-standardBtnActiveColor);
+}
+
+.loginBtn {
+    margin: var(--ut-front-react-loginBtnMarginTop) 0 var(--ut-front-react-loginBtnMarginBottom) 0;
 }
