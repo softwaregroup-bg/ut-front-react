@@ -4,6 +4,7 @@ export const inputs = {
         type: 'text',
         value: '',
         error: '',
+        validateOrder: ['isRequired', 'minLength', 'maxLength'],
         validations: {
             isRequired: true,
             minLength: 2,
@@ -15,6 +16,7 @@ export const inputs = {
         type: 'password',
         value: '',
         error: '',
+        validateOrder: ['isRequired', 'minLength', 'maxLength'],
         validations: {
             isRequired: true,
             minLength: 2,
