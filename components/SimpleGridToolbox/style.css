@@ -17,6 +17,9 @@
     cursor: pointer;
     color: var(--ut-front-react-standardToolboxLinkColor);
 }
+.simpleToolbox .link:hover {
+    text-decoration: underline;
+}
 .simpleToolbox .content {
     float: right;
     width: auto;
