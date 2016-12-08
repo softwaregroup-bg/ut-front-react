@@ -4,11 +4,11 @@
 .dashboardBg {
     margin: 150px auto 0;
     width: var(--ut-front-react-standardDashboardLogoWidth);
-    height: var(--ut-front-react-standardDashboardLogoHeight)
+    height: var(--ut-front-react-standardDashboardLogoHeight);
 }
 
 .dashboardImg {
-    background: inline('dashboard_admin.png');
+    background: inline('dashboard_admin.png') center no-repeat;
 }
 
 .dashboardText {
