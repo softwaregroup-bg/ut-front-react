@@ -305,7 +305,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     -webkit-box-sizing: border-box;
     position: absolute;
     top: 70px;
-    bottom: 43px;
+    bottom: 70px;
     overflow-y: auto;
 }
 .toolbar {
