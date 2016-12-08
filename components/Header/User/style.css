@@ -129,16 +129,11 @@
     float: right;
 }
 
-.headerCellProfileWrap .image {
+.avatar {
     width: 26px;
     height: 26px;
-    /*background-image: inline('profile_picture.png');*/
+    background: inline('profile_picture.png') no-repeat center center;
     background-size: 26px 26px;
-    background-repeat: no-repeat;
-    float: left;
-}
-.avatar {
-    background: inline('profile_picture.png');
 }
 
 .headerCellProfileWrap .username {
