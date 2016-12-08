@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';
+import FormErrorMessage from './FormErrorMessage';
 import styles from './styles.css';
 import { getClass } from '../../utils/helpers';
 
@@ -35,9 +36,9 @@ export default class Form extends Component {
 
         return (
             <div className={getClass(styles, className)}>
+                { error ? <FormErrorMessage message={error} /> : false }
                 { title ? <Title className={title.className} text={title.text} /> : false }
-                { error ? <div>shit happens</div> : false }
-                <form className={styles.formContainer} onSubmit={onSubmit}>
+                <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
                         { this.renderInputs() }
                         { buttons.map((button, index) => <Button key={index} {...button} />) }
@@ -52,6 +53,7 @@ Form.propTypes = {
     className: PropTypes.string,
     title: PropTypes.object,
     error: PropTypes.string,
+    message: PropTypes.string,
     inputs: PropTypes.object,
     buttons: PropTypes.array,
     onSubmit: PropTypes.func.isRequired,

@@ -2,24 +2,21 @@
 @import 'config.css';
 
 .loginForm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
     width: var(--ut-front-react-loginFormWidth);
-    height: var(--ut-front-react-loginFormHeight);
-    margin: var(--ut-front-react-loginFormMargin);
-    box-shadow: 0 0 2px var(--ut-front-react-loginFormBoxShadowColor);
+    padding: var(--ut-front-react-loginFormPadding);
+    border: 2px solid var(--ut-front-react-loginFormBoxShadowColor);
     background-color: var(--ut-front-react-loginFormBgColor);
 }
 
 .formContainer {
     flex-basis: var(--ut-front-react-loginFormBodyHeight);
+    width: 100%;
 }
 
 .formBody {
-    height: 100%; 
+    height: 100%;
 }
