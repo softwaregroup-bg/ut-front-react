@@ -34,6 +34,7 @@ const defaultLoginDataState = Immutable.fromJS({
     data: {}
 });
 
+/*
 const isFormValid = (state) => {
     var st = state.getIn(['loginForm', 'inputs']);
 
@@ -41,6 +42,24 @@ const isFormValid = (state) => {
         return input.get('error');
     }));
 }
+*/
+
+const validateAllInputs = (inputs) => {
+    let validationError = '';
+
+    let isValid = inputs.every((input, key) => {
+        const value = input.get('value');
+        const validationResult = validator(key, value);
+        validationError = validationResult.error;
+
+        return validationResult.isValid;
+    });
+
+    return {
+        isValid,
+        error: validationError
+    };
+};
 
 export const login = (state = defaultLoginState, action) => {
     switch (action.type) {
@@ -52,15 +71,16 @@ export const login = (state = defaultLoginState, action) => {
             return state;
         case SET_INPUT_VALUE:
             let { input, value } = action;
-            let { isValid, error } = validator(input, value);
 
             return state
                 .setIn(['loginForm', 'inputs', input, 'value'], value);
-                //.setIn(['loginForm', 'inputs', input, 'error'], error)
-                //.setIn(['loginForm', 'isFormValid'], isFormValid(state));
         case SUBMIT_FORM:
-            debugger;
-            return state;
+            let inputs = state.get('loginForm').get('inputs');
+            let validationResult = validateAllInputs(inputs);
+
+            return state
+                .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
+                .setIn(['loginForm', 'formError'], validationResult.error);
         case CHECK_COOKIE:
             return state;
         default:

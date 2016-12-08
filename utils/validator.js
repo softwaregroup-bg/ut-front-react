@@ -26,21 +26,21 @@ export const createValidatorPerForm = (config) => {
     const errorMapping = Object.assign({}, defaultErrorMessagingMapping, config.errorMessagingMapping);
 
     return (input, value) => {
-            const { validations, validateOrder } = config[input];
-            let error = '';
+        const { validations, validateOrder } = config[input];
+        let error = '';
 
-            validateOrder.every((validationRule) => {
-                let isValid = validators[validationRule](value, validations[validationRule]);
-                if (!isValid) {
-                    error = errorMapping[validationRule]({...validations, input});
-                }
+        validateOrder.every((validationRule) => {
+            let isValid = validators[validationRule](value, validations[validationRule]);
+            if (!isValid) {
+                error = errorMapping[validationRule]({...validations, input});
+            }
 
-                return isValid;
-            });
+            return isValid;
+        });
 
-            return {
-                isValid: !error,
-                error
-            };
-      };
+        return {
+            isValid: !error,
+            error
+        };
+    };
 };

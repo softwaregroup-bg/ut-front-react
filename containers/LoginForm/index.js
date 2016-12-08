@@ -34,22 +34,19 @@ class LoginForm extends Component {
         let { setInputValue } = this.props;
 
         setInputValue({
-          input: name,
-          value,
-          shouldValidate: true
+            input: name,
+            value,
+            shouldValidate: true
         });
-
     }
 
     onSubmit(e) {
-        debugger;
         e.preventDefault();
         this.props.submitForm();
     }
 
     render() {
-        let { inputs, error, isFormValid } = this.props;
-        console.log('isValid: ', isFormValid, ' hasError: ', error);
+        let { inputs, error } = this.props;
 
         return (
             <Form
@@ -80,5 +77,7 @@ LoginForm.propTypes = {
     inputs: PropTypes.object,
     initForm: PropTypes.func.isRequired,
     setInputValue: PropTypes.func.isRequired,
-    error: PropTypes.string
+    submitForm: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    isFormValid: PropTypes.bool
 };
