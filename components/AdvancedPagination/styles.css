@@ -88,12 +88,15 @@
     border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:hover {
-    /*color: var(--ut-front-react-standardPaginationTextHoverColor);*/
     background: var(--ut-front-react-standardPaginationBackgroundHoverColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .active {
     background: var(--ut-front-react-standardPaginationBackgroundActiveColor);
     color: var(--ut-front-react-standardPaginationTextActiveColor);
+}
+
+.pageBoxesWrap .pageBoxesWrapInnerWrap .active:hover {
+    color: var(--ut-front-react-standardPaginationTextHoverColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox .arrowWrap {
     width: 20px;
