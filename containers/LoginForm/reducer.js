@@ -3,6 +3,7 @@ import {
     INIT_FORM,
     LOGIN,
     SET_INPUT_VALUE,
+    SUBMIT_FORM,
     CHECK_COOKIE,
     SET_LOGIN_DATA,
     LOGOUT
@@ -23,7 +24,8 @@ const defaultLoginState = Immutable.fromJS({
     cookieCheckResultId: 0,
     loginForm: {
         inputs: {},
-        formError: ''
+        formError: '',
+        isFormValid: false
     }
 });
 
@@ -31,6 +33,14 @@ const defaultLoginDataState = Immutable.fromJS({
     changeId: 0,
     data: {}
 });
+
+const isFormValid = (state) => {
+    var st = state.getIn(['loginForm', 'inputs']);
+
+    return !(st.some((input) => {
+        return input.get('error');
+    }));
+}
 
 export const login = (state = defaultLoginState, action) => {
     switch (action.type) {
@@ -44,10 +54,13 @@ export const login = (state = defaultLoginState, action) => {
             let { input, value } = action;
             let { isValid, error } = validator(input, value);
 
-            return state.setIn(
-                ['loginForm', 'inputs', input, isValid ? 'value' : 'error'],
-                isValid ? value : error
-            );
+            return state
+                .setIn(['loginForm', 'inputs', input, 'value'], value);
+                //.setIn(['loginForm', 'inputs', input, 'error'], error)
+                //.setIn(['loginForm', 'isFormValid'], isFormValid(state));
+        case SUBMIT_FORM:
+            debugger;
+            return state;
         case CHECK_COOKIE:
             return state;
         default:

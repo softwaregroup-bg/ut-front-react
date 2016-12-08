@@ -27,7 +27,7 @@ export const createValidatorPerForm = (config) => {
 
     return (input, value) => {
             const { validations, validateOrder } = config[input];
-            let error = null;
+            let error = '';
 
             validateOrder.every((validationRule) => {
                 let isValid = validators[validationRule](value, validations[validationRule]);
@@ -35,7 +35,7 @@ export const createValidatorPerForm = (config) => {
                     error = errorMapping[validationRule]({...validations, input});
                 }
 
-                return validators[validationRule](input, value);
+                return isValid;
             });
 
             return {
