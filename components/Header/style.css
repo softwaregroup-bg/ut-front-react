@@ -29,6 +29,9 @@
     text-decoration: none;
     color: #BDBDBD;
 }
+.headerCellCenter a:hover {
+    color: var(--ut-front-react-standardMainNavigationTextHoverColor);
+}
 
 .headerCellCenter input {
     width: 138px;
