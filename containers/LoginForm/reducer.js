@@ -14,52 +14,7 @@ import {
 } from './config';
 import { createValidatorPerForm } from './../../utils/validator';
 
-<<<<<<< HEAD
 const validator = createValidatorPerForm(inputsConfig);
-=======
-const validators = {
-    isRequired: (value) => {
-        return !!value;
-    },
-    minLength: (value, minLength) => {
-        return value.length > minLength;
-    },
-    maxLength: (value, maxLength) => {
-        return value.length < maxLength;
-    }
-};
-
-const errorMapping = {
-    isRequired: ({ input }) => {
-        return `Field ${input} is required.`;
-    },
-    minLength: ({ input, minLength }) => {
-        return `Min length for ${input} is ${minLength}`;
-    },
-    maxLength: ({ input, maxLength }) => {
-        return `Max length for ${input} is ${maxLength}`;
-    }
-};
-
-const validate = (input, value) => {
-    const { validations, validateOrder } = inputsConfig[input];
-    let error = null;
-
-    validateOrder.every((validationRule) => {
-        let isValid = validators[validationRule](value, validations[validationRule]);
-        if (!isValid) {
-            error = errorMapping[validationRule]({...validations, input});
-        }
-
-        return validators[validationRule](input, value);
-    });
-
-    return {
-        isValid: !error,
-        error
-    };
-};
->>>>>>> 00333ac8f4d8b3002d31be3b5c3a79fbf79f3ee1
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -99,7 +54,6 @@ export const login = (state = defaultLoginState, action) => {
             let { input, value } = action;
             let { isValid, error } = validator(input, value);
 
-<<<<<<< HEAD
             return state
                 .setIn(['loginForm', 'inputs', input, 'value'], value);
                 //.setIn(['loginForm', 'inputs', input, 'error'], error)
@@ -107,13 +61,6 @@ export const login = (state = defaultLoginState, action) => {
         case SUBMIT_FORM:
             debugger;
             return state;
-=======
-            if (isValid) {
-                return state.setIn(['loginForm', 'inputs', input, 'value'], value).setIn(['loginForm', 'formError'], '');
-            } else {
-                return state.setIn(['loginForm', 'inputs', input, 'error'], error).setIn(['loginForm', 'formError'], error);
-            }
->>>>>>> 00333ac8f4d8b3002d31be3b5c3a79fbf79f3ee1
         case CHECK_COOKIE:
             return state;
         default:
