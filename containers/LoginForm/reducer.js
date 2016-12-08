@@ -4,6 +4,7 @@ import {
     LOGIN,
     SET_INPUT_VALUE,
     SUBMIT_FORM,
+    VALIDATE_FORM,
     CHECK_COOKIE,
     SET_LOGIN_DATA,
     LOGOUT
@@ -34,16 +35,6 @@ const defaultLoginDataState = Immutable.fromJS({
     data: {}
 });
 
-/*
-const isFormValid = (state) => {
-    var st = state.getIn(['loginForm', 'inputs']);
-
-    return !(st.some((input) => {
-        return input.get('error');
-    }));
-}
-*/
-
 const validateAllInputs = (inputs) => {
     let validationError = '';
 
@@ -61,28 +52,49 @@ const validateAllInputs = (inputs) => {
     };
 };
 
+const getValidationResult = (state) => {
+    const inputs = state.get('loginForm').get('inputs');
+
+    return validateAllInputs(inputs);
+};
+
 export const login = (state = defaultLoginState, action) => {
+    let validationResult;
+
     switch (action.type) {
         case INIT_FORM:
             return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(action.inputs)));
+
         case LOGOUT:
             return state;
+
         case LOGIN:
             return state;
+
         case SET_INPUT_VALUE:
             let { input, value } = action;
 
             return state
                 .setIn(['loginForm', 'inputs', input, 'value'], value);
-        case SUBMIT_FORM:
-            let inputs = state.get('loginForm').get('inputs');
-            let validationResult = validateAllInputs(inputs);
+
+        case VALIDATE_FORM:
+            // submitAfter to detect if validate comes from blur or submit
+            validationResult = validateAllInputs(state.get('loginForm').get('inputs'));
 
             return state
                 .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
                 .setIn(['loginForm', 'formError'], validationResult.error);
+
+        case SUBMIT_FORM:
+            validationResult = validateAllInputs(state.get('loginForm').get('inputs'));
+
+            return state
+                .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
+                .setIn(['loginForm', 'formError'], validationResult.error);
+
         case CHECK_COOKIE:
             return state;
+
         default:
             return state;
     }

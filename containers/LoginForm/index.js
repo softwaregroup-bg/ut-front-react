@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Form from '../../components/Form';
-import { initForm, setInputValue, submitForm } from './actions';
+import { initForm, setInputValue, submitForm, validateForm } from './actions';
+import _ from 'lodash';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -9,40 +10,51 @@ class LoginForm extends Component {
 
         this.onChange = this.onChange.bind(this);
 
+        this.handleChange = _.debounce(this.handleChange, 300);
+
         this.onBlur = this.onBlur.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
+
+        this.validateForm = _.debounce(this.validateForm, 500);
     }
 
     componentWillMount() {
         this.props.initForm(['username', 'password']);
     }
 
-    onChange(e) {
+    handleChange(e) {
         let { name, value } = e.target;
         let { setInputValue } = this.props;
 
         setInputValue({
             input: name,
-            value,
-            shouldValidate: false
+            value
         });
     }
 
-    onBlur(e) {
-        let { name, value } = e.target;
-        let { setInputValue } = this.props;
+    onChange(e) {
+        e.persist();
+        this.handleChange(e);
+    }
 
-        setInputValue({
-            input: name,
-            value,
-            shouldValidate: true
+    onBlur(e) {
+        this.validateForm({
+            submitAfter: false
         });
     }
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.submitForm();
+        this.validateForm({
+            submitAfter: true
+        });
+    }
+
+    validateForm({ submitAfter }) {
+        this.props.validateForm({
+            submitAfter
+        });
     }
 
     render() {
@@ -70,7 +82,7 @@ export default connect(
             isFormValid: login.get('loginForm').get('isFormValid')
         };
     },
-    { initForm, setInputValue, submitForm }
+    { initForm, setInputValue, submitForm, validateForm }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -78,6 +90,7 @@ LoginForm.propTypes = {
     initForm: PropTypes.func.isRequired,
     setInputValue: PropTypes.func.isRequired,
     submitForm: PropTypes.func.isRequired,
+    validateForm: PropTypes.func.isRequired,
     error: PropTypes.string,
     isFormValid: PropTypes.bool
 };
