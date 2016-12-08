@@ -1,3 +1,48 @@
+<a name="5.49.8"></a>
+## [5.49.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.7...v5.49.8) (2016-12-08)
+
+
+
+<a name="5.49.7"></a>
+## [5.49.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.6...v5.49.7) (2016-12-08)
+
+
+
+<a name="5.49.6"></a>
+## [5.49.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.5...v5.49.6) (2016-12-08)
+
+
+
+<a name="5.49.5"></a>
+## [5.49.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.4...v5.49.5) (2016-12-08)
+
+
+
+<a name="5.49.4"></a>
+## [5.49.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.3...v5.49.4) (2016-12-08)
+
+
+
+<a name="5.49.3"></a>
+## [5.49.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.2...v5.49.3) (2016-12-07)
+
+
+
+<a name="5.49.2"></a>
+## [5.49.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.1...v5.49.2) (2016-12-07)
+
+
+
+<a name="5.49.1"></a>
+## [5.49.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.0...v5.49.1) (2016-12-07)
+
+
+### Bug Fixes
+
+* toolbox title underline on hover ([9662185](https://github.com/softwaregroup-bg/ut-front-react/commit/9662185))
+
+
+
 <a name="5.49.0"></a>
 # [5.49.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.8...v5.49.0) (2016-12-07)
 

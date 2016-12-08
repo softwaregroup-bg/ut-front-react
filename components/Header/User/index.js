@@ -41,7 +41,7 @@ export default class User extends React.Component {
         return (
             <div className={this.getStyle('headerCellProfile')}>
                 <div onClick={this.toggleProfileInfoMenu} className={this.getStyle('navigationExpandMoreIcon')}>
-                    <Avatar className={style.avatar} size={30} />
+                    <Avatar className={style.avatar} size={26} />
                 </div>
 
                 <div className={classnames(headProfileInfoWrapStyles, this.getStyle('headerCellProfileWrapInfo'))}>
