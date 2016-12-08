@@ -1,3 +1,13 @@
+<a name="5.49.10"></a>
+## [5.49.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.9...v5.49.10) (2016-12-08)
+
+
+### Bug Fixes
+
+* MCTUNE-1839 change z-indexes ([d14def1](https://github.com/softwaregroup-bg/ut-front-react/commit/d14def1))
+
+
+
 <a name="5.49.9"></a>
 ## [5.49.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.8...v5.49.9) (2016-12-08)
 
