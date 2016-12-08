@@ -1,11 +1,14 @@
+@import './default-config.css';
+@import 'config.css';
+
 .dashboardBg {
     margin: 150px auto 0;
-    width: 205px;
-    height: 136px;
+    width: var(--ut-front-react-standardDashboardLogoWidth);
+    height: var(--ut-front-react-standardDashboardLogoHeight);
 }
 
 .dashboardImg {
-    background: inline('dashboard_admin.png');
+    background: inline('dashboard_admin.png') center no-repeat;
 }
 
 .dashboardText {
