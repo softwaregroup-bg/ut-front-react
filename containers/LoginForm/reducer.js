@@ -43,7 +43,7 @@ const validate = (input, value) => {
     validateOrder.every((validationRule) => {
         let isValid = validators[validationRule](value, validations[validationRule]);
         if (!isValid) {
-            error = errorMapping[validationRule]( {...validations, input} );
+            error = errorMapping[validationRule]({...validations, input});
         }
 
         return validators[validationRule](input, value);
@@ -85,9 +85,9 @@ export const login = (state = defaultLoginState, action) => {
             let { isValid, error } = validate(input, value);
 
             if (isValid) {
-                return state.setIn(['loginForm', 'inputs', input, 'value'], value);
+                return state.setIn(['loginForm', 'inputs', input, 'value'], value).setIn(['loginForm', 'formError'], '');
             } else {
-                return state.setIn(['loginForm', 'inputs', input, 'error'], error);
+                return state.setIn(['loginForm', 'inputs', input, 'error'], error).setIn(['loginForm', 'formError'], error);
             }
         case CHECK_COOKIE:
             return state;
