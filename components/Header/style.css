@@ -9,7 +9,7 @@
     display: table;
     /* fix box-shadow */
     position: relative;
-    z-index: 5;
+    z-index: 15;
     color: var(--ut-front-react-standardMainNavigationTextColor);
     background: var(--ut-front-react-standardMainNavigationBackground);
 }

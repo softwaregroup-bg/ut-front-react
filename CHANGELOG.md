@@ -1,3 +1,53 @@
+<a name="5.49.12"></a>
+## [5.49.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.11...v5.49.12) (2016-12-08)
+
+
+
+<a name="5.49.11"></a>
+## [5.49.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.10...v5.49.11) (2016-12-08)
+
+
+
+<a name="5.49.10"></a>
+## [5.49.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.9...v5.49.10) (2016-12-08)
+
+
+### Bug Fixes
+
+* MCTUNE-1839 change z-indexes ([d14def1](https://github.com/softwaregroup-bg/ut-front-react/commit/d14def1))
+
+
+
+<a name="5.49.9"></a>
+## [5.49.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.8...v5.49.9) (2016-12-08)
+
+
+
+<a name="5.49.8"></a>
+## [5.49.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.7...v5.49.8) (2016-12-08)
+
+
+
+<a name="5.49.7"></a>
+## [5.49.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.6...v5.49.7) (2016-12-08)
+
+
+
+<a name="5.49.6"></a>
+## [5.49.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.5...v5.49.6) (2016-12-08)
+
+
+
+<a name="5.49.5"></a>
+## [5.49.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.4...v5.49.5) (2016-12-08)
+
+
+
+<a name="5.49.4"></a>
+## [5.49.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.3...v5.49.4) (2016-12-08)
+
+
+
 <a name="5.49.3"></a>
 ## [5.49.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.2...v5.49.3) (2016-12-07)
 

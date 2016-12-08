@@ -109,7 +109,7 @@ a.tabMenuWrap:hover.tabMenuWrapSelected,
     position: absolute;
     right: 0;
     top: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 /* TabDropDown styles */
