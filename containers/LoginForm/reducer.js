@@ -3,7 +3,6 @@ import {
     INIT_FORM,
     LOGIN,
     SET_INPUT_VALUE,
-    SUBMIT_FORM,
     VALIDATE_FORM,
     CHECK_COOKIE,
     SET_LOGIN_DATA,
@@ -13,9 +12,11 @@ import {
     getInputs,
     inputs as inputsConfig
 } from './config';
-import { createValidatorPerForm } from './../../utils/validator';
+import { Validator } from './../../utils/validator';
 
-const validator = createValidatorPerForm(inputsConfig);
+const validator = new Validator(inputsConfig);
+
+let initialInputChangePerformed = false;
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -35,23 +36,6 @@ const defaultLoginDataState = Immutable.fromJS({
     data: {}
 });
 
-const validateAllInputs = (inputs) => {
-    let validationError = '';
-
-    let isValid = inputs.every((input, key) => {
-        const value = input.get('value');
-        const validationResult = validator(key, value);
-        validationError = validationResult.error;
-
-        return validationResult.isValid;
-    });
-
-    return {
-        isValid,
-        error: validationError
-    };
-};
-
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
 
@@ -67,24 +51,18 @@ export const login = (state = defaultLoginState, action) => {
 
         case SET_INPUT_VALUE:
             let { input, value } = action;
+            initialInputChangePerformed = true;
 
             return state
-                .setIn(['loginForm', 'inputs', input, 'value'], value);;
+                .setIn(['loginForm', 'inputs', input, 'value'], value);
 
         case VALIDATE_FORM:
             // submitAfter to detect if validate comes from blur or submit
-            validationResult = validateAllInputs(state.get('loginForm').get('inputs'));
+            validationResult = validator.validateAll(state.get('loginForm').get('inputs'));
 
-            return state
+            return initialInputChangePerformed ? state
                 .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
-                .setIn(['loginForm', 'formError'], validationResult.error);
-
-        case SUBMIT_FORM:
-            validationResult = validateAllInputs(state.get('loginForm').get('inputs'));
-
-            return state
-                .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
-                .setIn(['loginForm', 'formError'], validationResult.error);
+                .setIn(['loginForm', 'formError'], validationResult.error) : state;
 
         case CHECK_COOKIE:
             return state;

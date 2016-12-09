@@ -22,17 +22,20 @@ const defaultErrorMessagingMapping = {
     }
 };
 
-export const createValidatorPerForm = (config) => {
-    const errorMapping = Object.assign({}, defaultErrorMessagingMapping, config.errorMessagingMapping);
+export class Validator {
+    constructor(config) {
+        this.config = config;
+        this.errorMapping = Object.assign({}, defaultErrorMessagingMapping, config.errorMessagingMapping);
+    }
 
-    return (input, value) => {
-        const { validations, validateOrder } = config[input];
+    validateInput(input, value) {
+        const { validations, validateOrder } = this.config[input];
         let error = '';
 
         validateOrder.every((validationRule) => {
             let isValid = validators[validationRule](value, validations[validationRule]);
             if (!isValid) {
-                error = errorMapping[validationRule]({...validations, input});
+                error = this.errorMapping[validationRule]({...validations, input});
             }
 
             return isValid;
@@ -42,5 +45,22 @@ export const createValidatorPerForm = (config) => {
             isValid: !error,
             error
         };
-    };
-};
+    }
+
+    validateAll(inputs) {
+        let validationError = '';
+
+        let isValid = inputs.every((input, key) => {
+            const value = input.get('value');
+            const validationResult = this.validateInput(key, value);
+            validationError = validationResult.error;
+
+            return validationResult.isValid;
+        }, this);
+
+        return {
+            isValid,
+            error: validationError
+        };
+    }
+}
