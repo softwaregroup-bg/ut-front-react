@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
 import { initForm, setInputValue, submitForm, validateForm } from './actions';
-import _ from 'lodash';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -10,17 +10,22 @@ class LoginForm extends Component {
 
         this.onChange = this.onChange.bind(this);
 
-        this.handleChange = _.debounce(this.handleChange, 300);
+        this.handleChange = debounce(this.handleChange, 300);
 
         this.onBlur = this.onBlur.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.validateForm = _.debounce(this.validateForm, 500);
+        this.validateForm = debounce(this.validateForm, 500);
     }
 
     componentWillMount() {
         this.props.initForm(['username']);
+    }
+
+    onChange(e) {
+        e.persist();
+        this.handleChange(e);
     }
 
     handleChange(e) {
@@ -33,9 +38,10 @@ class LoginForm extends Component {
         });
     }
 
-    onChange(e) {
-        e.persist();
-        this.handleChange(e);
+    validateForm({ submitAfter }) {
+        this.props.validateForm({
+            submitAfter
+        });
     }
 
     onBlur(e) {
@@ -48,12 +54,6 @@ class LoginForm extends Component {
         e.preventDefault();
         this.validateForm({
             submitAfter: true
-        });
-    }
-
-    validateForm({ submitAfter }) {
-        this.props.validateForm({
-            submitAfter
         });
     }
 

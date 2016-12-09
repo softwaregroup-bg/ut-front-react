@@ -52,12 +52,6 @@ const validateAllInputs = (inputs) => {
     };
 };
 
-const getValidationResult = (state) => {
-    const inputs = state.get('loginForm').get('inputs');
-
-    return validateAllInputs(inputs);
-};
-
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
 
