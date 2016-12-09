@@ -9,12 +9,8 @@
     align-items: center;
 }
 
-.iconWrapper {
-
-}
-
 .errorMessage {
+    line-height: 18px;
+    font-size: 18px;
     color: var(--ut-front-react-formErrorMsgColor);
-    font-size: 28px;
-    line-height: 28px;
 }

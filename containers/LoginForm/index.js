@@ -64,7 +64,7 @@ class LoginForm extends Component {
             <Form
               className='loginForm'
               inputs={inputs}
-              title={{className: 'loginTitle', text: 'Login'}}
+              title={{className: 'loginTitle' + (error ? ' error' : ''), text: 'Login'}}
               buttons={[{label: 'Next', className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
               onBlur={this.onBlur}
