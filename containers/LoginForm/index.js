@@ -24,12 +24,12 @@ class LoginForm extends Component {
     }
 
     onChange(e) {
+        let { name, value } = e.target;
         e.persist();
-        this.handleChange(e);
+        this.handleChange({ name, value });
     }
 
-    handleChange(e) {
-        let { name, value } = e.target;
+    handleChange({ name, value }) {
         let { setInputValue } = this.props;
 
         setInputValue({
