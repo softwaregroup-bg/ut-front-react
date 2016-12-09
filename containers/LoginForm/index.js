@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, submitForm, validateForm } from './actions';
+import { setInputValue, validateForm } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class LoginForm extends Component {
 
         this.validateForm = debounce(this.validateForm, 500);
     }
-    
+
     onChange(e) {
         let { name, value } = e.target;
         e.persist();
@@ -78,13 +78,12 @@ export default connect(
             isFormValid: login.get('loginForm').get('isFormValid')
         };
     },
-    { setInputValue, submitForm, validateForm }
+    { setInputValue, validateForm }
 )(LoginForm);
 
 LoginForm.propTypes = {
     inputs: PropTypes.object,
     setInputValue: PropTypes.func.isRequired,
-    submitForm: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     error: PropTypes.string,
     isFormValid: PropTypes.bool
