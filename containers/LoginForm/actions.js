@@ -8,13 +8,6 @@ const getTimezone = () => {
     return `${sign}${('00' + hours.toString()).substr(-2)}:${('00' + minutes.toString()).substr(-2)}`;
 };
 
-export const initForm = (inputs) => {
-    return {
-        type: INIT_FORM,
-        inputs
-    };
-};
-
 export const setInputValue = ({ input, value }) => ({
     type: SET_INPUT_VALUE,
     input,

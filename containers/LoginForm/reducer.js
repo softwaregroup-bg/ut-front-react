@@ -24,7 +24,7 @@ const defaultLoginState = Immutable.fromJS({
     logOutResultId: 0,
     cookieCheckResultId: 0,
     loginForm: {
-        inputs: {},
+        inputs: getInputs(['username']),
         formError: '',
         isFormValid: false
     }
@@ -56,9 +56,6 @@ export const login = (state = defaultLoginState, action) => {
     let validationResult;
 
     switch (action.type) {
-        case INIT_FORM:
-            return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(action.inputs)));
-
         case LOGOUT:
             return state;
 
