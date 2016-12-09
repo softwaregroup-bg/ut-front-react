@@ -1,3 +1,13 @@
+<a name="5.49.23"></a>
+## [5.49.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.22...v5.49.23) (2016-12-09)
+
+
+### Bug Fixes
+
+* UIS-461 ([7a7dd07](https://github.com/softwaregroup-bg/ut-front-react/commit/7a7dd07))
+
+
+
 <a name="5.49.22"></a>
 ## [5.49.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.21...v5.49.22) (2016-12-09)
 
