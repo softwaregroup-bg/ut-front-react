@@ -8,7 +8,7 @@ export const inputs = {
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
         validations: {
             isRequired: true,
-            minLength: 3,
+            minLength: 2,
             maxLength: 30
         }
     },

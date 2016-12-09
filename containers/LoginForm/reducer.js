@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 import {
-    INIT_FORM,
     LOGIN,
     SET_INPUT_VALUE,
     VALIDATE_FORM,
@@ -24,6 +23,7 @@ const defaultLoginState = Immutable.fromJS({
     loginResultId: 0,
     logOutResultId: 0,
     cookieCheckResultId: 0,
+
     loginForm: {
         inputs: getInputs(['username']),
         formError: '',
@@ -44,6 +44,13 @@ export const login = (state = defaultLoginState, action) => {
             return state;
 
         case LOGIN:
+            if (action.methodRequestState === 'finished') {
+                // TODO: change condition
+                if (action.error.type === 'policy.param.password') {
+                    return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['username', 'password'])));
+                }
+            }
+
             return state;
 
         case SET_INPUT_VALUE:

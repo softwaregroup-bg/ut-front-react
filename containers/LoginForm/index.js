@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm } from './actions';
+import { setInputValue, validateForm, identityCheck } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -17,6 +17,8 @@ class LoginForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.validateForm = debounce(this.validateForm, 500);
+
+        this.submitForm = this.submitForm.bind(this);
     }
 
     onChange(e) {
@@ -38,6 +40,10 @@ class LoginForm extends Component {
         this.props.validateForm({
             submitAfter
         });
+
+        if (submitAfter && !this.props.error) {
+            this.submitForm();
+        }
     }
 
     onBlur(e) {
@@ -51,6 +57,17 @@ class LoginForm extends Component {
         this.validateForm({
             submitAfter: true
         });
+    }
+
+    submitForm() {
+        let { identityCheck, inputs } = this.props;
+        let loginData = {};
+
+        inputs.toSeq().forEach(input => {
+            loginData[input.get('name')] = input.get('value');
+        });
+
+        identityCheck(loginData);
     }
 
     render() {
@@ -78,13 +95,14 @@ export default connect(
             isFormValid: login.get('loginForm').get('isFormValid')
         };
     },
-    { setInputValue, validateForm }
+    { setInputValue, validateForm, identityCheck }
 )(LoginForm);
 
 LoginForm.propTypes = {
     inputs: PropTypes.object,
+    error: PropTypes.string,
+    isFormValid: PropTypes.bool,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
-    error: PropTypes.string,
-    isFormValid: PropTypes.bool
+    identityCheck: PropTypes.func.isRequired
 };
