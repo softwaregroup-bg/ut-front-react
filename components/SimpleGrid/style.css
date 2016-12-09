@@ -14,6 +14,7 @@
 }
 
 .dataGridTable a:hover {
+    color: var(--ut-front-react-standardDataGridTableColor);
     text-decoration: underline;
 }
 

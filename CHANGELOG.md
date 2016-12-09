@@ -1,3 +1,78 @@
+<a name="5.49.22"></a>
+## [5.49.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.21...v5.49.22) (2016-12-09)
+
+
+
+<a name="5.49.21"></a>
+## [5.49.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.20...v5.49.21) (2016-12-09)
+
+
+
+<a name="5.49.20"></a>
+## [5.49.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.19...v5.49.20) (2016-12-09)
+
+
+
+<a name="5.49.19"></a>
+## [5.49.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.18...v5.49.19) (2016-12-09)
+
+
+
+<a name="5.49.18"></a>
+## [5.49.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.17...v5.49.18) (2016-12-09)
+
+
+
+<a name="5.49.17"></a>
+## [5.49.17](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.16...v5.49.17) (2016-12-09)
+
+
+
+<a name="5.49.16"></a>
+## [5.49.16](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.15...v5.49.16) (2016-12-09)
+
+
+
+<a name="5.49.15"></a>
+## [5.49.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.14...v5.49.15) (2016-12-09)
+
+
+
+<a name="5.49.14"></a>
+## [5.49.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.13...v5.49.14) (2016-12-08)
+
+
+
+<a name="5.49.13"></a>
+## [5.49.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.12...v5.49.13) (2016-12-08)
+
+
+
+<a name="5.49.12"></a>
+## [5.49.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.11...v5.49.12) (2016-12-08)
+
+
+
+<a name="5.49.11"></a>
+## [5.49.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.10...v5.49.11) (2016-12-08)
+
+
+
+<a name="5.49.10"></a>
+## [5.49.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.9...v5.49.10) (2016-12-08)
+
+
+### Bug Fixes
+
+* MCTUNE-1839 change z-indexes ([d14def1](https://github.com/softwaregroup-bg/ut-front-react/commit/d14def1))
+
+
+
+<a name="5.49.9"></a>
+## [5.49.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.8...v5.49.9) (2016-12-08)
+
+
+
 <a name="5.49.8"></a>
 ## [5.49.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.7...v5.49.8) (2016-12-08)
 
