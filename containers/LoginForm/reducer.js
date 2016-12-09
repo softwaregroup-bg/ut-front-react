@@ -69,7 +69,7 @@ export const login = (state = defaultLoginState, action) => {
             let { input, value } = action;
 
             return state
-                .setIn(['loginForm', 'inputs', input, 'value'], value);
+                .setIn(['loginForm', 'inputs', input, 'value'], value);;
 
         case VALIDATE_FORM:
             // submitAfter to detect if validate comes from blur or submit
