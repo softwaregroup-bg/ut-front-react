@@ -10,7 +10,7 @@ class LoginForm extends Component {
 
         this.onChange = this.onChange.bind(this);
 
-        this.handleChange = debounce(this.handleChange, 300);
+        this.handleChange = debounce(this.handleChange, 100);
 
         this.onBlur = this.onBlur.bind(this);
 

@@ -15,8 +15,8 @@ const FormInput = ({
 }) => {
     return (
         <div className={getClass(styles, className)}>
-            { label ? <label className='label' placeholder={placeholder}>{label}</label> : false }
-            <input name={name} type={type} onChange={onChange} onFocus={onFocus} onBlur={onBlur} value={value} />
+            { label ? <label className='label'>{label}</label> : false }
+            <input name={name} type={type} placeholder={placeholder} onChange={onChange} onFocus={onFocus} onBlur={onBlur} value={value} />
         </div>
     );
 };
