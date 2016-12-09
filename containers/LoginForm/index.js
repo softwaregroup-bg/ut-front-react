@@ -20,7 +20,7 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        this.props.initForm(['username', 'password']);
+        this.props.initForm(['username']);
     }
 
     handleChange(e) {

@@ -11,6 +11,8 @@ export default class Form extends Component {
         super(props);
 
         this.renderInputs = this.renderInputs.bind(this);
+
+        this.renderButtons = this.renderButtons.bind(this);
     }
 
     renderInputs() {
@@ -21,6 +23,7 @@ export default class Form extends Component {
             inputNodes.push(<FormInput key={index}
               className='loginInput'
               type={input.get('type')}
+              value={input.get('value')}
               label={input.get('label')}
               name={input.get('name')}
               placeholder={input.get('placeholder')}
@@ -31,8 +34,14 @@ export default class Form extends Component {
         return inputNodes;
     }
 
+    renderButtons() {
+        let { buttons } = this.props;
+
+        return buttons.map((button, index) => <Button key={index} {...button} />);
+    }
+
     render() {
-        let { className, title, error, buttons, onSubmit } = this.props;
+        let { className, title, error, onSubmit } = this.props;
 
         return (
             <div className={getClass(styles, className)}>
@@ -41,7 +50,7 @@ export default class Form extends Component {
                 <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
                         { this.renderInputs() }
-                        { buttons.map((button, index) => <Button key={index} {...button} />) }
+                        { this.renderButtons() }
                     </div>
                 </form>
             </div>

@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Route } from 'react-router';
 import { Gate, Master, Layout } from './pages';
-import Login from './components/StandardLogin';
+import LoginPage from './components/LoginPage';
 
 const App = ({routes, extLayout, extMaster}) => {
     return (
         <Route>
-            <Route path='/login' component={Login} />
+            <Route path='/login' component={LoginPage} />
             <Route component={Gate}>
                 <Route component={extMaster || Master}>
                     <Route component={extLayout || Layout}>
