@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginForm from '../../containers/LoginForm';
+import { getClass } from '../../utils/helpers';
 import styles from './styles.css';
 
 export default class StandardLogin extends Component {
@@ -23,9 +24,9 @@ export default class StandardLogin extends Component {
     render() {
         return (
             <div className={styles.loginContainer}>
-                <div className='header'>Header and logo</div>
+                <div className={getClass(styles, 'loginLogo loginPageHeader')} />
                 <LoginForm />
-                <div className='footer'>Footer and logo</div>
+                <div className={getClass(styles, 'loginLogo loginPageFooter')} />
             </div>
         );
     };

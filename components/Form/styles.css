@@ -8,12 +8,11 @@
     box-sizing: border-box;
     width: var(--ut-front-react-loginFormWidth);
     padding: var(--ut-front-react-loginFormPadding);
-    border: 2px solid var(--ut-front-react-loginFormBoxShadowColor);
+    border: 1px solid var(--ut-front-react-loginFormBoxShadowColor);
     background-color: var(--ut-front-react-loginFormBgColor);
 }
 
 .formContainer {
-    flex-basis: var(--ut-front-react-loginFormBodyHeight);
     width: 100%;
 }
 
