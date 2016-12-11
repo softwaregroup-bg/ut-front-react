@@ -13,6 +13,16 @@ export class Header extends Component {
     componentWillMount() {
         this.setState({orderDirections: {}});
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.updateOrderState) {
+            // uppercase the sort string
+            var newOrderDirections = {};
+            for (var key in nextProps.updateOrderState) {
+                newOrderDirections[key] = nextProps.updateOrderState[key].toUpperCase();
+            }
+            this.setState({orderDirections: newOrderDirections});
+        }
+    }
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
@@ -62,6 +72,7 @@ Header.propTypes = {
     fields: propTypeFields,
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
+    updateOrderState: PropTypes.object,
     // if true will allow order by multiple columns
     multiOrder: PropTypes.bool,
     handleOrder: PropTypes.func,
@@ -73,6 +84,7 @@ Header.propTypes = {
 Header.defaultProps = {
     fields: [],
     orderBy: [],
+    updateOrderState: undefined,
     handleOrder: (props) => ({})
 };
 

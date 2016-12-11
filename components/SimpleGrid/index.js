@@ -29,6 +29,7 @@ export class SimpleGrid extends Component {
                   externalStyle={this.props.externalStyle}
                   fields={this.props.fields}
                   orderBy={this.props.orderBy}
+                  updateOrderState={this.props.updateOrder}
                   multiSelect={this.props.multiSelect}
                   handleOrder={this.props.handleOrder}
                   isChecked={this.handleIsChecked()}
@@ -55,6 +56,7 @@ SimpleGrid.propTypes = {
     data: propTypeData,
     externalStyle: PropTypes.object,
     orderBy: PropTypes.array,
+    updateOrder: PropTypes.object,
     multiSelect: PropTypes.bool,
     hideHeader: PropTypes.bool,
     handleOrder: PropTypes.func,
@@ -75,6 +77,7 @@ SimpleGrid.defaultProps = {
     data: [],
     rowsChecked: [],
     orderBy: [],
+    updateOrder: undefined,
     externalStyle: {},
     handleOrder: () => ({}),
     handleHeaderCheckboxSelect: () => ({}),
