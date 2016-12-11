@@ -12,13 +12,13 @@ const validators = {
 
 const defaultErrorMessagingMapping = {
     isRequired: ({ input }) => {
-        return `Field ${input} is required.`;
+        return `${input} cannot be empty.`;
     },
     minLength: ({ input, minLength }) => {
-        return `Min length for ${input} is ${minLength}`;
+        return `${input} must be at least ${minLength} characters.`;
     },
     maxLength: ({ input, maxLength }) => {
-        return `Max length for ${input} is ${maxLength}`;
+        return `${input} must be at most ${maxLength} characters.`;
     }
 };
 

@@ -21,6 +21,12 @@ class LoginForm extends Component {
         this.submitForm = this.submitForm.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated')) {
+            this.context.router.push(this.context.mainUrl);
+        }
+    }
+
     onChange(e) {
         let { name, value } = e.target;
         e.persist();
@@ -67,6 +73,8 @@ class LoginForm extends Component {
             loginData[input.get('name')] = input.get('value');
         });
 
+        debugger;
+
         identityCheck(loginData);
     }
 
@@ -90,6 +98,7 @@ class LoginForm extends Component {
 export default connect(
     ({ login }) => {
         return {
+            login,
             inputs: login.get('loginForm').get('inputs'),
             error: login.get('loginForm').get('formError'),
             isFormValid: login.get('loginForm').get('isFormValid')
@@ -106,3 +115,9 @@ LoginForm.propTypes = {
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired
 };
+
+// remove router from context
+LoginForm.contextTypes = {
+    router: PropTypes.object,
+    mainUrl: PropTypes.string
+}

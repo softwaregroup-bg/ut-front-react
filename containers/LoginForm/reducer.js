@@ -17,6 +17,7 @@ const validator = new Validator(inputsConfig);
 
 let initialInputChangePerformed = false;
 
+
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     changeId: 0,
@@ -45,9 +46,20 @@ export const login = (state = defaultLoginState, action) => {
 
         case LOGIN:
             if (action.methodRequestState === 'finished') {
+              debugger;
                 // TODO: change condition
-                if (action.error.type === 'policy.param.password') {
-                    return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['username', 'password'])));
+                if (action.error && action.error.type === 'policy.param.password') {
+                    // merge rendered username input with the new password input
+                    let newLoginData = Immutable.fromJS(Object.assign({}, state.getIn(['loginForm', 'inputs']).toJS(), getInputs(['password'])));
+                    debugger;
+                    return state.setIn(['loginForm', 'inputs', 'password'], getInputs('password'));
+                } else if (action.error) {
+                    return state.setIn(['loginForm', 'formError'], action.error.message);
+                } else if(action.result) {
+                    return state.set('authenticated', true)
+                                .setIn(['loginForm', 'formError'], '')
+                                .set('cookieCheckResultId', 0)
+                                .setIn(['loginForm', 'formError'], '');
                 }
             }
 
