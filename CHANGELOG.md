@@ -1,3 +1,223 @@
+<a name="5.49.31"></a>
+## [5.49.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.30...v5.49.31) (2016-12-09)
+
+
+
+<a name="5.49.30"></a>
+## [5.49.30](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.29...v5.49.30) (2016-12-09)
+
+
+
+<a name="5.49.29"></a>
+## [5.49.29](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.28...v5.49.29) (2016-12-09)
+
+
+
+<a name="5.49.28"></a>
+## [5.49.28](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.27...v5.49.28) (2016-12-09)
+
+
+
+<a name="5.49.27"></a>
+## [5.49.27](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.26...v5.49.27) (2016-12-09)
+
+
+
+<a name="5.49.26"></a>
+## [5.49.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.25...v5.49.26) (2016-12-09)
+
+
+
+<a name="5.49.25"></a>
+## [5.49.25](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.24...v5.49.25) (2016-12-09)
+
+
+
+<a name="5.49.24"></a>
+## [5.49.24](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.23...v5.49.24) (2016-12-09)
+
+
+
+<a name="5.49.23"></a>
+## [5.49.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.22...v5.49.23) (2016-12-09)
+
+
+### Bug Fixes
+
+* UIS-461 ([7a7dd07](https://github.com/softwaregroup-bg/ut-front-react/commit/7a7dd07))
+
+
+
+<a name="5.49.22"></a>
+## [5.49.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.21...v5.49.22) (2016-12-09)
+
+
+
+<a name="5.49.21"></a>
+## [5.49.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.20...v5.49.21) (2016-12-09)
+
+
+
+<a name="5.49.20"></a>
+## [5.49.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.19...v5.49.20) (2016-12-09)
+
+
+
+<a name="5.49.19"></a>
+## [5.49.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.18...v5.49.19) (2016-12-09)
+
+
+
+<a name="5.49.18"></a>
+## [5.49.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.17...v5.49.18) (2016-12-09)
+
+
+
+<a name="5.49.17"></a>
+## [5.49.17](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.16...v5.49.17) (2016-12-09)
+
+
+
+<a name="5.49.16"></a>
+## [5.49.16](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.15...v5.49.16) (2016-12-09)
+
+
+
+<a name="5.49.15"></a>
+## [5.49.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.14...v5.49.15) (2016-12-09)
+
+
+
+<a name="5.49.14"></a>
+## [5.49.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.13...v5.49.14) (2016-12-08)
+
+
+
+<a name="5.49.13"></a>
+## [5.49.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.12...v5.49.13) (2016-12-08)
+
+
+
+<a name="5.49.12"></a>
+## [5.49.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.11...v5.49.12) (2016-12-08)
+
+
+
+<a name="5.49.11"></a>
+## [5.49.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.10...v5.49.11) (2016-12-08)
+
+
+
+<a name="5.49.10"></a>
+## [5.49.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.9...v5.49.10) (2016-12-08)
+
+
+### Bug Fixes
+
+* MCTUNE-1839 change z-indexes ([d14def1](https://github.com/softwaregroup-bg/ut-front-react/commit/d14def1))
+
+
+
+<a name="5.49.9"></a>
+## [5.49.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.8...v5.49.9) (2016-12-08)
+
+
+
+<a name="5.49.8"></a>
+## [5.49.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.7...v5.49.8) (2016-12-08)
+
+
+
+<a name="5.49.7"></a>
+## [5.49.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.6...v5.49.7) (2016-12-08)
+
+
+
+<a name="5.49.6"></a>
+## [5.49.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.5...v5.49.6) (2016-12-08)
+
+
+
+<a name="5.49.5"></a>
+## [5.49.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.4...v5.49.5) (2016-12-08)
+
+
+
+<a name="5.49.4"></a>
+## [5.49.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.3...v5.49.4) (2016-12-08)
+
+
+
+<a name="5.49.3"></a>
+## [5.49.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.2...v5.49.3) (2016-12-07)
+
+
+
+<a name="5.49.2"></a>
+## [5.49.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.1...v5.49.2) (2016-12-07)
+
+
+
+<a name="5.49.1"></a>
+## [5.49.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.0...v5.49.1) (2016-12-07)
+
+
+### Bug Fixes
+
+* toolbox title underline on hover ([9662185](https://github.com/softwaregroup-bg/ut-front-react/commit/9662185))
+
+
+
+<a name="5.49.0"></a>
+# [5.49.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.8...v5.49.0) (2016-12-07)
+
+
+### Features
+
+* include title style logic ([4e4dfb8](https://github.com/softwaregroup-bg/ut-front-react/commit/4e4dfb8))
+
+
+
+<a name="5.48.8"></a>
+## [5.48.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.7...v5.48.8) (2016-12-07)
+
+
+
+<a name="5.48.7"></a>
+## [5.48.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.6...v5.48.7) (2016-12-07)
+
+
+
+<a name="5.48.6"></a>
+## [5.48.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.5...v5.48.6) (2016-12-07)
+
+
+
+<a name="5.48.5"></a>
+## [5.48.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.4...v5.48.5) (2016-12-07)
+
+
+
+<a name="5.48.4"></a>
+## [5.48.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.3...v5.48.4) (2016-12-07)
+
+
+
+<a name="5.48.3"></a>
+## [5.48.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.2...v5.48.3) (2016-12-07)
+
+
+
+<a name="5.48.2"></a>
+## [5.48.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.1...v5.48.2) (2016-12-07)
+
+
+### Bug Fixes
+
+* use setState method ([fdcfc5d](https://github.com/softwaregroup-bg/ut-front-react/commit/fdcfc5d))
+
+
+
 <a name="5.48.1"></a>
 ## [5.48.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.48.0...v5.48.1) (2016-12-07)
 

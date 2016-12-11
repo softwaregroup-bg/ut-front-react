@@ -9,7 +9,7 @@
     display: table;
     /* fix box-shadow */
     position: relative;
-    z-index: 5;
+    z-index: 15;
     color: var(--ut-front-react-standardMainNavigationTextColor);
     background: var(--ut-front-react-standardMainNavigationBackground);
 }
@@ -29,6 +29,9 @@
     text-decoration: none;
     color: #BDBDBD;
 }
+.headerCellCenter a:hover {
+    color: var(--ut-front-react-standardMainNavigationTextHoverColor);
+}
 
 .headerCellCenter input {
     width: 138px;
@@ -43,8 +46,11 @@
     color: var(--ut-front-react-standardMainNavigationTextColor);
 }
 
+/*.headerCellCenter div:global(.active), .headerCellCenter a:global(.active) {
+    color: #E30474;
+}*/
 
-div:global(.submenuLink) {
+/*div:global(.submenuLink) {
     text-align: center;
 }
 
@@ -54,39 +60,14 @@ div:global(.submenuLink) a {
     padding: 16px 0;
     line-height: 46px;
     text-decoration: none;
-}
-
-.headerCellCenter div:global(.active), .headerCellCenter a:global(.active) {
-    color: var(--ut-front-react-standardMainNavigationLinkColor);
-}
-
-.headerCellCenter div, .headerCellCenter a {
-    cursor: pointer;
-    color: var(--ut-front-react-standardMainNavigationTextColor);
-}
-
-div:global(.submenuLink) {
-    text-align: center;
-}
-
-div:global(.submenuLink) a {
-    cursor: pointer;
-    color: #595959;
-    padding: 16px 0;
-    line-height: 46px;
-    text-decoration: none;
-}
-
-.headerCellCenter div:global(.active), .headerCellCenter a:global(.active) {
-    color: var(--ut-front-react-standardMainNavigationLinkColor);
-}
+}*/
 
 #headerCellProfile .helpWrap {
     width: 20px;
     height: 20px;
     margin-top: 12px;
     margin-right: 20px;
-    background: url('./images/help.png');
+    background: inline('help.png');
     background-repeat: no-repeat;
     cursor: pointer;
 }

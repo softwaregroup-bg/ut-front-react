@@ -9,7 +9,7 @@ export class Filters extends Component {
         }
         return (
             <div className={classes.join(' ')}>
-                <span className={style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>
+                <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>
                 <div className={style.content}>
                     {this.props.children}
                 </div>
@@ -21,6 +21,11 @@ Filters.propTypes = {
     toggle: PropTypes.func,
     children: PropTypes.any.isRequired,
     opened: PropTypes.bool.isRequired,
-    title: PropTypes.any.isRequired
+    title: PropTypes.any.isRequired,
+    isTitleLink: PropTypes.bool.isRequired
 };
+Filters.defaultProps = {
+    isTitleLink: false
+};
+
 export default Filters;

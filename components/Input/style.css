@@ -356,11 +356,11 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .checked {
     width: 20px;
     height: 20px;
-    background: inline('enrollment_checked.png');
+    background: inline('enrollment_checked.png') no-repeat center center;
 }
 
 .unchecked {
     width: 20px;
     height: 20px;
-    background: inline('enrollment_unchecked.png');
+    background: inline('enrollment_unchecked.png') no-repeat center center;
 }

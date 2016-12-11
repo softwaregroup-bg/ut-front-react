@@ -452,7 +452,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     margin: 25px 0;
 }
 
-.activeLink {
+/*.activeLink {
     color: #E93591;
     text-decoration: none;
     cursor: pointer;
@@ -461,4 +461,4 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
 .activeLink:hover {
     text-decoration: underline;
     cursor: pointer;
-}
+}*/
