@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import {Map} from 'immutable';
 import { connect } from 'react-redux';
 import dateFormat from 'date-fns/format';
-import {cookieCheck, logout} from '../Login/actions';
+import {cookieCheck, logout} from '../../containers/LoginForm/actions';
 import Text from '../../components/Text';
 import {fetchTranslations} from './actions';
 
@@ -105,7 +105,7 @@ const Gate = React.createClass({
         this.props.checkIdentity();
     },
     render() {
-        if (this.props.login.get('result') && this.props.login.get('authenticated') && this.props.gate.get('loaded')) {
+        if (this.props.login.get('result') && this.props.login.get('authenticated')/* && this.props.gate.get('loaded')*/) {
             return this.props.children;
         } else {
             return <div><Text>Please wait...</Text></div>;
