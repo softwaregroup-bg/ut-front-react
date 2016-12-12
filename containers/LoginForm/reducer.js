@@ -17,7 +17,6 @@ const validator = new Validator(inputsConfig);
 
 let initialInputChangePerformed = false;
 
-
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     changeId: 0,
@@ -54,7 +53,7 @@ export const login = (state = defaultLoginState, action) => {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password));
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
-                } else if(action.result) {
+                } else if (action.result) {
                     return state.set('authenticated', true)
                                 .setIn(['loginForm', 'formError'], '')
                                 .set('cookieCheckResultId', 0)

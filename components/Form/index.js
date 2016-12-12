@@ -18,7 +18,7 @@ export default class Form extends Component {
     renderInputs() {
         let { inputs, onChange, onBlur } = this.props;
         let inputNodes = [];
-        
+
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput key={index}
               className='loginInput'
