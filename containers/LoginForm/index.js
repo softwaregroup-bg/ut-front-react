@@ -73,8 +73,6 @@ class LoginForm extends Component {
             loginData[input.get('name')] = input.get('value');
         });
 
-        debugger;
-
         identityCheck(loginData);
     }
 

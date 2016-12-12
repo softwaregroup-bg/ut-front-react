@@ -46,13 +46,10 @@ export const login = (state = defaultLoginState, action) => {
 
         case LOGIN:
             if (action.methodRequestState === 'finished') {
-              debugger;
                 // TODO: change condition
                 if (action.error && action.error.type === 'policy.param.password') {
-                    // merge rendered username input with the new password input
-                    let newLoginData = Immutable.fromJS(Object.assign({}, state.getIn(['loginForm', 'inputs']).toJS(), getInputs(['password'])));
-                    debugger;
-                    return state.setIn(['loginForm', 'inputs', 'password'], getInputs('password'));
+                // merge rendered username input with the new password input
+                    return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password));
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if(action.result) {
@@ -81,8 +78,22 @@ export const login = (state = defaultLoginState, action) => {
                 .setIn(['loginForm', 'formError'], validationResult.error) : state;
 
         case CHECK_COOKIE:
+        debugger;
+            if (action.methodRequestState === 'finished') {
+                if (action.error) {
+                    return state
+                        .setIn(['loginForm', 'formError'], Immutable.fromJS({code: action.error.code, message: action.error.message, type: action.error.type}))
+                        .delete('result')
+                        .update('cookieCheckResultId', (v) => (v + 1))
+                        .set('authenticated', false);
+                } else if (action.result) {
+                    return state
+                        .set('result', Immutable.fromJS(action.result))
+                        .update('cookieCheckResultId', (v) => (v + 1))
+                        .set('authenticated', true);
+                }
+            }
             return state;
-
         default:
             return state;
     }
