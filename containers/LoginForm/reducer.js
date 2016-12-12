@@ -3,7 +3,7 @@ import {
     LOGIN,
     SET_INPUT_VALUE,
     VALIDATE_FORM,
-    CHECK_COOKIE,
+    COOKIE_CHECK,
     SET_LOGIN_DATA,
     LOGOUT
 } from './actionTypes';
@@ -45,6 +45,8 @@ export const login = (state = defaultLoginState, action) => {
             return state;
 
         case LOGIN:
+            state = state.set('reqState', action.methodRequestState);
+
             if (action.methodRequestState === 'finished') {
                 // TODO: change condition
                 if (action.error && action.error.type === 'policy.param.password') {
@@ -77,8 +79,9 @@ export const login = (state = defaultLoginState, action) => {
                 .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
                 .setIn(['loginForm', 'formError'], validationResult.error) : state;
 
-        case CHECK_COOKIE:
-        debugger;
+        case COOKIE_CHECK:
+            state = state.set('reqState', action.methodRequestState);
+
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
                     return state
@@ -93,6 +96,7 @@ export const login = (state = defaultLoginState, action) => {
                         .set('authenticated', true);
                 }
             }
+
             return state;
         default:
             return state;
