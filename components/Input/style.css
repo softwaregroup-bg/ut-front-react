@@ -265,7 +265,7 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
 }
 
 .inputWrap {
-    position: relative; 
+    position: relative;
     display: block;
 }
 .inputWrap .tooltiptext {
@@ -356,11 +356,11 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .checked {
     width: 20px;
     height: 20px;
-    background: inline('enrollment_checked.png') no-repeat center center;
+    background: inline('images/enrollment_checked.png') no-repeat center center;
 }
 
 .unchecked {
     width: 20px;
     height: 20px;
-    background: inline('enrollment_unchecked.png') no-repeat center center;
+    background: inline('images/enrollment_unchecked.png') no-repeat center center;
 }
