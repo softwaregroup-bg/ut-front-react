@@ -105,7 +105,7 @@ const Gate = React.createClass({
         this.props.checkIdentity();
     },
     render() {
-        if (this.props.login.get('result') && this.props.login.get('authenticated')/* && this.props.gate.get('loaded')*/) {
+        if (this.props.login.get('result') && this.props.login.get('authenticated') && this.props.gate.get('loaded')) {
             return this.props.children;
         } else {
             return <div><Text>Please wait...</Text></div>;
