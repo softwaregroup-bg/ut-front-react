@@ -1,3 +1,13 @@
+<a name="5.49.32"></a>
+## [5.49.32](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.31...v5.49.32) (2016-12-12)
+
+
+### Bug Fixes
+
+* add searchbox validations ([#47](https://github.com/softwaregroup-bg/ut-front-react/issues/47)) ([5c51a3e](https://github.com/softwaregroup-bg/ut-front-react/commit/5c51a3e))
+
+
+
 <a name="5.49.31"></a>
 ## [5.49.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.30...v5.49.31) (2016-12-09)
 
