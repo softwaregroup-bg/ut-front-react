@@ -77,7 +77,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { inputs, error } = this.props;
+        let { inputs, error, invalidField } = this.props;
 
         return (
             <Form
@@ -88,7 +88,8 @@ class LoginForm extends Component {
               onChange={this.onChange}
               onBlur={this.onBlur}
               onSubmit={this.onSubmit}
-              error={error} />
+              error={error}
+              invalidField={invalidField} />
         );
     }
 }
@@ -99,7 +100,8 @@ export default connect(
             login,
             inputs: login.get('loginForm').get('inputs'),
             error: login.get('loginForm').get('formError'),
-            isFormValid: login.get('loginForm').get('isFormValid')
+            isFormValid: login.get('loginForm').get('isFormValid'),
+            invalidField: login.get('loginForm').get('invalidField')
         };
     },
     { setInputValue, validateForm, identityCheck }
@@ -112,7 +114,8 @@ LoginForm.propTypes = {
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,
-    login: PropTypes.object
+    login: PropTypes.object,
+    invalidField: PropTypes.string
 };
 
 // remove router from context

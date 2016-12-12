@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';
@@ -16,12 +17,15 @@ export default class Form extends Component {
     }
 
     renderInputs() {
-        let { inputs, onChange, onBlur } = this.props;
+        let { inputs, error, onChange, onBlur } = this.props;
         let inputNodes = [];
 
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput key={index}
-              className='loginInput'
+              className={classnames({
+                  'loginInput': true,
+                  'hasError': (input.get('name') === this.props.invalidField) || (error && !index)
+              })}
               type={input.get('type')}
               value={input.get('value')}
               label={input.get('label')}
@@ -65,6 +69,7 @@ Form.propTypes = {
     message: PropTypes.string,
     inputs: PropTypes.object,
     buttons: PropTypes.array,
+    invalidField: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired

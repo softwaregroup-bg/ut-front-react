@@ -1,3 +1,5 @@
+import { capitalizeFirstLetter } from './helpers';
+
 const validators = {
     isRequired: (value) => {
         return !!value;
@@ -12,12 +14,15 @@ const validators = {
 
 const defaultErrorMessagingMapping = {
     isRequired: ({ input }) => {
+        input = capitalizeFirstLetter(input);
         return `${input} cannot be empty.`;
     },
     minLength: ({ input, minLength }) => {
+        input = capitalizeFirstLetter(input);
         return `${input} must be at least ${minLength} characters.`;
     },
     maxLength: ({ input, maxLength }) => {
+        input = capitalizeFirstLetter(input);
         return `${input} must be at most ${maxLength} characters.`;
     }
 };
@@ -49,17 +54,20 @@ export class Validator {
 
     validateAll(inputs) {
         let validationError = '';
+        let invalidField = '';
 
         let isValid = inputs.every((input, key) => {
             const value = input.get('value');
             const validationResult = this.validateInput(key, value);
             validationError = validationResult.error;
+            invalidField = !validationResult.isValid ? input.get('name') : '';
 
             return validationResult.isValid;
         }, this);
 
         return {
             isValid,
+            invalidField,
             error: validationError
         };
     }

@@ -27,7 +27,8 @@ const defaultLoginState = Immutable.fromJS({
     loginForm: {
         inputs: getInputs(['username']),
         formError: '',
-        isFormValid: false
+        isFormValid: false,
+        invalidField: ''
     }
 });
 
@@ -74,7 +75,8 @@ export const login = (state = defaultLoginState, action) => {
 
             return initialInputChangePerformed ? state
                 .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
-                .setIn(['loginForm', 'formError'], validationResult.error) : state;
+                .setIn(['loginForm', 'formError'], validationResult.error)
+                .setIn(['loginForm', 'invalidField'], validationResult.invalidField) : state;
 
         case CHECK_COOKIE:
             if (action.methodRequestState === 'finished') {
