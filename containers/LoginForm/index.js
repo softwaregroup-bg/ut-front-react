@@ -111,11 +111,12 @@ LoginForm.propTypes = {
     isFormValid: PropTypes.bool,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
-    identityCheck: PropTypes.func.isRequired
+    identityCheck: PropTypes.func.isRequired,
+    login: PropTypes.object
 };
 
 // remove router from context
 LoginForm.contextTypes = {
     router: PropTypes.object,
     mainUrl: PropTypes.string
-}
+};
