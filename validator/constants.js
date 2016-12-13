@@ -8,7 +8,8 @@ export const validationTypes = {
     arrayWithDropdownElements: 'arrayWithDropdownElements', // keyArray, keyText
     arrayWithArrayElements: 'arrayWithArrayElements', // keyArray, keyText
     dropdown: 'dropdown',
-    defaultRole: 'defaultRole'
+    defaultRole: 'defaultRole', // ?? this should not be here, ut-front-react should not know about specific details in ut-user
+    custom: 'custom'
 };
 
 export const textValidations = {
