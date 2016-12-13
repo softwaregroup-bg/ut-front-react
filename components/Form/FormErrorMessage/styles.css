@@ -21,8 +21,8 @@
 .errorMessageNew {
     width: 100%;
     text-align: center;
-    background-color: #f8dde0;
-    color: #db4b5a;
+    background-color: var(--ut-front-react-formErrorMsgBackgroundColorNew);
+    color: var(--ut-front-react-formErrorMsgColorNew);
     padding: 5px;
 }
 
