@@ -1,3 +1,13 @@
+<a name="5.49.47"></a>
+## [5.49.47](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.46...v5.49.47) (2016-12-13)
+
+
+### Bug Fixes
+
+* error message change ([ad8b6d2](https://github.com/softwaregroup-bg/ut-front-react/commit/ad8b6d2))
+
+
+
 <a name="5.49.46"></a>
 ## [5.49.46](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.45...v5.49.46) (2016-12-13)
 
