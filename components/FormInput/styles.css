@@ -1,6 +1,10 @@
 @import './default-config.css';
 @import 'config.css';
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 .formInput {
     /* default input styles*/
     box-sizing: border-box;
@@ -22,17 +26,16 @@
     cursor: default;
 }
 
+.loginInput.hasValue input:focus {
+  border: 1px solid var(--ut-front-react-loginInputFocusedBorderColor);
+}
+
+.loginInput.hasValue input {
+  border: 1px solid var(--ut-front-react-loginInputBorderColor);
+}
+
 .loginInput input:focus {
-    border: 1px solid #4f9efc;
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
-
-.loginInput.hasError input,
-.loginInput.hasError input:focus {
-    border: 1px solid #ff4d4d;
+    border: 1px solid var(--ut-front-react-loginInputFocusedBorderColor);
 }
 
 .label {
@@ -42,7 +45,7 @@ input:-webkit-autofill {
     padding-left: 5px;
     font-size: 12px;
     font-weight: 700;
-    color: #626262;
+    color: var(--ut-front-react-loginInputLabelColor);
     text-transform: uppercase;
     opacity: 0.5;
     -webkit-transition: all .3s ease;
@@ -53,9 +56,10 @@ input:-webkit-autofill {
     transform: translateY(90%);
 }
 
+.loginInput.hasValue label,
 .loginInput input:focus~label {
   opacity: 1;
-  background: white;
+  background: var(--ut-front-react-loginInputLabelBackgroundColor);
   top: -25px;
   padding: 0 5px;
 }

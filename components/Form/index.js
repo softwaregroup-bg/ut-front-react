@@ -22,10 +22,7 @@ export default class Form extends Component {
 
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput key={index}
-              className={classnames({
-                  'loginInput': true,
-                  'hasError': (input.get('name') === this.props.invalidField) || (error && !index)
-              })}
+              className='loginInput'
               type={input.get('type')}
               value={input.get('value')}
               label={input.get('label')}

@@ -19,14 +19,13 @@ export default class FormInput extends Component {
       const {  onBlur, onChange, onFocus } = this.props;
 
         return (
-            <div className={getClass(styles, className).concat(['hasValue'])}>
+            <div className={classNames(getClass(styles, className), {
+                [styles.hasValue]: value
+            })}>
                 <input
                     name={name}
                     type={type}
                     placeholder={placeholder}
-                    className={classNames({
-                        'hasValue': value
-                    })}
                     onChange={onChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
