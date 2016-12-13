@@ -66,7 +66,7 @@ export const login = (state = defaultLoginState, action) => {
             }
             return state;
         default:
-            return state;
+            return state.set('authenticated', false);
     }
     return state;
 };

@@ -1,22 +1,13 @@
 import Immutable from 'immutable';
-import {
-    LOGIN,
-    SET_INPUT_VALUE,
-    VALIDATE_FORM,
-    COOKIE_CHECK,
-    LOGOUT
-} from './actionTypes';
-import {
-    getInputs,
-    inputs as inputsConfig
-} from './config';
+import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
+import { getInputs, inputs as inputsConfig } from './config';
 import { Validator } from './../../utils/validator';
 
 const validator = new Validator(inputsConfig);
 
 let initialInputChangePerformed = false;
 
-// TODO: check loginResultId, logOutResultId, cookieCheckResultId
+// TODO: check loginResultId, logOutResultId, cookieCheckResultId, changeId
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     changeId: 0,
@@ -42,8 +33,8 @@ export const login = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
+            state = defaultLoginState;
             return state;
-
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 // TODO: change condition

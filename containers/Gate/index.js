@@ -7,8 +7,13 @@ import { fetchTranslations } from './actions';
 import { translate, money, df as dateFormat, numberFormat, checkPermission, setPermissions } from './helpers';
 
 class Gate extends Component {
+    constructor(props) {
+        super(props);
+
+        this.loadGate = this.loadGate.bind(this);
+    }
+
     getChildContext() {
-        debugger;
         return {
             translate: translate(this.props),
             dateFormat: dateFormat(this.props),
@@ -29,16 +34,28 @@ class Gate extends Component {
 
         // TODO: handle the other cases
         if(!login.get('result') && nextProps.login.get('result') && nextProps.login.get('authenticated')) {
-            setPermissions(nextProps.login.getIn(['result', 'permission.get']).toJS());
-
-            fetchTranslations({
-                languageId: nextProps.login.getIn(['result', 'language', 'languageId']),
-                itemTypeName: 'text',
-                keyValue: true,
-                isEnabled: true,
-                pageSize: 10000
-            });
+            this.loadGate(nextProps.login.getIn(['result', 'permission.get']).toJS(), nextProps.login.getIn(['result', 'language', 'languageId']))
+        } else if(!nextProps.login.get('result') && login.get('authenticated') && !nextProps.login.get('authenticated')) {
+            this.context.router.push('/login');
         }
+        // TODO: test forceLogOut
+        if(!login.get('forceLogOut') && nextProps.login.get('forceLogOut')) {
+            logout();
+        }
+    }
+
+    loadGate(permissions, languageId) {
+        let { fetchTranslations } = this.props;
+
+        setPermissions(permissions);
+
+        fetchTranslations({
+            languageId,
+            itemTypeName: 'text',
+            keyValue: true,
+            isEnabled: true,
+            pageSize: 10000
+        });
     }
 
     render() {
@@ -71,6 +88,10 @@ Gate.propTypes = {
 Gate.defaultProps = {
     gate: Map(),
     login: Map()
+};
+
+Gate.contextTypes = {
+    router: PropTypes.object
 };
 
 Gate.childContextTypes = {

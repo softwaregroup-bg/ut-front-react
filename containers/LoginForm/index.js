@@ -16,7 +16,7 @@ class LoginForm extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.validateForm = debounce(this.validateForm, 500);
+        this.validateForm = debounce(this.validateForm, 100);
 
         this.submitForm = this.submitForm.bind(this);
     }
