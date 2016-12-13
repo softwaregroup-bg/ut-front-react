@@ -47,7 +47,7 @@ export default class Form extends Component {
         return (
             <div className={getClass(styles, className)}>
                 { title ? <Title className={title.className} text={title.text} /> : false }
-                { error ? <FormErrorMessage message={error} /> : false }
+                { error ? <FormErrorMessage useNew={true} message={error} /> : false }
                 <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
                         { this.renderInputs() }
