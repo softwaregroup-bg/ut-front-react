@@ -33,11 +33,6 @@ export const validateForm = ({ submitAfter }) => ({
     submitAfter
 });
 
-export const setLoginData = (data) => ({
-    type: SET_LOGIN_DATA,
-    data: (data instanceof Array) ? data : [data]
-});
-
 export const logout = (params) => ({
     type: LOGOUT,
     method: 'identity.closeSession',

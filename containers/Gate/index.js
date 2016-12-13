@@ -8,6 +8,7 @@ import { translate, money, df as dateFormat, numberFormat, checkPermission, setP
 
 class Gate extends Component {
     getChildContext() {
+        debugger;
         return {
             translate: translate(this.props),
             dateFormat: dateFormat(this.props),
@@ -26,8 +27,9 @@ class Gate extends Component {
     componentWillReceiveProps(nextProps) {
         let { login, fetchTranslations, cookieCheck, logout } =  this.props;
 
+        // TODO: handle the other cases
         if(!login.get('result') && nextProps.login.get('result') && nextProps.login.get('authenticated')) {
-            setPermissions(nextProps.login.getIn(['result', 'permission.get'])).toJS();
+            setPermissions(nextProps.login.getIn(['result', 'permission.get']).toJS());
 
             fetchTranslations({
                 languageId: nextProps.login.getIn(['result', 'language', 'languageId']),
@@ -37,10 +39,6 @@ class Gate extends Component {
                 pageSize: 10000
             });
         }
-    }
-
-    componentDidUpdate(prevProps) {
-        debugger;
     }
 
     render() {

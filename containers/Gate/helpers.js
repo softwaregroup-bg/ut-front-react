@@ -1,21 +1,20 @@
 import dateFormat from 'date-fns/format';
 
-let checkPermission = () => {
-    return false;
+let permissionsCache = {};
+let permissionsRegExp = [];
+
+export const checkPermission = (action) => {
+    if(permissionsCache[action] == undefined) {
+        permissionsCache[action] = permissionsRegExp.test(action);
+    }
+
+    return permissionsCache[action];
 };
 
 export const setPermissions = (permissions) => {
-    let cache = {};
-    let regExp = new RegExp(permissions.map(function(permission) {
+    permissionsRegExp = new RegExp(permissions.map(function(permission) {
         return ['^', permission.actionId.replace('%', '(.+?)'), '$'].join('');
     }).join('|'));
-
-    checkPermission = function(action) {
-        if (cache[action] === undefined) {
-            cache[action] = regExp.test(action);
-        }
-        return cache[action];
-    };
 };
 
 export const translate = (props) => (text, language) => {

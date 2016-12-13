@@ -22,7 +22,6 @@ export default (state = defaultState, action) => {
                 texts = newText;
             }
             return state
-                .set('resultId', (v) => (v + 1))
                 .set('texts', Immutable.fromJS(texts))
                 .set('pagination', Immutable.fromJS(pagination))
                 .set('activeFilters', Immutable.fromJS(action.params))

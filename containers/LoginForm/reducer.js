@@ -4,7 +4,6 @@ import {
     SET_INPUT_VALUE,
     VALIDATE_FORM,
     COOKIE_CHECK,
-    SET_LOGIN_DATA,
     LOGOUT
 } from './actionTypes';
 import {
@@ -17,6 +16,7 @@ const validator = new Validator(inputsConfig);
 
 let initialInputChangePerformed = false;
 
+// TODO: check loginResultId, logOutResultId, cookieCheckResultId
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     changeId: 0,
@@ -79,8 +79,6 @@ export const login = (state = defaultLoginState, action) => {
                 .setIn(['loginForm', 'invalidField'], validationResult.invalidField) : state;
 
         case COOKIE_CHECK:
-            state = state.set('reqState', action.methodRequestState);
-            debugger;
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
                     return state
@@ -96,15 +94,6 @@ export const login = (state = defaultLoginState, action) => {
                 }
             }
 
-            return state;
-        default:
-            return state;
-    }
-};
-
-export const loginData = (state = defaultLoginDataState, action) => {
-    switch (action.type) {
-        case SET_LOGIN_DATA:
             return state;
         default:
             return state;
