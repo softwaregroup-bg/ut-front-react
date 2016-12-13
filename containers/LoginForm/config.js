@@ -2,7 +2,8 @@ export const inputs = {
     'username': {
         name: 'username',
         type: 'text',
-        placeholder: 'Username',
+        //placeholder: 'Username',
+        label: 'username',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
@@ -15,7 +16,8 @@ export const inputs = {
     'password': {
         name: 'password',
         type: 'password',
-        placeholder: 'Passwords',
+        //placeholder: 'Password',
+        label: 'password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
