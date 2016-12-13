@@ -45,8 +45,6 @@ export const login = (state = defaultLoginState, action) => {
             return state;
 
         case LOGIN:
-            state = state.set('reqState', action.methodRequestState);
-
             if (action.methodRequestState === 'finished') {
                 // TODO: change condition
                 if (action.error && action.error.type === 'policy.param.password') {
@@ -58,7 +56,7 @@ export const login = (state = defaultLoginState, action) => {
                     return state.set('authenticated', true)
                                 .setIn(['loginForm', 'formError'], '')
                                 .set('cookieCheckResultId', 0)
-                                .setIn(['loginForm', 'formError'], '');
+                                .setIn(['loginForm', 'formError'], '')
                 }
             }
 
@@ -82,7 +80,7 @@ export const login = (state = defaultLoginState, action) => {
 
         case COOKIE_CHECK:
             state = state.set('reqState', action.methodRequestState);
-
+            debugger;
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
                     return state

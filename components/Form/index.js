@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
 import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';

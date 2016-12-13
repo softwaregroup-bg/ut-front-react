@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
 import Icon from '../../../components/Icon';
 import styles from './styles.css';
 
+// TODO: refactor
 const FormErrorMessage = ({ message, useNew }) => {
     return (
       useNew ?
@@ -19,7 +19,8 @@ const FormErrorMessage = ({ message, useNew }) => {
 };
 
 FormErrorMessage.propTypes = {
-    message: PropTypes.string.isRequired
+    message: PropTypes.string.isRequired,
+    useNew: PropTypes.bool
 };
 
 export default FormErrorMessage;
