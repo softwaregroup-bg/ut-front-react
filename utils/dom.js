@@ -1,6 +1,6 @@
 import { capitalizeFirstLetter } from './helpers';
 
-const computeStyle = (styleRule, element, { skip }={}) => {
+const computeStyle = (styleRule, element, { skip } = {}) => {
     let dimensions = ['top', 'right', 'bottom', 'left'];
     return dimensions.reduce((result, currentDimension) => {
         let propertyName = styleRule + capitalizeFirstLetter(currentDimension);
@@ -8,7 +8,7 @@ const computeStyle = (styleRule, element, { skip }={}) => {
 
         return result;
     }, {});
-}
+};
 
 export const getMarginBox = (element, { skipBorders = false } = {}) => {
     let rect = element.getBoundingClientRect();

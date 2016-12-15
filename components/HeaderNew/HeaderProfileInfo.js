@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import debounce from 'lodash.debounce';
 import MenuNew from './../MenuNew';
 import styles from './styles.css';
 import { getMarginBox } from '../../utils/dom';
@@ -13,13 +14,8 @@ export default class HeaderProfileInfo extends Component {
         };
         this.onClick = this.onClick.bind(this);
         this.calculateDimensions = this.calculateDimensions.bind(this);
+        this.toggleMenu = debounce(this.toggleMenu, 200);
         this.onMenuBlur = this.onMenuBlur.bind(this);
-    }
-
-    onClick(e) {
-        this.setState({
-            menuToggled: !this.state.menuToggled
-        });
     }
 
     calculateDimensions() {
@@ -29,9 +25,17 @@ export default class HeaderProfileInfo extends Component {
         return arrowDimensions;
     }
 
-    onMenuBlur() {
+    onClick(e) {
+        this.toggleMenu();
+    }
+
+    onMenuBlur(e) {
+        this.toggleMenu();
+    }
+
+    toggleMenu() {
         this.setState({
-            menuToggled: false
+            menuToggled: !this.state.menuToggled
         });
     }
 
