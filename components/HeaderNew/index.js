@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import HeaderLogo from './HeaderLogo';
 import TabsContainer from './TabsContainer';
 import HeaderProfileInfo from './HeaderProfileInfo';
@@ -8,10 +8,10 @@ import styles from './styles.css';
 
 class HeaderNew extends Component {
     render() {
-        //debugger;
+        // debugger;
         return (
             <div className={styles.headerContainer}>
-                <HeaderLogo text="Administration Portal"/>
+                <HeaderLogo text='Administration Portal' />
                 <TabsContainer />
                 <HeaderProfileInfo />
             </div>
@@ -21,7 +21,7 @@ class HeaderNew extends Component {
 
 HeaderNew.contextTypes = {
     mainTabset: PropTypes.array
-}
+};
 
 export default connect(
     null,

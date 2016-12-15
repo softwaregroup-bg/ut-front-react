@@ -24,15 +24,15 @@ export default class HeaderProfileInfo extends Component {
 
     calculateDimensions() {
         let arrowDimensions = getMarginBox(this.infoArrowNode);
-        arrowDimensions.height = arrowDimensions.height;//TO DO handle additional offset
+        arrowDimensions.height = arrowDimensions.height; // TO DO handle additional offset
 
         return arrowDimensions;
     }
 
     onMenuBlur() {
-      this.setState({
-          menuToggled: false
-      });
+        this.setState({
+            menuToggled: false
+        });
     }
 
     render() {
@@ -43,11 +43,11 @@ export default class HeaderProfileInfo extends Component {
               className={classNames(styles.headerComponent, styles.profileContainer)}
               ref={(element) => { this.infoArrowNode = element; }} >
                 <span
-                    className={styles.avatarInfoArrow}
-                    onClick={this.onClick} />
-                <span className={styles.avatarContainer}></span>
+                  className={styles.avatarInfoArrow}
+                  onClick={this.onClick} />
+                <span className={styles.avatarContainer} />
                 {menuToggled
-                  ? <MenuNew onBlur={this.onMenuBlur} dimensions={getDimensions('right-bottom', this.calculateDimensions())}/>
+                  ? <MenuNew onBlur={this.onMenuBlur} dimensions={getDimensions('right-bottom', this.calculateDimensions())} />
                   : false}
             </span>
         );
