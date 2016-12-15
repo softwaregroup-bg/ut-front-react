@@ -1,3 +1,13 @@
+<a name="5.49.58"></a>
+## [5.49.58](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.57...v5.49.58) (2016-12-15)
+
+
+### Bug Fixes
+
+* get immutable data ([f324453](https://github.com/softwaregroup-bg/ut-front-react/commit/f324453))
+
+
+
 <a name="5.49.57"></a>
 ## [5.49.57](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.56...v5.49.57) (2016-12-15)
 
