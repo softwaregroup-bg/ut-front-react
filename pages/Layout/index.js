@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/Header';
+//import Header from '../../components/Header';
+import Header from '../../components/HeaderNew';
 import TabMenu from '../../containers/TabMenu';
 import Link from '../../components/Header/Link';
 import { getLink } from 'ut-front/react/routerHelper';

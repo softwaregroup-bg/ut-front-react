@@ -1,0 +1,68 @@
+.headerContainer {
+  width: 100%;
+  display: flex;
+  cursor: default;
+  background-color: white;
+  border-bottom: 1px solid #CCCBCB;
+  box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
+  /* TO-DO: display box-shadow without hacky margin*/
+  margin-bottom: 5px;
+}
+
+.headerComponent {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.headerTitle {
+  font-weight: 700;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.headerLogoContainer {
+  width: 20%;
+}
+
+.headerLogo {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 58px;
+  height: 58px;
+  background: inline('logo.png') no-repeat center center;
+  cursor: pointer;
+}
+
+.tabsContainer {
+  width: 70%;
+}
+
+.profileContainer {
+  width: 10%;
+  flex-direction: row-reverse;
+  position: relative;
+}
+
+.avatarContainer {
+  width: 26px;
+  height: 26px;
+  background: inline('profile_picture.png') no-repeat center center;
+}
+
+.avatarInfoArrow {
+  width: 14px;
+  height: 14px;
+  margin: 0 10px 0 5px;
+  background: inline('arrow_black_base.png') no-repeat center center;
+}
+
+.profileInfoMenu {
+  position: absolute;
+  width: 330px;
+  height: 190px;
+  z-index: 999;
+  top: 60px;
+  right: 0;
+  background: grey;
+}

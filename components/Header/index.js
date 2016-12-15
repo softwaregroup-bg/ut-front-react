@@ -42,6 +42,7 @@ const Header = React.createClass({
         window.open(url, '_blank');
     },
     render() {
+      debugger;
         return (
             <div className={this.getStyle('header')}>
                 <div className={this.getStyle('headerCell')}>
