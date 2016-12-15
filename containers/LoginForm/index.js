@@ -43,7 +43,7 @@ class LoginForm extends Component {
     }
 
     validateForm({ submitAfter }) {
-        const { error, isFormValid} = this.props;
+        const { error, isFormValid } = this.props;
         this.props.validateForm({
             submitAfter
         });

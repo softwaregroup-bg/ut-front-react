@@ -125,7 +125,7 @@ Layout.propTypes = {
     login: PropTypes.object,
     location: PropTypes.object,
     headerCellText: PropTypes.object,
-    logOut: PropTypes.func
+    logout: PropTypes.func
 };
 Layout.contextTypes = {
     router: PropTypes.any,

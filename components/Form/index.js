@@ -16,7 +16,7 @@ export default class Form extends Component {
     }
 
     renderInputs() {
-        let { inputs, error, onChange, onBlur } = this.props;
+        let { inputs, onChange, onBlur } = this.props;
         let inputNodes = [];
 
         inputs.toSeq().forEach((input, index) => {
@@ -46,7 +46,7 @@ export default class Form extends Component {
         return (
             <div className={getClass(styles, className)}>
                 { title ? <Title className={title.className} text={title.text} /> : false }
-                { error ? <FormErrorMessage useNew={true} message={error} /> : false }
+                { error ? <FormErrorMessage useNew message={error} /> : false }
                 <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
                         { this.renderInputs() }

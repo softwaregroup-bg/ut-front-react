@@ -4,7 +4,7 @@ let permissionsCache = {};
 let permissionsRegExp = [];
 
 export const checkPermission = (action) => {
-    if(permissionsCache[action] == undefined) {
+    if (!permissionsCache[action]) {
         permissionsCache[action] = permissionsRegExp.test(action);
     }
 
@@ -17,6 +17,7 @@ export const setPermissions = (permissions) => {
     }).join('|'));
 };
 
+// TODO: fix translations
 export const translate = (props) => (text, language) => {
     if (!props.gate.texts || !props.gate.texts[text]) {
         return text;
@@ -51,13 +52,13 @@ export const numberFormat = (props) => (num, format) => {
 
     parts = format.split('|');
 
-    if(parts.length !== 3 ) {
+    if (parts.length !== 3) {
         return num;
     }
 
     num = parseInt(num).toFixed(parseInt(parts[0]));
 
-    if (parts[1]){
+    if (parts[1]) {
         num = num.toString().replace('.', parts[1]);
     }
 
