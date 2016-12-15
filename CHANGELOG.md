@@ -1,3 +1,13 @@
+<a name="5.49.48"></a>
+## [5.49.48](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.47...v5.49.48) (2016-12-15)
+
+
+### Bug Fixes
+
+* deps versions bump ([f82e20a](https://github.com/softwaregroup-bg/ut-front-react/commit/f82e20a))
+
+
+
 <a name="5.49.47"></a>
 ## [5.49.47](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.46...v5.49.47) (2016-12-13)
 
