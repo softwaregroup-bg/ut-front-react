@@ -13,7 +13,7 @@ const defaultLoginState = Immutable.fromJS({
     changeId: 0,
     loginResultId: 0,
     logOutResultId: 0,
-    cookieCheckResultId: 0,
+    cookieChecked: false,
 
     loginForm: {
         inputs: getInputs(['username']),
@@ -46,7 +46,7 @@ export const login = (state = defaultLoginState, action) => {
                 } else if (action.result) {
                     return state.set('authenticated', true)
                                 .setIn(['loginForm', 'formError'], '')
-                                .set('cookieCheckResultId', 0)
+                                .set('cookieChecked', true)
                                 .setIn(['loginForm', 'formError'], '')
                 }
             }
@@ -72,16 +72,14 @@ export const login = (state = defaultLoginState, action) => {
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
-                    return state
-                        .setIn(['loginForm', 'formError'], Immutable.fromJS({code: action.error.code, message: action.error.message, type: action.error.type}))
-                        .delete('result')
-                        .update('cookieCheckResultId', (v) => (v + 1))
-                        .set('authenticated', false);
+                    return state.delete('result')
+                                .set('cookieChecked', true)
+                                .set('authenticated', false);
+
                 } else if (action.result) {
-                    return state
-                        .set('result', Immutable.fromJS(action.result))
-                        .update('cookieCheckResultId', (v) => (v + 1))
-                        .set('authenticated', true);
+                    return state.set('result', Immutable.fromJS(action.result))
+                                .set('cookieChecked', true)
+                                .set('authenticated', true);
                 }
             }
 
