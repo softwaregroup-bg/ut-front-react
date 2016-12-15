@@ -26,7 +26,7 @@ class TextField extends Component {
     componentWillReceiveProps({value, isValid, errorMessage, isEdited}) {
         this.initialValue = value;
 
-        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.isEdited !== isEdited) {
+        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.isEdited !== isEdited || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
                 value: value,
                 valid: {isValid: isValid, errorMessage: errorMessage},

@@ -1,3 +1,148 @@
+<a name="5.49.57"></a>
+## [5.49.57](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.56...v5.49.57) (2016-12-15)
+
+
+
+<a name="5.49.56"></a>
+## [5.49.56](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.55...v5.49.56) (2016-12-15)
+
+
+
+<a name="5.49.55"></a>
+## [5.49.55](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.54...v5.49.55) (2016-12-15)
+
+
+
+<a name="5.49.54"></a>
+## [5.49.54](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.53...v5.49.54) (2016-12-15)
+
+
+
+<a name="5.49.53"></a>
+## [5.49.53](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.52...v5.49.53) (2016-12-15)
+
+
+
+<a name="5.49.52"></a>
+## [5.49.52](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.51...v5.49.52) (2016-12-15)
+
+
+
+<a name="5.49.51"></a>
+## [5.49.51](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.50...v5.49.51) (2016-12-15)
+
+
+
+<a name="5.49.50"></a>
+## [5.49.50](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.49...v5.49.50) (2016-12-15)
+
+
+
+<a name="5.49.49"></a>
+## [5.49.49](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.48...v5.49.49) (2016-12-15)
+
+
+
+<a name="5.49.48"></a>
+## [5.49.48](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.47...v5.49.48) (2016-12-15)
+
+
+### Bug Fixes
+
+* deps versions bump ([f82e20a](https://github.com/softwaregroup-bg/ut-front-react/commit/f82e20a))
+
+
+
+<a name="5.49.47"></a>
+## [5.49.47](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.46...v5.49.47) (2016-12-13)
+
+
+### Bug Fixes
+
+* error message change ([ad8b6d2](https://github.com/softwaregroup-bg/ut-front-react/commit/ad8b6d2))
+
+
+
+<a name="5.49.46"></a>
+## [5.49.46](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.45...v5.49.46) (2016-12-13)
+
+
+
+<a name="5.49.45"></a>
+## [5.49.45](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.44...v5.49.45) (2016-12-13)
+
+
+
+<a name="5.49.44"></a>
+## [5.49.44](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.43...v5.49.44) (2016-12-13)
+
+
+
+<a name="5.49.43"></a>
+## [5.49.43](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.42...v5.49.43) (2016-12-12)
+
+
+
+<a name="5.49.42"></a>
+## [5.49.42](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.41...v5.49.42) (2016-12-12)
+
+
+
+<a name="5.49.41"></a>
+## [5.49.41](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.40...v5.49.41) (2016-12-12)
+
+
+
+<a name="5.49.40"></a>
+## [5.49.40](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.39...v5.49.40) (2016-12-12)
+
+
+
+<a name="5.49.39"></a>
+## [5.49.39](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.38...v5.49.39) (2016-12-12)
+
+
+
+<a name="5.49.38"></a>
+## [5.49.38](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.37...v5.49.38) (2016-12-12)
+
+
+
+<a name="5.49.37"></a>
+## [5.49.37](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.36...v5.49.37) (2016-12-12)
+
+
+
+<a name="5.49.36"></a>
+## [5.49.36](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.35...v5.49.36) (2016-12-12)
+
+
+
+<a name="5.49.35"></a>
+## [5.49.35](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.34...v5.49.35) (2016-12-12)
+
+
+
+<a name="5.49.34"></a>
+## [5.49.34](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.33...v5.49.34) (2016-12-12)
+
+
+
+<a name="5.49.33"></a>
+## [5.49.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.32...v5.49.33) (2016-12-12)
+
+
+
+<a name="5.49.32"></a>
+## [5.49.32](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.31...v5.49.32) (2016-12-12)
+
+
+### Bug Fixes
+
+* add searchbox validations ([#47](https://github.com/softwaregroup-bg/ut-front-react/issues/47)) ([5c51a3e](https://github.com/softwaregroup-bg/ut-front-react/commit/5c51a3e))
+
+
+
 <a name="5.49.31"></a>
 ## [5.49.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.30...v5.49.31) (2016-12-09)
 
