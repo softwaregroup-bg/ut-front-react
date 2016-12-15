@@ -28,6 +28,7 @@ export const login = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
+            initialInputChangePerformed = false;
             state = defaultLoginState;
             return state;
         case LOGIN:

@@ -3,6 +3,8 @@ import dateFormat from 'date-fns/format';
 let permissionsCache = {};
 let permissionsRegExp = [];
 
+// TODO: check all methods which depend on props!!!
+
 export const checkPermission = (action) => {
     if (!permissionsCache[action]) {
         permissionsCache[action] = permissionsRegExp.test(action);
@@ -17,13 +19,14 @@ export const setPermissions = (permissions) => {
     }).join('|'));
 };
 
-// TODO: fix translations
 export const translate = (props) => (text, language) => {
-    if (!props.gate.texts || !props.gate.texts[text]) {
+    let texts = props.gate.get('texts');
+
+    if (!texts|| !texts[text]) {
         return text;
     }
 
-    return props.gate.texts[text];
+    return texts[text];
 };
 
 export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
@@ -42,12 +45,11 @@ export const df = (props) => (date, format) => {
     return dateFormat(new Date(date), format);
 };
 
-// TODO: check and refactor
 export const numberFormat = (props) => (num, format) => {
     let parts = [];
 
     if (!format) {
-        format = props.login.result && props.login.result.localisation.numberFormat || '2|.|';
+        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) || '2|.|';
     }
 
     parts = format.split('|');

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Text from '../../components/Text';
 import { cookieCheck, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
-import { translate, money, df as dateFormat, numberFormat, checkPermission, setPermissions } from './helpers';
+import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 
 class Gate extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class Gate extends Component {
     getChildContext() {
         return {
             translate: translate(this.props),
-            dateFormat: dateFormat(this.props),
+            dateFormat: df(this.props),
             numberFormat: numberFormat(this.props),
             checkPermission,
             money
