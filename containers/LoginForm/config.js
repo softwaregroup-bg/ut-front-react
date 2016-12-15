@@ -2,7 +2,7 @@ export const inputs = {
     'username': {
         name: 'username',
         type: 'text',
-        //placeholder: 'Username',
+        // placeholder: 'Username',
         label: 'username',
         value: '',
         error: '',
@@ -16,7 +16,7 @@ export const inputs = {
     'password': {
         name: 'password',
         type: 'password',
-        //placeholder: 'Password',
+        // placeholder: 'Password',
         label: 'password',
         value: '',
         error: '',

@@ -5,9 +5,9 @@ const defaultState = Immutable.Map({});
 
 // TODO: check translations
 export default (state = defaultState, action) => {
-    if(action.error && action.error.type === 'identity.systemError') {
+    if (action.error && action.error.type === 'identity.systemError') {
         return state.set('forceLogOut', true);
-    } else if(action.type === CORE_ITEM_TRANSLATION_FETCH) {
+    } else if (action.type === CORE_ITEM_TRANSLATION_FETCH) {
         if (action.methodRequestState === 'finished') {
             let texts = [];
             let pagination = {};
@@ -33,6 +33,5 @@ export default (state = defaultState, action) => {
         }
         return state;
     }
-    
     return state;
-}
+};

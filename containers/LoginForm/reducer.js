@@ -23,11 +23,6 @@ const defaultLoginState = Immutable.fromJS({
     }
 });
 
-const defaultLoginDataState = Immutable.fromJS({
-    changeId: 0,
-    data: {}
-});
-
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
 
@@ -47,12 +42,11 @@ export const login = (state = defaultLoginState, action) => {
                     return state.set('authenticated', true)
                                 .setIn(['loginForm', 'formError'], '')
                                 .set('cookieChecked', true)
-                                .setIn(['loginForm', 'formError'], '')
+                                .setIn(['loginForm', 'formError'], '');
                 }
             }
 
             return state;
-
         case SET_INPUT_VALUE:
             let { input, value } = action;
             initialInputChangePerformed = true;
@@ -75,14 +69,12 @@ export const login = (state = defaultLoginState, action) => {
                     return state.delete('result')
                                 .set('cookieChecked', true)
                                 .set('authenticated', false);
-
                 } else if (action.result) {
                     return state.set('result', Immutable.fromJS(action.result))
                                 .set('cookieChecked', true)
                                 .set('authenticated', true);
                 }
             }
-
             return state;
         default:
             return state;

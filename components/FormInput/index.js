@@ -15,29 +15,23 @@ export default class FormInput extends Component {
     }
 
     render() {
-      const { type, label, name, value, placeholder, className } = this.props;
-      const {  onBlur, onChange, onFocus } = this.props;
+        const { type, label, name, value, placeholder, className } = this.props;
+        const { onBlur, onChange, onFocus } = this.props;
 
         return (
             <div className={classNames(getClass(styles, className), {
                 [styles.hasValue]: value
             })}>
                 <input
-                    name={name}
-                    type={type}
-                    placeholder={placeholder}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    value={value}
-                    ref={(input) => { this.inputNode = input; }} />
-                { label ?
-                  <label
-                      onClick={this.onLabelClick}
-                      className={getClass(styles, 'label')} >
-                      {label}
-                  </label> :
-                false }
+                  name={name}
+                  type={type}
+                  placeholder={placeholder}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  value={value}
+                  ref={(input) => { this.inputNode = input; }} />
+                  { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
             </div>
         );
     }
