@@ -8,16 +8,20 @@ import styles from './styles.css';
 
 class HeaderNew extends Component {
     render() {
-        // debugger;
+        const { tabset } = this.props;
         return (
             <div className={styles.headerContainer}>
                 <HeaderLogo text='Administration Portal' />
-                <TabsContainer />
+                <TabsContainer tabset={tabset} />
                 <HeaderProfileInfo />
             </div>
         );
     }
 }
+
+HeaderNew.propTypes = {
+    tabset: PropTypes.array
+};
 
 HeaderNew.contextTypes = {
     mainTabset: PropTypes.array

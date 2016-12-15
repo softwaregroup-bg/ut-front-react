@@ -66,3 +66,19 @@
   right: 0;
   background: grey;
 }
+
+.navigationTab {
+  color: #373a3c;
+  cursor: pointer;
+  text-decoration-style: none;
+}
+
+.navigationTab:hover {
+  color: #595959;
+}
+
+.navigationTabActive,
+.navigationTabActive:hover {
+  color: #2281ec;
+}
+

@@ -9,7 +9,7 @@ export default class MenuNew extends Component {
 
     render() {
         const { dimensions, onBlur } = this.props;
-        var fields = ['About', 'Help', 'Settings', 'Log out'];
+        var fields = this.props.fields || ['About', 'Help', 'Settings', 'Log out'];
         return (
             <div tabIndex='0' onBlur={onBlur} style={dimensions} className={styles.menu}>
                 {fields.map((field) => (<div key={field}>{field}</div>))}
@@ -20,5 +20,6 @@ export default class MenuNew extends Component {
 
 MenuNew.propTypes = {
     dimensions: PropTypes.object,
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
+    fields: PropTypes.array
 };

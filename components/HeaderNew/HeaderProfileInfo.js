@@ -19,10 +19,7 @@ export default class HeaderProfileInfo extends Component {
     }
 
     calculateDimensions() {
-        let arrowDimensions = getMarginBox(this.infoArrowNode);
-        arrowDimensions.height = arrowDimensions.height; // TO DO handle additional offset
-
-        return arrowDimensions;
+        return getMarginBox(this.infoArrowNode);
     }
 
     onClick(e) {
