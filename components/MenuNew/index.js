@@ -8,12 +8,12 @@ export default class MenuNew extends Component {
     }
 
     render() {
-        const { dimensions, onBlur } = this.props;
+        const { opened, dimensions, onBlur } = this.props;
         var fields = this.props.fields || ['About', 'Help', 'Settings', 'Log out'];
         return (
-            <div tabIndex='0' onBlur={onBlur} style={dimensions} className={styles.menu}>
-                {fields.map((field) => (<div key={field}>{field}</div>))}
-            </div>
+              <div tabIndex='0' onBlur={onBlur} style={dimensions} className={styles.menu}>
+                {fields}
+              </div>
         );
     }
 }

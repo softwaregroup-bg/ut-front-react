@@ -1,18 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { getLink } from 'ut-front/react/routerHelper';
-import style from './styles.css';
+import styles from './styles.css';
 
 export default class NavigationLink extends Component {
     render() {
-        const { to, params, className, children, activeClassName } = this.props;
+        const { to, params, className, children, activeClassName, style } = this.props;
+        const { onClick } = this.props;
 
         return (
             <Link
               to={getLink(to, params)}
               className={className}
               activeClassName={activeClassName}
-              activeStyle={style.navigationLinkActive} >
+              activeStyle={styles.navigationLinkActive}
+              onClick={onClick}
+              style={style} >
                 {children}
             </Link>
         );

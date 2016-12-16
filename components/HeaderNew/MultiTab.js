@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Link from './Link';
+import Tab from './Tab';
 import Menu from './../MenuNew';
 
 export default class MultiTab extends Component {
@@ -10,31 +11,42 @@ export default class MultiTab extends Component {
             menuToggled: false
         };
 
-        this.onTouchTap = this.onTouchTap.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
+        this.getMenuItems = this.getMenuItems.bind(this);
     }
 
-    toggleMenu() {
+    getMenuItems() {
+        const { multi } = this.props.tab;
+
+        return multi.reduce((tabs, currentTab) => {
+            tabs.push((<Tab key={currentTab.routeName} tab={currentTab} />));
+
+            return tabs;
+        }, []);
+    }
+
+    toggleMenu(e) {
+        e.preventDefault();
         this.setState({
             menuToggled: !this.state.menuToggled
         });
     }
 
-    onTouchTap(e) {
-        e.preventDefault();
-        this.toggleMenu();
-    }
-
     render() {
         const { tab } = this.props;
+        const menuItems = this.getMenuItems();
+
         return (
             <Link
               widematch
-              onClick={(e) => { e.preventDefault(); }}
+              onClick={this.toggleMenu}
               to={tab.routeName}
               params={tab.routeParams}
-              onTouchTap={this.onTouchTap} >
+              style={{
+                  position: 'relative'
+              }} >
                 {tab.title}
-                {this.state.menuToggled ? <Menu fields={['1', '2', '3']} /> : false}
+                {this.state.menuToggled ? <Menu fields={this.getMenuItems()} /> : false}
             </Link>
         );
     }

@@ -47,9 +47,9 @@ export default class HeaderProfileInfo extends Component {
                   className={styles.avatarInfoArrow}
                   onClick={this.onClick} />
                 <span className={styles.avatarContainer} />
-                {menuToggled
-                  ? <MenuNew onBlur={this.onMenuBlur} dimensions={getDimensions('right-bottom', this.calculateDimensions())} />
-                  : false}
+                { menuToggled && <MenuNew
+                  dimensions={getDimensions('right-bottom', this.calculateDimensions())}
+                  onBlur={this.onMenuBlur} /> }
             </span>
         );
     }
