@@ -5,7 +5,7 @@ import MultiTab from './MultiTab';
 import styles from './styles.css';
 
 export default class TabsContainer extends Component {
-      hasPermission(permissions) {
+    hasPermission(permissions) {
         return permissions.every((permission) => {
             return permission.indexOf('!') === 0
               ? !this.context.checkPermission(permission.substr(1))
@@ -30,10 +30,10 @@ export default class TabsContainer extends Component {
               ? this.hasPermission(tab.permission)
               : true;
 
-          hasPermission && tabs.push(
+            hasPermission && tabs.push(
               (
                 <div key={i}>
-                  { isMulti ? <MultiTab tab={tab} /> : <Tab tab={tab} /> }
+                  {isMulti ? <MultiTab tab={tab} /> : <Tab tab={tab} />}
                 </div>
               )
           );
