@@ -32,8 +32,6 @@
 .searchBoxWrap .label {
     display: inline-block;
     width: 30%;
-    margin: 5px 4% 0 0;
-    margin-right: 0px;
     font-size: 14px;
     color: #595959;
 }
