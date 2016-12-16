@@ -17,12 +17,13 @@ export default (state = defaultState, action) => {
                 pagination = action.result.pagination[0];
             }
             if (action.params.keyValue && texts.length) {
-                let newText = {};
+                let textsMapping = {};
 
                 texts.map((text) => {
-                    newText[text.itemName] = text.itemNameTranslation;
+                    textsMapping[text.itemName] = text.itemNameTranslation;
                 });
-                texts = newText;
+
+                texts = textsMapping;
             }
             return state
                 .set('texts', Immutable.fromJS(texts))

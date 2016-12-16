@@ -3,8 +3,6 @@ import dateFormat from 'date-fns/format';
 let permissionsCache = {};
 let permissionsRegExp = [];
 
-// TODO: check all methods which depend on props!!!
-
 export const checkPermission = (action) => {
     if (!permissionsCache[action]) {
         permissionsCache[action] = permissionsRegExp.test(action);
@@ -39,7 +37,7 @@ export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
 
 export const df = (props) => (date, format) => {
     if (!format) {
-        format = props.login.result && props.login.result.localisation.dateFormat || 'YYYY-MM-DD';
+        format = props.login.get('result') && props.login.result.getIn(['localisation', 'dateFormat']) || 'YYYY-MM-DD';
     }
 
     return dateFormat(new Date(date), format);
