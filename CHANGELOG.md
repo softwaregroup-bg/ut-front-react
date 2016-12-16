@@ -1,3 +1,14 @@
+<a name="5.49.61"></a>
+## [5.49.61](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.60...v5.49.61) (2016-12-16)
+
+
+### Bug Fixes
+
+* margins ([7e9b961](https://github.com/softwaregroup-bg/ut-front-react/commit/7e9b961))
+* searchbox styling ([7bcdc98](https://github.com/softwaregroup-bg/ut-front-react/commit/7bcdc98))
+
+
+
 <a name="5.49.60"></a>
 ## [5.49.60](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.59...v5.49.60) (2016-12-15)
 
