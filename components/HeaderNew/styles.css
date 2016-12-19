@@ -81,19 +81,9 @@ a.navigationTab {
   outline: 0;
 }
 
-.navigationTabActive,
-.navigationTabActive:hover,
-.navigationTabActive:focus {
-  text-decoration: none;
-}
-
-/*a.navigationTab:hover {
-  color: #595959;
-  text-decoration: none;
-}*/
-
 a.navigationTabActive,
-a.navigationTabActive:hover {
+a.navigationTabActive:hover,
+a.navigationTabActive:focus {
   color: #2281ec;
   text-decoration: none;
 }

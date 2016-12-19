@@ -10,7 +10,7 @@ export default class NavigationLink extends Component {
 
         return (
             <Link
-              to={getLink(to, params).substr(1)}
+              to={getLink(to, params)}
               className={className}
               activeClassName={activeClassName}
               activeStyle={styles.navigationLinkActive}

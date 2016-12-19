@@ -49,7 +49,8 @@ export default class MultiTab extends Component {
               onClick={this.toggleMenu}
               to={tab.routeName}
               params={tab.routeParams}
-              className={classNames(styles.navigationTab)} >
+              className={classNames(styles.navigationTab)}
+              activeClassName={styles.navigationTabActive} >
                 {tab.title}
             </Link>
               {this.state.menuToggled ? <Menu fields={this.getMenuItems()} /> : false}
