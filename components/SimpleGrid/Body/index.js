@@ -10,7 +10,6 @@ export class Body extends Component {
     render() {
         let body;
         let space = <span>&nbsp;</span>;
-        debugger;
         if (this.props.data.length) {
             if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= this.props.data.length) {
                 body = this.props.data.map((data, idx) => (
