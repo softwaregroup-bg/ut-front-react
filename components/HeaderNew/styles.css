@@ -1,12 +1,12 @@
 .headerContainer {
+  position: relative;
+  z-index: 2;
   width: 100%;
   display: flex;
   cursor: default;
   background-color: white;
   border-bottom: 1px solid #CCCBCB;
   box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
-  /* TO-DO: display box-shadow without hacky margin*/
-  margin-bottom: 5px;
 }
 
 .headerComponent {
