@@ -7,6 +7,12 @@
     --ut-front-react-standardBtnHoverBgColor: #72A73F;
     --ut-front-react-connectBtnBgColor: #0074ba;
     --ut-front-react-connectBtnHoverBgColor: #0067a6;
+    --ut-front-react-defaultBtnColor: #444444;
+    --ut-front-react-defaultBtnBgColor: #f4f4f4;
+    --ut-front-react-defaultBtnBorderColor: #dcdcdc;
+    --ut-front-react-defaultBtnBorderColorHover: #999999;
+    --ut-front-react-defaultBtnBackgroundColorHover: #f4f4f4;
+    --ut-front-react-defaultBtnBackgroundColorActive: #ececec;
 
     /* config */
     --ut-front-react-standardBtnWidth: 146px;
@@ -19,4 +25,7 @@
     --ut-front-react-smallBtnPadding: 8px 10px;
     --ut-front-react-smallBtnFontSize: 11px;
     --ut-front-react-smallBtnLineHeight: 11px;
+    --ut-front-react-defaultBtnHeight: 30px;
+    --ut-front-react-defaultBtnBorderRadius: 5px;
+    --ut-front-react-defaultBtnPadding: 4px 20px;
 }

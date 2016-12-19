@@ -51,3 +51,23 @@
     composes: connectBtn fullWidthBtn;
     margin-bottom: 60px;
 }
+.defaultBtn {
+    width: auto;
+    font-size: 14px;
+    border-radius: var(--ut-front-react-defaultBtnBorderRadius);
+    color: var(--ut-front-react-defaultBtnColor);
+    background-color: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    padding: var(--ut-front-react-defaultBtnPadding);
+    height: var(--ut-front-react-defaultBtnHeight);
+    font-weight: normal;
+    text-transform: none;
+    outline: 0;
+}
+.defaultBtn:hover {
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+}
+.defaultBtn:active {
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorActive);
+}
