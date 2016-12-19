@@ -27,7 +27,9 @@ NavigationLink.propTypes = {
     className: PropTypes.string,
     activeClassName: PropTypes.string,
     children: PropTypes.any,
-    params: PropTypes.object
+    params: PropTypes.object,
+    style: PropTypes.object,
+    onClick: PropTypes.func
 };
 
 NavigationLink.defaultProps = {

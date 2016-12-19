@@ -42,7 +42,6 @@ export default class MultiTab extends Component {
 
     render() {
         const { tab } = this.props;
-        const menuItems = this.getMenuItems();
 
         return (
             <div className={styles.navigationMultiTab}>

@@ -8,7 +8,7 @@ export default class MenuNew extends Component {
     }
 
     render() {
-        const { opened, dimensions, onBlur } = this.props;
+        const { dimensions, onBlur } = this.props;
         var fields = this.props.fields || ['About', 'Help', 'Settings', 'Log out'];
         return (
               <div
