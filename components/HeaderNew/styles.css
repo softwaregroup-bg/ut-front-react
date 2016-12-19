@@ -70,7 +70,6 @@
 a.navigationTab {
   color: #373a3c;
   cursor: pointer;
-<<<<<<< HEAD
   padding: 0 10px;
   text-decoration: none;
 }
@@ -85,7 +84,6 @@ a.navigationTab {
 .navigationTabActive,
 .navigationTabActive:hover,
 .navigationTabActive:focus {
-=======
   text-decoration: none;
 }
 
@@ -96,7 +94,6 @@ a.navigationTab {
 
 a.navigationTabActive,
 a.navigationTabActive:hover {
->>>>>>> 164d7d8954a0a14ddd3d5cdccdb6691607bc574c
   color: #2281ec;
   text-decoration: none;
 }
