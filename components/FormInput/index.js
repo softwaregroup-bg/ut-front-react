@@ -29,7 +29,6 @@ export default class FormInput extends Component {
                   onChange={onChange}
                   onFocus={onFocus}
                   onBlur={onBlur}
-                  value={value}
                   ref={(input) => { this.inputNode = input; }} />
                   { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
             </div>

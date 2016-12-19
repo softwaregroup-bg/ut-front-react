@@ -20,7 +20,7 @@ export const setPermissions = (permissions) => {
 export const translate = (props) => (text, language) => {
     let texts = props.gate.get('texts');
 
-    if (!texts|| !texts[text]) {
+    if (!texts || !texts[text]) {
         return text;
     }
 

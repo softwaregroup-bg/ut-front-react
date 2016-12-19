@@ -10,11 +10,9 @@ let initialInputChangePerformed = false;
 // TODO: check loginResultId, logOutResultId, cookieCheckResultId, changeId
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
-    changeId: 0,
-    loginResultId: 0,
-    logOutResultId: 0,
+    shouldChangePassword: false,
+    loginFailedAttepmts: 0,
     cookieChecked: false,
-
     loginForm: {
         inputs: getInputs(['username']),
         formError: '',
@@ -52,9 +50,7 @@ export const login = (state = defaultLoginState, action) => {
             let { input, value } = action;
             initialInputChangePerformed = true;
 
-            return state
-                .setIn(['loginForm', 'inputs', input, 'value'], value);
-
+            return state.setIn(['loginForm', 'inputs', input, 'value'], value);
         case VALIDATE_FORM:
             // submitAfter to detect if validate comes from blur or submit
             validationResult = validator.validateAll(state.get('loginForm').get('inputs'));
