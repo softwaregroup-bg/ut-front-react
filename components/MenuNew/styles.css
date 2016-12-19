@@ -1,6 +1,8 @@
 .menu {
     position: absolute;
     z-index: 1;
-    background-color: pink;
+    padding: 8px 0px;
+    background-color: #ffffff;
     outline: 0;
+    box-shadow: 0px 1px 10px #CCCBCB;
 }

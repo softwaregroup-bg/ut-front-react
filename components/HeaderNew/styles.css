@@ -68,10 +68,12 @@
 }
 
 a.navigationTab {
+  display: block;
   color: #373a3c;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 10px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .navigationTab:hover,
