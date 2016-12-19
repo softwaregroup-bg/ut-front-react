@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Text from '../../components/Text';
 import { cookieCheck, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
-import { translate, money, df as dateFormat, numberFormat, checkPermission, setPermissions } from './helpers';
+import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 
 class Gate extends Component {
     constructor(props) {
@@ -16,11 +16,11 @@ class Gate extends Component {
     getChildContext() {
         return {
             translate: translate(this.props),
-            dateFormat: dateFormat(this.props),
+            dateFormat: df(this.props),
             numberFormat: numberFormat(this.props),
             checkPermission,
             money
-        }
+        };
     }
 
     componentWillMount() {
@@ -30,16 +30,18 @@ class Gate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { login, fetchTranslations, cookieCheck, logout } =  this.props;
+        let { login, logout } = this.props;
 
-        // TODO: handle the other cases
-        if(!login.get('result') && nextProps.login.get('result') && nextProps.login.get('authenticated')) {
-            this.loadGate(nextProps.login.getIn(['result', 'permission.get']).toJS(), nextProps.login.getIn(['result', 'language', 'languageId']))
-        } else if(!nextProps.login.get('result') && login.get('authenticated') && !nextProps.login.get('authenticated')) {
+        // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
+        // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
+        // if the session expires, redirect to LoginPage
+        if (!login.get('cookieChecked') && nextProps.login.get('cookieChecked') && !nextProps.login.get('authenticated')) {
+            this.context.router.push('login');
+        } else if (nextProps.login.get('authenticated') && !login.get('result') && nextProps.login.get('result')) {
+            this.loadGate(nextProps.login.getIn(['result', 'permission.get']).toJS(), nextProps.login.getIn(['result', 'language', 'languageId']));
+        } else if (!nextProps.login.get('result') && login.get('authenticated') && !nextProps.login.get('authenticated')) {
             this.context.router.push('/login');
-        }
-        // TODO: test forceLogOut
-        if(!login.get('forceLogOut') && nextProps.login.get('forceLogOut')) {
+        } else if (!login.get('forceLogOut') && nextProps.login.get('forceLogOut')) {
             logout();
         }
     }
@@ -68,16 +70,12 @@ class Gate extends Component {
 }
 
 export default connect(
-    ({ login, gate }) => {
-        return {
-            login,
-            gate
-        }
-    },
+    ({ login, gate }) => ({login, gate}),
     { cookieCheck, fetchTranslations, logout }
 )(Gate);
 
 Gate.propTypes = {
+    children: PropTypes.object,
     login: PropTypes.object,
     gate: PropTypes.object,
     cookieCheck: PropTypes.func,

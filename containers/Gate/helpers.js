@@ -4,7 +4,7 @@ let permissionsCache = {};
 let permissionsRegExp = [];
 
 export const checkPermission = (action) => {
-    if(permissionsCache[action] == undefined) {
+    if (!permissionsCache[action]) {
         permissionsCache[action] = permissionsRegExp.test(action);
     }
 
@@ -18,11 +18,13 @@ export const setPermissions = (permissions) => {
 };
 
 export const translate = (props) => (text, language) => {
-    if (!props.gate.texts || !props.gate.texts[text]) {
+    let texts = props.gate.get('texts');
+
+    if (!texts || !texts[text]) {
         return text;
     }
 
-    return props.gate.texts[text];
+    return texts[text];
 };
 
 export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
@@ -35,29 +37,28 @@ export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
 
 export const df = (props) => (date, format) => {
     if (!format) {
-        format = props.login.result && props.login.result.localisation.dateFormat || 'YYYY-MM-DD';
+        format = props.login.get('result') && props.login.result.getIn(['localisation', 'dateFormat']) || 'YYYY-MM-DD';
     }
 
     return dateFormat(new Date(date), format);
 };
 
-// TODO: check and refactor
 export const numberFormat = (props) => (num, format) => {
     let parts = [];
 
     if (!format) {
-        format = props.login.result && props.login.result.localisation.numberFormat || '2|.|';
+        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) || '2|.|';
     }
 
     parts = format.split('|');
 
-    if(parts.length !== 3 ) {
+    if (parts.length !== 3) {
         return num;
     }
 
     num = parseInt(num).toFixed(parseInt(parts[0]));
 
-    if (parts[1]){
+    if (parts[1]) {
         num = num.toString().replace('.', parts[1]);
     }
 

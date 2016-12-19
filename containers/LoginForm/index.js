@@ -43,10 +43,11 @@ class LoginForm extends Component {
     }
 
     validateForm({ submitAfter }) {
-        const { error, isFormValid} = this.props;
         this.props.validateForm({
             submitAfter
         });
+
+        const { error, isFormValid } = this.props;
 
         if (submitAfter && !error && isFormValid) {
             this.submitForm();
@@ -119,7 +120,7 @@ LoginForm.propTypes = {
     invalidField: PropTypes.string
 };
 
-// remove router from context
+// TODO: remove router from context
 LoginForm.contextTypes = {
     router: PropTypes.object,
     mainUrl: PropTypes.string

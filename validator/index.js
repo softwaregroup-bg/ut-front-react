@@ -24,6 +24,9 @@ export const lengthRule = (val, minVal, maxVal, rule, result) => {
 };
 
 export const regexRule = (val, regex, rule, result) => {
+    if (!val) {
+        return true;
+    }
     checkPasedResultObject(result);
 
     var regexPattern = new RegExp(regex);

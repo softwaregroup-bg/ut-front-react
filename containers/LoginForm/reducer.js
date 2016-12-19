@@ -10,11 +10,9 @@ let initialInputChangePerformed = false;
 // TODO: check loginResultId, logOutResultId, cookieCheckResultId, changeId
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
-    changeId: 0,
-    loginResultId: 0,
-    logOutResultId: 0,
-    cookieCheckResultId: 0,
-
+    shouldChangePassword: false,
+    loginFailedAttepmts: 0,
+    cookieChecked: false,
     loginForm: {
         inputs: getInputs(['username']),
         formError: '',
@@ -23,16 +21,12 @@ const defaultLoginState = Immutable.fromJS({
     }
 });
 
-const defaultLoginDataState = Immutable.fromJS({
-    changeId: 0,
-    data: {}
-});
-
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
 
     switch (action.type) {
         case LOGOUT:
+            initialInputChangePerformed = false;
             state = defaultLoginState;
             return state;
         case LOGIN:
@@ -46,20 +40,17 @@ export const login = (state = defaultLoginState, action) => {
                 } else if (action.result) {
                     return state.set('authenticated', true)
                                 .setIn(['loginForm', 'formError'], '')
-                                .set('cookieCheckResultId', 0)
-                                .setIn(['loginForm', 'formError'], '')
+                                .set('cookieChecked', true)
+                                .setIn(['loginForm', 'formError'], '');
                 }
             }
 
             return state;
-
         case SET_INPUT_VALUE:
             let { input, value } = action;
             initialInputChangePerformed = true;
 
-            return state
-                .setIn(['loginForm', 'inputs', input, 'value'], value);
-
+            return state.setIn(['loginForm', 'inputs', input, 'value'], value);
         case VALIDATE_FORM:
             // submitAfter to detect if validate comes from blur or submit
             validationResult = validator.validateAll(state.get('loginForm').get('inputs'));
@@ -72,19 +63,15 @@ export const login = (state = defaultLoginState, action) => {
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
-                    return state
-                        .setIn(['loginForm', 'formError'], Immutable.fromJS({code: action.error.code, message: action.error.message, type: action.error.type}))
-                        .delete('result')
-                        .update('cookieCheckResultId', (v) => (v + 1))
-                        .set('authenticated', false);
+                    return state.delete('result')
+                                .set('cookieChecked', true)
+                                .set('authenticated', false);
                 } else if (action.result) {
-                    return state
-                        .set('result', Immutable.fromJS(action.result))
-                        .update('cookieCheckResultId', (v) => (v + 1))
-                        .set('authenticated', true);
+                    return state.set('result', Immutable.fromJS(action.result))
+                                .set('cookieChecked', true)
+                                .set('authenticated', true);
                 }
             }
-
             return state;
         default:
             return state;

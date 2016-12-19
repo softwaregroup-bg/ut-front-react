@@ -5,14 +5,17 @@
     width: 100%;
     position: relative;
     font-weight: normal;
-    height: 30px;
 }
 .searchBox {
     position: relative;
-    width: 66%;
+    width: 70%;
     border: 1px solid var(--ut-front-react-standardAutoCompleteSearchBorderColor);
     font-weight: normal;
-    float: left;
+    display: inline-block;
+}
+
+.searchBox.error {
+    border-color: #ff3333 !important;;
 }
 
 .searchBox.searchBoxNoLabel {
@@ -27,9 +30,10 @@
 }
 
 .searchBoxWrap .label {
-    float: left;
+    display: inline-block;
     width: 30%;
-    margin: 5px 4% 0 0;
+    font-size: 14px;
+    color: #595959;
 }
 
 .searchBoxWrap button {
@@ -43,4 +47,24 @@
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.errorWrap {
+    overflow: hidden;
+    font-size: 12px;
+    -webkit-transition: all 0.6s; /* Safari */
+    transition: all 0.6s;
+    display: block;
+    width: 70%;
+    height: 22px;
+    margin-left: 30%;
+}
+
+.errorWrap .errorMessage {
+    color: #ff3333;
+    margin-top: 5px;
+}
+
+.errorWrap.hh {
+    height: 0 !important;
 }

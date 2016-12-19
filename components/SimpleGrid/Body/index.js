@@ -1,14 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { propTypeFields, propTypeData } from '../common';
 import Record from './Record.js';
+import style from './styles.css';
 
 export class Body extends Component {
+    getStyle(name) {
+        return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name] || style[name];
+    }
     render() {
-        return (
-            <tbody>
-                {
-                    this.props.data.length
-                    ? this.props.data.map((data, idx) => (<Record
+        let body;
+        let space = <span>&nbsp;</span>;
+        if (this.props.data.length) {
+            if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= this.props.data.length) {
+                body = this.props.data.map((data, idx) => (
+                    <Record
                       key={idx}
                       recordIndex={idx}
                       data={data}
@@ -20,10 +25,16 @@ export class Body extends Component {
                       handleClick={this.props.handleRowClick}
                       rowsChecked={this.props.rowsChecked}
                       handleCellClick={this.props.handleCellClick}
-                    />))
-                    : <tr><td colSpan={this.props.fields.length + (this.props.multiSelect ? 1 : 0)}>&nbsp;</td></tr>
-                }
-            </tbody>
+                    />
+                ));
+            } else {
+                body = (<tr><td colSpan={this.props.fields.length + (this.props.multiSelect ? 1 : 0)} className={this.getStyle('noResultRow')}>{this.props.rowsRenderLimitExceedMsg || space}</td></tr>);
+            }
+        } else {
+            body = (<tr><td colSpan={this.props.fields.length + (this.props.multiSelect ? 1 : 0)} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
+        }
+        return (
+            <tbody>{body}</tbody>
         );
     }
 }
@@ -35,6 +46,9 @@ Body.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     transformCellValue: PropTypes.func,
     data: propTypeData,
+    emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    rowsRenderLimit: PropTypes.number,
     handleRowClick: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func
