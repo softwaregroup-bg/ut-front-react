@@ -1,3 +1,14 @@
+<a name="5.49.74"></a>
+## [5.49.74](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.73...v5.49.74) (2016-12-19)
+
+
+### Bug Fixes
+
+* empty msgs ([fa516a3](https://github.com/softwaregroup-bg/ut-front-react/commit/fa516a3))
+* typo ([ac0131b](https://github.com/softwaregroup-bg/ut-front-react/commit/ac0131b))
+
+
+
 <a name="5.49.73"></a>
 ## [5.49.73](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.72...v5.49.73) (2016-12-19)
 
