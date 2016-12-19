@@ -1,3 +1,64 @@
+<a name="5.49.67"></a>
+## [5.49.67](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.66...v5.49.67) (2016-12-16)
+
+
+
+<a name="5.49.66"></a>
+## [5.49.66](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.65...v5.49.66) (2016-12-16)
+
+
+
+<a name="5.49.65"></a>
+## [5.49.65](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.64...v5.49.65) (2016-12-16)
+
+
+
+<a name="5.49.64"></a>
+## [5.49.64](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.63...v5.49.64) (2016-12-16)
+
+
+
+<a name="5.49.63"></a>
+## [5.49.63](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.62...v5.49.63) (2016-12-16)
+
+
+
+<a name="5.49.62"></a>
+## [5.49.62](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.61...v5.49.62) (2016-12-16)
+
+
+
+<a name="5.49.61"></a>
+## [5.49.61](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.60...v5.49.61) (2016-12-16)
+
+
+### Bug Fixes
+
+* margins ([7e9b961](https://github.com/softwaregroup-bg/ut-front-react/commit/7e9b961))
+* searchbox styling ([7bcdc98](https://github.com/softwaregroup-bg/ut-front-react/commit/7bcdc98))
+
+
+
+<a name="5.49.60"></a>
+## [5.49.60](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.59...v5.49.60) (2016-12-15)
+
+
+
+<a name="5.49.59"></a>
+## [5.49.59](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.58...v5.49.59) (2016-12-15)
+
+
+
+<a name="5.49.58"></a>
+## [5.49.58](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.57...v5.49.58) (2016-12-15)
+
+
+### Bug Fixes
+
+* get immutable data ([f324453](https://github.com/softwaregroup-bg/ut-front-react/commit/f324453))
+
+
+
 <a name="5.49.57"></a>
 ## [5.49.57](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.56...v5.49.57) (2016-12-15)
 

@@ -24,10 +24,10 @@ var setPermissions = function(permissions) {
 };
 
 var translate = (props) => (text, language) => {
-    if (!props.gate.texts || !props.gate.texts[text]) {
+    if (!props.gate.getIn(['texts', text])) {
         return text;
     }
-    return props.gate.texts[text];
+    return props.gate.getIn(['texts', text]);
 };
 
 var money = (amount, currency, locale) => {
@@ -41,12 +41,12 @@ var money = (amount, currency, locale) => {
 };
 
 var df = (props) => (date, format) => {
-    if (!format) format = props.login.result && props.login.result.localisation.dateFormat || 'YYYY-MM-DD';
+    if (!format) format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'dateFormat']) || 'YYYY-MM-DD';
     return dateFormat(new Date(date), format);
 };
 
 var numberFormat = (props) => (num, format) => {
-    if (!format) format = props.login.result && props.login.result.localisation.numberFormat || '2|.|';
+    if (!format) format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) || '2|.|';
     var parts = format.split('|');
     if (parts.length !== 3) return num;
     num = parseInt(num).toFixed(parseInt(parts[0]));
