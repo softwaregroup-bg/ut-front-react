@@ -1,3 +1,8 @@
+<a name="5.49.68"></a>
+## [5.49.68](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.67...v5.49.68) (2016-12-19)
+
+
+
 <a name="5.49.67"></a>
 ## [5.49.67](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.66...v5.49.67) (2016-12-16)
 
