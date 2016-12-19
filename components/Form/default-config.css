@@ -1,0 +1,10 @@
+:root {
+    --ut-front-react-loginFormWidth: 480px;
+    --ut-front-react-loginFormMargin: -270px 0 0 -250px;
+    --ut-front-react-loginFormBgColor: #FFFFFF;
+    --ut-front-react-loginFormBoxShadowColor: rgba(85,89,102, 0.25);
+    --ut-front-react-loginFormBorderColor: #E9E9E9;
+    --ut-front-react-loginTitleHeight: 90px;
+    --ut-front-react-loginFormBodyHeight: 250px;
+    --ut-front-react-loginFormPadding: 30px 95px 80px 95px;
+}

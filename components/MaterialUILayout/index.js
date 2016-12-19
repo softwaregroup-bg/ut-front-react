@@ -8,7 +8,7 @@ injectTapEventPlugin();
 
 const MaterialUILayout = ({children}) => (
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        <div>{children}</div>
+        {children}
     </MuiThemeProvider>
 );
 

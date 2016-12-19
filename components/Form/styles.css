@@ -1,0 +1,22 @@
+@import './default-config.css';
+@import 'config.css';
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: var(--ut-front-react-loginFormWidth);
+    padding: var(--ut-front-react-loginFormPadding);
+    border: 1px solid var(--ut-front-react-loginFormBorderColor);
+    background-color: var(--ut-front-react-loginFormBgColor);
+    box-shadow: 0 1px 5px 0 var(--ut-front-react-loginFormBoxShadowColor);
+}
+
+.formContainer {
+    width: 100%;
+}
+
+.formBody {
+    height: 100%;
+}
