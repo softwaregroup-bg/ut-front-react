@@ -70,15 +70,23 @@
 .navigationTab {
   color: #373a3c;
   cursor: pointer;
-  text-decoration-style: none;
+  padding: 0 10px;
+  text-decoration: none;
 }
 
-.navigationTab:hover {
+.navigationTab:hover,
+.navigationTab:focus {
   color: #595959;
+  text-decoration: none;
+  outline: 0;
 }
 
 .navigationTabActive,
-.navigationTabActive:hover {
+.navigationTabActive:hover,
+.navigationTabActive:focus {
   color: #2281ec;
 }
 
+.navigationMultiTab {
+  position: relative;
+};

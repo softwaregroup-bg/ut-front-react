@@ -15,14 +15,17 @@ export default class Tab extends Component {
     }
 
     render() {
-        const { tab } = this.props;
+        const { tab, onClick } = this.props;
 
         return (
             <Link
               to={tab.routeName}
               className={style.navigationTab}
               activeClassName={style.navigationTabActive}
-              params={tab.routeParams}>{tab.title}</Link>
+              params={tab.routeParams}
+              onTouchTap={onClick}>
+                {tab.title}
+              </Link>
         );
     }
 };

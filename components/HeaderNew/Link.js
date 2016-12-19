@@ -10,7 +10,7 @@ export default class NavigationLink extends Component {
 
         return (
             <Link
-              to={getLink(to, params)}
+              to={getLink(to, params).substr(1)}
               className={className}
               activeClassName={activeClassName}
               activeStyle={styles.navigationLinkActive}
@@ -32,4 +32,8 @@ NavigationLink.propTypes = {
 
 NavigationLink.defaultProps = {
     params: {}
+};
+
+NavigationLink.contextTypes = {
+    router: PropTypes.object.isRequired
 };
