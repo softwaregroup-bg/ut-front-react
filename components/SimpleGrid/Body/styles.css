@@ -29,3 +29,7 @@ tr.gridBodyTr.checked:hover {
 tr.gridBodyTr.checked:nth-child(2n) {
     background: #fafbd6;
 }
+
+.noResultRow {
+    text-align: center;
+}

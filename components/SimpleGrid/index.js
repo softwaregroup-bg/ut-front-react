@@ -38,6 +38,9 @@ export class SimpleGrid extends Component {
                   externalStyle={this.props.externalStyle}
                   fields={this.props.fields}
                   data={this.props.data}
+                  emptyRowsMsg={this.props.emptyRowsMsg}
+                  rowsRenderLimit={this.props.rowsRenderLimit}
+                  rowsRenderLimitExceedMsg={this.props.rowsRenderLimitExceedMsg}
                   multiSelect={this.props.multiSelect}
                   transformCellValue={this.props.transformCellValue}
                   handleCheckboxSelect={this.props.handleCheckboxSelect}
@@ -61,6 +64,9 @@ SimpleGrid.propTypes = {
     rowsChecked: PropTypes.array,
     transformCellValue: PropTypes.func,
     mainClassName: PropTypes.string,
+    emptyRowsMsg: PropTypes.string,
+    rowsRenderLimitExceedMsg: PropTypes.string,
+    rowsRenderLimit: PropTypes.number,
     handleCheckboxSelect: PropTypes.func,
     handleHeaderCheckboxSelect: PropTypes.func,
     selectable: PropTypes.shape({
