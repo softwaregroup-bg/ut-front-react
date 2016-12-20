@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
+import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT, RESET_FORM } from './actionTypes';
 import { getInputs, inputs as inputsConfig } from './config';
 import { Validator } from './../../utils/validator';
 
@@ -26,6 +26,7 @@ export const login = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
+        case RESET_FORM:
             initialInputChangePerformed = false;
             state = defaultLoginState;
             return state;
