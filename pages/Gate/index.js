@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import {Map} from 'immutable';
 import { connect } from 'react-redux';
 import dateFormat from 'date-fns/format';
-import {cookieCheck, logout} from '../Login/actions';
+import {cookieCheck, logout} from '../../containers/LoginForm/actions';
 import Text from '../../components/Text';
 import {fetchTranslations} from './actions';
 

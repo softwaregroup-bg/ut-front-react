@@ -6,7 +6,7 @@ import Link from '../../components/Header/Link';
 import { getLink } from 'ut-front/react/routerHelper';
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import {actionList} from '../Login/actions';
+import { logout } from '../../containers/LoginForm/actions';
 import style from './style.css';
 
 class Tab extends Component {
@@ -107,7 +107,7 @@ class Layout extends Component {
         if (result) {
             return (
                 <div className={this.getStyle('implWrapper')}>
-                    <Header personInfo={result.toJS()} onLogOut={this.props.logOut} style={{height: '59px'}} headerCellText={this.props.headerCellText}>
+                    <Header personInfo={result.toJS()} onLogOut={this.props.logout} style={{height: '59px'}} headerCellText={this.props.headerCellText}>
                         {this.context.mainTabset.map((tab, i) => <Tab key={i} tabData={tab} currentLocation={this.props.location.pathname} />)}
                     </Header>
                     <TabMenu defaultLocation={this.context.mainUrl} />
@@ -125,7 +125,7 @@ Layout.propTypes = {
     login: PropTypes.object,
     location: PropTypes.object,
     headerCellText: PropTypes.object,
-    logOut: PropTypes.func
+    logout: PropTypes.func
 };
 Layout.contextTypes = {
     router: PropTypes.any,
@@ -142,13 +142,5 @@ export default connect(
             login: state.login
         };
     },
-    (dispatch) => (
-        {
-            logOut: () => dispatch({
-                type: actionList.LOGOUT,
-                method: 'identity.closeSession',
-                params: {}
-            })
-        }
-    )
+    { logout }
 )(Layout);
