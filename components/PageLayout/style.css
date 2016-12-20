@@ -35,6 +35,10 @@
     float: left;
 }
 
+.headerWrapper {
+    background-color: #ffffff;
+}
+
 .heading {
     position: relative;
 }
