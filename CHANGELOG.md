@@ -1,3 +1,8 @@
+<a name="5.50.2"></a>
+## [5.50.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.1...v5.50.2) (2016-12-20)
+
+
+
 <a name="5.50.1"></a>
 ## [5.50.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.0...v5.50.1) (2016-12-20)
 
