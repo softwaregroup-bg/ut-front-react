@@ -1,3 +1,19 @@
+<a name="5.50.0"></a>
+# [5.50.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.80...v5.50.0) (2016-12-20)
+
+
+### Bug Fixes
+
+* design ([2cf49bb](https://github.com/softwaregroup-bg/ut-front-react/commit/2cf49bb))
+* header color ([f032bba](https://github.com/softwaregroup-bg/ut-front-react/commit/f032bba))
+
+
+### Features
+
+* volumn hide/show ([163a96b](https://github.com/softwaregroup-bg/ut-front-react/commit/163a96b))
+
+
+
 <a name="5.49.80"></a>
 ## [5.49.80](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.79...v5.49.80) (2016-12-20)
 
