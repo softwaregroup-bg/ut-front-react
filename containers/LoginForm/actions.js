@@ -28,9 +28,8 @@ export const cookieCheck = () => ({
     params: {}
 });
 
-export const validateForm = ({ submitAfter }) => ({
-    type: VALIDATE_FORM,
-    submitAfter
+export const validateForm = () => ({
+    type: VALIDATE_FORM
 });
 
 export const logout = (params) => ({

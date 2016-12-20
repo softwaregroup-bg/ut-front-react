@@ -12,11 +12,7 @@ class LoginForm extends Component {
 
         this.handleChange = debounce(this.handleChange, 100);
 
-        this.onBlur = this.onBlur.bind(this);
-
         this.onSubmit = this.onSubmit.bind(this);
-
-        this.validateForm = debounce(this.validateForm, 100);
 
         this.submitForm = this.submitForm.bind(this);
     }
@@ -28,6 +24,10 @@ class LoginForm extends Component {
     componentWillReceiveProps(nextProps) {
         if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated')) {
             this.context.router.push(this.context.mainUrl);
+        }
+
+        if (!this.props.isFormValid && nextProps.isFormValid) {
+            this.submitForm();
         }
     }
 
@@ -46,30 +46,11 @@ class LoginForm extends Component {
         });
     }
 
-    validateForm({ submitAfter }) {
-        this.props.validateForm({
-            submitAfter
-        });
-
-        const { error, isFormValid } = this.props;
-
-        if (submitAfter && !error && isFormValid) {
-            this.submitForm();
-        }
-    }
-
-    onBlur(e) {
-        this.validateForm({
-            submitAfter: false
-        });
-    }
-
     onSubmit(e) {
         e.preventDefault();
-
-        this.validateForm({
-            submitAfter: true
-        });
+        if (!this.props.error) {
+            this.props.validateForm();
+        }
     }
 
     submitForm() {
@@ -93,14 +74,13 @@ class LoginForm extends Component {
               title={{className: 'loginTitle' + (error ? ' error' : ''), text: 'Login'}}
               buttons={[{label: 'Next', className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
-              onBlur={this.onBlur}
               onSubmit={this.onSubmit}
               error={error}
               invalidField={invalidField} />
         );
     }
 }
-// TODO: extract constants in separate file
+
 export default connect(
     ({ login }) => {
         return {

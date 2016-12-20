@@ -35,7 +35,9 @@ export const login = (state = defaultLoginState, action) => {
                 // TODO: change condition
                 if (action.error && action.error.type === 'policy.param.password') {
                 // merge rendered username input with the new password input
-                    return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password));
+                    return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
+                                .setIn(['loginForm', 'formError'], '')
+                                .setIn(['loginForm', 'isFormValid'], false);
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
@@ -53,7 +55,6 @@ export const login = (state = defaultLoginState, action) => {
 
             return state.setIn(['loginForm', 'inputs', input, 'value'], value);
         case VALIDATE_FORM:
-            // submitAfter to detect if validate comes from blur or submit
             validationResult = validator.validateAll(state.get('loginForm').get('inputs'));
 
             return initialInputChangePerformed ? state
