@@ -3,6 +3,7 @@ import {fromJS, Map} from 'immutable';
 import {propTypeFields} from '../common';
 import Field from './Field';
 import MultiSelectField from './SpecialFields/MultiSelect';
+import MenuColumn from './SpecialFields/MenuColumn';
 import style from './styles.css';
 
 export class Header extends Component {
@@ -38,26 +39,39 @@ export class Header extends Component {
             this.setState(this.state);
         }
     }
-    render() {
+    getFields() {
         let fields = fromJS(this.props.fields);
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
-        let rawFields = fields.map((v) => {
+        if (this.props.menuColumn) {
+            fields = fields.push(Map({internal: 'menuColumn'}));
+        }
+        return fields;
+    }
+    getRawFields() {
+        return fromJS(this.props.fields).map((v) => {
             if (v.get('visible') === undefined) {
                 return v.set('visible', true);
             }
             return v;
         }).toJS();
+    }
+    render() {
+        let fields = this.getFields();
 
         return (
             <thead>
                 <tr className={this.getStyle('gridHeaderTr')}>
-                    {fields.map((field, idx) => (
-                        !field.get('internal')
-                            ? <Field toggleColumnVisibility={this.props.toggleColumnVisibility} externalStyle={this.props.externalStyle} key={idx} field={field.toJS()} fields={rawFields} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />
-                            : <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />
-                    ))}
+                    {fields.map((field, idx) => {
+                        if (!field.get('internal')) {
+                            return <Field externalStyle={this.props.externalStyle} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />;
+                        } else if (field.get('internal') === 'multiSelect') {
+                            return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
+                        } else if (field.get('internal') === 'menuColumn') {
+                            return <MenuColumn field={field.toJS()} key={idx} fields={this.getRawFields()} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                        }
+                    })}
                 </tr>
             </thead>
         );
@@ -70,6 +84,7 @@ Header.propTypes = {
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
     // if true will allow order by multiple columns
+    menuColumn: PropTypes.bool,
     multiOrder: PropTypes.bool,
     handleOrder: PropTypes.func,
     isChecked: PropTypes.bool,
