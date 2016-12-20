@@ -11,7 +11,7 @@ export class Body extends Component {
         let body;
         let space = <span>&nbsp;</span>;
         let fields = this.props.fields.filter((f) => (!(f.visible === false)));
-        let fieldsLen = fields.length;
+        let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.menuColumn ? 1 : 0);
         // console.log(fields);
 
         if (this.props.data.length) {
@@ -32,10 +32,10 @@ export class Body extends Component {
                     />
                 ));
             } else {
-                body = (<tr><td colSpan={fieldsLen + (this.props.multiSelect ? 1 : 0)} className={this.getStyle('noResultRow')}>{this.props.rowsRenderLimitExceedMsg || space}</td></tr>);
+                body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.rowsRenderLimitExceedMsg || space}</td></tr>);
             }
         } else {
-            body = (<tr><td colSpan={fieldsLen + (this.props.multiSelect ? 1 : 0)} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
+            body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
         }
         return (
             <tbody>{body}</tbody>
@@ -53,6 +53,7 @@ Body.propTypes = {
     emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,
+    menuColumn: PropTypes.bool,
     handleRowClick: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func

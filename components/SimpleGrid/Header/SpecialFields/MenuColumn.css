@@ -1,0 +1,10 @@
+.headerGlobalMenuFieldControlTitle, .headerGlobalMenuFieldControlCheckbox {
+    float: left;
+}
+.headerGlobalMenuFieldControl, .headerGlobalMenuFieldControlContainer {
+    display: block;
+    overflow: hidden;
+}
+.headerGlobalMenuField {
+    text-align: right;
+}

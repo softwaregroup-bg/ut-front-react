@@ -18,13 +18,6 @@
 .girdHeading {
     background: #F9F9F9;
 }
-.girdHeadingMenu {
-    width: 5px;
-    height: 15px;
-    position: absolute;
-    left: 0;
-    background: #fff;
-}
 .girdHeading {
     position: relative;
     padding: .75rem;
