@@ -79,13 +79,13 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { inputs, error, invalidField } = this.props;
+        let { inputs, error, invalidField, titleMessage } = this.props;
 
         return (
             <Form
               className='loginForm'
               inputs={inputs}
-              title={{className: 'loginTitle' + (error ? ' error' : ''), text: 'Login'}}
+              title={{className: 'loginTitle' + (error ? ' error' : ''), text: titleMessage }}
               buttons={[{label: 'Next', className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
               onBlur={this.onBlur}
@@ -101,6 +101,7 @@ export default connect(
         return {
             login,
             inputs: login.get('loginForm').get('inputs'),
+            titleMessage: login.get('loginForm').get('titleMessage'),
             error: login.get('loginForm').get('formError'),
             isFormValid: login.get('loginForm').get('isFormValid'),
             invalidField: login.get('loginForm').get('invalidField')

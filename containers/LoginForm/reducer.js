@@ -2,6 +2,7 @@ import Immutable from 'immutable';
 import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
 import { getInputs, inputs as inputsConfig } from './config';
 import { Validator } from './../../utils/validator';
+import merge from 'lodash.merge';
 
 const validator = new Validator(inputsConfig);
 
@@ -17,7 +18,8 @@ const defaultLoginState = Immutable.fromJS({
         inputs: getInputs(['username']),
         formError: '',
         isFormValid: false,
-        invalidField: ''
+        invalidField: '',
+        titleMessage: 'Login'
     }
 });
 
@@ -31,10 +33,18 @@ export const login = (state = defaultLoginState, action) => {
             return state;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
-                // TODO: change condition
+                // show password input and change title
                 if (action.error && action.error.type === 'policy.param.password') {
-                // merge rendered username input with the new password input
-                    return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password));
+                    return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
+                                .setIn(['loginForm', 'titleMessage'], Immutable.fromJS('Login with password'));
+                } else if (action.error && action.error.type === 'policy.param.newPassword') {
+                    let newPasswordInput = Immutable.fromJS(merge({}, getInputs(['password']).password, { label: 'New password' }));
+                    let confirmPasswordInput = Immutable.fromJS(merge({}, getInputs(['password']).password, { label: 'Confirm password' }));
+
+                    return state.deleteIn(['loginForm', 'inputs', 'username'])
+                                .setIn(['loginForm', 'inputs', 'password'], newPasswordInput)
+                                .setIn(['loginForm', 'inputs', 'newPassword'], confirmPasswordInput)
+                                .setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
@@ -63,6 +73,9 @@ export const login = (state = defaultLoginState, action) => {
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
+                    if(action.error.type === 'policy.param.newPassword') {
+
+                    }
                     return state.delete('result')
                                 .set('cookieChecked', true)
                                 .set('authenticated', false);

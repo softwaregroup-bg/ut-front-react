@@ -3,7 +3,6 @@
 
 .title {
     color: var(--ut-front-react-titleTextColor);
-    text-transform: uppercase;
     text-align: center;
 }
 
