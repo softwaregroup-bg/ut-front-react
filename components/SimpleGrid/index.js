@@ -28,6 +28,7 @@ export class SimpleGrid extends Component {
                 {!this.props.hideHeader && <Header
                   externalStyle={this.props.externalStyle}
                   fields={this.props.fields}
+                  toggleColumnVisibility={this.props.toggleColumnVisibility}
                   orderBy={this.props.orderBy}
                   multiSelect={this.props.multiSelect}
                   handleOrder={this.props.handleOrder}
@@ -63,9 +64,10 @@ SimpleGrid.propTypes = {
     handleOrder: PropTypes.func,
     rowsChecked: PropTypes.array,
     transformCellValue: PropTypes.func,
+    toggleColumnVisibility: PropTypes.func,
     mainClassName: PropTypes.string,
-    emptyRowsMsg: PropTypes.string,
-    rowsRenderLimitExceedMsg: PropTypes.string,
+    emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,
     handleCheckboxSelect: PropTypes.func,
     handleHeaderCheckboxSelect: PropTypes.func,

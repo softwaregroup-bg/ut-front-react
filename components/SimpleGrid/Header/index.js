@@ -43,13 +43,20 @@ export class Header extends Component {
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
+        let rawFields = fields.map((v) => {
+            if (v.get('visible') === undefined) {
+                return v.set('visible', true);
+            }
+            return v;
+        }).toJS();
 
         return (
             <thead>
                 <tr className={this.getStyle('gridHeaderTr')}>
-                    {fields.map((field, idx) => (!field.get('internal')
-                        ? <Field externalStyle={this.props.externalStyle} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />
-                        : <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />
+                    {fields.map((field, idx) => (
+                        !field.get('internal')
+                            ? <Field toggleColumnVisibility={this.props.toggleColumnVisibility} externalStyle={this.props.externalStyle} key={idx} field={field.toJS()} fields={rawFields} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />
+                            : <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />
                     ))}
                 </tr>
             </thead>
@@ -67,6 +74,7 @@ Header.propTypes = {
     handleOrder: PropTypes.func,
     isChecked: PropTypes.bool,
     handleHeaderCheckboxSelect: PropTypes.func,
+    toggleColumnVisibility: PropTypes.func,
     multiSelect: PropTypes.bool
 };
 
