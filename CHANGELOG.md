@@ -1,3 +1,13 @@
+<a name="5.50.3"></a>
+## [5.50.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.2...v5.50.3) (2016-12-21)
+
+
+### Bug Fixes
+
+* new lint ([85fd688](https://github.com/softwaregroup-bg/ut-front-react/commit/85fd688))
+
+
+
 <a name="5.50.2"></a>
 ## [5.50.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.1...v5.50.2) (2016-12-20)
 
