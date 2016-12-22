@@ -1,4 +1,4 @@
-import { LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
+import { LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE, RESET_FORM } from './actionTypes';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -37,4 +37,8 @@ export const logout = (params) => ({
     method: 'identity.closeSession',
     suppressErrorWindow: true,
     params: {}
+});
+
+export const resetForm = () => ({
+    type: RESET_FORM
 });

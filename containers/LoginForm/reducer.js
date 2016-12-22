@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
+import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT, RESET_FORM } from './actionTypes';
 import { getInputs, inputs as inputsConfig } from './config';
 import { Validator } from './../../utils/validator';
 import merge from 'lodash.merge';
@@ -28,6 +28,7 @@ export const login = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
+        case RESET_FORM:
             initialInputChangePerformed = false;
             state = defaultLoginState;
             return state;
@@ -57,7 +58,6 @@ export const login = (state = defaultLoginState, action) => {
 
             return state.setIn(['loginForm', 'inputs', input, 'value'], value);
         case VALIDATE_FORM:
-            // submitAfter to detect if validate comes from blur or submit
             validationResult = validator.validateAll(state.get('loginForm').get('inputs'));
 
             return initialInputChangePerformed ? state

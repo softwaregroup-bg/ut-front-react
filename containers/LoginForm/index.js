@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck } from './actions';
+import { setInputValue, validateForm, identityCheck, resetForm } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -14,14 +14,20 @@ class LoginForm extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.validateForm = debounce(this.validateForm, 100);
-
         this.submitForm = this.submitForm.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.resetForm();
     }
 
     componentWillReceiveProps(nextProps) {
         if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated')) {
             this.context.router.push(this.context.mainUrl);
+        }
+
+        if (!this.props.isFormValid && nextProps.isFormValid) {
+            this.submitForm();
         }
     }
 
@@ -84,7 +90,7 @@ class LoginForm extends Component {
         );
     }
 }
-// TODO: extract constants in separate file
+
 export default connect(
     ({ login }) => {
         return {
@@ -96,7 +102,7 @@ export default connect(
             invalidField: login.get('loginForm').get('invalidField')
         };
     },
-    { setInputValue, validateForm, identityCheck }
+    { setInputValue, validateForm, identityCheck, resetForm }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -105,6 +111,7 @@ LoginForm.propTypes = {
     isFormValid: PropTypes.bool,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
+    resetForm: PropTypes.func,
     identityCheck: PropTypes.func.isRequired,
     login: PropTypes.object,
     invalidField: PropTypes.string
