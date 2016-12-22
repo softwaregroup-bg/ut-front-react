@@ -1,3 +1,23 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.5...v6.0.0) (2016-12-22)
+
+
+### Bug Fixes
+
+* theming of images should switch to variables ([c50523b](https://github.com/softwaregroup-bg/ut-front-react/commit/c50523b))
+
+
+### Features
+
+* fix dependencies ([b7a2a75](https://github.com/softwaregroup-bg/ut-front-react/commit/b7a2a75))
+
+
+### BREAKING CHANGES
+
+* postcss configuration changed
+
+
+
 <a name="5.50.5"></a>
 ## [5.50.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.4...v5.50.5) (2016-12-21)
 
