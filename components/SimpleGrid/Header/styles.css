@@ -8,10 +8,17 @@
     background: url('./images/arrow.png') no-repeat bottom right;
 }
 
-tr.gridHeaderTr {
+.gridHeaderTr {
     background: #F9F9F9;
     cursor: pointer;
     border-bottom: 1px solid #D7D6D6;
     -webkit-transition: background 0.2s ease-in-out;
     transition: background 0.2s ease-in-out;
+}
+.girdHeading {
+    background: #F9F9F9;
+}
+.girdHeading {
+    position: relative;
+    padding: .75rem;
 }

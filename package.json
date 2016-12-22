@@ -1,28 +1,28 @@
 {
   "name": "ut-front-react",
-  "version": "5.49.75",
+  "version": "5.50.5",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
     "bootstrap": "4.0.0-alpha.2",
     "classnames": "2.2.5",
-    "date-fns": "1.3.0",
+    "date-fns": "1.21.1",
     "immutable": "3.8.1",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
     "lodash.map": "4.6.0",
     "lodash.merge": "4.6.0",
-    "material-ui": "0.16.2",
-    "react": "15.3.2",
-    "react-addons-transition-group": "15.3.2",
+    "material-ui": "0.16.5",
+    "react": "15.4.1",
+    "react-addons-transition-group": "15.4.1",
     "react-click-outside": "2.2.0",
-    "react-dom": "15.3.2",
+    "react-dom": "15.4.1",
     "react-redux": "4.4.6",
-    "react-router": "2.5.2",
-    "react-tap-event-plugin": "1.0.0",
-    "reactstrap": "1.6.0",
+    "react-router": "3.0.0",
+    "react-tap-event-plugin": "2.0.1",
+    "reactstrap": "3.9.5",
     "redux": "3.6.0",
-    "redux-form": "6.0.0-rc.3"
+    "redux-form": "6.3.2"
   },
   "scripts": {
     "lint": "ut-lint .",
@@ -45,15 +45,15 @@
     "sb": "node storybook -c ./storybook -p 9008"
   },
   "devDependencies": {
-    "@kadira/storybook": "^1.36.0",
+    "@kadira/storybook": "^2.35.1",
     "babel-preset-es2015-without-strict": "0.0.4",
     "babel-preset-stage-0": "6.16.0",
-    "css-loader": "0.23.1",
+    "css-loader": "0.26.1",
     "style-loader": "0.13.1",
-    "ut-tools": "^5.10.8"
+    "ut-tools": "^5.11.1"
   },
   "peerDependencies": {
-    "ut-front": "^6.1.1"
+    "ut-front": "^6.4.2"
   },
   "repository": {
     "type": "git",

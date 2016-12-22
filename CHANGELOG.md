@@ -1,3 +1,79 @@
+<a name="5.50.5"></a>
+## [5.50.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.4...v5.50.5) (2016-12-21)
+
+
+
+<a name="5.50.4"></a>
+## [5.50.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.3...v5.50.4) (2016-12-21)
+
+
+
+<a name="5.50.3"></a>
+## [5.50.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.2...v5.50.3) (2016-12-21)
+
+
+### Bug Fixes
+
+* new lint ([85fd688](https://github.com/softwaregroup-bg/ut-front-react/commit/85fd688))
+
+
+
+<a name="5.50.2"></a>
+## [5.50.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.1...v5.50.2) (2016-12-20)
+
+
+
+<a name="5.50.1"></a>
+## [5.50.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.0...v5.50.1) (2016-12-20)
+
+
+
+<a name="5.50.0"></a>
+# [5.50.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.80...v5.50.0) (2016-12-20)
+
+
+### Bug Fixes
+
+* design ([2cf49bb](https://github.com/softwaregroup-bg/ut-front-react/commit/2cf49bb))
+* header color ([f032bba](https://github.com/softwaregroup-bg/ut-front-react/commit/f032bba))
+
+
+### Features
+
+* volumn hide/show ([163a96b](https://github.com/softwaregroup-bg/ut-front-react/commit/163a96b))
+
+
+
+<a name="5.49.80"></a>
+## [5.49.80](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.79...v5.49.80) (2016-12-20)
+
+
+
+<a name="5.49.79"></a>
+## [5.49.79](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.78...v5.49.79) (2016-12-20)
+
+
+
+<a name="5.49.78"></a>
+## [5.49.78](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.77...v5.49.78) (2016-12-20)
+
+
+
+<a name="5.49.77"></a>
+## [5.49.77](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.76...v5.49.77) (2016-12-20)
+
+
+
+<a name="5.49.76"></a>
+## [5.49.76](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.75...v5.49.76) (2016-12-19)
+
+
+### Bug Fixes
+
+* proptype ([01b92b4](https://github.com/softwaregroup-bg/ut-front-react/commit/01b92b4))
+
+
+
 <a name="5.49.75"></a>
 ## [5.49.75](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.74...v5.49.75) (2016-12-19)
 

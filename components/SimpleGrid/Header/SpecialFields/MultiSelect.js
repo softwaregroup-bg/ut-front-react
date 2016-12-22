@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Checkbox from '../../../Input/Checkbox';
 import style from './MultiSelect.css';
 
-export default class InternalField extends Component {
+export default class MultiSelectField extends Component {
     constructor(props) {
         super(props);
         this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this);
@@ -16,11 +16,11 @@ export default class InternalField extends Component {
     }
 }
 
-InternalField.propTypes = {
+MultiSelectField.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     isChecked: PropTypes.bool
 };
 
-InternalField.defaultProps = {
+MultiSelectField.defaultProps = {
     handleCheckboxSelect: (currentValue) => {}
 };
