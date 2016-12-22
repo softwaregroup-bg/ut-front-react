@@ -12,8 +12,6 @@ class LoginForm extends Component {
 
         this.handleChange = debounce(this.handleChange, 100);
 
-        this.onBlur = this.onBlur.bind(this);
-
         this.onSubmit = this.onSubmit.bind(this);
 
         this.validateForm = debounce(this.validateForm, 100);
@@ -42,29 +40,20 @@ class LoginForm extends Component {
         });
     }
 
-    validateForm({ submitAfter }) {
-        this.props.validateForm({
-            submitAfter
-        });
+    validateForm() {
+        this.props.validateForm();
 
         const { error, isFormValid } = this.props;
 
-        if (submitAfter && !error && isFormValid) {
+        if (!error && isFormValid) {
             this.submitForm();
         }
     }
 
-    onBlur(e) {
-        this.validateForm({
-            submitAfter: false
-        });
-    }
-
     onSubmit(e) {
         e.preventDefault();
-        this.validateForm({
-            submitAfter: true
-        });
+
+        this.validateForm();
     }
 
     submitForm() {
@@ -75,7 +64,6 @@ class LoginForm extends Component {
             loginData[input.get('name')] = input.get('value');
         });
 
-        debugger;
 
         identityCheck(loginData);
     }
@@ -90,7 +78,6 @@ class LoginForm extends Component {
               title={{className: 'loginTitle' + (error ? ' error' : ''), text: titleMessage }}
               buttons={[{label: 'Next', className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
-              onBlur={this.onBlur}
               onSubmit={this.onSubmit}
               error={error}
               invalidField={invalidField} />
