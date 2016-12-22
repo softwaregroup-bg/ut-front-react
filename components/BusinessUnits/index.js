@@ -81,15 +81,15 @@ class BusinessUnits extends Component {
         let clearButton;
         if (this.props.clearSelectedBusinessUnit && !this.props.isLoading) {
             let clearSelection = () => {
-                this.setState({
-                    filter: {
-                        key: 'null',
-                        inner: undefined,
-                        name: 'Select'
-                    },
-                    selected: undefined,
-                    reset: true
-                });
+                // this.setState({
+                //     filter: {
+                //         key: 'null',
+                //         inner: undefined,
+                //         name: 'Select'
+                //     },
+                //     selected: undefined,
+                //     reset: true
+                // });
                 this.props.clearSelectedBusinessUnit();
             };
             clearButton = <button className={classnames('button', 'btn', 'btn-primary', style.clearButton)} onClick={clearSelection}>Unselect all</button>;
