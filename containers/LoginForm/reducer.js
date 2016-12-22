@@ -38,13 +38,8 @@ export const login = (state = defaultLoginState, action) => {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
                                 .setIn(['loginForm', 'titleMessage'], Immutable.fromJS('Login with password'));
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
-                    let newPasswordInput = Immutable.fromJS(merge({}, getInputs(['password']).password, { label: 'New password' }));
-                    let confirmPasswordInput = Immutable.fromJS(merge({}, getInputs(['password']).password, { label: 'Confirm password' }));
-
-                    return state.deleteIn(['loginForm', 'inputs', 'username'])
-                                .setIn(['loginForm', 'inputs', 'password'], newPasswordInput)
-                                .setIn(['loginForm', 'inputs', 'newPassword'], confirmPasswordInput)
-                                .setIn(['loginForm', 'formError'], action.error.message);
+                    initialInputChangePerformed = false;
+                    return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['newPassword', 'confirmPassword'])));
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
