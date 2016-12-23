@@ -20,10 +20,6 @@ export default class DatePicker extends Component {
     render() {
         let {isValid, errorMessage} = this.props;
 
-        let dpStyles = {
-            border: isValid ? '1px solid #D6D6D6' : '1px solid #ff3333',
-            height: '30px'
-        };
         let textFieldStyle = {
             cursor: 'pointer',
             width: '100%',
@@ -31,13 +27,14 @@ export default class DatePicker extends Component {
         };
 
         let zeroHeightStyle = isValid ? style.hh : '';
+        let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
 
         return (
             <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
                 <div className={style.datePickerWrap}>
                     <div className={style.datePickerIcon} style={this.props.iconStyles} />
                     <DatePickerInput
-                      style={dpStyles}
+                      className={dpStyles}
                       textFieldStyle={textFieldStyle}
                       DateTimeFormat={this.props.DateTimeFormat}
                       cancelLabel={this.props.cancelLabel}
