@@ -138,4 +138,18 @@
 .hh {
     height: 0 !important;
 }
+.dpStylesValid {
+    border: 1px solid #D6D6D6;
+    height: '30px';
+};
 
+.dpStylesNonValid {
+    border: 1px solid #ff3333;
+    height: '30px';
+};
+
+.textFieldStyle {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
