@@ -117,3 +117,25 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.error {
+    border-color: #ff3333 !important;
+}
+
+.errorWrap {
+    height: 23px;
+    overflow: hidden;
+    font-size: 12px;
+    -webkit-transition: all 0.6s; /* Safari */
+    transition: all 0.6s;
+}
+
+.errorWrap .errorMessage {
+    color: #ff3333;
+    margin: 5px 0;
+}
+
+.hh {
+    height: 0 !important;
+}
+
