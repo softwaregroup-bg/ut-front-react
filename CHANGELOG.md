@@ -1,3 +1,13 @@
+<a name="6.0.9"></a>
+## [6.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.8...v6.0.9) (2016-12-23)
+
+
+### Bug Fixes
+
+* error text ([b4649a1](https://github.com/softwaregroup-bg/ut-front-react/commit/b4649a1))
+
+
+
 <a name="6.0.8"></a>
 ## [6.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.7...v6.0.8) (2016-12-23)
 
