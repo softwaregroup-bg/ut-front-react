@@ -1,3 +1,18 @@
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.9...v6.1.0) (2016-12-23)
+
+
+### Bug Fixes
+
+* inline styles ([03e48f8](https://github.com/softwaregroup-bg/ut-front-react/commit/03e48f8))
+
+
+### Features
+
+* add validation capabilities to DatePicker ([0fc9243](https://github.com/softwaregroup-bg/ut-front-react/commit/0fc9243))
+
+
+
 <a name="6.0.9"></a>
 ## [6.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.8...v6.0.9) (2016-12-23)
 
