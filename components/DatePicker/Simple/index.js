@@ -18,8 +18,10 @@ export default class DatePicker extends Component {
         };
     }
     render() {
+        let {isValid, errorMessage} = this.props;
+
         let dpStyles = {
-            border: '1px solid #D6D6D6',
+            border: isValid ? '1px solid #D6D6D6' : '1px solid #ff3333',
             height: '30px'
         };
         let textFieldStyle = {
@@ -27,22 +29,29 @@ export default class DatePicker extends Component {
             width: '100%',
             height: '100%'
         };
+
+        let zeroHeightStyle = isValid ? style.hh : '';
+
         return (
             <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
-                <div className={style.datePickerIcon} style={this.props.iconStyles} />
-                <DatePickerInput
-                  style={dpStyles}
-                  textFieldStyle={textFieldStyle}
-                  DateTimeFormat={this.props.DateTimeFormat}
-                  cancelLabel={this.props.cancelLabel}
-                  okLabel={this.props.okLabel}
-                  container={this.props.container}
-                  value={this.props.defaultValue}
-                  mode={this.props.mode}
-                  onChange={this.handleChange()}
-                  firstDayOfWeek={this.props.firstDayOfWeek}
-                  minDate={this.props.minDate}
-                />
+                <div className={style.datePickerWrap}>
+                    <div className={style.datePickerIcon} style={this.props.iconStyles} />
+                    <DatePickerInput
+                      style={dpStyles}
+                      textFieldStyle={textFieldStyle}
+                      DateTimeFormat={this.props.DateTimeFormat}
+                      cancelLabel={this.props.cancelLabel}
+                      okLabel={this.props.okLabel}
+                      container={this.props.container}
+                      value={this.props.defaultValue}
+                      mode={this.props.mode}
+                      onChange={this.handleChange()}
+                      firstDayOfWeek={this.props.firstDayOfWeek}
+                      minDate={this.props.minDate}
+                      disabled={this.props.disabled}
+                    />
+                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                </div>
             </div>
         );
     }
@@ -51,7 +60,8 @@ export default class DatePicker extends Component {
 DatePicker.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
-    container: 'dialog'
+    container: 'dialog',
+    isValid: true
 };
 DatePicker.propTypes = {
     defaultValue: PropTypes.object, // accepts new Date() object or empty object or null
@@ -67,7 +77,10 @@ DatePicker.propTypes = {
     onChange: PropTypes.func,
     wrapperStyles: PropTypes.object,
     iconStyles: PropTypes.object,
-    minDate: PropTypes.object
+    minDate: PropTypes.object,
+    disabled: PropTypes.bool,
+    isValid: PropTypes.bool,
+    errorMessage: PropTypes.string
 };
 
 DatePicker.contextTypes = {
