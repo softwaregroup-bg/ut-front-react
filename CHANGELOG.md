@@ -1,3 +1,83 @@
+<a name="6.0.7"></a>
+## [6.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.6...v6.0.7) (2016-12-22)
+
+
+
+<a name="6.0.6"></a>
+## [6.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.5...v6.0.6) (2016-12-22)
+
+
+
+<a name="6.0.5"></a>
+## [6.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.4...v6.0.5) (2016-12-22)
+
+
+
+<a name="6.0.4"></a>
+## [6.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.3...v6.0.4) (2016-12-22)
+
+
+
+<a name="6.0.3"></a>
+## [6.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.2...v6.0.3) (2016-12-22)
+
+
+
+<a name="6.0.2"></a>
+## [6.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.1...v6.0.2) (2016-12-22)
+
+
+### Bug Fixes
+
+* missing deps ([f49e3dc](https://github.com/softwaregroup-bg/ut-front-react/commit/f49e3dc))
+
+
+
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.0...v6.0.1) (2016-12-22)
+
+
+
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.5...v6.0.0) (2016-12-22)
+
+
+### Bug Fixes
+
+* theming of images should switch to variables ([c50523b](https://github.com/softwaregroup-bg/ut-front-react/commit/c50523b))
+
+
+### Features
+
+* fix dependencies ([b7a2a75](https://github.com/softwaregroup-bg/ut-front-react/commit/b7a2a75))
+
+
+### BREAKING CHANGES
+
+* postcss configuration changed
+
+
+
+<a name="5.50.5"></a>
+## [5.50.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.4...v5.50.5) (2016-12-21)
+
+
+
+<a name="5.50.4"></a>
+## [5.50.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.3...v5.50.4) (2016-12-21)
+
+
+
+<a name="5.50.3"></a>
+## [5.50.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.2...v5.50.3) (2016-12-21)
+
+
+### Bug Fixes
+
+* new lint ([85fd688](https://github.com/softwaregroup-bg/ut-front-react/commit/85fd688))
+
+
+
 <a name="5.50.2"></a>
 ## [5.50.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.1...v5.50.2) (2016-12-20)
 
