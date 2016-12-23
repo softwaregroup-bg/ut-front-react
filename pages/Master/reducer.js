@@ -68,9 +68,19 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
         }
         if (action.error) {
             let msg = (mapErrorMessage(action.error) || mapErrorMessage(state.get('message')));
+            let statusMessage = action.error.statusMessage;
+            let statusCode = action.error.statusCode;
+            let title = `Error`;
+            if (statusMessage) {
+                title = `${statusMessage}`;
+                if (statusCode) {
+                    title += `(${statusCode})`;
+                }
+            }
+
             return state
                 .set('open', true)
-                .set('title', `${action.error.statusMessage}(${action.error.statusCode})`)
+                .set('title', title)
                 .set('message', msg);
         }
     }
