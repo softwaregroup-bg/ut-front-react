@@ -22,7 +22,7 @@ const RadioInput = ({label, onChange, defaultValue, options, disabled}) => (
 
 RadioInput.propTypes = {
     label: PropTypes.string,
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
     disabled: PropTypes.bool
