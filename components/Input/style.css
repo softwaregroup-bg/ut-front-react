@@ -239,6 +239,7 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     width: 100%;
     position: relative;
     border: 1px solid #D6D6D6;
+    height: 30px;
 }
 
 .dropdownWrap div {
