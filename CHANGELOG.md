@@ -1,3 +1,138 @@
+<a name="6.1.7"></a>
+## [6.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.6...v6.1.7) (2016-12-27)
+
+
+
+<a name="6.1.6"></a>
+## [6.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.5...v6.1.6) (2016-12-27)
+
+
+
+<a name="6.1.5"></a>
+## [6.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.4...v6.1.5) (2016-12-27)
+
+
+
+<a name="6.1.4"></a>
+## [6.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.3...v6.1.4) (2016-12-27)
+
+
+
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.2...v6.1.3) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-610 dropdown styles ([cdf4ca0](https://github.com/softwaregroup-bg/ut-front-react/commit/cdf4ca0))
+
+
+
+<a name="6.1.2"></a>
+## [6.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.1...v6.1.2) (2016-12-27)
+
+
+
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.0...v6.1.1) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-589 dropdown styles ([41c86ce](https://github.com/softwaregroup-bg/ut-front-react/commit/41c86ce))
+
+
+
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.9...v6.1.0) (2016-12-23)
+
+
+### Bug Fixes
+
+* inline styles ([03e48f8](https://github.com/softwaregroup-bg/ut-front-react/commit/03e48f8))
+
+
+### Features
+
+* add validation capabilities to DatePicker ([0fc9243](https://github.com/softwaregroup-bg/ut-front-react/commit/0fc9243))
+
+
+
+<a name="6.0.9"></a>
+## [6.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.8...v6.0.9) (2016-12-23)
+
+
+### Bug Fixes
+
+* error text ([b4649a1](https://github.com/softwaregroup-bg/ut-front-react/commit/b4649a1))
+
+
+
+<a name="6.0.8"></a>
+## [6.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.7...v6.0.8) (2016-12-23)
+
+
+
+<a name="6.0.7"></a>
+## [6.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.6...v6.0.7) (2016-12-22)
+
+
+
+<a name="6.0.6"></a>
+## [6.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.5...v6.0.6) (2016-12-22)
+
+
+
+<a name="6.0.5"></a>
+## [6.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.4...v6.0.5) (2016-12-22)
+
+
+
+<a name="6.0.4"></a>
+## [6.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.3...v6.0.4) (2016-12-22)
+
+
+
+<a name="6.0.3"></a>
+## [6.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.2...v6.0.3) (2016-12-22)
+
+
+
+<a name="6.0.2"></a>
+## [6.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.1...v6.0.2) (2016-12-22)
+
+
+### Bug Fixes
+
+* missing deps ([f49e3dc](https://github.com/softwaregroup-bg/ut-front-react/commit/f49e3dc))
+
+
+
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.0...v6.0.1) (2016-12-22)
+
+
+
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.5...v6.0.0) (2016-12-22)
+
+
+### Bug Fixes
+
+* theming of images should switch to variables ([c50523b](https://github.com/softwaregroup-bg/ut-front-react/commit/c50523b))
+
+
+### Features
+
+* fix dependencies ([b7a2a75](https://github.com/softwaregroup-bg/ut-front-react/commit/b7a2a75))
+
+
+### BREAKING CHANGES
+
+* postcss configuration changed
+
+
+
 <a name="5.50.5"></a>
 ## [5.50.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.4...v5.50.5) (2016-12-21)
 
