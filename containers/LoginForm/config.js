@@ -53,7 +53,8 @@ export const inputs = {
             minLength: 2,
             maxLength: 30,
             shouldMatchField: 'newPassword'
-        }
+        },
+        skipSubmit: true
     }
 };
 

@@ -27,7 +27,7 @@ class LoginForm extends Component {
         }
 
         if (!this.props.isFormValid && nextProps.isFormValid) {
-            this.submitForm();
+            this.submitForm(nextProps.loginData);
         }
     }
 
@@ -46,30 +46,16 @@ class LoginForm extends Component {
         });
     }
 
-    validateForm() {
-        this.props.validateForm();
-
-        const { error, isFormValid } = this.props;
-
-        if (!error && isFormValid) {
-            this.submitForm();
-        }
-    }
-
     onSubmit(e) {
+        let { validateForm } = this.props;
+
         e.preventDefault();
 
-        this.validateForm();
+        validateForm();
     }
 
-    submitForm() {
-        let { identityCheck, inputs } = this.props;
-        let loginData = {};
-
-        inputs.toSeq().forEach(input => {
-            loginData[input.get('name')] = input.get('value');
-        });
-
+    submitForm(loginData) {
+        let { identityCheck } = this.props;
 
         identityCheck(loginData);
     }
@@ -95,6 +81,7 @@ export default connect(
     ({ login }) => {
         return {
             login,
+            loginData: login.get('loginData'),
             inputs: login.get('loginForm').get('inputs'),
             titleMessage: login.get('loginForm').get('titleMessage'),
             error: login.get('loginForm').get('formError'),
