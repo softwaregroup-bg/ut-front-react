@@ -97,7 +97,7 @@ class MultiSelectDropdown extends Dropdown {
         let iconBackground = style.dropdownIconBackground;
 
         let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
-        if (selectedItems.length > 40) {
+        if (selectedItems.length > this.props.placeholderMaxLength) {
             selectedItems = selectedItems.slice(0, this.props.placeholderMaxLength) + '...';
         }
         return (
