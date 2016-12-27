@@ -1,3 +1,48 @@
+<a name="6.1.7"></a>
+## [6.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.6...v6.1.7) (2016-12-27)
+
+
+
+<a name="6.1.6"></a>
+## [6.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.5...v6.1.6) (2016-12-27)
+
+
+
+<a name="6.1.5"></a>
+## [6.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.4...v6.1.5) (2016-12-27)
+
+
+
+<a name="6.1.4"></a>
+## [6.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.3...v6.1.4) (2016-12-27)
+
+
+
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.2...v6.1.3) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-610 dropdown styles ([cdf4ca0](https://github.com/softwaregroup-bg/ut-front-react/commit/cdf4ca0))
+
+
+
+<a name="6.1.2"></a>
+## [6.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.1...v6.1.2) (2016-12-27)
+
+
+
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.0...v6.1.1) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-589 dropdown styles ([41c86ce](https://github.com/softwaregroup-bg/ut-front-react/commit/41c86ce))
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.9...v6.1.0) (2016-12-23)
 
