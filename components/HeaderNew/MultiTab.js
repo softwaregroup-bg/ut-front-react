@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import debounce from 'lodash.debounce';
 import classNames from 'classnames';
 import Link from './Link';
 import Tab from './Tab';
@@ -13,15 +14,10 @@ export default class MultiTab extends Component {
             menuToggled: false
         };
 
-        this.toggleMenu = this.toggleMenu.bind(this);
+        this.toggleMenu = debounce(this.toggleMenu, 200);
+        this.onClick = this.onClick.bind(this);
         this.getMenuItems = this.getMenuItems.bind(this);
-        this.onBlur = this.onBlur.bind(this);
-    }
-
-    onBlur() {
-        this.setState({
-            menuToggled: false
-        });
+        this.requestCloseMenu = this.requestCloseMenu.bind(this);
     }
 
     getMenuItems() {
@@ -40,8 +36,16 @@ export default class MultiTab extends Component {
         }, []);
     }
 
-    toggleMenu(e) {
+    requestCloseMenu() {
+        this.toggleMenu();
+    }
+
+    onClick(e) {
         e.preventDefault();
+        this.toggleMenu();
+    }
+
+    toggleMenu(e) {
         this.setState({
             menuToggled: !this.state.menuToggled
         });
@@ -56,14 +60,17 @@ export default class MultiTab extends Component {
               onClick={this.props.onClick}
             >
                 <Link
-                  onClick={this.toggleMenu}
+                  onClick={this.onClick}
                   to={tab.routeName}
                   params={tab.routeParams}
                   className={classNames(styles.navigationTab)}
                   activeClassName={styles.navigationTabActive} >
                     {tab.title}
                 </Link>
-                <Menu fields={this.getMenuItems()} open={this.state.menuToggled} onBlur={this.onBlur} />
+                <Menu
+                  fields={this.getMenuItems()}
+                  open={this.state.menuToggled}
+                  requestClose={this.requestCloseMenu} />
             </div>
         );
     }
