@@ -258,7 +258,6 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding-left: 10px !important;
-    padding-right: 1px !important;
 }
 
 .dropdownIconBackground svg { /* pass over material ui styling limitations */
