@@ -1,3 +1,13 @@
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.0...v6.1.1) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-589 dropdown styles ([41c86ce](https://github.com/softwaregroup-bg/ut-front-react/commit/41c86ce))
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.9...v6.1.0) (2016-12-23)
 
