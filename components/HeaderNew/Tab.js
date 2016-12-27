@@ -32,7 +32,7 @@ export default class Tab extends Component {
 
 Tab.propTypes = {
     tab: PropTypes.object,
-    isMulti: PropTypes.func
+    onClick: PropTypes.func
 };
 
 Tab.contextTypes = {

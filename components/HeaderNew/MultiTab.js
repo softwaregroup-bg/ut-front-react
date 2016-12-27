@@ -15,6 +15,13 @@ export default class MultiTab extends Component {
 
         this.toggleMenu = this.toggleMenu.bind(this);
         this.getMenuItems = this.getMenuItems.bind(this);
+        this.onBlur = this.onBlur.bind(this);
+    }
+
+    onBlur() {
+        this.setState({
+            menuToggled: false
+        });
     }
 
     getMenuItems() {
@@ -44,21 +51,25 @@ export default class MultiTab extends Component {
         const { tab } = this.props;
 
         return (
-            <div className={styles.navigationMultiTab}>
-            <Link
-              onClick={this.toggleMenu}
-              to={tab.routeName}
-              params={tab.routeParams}
-              className={classNames(styles.navigationTab)}
-              activeClassName={styles.navigationTabActive} >
-                {tab.title}
-            </Link>
-              {this.state.menuToggled ? <Menu fields={this.getMenuItems()} /> : false}
+            <div
+              className={styles.navigationMultiTab}
+              onClick={this.props.onClick}
+            >
+                <Link
+                  onClick={this.toggleMenu}
+                  to={tab.routeName}
+                  params={tab.routeParams}
+                  className={classNames(styles.navigationTab)}
+                  activeClassName={styles.navigationTabActive} >
+                    {tab.title}
+                </Link>
+                <Menu fields={this.getMenuItems()} open={this.state.menuToggled} onBlur={this.onBlur} />
             </div>
         );
     }
 }
 
 MultiTab.propTypes = {
-    tab: PropTypes.object
+    tab: PropTypes.object,
+    onClick: PropTypes.func
 };

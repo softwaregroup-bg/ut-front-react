@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import MenuNew from './../MenuNew';
+import Tab from './Tab';
 import styles from './styles.css';
 import { getMarginBox } from '../../utils/dom';
 import { getDimensions } from '../../utils/positioning';
@@ -12,21 +13,28 @@ export default class HeaderProfileInfo extends Component {
         this.state = {
             menuToggled: false
         };
+        this.getDimensions = this.getDimensions.bind(this);
         this.onClick = this.onClick.bind(this);
         this.calculateDimensions = this.calculateDimensions.bind(this);
         this.toggleMenu = debounce(this.toggleMenu, 200);
-        this.onMenuBlur = this.onMenuBlur.bind(this);
+        this.requestCloseMenu = this.requestCloseMenu.bind(this);
     }
 
     calculateDimensions() {
         return getMarginBox(this.infoArrowNode);
     }
 
+    getDimensions() {
+        return this.state.menuToggled
+            ? getDimensions('right-bottom', this.calculateDimensions(), {right: 5, bottom: 9})
+            : {};
+    }
+
     onClick(e) {
         this.toggleMenu();
     }
 
-    onMenuBlur(e) {
+    requestCloseMenu() {
         this.toggleMenu();
     }
 
@@ -34,6 +42,25 @@ export default class HeaderProfileInfo extends Component {
         this.setState({
             menuToggled: !this.state.menuToggled
         });
+    }
+
+    getMenuItems() {
+        let items = ['About', 'Help', 'Settings', 'Log out'];
+
+        return items.reduce((items, currentItem) => {
+            items.push(
+              <Tab
+                key={currentItem}
+                tab={{
+                    routeName: currentItem.toLowerCase(),
+                    routeParams: {},
+                    title: currentItem
+                }}
+                onClick={(e) => { e.preventDefault(); }} />
+              );
+
+            return items;
+        }, []);
     }
 
     render() {
@@ -47,9 +74,11 @@ export default class HeaderProfileInfo extends Component {
                   className={styles.avatarInfoArrow}
                   onClick={this.onClick} />
                 <span className={styles.avatarContainer} />
-                { menuToggled && <MenuNew
-                  dimensions={getDimensions('right-bottom', this.calculateDimensions())}
-                  onBlur={this.onMenuBlur} /> }
+                <MenuNew
+                  open={menuToggled}
+                  dimensions={this.getDimensions()}
+                  fields={this.getMenuItems()}
+                  requestClose={this.requestCloseMenu} />
             </span>
         );
     }

@@ -1,12 +1,53 @@
 const positioning = {
-    'top-left': ({ width, height }) => ({ top: 0, left: 0 }),
-    'top-right': ({ width, height }) => ({ top: 0, left: `${width}px` }),
-    'bottom-left': ({ width, height }) => ({ top: `${height}px`, left: 0 }),
-    'bottom-right': ({ width, height }) => ({ top: `${height}px`, left: `${width}px` }),
-    'right-top': ({ width, height }) => ({ top: 0, right: 0 }),
-    'right-bottom': ({ width, height }) => ({ top: `${height}px`, right: 0 })
+    'top-left': ({ width, height }, { top, right, bottom, left }) => {
+        return {
+            top: `${0 + top - bottom}px`,
+            left: `${0 + left - right}px`
+        };
+    },
+    'top-right': ({ width, height }, { top, right, bottom, left }) => {
+        return {
+            top: `${0 + top - bottom}px`,
+            left: `${width + left - right}px`
+        };
+    },
+    'bottom-left': ({ width, height }, { top, right, bottom, left }) => {
+        return {
+            top: `${height + top - bottom}px`,
+            left: `${0 + left - right}px`
+        };
+    },
+    'bottom-right': ({ width, height }, { top, right, bottom, left }) => {
+        return {
+            top: `${height + top - bottom}px`,
+            left: `${width + left - right}px`
+        };
+    },
+    'right-top': ({ width, height }, { top, right, bottom, left }) => {
+        return {
+            top: `${0 + top - bottom}px`,
+            right: `${0 + right - left}px`
+        };
+    },
+    'right-bottom': ({ width, height }, { top, right, bottom, left }) => {
+        return {
+            top: `${height + top - bottom}px`,
+            right: `${0 + right - left}px`
+        };
+    }
 };
 
-export const getDimensions = (position, targetDimensions) => {
-    return positioning[position](targetDimensions);
+const getOffsets = (targetDimensions, additionalOffsets = {}) => {
+    let directions = ['top', 'right', 'bottom', 'left'];
+    return directions.reduce((offsets, currentDirection) => {
+        offsets[currentDirection] = additionalOffsets[currentDirection] || 0;
+
+        return offsets;
+    }, {});
+};
+
+export const getDimensions = (position, targetDimensions, additionalOffsets) => {
+    let offsets = getOffsets(position, additionalOffsets);
+
+    return positioning[position](targetDimensions, offsets);
 };
