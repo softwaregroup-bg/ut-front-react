@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -20,7 +19,6 @@ class MultiSelectDropdown extends Dropdown {
 
         this.toggleOpen = this.toggleOpen.bind(this);
         this.toggleClose = this.toggleClose.bind(this);
-        this.getMenuItems = this.getMenuItems.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.renderDropDown = this.renderDropDown.bind(this);
     }
@@ -42,51 +40,23 @@ class MultiSelectDropdown extends Dropdown {
         return this.setState({open: false});
     }
 
-    handleChange(itemKey) {
+    handleChange(event, menuItem, index) {
         let { onSelect, keyProp, data } = this.props;
         let { values } = this.state;
         let itemIndex = values.findIndex((value) => {
-            return value.key === itemKey;
+            return value.key === menuItem.props.value;
         });
         if (itemIndex > -1) {
             values.splice(itemIndex, 1);
         } else {
             let item = data.find((value) => {
-                return value.key === itemKey;
+                return value.key === menuItem.props.value;
             });
             values.push(item);
         }
 
         this.setState({values: values, valid: {isValid: true, errorMessage: ''}});
         onSelect({key: keyProp, value: values});
-    }
-
-    getMenuItems() {
-        let { data, placeholder } = this.props;
-        let menuItems = [];
-
-        menuItems.push(
-            <MenuItem
-              key={Math.random() + '-ddfg'}
-              disabled
-              value={'__placeholder__'}
-              primaryText={placeholder}
-            />
-        );
-
-        data.forEach((item, i) => {
-            menuItems.push(
-                <MenuItem
-                  onTouchTap={() => { this.handleChange(item.key); }}
-                  key={item.key}
-                  disabled={item.disabled}
-                  value={item.key}
-                  primaryText={item.name}
-                />
-            );
-        });
-
-        return menuItems;
     }
 
     renderDropDown() {
@@ -119,6 +89,8 @@ class MultiSelectDropdown extends Dropdown {
                   style={{height: '300px', cursor: 'pointer'}}
                 >
                     <Menu
+                      className={ddstyles.multiSelectDropdownMenu}
+                      onItemTouchTap={this.handleChange}
                       disableAutoFocus
                       multiple
                       value={this.state.values.map((value) => (value.key))}
@@ -133,6 +105,7 @@ class MultiSelectDropdown extends Dropdown {
 
 MultiSelectDropdown.propTypes = {
     placeholderMaxLength: PropTypes.number,
+    menuItemStyle: PropTypes.object,
     selectedItemStyle: PropTypes.object
 };
 
