@@ -244,10 +244,11 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
 .dropdownWrap div {
     padding: 0 !important;
     margin: 0 !important;
-    line-height: 30px !important;
+    line-height: 23px !important;
     border: none !important;
     color: #595959 !important;
     text-align: left !important;
+    top: 1px !important;
 }
 
 .dropdownWrap .dropDownRoot {
@@ -262,6 +263,9 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
 
 .dropdownIconBackground svg { /* pass over material ui styling limitations */
     background-color: var(--ut-front-react-standardDropdownIconColor);
+    position: absolute !important;
+    top: -1px !important;
+    right: 0px !important;
 }
 
 .inputWrap {
