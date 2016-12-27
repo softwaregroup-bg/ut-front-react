@@ -5,7 +5,6 @@ import { Validator } from './../../utils/validator';
 
 const validator = new Validator(inputsConfig);
 
-// TODO: check loginResultId, logOutResultId, cookieCheckResultId, changeId
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     shouldChangePassword: false,
@@ -21,17 +20,17 @@ const defaultLoginState = Immutable.fromJS({
     loginData: {}
 });
 
-const setLoginData = (state) => {
+const updateLoginData = (state) => {
     let inputs = state.getIn(['loginForm', 'inputs']);
-    let loginData = state.get('loginData');
+    let currentLoginData = state.get('loginData');
 
     inputs.toSeq().forEach(input => {
         if(!input.get('skipSubmit')) {
-            state = state.setIn(['loginData', input.get('name')], input.get('value'))
+            currentLoginData = currentLoginData.set(input.get('name'), input.get('value'))
         }
     });
 
-    return state;
+    return currentLoginData;
 }
 
 export const login = (state = defaultLoginState, action) => {
@@ -50,7 +49,8 @@ export const login = (state = defaultLoginState, action) => {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
                                 .setIn(['loginForm', 'titleMessage'], Immutable.fromJS('Login with password'));
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
-                    return state.setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['newPassword', 'confirmPassword'])));
+                    return state.setIn(['loginForm','titleMessage'], 'Password change required')
+                                .setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['newPassword', 'confirmPassword'])));
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
@@ -67,14 +67,16 @@ export const login = (state = defaultLoginState, action) => {
             return state.setIn(['loginForm', 'inputs', input, 'value'], value);
         case VALIDATE_FORM:
             let inputs = state.getIn(['loginForm', 'inputs']);
+            let loginData = state.get('loginData');
 
             validationResult = validator.validateAll(inputs);
 
             if(validationResult.isValid) {
-                state = setLoginData(state);
+                loginData = updateLoginData(state);
             }
 
-            return state.setIn(['loginForm', 'isFormValid'], validationResult.isValid)
+            return state.set('loginData', loginData)
+                        .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
                         .setIn(['loginForm', 'formError'], validationResult.error)
                         .setIn(['loginForm', 'invalidField'], validationResult.invalidField);
 
