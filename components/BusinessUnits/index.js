@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { objectHasProps } from '../../helpers';
 
 import Tree from '../BusinessUnitsTree';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -35,21 +34,13 @@ class BusinessUnits extends Component {
         }
     }
 
-    componentWillReceiveProps({active, requiresFetch, isLoading}) {
+    componentWillReceiveProps({active}) {
         if (active !== this.props.active) {
             this.setState({selected: active});
-        }
-        if (requiresFetch && !isLoading) {
-            this.props.fetchBusinessUnits();
         }
     }
 
     componentDidMount() {
-        let businessUnitsAreLoaded = objectHasProps(this.props.unitsTree);
-        if (!businessUnitsAreLoaded || this.props.requiresUnitsFetch) {
-            this.props.setRequiresBusinessUnitsFetch(false);
-            this.props.fetchBusinessUnits();
-        }
         this.handleResizeForceUpdate = true;
         window.addEventListener('resize', this.handleResize);
     }
@@ -90,15 +81,15 @@ class BusinessUnits extends Component {
         let clearButton;
         if (this.props.clearSelectedBusinessUnit && !this.props.isLoading) {
             let clearSelection = () => {
-                this.setState({
-                    filter: {
-                        key: 'null',
-                        inner: undefined,
-                        name: 'Select'
-                    },
-                    selected: undefined,
-                    reset: true
-                });
+                // this.setState({
+                //     filter: {
+                //         key: 'null',
+                //         inner: undefined,
+                //         name: 'Select'
+                //     },
+                //     selected: undefined,
+                //     reset: true
+                // });
                 this.props.clearSelectedBusinessUnit();
             };
             clearButton = <button className={classnames('button', 'btn', 'btn-primary', style.clearButton)} onClick={clearSelection}>Unselect all</button>;
@@ -135,30 +126,23 @@ BusinessUnits.propTypes = {
     // Data from state
     unitsTree: Tree.propTypes.data,
     isLoading: PropTypes.bool,
-    requiresFetch: PropTypes.bool,
 
     // Data from passed (own) props
     active: Tree.propTypes.active,
     openElements: Tree.propTypes.openElements,
     styles: PropTypes.object,
-    requiresUnitsFetch: PropTypes.bool,
     outerWrapHeight: PropTypes.number,
 
     // Functions
     selectBusinessUnit: PropTypes.func,
     onUnmount: PropTypes.func,
-    setRequiresBusinessUnitsFetch: PropTypes.func,
-    clearSelectedBusinessUnit: PropTypes.func,
-    fetchBusinessUnits: PropTypes.func
+    clearSelectedBusinessUnit: PropTypes.func
 };
 
 BusinessUnits.defaultProps = {
     styles: {
         main: {}
-    },
-    requiresUnitsFetch: false,
-    setRequiresBusinessUnitsFetch: () => {},
-    requiresFetch: false
+    }
 };
 
 export default BusinessUnits;
