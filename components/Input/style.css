@@ -372,6 +372,11 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     height: 26px;
     width: 26px;
 }
+
 .arrowIcon {
     background: inline('images/dropdownArrow.png') no-repeat center;
+}
+
+.multiSelectDropdownPlaceholder {
+    font-size: 15px;
 }
