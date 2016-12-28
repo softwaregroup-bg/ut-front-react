@@ -1,0 +1,26 @@
+a.navigationTab {
+  display: block;
+  color: #373a3c;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navigationTab:hover,
+.navigationTab:focus {
+  color: #595959;
+  text-decoration: none;
+  outline: 0;
+}
+
+a.navigationTabActive,
+a.navigationTabActive:hover,
+a.navigationTabActive:focus {
+  color: #2281ec;
+  text-decoration: none;
+}
+
+.navigationMultiTab {
+  position: relative;
+};

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import MenuNew from './../MenuNew';
-import Tab from './Tab';
+import { Tab } from './../Tab';
 import styles from './styles.css';
 import { getMarginBox } from '../../utils/dom';
 import { getDimensions } from '../../utils/positioning';

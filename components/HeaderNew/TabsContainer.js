@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import Tab from './Tab';
-import MultiTab from './MultiTab';
+import { Tab, MultiTab } from './../Tab';
 import styles from './styles.css';
 
 export default class TabsContainer extends Component {

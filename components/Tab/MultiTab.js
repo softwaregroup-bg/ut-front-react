@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash.debounce';
 import classNames from 'classnames';
-import Link from './Link';
+import Link from './../Link';
 import Tab from './Tab';
 import Menu from './../MenuNew';
 import styles from './styles.css';

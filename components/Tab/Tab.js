@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import Link from './Link';
-import style from './styles.css';
+import Link from './../Link';
+import styles from './styles.css';
 
 export default class Tab extends Component {
     constructor(props) {
@@ -20,8 +20,8 @@ export default class Tab extends Component {
         return (
             <Link
               to={tab.routeName}
-              className={style.navigationTab}
-              activeClassName={style.navigationTabActive}
+              className={styles.navigationTab}
+              activeClassName={styles.navigationTabActive}
               params={tab.routeParams}
               onTouchTap={onClick}>
                 {tab.title}

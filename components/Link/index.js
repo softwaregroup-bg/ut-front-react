@@ -1,19 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { getLink } from 'ut-front/react/routerHelper';
-import styles from './styles.css';
 
 export default class NavigationLink extends Component {
     render() {
-        const { to, params, className, children, activeClassName, style } = this.props;
+        const { to, useRawTo, params, className, children, activeClassName, style } = this.props;
         const { onClick } = this.props;
 
         return (
             <Link
-              to={getLink(to, params)}
+              to={useRawTo ? to : getLink(to, params)}
               className={className}
               activeClassName={activeClassName}
-              activeStyle={styles.navigationLinkActive}
               onClick={onClick}
               style={style} >
                 {children}
@@ -23,7 +21,8 @@ export default class NavigationLink extends Component {
 };
 
 NavigationLink.propTypes = {
-    to: PropTypes.string,
+    to: PropTypes.string.isRequired,
+    useRawTo: PropTypes.bool,
     className: PropTypes.string,
     activeClassName: PropTypes.string,
     children: PropTypes.any,
