@@ -1,3 +1,8 @@
+<a name="6.1.10"></a>
+## [6.1.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.9...v6.1.10) (2016-12-28)
+
+
+
 <a name="6.1.9"></a>
 ## [6.1.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.8...v6.1.9) (2016-12-28)
 
