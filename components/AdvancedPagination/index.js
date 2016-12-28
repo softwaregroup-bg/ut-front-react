@@ -5,7 +5,6 @@ import Dropdown from '../Input/Dropdown';
 import classnames from 'classnames';
 import dropdownstyles from './dropdownstyles.css';
 import styles from './styles.css';
-
 const separateSymbol = '...';
 
 class AdvancedPagination extends Component {
@@ -317,7 +316,7 @@ class AdvancedPagination extends Component {
         let dropdownIconStyles = {
             width: '19px',
             height: '19px',
-            top: '0px'
+            top: '100px'
         };
         if (this.props.dropdownIconStyles) {
             dropdownIconStyles = Object.assign(dropdownIconStyles, this.props.dropdownIconStyles);
