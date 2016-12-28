@@ -1,3 +1,14 @@
+<a name="6.1.8"></a>
+## [6.1.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.7...v6.1.8) (2016-12-28)
+
+
+### Bug Fixes
+
+* dropdown styles ([b637abb](https://github.com/softwaregroup-bg/ut-front-react/commit/b637abb))
+* typo ([a948fe4](https://github.com/softwaregroup-bg/ut-front-react/commit/a948fe4))
+
+
+
 <a name="6.1.7"></a>
 ## [6.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.6...v6.1.7) (2016-12-27)
 
