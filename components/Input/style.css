@@ -378,18 +378,6 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     background: inline('images/dropdownArrow.png') no-repeat center;
 }
 
-.multiSelectDropdownWrap {
-    width: 100%;
-    height: 30px;
-    padding-left: 10px;
-    border: 1px solid #D6D6D6;
-}
-
-.multiSelectDropdownWrap>div:first-child {
-    position: relative;
-    top: 2px;
-}
-
 .multiSelectDropdownMenu {
     width: 350px;
 }
@@ -403,4 +391,5 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownPlaceholder {
     font-size: 15px;
+    margin-top: 3px;
 }

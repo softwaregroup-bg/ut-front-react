@@ -72,7 +72,7 @@ class MultiSelectDropdown extends Dropdown {
             selectedItems = selectedItems.slice(0, this.props.placeholderMaxLength) + '...';
         }
         return (
-            <div className={classnames(ddstyles.multiSelectDropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
+            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
                     <div className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             {selectedItems || this.props.placeholder}
