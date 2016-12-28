@@ -63,22 +63,23 @@ class MultiSelectDropdown extends Dropdown {
         let menuItems = this.getMenuItems();
         let { cssStyle, mergeStyles } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
-        let iconBackground = style.dropdownIconBackground;
+        let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
+        let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
+        let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
 
         let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
         if (selectedItems.length > this.props.placeholderMaxLength) {
             selectedItems = selectedItems.slice(0, this.props.placeholderMaxLength) + '...';
         }
         return (
-            <div className={classnames(ddstyles.dropdownWrap, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
-                <div className={classnames(iconBackground, ddstyles.dropDownRoot)} >
-                    <div className={ddstyles.multiSelectDropdownPlaceholder}>
-                        {selectedItems || this.props.placeholder}
-                    </div>
-                    <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
+            <div className={classnames(ddstyles.multiSelectDropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
+                    <div className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}>
+                        <div className={ddstyles.multiSelectDropdownPlaceholder}>
+                            {selectedItems || this.props.placeholder}
+                        </div>
+                        <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
+                    <div className={ddstyles.hideTextWrap} />
                 </div>
-                <div className={ddstyles.hideTextWrap} />
 
                 <Popover
                   open={this.state.open}
@@ -86,7 +87,7 @@ class MultiSelectDropdown extends Dropdown {
                   anchorEl={this.state.anchorEl}
                   anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  style={{height: '300px', cursor: 'pointer'}}
+                  style={{height: '300px'}}
                 >
                     <Menu
                       className={ddstyles.multiSelectDropdownMenu}
@@ -105,13 +106,13 @@ class MultiSelectDropdown extends Dropdown {
 
 MultiSelectDropdown.propTypes = {
     placeholderMaxLength: PropTypes.number,
-    menuItemStyle: PropTypes.object,
     selectedItemStyle: PropTypes.object
 };
 
 MultiSelectDropdown.defaultProps = {
     isValid: true,
     errorMessage: '',
+    isEdited: false,
     placeholderMaxLength: 40,
     selectedItemStyle: {color: '#2881ec'}
 };
