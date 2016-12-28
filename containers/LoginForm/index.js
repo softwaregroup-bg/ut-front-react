@@ -13,8 +13,6 @@ class LoginForm extends Component {
         this.handleChange = debounce(this.handleChange, 100);
 
         this.onSubmit = this.onSubmit.bind(this);
-
-        this.submitForm = this.submitForm.bind(this);
     }
 
     componentWillMount() {
@@ -22,12 +20,14 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated')) {
+        let { authenticated, shouldSubmit, identityCheck } = this.props;
+
+        if (!authenticated && nextProps.authenticated) {
             this.context.router.push(this.context.mainUrl);
         }
 
-        if (!this.props.isFormValid && nextProps.isFormValid) {
-            this.submitForm(nextProps.loginData);
+        if (!shouldSubmit && nextProps.shouldSubmit) {
+            identityCheck(nextProps.loginData);
         }
     }
 
@@ -54,20 +54,14 @@ class LoginForm extends Component {
         validateForm();
     }
 
-    submitForm(loginData) {
-        let { identityCheck } = this.props;
-
-        identityCheck(loginData);
-    }
-
     render() {
-        let { inputs, error, invalidField, titleMessage } = this.props;
+        let { inputs, error, invalidField, title } = this.props;
 
         return (
             <Form
               className='loginForm'
               inputs={inputs}
-              title={{className: 'loginTitle' + (error ? ' error' : ''), text: titleMessage }}
+              title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
               buttons={[{label: 'Next', className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
               onSubmit={this.onSubmit}
@@ -80,31 +74,32 @@ class LoginForm extends Component {
 export default connect(
     ({ login }) => {
         return {
-            login,
             loginData: login.get('loginData'),
-            inputs: login.get('loginForm').get('inputs'),
-            titleMessage: login.get('loginForm').get('titleMessage'),
-            error: login.get('loginForm').get('formError'),
-            isFormValid: login.get('loginForm').get('isFormValid'),
-            invalidField: login.get('loginForm').get('invalidField')
+            authenticated: login.get('authenticated'),
+            inputs: login.getIn(['loginForm', 'inputs']),
+            title: login.getIn(['loginForm', 'title']),
+            error: login.getIn(['loginForm', 'formError']),
+            shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
+            invalidField: login.getIn(['loginForm', 'invalidField'])
         };
     },
     { setInputValue, validateForm, identityCheck, resetForm }
 )(LoginForm);
 
 LoginForm.propTypes = {
+    loginData: PropTypes.object,
+    authenticated: PropTypes.bool,
     inputs: PropTypes.object,
+    title: PropTypes.string,
     error: PropTypes.string,
-    isFormValid: PropTypes.bool,
+    shouldSubmit: PropTypes.bool,
+    invalidField: PropTypes.string,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
-    resetForm: PropTypes.func,
     identityCheck: PropTypes.func.isRequired,
-    login: PropTypes.object,
-    invalidField: PropTypes.string
+    resetForm: PropTypes.func
 };
 
-// TODO: remove router from context
 LoginForm.contextTypes = {
     router: PropTypes.object,
     mainUrl: PropTypes.string

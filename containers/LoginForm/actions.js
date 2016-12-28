@@ -14,14 +14,12 @@ export const setInputValue = ({ input, value }) => ({
     value
 });
 
-export const identityCheck = (params) => {
-    return {
-        type: LOGIN,
-        method: 'identity.check',
-        suppressErrorWindow: true,
-        params: Object.assign(params, {uri: '/login', timezone: getTimezone()})
-    }
-};
+export const identityCheck = (params) => ({
+    type: LOGIN,
+    method: 'identity.check',
+    suppressErrorWindow: true,
+    params: Object.assign(params, {uri: '/login', timezone: getTimezone()})
+});
 
 export const cookieCheck = () => ({
     type: COOKIE_CHECK,

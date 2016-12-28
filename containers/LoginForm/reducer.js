@@ -13,9 +13,9 @@ const defaultLoginState = Immutable.fromJS({
     loginForm: {
         inputs: getInputs(['username']),
         formError: '',
-        isFormValid: false,
+        shouldSubmit: false,
         invalidField: '',
-        titleMessage: 'Login'
+        title: 'Login'
     },
     loginData: {}
 });
@@ -25,13 +25,13 @@ const updateLoginData = (state) => {
     let currentLoginData = state.get('loginData');
 
     inputs.toSeq().forEach(input => {
-        if(!input.get('skipSubmit')) {
-            currentLoginData = currentLoginData.set(input.get('name'), input.get('value'))
+        if (!input.get('skipSubmit')) {
+            currentLoginData = currentLoginData.set(input.get('name'), input.get('value'));
         }
     });
 
     return currentLoginData;
-}
+};
 
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
@@ -43,13 +43,13 @@ export const login = (state = defaultLoginState, action) => {
             return state;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
-                state = state.setIn(['loginForm', 'isFormValid'], false);
+                state = state.setIn(['loginForm', 'shouldSubmit'], false);
                 // show password input and change title
                 if (action.error && action.error.type === 'policy.param.password') {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
-                                .setIn(['loginForm', 'titleMessage'], Immutable.fromJS('Login with password'));
+                                .setIn(['loginForm', 'title'], Immutable.fromJS('Login with password'));
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
-                    return state.setIn(['loginForm','titleMessage'], 'Password change required')
+                    return state.setIn(['loginForm', 'title'], 'Password change required')
                                 .setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['newPassword', 'confirmPassword'])));
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
@@ -71,21 +71,18 @@ export const login = (state = defaultLoginState, action) => {
 
             validationResult = validator.validateAll(inputs);
 
-            if(validationResult.isValid) {
+            if (validationResult.isValid) {
                 loginData = updateLoginData(state);
             }
 
             return state.set('loginData', loginData)
-                        .setIn(['loginForm', 'isFormValid'], validationResult.isValid)
+                        .setIn(['loginForm', 'shouldSubmit'], validationResult.isValid)
                         .setIn(['loginForm', 'formError'], validationResult.error)
                         .setIn(['loginForm', 'invalidField'], validationResult.invalidField);
 
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
-                    if(action.error.type === 'policy.param.newPassword') {
-
-                    }
                     return state.delete('result')
                                 .set('cookieChecked', true)
                                 .set('authenticated', false);
