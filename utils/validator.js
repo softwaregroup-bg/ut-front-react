@@ -11,7 +11,7 @@ const validators = {
         return value.length <= maxLength;
     },
     shouldMatchField: (value, shouldMatch, inputs) => {
-        if (inputs && inputs.getIn([shouldMatch, 'value']) !== "") {
+        if (inputs && inputs.getIn([shouldMatch, 'value']) !== '') {
             return inputs.getIn([shouldMatch, 'value']) === value;
         }
 
@@ -34,7 +34,7 @@ const defaultErrorMessagingMapping = {
     },
     shouldMatchField: ({ input, shouldMatchField }) => {
         input = capitalizeFirstLetter(input);
-        return `${input} field must match ${shouldMatchField} field.`
+        return `${input} field must match ${shouldMatchField} field.`;
     }
 };
 
