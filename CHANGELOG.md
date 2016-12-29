@@ -1,3 +1,13 @@
+<a name="6.1.14"></a>
+## [6.1.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.13...v6.1.14) (2016-12-29)
+
+
+### Bug Fixes
+
+* dropdown styles ([da29196](https://github.com/softwaregroup-bg/ut-front-react/commit/da29196))
+
+
+
 <a name="6.1.13"></a>
 ## [6.1.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.12...v6.1.13) (2016-12-29)
 
