@@ -30,18 +30,19 @@ class Gate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { login, logout } = this.props;
+        let { cookieChecked, authenticated, result, forceLogOut, logout } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
-        if (!login.get('cookieChecked') && nextProps.login.get('cookieChecked') && !nextProps.login.get('authenticated')) {
+        if (!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated) {
             this.context.router.push('login');
-        } else if (nextProps.login.get('authenticated') && !login.get('result') && nextProps.login.get('result')) {
-            this.loadGate(nextProps.login.getIn(['result', 'permission.get']).toJS(), nextProps.login.getIn(['result', 'language', 'languageId']));
-        } else if (!nextProps.login.get('result') && login.get('authenticated') && !nextProps.login.get('authenticated')) {
+        } else if (nextProps.authenticated && !result && nextProps.result) {
+            this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result.getIn(['language', 'languageId']));
+        } else if (!nextProps.result && authenticated && !nextProps.authenticated) {
             this.context.router.push('/login');
-        } else if (!login.get('forceLogOut') && nextProps.login.get('forceLogOut')) {
+        } else if (!forceLogOut && nextProps.forceLogOut) {
+            this.context.router.push('/login');
             logout();
         }
     }
@@ -61,16 +62,24 @@ class Gate extends Component {
     }
 
     render() {
+        let { loaded } = this.props;
+
         return (
             <div>
-                { this.props.gate.get('loaded') ? this.props.children : <Text>Please wait...</Text> }
+                { loaded ? this.props.children : <Text>Please wait...</Text> }
             </div>
         );
     }
 }
 
 export default connect(
-    ({ login, gate }) => ({login, gate}),
+    ({ login, gate }) => ({
+        cookieChecked: login.get('cookieChecked'),
+        authenticated: login.get('authenticated'),
+        result: login.get('result'),
+        forceLogOut: gate.get('forceLogOut'),
+        loaded: gate.get('loaded')
+    }),
     { cookieCheck, fetchTranslations, logout }
 )(Gate);
 
