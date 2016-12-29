@@ -239,6 +239,7 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     width: 100%;
     position: relative;
     border: 1px solid #D6D6D6;
+    height: 30px;
 }
 
 .dropdownWrap div {
@@ -363,4 +364,32 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     width: 20px;
     height: 20px;
     background: inline('images/enrollment_unchecked.png') no-repeat center center;
+}
+
+.dropdownIconWrap {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 26px;
+    width: 26px;
+}
+
+.arrowIcon {
+    background: inline('images/dropdownArrow.png') no-repeat center;
+}
+
+.multiSelectDropdownMenu {
+    width: 350px;
+}
+
+.multiSelectDropdownMenu div {
+    max-height: 100%;
+    font-size: 15px;
+    line-height: 32px;
+    padding: 0 2px;
+}
+
+.multiSelectDropdownPlaceholder {
+    font-size: 15px;
+    margin-top: 3px;
 }

@@ -20,11 +20,13 @@
 }
 
 .loginPageHeader {
-    margin-bottom: var(--ut-front-react-loginLogoMargin);
-    background: inline('logoTop.png') no-repeat center;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: inline('images/logoTop.png') no-repeat center;
 }
 
 .loginPageFooter {
-    margin-top: var(--ut-front-react-loginLogoMargin);
-    background: inline('logoBottom.png') no-repeat center;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: inline('images/logoBottom.png') no-repeat center;
 }

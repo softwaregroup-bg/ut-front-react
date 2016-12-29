@@ -16,7 +16,7 @@ export default class Form extends Component {
     }
 
     renderInputs() {
-        let { inputs, onChange, onBlur } = this.props;
+        let { inputs, onChange } = this.props;
         let inputNodes = [];
 
         inputs.toSeq().forEach((input, index) => {
@@ -27,8 +27,7 @@ export default class Form extends Component {
               label={input.get('label')}
               name={input.get('name')}
               placeholder={input.get('placeholder')}
-              onChange={onChange}
-              onBlur={onBlur} />);
+              onChange={onChange} />);
         });
 
         return inputNodes;
@@ -67,6 +66,5 @@ Form.propTypes = {
     buttons: PropTypes.array,
     invalidField: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
 };

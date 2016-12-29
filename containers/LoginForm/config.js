@@ -26,6 +26,35 @@ export const inputs = {
             minLength: 3,
             maxLength: 30
         }
+    },
+    'newPassword': {
+        name: 'newPassword',
+        type: 'password',
+        label: 'new password',
+        value: '',
+        error: '',
+        validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
+        validations: {
+            isRequired: true,
+            minLength: 2,
+            maxLength: 30,
+            shouldMatchField: 'confirmPassword'
+        }
+    },
+    'confirmPassword': {
+        name: 'confirmPassword',
+        type: 'password',
+        label: 'confirm password',
+        value: '',
+        error: '',
+        validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
+        validations: {
+            isRequired: true,
+            minLength: 2,
+            maxLength: 30,
+            shouldMatchField: 'newPassword'
+        },
+        skipSubmit: true
     }
 };
 
