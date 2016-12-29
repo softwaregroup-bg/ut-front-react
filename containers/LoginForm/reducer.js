@@ -49,8 +49,11 @@ export const login = (state = defaultLoginState, action) => {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
                                 .setIn(['loginForm', 'title'], Immutable.fromJS('Login with password'));
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
+                    // take only the username input from the current state and merge it with the new inputs for this step
+                    let newInputs = state.getIn(['loginForm', 'inputs']).take(1).merge(getInputs(['newPassword', 'confirmPassword']));
+
                     return state.setIn(['loginForm', 'title'], 'Password change required')
-                                .setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['newPassword', 'confirmPassword'])));
+                                .setIn(['loginForm', 'inputs'], newInputs);
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
