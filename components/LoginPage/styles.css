@@ -22,11 +22,11 @@
 .loginPageHeader {
     margin-top: auto;
     margin-bottom: auto;
-    background: inline('logoTop.png') no-repeat center;
+    background: inline('images/logoTop.png') no-repeat center;
 }
 
 .loginPageFooter {
     margin-top: auto;
     margin-bottom: auto;
-    background: inline('logoBottom.png') no-repeat center;
+    background: inline('images/logoBottom.png') no-repeat center;
 }
