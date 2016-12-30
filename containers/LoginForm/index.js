@@ -11,7 +11,6 @@ class LoginForm extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.handleChange = debounce(this.handleChange, 100);
-
         this.onSubmit = this.onSubmit.bind(this);
     }
 

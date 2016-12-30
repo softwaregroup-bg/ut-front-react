@@ -14,8 +14,8 @@ export default class FormInput extends Component {
     }
 
     render() {
-        let { type, label, name, value, placeholder, disabled, className } = this.props;
-        let { onBlur, onChange, onFocus } = this.props;
+        let { type, label, name, value, placeholder, disabled, className, tabIndex } = this.props;
+        let { onBlur, onChange } = this.props;
         let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '');
 
         return (
@@ -26,8 +26,8 @@ export default class FormInput extends Component {
                   type={type}
                   placeholder={placeholder}
                   onChange={onChange}
-                  onFocus={onFocus}
                   onBlur={onBlur}
+                  tabIndex={tabIndex}
                   ref={(input) => { this.inputNode = input; }} />
                   { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
             </div>
@@ -47,6 +47,7 @@ FormInput.propTypes = {
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     className: PropTypes.string,
+    tabIndex: PropTypes.number,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func
