@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import classNames from 'classnames';
 import styles from './styles.css';
 import { getClass } from '../../utils/helpers';
 
@@ -15,14 +14,14 @@ export default class FormInput extends Component {
     }
 
     render() {
-        const { type, label, name, value, placeholder, className } = this.props;
-        const { onBlur, onChange, onFocus } = this.props;
+        let { type, label, name, value, placeholder, disabled, className } = this.props;
+        let { onBlur, onChange, onFocus } = this.props;
+        let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '');
 
         return (
-            <div className={classNames(getClass(styles, className), {
-                [styles.hasValue]: value
-            })}>
+            <div className={getClass(styles, inputClassName)}>
                 <input
+                  disabled={disabled}
                   name={name}
                   type={type}
                   placeholder={placeholder}
@@ -45,6 +44,7 @@ FormInput.propTypes = {
     value: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
+    disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     className: PropTypes.string,
     onBlur: PropTypes.func,

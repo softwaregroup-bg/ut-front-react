@@ -55,14 +55,14 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { inputs, error, invalidField, title } = this.props;
+        let { inputs, error, invalidField, title, buttonLabel } = this.props;
 
         return (
             <Form
               className='loginForm'
               inputs={inputs}
               title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
-              buttons={[{label: 'Next', className: 'standardBtn loginBtn', type: 'submit'}]}
+              buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
               onSubmit={this.onSubmit}
               error={error}
@@ -78,6 +78,7 @@ export default connect(
             authenticated: login.get('authenticated'),
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
+            buttonLabel: login.getIn(['loginForm', 'buttonLabel']),
             error: login.getIn(['loginForm', 'formError']),
             shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
             invalidField: login.getIn(['loginForm', 'invalidField'])
@@ -91,6 +92,7 @@ LoginForm.propTypes = {
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
     title: PropTypes.string,
+    buttonLabel: PropTypes.string,
     error: PropTypes.string,
     shouldSubmit: PropTypes.bool,
     invalidField: PropTypes.string,
