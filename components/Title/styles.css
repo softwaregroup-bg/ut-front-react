@@ -8,8 +8,9 @@
 
 .loginTitle {
     composes: title;
-    margin-bottom: var(--ut-front-react-loginTitleMarginBottom);
-    font-size: var(--ut-ftont-react-loginTitleFontSize);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    font-size: 14px;
 }
 
 .error {

@@ -22,6 +22,7 @@ export default class Form extends Component {
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput key={index}
               className='loginInput'
+              disabled={input.get('disabled')}
               type={input.get('type')}
               value={input.get('value')}
               label={input.get('label')}

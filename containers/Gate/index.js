@@ -85,8 +85,11 @@ export default connect(
 
 Gate.propTypes = {
     children: PropTypes.object,
-    login: PropTypes.object,
-    gate: PropTypes.object,
+    cookieChecked: PropTypes.bool,
+    authenticated: PropTypes.bool,
+    result: PropTypes.object,
+    forceLogOut: PropTypes.bool,
+    loaded: PropTypes.bool,
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
     logout: PropTypes.func
