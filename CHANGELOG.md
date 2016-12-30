@@ -1,3 +1,13 @@
+<a name="6.1.15"></a>
+## [6.1.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.14...v6.1.15) (2016-12-30)
+
+
+### Bug Fixes
+
+* flexible toolbox ([ddb93f8](https://github.com/softwaregroup-bg/ut-front-react/commit/ddb93f8))
+
+
+
 <a name="6.1.14"></a>
 ## [6.1.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.13...v6.1.14) (2016-12-29)
 
