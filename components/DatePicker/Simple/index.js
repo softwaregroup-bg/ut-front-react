@@ -23,15 +23,15 @@ export default class DatePicker extends Component {
         let textFieldStyle = {
             cursor: 'pointer',
             width: '100%',
-            height: '100%'
+            height: '30px'
         };
 
         let zeroHeightStyle = isValid ? style.hh : '';
         let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
 
         return (
-            <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
-                <div className={style.datePickerWrap}>
+            <div className={style.wrap}>
+                <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
                     <div className={style.datePickerIcon} style={this.props.iconStyles} />
                     <DatePickerInput
                       className={dpStyles}
@@ -45,6 +45,7 @@ export default class DatePicker extends Component {
                       onChange={this.handleChange()}
                       firstDayOfWeek={this.props.firstDayOfWeek}
                       minDate={this.props.minDate}
+                      maxDate={this.props.maxDate}
                       disabled={this.props.disabled}
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
@@ -75,6 +76,7 @@ DatePicker.propTypes = {
     wrapperStyles: PropTypes.object,
     iconStyles: PropTypes.object,
     minDate: PropTypes.object,
+    maxDate: PropTypes.object,
     disabled: PropTypes.bool,
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string
