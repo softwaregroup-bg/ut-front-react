@@ -15,7 +15,8 @@ const defaultLoginState = Immutable.fromJS({
         formError: '',
         shouldSubmit: false,
         invalidField: '',
-        title: 'Login'
+        title: 'Login',
+        buttonLabel: 'Next'
     },
     loginData: {}
 });
@@ -47,10 +48,16 @@ export const login = (state = defaultLoginState, action) => {
                 // show password input and change title
                 if (action.error && action.error.type === 'policy.param.password') {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
-                                .setIn(['loginForm', 'title'], Immutable.fromJS('Login with password'));
+                                .setIn(['loginForm', 'inputs', 'username', 'disabled'], true)
+                                .setIn(['loginForm', 'title'], Immutable.fromJS('Login with password'))
+                                .setIn(['loginForm', 'buttonLabel'], 'Login');
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
+                    // take only the username input from the current state and merge it with the new inputs for this step
+                    let newInputs = state.getIn(['loginForm', 'inputs']).take(1).merge(getInputs(['newPassword', 'confirmPassword']));
+
                     return state.setIn(['loginForm', 'title'], 'Password change required')
-                                .setIn(['loginForm', 'inputs'], Immutable.fromJS(getInputs(['newPassword', 'confirmPassword'])));
+                                .setIn(['loginForm', 'inputs'], newInputs)
+                                .setIn(['loginForm', 'buttonLabel'], 'Change');
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
