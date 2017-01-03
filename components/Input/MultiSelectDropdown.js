@@ -87,7 +87,6 @@ class MultiSelectDropdown extends Dropdown {
                   anchorEl={this.state.anchorEl}
                   anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  style={{height: '300px'}}
                 >
                     <Menu
                       className={ddstyles.multiSelectDropdownMenu}
@@ -95,6 +94,7 @@ class MultiSelectDropdown extends Dropdown {
                       disableAutoFocus
                       multiple
                       value={this.state.values.map((value) => (value.key))}
+                      style={{maxHeight: '300px'}}
                       selectedMenuItemStyle={this.props.selectedItemStyle}>
                         {menuItems}
                     </Menu>
