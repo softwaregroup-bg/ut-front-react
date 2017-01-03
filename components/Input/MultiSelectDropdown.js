@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import Popover from 'material-ui/Popover';
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import style from './style.css';
 
@@ -71,6 +71,9 @@ class MultiSelectDropdown extends Dropdown {
         if (selectedItems.length > this.props.placeholderMaxLength) {
             selectedItems = selectedItems.slice(0, this.props.placeholderMaxLength) + '...';
         }
+
+        let menuWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
                     <div className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}>
@@ -87,14 +90,17 @@ class MultiSelectDropdown extends Dropdown {
                   anchorEl={this.state.anchorEl}
                   anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  style={{height: '300px'}}
+                  animation={PopoverAnimationVertical}
                 >
                     <Menu
-                      className={ddstyles.multiSelectDropdownMenu}
                       onItemTouchTap={this.handleChange}
+                      autoWidth={false}
                       disableAutoFocus
                       multiple
                       value={this.state.values.map((value) => (value.key))}
+                      maxHeight={300}
+                      style={{width: menuWidth}}
+                      className={ddstyles.multiSelectDropdownMenu}
                       selectedMenuItemStyle={this.props.selectedItemStyle}>
                         {menuItems}
                     </Menu>
