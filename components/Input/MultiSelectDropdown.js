@@ -71,6 +71,9 @@ class MultiSelectDropdown extends Dropdown {
         if (selectedItems.length > this.props.placeholderMaxLength) {
             selectedItems = selectedItems.slice(0, this.props.placeholderMaxLength) + '...';
         }
+
+        let menuWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
                     <div className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}>
@@ -89,12 +92,14 @@ class MultiSelectDropdown extends Dropdown {
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
                 >
                     <Menu
-                      className={ddstyles.multiSelectDropdownMenu}
                       onItemTouchTap={this.handleChange}
+                      autoWidth={false}
                       disableAutoFocus
                       multiple
                       value={this.state.values.map((value) => (value.key))}
-                      style={{maxHeight: '300px'}}
+                      maxHeight={300}
+                      style={{width: menuWidth}}
+                      className={ddstyles.multiSelectDropdownMenu}
                       selectedMenuItemStyle={this.props.selectedItemStyle}>
                         {menuItems}
                     </Menu>
