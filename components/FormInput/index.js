@@ -9,6 +9,10 @@ export default class FormInput extends Component {
         this.onLabelClick = this.onLabelClick.bind(this);
     }
 
+    componentDidMount() {
+        this.inputNode.focus();
+    }
+
     onLabelClick() {
         this.inputNode.focus();
     }
