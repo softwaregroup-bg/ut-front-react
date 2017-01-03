@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import Popover from 'material-ui/Popover';
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import style from './style.css';
 
@@ -90,6 +90,7 @@ class MultiSelectDropdown extends Dropdown {
                   anchorEl={this.state.anchorEl}
                   anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                  animation={PopoverAnimationVertical}
                 >
                     <Menu
                       onItemTouchTap={this.handleChange}
