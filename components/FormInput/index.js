@@ -10,7 +10,7 @@ export default class FormInput extends Component {
     }
 
     onLabelClick() {
-        this.inputNode.focus();
+        this.refs.inputNode.focus();
     }
 
     render() {
@@ -28,7 +28,7 @@ export default class FormInput extends Component {
                   onChange={onChange}
                   onBlur={onBlur}
                   tabIndex={tabIndex}
-                  ref={(input) => { this.inputNode = input; }} />
+                  ref='inputNode' />
                   { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
             </div>
         );

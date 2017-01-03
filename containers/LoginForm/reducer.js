@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT, RESET_FORM } from './actionTypes';
+import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
 import { getInputs, inputs as inputsConfig } from './config';
 import { Validator } from './../../utils/validator';
 
@@ -36,11 +36,8 @@ const updateLoginData = (state) => {
 
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
-
     switch (action.type) {
         case LOGOUT:
-        case RESET_FORM:
-            state = defaultLoginState;
             return state;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
@@ -67,7 +64,6 @@ export const login = (state = defaultLoginState, action) => {
                                 .setIn(['loginForm', 'formError'], '');
                 }
             }
-
             return state;
         case SET_INPUT_VALUE:
             let { input, value } = action;
@@ -86,7 +82,6 @@ export const login = (state = defaultLoginState, action) => {
                         .setIn(['loginForm', 'shouldSubmit'], validationResult.isValid)
                         .setIn(['loginForm', 'formError'], validationResult.error)
                         .setIn(['loginForm', 'invalidField'], validationResult.invalidField);
-
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {

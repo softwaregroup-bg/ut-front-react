@@ -1,3 +1,33 @@
+<a name="6.1.26"></a>
+## [6.1.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.25...v6.1.26) (2017-01-03)
+
+
+
+<a name="6.1.25"></a>
+## [6.1.25](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.24...v6.1.25) (2017-01-03)
+
+
+
+<a name="6.1.24"></a>
+## [6.1.24](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.23...v6.1.24) (2017-01-03)
+
+
+
+<a name="6.1.23"></a>
+## [6.1.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.22...v6.1.23) (2017-01-03)
+
+
+
+<a name="6.1.22"></a>
+## [6.1.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.21...v6.1.22) (2017-01-03)
+
+
+
+<a name="6.1.21"></a>
+## [6.1.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.20...v6.1.21) (2017-01-03)
+
+
+
 <a name="6.1.20"></a>
 ## [6.1.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.19...v6.1.20) (2017-01-03)
 
