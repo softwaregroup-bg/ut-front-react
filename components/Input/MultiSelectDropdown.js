@@ -100,8 +100,7 @@ class MultiSelectDropdown extends Dropdown {
                       value={this.state.values.map((value) => (value.key))}
                       maxHeight={300}
                       style={{width: menuWidth}}
-                      className={ddstyles.multiSelectDropdownMenu}
-                      selectedMenuItemStyle={this.props.selectedItemStyle}>
+                      className={ddstyles.multiSelectDropdownMenu}>
                         {menuItems}
                     </Menu>
                 </Popover>
@@ -111,16 +110,14 @@ class MultiSelectDropdown extends Dropdown {
 }
 
 MultiSelectDropdown.propTypes = {
-    placeholderMaxLength: PropTypes.number,
-    selectedItemStyle: PropTypes.object
+    placeholderMaxLength: PropTypes.number
 };
 
 MultiSelectDropdown.defaultProps = {
     isValid: true,
     errorMessage: '',
     isEdited: false,
-    placeholderMaxLength: 40,
-    selectedItemStyle: {color: '#2881ec'}
+    placeholderMaxLength: 40
 };
 
 export default MultiSelectDropdown;

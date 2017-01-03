@@ -378,6 +378,10 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     background: inline('images/dropdownArrow.png') no-repeat center;
 }
 
+.multiSelectDropdownMenu {
+    display: block !important;
+}
+
 .multiSelectDropdownMenu div {
     max-height: 100%;
     font-size: 15px;
