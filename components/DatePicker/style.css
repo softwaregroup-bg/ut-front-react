@@ -89,6 +89,8 @@
     width: 100%;
     height: 30px;
     position: relative;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .datePicker input:hover {
@@ -131,25 +133,36 @@
 }
 
 .errorWrap .errorMessage {
+    position: relative !important;
+    display: block;
     color: #ff3333;
-    margin: 5px 0;
+    padding-top: 5px;
 }
 
 .hh {
     height: 0 !important;
 }
-.dpStylesValid {
-    border: 1px solid #D6D6D6;
-    height: '30px';
-};
-
-.dpStylesNonValid {
-    border: 1px solid #ff3333;
-    height: '30px';
-};
 
 .textFieldStyle {
     cursor: pointer;
     width: 100%;
     height: 100%;
+}
+
+.dpStylesValid {
+    border: 1px solid #D6D6D6;
+    height: 30px;
+}
+
+.dpStylesNonValid {
+    border: 1px solid #ff3333;
+    height: 30px;
+}
+
+
+.wrap {
+    width: 100%;
+    display: table;
+    font-size: 14px;
+    color: #595959;
 }

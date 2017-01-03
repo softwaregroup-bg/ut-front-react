@@ -1,3 +1,121 @@
+<a name="6.1.26"></a>
+## [6.1.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.25...v6.1.26) (2017-01-03)
+
+
+
+<a name="6.1.25"></a>
+## [6.1.25](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.24...v6.1.25) (2017-01-03)
+
+
+
+<a name="6.1.24"></a>
+## [6.1.24](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.23...v6.1.24) (2017-01-03)
+
+
+
+<a name="6.1.23"></a>
+## [6.1.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.22...v6.1.23) (2017-01-03)
+
+
+
+<a name="6.1.22"></a>
+## [6.1.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.21...v6.1.22) (2017-01-03)
+
+
+
+<a name="6.1.21"></a>
+## [6.1.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.20...v6.1.21) (2017-01-03)
+
+
+
+<a name="6.1.20"></a>
+## [6.1.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.19...v6.1.20) (2017-01-03)
+
+
+### Bug Fixes
+
+* multiselect dropdown menu width ([b573657](https://github.com/softwaregroup-bg/ut-front-react/commit/b573657))
+* multiselect dropdown vertical animation ([1b77f2f](https://github.com/softwaregroup-bg/ut-front-react/commit/1b77f2f))
+* popover max height ([aadd455](https://github.com/softwaregroup-bg/ut-front-react/commit/aadd455))
+
+
+
+<a name="6.1.19"></a>
+## [6.1.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.18...v6.1.19) (2017-01-03)
+
+
+
+<a name="6.1.18"></a>
+## [6.1.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.17...v6.1.18) (2017-01-03)
+
+
+
+<a name="6.1.17"></a>
+## [6.1.17](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.16...v6.1.17) (2017-01-02)
+
+
+
+<a name="6.1.16"></a>
+## [6.1.16](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.15...v6.1.16) (2016-12-30)
+
+
+
+<a name="6.1.15"></a>
+## [6.1.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.14...v6.1.15) (2016-12-30)
+
+
+### Bug Fixes
+
+* flexible toolbox ([ddb93f8](https://github.com/softwaregroup-bg/ut-front-react/commit/ddb93f8))
+
+
+
+<a name="6.1.14"></a>
+## [6.1.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.13...v6.1.14) (2016-12-29)
+
+
+### Bug Fixes
+
+* dropdown styles ([da29196](https://github.com/softwaregroup-bg/ut-front-react/commit/da29196))
+
+
+
+<a name="6.1.13"></a>
+## [6.1.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.12...v6.1.13) (2016-12-29)
+
+
+
+<a name="6.1.12"></a>
+## [6.1.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.11...v6.1.12) (2016-12-28)
+
+
+
+<a name="6.1.11"></a>
+## [6.1.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.10...v6.1.11) (2016-12-28)
+
+
+
+<a name="6.1.10"></a>
+## [6.1.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.9...v6.1.10) (2016-12-28)
+
+
+
+<a name="6.1.9"></a>
+## [6.1.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.8...v6.1.9) (2016-12-28)
+
+
+
+<a name="6.1.8"></a>
+## [6.1.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.7...v6.1.8) (2016-12-28)
+
+
+### Bug Fixes
+
+* dropdown styles ([b637abb](https://github.com/softwaregroup-bg/ut-front-react/commit/b637abb))
+* typo ([a948fe4](https://github.com/softwaregroup-bg/ut-front-react/commit/a948fe4))
+
+
+
 <a name="6.1.7"></a>
 ## [6.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.6...v6.1.7) (2016-12-27)
 

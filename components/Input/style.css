@@ -239,16 +239,16 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     width: 100%;
     position: relative;
     border: 1px solid #D6D6D6;
+    height: 30px;
 }
 
 .dropdownWrap div {
     padding: 0 !important;
     margin: 0 !important;
-    line-height: 23px !important;
+    line-height: 30px !important;
     border: none !important;
     color: #595959 !important;
     text-align: left !important;
-    top: 1px !important;
 }
 
 .dropdownWrap .dropDownRoot {
@@ -258,13 +258,11 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding-left: 10px !important;
+    padding-right: 1px !important;
 }
 
 .dropdownIconBackground svg { /* pass over material ui styling limitations */
     background-color: var(--ut-front-react-standardDropdownIconColor);
-    position: absolute !important;
-    top: -1px !important;
-    right: 0px !important;
 }
 
 .inputWrap {
@@ -366,4 +364,28 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     width: 20px;
     height: 20px;
     background: inline('images/enrollment_unchecked.png') no-repeat center center;
+}
+
+.dropdownIconWrap {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 26px;
+    width: 26px;
+}
+
+.arrowIcon {
+    background: inline('images/dropdownArrow.png') no-repeat center;
+}
+
+.multiSelectDropdownMenu div {
+    max-height: 100%;
+    font-size: 15px;
+    line-height: 32px;
+    padding: 0 2px;
+}
+
+.multiSelectDropdownPlaceholder {
+    font-size: 15px;
+    margin-top: 3px;
 }

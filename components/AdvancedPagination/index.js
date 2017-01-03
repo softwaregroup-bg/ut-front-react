@@ -5,6 +5,7 @@ import Dropdown from '../Input/Dropdown';
 import classnames from 'classnames';
 import dropdownstyles from './dropdownstyles.css';
 import styles from './styles.css';
+
 const separateSymbol = '...';
 
 class AdvancedPagination extends Component {
