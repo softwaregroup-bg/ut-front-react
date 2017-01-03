@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck, resetForm } from './actions';
+import { setInputValue, validateForm, identityCheck } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -11,11 +11,8 @@ class LoginForm extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.handleChange = debounce(this.handleChange, 100);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
 
-    componentWillMount() {
-        this.props.resetForm();
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -83,7 +80,7 @@ export default connect(
             invalidField: login.getIn(['loginForm', 'invalidField'])
         };
     },
-    { setInputValue, validateForm, identityCheck, resetForm }
+    { setInputValue, validateForm, identityCheck }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -97,8 +94,7 @@ LoginForm.propTypes = {
     invalidField: PropTypes.string,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
-    identityCheck: PropTypes.func.isRequired,
-    resetForm: PropTypes.func
+    identityCheck: PropTypes.func.isRequired
 };
 
 LoginForm.contextTypes = {

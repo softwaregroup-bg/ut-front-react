@@ -36,13 +36,12 @@ class Gate extends Component {
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
         if (!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated) {
-            this.context.router.push('login');
+            this.context.router.push('/login');
         } else if (nextProps.authenticated && !result && nextProps.result) {
             this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result.getIn(['language', 'languageId']));
         } else if (!nextProps.result && authenticated && !nextProps.authenticated) {
             this.context.router.push('/login');
         } else if (!forceLogOut && nextProps.forceLogOut) {
-            this.context.router.push('/login');
             logout();
         }
     }
