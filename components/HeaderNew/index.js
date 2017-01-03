@@ -3,23 +3,28 @@ import { connect } from 'react-redux';
 import HeaderLogo from './HeaderLogo';
 import TabsContainer from './TabsContainer';
 import HeaderProfileInfo from './HeaderProfileInfo';
+import { logout } from '../../containers/LoginForm/actions';
 import styles from './styles.css';
 
 class HeaderNew extends Component {
     render() {
-        const { tabset } = this.props;
+        const { tabset, personInfo, logout } = this.props;
         return (
             <div className={styles.headerContainer}>
                 <HeaderLogo text='Administration Portal' />
                 <TabsContainer tabset={tabset} />
-                <HeaderProfileInfo />
+                <HeaderProfileInfo
+                  personInfo={personInfo}
+                  logout={logout} />
             </div>
         );
     }
 }
 
 HeaderNew.propTypes = {
-    tabset: PropTypes.array
+    tabset: PropTypes.array,
+    personInfo: PropTypes.object,
+    onLogOut: PropTypes.func
 };
 
 HeaderNew.contextTypes = {
@@ -28,5 +33,5 @@ HeaderNew.contextTypes = {
 
 export default connect(
     null,
-    null
+    { logout }
 )(HeaderNew);

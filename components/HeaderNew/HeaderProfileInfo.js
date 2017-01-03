@@ -18,6 +18,7 @@ export default class HeaderProfileInfo extends Component {
         this.calculateDimensions = this.calculateDimensions.bind(this);
         this.toggleMenu = debounce(this.toggleMenu, 200);
         this.requestCloseMenu = this.requestCloseMenu.bind(this);
+        this.onLogOutClick = this.onLogOutClick.bind(this);
     }
 
     calculateDimensions() {
@@ -44,19 +45,34 @@ export default class HeaderProfileInfo extends Component {
         });
     }
 
-    getMenuItems() {
-        let items = ['About', 'Help', 'Settings', 'Log out'];
+    onLogOutClick() {
+      const { logout } = this.props;
+      logout();
+    }
 
-        return items.reduce((items, currentItem) => {
+    getMenuItems() {
+        let items = [
+          {text: 'Help', disabled: true},
+          {text: 'Settings', disabled: true},
+          {separator: true},
+          {text: 'Log out', onClick: this.onLogOutClick}
+        ];
+
+        return items.reduce((items, currentItem, index) => {
             items.push(
-              <Tab
-                key={currentItem}
-                tab={{
-                    routeName: currentItem.toLowerCase(),
-                    routeParams: {},
-                    title: currentItem
-                }}
-                onClick={(e) => { e.preventDefault(); }} />
+              !currentItem.separator
+              ? <Tab
+                  key={currentItem.text}
+                  tab={{
+                      routeName: currentItem.text.toLowerCase(),
+                      routeParams: {},
+                      title: currentItem.text
+                  }}
+                  disabled={currentItem.disabled}
+                  onClick={currentItem.onClick} />
+              : <div
+                  key={index}
+                  className={styles.menuSeparator} />
               );
 
             return items;
@@ -72,13 +88,16 @@ export default class HeaderProfileInfo extends Component {
               ref={(element) => { this.infoArrowNode = element; }} >
                 <span
                   className={styles.avatarInfoArrow}
-                  onClick={this.onClick} />
+                  onClick={this.onClick}
+                  ref={(node) => { this.anchorEl = node; }} />
                 <span className={styles.avatarContainer} />
                 <MenuNew
                   open={menuToggled}
-                  dimensions={this.getDimensions()}
+                  anchorEl={this.anchorEl}
                   fields={this.getMenuItems()}
-                  requestClose={this.requestCloseMenu} />
+                  requestClose={this.requestCloseMenu}
+                  dimensions={this.getDimensions()}
+                  style={{ padding: '0', minWidth: '110px' }} />
             </span>
         );
     }

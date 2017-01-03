@@ -1,2 +1,3 @@
-export Tab from './Tab';
-export MultiTab from './MultiTab';
+import Tab from './Tab';
+import MultiTab from './MultiTab';
+export { Tab, MultiTab };

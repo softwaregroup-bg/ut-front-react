@@ -32,16 +32,20 @@ export default class MenuNew extends Component {
     }
 
     render() {
-        const { dimensions, open } = this.props;
-        var fields = this.props.fields;
+        const { open } = this.props;
 
         if (!open) {
             return null;
         }
 
+        let { style } = this.props;
+        const { dimensions, fields } = this.props;
+
+        style = Object.assign({}, style, dimensions);
+
         return (
             <div
-              style={dimensions}
+              style={style}
               className={styles.menu} >
               {fields}
             </div>
@@ -58,6 +62,7 @@ MenuNew.defaultProps = {
 MenuNew.propTypes = {
     open: PropTypes.bool.isRequired,
     requestClose: PropTypes.func.isRequired,
+    style: PropTypes.object,
     dimensions: PropTypes.object,
     fields: PropTypes.array
 };

@@ -27,9 +27,7 @@ export default class MultiTab extends Component {
             tabs.push((
               <Tab
                 key={currentTab.routeName}
-                tab={currentTab}
-                onClick={(e) => { e.preventDefault(); }}
-              />
+                tab={currentTab} />
             ));
 
             return tabs;
@@ -70,7 +68,8 @@ export default class MultiTab extends Component {
                 <Menu
                   fields={this.getMenuItems()}
                   open={this.state.menuToggled}
-                  requestClose={this.requestCloseMenu} />
+                  requestClose={this.requestCloseMenu}
+                  closeAfterSelect />
             </div>
         );
     }

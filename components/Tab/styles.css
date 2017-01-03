@@ -14,6 +14,11 @@ a.navigationTab {
   outline: 0;
 }
 
+a.navigationTab.navigationTabDisabled {
+  color: #e6e6e6;
+  cursor: not-allowed;;
+}
+
 a.navigationTabActive,
 a.navigationTabActive:hover,
 a.navigationTabActive:focus {
