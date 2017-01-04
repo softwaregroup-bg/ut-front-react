@@ -1,4 +1,5 @@
 import { capitalizeFirstLetter } from './helpers';
+import React from 'react';
 
 const computeStyle = (styleRule, element, { skip } = {}) => {
     let dimensions = ['top', 'right', 'bottom', 'left'];
@@ -64,3 +65,9 @@ export const matches = (element, selector) => {
 
     return matchesNative ? matchesNative(selector) : matchesPolyfill(element, selector);
 };
+
+export const joinArrayWithBreakTags = (array) => {
+    return array.map((element, index) => {
+        return (<span key={index}>{element}<br /></span>);
+    });
+}

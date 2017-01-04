@@ -6,10 +6,12 @@ import styles from './styles.css';
 
 export default class HeaderNew extends Component {
     render() {
-        const { tabset, personInfo, logout, currentLocation } = this.props;
+        const { tabset, personInfo, logout, currentLocation, text, replaceWithBrakes } = this.props;
         return (
             <div className={styles.headerContainer}>
-                <HeaderLogo text='Administration Portal' />
+                <HeaderLogo
+                  text={text}
+                  replaceWithBrakes={!!replaceWithBrakes} />
                 <TabsContainer tabset={tabset} />
                 <HeaderProfileInfo
                   currentLocation={currentLocation}
@@ -22,7 +24,9 @@ export default class HeaderNew extends Component {
 
 HeaderNew.propTypes = {
     tabset: PropTypes.array,
+    text: PropTypes.string,
     personInfo: PropTypes.object,
     logout: PropTypes.func,
-    currentLocation: PropTypes.string
+    currentLocation: PropTypes.string,
+    replaceWithBrakes: PropTypes.bool
 };
