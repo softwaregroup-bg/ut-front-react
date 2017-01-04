@@ -12,6 +12,7 @@ export const checkPermission = (action) => {
 };
 
 export const setPermissions = (permissions) => {
+    permissionsCache = {};
     permissionsRegExp = new RegExp(permissions.map(function(permission) {
         return ['^', permission.actionId.replace('%', '(.+?)'), '$'].join('');
     }).join('|'));
