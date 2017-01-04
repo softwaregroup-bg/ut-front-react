@@ -1,3 +1,8 @@
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.0...v7.0.1) (2017-01-04)
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.34...v7.0.0) (2017-01-04)
 
