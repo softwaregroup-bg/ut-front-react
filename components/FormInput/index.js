@@ -14,9 +14,9 @@ export default class FormInput extends Component {
     }
 
     render() {
-        let { type, label, name, value, placeholder, disabled, className, tabIndex } = this.props;
+        let { type, label, name, value, placeholder, disabled, className, error, tabIndex } = this.props;
         let { onBlur, onChange } = this.props;
-        let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '');
+        let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '');
 
         return (
             <div className={getClass(styles, inputClassName)}>
@@ -30,6 +30,7 @@ export default class FormInput extends Component {
                   tabIndex={tabIndex}
                   ref='inputNode' />
                   { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
+                  { error ? <div className={styles.errorMessage}>{error}</div> : false }
             </div>
         );
     }
@@ -47,6 +48,7 @@ FormInput.propTypes = {
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     className: PropTypes.string,
+    error: PropTypes.string,
     tabIndex: PropTypes.number,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,

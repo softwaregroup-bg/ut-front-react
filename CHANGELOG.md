@@ -1,3 +1,20 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.2...v7.1.0) (2017-01-04)
+
+
+### Bug Fixes
+
+* pull out some methods so that they can be used with require ([483b11e](https://github.com/softwaregroup-bg/ut-front-react/commit/483b11e))
+* UIS-523: Fix error handling ([02ed15a](https://github.com/softwaregroup-bg/ut-front-react/commit/02ed15a))
+* UIS-523: Fix lint ([563a010](https://github.com/softwaregroup-bg/ut-front-react/commit/563a010))
+
+
+### Features
+
+* UIS-645 ([03b2cdc](https://github.com/softwaregroup-bg/ut-front-react/commit/03b2cdc))
+
+
+
 <a name="7.0.2"></a>
 ## [7.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.1...v7.0.2) (2017-01-04)
 
