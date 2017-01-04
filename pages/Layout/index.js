@@ -71,7 +71,7 @@ class Tab extends Component {
                                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
                                   animation={PopoverAnimationVertical}
                                 >
-                                    <Menu>
+                                    <Menu onTouchTap={this.handleRequestClose}>
                                         {this.props.tabData.multi.map((tab, i) => (
                                             <MenuItem key={i} innerDivStyle={{fontSize: '14px'}} onTouchTap={this.handleRequestClose}>
                                                 <div className={style.submenuLink}>
