@@ -17,6 +17,10 @@ export default class Form extends Component {
         this.focusNextInput = this.focusNextInput.bind(this);
     }
 
+    componentDidMount() {
+        this.focusNextInput();
+    }
+
     renderInputs() {
         let { inputs, onChange } = this.props;
         let inputNodes = [];

@@ -15,7 +15,7 @@ const defaultLoginState = Immutable.fromJS({
         formError: '',
         shouldSubmit: false,
         invalidField: '',
-        title: 'System login',
+        title: 'System Login',
         buttonLabel: 'Next'
     },
     loginData: {}
@@ -47,14 +47,16 @@ export const login = (state = defaultLoginState, action) => {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
                                 .setIn(['loginForm', 'inputs', 'username', 'disabled'], true)
                                 .setIn(['loginForm', 'title'], Immutable.fromJS('Login with password'))
-                                .setIn(['loginForm', 'buttonLabel'], 'Login');
+                                .setIn(['loginForm', 'buttonLabel'], 'Login')
+                                .setIn(['loginForm', 'formError'], '');
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
                     // take only the username input from the current state and merge it with the new inputs for this step
                     let newInputs = state.getIn(['loginForm', 'inputs']).take(1).merge(getInputs(['newPassword', 'confirmPassword']));
 
                     return state.setIn(['loginForm', 'title'], 'Password change required')
                                 .setIn(['loginForm', 'inputs'], newInputs)
-                                .setIn(['loginForm', 'buttonLabel'], 'Change');
+                                .setIn(['loginForm', 'buttonLabel'], 'Change')
+                                .setIn(['loginForm', 'formError'], '');
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
@@ -73,10 +75,14 @@ export const login = (state = defaultLoginState, action) => {
             if (validationResult.isValid) {
                 let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
 
-                state = state.set('loginData', getLoginData(state))
-                             .setIn(['loginForm', 'inputs', prevInvalidField.get('name'), 'error'], '');
+                if (prevInvalidField) {
+                    state = state.setIn(['loginForm', 'inputs', prevInvalidField.get('name'), 'error'], '');
+                }
+
+                state = state.set('loginData', getLoginData(state));
             } else {
-                state = state.setIn(['loginForm', 'inputs', validationResult.invalidField, 'error'], validationResult.error);
+                state = state.setIn(['loginForm', 'inputs', validationResult.invalidField, 'error'], validationResult.error)
+                              .setIn(['loginForm', 'formError'], '');
             }
 
             return state.setIn(['loginForm', 'shouldSubmit'], validationResult.isValid);
