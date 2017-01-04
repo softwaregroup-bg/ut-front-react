@@ -1,3 +1,14 @@
+<a name="6.1.30"></a>
+## [6.1.30](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.29...v6.1.30) (2017-01-04)
+
+
+### Bug Fixes
+
+* UIS-639: Fix permissions cache ([218caa0](https://github.com/softwaregroup-bg/ut-front-react/commit/218caa0))
+* UIS-639: Remove useless actions ([88c0977](https://github.com/softwaregroup-bg/ut-front-react/commit/88c0977))
+
+
+
 <a name="6.1.29"></a>
 ## [6.1.29](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.28...v6.1.29) (2017-01-04)
 
