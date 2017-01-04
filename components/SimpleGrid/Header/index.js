@@ -65,7 +65,7 @@ export class Header extends Component {
                 <tr className={this.getStyle('gridHeaderTr')}>
                     {fields.map((field, idx) => {
                         if (!field.get('internal')) {
-                            return <Field externalStyle={this.props.externalStyle} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />;
+                            return <Field externalStyle={this.props.externalStyle} transformCellValue={this.props.transformCellValue} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />;
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'menuColumn') {
@@ -87,6 +87,7 @@ Header.propTypes = {
     menuColumn: PropTypes.bool,
     multiOrder: PropTypes.bool,
     handleOrder: PropTypes.func,
+    transformCellValue: PropTypes.func,
     isChecked: PropTypes.bool,
     handleHeaderCheckboxSelect: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,
