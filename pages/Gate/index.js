@@ -1,59 +1,10 @@
 import React, { PropTypes } from 'react';
 import {Map} from 'immutable';
 import { connect } from 'react-redux';
-import dateFormat from 'date-fns/format';
 import {cookieCheck, logout} from '../../containers/LoginForm/actions';
 import Text from '../../components/Text';
 import {fetchTranslations} from './actions';
-
-var checkPermission = function() {
-    return false;
-};
-
-var setPermissions = function(permissions) {
-    var cache = {};
-    var regExp = new RegExp(permissions.map(function(permission) {
-        return ['^', permission.actionId.replace('%', '(.+?)'), '$'].join('');
-    }).join('|'));
-    checkPermission = function(action) {
-        if (cache[action] === undefined) {
-            cache[action] = regExp.test(action);
-        }
-        return cache[action];
-    };
-};
-
-var translate = (props) => (text, language) => {
-    if (!props.gate.getIn(['texts', text])) {
-        return text;
-    }
-    return props.gate.getIn(['texts', text]);
-};
-
-var money = (amount, currency, locale) => {
-    if (!currency) currency = 'EUR';
-    if (!locale) locale = 'en-UK';
-    return new Intl.NumberFormat(locale, {
-        style: 'currency',
-        currency: currency,
-        minimumFractionDigits: 2
-    }).format(amount);
-};
-
-var df = (props) => (date, format) => {
-    if (!format) format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'dateFormat']) || 'YYYY-MM-DD';
-    return dateFormat(new Date(date), format);
-};
-
-var numberFormat = (props) => (num, format) => {
-    if (!format) format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) || '2|.|';
-    var parts = format.split('|');
-    if (parts.length !== 3) return num;
-    num = parseInt(num).toFixed(parseInt(parts[0]));
-    if (parts[1]) num = num.toString().replace('.', parts[1]);
-    num = num.toString().replace(/\B(?=(\d{3})+\b)/g, parts[2]);
-    return num;
-};
+import {translate, money, numberFormat, df, checkPermission, setPermissions} from '../../helpers.js';
 
 const Gate = React.createClass({
     propTypes: {
