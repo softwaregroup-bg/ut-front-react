@@ -19,6 +19,7 @@ export default class HeaderProfileInfo extends Component {
         this.toggleMenu = debounce(this.toggleMenu, 200);
         this.requestCloseMenu = this.requestCloseMenu.bind(this);
         this.onLogOutClick = this.onLogOutClick.bind(this);
+        this.openHelp = this.openHelp.bind(this);
     }
 
     calculateDimensions() {
@@ -45,6 +46,14 @@ export default class HeaderProfileInfo extends Component {
         });
     }
 
+    openHelp() {
+        const { currentLocation } = this.props;
+        const { getDocsUrl } = this.context;
+        const url = getDocsUrl(currentLocation);
+
+        url && window.open(url, '_blank');
+    }
+
     onLogOutClick() {
         const { logout } = this.props;
         logout();
@@ -52,7 +61,7 @@ export default class HeaderProfileInfo extends Component {
 
     getMenuItems() {
         let items = [
-          {text: 'Help', disabled: true},
+          {text: 'Help', onClick: this.openHelp},
           {text: 'Settings', disabled: true},
           {separator: true},
           {text: 'Log out', onClick: this.onLogOutClick}
@@ -109,7 +118,16 @@ export default class HeaderProfileInfo extends Component {
     }
 }
 
+HeaderProfileInfo.contextTypes = {
+    getDocsUrl: PropTypes.func
+};
+
+HeaderProfileInfo.defaultProps = {
+    currentLocation: '/'
+};
+
 HeaderProfileInfo.propTypes = {
     logout: PropTypes.func,
-    personInfo: PropTypes.object
+    personInfo: PropTypes.object,
+    currentLocation: PropTypes.string
 };

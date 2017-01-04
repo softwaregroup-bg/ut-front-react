@@ -108,9 +108,13 @@ class Layout extends Component {
         if (result) {
             return (
                 <div className={this.getStyle('implWrapper')}>
-                    <Header personInfo={result.toJS()} onLogOut={this.props.logout} style={{height: '59px'}} headerCellText={this.props.headerCellText} tabset={this.context.mainTabset}>
-                        {this.context.mainTabset.map((tab, i) => <Tab key={i} tabData={tab} currentLocation={this.props.location.pathname} />)}
-                    </Header>
+                    <Header
+                      currentLocation={this.props.location.pathname}
+                      personInfo={result.toJS()}
+                      logout={this.props.logout}
+                      style={{height: '59px'}}
+                      headerCellText={this.props.headerCellText}
+                      tabset={this.context.mainTabset} />
                     <TabMenu defaultLocation={this.context.mainUrl} />
                     {this.props.children}
                 </div>

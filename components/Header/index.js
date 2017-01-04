@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import Logo from './Logo';
 import User from './User';
 import style from './style.css';
-import docsConfig from './../../config/docs.config';
 
 const Header = React.createClass({
     propTypes: {
@@ -35,12 +34,6 @@ const Header = React.createClass({
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
     },
-    openHelp() {
-        const { currentLocation } = this.props;
-        const url = docsConfig[currentLocation];
-
-        window.open(url, '_blank');
-    },
     render() {
         return (
             <div className={this.getStyle('header')}>
@@ -56,7 +49,6 @@ const Header = React.createClass({
                     <div className={this.getStyle('headerCellProfileWrap')}>
                         <User personInfo={this.props.personInfo} onLogOut={this.props.onLogOut} />
                     </div>
-                    <div onClick={this.openHelp} className={this.getStyle('helpWrap')} />
                 </div>
             </div>
         );
