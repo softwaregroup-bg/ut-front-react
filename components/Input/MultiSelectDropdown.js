@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
@@ -67,18 +67,19 @@ class MultiSelectDropdown extends Dropdown {
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
         let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
 
-        let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
-        if (selectedItems.length > this.props.placeholderMaxLength) {
-            selectedItems = selectedItems.slice(0, this.props.placeholderMaxLength) + '...';
-        }
+        let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        // 30 px for dropdown icon
+        let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
-        let menuWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
 
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
                     <div className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
-                            {selectedItems || this.props.placeholder}
+                            <div style={{maxWidth: labelMaxWidth}}>
+                                {selectedItems || this.props.placeholder}
+                            </div>
                         </div>
                         <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
                     <div className={ddstyles.hideTextWrap} />
@@ -99,7 +100,7 @@ class MultiSelectDropdown extends Dropdown {
                       multiple
                       value={this.state.values.map((value) => (value.key))}
                       maxHeight={300}
-                      style={{width: menuWidth}}
+                      style={{width: rootElementWidth}}
                       className={ddstyles.multiSelectDropdownMenu}>
                         {menuItems}
                     </Menu>
@@ -109,15 +110,10 @@ class MultiSelectDropdown extends Dropdown {
     }
 }
 
-MultiSelectDropdown.propTypes = {
-    placeholderMaxLength: PropTypes.number
-};
-
 MultiSelectDropdown.defaultProps = {
     isValid: true,
     errorMessage: '',
-    isEdited: false,
-    placeholderMaxLength: 40
+    isEdited: false
 };
 
 export default MultiSelectDropdown;
