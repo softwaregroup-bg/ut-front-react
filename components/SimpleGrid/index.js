@@ -27,6 +27,7 @@ export class SimpleGrid extends Component {
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
                   externalStyle={this.props.externalStyle}
+                  transformCellValue={this.props.transformCellValue}
                   fields={this.props.fields}
                   toggleColumnVisibility={this.props.toggleColumnVisibility}
                   orderBy={this.props.orderBy}

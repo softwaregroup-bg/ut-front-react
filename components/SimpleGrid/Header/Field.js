@@ -26,7 +26,7 @@ export default class Field extends Component {
         }
         return (
             <th className={this.getStyle('girdHeading')} onTouchTap={this.handleOrder}>
-                <span className={classnames.apply(undefined, styles)}>{this.props.field.title || ''}</span>
+                <span className={classnames.apply(undefined, styles)}>{this.props.transformCellValue(this.props.field.title || '', this.props.field, undefined, true)}</span>
             </th>
         );
     }
@@ -36,13 +36,15 @@ Field.propTypes = {
     field: propTypeField,
     externalStyle: PropTypes.object,
     orderDirection: PropTypes.string,
-    handleOrder: PropTypes.func
+    handleOrder: PropTypes.func,
+    transformCellValue: PropTypes.func
 };
 
 Field.defaultProps = {
     field: {},
     orderBy: [],
-    handleOrder: (field) => ({})
+    handleOrder: (field) => ({}),
+    transformCellValue: (value, field, data, isHeader) => (value)
 };
 
 Field.contextTypes = {
