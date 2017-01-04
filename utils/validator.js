@@ -1,5 +1,3 @@
-import { capitalizeFirstLetter } from './helpers';
-
 const validators = {
     isRequired: (value) => {
         return !!value;
