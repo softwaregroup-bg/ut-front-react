@@ -40,7 +40,7 @@ Column.defaultProps = {
     field: {},
     data: {},
     handleClick: (record, field, value, recordIndex) => {},
-    transformValue: (value, field) => { return value; }
+    transformValue: (value, field, data, isHeader) => { return value; }
 };
 
 Column.contextTypes = {
