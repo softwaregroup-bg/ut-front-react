@@ -1,3 +1,69 @@
+<a name="7.0.2"></a>
+## [7.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.1...v7.0.2) (2017-01-04)
+
+
+
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.0...v7.0.1) (2017-01-04)
+
+
+
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.34...v7.0.0) (2017-01-04)
+
+
+### Performance Improvements
+
+* **transformCellValue:** transform header value too ([974631a](https://github.com/softwaregroup-bg/ut-front-react/commit/974631a))
+
+
+### BREAKING CHANGES
+
+* transformCellValue: transform cell value now supports transform header title, breaking change is +1 param in method called  which chould be handled correctly
+
+
+
+<a name="6.1.34"></a>
+## [6.1.34](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.33...v6.1.34) (2017-01-04)
+
+
+
+<a name="6.1.33"></a>
+## [6.1.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.32...v6.1.33) (2017-01-04)
+
+
+
+<a name="6.1.32"></a>
+## [6.1.32](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.31...v6.1.32) (2017-01-04)
+
+
+
+<a name="6.1.31"></a>
+## [6.1.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.30...v6.1.31) (2017-01-04)
+
+
+
+<a name="6.1.30"></a>
+## [6.1.30](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.29...v6.1.30) (2017-01-04)
+
+
+### Bug Fixes
+
+* UIS-639: Fix permissions cache ([218caa0](https://github.com/softwaregroup-bg/ut-front-react/commit/218caa0))
+* UIS-639: Remove useless actions ([88c0977](https://github.com/softwaregroup-bg/ut-front-react/commit/88c0977))
+
+
+
+<a name="6.1.29"></a>
+## [6.1.29](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.28...v6.1.29) (2017-01-04)
+
+
+
+<a name="6.1.28"></a>
+## [6.1.28](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.27...v6.1.28) (2017-01-04)
+
+
+
 <a name="6.1.27"></a>
 ## [6.1.27](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.26...v6.1.27) (2017-01-03)
 
