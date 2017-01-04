@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import MenuNew from './../MenuNew';
@@ -46,8 +46,8 @@ export default class HeaderProfileInfo extends Component {
     }
 
     onLogOutClick() {
-      const { logout } = this.props;
-      logout();
+        const { logout } = this.props;
+        logout();
     }
 
     getMenuItems() {
@@ -62,17 +62,17 @@ export default class HeaderProfileInfo extends Component {
             items.push(
               !currentItem.separator
               ? <Tab
-                  key={currentItem.text}
-                  tab={{
-                      routeName: currentItem.text.toLowerCase(),
-                      routeParams: {},
-                      title: currentItem.text
-                  }}
-                  disabled={currentItem.disabled}
-                  onClick={currentItem.onClick} />
+                key={currentItem.text}
+                tab={{
+                    routeName: currentItem.text.toLowerCase(),
+                    routeParams: {},
+                    title: currentItem.text
+                }}
+                disabled={currentItem.disabled}
+                onClick={currentItem.onClick} />
               : <div
-                  key={index}
-                  className={styles.menuSeparator} />
+                key={index}
+                className={styles.menuSeparator} />
               );
 
             return items;
@@ -81,24 +81,35 @@ export default class HeaderProfileInfo extends Component {
 
     render() {
         const { menuToggled } = this.state;
+        const { firstName, lastName } = this.props.personInfo.person;
+        const fullName = `${firstName} ${lastName}`;
 
         return (
             <span
               className={classNames(styles.headerComponent, styles.profileContainer)}
               ref={(element) => { this.infoArrowNode = element; }} >
-                <span
-                  className={styles.avatarInfoArrow}
-                  onClick={this.onClick}
-                  ref={(node) => { this.anchorEl = node; }} />
-                <span className={styles.avatarContainer} />
+                <div className={styles.profileInfoContainer}>
+                  <div className={styles.avatarContainer} />
+                  <div
+                    className={styles.avatarInfoArrow}
+                    onClick={this.onClick}
+                    ref={(node) => { this.anchorEl = node; }} />
+                </div>
+                <div className={styles.personalInfoName}>{fullName}</div>
                 <MenuNew
                   open={menuToggled}
                   anchorEl={this.anchorEl}
                   fields={this.getMenuItems()}
                   requestClose={this.requestCloseMenu}
                   dimensions={this.getDimensions()}
-                  style={{ padding: '0', minWidth: '110px' }} />
+                  style={{ padding: '0', minWidth: '110px' }}
+                  closeOnSelect />
             </span>
         );
     }
 }
+
+HeaderProfileInfo.propTypes = {
+    logout: PropTypes.func,
+    personInfo: PropTypes.object
+};

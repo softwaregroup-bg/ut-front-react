@@ -69,7 +69,7 @@ export default class MultiTab extends Component {
                   fields={this.getMenuItems()}
                   open={this.state.menuToggled}
                   requestClose={this.requestCloseMenu}
-                  closeAfterSelect />
+                  closeOnSelect />
             </div>
         );
     }

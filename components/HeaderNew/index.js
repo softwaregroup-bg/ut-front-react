@@ -24,6 +24,7 @@ class HeaderNew extends Component {
 HeaderNew.propTypes = {
     tabset: PropTypes.array,
     personInfo: PropTypes.object,
+    logout: PropTypes.func,
     onLogOut: PropTypes.func
 };
 

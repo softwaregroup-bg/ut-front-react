@@ -40,19 +40,36 @@
 
 .profileContainer {
   width: 10%;
-  flex-direction: row-reverse;
+  flex-direction: column;
   position: relative;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.personalInfoName {
+  margin-right: 10px;
+  font-size: 12px;
+  color: #565656;
+  font-weight: 700;
+}
+
+.profileInfoContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }
 
 .avatarContainer {
   width: 26px;
   height: 26px;
+  display: inline-block;
   background: inline('profile_picture.png') no-repeat center center;
 }
 
 .avatarInfoArrow {
   width: 14px;
   height: 14px;
+  display: inline-block;
   margin: 0 10px 0 5px;
   background: inline('arrow_black_base.png') no-repeat center center;
 }
