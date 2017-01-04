@@ -393,3 +393,10 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     font-size: 15px;
     margin-top: 3px;
 }
+
+.multiSelectDropdownPlaceholder div {
+    width: 90%;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}
