@@ -6,6 +6,7 @@ import Link from '../../components/Header/Link';
 import { getLink } from 'ut-front/react/routerHelper';
 import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 import { logout } from '../../containers/LoginForm/actions';
 import style from './style.css';
 
@@ -68,14 +69,15 @@ class Tab extends Component {
                                   anchorEl={this.state.anchorEl}
                                   anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                                  onRequestClose={this.handleRequestClose}
                                   animation={PopoverAnimationVertical}
                                 >
-                                    <Menu>
+                                    <Menu onTouchTap={this.handleRequestClose}>
                                         {this.props.tabData.multi.map((tab, i) => (
-                                            <div key={i} onTouchTap={this.handleRequestClose} className={style.submenuLink}>
-                                                <Tab tabData={tab} currentLocation={this.props.currentLocation} />
-                                            </div>
+                                            <MenuItem key={i} innerDivStyle={{fontSize: '14px'}} onTouchTap={this.handleRequestClose}>
+                                                <div className={style.submenuLink}>
+                                                    <Tab tabData={tab} currentLocation={this.props.currentLocation} />
+                                                </div>
+                                            </MenuItem>
                                         ))}
                                     </Menu>
                                 </Popover>

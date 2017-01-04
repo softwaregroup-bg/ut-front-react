@@ -15,13 +15,13 @@ const defaultLoginState = Immutable.fromJS({
         formError: '',
         shouldSubmit: false,
         invalidField: '',
-        title: 'Login',
+        title: 'System Login',
         buttonLabel: 'Next'
     },
     loginData: {}
 });
 
-const updateLoginData = (state) => {
+const getLoginData = (state) => {
     let inputs = state.getIn(['loginForm', 'inputs']);
     let currentLoginData = state.get('loginData');
 
@@ -47,14 +47,16 @@ export const login = (state = defaultLoginState, action) => {
                     return state.setIn(['loginForm', 'inputs', 'password'], Immutable.fromJS(getInputs(['password']).password))
                                 .setIn(['loginForm', 'inputs', 'username', 'disabled'], true)
                                 .setIn(['loginForm', 'title'], Immutable.fromJS('Login with password'))
-                                .setIn(['loginForm', 'buttonLabel'], 'Login');
+                                .setIn(['loginForm', 'buttonLabel'], 'Login')
+                                .setIn(['loginForm', 'formError'], '');
                 } else if (action.error && action.error.type === 'policy.param.newPassword') {
                     // take only the username input from the current state and merge it with the new inputs for this step
                     let newInputs = state.getIn(['loginForm', 'inputs']).take(1).merge(getInputs(['newPassword', 'confirmPassword']));
 
                     return state.setIn(['loginForm', 'title'], 'Password change required')
                                 .setIn(['loginForm', 'inputs'], newInputs)
-                                .setIn(['loginForm', 'buttonLabel'], 'Change');
+                                .setIn(['loginForm', 'buttonLabel'], 'Change')
+                                .setIn(['loginForm', 'formError'], '');
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
@@ -66,22 +68,25 @@ export const login = (state = defaultLoginState, action) => {
             }
             return state;
         case SET_INPUT_VALUE:
-            let { input, value } = action;
-            return state.setIn(['loginForm', 'inputs', input, 'value'], value);
+            return state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
         case VALIDATE_FORM:
-            let inputs = state.getIn(['loginForm', 'inputs']);
-            let loginData = state.get('loginData');
-
-            validationResult = validator.validateAll(inputs);
+            validationResult = validator.validateAll(state.getIn(['loginForm', 'inputs']));
 
             if (validationResult.isValid) {
-                loginData = updateLoginData(state);
+                let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
+
+                if (prevInvalidField) {
+                    state = state.setIn(['loginForm', 'inputs', prevInvalidField.get('name'), 'error'], '');
+                }
+
+                state = state.set('loginData', getLoginData(state));
+            } else {
+                state = state.setIn(['loginForm', 'inputs', validationResult.invalidField, 'error'], validationResult.error)
+                              .setIn(['loginForm', 'formError'], '');
             }
 
-            return state.set('loginData', loginData)
-                        .setIn(['loginForm', 'shouldSubmit'], validationResult.isValid)
-                        .setIn(['loginForm', 'formError'], validationResult.error)
-                        .setIn(['loginForm', 'invalidField'], validationResult.invalidField);
+            return state.setIn(['loginForm', 'shouldSubmit'], validationResult.isValid);
+
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
