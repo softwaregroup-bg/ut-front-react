@@ -9,10 +9,10 @@
 .loginTitle {
     composes: title;
     text-transform: uppercase;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     font-size: 14px;
 }
 
 .error {
-    margin-bottom: 0;
+    margin-bottom: 30px;
 }
