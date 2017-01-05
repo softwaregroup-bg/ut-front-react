@@ -1,3 +1,30 @@
+<a name="7.1.4"></a>
+## [7.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.3...v7.1.4) (2017-01-04)
+
+
+
+<a name="7.1.3"></a>
+## [7.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.2...v7.1.3) (2017-01-04)
+
+
+
+<a name="7.1.2"></a>
+## [7.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.1...v7.1.2) (2017-01-04)
+
+
+
+<a name="7.1.1"></a>
+## [7.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.0...v7.1.1) (2017-01-04)
+
+
+### Bug Fixes
+
+* improve menu close ([dafa3db](https://github.com/softwaregroup-bg/ut-front-react/commit/dafa3db))
+* menu aligning ([5b30929](https://github.com/softwaregroup-bg/ut-front-react/commit/5b30929))
+* warning when expand menu ([6b63d7b](https://github.com/softwaregroup-bg/ut-front-react/commit/6b63d7b))
+
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.2...v7.1.0) (2017-01-04)
 
