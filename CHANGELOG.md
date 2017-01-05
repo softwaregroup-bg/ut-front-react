@@ -1,3 +1,14 @@
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.0.1...v8.1.0) (2017-01-05)
+
+
+### Features
+
+* UIS-512: Add login with otp ([9869bf1](https://github.com/softwaregroup-bg/ut-front-react/commit/9869bf1))
+* UIS-512: Fix form focus when otp is present ([c22c9d0](https://github.com/softwaregroup-bg/ut-front-react/commit/c22c9d0))
+
+
+
 <a name="8.0.1"></a>
 ## [8.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.0.0...v8.0.1) (2017-01-05)
 
