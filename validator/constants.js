@@ -8,12 +8,14 @@ export const validationTypes = {
     arrayWithDropdownElements: 'arrayWithDropdownElements', // keyArray, keyText
     arrayWithArrayElements: 'arrayWithArrayElements', // keyArray, keyText
     dropdown: 'dropdown',
+    radio: 'radio',
     defaultRole: 'defaultRole', // ?? this should not be here, ut-front-react should not know about specific details in ut-user
     custom: 'custom'
 };
 
 export const textValidations = {
     isRequired: 'isRequired',
+    isRequiredOnCondition: 'isRequiredOnCondition',
     email: 'email',
     numberOnly: 'numberOnly',
     uniqueValue: 'uniqueValue',
