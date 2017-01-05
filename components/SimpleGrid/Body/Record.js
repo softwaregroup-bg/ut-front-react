@@ -40,7 +40,7 @@ export default class Record extends Component {
                     !field.get('internal')
                     ? <Column
                       key={idx}
-                      colspan={((this.props.menuColumn && totalFields === idx) ? 2 : 1)}
+                      colspan={((this.props.globalMenu && totalFields === idx) ? 2 : 1)}
                       recordIndex={this.props.recordIndex}
                       transformValue={this.props.transformCellValue}
                       data={this.props.data}
@@ -68,7 +68,7 @@ Record.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     recordIndex: PropTypes.number.isRequired,
     multiSelect: PropTypes.bool,
-    menuColumn: PropTypes.bool,
+    globalMenu: PropTypes.bool,
     transformCellValue: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
