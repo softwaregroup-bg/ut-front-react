@@ -7,8 +7,6 @@ const validator = new Validator(inputsConfig);
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
-    shouldChangePassword: false,
-    loginFailedAttepmts: 0,
     cookieChecked: false,
     loginForm: {
         inputs: getInputs(['username']),
@@ -57,11 +55,16 @@ export const login = (state = defaultLoginState, action) => {
                                 .setIn(['loginForm', 'inputs'], newInputs)
                                 .setIn(['loginForm', 'buttonLabel'], 'Change')
                                 .setIn(['loginForm', 'formError'], '');
+                } else if (action.error && action.error.type === 'policy.param.otp') {
+                    return state.setIn(['loginForm', 'inputs', 'otp'], Immutable.fromJS(getInputs(['otp']).otp))
+                                .setIn(['loginForm', 'inputs', 'username', 'disabled'], true)
+                                .setIn(['loginForm', 'title'], Immutable.fromJS('Login with OTP code'))
+                                .setIn(['loginForm', 'buttonLabel'], 'Login')
+                                .setIn(['loginForm', 'formError'], '');
                 } else if (action.error) {
                     return state.setIn(['loginForm', 'formError'], action.error.message);
                 } else if (action.result) {
                     return state.set('authenticated', true)
-                                .setIn(['loginForm', 'formError'], '')
                                 .set('cookieChecked', true)
                                 .setIn(['loginForm', 'formError'], '');
                 }

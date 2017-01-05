@@ -14,6 +14,9 @@ const validators = {
         }
 
         return true;
+    },
+    length: (value, length) => {
+        return value.length === length;
     }
 };
 
@@ -29,6 +32,9 @@ const defaultErrorMessagingMapping = {
     },
     shouldMatchField: ({ input, shouldMatchField }) => {
         return `Passwords do not match`;
+    },
+    length: ({ input, length }) => {
+        return `OTP code must be exactly ${length} characters long`;
     }
 };
 
