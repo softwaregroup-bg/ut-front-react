@@ -1,3 +1,23 @@
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.2.0...v8.0.0) (2017-01-05)
+
+
+### Bug Fixes
+
+* proper grid column handling when menuColumn is set ([714af27](https://github.com/softwaregroup-bg/ut-front-react/commit/714af27))
+
+
+### Performance Improvements
+
+* **menuColumn:** name change ([8c79d3a](https://github.com/softwaregroup-bg/ut-front-react/commit/8c79d3a))
+
+
+### BREAKING CHANGES
+
+* menuColumn: renamed menuColumn to globalMenu
+
+
+
 <a name="7.2.0"></a>
 # [7.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.4...v7.2.0) (2017-01-05)
 
