@@ -22,6 +22,7 @@ export class Body extends Component {
                       recordIndex={idx}
                       data={data}
                       multiSelect={this.props.multiSelect}
+                      menuColumn={this.props.menuColumn}
                       fields={fields}
                       externalStyle={this.props.externalStyle}
                       transformCellValue={this.props.transformCellValue}
