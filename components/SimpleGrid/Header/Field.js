@@ -15,15 +15,18 @@ export default class Field extends Component {
         this.props.handleOrder(this.props.field.name);
     }
     render() {
-        let orderByStyle = [this.getStyle('girdOrderHeadingStyle')];
+        if (this.props.field.visible === false) {
+            return false;
+        }
+        let styles = [this.getStyle('girdOrderHeadingStyle')];
         let {orderDirection} = this.props;
 
         if (orderDirection) {
-            orderByStyle.push(this.getStyle('girdOrderHeadingStyle' + orderDirection));
+            styles.push(this.getStyle('girdOrderHeadingStyle' + orderDirection));
         }
         return (
-            <th onTouchTap={this.handleOrder}>
-                <span className={classnames.apply(undefined, orderByStyle)}>{this.props.field.title || ''}</span>
+            <th className={this.getStyle('girdHeading')} onTouchTap={this.handleOrder}>
+                <span className={classnames.apply(undefined, styles)}>{this.props.transformCellValue(this.props.field.title || '', this.props.field, undefined, true)}</span>
             </th>
         );
     }
@@ -33,13 +36,15 @@ Field.propTypes = {
     field: propTypeField,
     externalStyle: PropTypes.object,
     orderDirection: PropTypes.string,
-    handleOrder: PropTypes.func
+    handleOrder: PropTypes.func,
+    transformCellValue: PropTypes.func
 };
 
 Field.defaultProps = {
     field: {},
     orderBy: [],
-    handleOrder: (field) => ({})
+    handleOrder: (field) => ({}),
+    transformCellValue: (value, field, data, isHeader) => (value)
 };
 
 Field.contextTypes = {

@@ -1,3 +1,447 @@
+<a name="7.1.4"></a>
+## [7.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.3...v7.1.4) (2017-01-04)
+
+
+
+<a name="7.1.3"></a>
+## [7.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.2...v7.1.3) (2017-01-04)
+
+
+
+<a name="7.1.2"></a>
+## [7.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.1...v7.1.2) (2017-01-04)
+
+
+
+<a name="7.1.1"></a>
+## [7.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.0...v7.1.1) (2017-01-04)
+
+
+### Bug Fixes
+
+* improve menu close ([dafa3db](https://github.com/softwaregroup-bg/ut-front-react/commit/dafa3db))
+* menu aligning ([5b30929](https://github.com/softwaregroup-bg/ut-front-react/commit/5b30929))
+* warning when expand menu ([6b63d7b](https://github.com/softwaregroup-bg/ut-front-react/commit/6b63d7b))
+
+
+
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.2...v7.1.0) (2017-01-04)
+
+
+### Bug Fixes
+
+* pull out some methods so that they can be used with require ([483b11e](https://github.com/softwaregroup-bg/ut-front-react/commit/483b11e))
+* UIS-523: Fix error handling ([02ed15a](https://github.com/softwaregroup-bg/ut-front-react/commit/02ed15a))
+* UIS-523: Fix lint ([563a010](https://github.com/softwaregroup-bg/ut-front-react/commit/563a010))
+
+
+### Features
+
+* UIS-645 ([03b2cdc](https://github.com/softwaregroup-bg/ut-front-react/commit/03b2cdc))
+
+
+
+<a name="7.0.2"></a>
+## [7.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.1...v7.0.2) (2017-01-04)
+
+
+
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.0...v7.0.1) (2017-01-04)
+
+
+
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.34...v7.0.0) (2017-01-04)
+
+
+### Performance Improvements
+
+* **transformCellValue:** transform header value too ([974631a](https://github.com/softwaregroup-bg/ut-front-react/commit/974631a))
+
+
+### BREAKING CHANGES
+
+* transformCellValue: transform cell value now supports transform header title, breaking change is +1 param in method called  which chould be handled correctly
+
+
+
+<a name="6.1.34"></a>
+## [6.1.34](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.33...v6.1.34) (2017-01-04)
+
+
+
+<a name="6.1.33"></a>
+## [6.1.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.32...v6.1.33) (2017-01-04)
+
+
+
+<a name="6.1.32"></a>
+## [6.1.32](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.31...v6.1.32) (2017-01-04)
+
+
+
+<a name="6.1.31"></a>
+## [6.1.31](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.30...v6.1.31) (2017-01-04)
+
+
+
+<a name="6.1.30"></a>
+## [6.1.30](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.29...v6.1.30) (2017-01-04)
+
+
+### Bug Fixes
+
+* UIS-639: Fix permissions cache ([218caa0](https://github.com/softwaregroup-bg/ut-front-react/commit/218caa0))
+* UIS-639: Remove useless actions ([88c0977](https://github.com/softwaregroup-bg/ut-front-react/commit/88c0977))
+
+
+
+<a name="6.1.29"></a>
+## [6.1.29](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.28...v6.1.29) (2017-01-04)
+
+
+
+<a name="6.1.28"></a>
+## [6.1.28](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.27...v6.1.28) (2017-01-04)
+
+
+
+<a name="6.1.27"></a>
+## [6.1.27](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.26...v6.1.27) (2017-01-03)
+
+
+
+<a name="6.1.26"></a>
+## [6.1.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.25...v6.1.26) (2017-01-03)
+
+
+
+<a name="6.1.25"></a>
+## [6.1.25](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.24...v6.1.25) (2017-01-03)
+
+
+
+<a name="6.1.24"></a>
+## [6.1.24](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.23...v6.1.24) (2017-01-03)
+
+
+
+<a name="6.1.23"></a>
+## [6.1.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.22...v6.1.23) (2017-01-03)
+
+
+
+<a name="6.1.22"></a>
+## [6.1.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.21...v6.1.22) (2017-01-03)
+
+
+
+<a name="6.1.21"></a>
+## [6.1.21](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.20...v6.1.21) (2017-01-03)
+
+
+
+<a name="6.1.20"></a>
+## [6.1.20](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.19...v6.1.20) (2017-01-03)
+
+
+### Bug Fixes
+
+* multiselect dropdown menu width ([b573657](https://github.com/softwaregroup-bg/ut-front-react/commit/b573657))
+* multiselect dropdown vertical animation ([1b77f2f](https://github.com/softwaregroup-bg/ut-front-react/commit/1b77f2f))
+* popover max height ([aadd455](https://github.com/softwaregroup-bg/ut-front-react/commit/aadd455))
+
+
+
+<a name="6.1.19"></a>
+## [6.1.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.18...v6.1.19) (2017-01-03)
+
+
+
+<a name="6.1.18"></a>
+## [6.1.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.17...v6.1.18) (2017-01-03)
+
+
+
+<a name="6.1.17"></a>
+## [6.1.17](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.16...v6.1.17) (2017-01-02)
+
+
+
+<a name="6.1.16"></a>
+## [6.1.16](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.15...v6.1.16) (2016-12-30)
+
+
+
+<a name="6.1.15"></a>
+## [6.1.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.14...v6.1.15) (2016-12-30)
+
+
+### Bug Fixes
+
+* flexible toolbox ([ddb93f8](https://github.com/softwaregroup-bg/ut-front-react/commit/ddb93f8))
+
+
+
+<a name="6.1.14"></a>
+## [6.1.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.13...v6.1.14) (2016-12-29)
+
+
+### Bug Fixes
+
+* dropdown styles ([da29196](https://github.com/softwaregroup-bg/ut-front-react/commit/da29196))
+
+
+
+<a name="6.1.13"></a>
+## [6.1.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.12...v6.1.13) (2016-12-29)
+
+
+
+<a name="6.1.12"></a>
+## [6.1.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.11...v6.1.12) (2016-12-28)
+
+
+
+<a name="6.1.11"></a>
+## [6.1.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.10...v6.1.11) (2016-12-28)
+
+
+
+<a name="6.1.10"></a>
+## [6.1.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.9...v6.1.10) (2016-12-28)
+
+
+
+<a name="6.1.9"></a>
+## [6.1.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.8...v6.1.9) (2016-12-28)
+
+
+
+<a name="6.1.8"></a>
+## [6.1.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.7...v6.1.8) (2016-12-28)
+
+
+### Bug Fixes
+
+* dropdown styles ([b637abb](https://github.com/softwaregroup-bg/ut-front-react/commit/b637abb))
+* typo ([a948fe4](https://github.com/softwaregroup-bg/ut-front-react/commit/a948fe4))
+
+
+
+<a name="6.1.7"></a>
+## [6.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.6...v6.1.7) (2016-12-27)
+
+
+
+<a name="6.1.6"></a>
+## [6.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.5...v6.1.6) (2016-12-27)
+
+
+
+<a name="6.1.5"></a>
+## [6.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.4...v6.1.5) (2016-12-27)
+
+
+
+<a name="6.1.4"></a>
+## [6.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.3...v6.1.4) (2016-12-27)
+
+
+
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.2...v6.1.3) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-610 dropdown styles ([cdf4ca0](https://github.com/softwaregroup-bg/ut-front-react/commit/cdf4ca0))
+
+
+
+<a name="6.1.2"></a>
+## [6.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.1...v6.1.2) (2016-12-27)
+
+
+
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.0...v6.1.1) (2016-12-27)
+
+
+### Bug Fixes
+
+* UIS-589 dropdown styles ([41c86ce](https://github.com/softwaregroup-bg/ut-front-react/commit/41c86ce))
+
+
+
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.9...v6.1.0) (2016-12-23)
+
+
+### Bug Fixes
+
+* inline styles ([03e48f8](https://github.com/softwaregroup-bg/ut-front-react/commit/03e48f8))
+
+
+### Features
+
+* add validation capabilities to DatePicker ([0fc9243](https://github.com/softwaregroup-bg/ut-front-react/commit/0fc9243))
+
+
+
+<a name="6.0.9"></a>
+## [6.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.8...v6.0.9) (2016-12-23)
+
+
+### Bug Fixes
+
+* error text ([b4649a1](https://github.com/softwaregroup-bg/ut-front-react/commit/b4649a1))
+
+
+
+<a name="6.0.8"></a>
+## [6.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.7...v6.0.8) (2016-12-23)
+
+
+
+<a name="6.0.7"></a>
+## [6.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.6...v6.0.7) (2016-12-22)
+
+
+
+<a name="6.0.6"></a>
+## [6.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.5...v6.0.6) (2016-12-22)
+
+
+
+<a name="6.0.5"></a>
+## [6.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.4...v6.0.5) (2016-12-22)
+
+
+
+<a name="6.0.4"></a>
+## [6.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.3...v6.0.4) (2016-12-22)
+
+
+
+<a name="6.0.3"></a>
+## [6.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.2...v6.0.3) (2016-12-22)
+
+
+
+<a name="6.0.2"></a>
+## [6.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.1...v6.0.2) (2016-12-22)
+
+
+### Bug Fixes
+
+* missing deps ([f49e3dc](https://github.com/softwaregroup-bg/ut-front-react/commit/f49e3dc))
+
+
+
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.0.0...v6.0.1) (2016-12-22)
+
+
+
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.5...v6.0.0) (2016-12-22)
+
+
+### Bug Fixes
+
+* theming of images should switch to variables ([c50523b](https://github.com/softwaregroup-bg/ut-front-react/commit/c50523b))
+
+
+### Features
+
+* fix dependencies ([b7a2a75](https://github.com/softwaregroup-bg/ut-front-react/commit/b7a2a75))
+
+
+### BREAKING CHANGES
+
+* postcss configuration changed
+
+
+
+<a name="5.50.5"></a>
+## [5.50.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.4...v5.50.5) (2016-12-21)
+
+
+
+<a name="5.50.4"></a>
+## [5.50.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.3...v5.50.4) (2016-12-21)
+
+
+
+<a name="5.50.3"></a>
+## [5.50.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.2...v5.50.3) (2016-12-21)
+
+
+### Bug Fixes
+
+* new lint ([85fd688](https://github.com/softwaregroup-bg/ut-front-react/commit/85fd688))
+
+
+
+<a name="5.50.2"></a>
+## [5.50.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.1...v5.50.2) (2016-12-20)
+
+
+
+<a name="5.50.1"></a>
+## [5.50.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.50.0...v5.50.1) (2016-12-20)
+
+
+
+<a name="5.50.0"></a>
+# [5.50.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.80...v5.50.0) (2016-12-20)
+
+
+### Bug Fixes
+
+* design ([2cf49bb](https://github.com/softwaregroup-bg/ut-front-react/commit/2cf49bb))
+* header color ([f032bba](https://github.com/softwaregroup-bg/ut-front-react/commit/f032bba))
+
+
+### Features
+
+* volumn hide/show ([163a96b](https://github.com/softwaregroup-bg/ut-front-react/commit/163a96b))
+
+
+
+<a name="5.49.80"></a>
+## [5.49.80](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.79...v5.49.80) (2016-12-20)
+
+
+
+<a name="5.49.79"></a>
+## [5.49.79](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.78...v5.49.79) (2016-12-20)
+
+
+
+<a name="5.49.78"></a>
+## [5.49.78](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.77...v5.49.78) (2016-12-20)
+
+
+
+<a name="5.49.77"></a>
+## [5.49.77](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.76...v5.49.77) (2016-12-20)
+
+
+
+<a name="5.49.76"></a>
+## [5.49.76](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.75...v5.49.76) (2016-12-19)
+
+
+### Bug Fixes
+
+* proptype ([01b92b4](https://github.com/softwaregroup-bg/ut-front-react/commit/01b92b4))
+
+
+
 <a name="5.49.75"></a>
 ## [5.49.75](https://github.com/softwaregroup-bg/ut-front-react/compare/v5.49.74...v5.49.75) (2016-12-19)
 

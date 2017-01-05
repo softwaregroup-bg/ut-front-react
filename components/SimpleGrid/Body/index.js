@@ -10,6 +10,10 @@ export class Body extends Component {
     render() {
         let body;
         let space = <span>&nbsp;</span>;
+        let fields = this.props.fields.filter((f) => (!(f.visible === false)));
+        let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.menuColumn ? 1 : 0);
+        // console.log(fields);
+
         if (this.props.data.length) {
             if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= this.props.data.length) {
                 body = this.props.data.map((data, idx) => (
@@ -18,7 +22,7 @@ export class Body extends Component {
                       recordIndex={idx}
                       data={data}
                       multiSelect={this.props.multiSelect}
-                      fields={this.props.fields}
+                      fields={fields}
                       externalStyle={this.props.externalStyle}
                       transformCellValue={this.props.transformCellValue}
                       handleCheckboxSelect={this.props.handleCheckboxSelect}
@@ -28,10 +32,10 @@ export class Body extends Component {
                     />
                 ));
             } else {
-                body = (<tr><td colSpan={this.props.fields.length + (this.props.multiSelect ? 1 : 0)} className={this.getStyle('noResultRow')}>{this.props.rowsRenderLimitExceedMsg || space}</td></tr>);
+                body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.rowsRenderLimitExceedMsg || space}</td></tr>);
             }
         } else {
-            body = (<tr><td colSpan={this.props.fields.length + (this.props.multiSelect ? 1 : 0)} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
+            body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
         }
         return (
             <tbody>{body}</tbody>
@@ -49,6 +53,7 @@ Body.propTypes = {
     emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,
+    menuColumn: PropTypes.bool,
     handleRowClick: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func

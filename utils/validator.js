@@ -1,5 +1,3 @@
-import { capitalizeFirstLetter } from './helpers';
-
 const validators = {
     isRequired: (value) => {
         return !!value;
@@ -9,21 +7,28 @@ const validators = {
     },
     maxLength: (value, maxLength) => {
         return value.length <= maxLength;
+    },
+    shouldMatchField: (value, shouldMatch, inputs) => {
+        if (inputs && inputs.getIn([shouldMatch, 'value']) !== '') {
+            return inputs.getIn([shouldMatch, 'value']) === value;
+        }
+
+        return true;
     }
 };
 
 const defaultErrorMessagingMapping = {
     isRequired: ({ input }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} cannot be empty.`;
+        return `Field required`;
     },
     minLength: ({ input, minLength }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} must be at least ${minLength} characters.`;
+        return `Field must be at least ${minLength} characters`;
     },
     maxLength: ({ input, maxLength }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} must be at most ${maxLength} characters.`;
+        return `Field must be at most ${maxLength} characters`;
+    },
+    shouldMatchField: ({ input, shouldMatchField }) => {
+        return `Passwords do not match`;
     }
 };
 
@@ -33,12 +38,12 @@ export class Validator {
         this.errorMapping = Object.assign({}, defaultErrorMessagingMapping, config.errorMessagingMapping);
     }
 
-    validateInput(input, value) {
+    validateInput(input, value, inputs) {
         const { validations, validateOrder } = this.config[input];
         let error = '';
 
         validateOrder.every((validationRule) => {
-            let isValid = validators[validationRule](value, validations[validationRule]);
+            let isValid = validators[validationRule](value, validations[validationRule], inputs);
             if (!isValid) {
                 error = this.errorMapping[validationRule]({...validations, input});
             }
@@ -58,7 +63,7 @@ export class Validator {
 
         let isValid = inputs.every((input, key) => {
             const value = input.get('value');
-            const validationResult = this.validateInput(key, value);
+            const validationResult = this.validateInput(key, value, inputs);
             validationError = validationResult.error;
             invalidField = !validationResult.isValid ? input.get('name') : '';
 

@@ -3,16 +3,15 @@
 
 .title {
     color: var(--ut-front-react-titleTextColor);
-    text-transform: uppercase;
     text-align: center;
 }
 
 .loginTitle {
     composes: title;
-    margin-bottom: var(--ut-front-react-loginTitleMarginBottom);
-    font-size: var(--ut-ftont-react-loginTitleFontSize);
+    margin-bottom: 30px;
+    font-size: 16px;
 }
 
 .error {
-    margin-bottom: 0;
+    margin-bottom: 30px;
 }

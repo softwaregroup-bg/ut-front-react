@@ -239,6 +239,7 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     width: 100%;
     position: relative;
     border: 1px solid #D6D6D6;
+    height: 30px;
 }
 
 .dropdownWrap div {
@@ -265,7 +266,7 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
 }
 
 .inputWrap {
-    position: relative; 
+    position: relative;
     display: block;
 }
 .inputWrap .tooltiptext {
@@ -356,11 +357,46 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .checked {
     width: 20px;
     height: 20px;
-    background: inline('enrollment_checked.png') no-repeat center center;
+    background: inline('images/enrollment_checked.png') no-repeat center center;
 }
 
 .unchecked {
     width: 20px;
     height: 20px;
-    background: inline('enrollment_unchecked.png') no-repeat center center;
+    background: inline('images/enrollment_unchecked.png') no-repeat center center;
+}
+
+.dropdownIconWrap {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 26px;
+    width: 26px;
+}
+
+.arrowIcon {
+    background: inline('images/dropdownArrow.png') no-repeat center;
+}
+
+.multiSelectDropdownMenu {
+    display: block !important;
+}
+
+.multiSelectDropdownMenu div {
+    max-height: 100%;
+    font-size: 15px;
+    line-height: 32px;
+    padding: 0 2px;
+}
+
+.multiSelectDropdownPlaceholder {
+    font-size: 15px;
+    margin-top: 3px;
+}
+
+.multiSelectDropdownPlaceholder div {
+    width: 90%;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
 }

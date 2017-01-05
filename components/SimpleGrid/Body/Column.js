@@ -12,6 +12,9 @@ export default class Column extends Component {
         };
     }
     render() {
+        if (this.props.field.visible === false) {
+            return false;
+        }
         var reMapKey = this.props.data[this.props.field.name] || '';
         var value = reMapKey;
         if (typeof (this.props.field.dataReMap) !== 'undefined') {
@@ -37,7 +40,7 @@ Column.defaultProps = {
     field: {},
     data: {},
     handleClick: (record, field, value, recordIndex) => {},
-    transformValue: (value, field) => { return value; }
+    transformValue: (value, field, data, isHeader) => { return value; }
 };
 
 Column.contextTypes = {

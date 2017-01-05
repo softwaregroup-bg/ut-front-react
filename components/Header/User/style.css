@@ -1,3 +1,5 @@
+@import 'config.css';
+
 .headerCellProfileWrapHidden {
     display: none;
 }
@@ -30,7 +32,7 @@
     position: absolute;
     top: -9px;
     right: 29px;
-    background: inline('arrow_profile_box.png');
+    background: inline('images/arrow_profile_box.png');
 }
 
 .headerCellProfileWrapInfoTopWrapInner {
@@ -49,7 +51,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-image: inline('profile_picture_big.png');
+    background-image: inline('images/profile_picture_big.png');
     cursor: pointer;
 }
 
@@ -132,7 +134,7 @@
 .avatar {
     width: 26px;
     height: 26px;
-    background: inline('profile_picture.png') no-repeat center center;
+    background: inline('images/profile_picture.png') no-repeat center center;
     background-size: 26px 26px;
 }
 
@@ -146,7 +148,7 @@
     height: 14px;
     margin-top: 7px;
     float: left;
-    background: inline('arrow_black_base.png') no-repeat;
+    background: inline('images/arrow_black_base.png') no-repeat;
     background-size: 14px 14px;
 }
 
@@ -161,7 +163,7 @@
 }
 
 .headerCellProfile .navigationExpandMoreIcon {
-    background: inline('arrow_black_base.png') no-repeat 36px 8px;
+    background: inline('images/arrow_black_base.png') no-repeat 36px 8px;
     overflow: hidden;
     padding-right: 28px;
     display: block;
