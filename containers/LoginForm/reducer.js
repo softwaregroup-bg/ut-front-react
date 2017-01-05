@@ -56,7 +56,9 @@ export const login = (state = defaultLoginState, action) => {
                                 .setIn(['loginForm', 'buttonLabel'], 'Change')
                                 .setIn(['loginForm', 'formError'], '');
                 } else if (action.error && action.error.type === 'policy.param.otp') {
-                    return state.setIn(['loginForm', 'inputs', 'otp'], Immutable.fromJS(getInputs(['otp']).otp))
+                    let newInputs = state.getIn(['loginForm', 'inputs']).take(1).merge(getInputs(['otp']));
+
+                    return state.setIn(['loginForm', 'inputs'], newInputs)
                                 .setIn(['loginForm', 'inputs', 'username', 'disabled'], true)
                                 .setIn(['loginForm', 'title'], Immutable.fromJS('Login with OTP code'))
                                 .setIn(['loginForm', 'buttonLabel'], 'Login')
