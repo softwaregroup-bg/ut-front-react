@@ -28,4 +28,8 @@ a.navigationTabActive:focus {
 
 .navigationMultiTab {
   position: relative;
-};
+}
+
+.multiTabMenu {
+  min-width: 100px;
+}

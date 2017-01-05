@@ -1,33 +1,36 @@
 .headerContainer {
   position: relative;
-  z-index: 2;
+  display: flex;
   width: 100%;
-  display: flex;
-  cursor: default;
-  background-color: white;
   border-bottom: 1px solid #CCCBCB;
+  background-color: white;
   box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
-}
-
-.headerComponent {
-  display: flex;
-  align-items: center;
-  height: 60px;
+  z-index: 2;
+  cursor: default;
 }
 
 .headerTitle {
-  font-weight: 700;
   padding-left: 10px;
   font-size: 15px;
+  font-weight: 700;
 }
 
 .headerLogoContainer {
-  width: 20%;
+  display: flex;
+  align-items: center;
+  width: 15%;
+  height: 60px;
+  min-width: 220px;
+}
+
+.headerLogoContainer a {
+  /* centers logo vertically */
+  display: flex;
 }
 
 .headerLogo {
-  flex-shrink: 0;
   display: inline-block;
+  flex-shrink: 0;
   width: 58px;
   height: 58px;
   background: inline('logo.png') no-repeat center center;
@@ -35,56 +38,76 @@
 }
 
 .tabsContainer {
-  width: 70%;
+  display: flex;
+  align-items: center;
+  width: 75%;
+  height: 60px;
 }
 
 .profileContainer {
-  width: 10%;
-  flex-direction: column;
   position: relative;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+  width: 10%;
+  height: 60px;
+  min-width: 150px;
 }
 
 .personalInfoName {
   margin-right: 10px;
-  font-size: 12px;
+  width: 80px;
   color: #565656;
+  font-size: 12px;
   font-weight: 700;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profileInfoContainer {
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 .avatarContainer {
+  display: inline-block;
   width: 26px;
   height: 26px;
-  display: inline-block;
   background: inline('profile_picture.png') no-repeat center center;
 }
 
 .avatarInfoArrow {
+  display: inline-block;
   width: 14px;
   height: 14px;
-  display: inline-block;
   margin: 0 10px 0 5px;
   background: inline('arrow_black_base.png') no-repeat center center;
 }
 
 .profileInfoMenu {
   position: absolute;
-  width: 330px;
-  height: 190px;
-  z-index: 999;
   top: 60px;
   right: 0;
+  width: 330px;
+  height: 190px;
   background: grey;
+  z-index: 999;
 }
 
 .menuSeparator {
     height: 1px;
     background-color: #565656;
+}
+
+.tabContainer {
+  display: inline-block;
+}
+
+body .profileInfoPopoverMenu {
+  padding: 0;
+  min-width: 110px;
 }

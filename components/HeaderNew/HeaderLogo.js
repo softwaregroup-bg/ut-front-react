@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import classNames from 'classnames';
 import Link from './../Link';
 import { breakOnSpaceChars } from './../../utils/helpers';
 import { joinArrayWithBreakTags } from './../../utils/dom';
@@ -7,11 +6,11 @@ import styles from './styles.css';
 
 export default class HeaderLogo extends Component {
     render() {
-        const { replaceWithBrakes } = this.props;
+        const { replaceWithBrakes, className } = this.props;
         const text = replaceWithBrakes ? joinArrayWithBreakTags(breakOnSpaceChars(this.props.text)) : this.props.text;
 
         return (
-            <span className={classNames(styles.headerLogoContainer, styles.headerComponent)}>
+            <span className={className}>
                 <Link
                   to={this.context.mainUrl}
                   useRawTo >
@@ -25,7 +24,8 @@ export default class HeaderLogo extends Component {
 
 HeaderLogo.propTypes = {
     text: PropTypes.string,
-    replaceWithBrakes: PropTypes.bool
+    replaceWithBrakes: PropTypes.bool,
+    className: PropTypes.string
 };
 
 HeaderLogo.contextTypes = {

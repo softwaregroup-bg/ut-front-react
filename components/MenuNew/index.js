@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { closest } from './../../utils/dom';
+import classNames from 'classnames';
+import { closest, getMarginBox } from '../../utils/dom';
+import { getDimensions } from '../../utils/positioning';
 import styles from './styles.css';
 
 export default class MenuNew extends Component {
@@ -7,6 +9,8 @@ export default class MenuNew extends Component {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
+        this.getDimensions = this.getDimensions.bind(this);
+        this.calculateDimensions = this.calculateDimensions.bind(this);
     }
 
     componentDidMount() {
@@ -33,6 +37,20 @@ export default class MenuNew extends Component {
         }
     }
 
+    getDimensions() {
+        const { positioningDirections, additionalOffsets } = this.props;
+
+        return getDimensions(
+            positioningDirections,
+            this.calculateDimensions(),
+            additionalOffsets
+        );
+    }
+
+    calculateDimensions() {
+        return getMarginBox(this.props.anchorEl);
+    }
+
     render() {
         const { open } = this.props;
 
@@ -40,15 +58,13 @@ export default class MenuNew extends Component {
             return null;
         }
 
-        let { style } = this.props;
-        const { dimensions, fields } = this.props;
-
-        style = Object.assign({}, style, dimensions);
+        const { fields, className } = this.props;
+        const positioningStyles = this.getDimensions();
 
         return (
             <div
-              style={style}
-              className={styles.menu} >
+              style={positioningStyles}
+              className={classNames(styles.menu, styles.standardMenu, className)} >
               {fields}
             </div>
         );
@@ -58,14 +74,20 @@ export default class MenuNew extends Component {
 MenuNew.defaultProps = {
     open: false,
     dimensions: {},
-    fields: []
+    fields: [],
+    anchorEl: null,
+    positioningDirections: 'right-bottom',
+    additionalOffsets: {top: 0, right: 0, bottom: 0, left: 0}
 };
 
 MenuNew.propTypes = {
     open: PropTypes.bool.isRequired,
+    fields: PropTypes.array.isRequired,
     requestClose: PropTypes.func.isRequired,
-    style: PropTypes.object,
+    anchorEl: PropTypes.any,
     dimensions: PropTypes.object,
-    fields: PropTypes.array,
-    closeOnSelect: PropTypes.bool
+    closeOnSelect: PropTypes.bool,
+    positioningDirections: PropTypes.string,
+    additionalOffsets: PropTypes.object,
+    className: PropTypes.string
 };

@@ -56,6 +56,7 @@ export default class MultiTab extends Component {
             <div
               className={styles.navigationMultiTab}
               onClick={this.props.onClick}
+              ref={(element) => { this.rootElement = element; }}
             >
                 <Link
                   onClick={this.onClick}
@@ -69,6 +70,9 @@ export default class MultiTab extends Component {
                   fields={this.getMenuItems()}
                   open={this.state.menuToggled}
                   requestClose={this.requestCloseMenu}
+                  anchorEl={this.rootElement}
+                  positioningDirections='bottom-left'
+                  className={styles.multiTabMenu}
                   closeOnSelect />
             </div>
         );

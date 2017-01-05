@@ -1,11 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import MenuNew from './../MenuNew';
 import { Tab } from './../Tab';
 import styles from './styles.css';
-import { getMarginBox } from '../../utils/dom';
-import { getDimensions } from '../../utils/positioning';
 
 export default class HeaderProfileInfo extends Component {
     constructor(props) {
@@ -13,23 +10,11 @@ export default class HeaderProfileInfo extends Component {
         this.state = {
             menuToggled: false
         };
-        this.getDimensions = this.getDimensions.bind(this);
         this.onClick = this.onClick.bind(this);
-        this.calculateDimensions = this.calculateDimensions.bind(this);
         this.toggleMenu = debounce(this.toggleMenu, 200);
         this.requestCloseMenu = this.requestCloseMenu.bind(this);
         this.onLogOutClick = this.onLogOutClick.bind(this);
         this.openHelp = this.openHelp.bind(this);
-    }
-
-    calculateDimensions() {
-        return getMarginBox(this.infoArrowNode);
-    }
-
-    getDimensions() {
-        return this.state.menuToggled
-            ? getDimensions('right-bottom', this.calculateDimensions(), {right: 5, bottom: 9})
-            : {};
     }
 
     onClick(e) {
@@ -89,29 +74,31 @@ export default class HeaderProfileInfo extends Component {
     }
 
     render() {
+        const { className } = this.props;
         const { menuToggled } = this.state;
         const { firstName, lastName } = this.props.personInfo.person;
         const fullName = `${firstName} ${lastName}`;
 
         return (
             <span
-              className={classNames(styles.headerComponent, styles.profileContainer)}
+              className={className}
               ref={(element) => { this.infoArrowNode = element; }} >
                 <div className={styles.profileInfoContainer}>
                   <div className={styles.avatarContainer} />
                   <div
                     className={styles.avatarInfoArrow}
                     onClick={this.onClick}
-                    ref={(node) => { this.anchorEl = node; }} />
+                    ref={(element) => { this.anchorEl = element; }} />
                 </div>
                 <div className={styles.personalInfoName}>{fullName}</div>
                 <MenuNew
                   open={menuToggled}
-                  anchorEl={this.anchorEl}
                   fields={this.getMenuItems()}
+                  anchorEl={this.infoArrowNode}
                   requestClose={this.requestCloseMenu}
-                  dimensions={this.getDimensions()}
-                  style={{ padding: '0', minWidth: '110px' }}
+                  additionalOffsets={{right: 5, bottom: 9}}
+                  positioningDirections='right-bottom'
+                  className={styles.profileInfoPopoverMenu}
                   closeOnSelect />
             </span>
         );
@@ -129,5 +116,6 @@ HeaderProfileInfo.defaultProps = {
 HeaderProfileInfo.propTypes = {
     logout: PropTypes.func,
     personInfo: PropTypes.object,
-    currentLocation: PropTypes.string
+    currentLocation: PropTypes.string,
+    className: PropTypes.string
 };

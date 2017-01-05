@@ -115,8 +115,6 @@ class Layout extends Component {
                       currentLocation={this.props.location.pathname}
                       personInfo={result.toJS()}
                       logout={this.props.logout}
-                      style={{height: '59px'}}
-                      text='Administration\nPortal'
                       replaceWithBrakes
                       tabset={this.context.mainTabset} />
                     <TabMenu defaultLocation={this.context.mainUrl} />

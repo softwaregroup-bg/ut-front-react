@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import classNames from 'classnames';
 import { Tab, MultiTab } from './../Tab';
 import styles from './styles.css';
 
@@ -20,26 +19,27 @@ export default class TabsContainer extends Component {
         return !!tab.multi;
     }
 
-    render() {
-        const { tabset } = this.props;
-        let tabs = [];
-        tabset.map((tab, i) => {
+    getTabComponents(tabset) {
+        return tabset.reduce((memo, tab, i) => {
             const isMulti = this.isMulti(tab);
-            const hasPermission = this.isPermissionCheckRequired(tab)
-              ? this.hasPermission(tab.permission)
-              : true;
+            const hasPermission = this.isPermissionCheckRequired(tab) ? this.hasPermission(tab.permission) : true;
 
-            hasPermission && tabs.push(
-              (
-                <div key={i}>
+            hasPermission && memo.push(
+                <div key={i} className={styles.tabContainer}>
                   {isMulti ? <MultiTab tab={tab} /> : <Tab tab={tab} />}
                 </div>
-              )
-          );
-        });
+            );
+
+            return memo;
+        }, []);
+    }
+
+    render() {
+        const { tabset, className } = this.props;
+        const tabs = this.getTabComponents(tabset);
 
         return (
-            <span className={classNames(styles.headerComponent, styles.tabsContainer)}>
+            <span className={className}>
               {tabs}
             </span>
         );
@@ -47,7 +47,8 @@ export default class TabsContainer extends Component {
 }
 
 TabsContainer.propTypes = {
-    tabset: PropTypes.array
+    tabset: PropTypes.array,
+    className: PropTypes.string
 };
 
 TabsContainer.contextTypes = {

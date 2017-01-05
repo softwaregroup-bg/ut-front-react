@@ -48,6 +48,9 @@ const getOffsets = (targetDimensions, additionalOffsets = {}) => {
 
 export const getDimensions = (position, targetDimensions, additionalOffsets) => {
     let offsets = getOffsets(position, additionalOffsets);
-
+    if (!positioning[position]) {
+        console.error("ERROR: Invalid position direction passed for Menu: ", position);
+        return {top: 0, right: 0};
+    }
     return positioning[position](targetDimensions, offsets);
 };
