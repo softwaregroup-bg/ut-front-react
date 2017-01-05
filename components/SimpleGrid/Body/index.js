@@ -11,7 +11,7 @@ export class Body extends Component {
         let body;
         let space = <span>&nbsp;</span>;
         let fields = this.props.fields.filter((f) => (!(f.visible === false)));
-        let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.menuColumn ? 1 : 0);
+        let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.globalMenu ? 1 : 0);
         // console.log(fields);
 
         if (this.props.data.length) {
@@ -22,7 +22,7 @@ export class Body extends Component {
                       recordIndex={idx}
                       data={data}
                       multiSelect={this.props.multiSelect}
-                      menuColumn={this.props.menuColumn}
+                      globalMenu={this.props.globalMenu}
                       fields={fields}
                       externalStyle={this.props.externalStyle}
                       transformCellValue={this.props.transformCellValue}
@@ -54,7 +54,7 @@ Body.propTypes = {
     emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,
-    menuColumn: PropTypes.bool,
+    globalMenu: PropTypes.bool,
     handleRowClick: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func

@@ -34,7 +34,7 @@ export class SimpleGrid extends Component {
                   multiSelect={this.props.multiSelect}
                   handleOrder={this.props.handleOrder}
                   isChecked={this.handleIsChecked()}
-                  menuColumn={this.props.menuColumn}
+                  globalMenu={this.props.globalMenu}
                   handleHeaderCheckboxSelect={this.handleHeaderCheckboxSelect}
                 />}
                 <Body
@@ -45,7 +45,7 @@ export class SimpleGrid extends Component {
                   rowsRenderLimit={this.props.rowsRenderLimit}
                   rowsRenderLimitExceedMsg={this.props.rowsRenderLimitExceedMsg}
                   multiSelect={this.props.multiSelect}
-                  menuColumn={this.props.menuColumn}
+                  globalMenu={this.props.globalMenu}
                   transformCellValue={this.props.transformCellValue}
                   handleCheckboxSelect={this.props.handleCheckboxSelect}
                   handleCellClick={this.props.handleCellClick}
@@ -66,7 +66,7 @@ SimpleGrid.propTypes = {
     hideHeader: PropTypes.bool,
     handleOrder: PropTypes.func,
     rowsChecked: PropTypes.array,
-    menuColumn: PropTypes.bool,
+    globalMenu: PropTypes.bool,
     transformCellValue: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,
     mainClassName: PropTypes.string,
