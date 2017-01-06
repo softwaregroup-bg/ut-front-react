@@ -55,6 +55,18 @@ export const inputs = {
             shouldMatchField: 'newPassword'
         },
         skipSubmit: true
+    },
+    'otp': {
+        name: 'otp',
+        type: 'text',
+        label: 'otp code',
+        value: '',
+        error: '',
+        validateOrder: ['isRequired', 'length'],
+        validations: {
+            isRequired: true,
+            length: 4
+        }
     }
 };
 

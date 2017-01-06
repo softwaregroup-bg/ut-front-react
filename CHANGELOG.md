@@ -1,3 +1,64 @@
+<a name="8.1.2"></a>
+## [8.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.1...v8.1.2) (2017-01-05)
+
+
+
+<a name="8.1.1"></a>
+## [8.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.0...v8.1.1) (2017-01-05)
+
+
+
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.0.1...v8.1.0) (2017-01-05)
+
+
+### Features
+
+* UIS-512: Add login with otp ([9869bf1](https://github.com/softwaregroup-bg/ut-front-react/commit/9869bf1))
+* UIS-512: Fix form focus when otp is present ([c22c9d0](https://github.com/softwaregroup-bg/ut-front-react/commit/c22c9d0))
+
+
+
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.0.0...v8.0.1) (2017-01-05)
+
+
+### Bug Fixes
+
+* UIS-552 ([2e0c457](https://github.com/softwaregroup-bg/ut-front-react/commit/2e0c457))
+
+
+
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.2.0...v8.0.0) (2017-01-05)
+
+
+### Bug Fixes
+
+* proper grid column handling when menuColumn is set ([714af27](https://github.com/softwaregroup-bg/ut-front-react/commit/714af27))
+
+
+### Performance Improvements
+
+* **menuColumn:** name change ([8c79d3a](https://github.com/softwaregroup-bg/ut-front-react/commit/8c79d3a))
+
+
+### BREAKING CHANGES
+
+* menuColumn: renamed menuColumn to globalMenu
+
+
+
+<a name="7.2.0"></a>
+# [7.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.4...v7.2.0) (2017-01-05)
+
+
+### Features
+
+* **DateFormatter:** new component ([2327bc8](https://github.com/softwaregroup-bg/ut-front-react/commit/2327bc8))
+
+
+
 <a name="7.1.4"></a>
 ## [7.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.3...v7.1.4) (2017-01-04)
 

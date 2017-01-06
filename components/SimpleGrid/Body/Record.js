@@ -32,6 +32,7 @@ export default class Record extends Component {
 
         let isChecked = this.handleIsRowChecked();
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
+        let totalFields = fields.size - 1;
 
         return (
             <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass)}>
@@ -39,6 +40,7 @@ export default class Record extends Component {
                     !field.get('internal')
                     ? <Column
                       key={idx}
+                      colspan={((this.props.globalMenu && totalFields === idx) ? 2 : 1)}
                       recordIndex={this.props.recordIndex}
                       transformValue={this.props.transformCellValue}
                       data={this.props.data}
@@ -66,6 +68,7 @@ Record.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     recordIndex: PropTypes.number.isRequired,
     multiSelect: PropTypes.bool,
+    globalMenu: PropTypes.bool,
     transformCellValue: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
