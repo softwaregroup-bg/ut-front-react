@@ -74,7 +74,7 @@ export default connect(
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
             buttonLabel: login.getIn(['loginForm', 'buttonLabel']),
-            error: login.getIn(['loginForm', 'formError']),
+            error: login.get('formError'),
             shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
             invalidField: login.getIn(['loginForm', 'invalidField'])
         };

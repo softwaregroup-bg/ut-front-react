@@ -2,7 +2,6 @@ export const inputs = {
     'username': {
         name: 'username',
         type: 'text',
-        // placeholder: 'Username',
         label: 'username',
         value: '',
         error: '',
@@ -16,7 +15,6 @@ export const inputs = {
     'password': {
         name: 'password',
         type: 'password',
-        // placeholder: 'Password',
         label: 'password',
         value: '',
         error: '',
@@ -75,4 +73,31 @@ export const getInputs = (inputNames) => {
         memo[current] = inputs[current];
         return memo;
     }, {});
+};
+
+
+export const loginSteps = {
+    'initial': {
+        inputs: getInputs(['username']),
+        buttonLabel: 'Next',
+        title: 'System Login'
+    },
+    'password': {
+        inputs: getInputs(['username', 'password']),
+        disabledFields: ['username'],
+        buttonLabel: 'Login',
+        title: 'Login with password'
+    },
+    'newPassword': {
+        inputs: getInputs(['username', 'newPassword', 'confirmPassword']),
+        disabledFields: ['username'],
+        buttonLabel: 'Change',
+        title: 'Password change required'
+    },
+    'otp': {
+        inputs: getInputs(['username', 'otp']),
+        disabledFields: ['username'],
+        buttonLabel: 'Login',
+        title: 'Password change required'
+    }
 };
