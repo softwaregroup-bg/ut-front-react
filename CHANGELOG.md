@@ -1,3 +1,13 @@
+<a name="8.1.3"></a>
+## [8.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.2...v8.1.3) (2017-01-06)
+
+
+### Bug Fixes
+
+* UIS-678 fix isRequiredOnConditionRule ([d06f58e](https://github.com/softwaregroup-bg/ut-front-react/commit/d06f58e))
+
+
+
 <a name="8.1.2"></a>
 ## [8.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.1...v8.1.2) (2017-01-05)
 
