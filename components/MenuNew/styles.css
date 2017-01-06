@@ -5,3 +5,8 @@
     outline: 0;
     box-shadow: 0px 1px 10px #CCCBCB;
 }
+
+.menuSeparator {
+    height: 1px;
+    background-color: #ccd3e0;
+}

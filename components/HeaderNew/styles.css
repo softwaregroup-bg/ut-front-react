@@ -98,11 +98,6 @@
   z-index: 999;
 }
 
-.menuSeparator {
-    height: 1px;
-    background-color: #565656;
-}
-
 .tabContainer {
   display: inline-block;
 }

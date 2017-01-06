@@ -48,14 +48,12 @@ export default class HeaderProfileInfo extends Component {
         let items = [
           {text: 'Help', onClick: this.openHelp},
           {text: 'Settings', disabled: true},
-          {separator: true},
           {text: 'Log out', onClick: this.onLogOutClick}
         ];
 
         return items.reduce((items, currentItem, index) => {
             items.push(
-              !currentItem.separator
-              ? <Tab
+              <Tab
                 key={currentItem.text}
                 tab={{
                     routeName: currentItem.text.toLowerCase(),
@@ -64,9 +62,6 @@ export default class HeaderProfileInfo extends Component {
                 }}
                 disabled={currentItem.disabled}
                 onClick={currentItem.onClick} />
-              : <div
-                key={index}
-                className={styles.menuSeparator} />
               );
 
             return items;
@@ -99,6 +94,7 @@ export default class HeaderProfileInfo extends Component {
                   additionalOffsets={{right: 5, bottom: 9}}
                   positioningDirections='right-bottom'
                   className={styles.profileInfoPopoverMenu}
+                  separatorsOnIndex={[2]}
                   closeOnSelect />
             </span>
         );
