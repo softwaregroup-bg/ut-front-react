@@ -380,12 +380,16 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownMenu {
     display: block !important;
+    padding: 16px 0 !important;
 }
 
 .multiSelectDropdownMenu div {
     max-height: 100%;
     font-size: 15px;
     line-height: 32px;
+}
+.multiSelectDropdownMenu div span {
+    min-height: auto !important;
     padding: 0 2px;
 }
 
