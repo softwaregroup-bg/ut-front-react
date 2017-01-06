@@ -10,7 +10,7 @@
 }
 .simpleToolbox .label, .simpleToolbox .link {
     margin: auto auto auto 0;
-    min-width: 10%;
+    min-width: 5%;
     flex-basis: auto;
 }
 .simpleToolbox .link {
@@ -22,6 +22,6 @@
 }
 .simpleToolbox .content {
     margin: auto 0 auto auto;
-    width: 85%;
+    width: 94%;
     flex-basis: auto;
 }
