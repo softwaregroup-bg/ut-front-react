@@ -96,7 +96,6 @@ Form.propTypes = {
     message: PropTypes.string,
     inputs: PropTypes.object,
     buttons: PropTypes.array,
-    invalidField: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
 };

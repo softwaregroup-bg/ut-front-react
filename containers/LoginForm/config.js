@@ -98,6 +98,6 @@ export const loginSteps = {
         inputs: getInputs(['username', 'otp']),
         disabledFields: ['username'],
         buttonLabel: 'Login',
-        title: 'Password change required'
+        title: 'Login with OTP'
     }
 };

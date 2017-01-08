@@ -25,13 +25,15 @@ const updateLoginStep = (state, step) => {
 
     return state.setIn(['loginForm', 'buttonLabel'], loginStep.buttonLabel)
                 .setIn(['loginForm', 'title'], loginStep.title)
-                .set('formError', '');
+                .set('formError', '')
+                .set('loginType', step);
 }
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
     loginForm: loginSteps['initial'],
+    loginType: '',
     formError: '',
     shouldSubmit: false,
     loginData: {}

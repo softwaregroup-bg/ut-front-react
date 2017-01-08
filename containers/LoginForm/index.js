@@ -11,6 +11,7 @@ class LoginForm extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.handleChange = debounce(this.handleChange, 100);
+        
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -50,7 +51,9 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { inputs, error, invalidField, title, buttonLabel } = this.props;
+        let { inputs, error, title, buttonLabel, loginType } = this.props;
+
+        console.log(loginType)
 
         return (
             <Form
@@ -60,8 +63,7 @@ class LoginForm extends Component {
               buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
               onSubmit={this.onSubmit}
-              error={error}
-              invalidField={invalidField} />
+              error={error} />
         );
     }
 }
@@ -76,7 +78,7 @@ export default connect(
             buttonLabel: login.getIn(['loginForm', 'buttonLabel']),
             error: login.get('formError'),
             shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
-            invalidField: login.getIn(['loginForm', 'invalidField'])
+            loginType: login.get('loginType')
         };
     },
     { setInputValue, validateForm, identityCheck }
