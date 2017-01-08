@@ -2,7 +2,7 @@ export const inputs = {
     'username': {
         name: 'username',
         type: 'text',
-        label: 'username',
+        label: 'Username',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
@@ -15,7 +15,7 @@ export const inputs = {
     'password': {
         name: 'password',
         type: 'password',
-        label: 'password',
+        label: 'Password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
@@ -28,7 +28,7 @@ export const inputs = {
     'newPassword': {
         name: 'newPassword',
         type: 'password',
-        label: 'new password',
+        label: 'New password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
@@ -42,7 +42,7 @@ export const inputs = {
     'confirmPassword': {
         name: 'confirmPassword',
         type: 'password',
-        label: 'confirm password',
+        label: 'Confirm password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
@@ -57,7 +57,7 @@ export const inputs = {
     'otp': {
         name: 'otp',
         type: 'text',
-        label: 'otp code',
+        label: 'Otp code',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'length'],

@@ -18,8 +18,6 @@ export default class FormInput extends Component {
         let { onBlur, onChange } = this.props;
         let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '');
 
-        console.log(getClass(styles, inputClassName));
-        
         return (
             <div className={getClass(styles, inputClassName)}>
                 <input
