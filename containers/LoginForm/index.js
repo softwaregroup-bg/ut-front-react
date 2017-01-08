@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck } from './actions';
+import { setInputValue, validateForm, identityCheck, bioScan } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -10,20 +10,22 @@ class LoginForm extends Component {
 
         this.onChange = this.onChange.bind(this);
 
-        this.handleChange = debounce(this.handleChange, 100);
-        
-        this.onSubmit = this.onSubmit.bind(this);
+        this.handleChange = debounce(this.handleChange, 50);
+
+        this.validateForm = this.validateForm.bind(this);
+
+        this.submit = this.submit.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        let { authenticated, shouldSubmit, identityCheck } = this.props;
+        let { authenticated, shouldSubmit } = this.props;
 
         if (!authenticated && nextProps.authenticated) {
             this.context.router.push(this.context.mainUrl);
         }
 
         if (!shouldSubmit && nextProps.shouldSubmit) {
-            identityCheck(nextProps.loginData);
+            this.submit(nextProps.loginType, nextProps.loginData);
         }
     }
 
@@ -42,7 +44,7 @@ class LoginForm extends Component {
         });
     }
 
-    onSubmit(e) {
+    validateForm(e) {
         let { validateForm } = this.props;
 
         e.preventDefault();
@@ -50,19 +52,24 @@ class LoginForm extends Component {
         validateForm();
     }
 
-    render() {
-        let { inputs, error, title, buttonLabel, loginType } = this.props;
+    submit(loginType, loginData) {
+        let { bioScan, identityCheck } = this.props;
 
-        console.log(loginType)
+        loginType === 'bio' ? bioScan() : identityCheck(loginData);
+    }
+
+    render() {
+        let { inputs, error, title, buttonLabel } = this.props;
 
         return (
             <Form
+              ref='loginForm'
               className='loginForm'
               inputs={inputs}
               title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
               buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
-              onSubmit={this.onSubmit}
+              onSubmit={this.validateForm}
               error={error} />
         );
     }
@@ -81,7 +88,7 @@ export default connect(
             loginType: login.get('loginType')
         };
     },
-    { setInputValue, validateForm, identityCheck }
+    { setInputValue, validateForm, identityCheck, bioScan }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -95,7 +102,8 @@ LoginForm.propTypes = {
     invalidField: PropTypes.string,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
-    identityCheck: PropTypes.func.isRequired
+    identityCheck: PropTypes.func.isRequired,
+    bioScan: PropTypes.func
 };
 
 LoginForm.contextTypes = {

@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import { LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
-import { getInputs, inputs as inputsConfig, loginSteps } from './config';
+import { LOGIN, BIO_LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
+import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
 
 const validator = new Validator(inputsConfig);
@@ -27,7 +27,7 @@ const updateLoginStep = (state, step) => {
                 .setIn(['loginForm', 'title'], loginStep.title)
                 .set('formError', '')
                 .set('loginType', step);
-}
+};
 
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -66,13 +66,14 @@ export const login = (state = defaultLoginState, action) => {
                     let type = err[err.length - 1];
 
                     return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message);
-
                 } else if (action.result) {
                     return state.set('authenticated', true)
                                 .set('cookieChecked', true)
                                 .set('formError', '');
                 }
             }
+            return state;
+        case BIO_LOGIN:
             return state;
         case SET_INPUT_VALUE:
             return state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);

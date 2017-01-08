@@ -75,7 +75,6 @@ export const getInputs = (inputNames) => {
     }, {});
 };
 
-
 export const loginSteps = {
     'initial': {
         inputs: getInputs(['username']),
