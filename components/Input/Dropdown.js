@@ -151,7 +151,7 @@ Dropdown.propTypes = {
         name: PropTypes.any.isRequired
     })).isRequired,
     defaultSelected: PropTypes.any,
-    label: PropTypes.string,
+    label: PropTypes.node,
     boldLabel: PropTypes.bool,
     placeholder: PropTypes.any,
     keyProp: PropTypes.string,

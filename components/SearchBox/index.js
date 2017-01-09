@@ -65,7 +65,7 @@ class SearchBox extends Component {
 SearchBox.propTypes = {
     placeholder: PropTypes.string,
     externalStyle: PropTypes.object,
-    label: PropTypes.string,
+    label: PropTypes.node,
     defaultValue: PropTypes.string,
     boldLabel: PropTypes.bool,
     isValid: PropTypes.bool,
