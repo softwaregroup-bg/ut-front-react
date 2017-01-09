@@ -345,8 +345,12 @@ input:read-only{
     cursor: pointer;
 }
 
-.lableWrap{
+.lableWrap {
     padding: 5px 0 0 0;
+}
+
+.boldLabel {
+    font-weight: bold;
 }
 
 /* Magic: do NOT touch! */
