@@ -25,6 +25,17 @@ export const inputs = {
             maxLength: 30
         }
     },
+    'hiddenPassword': {
+        name: 'password',
+        type: 'password',
+        label: 'Password',
+        value: '',
+        error: '',
+        validateOrder: [],
+        validations: {},
+        shouldSubmit: false,
+        hidden: true
+    },
     'newPassword': {
         name: 'newPassword',
         type: 'password',
@@ -82,7 +93,7 @@ export const loginSteps = {
         title: 'System Login'
     },
     'password': {
-        inputs: getInputs(['username', 'password']),
+        inputs: getInputs(['username', 'hiddenPassword', 'password']),
         disabledFields: ['username'],
         buttonLabel: 'Login',
         title: 'Login with password'

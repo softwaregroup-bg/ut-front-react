@@ -73,6 +73,10 @@ input:-webkit-autofill {
     border: 1px solid #E84949;
 }
 
+.loginInput.hidden {
+    display: none;
+}
+
 .errorMessage {
     height: 20px;
     line-height: 20px;

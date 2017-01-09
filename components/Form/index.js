@@ -29,6 +29,7 @@ export default class Form extends Component {
             inputNodes.push(<FormInput key={index}
               ref={input.get('name')}
               className='loginInput'
+              hidden={input.get('hidden')}
               disabled={input.get('disabled')}
               type={input.get('type')}
               value={input.get('value')}
@@ -54,7 +55,7 @@ export default class Form extends Component {
 
         // find the first input which doesn't have value
         let nextInput = inputs.find(input => {
-            return !input.get('value');
+            return !input.get('value') && !input.get('hidden');
         });
 
         if (nextInput) {
