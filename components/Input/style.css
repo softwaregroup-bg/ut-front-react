@@ -55,21 +55,20 @@
 
 .outerWrap {
     width: 100%;
-    display: table;
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
     color: #595959;
 }
 
 .outerWrap .labelWrap {
     width: 25%;
-    display: table-cell;
     font-weight: bold;
     vertical-align: middle;
 }
 
 .outerWrap .inputWrap {
     width: 70%;
-    display: table-cell;
     vertical-align: middle;
 }
 
