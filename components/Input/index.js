@@ -80,7 +80,7 @@ class TextField extends Component {
         if (label) {
             return (
                 <div className={style.outerWrap}>
-                    <div className={style.lableWrap}>
+                    <div className={classnames(style.lableWrap, {[style.boldLabel]: this.props.boldLabel})}>
                         {label} {this.props.validators.length > 0 && '*'}
                     </div>
                     <div className={style.inputWrap}>
@@ -111,6 +111,7 @@ TextField.propTypes = {
     dependancyDisabledInputTooltipText: PropTypes.string,
     onChange: PropTypes.func,
     readonly: PropTypes.bool,
+    boldLabel: PropTypes.bool,
     onClick: PropTypes.func,
     onBlur: PropTypes.func,
 
@@ -136,6 +137,7 @@ TextField.defaultProps = {
     keyProp: '___no_key___',
     validators: [],
     readonly: false,
+    boldLabel: false,
     isValid: true,
     errorMessage: '',
     isEdited: false,
