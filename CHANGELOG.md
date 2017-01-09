@@ -1,3 +1,13 @@
+<a name="8.1.13"></a>
+## [8.1.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.12...v8.1.13) (2017-01-09)
+
+
+### Bug Fixes
+
+* validation on input labels to allow Text component ([8e8c539](https://github.com/softwaregroup-bg/ut-front-react/commit/8e8c539))
+
+
+
 <a name="8.1.12"></a>
 ## [8.1.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.11...v8.1.12) (2017-01-09)
 
