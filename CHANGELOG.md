@@ -1,3 +1,53 @@
+<a name="8.1.11"></a>
+## [8.1.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.10...v8.1.11) (2017-01-08)
+
+
+
+<a name="8.1.10"></a>
+## [8.1.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.9...v8.1.10) (2017-01-08)
+
+
+
+<a name="8.1.9"></a>
+## [8.1.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.8...v8.1.9) (2017-01-08)
+
+
+
+<a name="8.1.8"></a>
+## [8.1.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.7...v8.1.8) (2017-01-08)
+
+
+
+<a name="8.1.7"></a>
+## [8.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.6...v8.1.7) (2017-01-08)
+
+
+
+<a name="8.1.6"></a>
+## [8.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.5...v8.1.6) (2017-01-08)
+
+
+
+<a name="8.1.5"></a>
+## [8.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.4...v8.1.5) (2017-01-08)
+
+
+
+<a name="8.1.4"></a>
+## [8.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.3...v8.1.4) (2017-01-08)
+
+
+
+<a name="8.1.3"></a>
+## [8.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.2...v8.1.3) (2017-01-06)
+
+
+### Bug Fixes
+
+* UIS-678 fix isRequiredOnConditionRule ([d06f58e](https://github.com/softwaregroup-bg/ut-front-react/commit/d06f58e))
+
+
+
 <a name="8.1.2"></a>
 ## [8.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.1...v8.1.2) (2017-01-05)
 
