@@ -2,8 +2,7 @@ export const inputs = {
     'username': {
         name: 'username',
         type: 'text',
-        // placeholder: 'Username',
-        label: 'username',
+        label: 'Username',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
@@ -16,8 +15,7 @@ export const inputs = {
     'password': {
         name: 'password',
         type: 'password',
-        // placeholder: 'Password',
-        label: 'password',
+        label: 'Password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
@@ -27,10 +25,21 @@ export const inputs = {
             maxLength: 30
         }
     },
+    'hiddenPassword': {
+        name: 'password',
+        type: 'password',
+        label: 'Password',
+        value: '',
+        error: '',
+        validateOrder: [],
+        validations: {},
+        shouldSubmit: false,
+        hidden: true
+    },
     'newPassword': {
         name: 'newPassword',
         type: 'password',
-        label: 'new password',
+        label: 'New password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
@@ -44,7 +53,7 @@ export const inputs = {
     'confirmPassword': {
         name: 'confirmPassword',
         type: 'password',
-        label: 'confirm password',
+        label: 'Confirm password',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
@@ -59,7 +68,7 @@ export const inputs = {
     'otp': {
         name: 'otp',
         type: 'text',
-        label: 'otp code',
+        label: 'Otp code',
         value: '',
         error: '',
         validateOrder: ['isRequired', 'length'],
@@ -75,4 +84,30 @@ export const getInputs = (inputNames) => {
         memo[current] = inputs[current];
         return memo;
     }, {});
+};
+
+export const loginSteps = {
+    'initial': {
+        inputs: getInputs(['username']),
+        buttonLabel: 'Next',
+        title: 'System Login'
+    },
+    'password': {
+        inputs: getInputs(['username', 'hiddenPassword', 'password']),
+        disabledFields: ['username'],
+        buttonLabel: 'Login',
+        title: 'Login with password'
+    },
+    'newPassword': {
+        inputs: getInputs(['username', 'newPassword', 'confirmPassword']),
+        disabledFields: ['username'],
+        buttonLabel: 'Change',
+        title: 'Password change required'
+    },
+    'otp': {
+        inputs: getInputs(['username', 'otp']),
+        disabledFields: ['username'],
+        buttonLabel: 'Login',
+        title: 'Login with OTP'
+    }
 };

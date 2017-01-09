@@ -122,7 +122,7 @@ class Dropdown extends Component {
             return (
                 <div>
                     <div className={ddstyles.outerWrap}>
-                        <div className={ddstyles.lableWrap}>
+                        <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
                             {this.props.label}
                         </div>
                         <div className={classnames(ddstyles.inputWrap)}>
@@ -152,6 +152,7 @@ Dropdown.propTypes = {
     })).isRequired,
     defaultSelected: PropTypes.any,
     label: PropTypes.string,
+    boldLabel: PropTypes.bool,
     placeholder: PropTypes.any,
     keyProp: PropTypes.string,
     canSelectPlaceholder: PropTypes.bool,
@@ -172,6 +173,7 @@ Dropdown.propTypes = {
 
 Dropdown.defaultProps = {
     label: undefined,
+    boldLabel: false,
     placeholder: 'Select',
     canSelectPlaceholder: false,
     disabled: false,

@@ -6,7 +6,6 @@ input:-webkit-autofill {
 }
 
 .formInput {
-    /* default input styles*/
     box-sizing: border-box;
 }
 
@@ -14,7 +13,6 @@ input:-webkit-autofill {
     composes: formInput;
     position: relative;
     margin-bottom: 15px;
-    height: var(--ut-front-react-loginInputHeight);
 }
 
 .loginInput input {
@@ -40,10 +38,9 @@ input:-webkit-autofill {
     left: 10px;
     padding: 0 5px;
     margin: 0 !important;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--ut-front-react-loginInputLabelColor);
-    text-transform: uppercase;
     opacity: 0.5;
     transition: top .3s ease;
     transform: translateY(-50%);
@@ -51,7 +48,7 @@ input:-webkit-autofill {
 
 .loginInput.hasValue label,
 .loginInput input:focus~label,
-.loginInput.hasError label{
+.loginInput.hasError label {
     top: 0;
     left: 10px;
     padding: 0 5px;
@@ -68,13 +65,21 @@ input:-webkit-autofill {
     color: var(--ut-front-react-loginInputBorderColor);
 }
 
+.loginInput.hasError {
+    margin-bottom: 0;
+}
+
 .loginInput.hasError input {
     border: 1px solid #E84949;
 }
 
+.loginInput.hidden {
+    display: none;
+}
+
 .errorMessage {
-    height: 25px;
-    line-height: 25px;
-    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 11px;
     color: #E84949;
 }
