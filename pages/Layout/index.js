@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import Header from '../../components/Header';
 import Header from '../../components/HeaderNew';
 import TabMenu from '../../containers/TabMenu';
 import Link from '../../components/Header/Link';
@@ -11,6 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { logout } from '../../containers/LoginForm/actions';
 import style from './style.css';
 
+/* TODO: Delete Tab class and all related to it logic when old Header component is not maintained anymore. */
 class Tab extends Component {
     constructor(props) {
         super(props);

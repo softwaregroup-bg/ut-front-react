@@ -26,11 +26,10 @@ export default class MenuNew extends Component {
         const { open } = this.props;
         if (open) {
             const { target } = e;
-            const { menu, avatarInfoArrow } = styles;
+            const { menu } = styles;
             const { closeOnSelect } = this.props;
 
-            let isClickInside = Boolean(closest(target, `.${menu}`)) ||
-                Boolean(closest(target, `.${avatarInfoArrow}`));
+            let isClickInside = Boolean(closest(target, `.${menu}`));
 
             if (!isClickInside || (isClickInside && closeOnSelect)) {
                 this.props.requestClose && this.props.requestClose();

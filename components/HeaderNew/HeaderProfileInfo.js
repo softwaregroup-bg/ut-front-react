@@ -79,7 +79,9 @@ export default class HeaderProfileInfo extends Component {
               className={className}
               ref={(element) => { this.infoArrowNode = element; }} >
                 <div className={styles.profileInfoContainer}>
-                  <div className={styles.avatarContainer} />
+                  <div
+                    className={styles.avatarContainer}
+                    onClick={this.onClick} />
                   <div
                     className={styles.avatarInfoArrow}
                     onClick={this.onClick}
