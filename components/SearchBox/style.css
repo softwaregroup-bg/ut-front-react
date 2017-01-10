@@ -36,6 +36,10 @@
     color: #595959;
 }
 
+.searchBoxWrap .label.boldLabel {
+    font-weight: bold;
+}
+
 .searchBoxWrap button {
     width: 26px;
     height: 26px;

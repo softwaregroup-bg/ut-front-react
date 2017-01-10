@@ -47,7 +47,10 @@ export const isUniqueValueRule = (val, values, rule, result) => {
 };
 
 export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result, condition) => {
-    if (!shouldValidateProp && shouldValidateProp !== condition) {
+    if (typeof condition === 'boolean') {
+        shouldValidateProp = !!shouldValidateProp;
+    }
+    if (!shouldValidateProp || shouldValidateProp !== condition) {
         return;
     }
 
