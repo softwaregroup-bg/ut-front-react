@@ -1,3 +1,13 @@
+<a name="8.1.23"></a>
+## [8.1.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.22...v8.1.23) (2017-01-10)
+
+
+### Bug Fixes
+
+* translations ([e4fbcf1](https://github.com/softwaregroup-bg/ut-front-react/commit/e4fbcf1))
+
+
+
 <a name="8.1.22"></a>
 ## [8.1.22](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.21...v8.1.22) (2017-01-10)
 
