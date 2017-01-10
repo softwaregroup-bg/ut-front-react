@@ -1,3 +1,8 @@
+<a name="8.1.19"></a>
+## [8.1.19](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.18...v8.1.19) (2017-01-10)
+
+
+
 <a name="8.1.18"></a>
 ## [8.1.18](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.17...v8.1.18) (2017-01-10)
 
