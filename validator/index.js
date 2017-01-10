@@ -46,10 +46,14 @@ export const isUniqueValueRule = (val, values, rule, result) => {
     }
 };
 
-export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result) => {
-    if (!shouldValidateProp) {
+export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result, condition) => {
+    if (typeof condition === 'boolean') {
+        shouldValidateProp = !!shouldValidateProp;
+    }
+    if (!shouldValidateProp || shouldValidateProp !== condition) {
         return;
     }
+
     checkPasedResultObject(result);
 
     let trimmed = prop ? prop.trim() : '';

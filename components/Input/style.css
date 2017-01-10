@@ -55,21 +55,20 @@
 
 .outerWrap {
     width: 100%;
-    display: table;
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
     color: #595959;
 }
 
 .outerWrap .labelWrap {
     width: 25%;
-    display: table-cell;
     font-weight: bold;
     vertical-align: middle;
 }
 
 .outerWrap .inputWrap {
     width: 70%;
-    display: table-cell;
     vertical-align: middle;
 }
 
@@ -345,8 +344,12 @@ input:read-only{
     cursor: pointer;
 }
 
-.lableWrap{
+.lableWrap {
     padding: 5px 0 0 0;
+}
+
+.boldLabel {
+    font-weight: bold;
 }
 
 /* Magic: do NOT touch! */
@@ -380,16 +383,27 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownMenu {
     display: block !important;
+    padding: 16px 0 !important;
 }
 
 .multiSelectDropdownMenu div {
     max-height: 100%;
     font-size: 15px;
     line-height: 32px;
+}
+.multiSelectDropdownMenu div span {
+    min-height: auto !important;
     padding: 0 2px;
 }
 
 .multiSelectDropdownPlaceholder {
     font-size: 15px;
     margin-top: 3px;
+}
+
+.multiSelectDropdownPlaceholder div {
+    width: 90%;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
 }

@@ -3,7 +3,7 @@ import {fromJS, Map} from 'immutable';
 import {propTypeFields} from '../common';
 import Field from './Field';
 import MultiSelectField from './SpecialFields/MultiSelect';
-import MenuColumn from './SpecialFields/MenuColumn';
+import GlobalMenu from './SpecialFields/GlobalMenu';
 import style from './styles.css';
 
 export class Header extends Component {
@@ -44,8 +44,8 @@ export class Header extends Component {
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
-        if (this.props.menuColumn) {
-            fields = fields.push(Map({internal: 'menuColumn'}));
+        if (this.props.globalMenu) {
+            fields = fields.push(Map({internal: 'globalMenu'}));
         }
         return fields;
     }
@@ -65,11 +65,11 @@ export class Header extends Component {
                 <tr className={this.getStyle('gridHeaderTr')}>
                     {fields.map((field, idx) => {
                         if (!field.get('internal')) {
-                            return <Field externalStyle={this.props.externalStyle} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />;
+                            return <Field externalStyle={this.props.externalStyle} transformCellValue={this.props.transformCellValue} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />;
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
-                        } else if (field.get('internal') === 'menuColumn') {
-                            return <MenuColumn field={field.toJS()} key={idx} fields={this.getRawFields()} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                        } else if (field.get('internal') === 'globalMenu') {
+                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields()} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         }
                     })}
                 </tr>
@@ -84,9 +84,10 @@ Header.propTypes = {
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
     // if true will allow order by multiple columns
-    menuColumn: PropTypes.bool,
+    globalMenu: PropTypes.bool,
     multiOrder: PropTypes.bool,
     handleOrder: PropTypes.func,
+    transformCellValue: PropTypes.func,
     isChecked: PropTypes.bool,
     handleHeaderCheckboxSelect: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,

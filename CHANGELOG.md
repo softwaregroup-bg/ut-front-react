@@ -1,3 +1,213 @@
+<a name="8.1.15"></a>
+## [8.1.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.14...v8.1.15) (2017-01-09)
+
+
+
+<a name="8.1.14"></a>
+## [8.1.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.13...v8.1.14) (2017-01-09)
+
+
+
+<a name="8.1.13"></a>
+## [8.1.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.12...v8.1.13) (2017-01-09)
+
+
+### Bug Fixes
+
+* validation on input labels to allow Text component ([8e8c539](https://github.com/softwaregroup-bg/ut-front-react/commit/8e8c539))
+
+
+
+<a name="8.1.12"></a>
+## [8.1.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.11...v8.1.12) (2017-01-09)
+
+
+
+<a name="8.1.11"></a>
+## [8.1.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.10...v8.1.11) (2017-01-08)
+
+
+
+<a name="8.1.10"></a>
+## [8.1.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.9...v8.1.10) (2017-01-08)
+
+
+
+<a name="8.1.9"></a>
+## [8.1.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.8...v8.1.9) (2017-01-08)
+
+
+
+<a name="8.1.8"></a>
+## [8.1.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.7...v8.1.8) (2017-01-08)
+
+
+
+<a name="8.1.7"></a>
+## [8.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.6...v8.1.7) (2017-01-08)
+
+
+
+<a name="8.1.6"></a>
+## [8.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.5...v8.1.6) (2017-01-08)
+
+
+
+<a name="8.1.5"></a>
+## [8.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.4...v8.1.5) (2017-01-08)
+
+
+
+<a name="8.1.4"></a>
+## [8.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.3...v8.1.4) (2017-01-08)
+
+
+
+<a name="8.1.3"></a>
+## [8.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.2...v8.1.3) (2017-01-06)
+
+
+### Bug Fixes
+
+* UIS-678 fix isRequiredOnConditionRule ([d06f58e](https://github.com/softwaregroup-bg/ut-front-react/commit/d06f58e))
+
+
+
+<a name="8.1.2"></a>
+## [8.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.1...v8.1.2) (2017-01-05)
+
+
+
+<a name="8.1.1"></a>
+## [8.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.0...v8.1.1) (2017-01-05)
+
+
+
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.0.1...v8.1.0) (2017-01-05)
+
+
+### Features
+
+* UIS-512: Add login with otp ([9869bf1](https://github.com/softwaregroup-bg/ut-front-react/commit/9869bf1))
+* UIS-512: Fix form focus when otp is present ([c22c9d0](https://github.com/softwaregroup-bg/ut-front-react/commit/c22c9d0))
+
+
+
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.0.0...v8.0.1) (2017-01-05)
+
+
+### Bug Fixes
+
+* UIS-552 ([2e0c457](https://github.com/softwaregroup-bg/ut-front-react/commit/2e0c457))
+
+
+
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.2.0...v8.0.0) (2017-01-05)
+
+
+### Bug Fixes
+
+* proper grid column handling when menuColumn is set ([714af27](https://github.com/softwaregroup-bg/ut-front-react/commit/714af27))
+
+
+### Performance Improvements
+
+* **menuColumn:** name change ([8c79d3a](https://github.com/softwaregroup-bg/ut-front-react/commit/8c79d3a))
+
+
+### BREAKING CHANGES
+
+* menuColumn: renamed menuColumn to globalMenu
+
+
+
+<a name="7.2.0"></a>
+# [7.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.4...v7.2.0) (2017-01-05)
+
+
+### Features
+
+* **DateFormatter:** new component ([2327bc8](https://github.com/softwaregroup-bg/ut-front-react/commit/2327bc8))
+
+
+
+<a name="7.1.4"></a>
+## [7.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.3...v7.1.4) (2017-01-04)
+
+
+
+<a name="7.1.3"></a>
+## [7.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.2...v7.1.3) (2017-01-04)
+
+
+
+<a name="7.1.2"></a>
+## [7.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.1...v7.1.2) (2017-01-04)
+
+
+
+<a name="7.1.1"></a>
+## [7.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.1.0...v7.1.1) (2017-01-04)
+
+
+### Bug Fixes
+
+* improve menu close ([dafa3db](https://github.com/softwaregroup-bg/ut-front-react/commit/dafa3db))
+* menu aligning ([5b30929](https://github.com/softwaregroup-bg/ut-front-react/commit/5b30929))
+* warning when expand menu ([6b63d7b](https://github.com/softwaregroup-bg/ut-front-react/commit/6b63d7b))
+
+
+
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.2...v7.1.0) (2017-01-04)
+
+
+### Bug Fixes
+
+* pull out some methods so that they can be used with require ([483b11e](https://github.com/softwaregroup-bg/ut-front-react/commit/483b11e))
+* UIS-523: Fix error handling ([02ed15a](https://github.com/softwaregroup-bg/ut-front-react/commit/02ed15a))
+* UIS-523: Fix lint ([563a010](https://github.com/softwaregroup-bg/ut-front-react/commit/563a010))
+
+
+### Features
+
+* UIS-645 ([03b2cdc](https://github.com/softwaregroup-bg/ut-front-react/commit/03b2cdc))
+
+
+
+<a name="7.0.2"></a>
+## [7.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.1...v7.0.2) (2017-01-04)
+
+
+
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v7.0.0...v7.0.1) (2017-01-04)
+
+
+
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.34...v7.0.0) (2017-01-04)
+
+
+### Performance Improvements
+
+* **transformCellValue:** transform header value too ([974631a](https://github.com/softwaregroup-bg/ut-front-react/commit/974631a))
+
+
+### BREAKING CHANGES
+
+* transformCellValue: transform cell value now supports transform header title, breaking change is +1 param in method called  which chould be handled correctly
+
+
+
+<a name="6.1.34"></a>
+## [6.1.34](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.33...v6.1.34) (2017-01-04)
+
+
+
 <a name="6.1.33"></a>
 ## [6.1.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v6.1.32...v6.1.33) (2017-01-04)
 

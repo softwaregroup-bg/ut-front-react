@@ -6,19 +6,17 @@ input:-webkit-autofill {
 }
 
 .formInput {
-    /* default input styles*/
     box-sizing: border-box;
 }
 
 .loginInput {
     composes: formInput;
     position: relative;
-    margin-bottom: var(--ut-front-react-loginInputMarginBottom);
-    height: var(--ut-front-react-loginInputHeight);
+    margin-bottom: 15px;
 }
 
 .loginInput input {
-    padding: var(--ut-front-react-loginInputPadding);
+    padding: 14px;
     width: 100%;
     height: 100%;
     border: 1px solid var(--ut-front-react-loginInputBorderColor);
@@ -40,17 +38,17 @@ input:-webkit-autofill {
     left: 10px;
     padding: 0 5px;
     margin: 0 !important;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--ut-front-react-loginInputLabelColor);
-    text-transform: uppercase;
     opacity: 0.5;
     transition: top .3s ease;
     transform: translateY(-50%);
 }
 
 .loginInput.hasValue label,
-.loginInput input:focus~label {
+.loginInput input:focus~label,
+.loginInput.hasError label {
     top: 0;
     left: 10px;
     padding: 0 5px;
@@ -65,4 +63,23 @@ input:-webkit-autofill {
 
 .loginInput.disabled .label {
     color: var(--ut-front-react-loginInputBorderColor);
+}
+
+.loginInput.hasError {
+    margin-bottom: 0;
+}
+
+.loginInput.hasError input {
+    border: 1px solid #E84949;
+}
+
+.loginInput.hidden {
+    display: none;
+}
+
+.errorMessage {
+    height: 20px;
+    line-height: 20px;
+    font-size: 11px;
+    color: #E84949;
 }

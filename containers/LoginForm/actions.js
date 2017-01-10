@@ -1,4 +1,4 @@
-import { LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
+import { LOGIN, BIO_LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -19,6 +19,12 @@ export const identityCheck = (params) => ({
     method: 'identity.check',
     suppressErrorWindow: true,
     params: Object.assign(params, {uri: '/login', timezone: getTimezone()})
+});
+
+export const bioScan = () => ({
+    type: BIO_LOGIN,
+    method: 'bio.scan',
+    suppressErrorWindow: true
 });
 
 export const cookieCheck = () => ({

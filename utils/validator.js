@@ -1,5 +1,3 @@
-import { capitalizeFirstLetter } from './helpers';
-
 const validators = {
     isRequired: (value) => {
         return !!value;
@@ -16,25 +14,27 @@ const validators = {
         }
 
         return true;
+    },
+    length: (value, length) => {
+        return value.length === length;
     }
 };
 
 const defaultErrorMessagingMapping = {
     isRequired: ({ input }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} cannot be empty.`;
+        return `Field required`;
     },
     minLength: ({ input, minLength }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} must be at least ${minLength} characters.`;
+        return `Field must be at least ${minLength} characters`;
     },
     maxLength: ({ input, maxLength }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} must be at most ${maxLength} characters.`;
+        return `Field must be at most ${maxLength} characters`;
     },
     shouldMatchField: ({ input, shouldMatchField }) => {
-        input = capitalizeFirstLetter(input);
-        return `${input} field must match ${shouldMatchField} field.`;
+        return `Passwords do not match`;
+    },
+    length: ({ input, length }) => {
+        return `OTP code must be exactly ${length} characters long`;
     }
 };
 

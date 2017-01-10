@@ -8,8 +8,7 @@
     border-radius: var(--ut-front-react-standardBtnBorderRadius);
     font-family: OpenSans;
     font-size: var(--ut-front-react-standardBtnFontSize);
-    font-weight: 600;
-    text-transform: var(--ut-front-react-standardBtnTransform);
+    font-weight: 500;
 }
 
 .standardBtn {
@@ -29,9 +28,10 @@
 }
 
 .loginBtn {
+    font-size: 14px;
     width: 100%;
-    margin-top: var(--ut-front-react-loginBtnMarginTop);
 }
+
 .defaultBtn {
     width: auto;
     font-size: 14px;

@@ -5,9 +5,9 @@ import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Checkbox from '../../../Input/Checkbox';
-import style from './MenuColumn.css';
+import style from './GlobalMenu.css';
 
-export default class MenuColumn extends Component {
+export default class GlobalMenu extends Component {
     constructor(props) {
         super(props);
         this.handleMenuOpen = this.handleMenuOpen.bind(this);
@@ -37,7 +37,7 @@ export default class MenuColumn extends Component {
             this.props.toggleColumnVisibility(field);
         };
     }
-    getMenuColumnItems() {
+    getItems() {
         return this.props
             .fields
             .filter((f) => (!f.internal))
@@ -66,7 +66,7 @@ export default class MenuColumn extends Component {
                     <MenuItem
                       primaryText='Columns'
                       rightIcon={<ArrowDropRight />}
-                      menuItems={this.getMenuColumnItems()}
+                      menuItems={this.getItems()}
                     />
                 </Menu>
             </Popover>
@@ -80,7 +80,7 @@ export default class MenuColumn extends Component {
     }
 }
 
-MenuColumn.propTypes = {
+GlobalMenu.propTypes = {
     fields: PropTypes.array,
     handleCheckboxSelect: PropTypes.func,
     externalStyle: PropTypes.object,
@@ -88,12 +88,12 @@ MenuColumn.propTypes = {
     toggleColumnVisibility: PropTypes.func
 };
 
-MenuColumn.defaultProps = {
+GlobalMenu.defaultProps = {
     externalStyle: {},
     handleCheckboxSelect: (currentValue) => {},
     toggleColumnVisibility: (field) => ({})
 };
 
-MenuColumn.contextTypes = {
+GlobalMenu.contextTypes = {
     implementationStyle: PropTypes.object
 };

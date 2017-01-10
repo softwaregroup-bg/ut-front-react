@@ -14,9 +14,11 @@ export default class Form extends Component {
 
         this.renderButtons = this.renderButtons.bind(this);
 
-        this.onKeyDown = this.onKeyDown.bind(this);
-
         this.focusNextInput = this.focusNextInput.bind(this);
+    }
+
+    componentDidMount() {
+        this.focusNextInput();
     }
 
     renderInputs() {
@@ -27,6 +29,7 @@ export default class Form extends Component {
             inputNodes.push(<FormInput key={index}
               ref={input.get('name')}
               className='loginInput'
+              hidden={input.get('hidden')}
               disabled={input.get('disabled')}
               type={input.get('type')}
               value={input.get('value')}
@@ -34,7 +37,8 @@ export default class Form extends Component {
               tabIndex={input.get('tabIndex')}
               name={input.get('name')}
               placeholder={input.get('placeholder')}
-              onChange={onChange} />);
+              onChange={onChange}
+              error={input.get('error')} />);
         });
 
         return inputNodes;
@@ -46,28 +50,24 @@ export default class Form extends Component {
         return buttons.map((button, index) => <Button key={index} {...button} />);
     }
 
-    onKeyDown(e) {
-        // if enter is clicked
-        if (e.keyCode === 13) {
-            this.focusNextInput();
-        }
-    }
-
     focusNextInput() {
         let { inputs } = this.props;
 
         // find the first input which doesn't have value
         let nextInput = inputs.find(input => {
-            return !input.get('value');
+            return !input.get('value') && !input.get('hidden');
         });
 
         if (nextInput) {
             this.refs[nextInput.get('name')].refs.inputNode.focus();
         }
+
+        return nextInput;
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.inputs.size < this.props.inputs.size) {
+        // if the previous and the newly added input differ, focus the new one
+        if (prevProps.inputs.last().get('name') !== this.props.inputs.last().get('name')) {
             this.focusNextInput();
         }
     }
@@ -79,7 +79,7 @@ export default class Form extends Component {
             <div className={getClass(styles, className)}>
                 { title ? <Title className={title.className} text={title.text} /> : false }
                 { error ? <FormErrorMessage useNew message={error} /> : false }
-                <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off' onKeyDown={this.onKeyDown}>
+                <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
                         { this.renderInputs() }
                         { this.renderButtons() }
@@ -97,7 +97,6 @@ Form.propTypes = {
     message: PropTypes.string,
     inputs: PropTypes.object,
     buttons: PropTypes.array,
-    invalidField: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
 };

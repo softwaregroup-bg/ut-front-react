@@ -20,8 +20,9 @@ export default class Column extends Component {
         if (typeof (this.props.field.dataReMap) !== 'undefined') {
             value = this.props.field.dataReMap[reMapKey];
         }
+
         return (
-            <td onTouchTap={this.handleClick(value)} style={this.props.field.style}>
+            <td onTouchTap={this.handleClick(value)} style={this.props.field.style} colSpan={this.props.colspan}>
                 {this.props.transformValue(value, this.props.field, this.props.data)}
             </td>
         );
@@ -32,6 +33,7 @@ Column.propTypes = {
     field: propTypeField,
     data: PropTypes.object,
     recordIndex: PropTypes.number,
+    colspan: PropTypes.number,
     transformValue: PropTypes.func,
     handleClick: PropTypes.func
 };
@@ -40,7 +42,7 @@ Column.defaultProps = {
     field: {},
     data: {},
     handleClick: (record, field, value, recordIndex) => {},
-    transformValue: (value, field) => { return value; }
+    transformValue: (value, field, data, isHeader) => { return value; }
 };
 
 Column.contextTypes = {
