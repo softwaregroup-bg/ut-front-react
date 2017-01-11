@@ -18,7 +18,8 @@ class Layout extends Component {
                       personInfo={result.toJS()}
                       logout={this.props.logout}
                       replaceWithBrakes
-                      tabset={this.context.mainTabset} />
+                      tabset={this.context.mainTabset}
+                      headerText={this.props.headerText} />
                     <TabMenu defaultLocation={this.context.mainUrl} />
                     {this.props.children}
                 </div>
@@ -33,6 +34,7 @@ Layout.propTypes = {
     children: PropTypes.any,
     login: PropTypes.object,
     location: PropTypes.object,
+    headerText: PropTypes.string,
     headerCellText: PropTypes.object,
     logout: PropTypes.func
 };

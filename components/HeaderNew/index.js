@@ -7,13 +7,13 @@ import styles from './styles.css';
 
 export default class HeaderNew extends Component {
     render() {
-        const { tabset, personInfo, logout, currentLocation, text, replaceWithBrakes } = this.props;
+        const { tabset, personInfo, logout, currentLocation, headerText, replaceWithBrakes } = this.props;
         const { classLogoContainer, classTabsContainer, classProfileInfoContainer } = this.props.classes;
 
         return (
             <div className={styles.headerContainer}>
                 <HeaderLogo
-                  text={text}
+                  text={headerText}
                   replaceWithBrakes={!!replaceWithBrakes}
                   className={classNames(styles.headerLogoContainer, classLogoContainer)} />
                 <TabsContainer
@@ -30,7 +30,7 @@ export default class HeaderNew extends Component {
 }
 
 HeaderNew.defaultProps = {
-    text: 'Administration\\nPortal',
+    headerText: '',
     currentLocation: '/',
     replaceWithBrakes: false,
     classes: {
@@ -42,7 +42,7 @@ HeaderNew.defaultProps = {
 
 HeaderNew.propTypes = {
     tabset: PropTypes.array,
-    text: PropTypes.string,
+    headerText: PropTypes.string,
     personInfo: PropTypes.object,
     logout: PropTypes.func,
     currentLocation: PropTypes.string,

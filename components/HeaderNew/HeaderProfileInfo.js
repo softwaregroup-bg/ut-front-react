@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash.debounce';
-import MenuNew from './../MenuNew';
-import { Tab } from './../Tab';
+import MenuNew from '../MenuNew';
+import { Tab } from '../Tab';
 import styles from './styles.css';
+import tabStyles from '../Tab/styles.css';
 
 export default class HeaderProfileInfo extends Component {
     constructor(props) {
@@ -60,6 +61,7 @@ export default class HeaderProfileInfo extends Component {
                     routeParams: {},
                     title: currentItem.text
                 }}
+                className={tabStyles.menuItemTab}
                 disabled={currentItem.disabled}
                 onClick={currentItem.onClick} />
               );

@@ -27,7 +27,8 @@ export default class MultiTab extends Component {
             tabs.push((
               <Tab
                 key={currentTab.routeName}
-                tab={currentTab} />
+                tab={currentTab}
+                className={styles.menuItemTab} />
             ));
 
             return tabs;
