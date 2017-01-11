@@ -20,6 +20,7 @@ export default class Tab extends Component {
         const { disabled } = this.props;
         if (disabled) {
             e.preventDefault();
+            e.stopPropagation();
 
             return false;
         }
