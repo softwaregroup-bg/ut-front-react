@@ -22,7 +22,6 @@ export default class FormInput extends Component {
             <div className={getClass(styles, inputClassName)}>
                 <input
                   disabled={disabled}
-                  value={value}
                   name={name}
                   type={type}
                   placeholder={placeholder}
