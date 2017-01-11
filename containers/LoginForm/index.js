@@ -14,6 +14,8 @@ class LoginForm extends Component {
 
         this.validateForm = this.validateForm.bind(this);
 
+        this.syncInputsValuesWithStore = this.syncInputsValuesWithStore.bind(this);
+
         this.submit = this.submit.bind(this);
     }
 
@@ -44,11 +46,26 @@ class LoginForm extends Component {
         });
     }
 
+    syncInputsValuesWithStore(form) {
+        const { setInputValue, inputs } = this.props;
+        let allInputs = form.querySelectorAll('input');
+
+        allInputs.forEach((input) => {
+            let { name, value } = input;
+
+            if (inputs.get(name) && inputs.get(name).get('value') !== value) {
+                // If change and submit events happen in the 100ms debounce range
+                // store won't be up to date with the current input values so sync is needed before validate the form
+                setInputValue({ input: name, value });
+            }
+        });
+    }
+
     validateForm(e) {
         let { validateForm } = this.props;
 
         e.preventDefault();
-
+        this.syncInputsValuesWithStore(e.target);
         validateForm();
     }
 
