@@ -53,6 +53,10 @@ class BusinessUnits extends Component {
         window.removeEventListener('resize', this.handleResize);
     }
 
+    getStyle(name) {
+        return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
+    }
+
     handleResize() {
         let outerWrapHeight = this.refs.outerWrap.clientHeight;
         let topMargin = innerWrapTopMargin; // 31 is the top margin
@@ -92,7 +96,7 @@ class BusinessUnits extends Component {
                 // });
                 this.props.clearSelectedBusinessUnit();
             };
-            clearButton = <button className={classnames('button', 'btn', 'btn-primary', style.clearButton)} onClick={clearSelection}>Unselect all</button>;
+            clearButton = <button className={classnames('button', 'btn', 'btn-primary', this.getStyle('clearButton'))} onClick={clearSelection}>Unselect all</button>;
         }
 
         return (
@@ -143,6 +147,10 @@ BusinessUnits.defaultProps = {
     styles: {
         main: {}
     }
+};
+
+BusinessUnits.contextTypes = {
+    implementationStyle: PropTypes.object
 };
 
 export default BusinessUnits;
