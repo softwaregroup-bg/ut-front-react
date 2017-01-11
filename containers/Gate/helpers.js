@@ -21,11 +21,11 @@ export const setPermissions = (permissions) => {
 export const translate = (props) => (text, language) => {
     let texts = props.gate.get('texts');
 
-    if (!texts || !texts[text]) {
+    if (!texts || !texts.get(text)) {
         return text;
     }
 
-    return texts[text];
+    return texts.get(text);
 };
 
 export const money = (amount, currency = 'EUR', locale = 'en-UK') => {

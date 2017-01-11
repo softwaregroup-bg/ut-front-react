@@ -76,6 +76,7 @@ export default connect(
         cookieChecked: login.get('cookieChecked'),
         authenticated: login.get('authenticated'),
         result: login.get('result'),
+        gate: gate,
         forceLogOut: gate.get('forceLogOut'),
         loaded: gate.get('loaded')
     }),
