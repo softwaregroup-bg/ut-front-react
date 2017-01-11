@@ -70,4 +70,4 @@ export const joinArrayWithBreakTags = (array) => {
     return array.map((element, index) => {
         return (<span key={index}>{element}<br /></span>);
     });
-}
+};
