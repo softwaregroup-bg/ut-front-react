@@ -52,3 +52,28 @@
 .defaultBtn:active {
     background-color: var(--ut-front-react-defaultBtnBackgroundColorActive);
 }
+
+.defaultDarkBgBtn {
+    width: auto;
+    font-size: 14px;
+    border-radius: var(--ut-front-react-defaultBtnBorderRadius);
+    color: var(--ut-front-react-defaultDarkBgBtnColor);
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
+    padding: var(--ut-front-react-defaultBtnPadding);
+    height: var(--ut-front-react-defaultBtnHeight);
+    font-weight: normal;
+    text-transform: none;
+    outline: 0;
+}
+
+.defaultDarkBgBtn:hover {
+    border-color: var(--ut-front-react-defaultDarkBgBtnBorderColorHover);
+    color: var(--ut-front-react-defaultDarkBgBtnColorHover);
+}
+
+.defaultDarkBgBtn:active {
+    color: var(--ut-front-react-defaultDarkBgBtnColorActive);
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColorActive);
+    border-color: var(--ut-front-react-defaultDarkBgBtnBorderColorActive);
+}

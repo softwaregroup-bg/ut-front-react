@@ -11,6 +11,14 @@
     --ut-front-react-defaultBtnBorderColorHover: #999999;
     --ut-front-react-defaultBtnBackgroundColorHover: #f4f4f4;
     --ut-front-react-defaultBtnBackgroundColorActive: #ececec;
+    --ut-front-react-defaultDarkBgBtnColor: #444444;
+    --ut-front-react-defaultDarkBgBtnBgColor: #ffffff;
+    --ut-front-react-defaultDarkBgBtnBorderColor: #cccccc;
+    --ut-front-react-defaultDarkBgBtnBorderColorHover: #999999;
+    --ut-front-react-defaultDarkBgBtnColorHover: #000000;
+    --ut-front-react-defaultDarkBgBtnColorActive: #000000;
+    --ut-front-react-defaultDarkBgBtnBorderColorActive: #999999;
+    --ut-front-react-defaultDarkBgBtnBgColorActive: #fafafa;
 
     /* config */
     --ut-front-react-standardBtnWidth: 146px;
