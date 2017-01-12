@@ -1,0 +1,13 @@
+.menu {
+    position: absolute;
+    padding: 8px 0px;
+    background-color: #ffffff;
+    outline: 0;
+    box-shadow: 0px 1px 2px #CCCBCB;
+    z-index: 20;
+}
+
+.menuSeparator {
+    height: 1px;
+    background-color: #ccd3e0;
+}
