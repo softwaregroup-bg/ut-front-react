@@ -148,7 +148,7 @@
     height: 14px;
     margin-top: 7px;
     float: left;
-    background: inline('images/arrow_black_base.png') no-repeat;
+    background: inline('./images/arrow_black_base.png') no-repeat;
     background-size: 14px 14px;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .headerCellProfile .navigationExpandMoreIcon {
-    background: inline('images/arrow_black_base.png') no-repeat 36px 8px;
+    background: inline('./images/arrow_black_base.png') no-repeat 36px 8px;
     overflow: hidden;
     padding-right: 28px;
     display: block;
