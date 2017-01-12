@@ -89,7 +89,7 @@
   width: 14px;
   height: 14px;
   margin: 0 10px 0 5px;
-  background: inline('arrow_black_base.png') no-repeat center center;
+  background: inline('./images/arrow_black_base.png') no-repeat center center;
   cursor: pointer;
 }
 
