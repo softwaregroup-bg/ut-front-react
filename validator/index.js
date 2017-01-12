@@ -17,7 +17,8 @@ export const isRequiredRule = (prop, rule, result) => {
 export const lengthRule = (val, minVal, maxVal, rule, result) => {
     checkPasedResultObject(result);
 
-    if (val && (val.length < minVal || val.length > maxVal)) {
+    let trimmedValue = val ? val.trim() : '';
+    if (trimmedValue && (trimmedValue.length < minVal || trimmedValue.length > maxVal)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
     }
