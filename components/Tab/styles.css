@@ -1,0 +1,50 @@
+@import './default-config.css';
+@import 'config.css';
+
+a.navigationTab {
+  display: block;
+  color: var(--ut-front-react-standardMainNavigationTextColor);
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.navigationTab.menuItemTab {
+  color: var(--ut-front-react-standardTabMenuTextColor);
+}
+
+a.navigationTab.menuItemTab:hover {
+  color: var(--ut-front-react-standardMainNavigationTextHoverColor);
+}
+
+.navigationTab:hover,
+.navigationTab:focus {
+  color: var(--ut-front-react-standardMainNavigationTextHoverColor);
+  text-decoration: none;
+  outline: 0;
+}
+
+a.navigationTab.navigationTabDisabled {
+  color: #e6e6e6;
+  cursor: not-allowed;;
+}
+
+a.navigationTabActive {
+}
+
+a.navigationTabActive:hover {
+  color: var(--ut-front-react-standardMainNavigationTextHoverColor);
+}
+a.navigationTabActive:focus {
+  color: var(--ut-front-react-standardMainNavigationTextColor);
+  text-decoration: none;
+}
+
+.navigationMultiTab {
+  position: relative;
+}
+
+.multiTabMenu {
+  min-width: 100px;
+}

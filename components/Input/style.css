@@ -391,9 +391,9 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     font-size: 15px;
     line-height: 32px;
 }
-.multiSelectDropdownMenu div span {
+.multiSelectDropdownMenu div>span, .multiSelectDropdownMenu div>div {
     min-height: auto !important;
-    padding: 0 2px;
+    padding: 0 8px;
 }
 
 .multiSelectDropdownPlaceholder {

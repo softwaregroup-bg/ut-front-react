@@ -1,3 +1,24 @@
+<a name="8.1.26"></a>
+## [8.1.26](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.25...v8.1.26) (2017-01-12)
+
+
+### Bug Fixes
+
+* improve multiselect dropdown menu styles ([8674bbb](https://github.com/softwaregroup-bg/ut-front-react/commit/8674bbb))
+* include bold label property in radio input ([fe5c5ff](https://github.com/softwaregroup-bg/ut-front-react/commit/fe5c5ff))
+
+
+
+<a name="8.1.25"></a>
+## [8.1.25](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.24...v8.1.25) (2017-01-11)
+
+
+
+<a name="8.1.24"></a>
+## [8.1.24](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.23...v8.1.24) (2017-01-10)
+
+
+
 <a name="8.1.23"></a>
 ## [8.1.23](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.22...v8.1.23) (2017-01-10)
 

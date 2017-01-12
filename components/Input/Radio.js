@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import style from './style.css';
+import classnames from 'classnames';
 
-const RadioInput = ({label, onChange, defaultValue, options, disabled}) => (
+const RadioInput = ({label, boldLabel, onChange, defaultValue, options, disabled}) => (
     <div className={style.outerWrap}>
-        <div className={style.lableWrap}>
+        <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
             {label}
         </div>
         <div className={style.inputWrap}>
@@ -22,6 +23,7 @@ const RadioInput = ({label, onChange, defaultValue, options, disabled}) => (
 
 RadioInput.propTypes = {
     label: PropTypes.string,
+    boldLabel: PropTypes.bool,
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
@@ -29,7 +31,8 @@ RadioInput.propTypes = {
 };
 
 RadioInput.defaultProps = {
-    onChange: function() {}
+    onChange: function() {},
+    boldLabel: false
 };
 
 export default RadioInput;
