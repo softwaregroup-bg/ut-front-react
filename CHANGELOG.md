@@ -1,3 +1,13 @@
+<a name="8.1.34"></a>
+## [8.1.34](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.33...v8.1.34) (2017-01-12)
+
+
+### Bug Fixes
+
+* styles ([59af267](https://github.com/softwaregroup-bg/ut-front-react/commit/59af267))
+
+
+
 <a name="8.1.33"></a>
 ## [8.1.33](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.1.32...v8.1.33) (2017-01-12)
 
