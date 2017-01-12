@@ -52,8 +52,10 @@ class LoginForm extends Component {
 
         allInputs.forEach((input) => {
             let { name, value } = input;
+            // This sync does not apply to hidden fields
+            let isHiddenField = input.getAttribute('data-hidden') === 'true';
 
-            if (inputs.get(name) && inputs.get(name).get('value') !== value) {
+            if (inputs.get(name) && inputs.get(name).get('value') !== value && !isHiddenField) {
                 // If change and submit events happen in the 100ms debounce range
                 // store won't be up to date with the current input values so sync is needed before validate the form
                 setInputValue({ input: name, value });

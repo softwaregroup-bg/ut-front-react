@@ -24,6 +24,7 @@ export default class FormInput extends Component {
                   disabled={disabled}
                   name={name}
                   type={type}
+                  data-hidden={!!hidden}
                   placeholder={placeholder}
                   onChange={onChange}
                   onBlur={onBlur}
