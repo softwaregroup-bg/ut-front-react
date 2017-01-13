@@ -360,13 +360,13 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .checked {
     width: 20px;
     height: 20px;
-    background: inline('images/enrollment_checked.png') no-repeat center center;
+    background: inline('./images/enrollment_checked.png') no-repeat center center;
 }
 
 .unchecked {
     width: 20px;
     height: 20px;
-    background: inline('images/enrollment_unchecked.png') no-repeat center center;
+    background: inline('./images/enrollment_unchecked.png') no-repeat center center;
 }
 
 .dropdownIconWrap {
@@ -378,7 +378,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 }
 
 .arrowIcon {
-    background: inline('images/dropdownArrow.png') no-repeat center;
+    background: inline('./images/dropdownArrow.png') no-repeat center;
 }
 
 .multiSelectDropdownMenu {

@@ -5,7 +5,7 @@
     width: var(--ut-front-react-standardMainLogoWidth);
     height: 58px;
     float: left;
-    background: inline('images/logo.png') no-repeat center center;
+    background: inline('./images/logo.png') no-repeat center center;
     margin-right: 10px;
     padding: 0;
 }
