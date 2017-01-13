@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import style from './style.css';
-// import classnames from 'classnames';
 
 const Row = (props) => {
     return (
@@ -11,8 +10,5 @@ const Row = (props) => {
 Row.propTypes = {
     children: PropTypes.any
 };
-
-// Row.defaultProps = {
-// };
 
 export default Row;
