@@ -37,7 +37,7 @@
   flex-shrink: 0;
   width: var(--ut-front-react-standardMainLogoWidth);
   height: 58px;
-  background: inline('logo.png') no-repeat center center;
+  background: inline('./images/logo.png') no-repeat center center;
   cursor: pointer;
 }
 
@@ -79,7 +79,7 @@
   display: inline-block;
   width: 26px;
   height: 26px;
-  background: inline('profile_picture.png') no-repeat center center;
+  background: inline('./images/profile_picture.png') no-repeat center center;
   border-radius: 100%;
   cursor: pointer;
 }
