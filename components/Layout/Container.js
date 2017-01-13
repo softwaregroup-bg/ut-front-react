@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import style from './style.css';
-// import classnames from 'classnames';
 
 const Container = (props) => {
     let classes = props.fluid ? style['container-fluid'] : style.container;
