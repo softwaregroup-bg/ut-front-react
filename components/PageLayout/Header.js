@@ -8,7 +8,7 @@ import style from './style.css';
 
 const Header = React.createClass({
     propTypes: {
-        text: PropTypes.string.isRequired,
+        text: PropTypes.node.isRequired,
         buttons: PropTypes.arrayOf(PropTypes.shape({
             text: PropTypes.string.isRequired,
             href: PropTypes.string,
