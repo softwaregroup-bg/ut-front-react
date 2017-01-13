@@ -9,8 +9,18 @@ import KeyValueRow from './KeyValueRow';
 //     orientation: 'horizontal' || 'vertical'
 //   }
 // ]
+
+// TODO: row will be immutable. Change everything to row.get(wrapperClass);
 const DataList = ({data}) => {
-    let rows = data.map((row, index) => (<KeyValueRow wrapperClass={row.wrapperClass} keyClass={row.keyClass} valueClass={row.valueClass} key={index} keyNode={row.key} orientation={row.orientation ? row.orientation : 'horizontal'}>{row.value}</KeyValueRow>));
+    let rows = data.map((row, index) => (
+        <KeyValueRow
+          wrapperClass={row.wrapperClass}
+          keyClass={row.keyClass}
+          valueClass={row.valueClass}
+          key={index}
+          keyNode={row.key}>
+            {row.value}
+        </KeyValueRow>));
     return (
         <div>
           {rows}
