@@ -10,16 +10,15 @@ import KeyValueRow from './KeyValueRow';
 //   }
 // ]
 
-// TODO: row will be immutable. Change everything to row.get(wrapperClass);
 const DataList = ({data}) => {
     let rows = data.map((row, index) => (
         <KeyValueRow
-          wrapperClass={row.wrapperClass}
-          keyClass={row.keyClass}
-          valueClass={row.valueClass}
+          wrapperClass={row.get('wrapperClass')}
+          keyClass={row.get('keyClass')}
+          valueClass={row.get('valueClass')}
           key={index}
-          keyNode={row.key}>
-            {row.value}
+          keyNode={row.get('key')}>
+            {row.get('value')}
         </KeyValueRow>));
     return (
         <div>
@@ -29,7 +28,7 @@ const DataList = ({data}) => {
 };
 
 DataList.propTypes = {
-    data: PropTypes.array
+    data: PropTypes.object // Immutable list
 };
 
 export default DataList;
