@@ -1,3 +1,13 @@
+<a name="8.2.5"></a>
+## [8.2.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.2.4...v8.2.5) (2017-01-16)
+
+
+### Bug Fixes
+
+* change translation fetch SP ([fc7350d](https://github.com/softwaregroup-bg/ut-front-react/commit/fc7350d))
+
+
+
 <a name="8.2.4"></a>
 ## [8.2.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.2.3...v8.2.4) (2017-01-13)
 
