@@ -11,7 +11,6 @@ import KeyValueRow from './KeyValueRow';
 // ]
 
 const DataList = ({data}) => {
-    console.log(data);
     let rows = data.map((row, index) => (
         <KeyValueRow
           wrapperClass={row.get('wrapperClass')}
