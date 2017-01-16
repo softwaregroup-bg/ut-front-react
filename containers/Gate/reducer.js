@@ -10,24 +10,21 @@ export default (state = defaultState, action) => {
     } else if (action.type === CORE_ITEM_TRANSLATION_FETCH) {
         if (action.methodRequestState === 'finished') {
             let texts = [];
-            let pagination = {};
 
-            if (action.result && action.result.itemTranslationFetch) {
-                texts = action.result.itemTranslationFetch;
-                pagination = action.result.pagination[0];
+            if (action.result && action.result.translations) {
+                texts = action.result.translations;
             }
-            if (action.params.keyValue && texts.length) {
+            if (texts.length) {
                 let textsMapping = {};
 
                 texts.map((text) => {
-                    textsMapping[text.itemName] = text.itemNameTranslation;
+                    textsMapping[text.dictionaryKey] = text.translatedValue;
                 });
 
                 texts = textsMapping;
             }
             return state
                 .set('texts', Immutable.fromJS(texts))
-                .set('pagination', Immutable.fromJS(pagination))
                 .set('activeFilters', Immutable.fromJS(action.params))
                 .set('loaded', true)
                 .set('forceLogOut', false);

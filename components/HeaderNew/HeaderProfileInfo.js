@@ -47,7 +47,7 @@ export default class HeaderProfileInfo extends Component {
 
     getMenuItems() {
         let items = [
-          {text: 'Help', disabled: true, onClick: this.openHelp},
+          {text: 'Help', onClick: this.openHelp},
           {text: 'Settings', disabled: true},
           {text: 'Log out', onClick: this.onLogOutClick}
         ];
