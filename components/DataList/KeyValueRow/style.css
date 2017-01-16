@@ -14,6 +14,12 @@
     background-color: #FFFFFF;
     border-right: 1px solid #E6E6E6;
     line-height: 14px !important;
+    padding: 20px 27px;
+    font-weight: bold;
+}
+
+.valueCell {
+    padding: 20px 27px;
 }
 
 .displayFlex {

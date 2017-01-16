@@ -6,7 +6,7 @@ const KeyValueRow = ({ wrapperClass, keyClass, valueClass, keyNode, bordered = f
     return (
       <div className={`${wrapperClass} ${style.displayFlex} ${style.borderTop}`}>
         <div className={`${keyClass} ${style.keyCell} ${style.displayFlex}`}><Text>{keyNode}</Text></div>
-        <div className={`${valueClass} ${style.displayFlex}`}>{children}</div>
+        <div className={`${valueClass} ${style.valueCell} ${style.displayFlex}`}>{children}</div>
       </div>
     );
 };
