@@ -18,7 +18,7 @@ export const identityCheck = (params) => ({
     type: LOGIN,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: Object.assign(params, {uri: '/login', timezone: getTimezone()})
+    params: Object.assign(params.toJS(), {uri: '/login', timezone: getTimezone(), channel: 'web'})
 });
 
 export const bioScan = () => ({
@@ -31,7 +31,7 @@ export const cookieCheck = () => ({
     type: COOKIE_CHECK,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: {}
+    params: {channel: 'web'}
 });
 
 export const validateForm = () => ({
