@@ -66,9 +66,7 @@ class MultiSelectDropdown extends Dropdown {
         if (values.length > 0) {
             values = [];
         } else {
-            data.map((item) => {
-                values.push(item);
-            });
+            values = data;
         }
         this.setState({values: values, valid: {isValid: true, errorMessage: ''}});
         onSelect({key: keyProp, value: values});
