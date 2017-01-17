@@ -1,3 +1,14 @@
+<a name="8.2.6"></a>
+## [8.2.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.2.5...v8.2.6) (2017-01-17)
+
+
+### Bug Fixes
+
+* change menuItems with checkboxes in multiselect dropdown ([55530fc](https://github.com/softwaregroup-bg/ut-front-react/commit/55530fc))
+* remove redundant iteration of items ([cf127c7](https://github.com/softwaregroup-bg/ut-front-react/commit/cf127c7))
+
+
+
 <a name="8.2.5"></a>
 ## [8.2.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.2.4...v8.2.5) (2017-01-16)
 
