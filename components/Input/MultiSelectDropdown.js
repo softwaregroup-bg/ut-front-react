@@ -5,6 +5,7 @@ import Menu from 'material-ui/Menu';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
+import Checkbox from './Checkbox';
 
 class MultiSelectDropdown extends Dropdown {
 
@@ -19,8 +20,7 @@ class MultiSelectDropdown extends Dropdown {
 
         this.toggleOpen = this.toggleOpen.bind(this);
         this.toggleClose = this.toggleClose.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.renderDropDown = this.renderDropDown.bind(this);
+        this.toggleAllChecks = this.toggleAllChecks.bind(this);
     }
 
     componentWillReceiveProps({defaultSelected, isValid, errorMessage}) {
@@ -40,23 +40,67 @@ class MultiSelectDropdown extends Dropdown {
         return this.setState({open: false});
     }
 
-    handleChange(event, menuItem, index) {
+    handleChange(menuItem) {
         let { onSelect, keyProp, data } = this.props;
         let { values } = this.state;
         let itemIndex = values.findIndex((value) => {
-            return value.key === menuItem.props.value;
+            return value.key === menuItem.key;
         });
         if (itemIndex > -1) {
             values.splice(itemIndex, 1);
         } else {
             let item = data.find((value) => {
-                return value.key === menuItem.props.value;
+                return value.key === menuItem.key;
             });
             values.push(item);
         }
 
         this.setState({values: values, valid: {isValid: true, errorMessage: ''}});
         onSelect({key: keyProp, value: values});
+    }
+
+    toggleAllChecks() {
+        let { onSelect, keyProp, data } = this.props;
+        let { values } = this.state;
+
+        if (values.length > 0) {
+            values = [];
+        } else {
+            data.map((item) => {
+                values.push(item);
+            });
+        }
+        this.setState({values: values, valid: {isValid: true, errorMessage: ''}});
+        onSelect({key: keyProp, value: values});
+    }
+
+    getMenuItems() {
+        let {data, placeholder} = this.props;
+        let {values} = this.state;
+
+        let menuItems = [
+            <Checkbox
+              key={Math.random() + '-ddfg'}
+              onClick={this.toggleAllChecks}
+              label={placeholder}
+              checked={values.length > 0}
+            />
+        ];
+        data.forEach((item) => {
+            let isChecked = values.findIndex((i) => {
+                return item.key === i.key;
+            }) > -1;
+            menuItems.push(
+                <Checkbox
+                  onClick={() => { this.handleChange(item); }}
+                  checked={isChecked}
+                  disabled={item.disabled}
+                  label={item.name}
+                  key={item.key} />
+            );
+        });
+
+        return menuItems;
     }
 
     renderDropDown() {
@@ -94,7 +138,6 @@ class MultiSelectDropdown extends Dropdown {
                   animation={PopoverAnimationVertical}
                 >
                     <Menu
-                      onItemTouchTap={this.handleChange}
                       autoWidth={false}
                       disableAutoFocus
                       multiple
