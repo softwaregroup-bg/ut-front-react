@@ -108,7 +108,8 @@ class MultiSelectDropdown extends Dropdown {
         let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
         let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
-
+        let cursorStyle = this.props.disabled ? ddstyles.notAllowed : ddstyles.pointer;
+        let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
         let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         // 30 px for dropdown icon
         let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
@@ -116,8 +117,8 @@ class MultiSelectDropdown extends Dropdown {
         let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
 
         return (
-            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, ddstyles.pointer)} onClick={!this.props.disabled && this.toggleOpen}>
-                    <div className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}>
+            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, cursorStyle)} onClick={!this.props.disabled && this.toggleOpen}>
+                    <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
                                 {selectedItems || this.props.placeholder}
