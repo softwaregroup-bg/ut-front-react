@@ -1,3 +1,13 @@
+<a name="8.3.0"></a>
+# [8.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.2.7...v8.3.0) (2017-01-17)
+
+
+### Features
+
+* UIS-299 improve styles for the vertical component ([7779bc3](https://github.com/softwaregroup-bg/ut-front-react/commit/7779bc3))
+
+
+
 <a name="8.2.7"></a>
 ## [8.2.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.2.6...v8.2.7) (2017-01-17)
 
