@@ -6,7 +6,7 @@ const Vertical = (props) => {
     return (
         <div className={style.h100}>
             <div style={{height: height}}>{props.fixedComponent}</div>
-            <div style={{height: 'calc(100% - ' + height + ')'}}>{props.children}</div>
+            <div style={{height: 'calc(100% - ' + height + ')'}} className={style.vertical}>{props.children}</div>
         </div>
     );
 };

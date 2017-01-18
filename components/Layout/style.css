@@ -771,3 +771,9 @@
 .h100 {
   height: 100%;
 }
+
+.vertical {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
