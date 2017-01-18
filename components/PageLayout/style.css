@@ -3,6 +3,7 @@
     height: 100%;
     background: #f2f2f2;
     border: 1px solid #D7D6D6;
+    border-top: none;
 	border-bottom: none !important;
 }
 
