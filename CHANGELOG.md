@@ -1,3 +1,13 @@
+<a name="8.3.5"></a>
+## [8.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.4...v8.3.5) (2017-01-18)
+
+
+### Bug Fixes
+
+* remove replacable images path prefixes ([a86c90c](https://github.com/softwaregroup-bg/ut-front-react/commit/a86c90c))
+
+
+
 <a name="8.3.4"></a>
 ## [8.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.3...v8.3.4) (2017-01-18)
 
