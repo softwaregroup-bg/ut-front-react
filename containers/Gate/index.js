@@ -53,10 +53,7 @@ class Gate extends Component {
 
         fetchTranslations({
             languageId,
-            itemTypeName: 'text',
-            keyValue: true,
-            isEnabled: true,
-            pageSize: 10000
+            dictName: ['text', 'actionConfirmation']
         });
     }
 
