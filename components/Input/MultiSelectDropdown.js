@@ -63,7 +63,7 @@ class MultiSelectDropdown extends Dropdown {
         let { onSelect, keyProp, data } = this.props;
         let { values } = this.state;
 
-        if (values.length > 0) {
+        if (values.length === data.length) {
             values = [];
         } else {
             values = data;
@@ -81,7 +81,7 @@ class MultiSelectDropdown extends Dropdown {
               key={Math.random() + '-ddfg'}
               onClick={this.toggleAllChecks}
               label={placeholder}
-              checked={values.length > 0}
+              checked={values.length === data.length}
             />
         ];
         data.forEach((item) => {
