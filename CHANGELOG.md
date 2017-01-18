@@ -1,3 +1,13 @@
+<a name="8.3.2"></a>
+## [8.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.1...v8.3.2) (2017-01-18)
+
+
+### Bug Fixes
+
+* paths ([c4c2d77](https://github.com/softwaregroup-bg/ut-front-react/commit/c4c2d77))
+
+
+
 <a name="8.3.1"></a>
 ## [8.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.0...v8.3.1) (2017-01-17)
 
