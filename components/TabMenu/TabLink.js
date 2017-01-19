@@ -45,7 +45,7 @@ export default class TabLink extends React.Component {
 
 TabLink.propTypes = {
     pathname: PropTypes.string, // If pathname is not given onClick func will be called
-    title: PropTypes.string.isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     isActive: PropTypes.bool,
     canClose: PropTypes.bool,
     onClose: PropTypes.func,
