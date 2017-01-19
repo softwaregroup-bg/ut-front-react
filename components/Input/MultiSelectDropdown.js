@@ -6,6 +6,7 @@ import style from './style.css';
 
 import Dropdown from './Dropdown';
 import Checkbox from './Checkbox';
+import Text from '../Text';
 
 class MultiSelectDropdown extends Dropdown {
 
@@ -93,7 +94,7 @@ class MultiSelectDropdown extends Dropdown {
                   onClick={() => { this.handleChange(item); }}
                   checked={isChecked}
                   disabled={item.disabled}
-                  label={item.name}
+                  label={<Text>{item.name}</Text>}
                   key={item.key} />
             );
         });
