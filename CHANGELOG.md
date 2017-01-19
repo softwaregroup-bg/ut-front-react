@@ -1,3 +1,43 @@
+<a name="8.3.6"></a>
+## [8.3.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.5...v8.3.6) (2017-01-19)
+
+
+### Bug Fixes
+
+* translate titles in tabs ([b01e23b](https://github.com/softwaregroup-bg/ut-front-react/commit/b01e23b))
+
+
+
+<a name="8.3.5"></a>
+## [8.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.4...v8.3.5) (2017-01-18)
+
+
+### Bug Fixes
+
+* remove replacable images path prefixes ([a86c90c](https://github.com/softwaregroup-bg/ut-front-react/commit/a86c90c))
+
+
+
+<a name="8.3.4"></a>
+## [8.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.3...v8.3.4) (2017-01-18)
+
+
+
+<a name="8.3.3"></a>
+## [8.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.2...v8.3.3) (2017-01-18)
+
+
+
+<a name="8.3.2"></a>
+## [8.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.1...v8.3.2) (2017-01-18)
+
+
+### Bug Fixes
+
+* paths ([c4c2d77](https://github.com/softwaregroup-bg/ut-front-react/commit/c4c2d77))
+
+
+
 <a name="8.3.1"></a>
 ## [8.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.0...v8.3.1) (2017-01-17)
 
