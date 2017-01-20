@@ -1,3 +1,15 @@
+<a name="8.4.2"></a>
+## [8.4.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.4.1...v8.4.2) (2017-01-20)
+
+
+### Bug Fixes
+
+* lint ([0e70502](https://github.com/softwaregroup-bg/ut-front-react/commit/0e70502))
+* remove inline style ([9f56ca6](https://github.com/softwaregroup-bg/ut-front-react/commit/9f56ca6))
+* return ValueRow ([3daf011](https://github.com/softwaregroup-bg/ut-front-react/commit/3daf011))
+
+
+
 <a name="8.4.1"></a>
 ## [8.4.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.4.0...v8.4.1) (2017-01-20)
 
