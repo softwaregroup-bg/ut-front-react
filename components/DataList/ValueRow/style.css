@@ -1,0 +1,25 @@
+.valueRowValue {
+    height: 54px;
+    padding: 20px;
+    position: relative;
+}
+
+.valueRowHover {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #FEFDE8;
+    z-index: 100;
+}
+
+.valueRowValue:hover .valueRowHover {
+    display: block;
+}
+
+.alertIcon {
+    margin-left: '10px';
+    position: 'relative';
+    top: '-4px';
+}
