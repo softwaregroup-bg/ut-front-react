@@ -22,7 +22,7 @@ export default class Column extends Component {
         }
 
         return (
-            <td onTouchTap={this.handleClick(value)} style={this.props.field.style} colSpan={this.props.colspan}>
+            <td onTouchTap={this.handleClick(value)} style={this.props.field.style} className={this.props.field.className} colSpan={this.props.colspan}>
                 {this.props.transformValue(value, this.props.field, this.props.data)}
             </td>
         );
