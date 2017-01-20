@@ -1,3 +1,21 @@
+<a name="8.4.0"></a>
+# [8.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.6...v8.4.0) (2017-01-19)
+
+
+### Bug Fixes
+
+* preload window to be on top of all windows except error window ([9f2a9e4](https://github.com/softwaregroup-bg/ut-front-react/commit/9f2a9e4))
+* UIS-782 datalist ([3c0f3f4](https://github.com/softwaregroup-bg/ut-front-react/commit/3c0f3f4))
+* wrap dropdown item labels in text tag ([6f39b24](https://github.com/softwaregroup-bg/ut-front-react/commit/6f39b24))
+
+
+### Features
+
+* UIS-225: removing top border ([6f01577](https://github.com/softwaregroup-bg/ut-front-react/commit/6f01577))
+* UIS-782: refactor DataList component ([0668196](https://github.com/softwaregroup-bg/ut-front-react/commit/0668196))
+
+
+
 <a name="8.3.6"></a>
 ## [8.3.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.3.5...v8.3.6) (2017-01-19)
 
