@@ -6,7 +6,6 @@ import style from './style.css';
 
 import Dropdown from './Dropdown';
 import Checkbox from './Checkbox';
-import Text from '../Text';
 
 class MultiSelectDropdown extends Dropdown {
 

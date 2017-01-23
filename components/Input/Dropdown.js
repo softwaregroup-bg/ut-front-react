@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 
