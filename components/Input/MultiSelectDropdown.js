@@ -81,7 +81,7 @@ class MultiSelectDropdown extends Dropdown {
             <Checkbox
               key={Math.random() + '-ddfg'}
               onClick={this.toggleAllChecks}
-              label={placeholder}
+              label={<Text>{placeholder}</Text>}
               checked={values.length === data.length}
             />
         ];

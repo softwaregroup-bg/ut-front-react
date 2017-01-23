@@ -55,7 +55,7 @@ class Dropdown extends Component {
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={'__placeholder__'}
-              primaryText={placeholder}
+              primaryText={<Text>{placeholder}</Text>}
             />
         );
 
