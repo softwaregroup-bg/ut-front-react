@@ -81,7 +81,7 @@ class MultiSelectDropdown extends Dropdown {
             <Checkbox
               key={Math.random() + '-ddfg'}
               onClick={this.toggleAllChecks}
-              label={<Text>{placeholder}</Text>}
+              label={placeholder}
               checked={values.length === data.length}
             />
         ];
@@ -94,7 +94,7 @@ class MultiSelectDropdown extends Dropdown {
                   onClick={() => { this.handleChange(item); }}
                   checked={isChecked}
                   disabled={item.disabled}
-                  label={<Text>{item.name}</Text>}
+                  label={item.name}
                   key={item.key} />
             );
         });
