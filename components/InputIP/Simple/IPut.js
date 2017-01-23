@@ -152,7 +152,7 @@ class IPut extends React.Component {
         <div>
           IP input here
         </div>
-    );
+      );
     }
 }
 
