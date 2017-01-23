@@ -148,11 +148,7 @@ import React from 'react';
 
 class IPut extends React.Component {
     render() {
-        return (
-        <div>
-          IP input here
-        </div>
-      );
+        return (<div>IP input here</div>);
     }
 }
 
