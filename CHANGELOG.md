@@ -1,3 +1,28 @@
+<a name="8.5.1"></a>
+## [8.5.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.5.0...v8.5.1) (2017-01-24)
+
+
+### Bug Fixes
+
+* extend simple grid to accept className in fields ([b06b162](https://github.com/softwaregroup-bg/ut-front-react/commit/b06b162))
+
+
+
+<a name="8.5.0"></a>
+# [8.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.4.3...v8.5.0) (2017-01-23)
+
+
+### Features
+
+* UIS-701 add new component - InputIP ([0bc70c5](https://github.com/softwaregroup-bg/ut-front-react/commit/0bc70c5))
+
+
+
+<a name="8.4.3"></a>
+## [8.4.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.4.2...v8.4.3) (2017-01-23)
+
+
+
 <a name="8.4.2"></a>
 ## [8.4.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.4.1...v8.4.2) (2017-01-20)
 

@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -65,7 +64,7 @@ class Dropdown extends Component {
                   key={item.key + '-' + i}
                   disabled={item.disabled}
                   value={item.key}
-                  primaryText={<Text>{item.name}</Text>}
+                  primaryText={item.name}
                 />
             );
         });
