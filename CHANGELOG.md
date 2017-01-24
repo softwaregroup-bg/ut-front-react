@@ -1,3 +1,14 @@
+<a name="8.5.2"></a>
+## [8.5.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.5.1...v8.5.2) (2017-01-24)
+
+
+### Bug Fixes
+
+* remove inline styles ([1eb5969](https://github.com/softwaregroup-bg/ut-front-react/commit/1eb5969))
+* UIS-782 revert datalist ([5f5e73c](https://github.com/softwaregroup-bg/ut-front-react/commit/5f5e73c))
+
+
+
 <a name="8.5.1"></a>
 ## [8.5.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.5.0...v8.5.1) (2017-01-24)
 
