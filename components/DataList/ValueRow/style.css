@@ -17,3 +17,9 @@
 .valueRowValue:hover .valueRowHover {
     display: block;
 }
+
+.alertNode {
+    margin-left: 10px;
+    position: relative;
+    top: -4px;
+}
