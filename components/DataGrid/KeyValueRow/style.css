@@ -1,0 +1,36 @@
+.borderedHorizontalOrientation > div{
+    border-bottom: 2px solid #E7E7E7;
+}
+
+.borderedHorizontalOrientation > div:nth-child(2n){
+    border-left: 2px solid #E7E7E7;
+}
+
+.borderedHorizontalOrientation:last-child > div {
+    border-bottom: 0px;
+}
+
+.keyCell {
+    background-color: #FFFFFF;
+    border-right: 1px solid #E6E6E6;
+    line-height: 14px !important;
+    padding: 20px 27px;
+    font-weight: bold;
+}
+
+.valueCell {
+    padding: 20px 27px;
+}
+
+.displayFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-basis: 100%;
+    line-height: 14px;
+}
+
+.borderTop {
+    border-top: 1px solid #E6E6E6;
+}
