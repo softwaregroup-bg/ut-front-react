@@ -7,22 +7,28 @@ class IPInput extends Component {
         return (
             <Iput
               className={style.ipInput}
-              defaultValue={this.props.defaultValue}
+              value={this.props.value}
               onChange={this.props.onChange}
               isError={() => (!this.props.isValid)}
+              placeholder={this.props.placeholder}
             />
         );
     }
 }
 
 IPInput.propTypes = {
-    defaultValue: PropTypes.string,
+    value: PropTypes.string,
     onChange: PropTypes.func,
-    isValid: PropTypes.bool
+    isValid: PropTypes.bool,
+    placeholder: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ])
 };
 
 IPInput.defaultProps = {
-    isValid: true
+    isValid: true,
+    placeholder: '...'
 };
 
 export default IPInput;
