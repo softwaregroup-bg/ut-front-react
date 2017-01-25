@@ -32,6 +32,10 @@ export default class Tab extends Component {
     render() {
         const { tab, disabled, className } = this.props;
 
+        if (!tab.routeName) {
+            tab.routeName = 'ut-user:home';
+        }
+
         return (
             <Link
               style={this.props.style}

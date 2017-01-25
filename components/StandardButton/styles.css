@@ -77,3 +77,11 @@
     background-color: var(--ut-front-react-defaultDarkBgBtnBgColorActive);
     border-color: var(--ut-front-react-defaultDarkBgBtnBorderColorActive);
 }
+
+.standardInputButton {
+    width: 60px;
+    height: 32px;
+    position: absolute;
+    right: 0;
+    float: right;
+}

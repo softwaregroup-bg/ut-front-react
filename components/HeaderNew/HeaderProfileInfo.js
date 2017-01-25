@@ -48,7 +48,7 @@ export default class HeaderProfileInfo extends Component {
     getMenuItems() {
         let items = [
           {text: 'Help', onClick: this.openHelp},
-          {text: 'Settings', disabled: true},
+          {text: 'Settings', routeName: 'ut-user:userProfile'},
           {text: 'Log out', onClick: this.onLogOutClick}
         ];
 
@@ -57,8 +57,7 @@ export default class HeaderProfileInfo extends Component {
               <Tab
                 key={currentItem.text}
                 tab={{
-                    routeName: currentItem.text.toLowerCase(),
-                    routeParams: {},
+                    routeName: currentItem.routeName,
                     title: currentItem.text
                 }}
                 className={tabStyles.menuItemTab}
