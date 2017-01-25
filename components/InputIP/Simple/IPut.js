@@ -113,6 +113,7 @@ class IPut extends React.Component {
             this.props.className,
             this.props.isError() ? style.error : ''
         ].join(' ');
+        let placeholders = Array.isArray(this.props.placeholder) ? this.props.placeholder : this.props.placeholder.split('.');
 
         return (
             <div className={className}>
@@ -123,6 +124,7 @@ class IPut extends React.Component {
                       type='text'
                       defaultValue={isNaN(val) ? '' : val}
                       value={isNaN(val) ? '' : val}
+                      placeholder={isNaN(placeholders[i]) ? '' : placeholders[i]}
                       onChange={(e) => this.handleChange(e, i)}
                       onKeyDown={(e) => this.handleKeyDown(e, i)}
                       onPaste={(e) => this.handlePaste(e, i)}
@@ -138,15 +140,23 @@ class IPut extends React.Component {
 IPut.defaultProps = {
     className: '',
     defaultValue: '...',
+    placeholder: '...',
     isError: () => false,
     onChange: () => {}
 };
 
 IPut.propTypes = {
     className: React.PropTypes.string,
-    defaultValue: React.PropTypes.string || React.PropTypes.array,
+    defaultValue: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.array
+    ]),
     isError: React.PropTypes.func,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    placeholder: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.array
+    ])
 };
 
 export default IPut;
