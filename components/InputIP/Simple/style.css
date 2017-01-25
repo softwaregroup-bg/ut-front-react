@@ -9,7 +9,7 @@
 }
 
 .ipInput.error {
-    border-color: #f33;
+    border-color: #ff3333;
 }
 
 .ipInput input {
@@ -17,4 +17,21 @@
     border: none;
     outline: none;
     text-align: center;
+}
+
+.hh {
+    height: 0 !important;
+}
+
+.errorWrap {
+    height: 23px;
+    overflow: hidden;
+    font-size: 12px;
+    -webkit-transition: all 0.6s; /* Safari */
+    transition: all 0.6s;
+}
+
+.errorWrap .errorMessage {
+    color: #ff3333;
+    margin: 5px 0 0;
 }
