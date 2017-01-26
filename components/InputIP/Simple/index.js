@@ -15,6 +15,7 @@ class IPInput extends Component {
                   onChange={this.props.onChange}
                   isError={() => (!this.props.isValid)}
                   placeholder={placeholderValue}
+                  readonly={this.props.readonly}
                 />
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
             </div>
@@ -26,6 +27,7 @@ IPInput.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func,
     isValid: PropTypes.bool,
+    readonly: PropTypes.bool,
     errorMessage: PropTypes.string,
     placeholder: PropTypes.oneOfType([
         PropTypes.string,

@@ -2,7 +2,7 @@
  * iput v0.0.4 (https://github.com/lizheming/iput)
  * Licensed under MIT
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 import style from './style.css';
 
 /**
@@ -111,7 +111,8 @@ class IPut extends React.Component {
         let className = [
             style.ipInput,
             this.props.className,
-            this.props.isError() ? style.error : ''
+            this.props.isError() ? style.error : '',
+            this.props.readonly ? style.readonly : ''
         ].join(' ');
         let placeholders = Array.isArray(this.props.placeholder) ? this.props.placeholder : this.props.placeholder.split('.');
 
@@ -128,6 +129,7 @@ class IPut extends React.Component {
                       onChange={(e) => this.handleChange(e, i)}
                       onKeyDown={(e) => this.handleKeyDown(e, i)}
                       onPaste={(e) => this.handlePaste(e, i)}
+                      readOnly={this.props.readonly}
                     />
                     {i !== 3 ? <i>.</i> : false}
                 </div>
@@ -142,20 +144,22 @@ IPut.defaultProps = {
     defaultValue: '...',
     placeholder: '...',
     isError: () => false,
+    readonly: false,
     onChange: () => {}
 };
 
 IPut.propTypes = {
-    className: React.PropTypes.string,
-    defaultValue: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.array
+    className: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
     ]),
-    isError: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    placeholder: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.array
+    isError: PropTypes.func,
+    readonly: PropTypes.bool,
+    onChange: PropTypes.func,
+    placeholder: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
     ])
 };
 

@@ -19,6 +19,11 @@
     text-align: center;
 }
 
+.readonly,
+.readonly input {
+    cursor: not-allowed;
+}
+
 .hh {
     height: 0 !important;
 }
