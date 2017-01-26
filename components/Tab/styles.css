@@ -2,7 +2,8 @@
 @import 'config.css';
 
 a.navigationTab {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   color: var(--ut-front-react-standardMainNavigationTextColor);
   cursor: pointer;
   padding: 10px;
@@ -43,6 +44,12 @@ a.navigationTabActive:focus {
 
 .navigationMultiTab {
   position: relative;
+}
+
+span.navigationMultiTabArrow {
+  background: url('./images/arrow_right.png') no-repeat right center;
+  width: 20px;
+  height: 20px;
 }
 
 .multiTabMenu {
