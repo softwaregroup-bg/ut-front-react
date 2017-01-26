@@ -406,7 +406,11 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownPlaceholder div {
     width: 90%;
-    overflow:hidden; 
-    white-space:nowrap; 
+    overflow:hidden;
+    white-space:nowrap;
     text-overflow: ellipsis;
+}
+
+.buttonInput {
+    padding-right: 80px;
 }
