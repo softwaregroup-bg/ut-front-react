@@ -22,7 +22,12 @@ export default class MultiTab extends Component {
         this.getMenuItems = this.getMenuItems.bind(this);
         this.requestCloseMenu = this.requestCloseMenu.bind(this);
     }
-
+    componentWillMount() {
+        this.isComponentMounted = true;
+    }
+    componentWillUnmount() {
+        this.isComponentMounted = false;
+    }
     getMenuItems() {
         const { multi } = this.props.tab;
 
@@ -59,7 +64,7 @@ export default class MultiTab extends Component {
     }
 
     toggleMenu(e) {
-        this.updater.isMounted(this) && this.setState({
+        this.isComponentMounted && this.setState({
             menuToggled: !this.state.menuToggled
         });
     }
