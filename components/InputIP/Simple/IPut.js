@@ -2,7 +2,7 @@
  * iput v0.0.4 (https://github.com/lizheming/iput)
  * Licensed under MIT
  */
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import style from './style.css';
 
 /**
@@ -47,7 +47,7 @@ function getRange(el) {
     return ret;
 }
 
-class IPut extends React.Component {
+class IPut extends Component {
 /**
  * constructor
  */
@@ -57,9 +57,16 @@ class IPut extends React.Component {
             value: []
         };
     }
+    componentWillReceiveProps(newProps) {
+        if (newProps.clear) {
+            this.setState({
+                value: ['', '', '', '']
+            });
+        }
+    }
     componentDidMount() {
         this.setState({
-            value: Array.isArray(this.props.defaultValue) ? this.props.defaultValue : this.props.defaultValue.split('.')
+            value: Array.isArray(this.props.value) ? this.props.value : this.props.value.split('.')
         });
     }
 /**
@@ -123,7 +130,6 @@ class IPut extends React.Component {
                     <input
                       ref={(el) => (this[`_input-${i}`] = el)}
                       type='text'
-                      defaultValue={isNaN(val) ? '' : val}
                       value={isNaN(val) ? '' : val}
                       placeholder={isNaN(placeholders[i]) ? '' : placeholders[i]}
                       onChange={(e) => this.handleChange(e, i)}
@@ -141,21 +147,23 @@ class IPut extends React.Component {
 
 IPut.defaultProps = {
     className: '',
-    defaultValue: '...',
+    value: '...',
     placeholder: '...',
     isError: () => false,
     readonly: false,
+    clear: false,
     onChange: () => {}
 };
 
 IPut.propTypes = {
     className: PropTypes.string,
-    defaultValue: PropTypes.oneOfType([
+    value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array
     ]),
     isError: PropTypes.func,
     readonly: PropTypes.bool,
+    clear: PropTypes.bool,
     onChange: PropTypes.func,
     placeholder: PropTypes.oneOfType([
         PropTypes.string,
