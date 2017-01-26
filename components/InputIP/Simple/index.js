@@ -7,6 +7,7 @@ class IPInput extends Component {
     render() {
         let zeroHeightStyle = this.props.isValid ? style.hh : '';
         let placeholderValue = (this.props.value === '...') ? this.props.placeholder : '';
+        let clearState = this.props.value === '...';
         return (
             <div className={style.inputWrap}>
                 <Iput
@@ -16,6 +17,7 @@ class IPInput extends Component {
                   isError={() => (!this.props.isValid)}
                   placeholder={placeholderValue}
                   readonly={this.props.readonly}
+                  clear={clearState}
                 />
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
             </div>
