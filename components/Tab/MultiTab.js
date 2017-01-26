@@ -49,6 +49,7 @@ export default class MultiTab extends Component {
     }
 
     requestCloseMenu({target}) {
+        // close menu if event target is not another multitab nor is child of the root element
         (!this.rootElement.contains(target) || closest(target, 'div').getAttribute('data-type') !== multiTab) && this.toggleMenu();
     }
 
