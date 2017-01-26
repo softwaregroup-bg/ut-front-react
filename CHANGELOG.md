@@ -1,3 +1,29 @@
+<a name="8.6.2"></a>
+## [8.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.1...v8.6.2) (2017-01-26)
+
+
+
+<a name="8.6.1"></a>
+## [8.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.0...v8.6.1) (2017-01-26)
+
+
+
+<a name="8.6.0"></a>
+# [8.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.5.2...v8.6.0) (2017-01-26)
+
+
+### Bug Fixes
+
+* clarify close logic ([a3a78e4](https://github.com/softwaregroup-bg/ut-front-react/commit/a3a78e4))
+* set a boolean property to track whether component is mounted or not ([fb3f194](https://github.com/softwaregroup-bg/ut-front-react/commit/fb3f194))
+
+
+### Features
+
+* nested menu tabs ([e7f5a87](https://github.com/softwaregroup-bg/ut-front-react/commit/e7f5a87))
+
+
+
 <a name="8.5.2"></a>
 ## [8.5.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.5.1...v8.5.2) (2017-01-24)
 

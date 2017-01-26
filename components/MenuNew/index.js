@@ -32,7 +32,7 @@ export default class MenuNew extends Component {
             let isClickInside = Boolean(closest(target, `.${menu}`));
 
             if (!isClickInside || (isClickInside && closeOnSelect)) {
-                this.props.requestClose && this.props.requestClose();
+                this.props.requestClose && this.props.requestClose(e);
             }
         }
     }
