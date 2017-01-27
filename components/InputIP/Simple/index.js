@@ -5,7 +5,7 @@ import style from './style.css';
 
 class IPInput extends Component {
     render() {
-        let zeroHeightStyle = this.props.isValid ? style.hh : '';
+        let zeroHeightStyle = this.props.isValid || this.props.errorMessage.trim() === '' ? style.hh : '';
         let placeholderValue = (this.props.value === '...') ? this.props.placeholder : '';
         let clearState = this.props.value === '...';
         return (
