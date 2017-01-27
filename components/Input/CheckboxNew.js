@@ -21,9 +21,8 @@ export default class CheckboxNew extends Component {
     get checkboxClasses() {
         const { checked, disabled } = this.props;
 
-        return classNames({
-            [styles.checkboxNew]: true,
-            [styles.checked]: true || checked,
+        return classNames(styles.checkboxNew, {
+            [styles.checked]: checked,
             [styles.notAllowed]: disabled
         });
     }
@@ -38,17 +37,25 @@ export default class CheckboxNew extends Component {
         });
     }
 
+    get checkboxLabelClasses() {
+        const { disabled } = this.props;
+
+        return classNames(styles.checkboxNewLabel, {
+            [styles.notAllowed]: disabled
+        });
+    }
+
     render() {
-        const { label, value, checked } = this.props;
+        const { label } = this.props;
         return (
             <span className={this.checkboxWrapperClasses}>
               <span className={styles.checkboxNewWrapper}>
                 <span
                   className={this.checkboxClasses}
-                  onClick={this.onChange}
-                  data-checked={checked}
-                  data-value={value} />
-                <span className={styles.checkboxNewLabel}>{label}</span>
+                  onClick={this.onChange} />
+                <span
+                  className={this.checkboxLabelClasses}
+                  onClick={this.onChange} >{label}</span>
               </span>
             </span>
         );
@@ -66,7 +73,7 @@ CheckboxNew.propTypes = {
     ]),
     wrapperClass: PropTypes.string,
     fullWidth: PropTypes.bool
-}
+};
 
 CheckboxNew.defaultProps = {
     checked: false,
