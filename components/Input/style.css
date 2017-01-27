@@ -141,6 +141,38 @@
     float: left;
 }
 
+/* CheckboxNew */
+.checkboxNewContainer {
+    display: block;
+}
+
+.checkboxNewAutoWidthContainer {
+    display: inline-block;
+}
+
+.checkboxNewWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.checkboxNewLabel {
+    margin-left: 5px;
+}
+
+.checkboxNew {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #D7D7D7;
+}
+
+.checkboxNew.checked {
+    background: url('./images/checkbox.png');
+    background-size: contain;
+    border: none;
+}
+
 /* Checkbox */
 span.checkBoxWrapper {
     display: inline-block;
