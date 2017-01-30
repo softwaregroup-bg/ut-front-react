@@ -1,3 +1,23 @@
+<a name="8.6.7"></a>
+## [8.6.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.6...v8.6.7) (2017-01-27)
+
+
+
+<a name="8.6.6"></a>
+## [8.6.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.5...v8.6.6) (2017-01-27)
+
+
+
+<a name="8.6.5"></a>
+## [8.6.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.4...v8.6.5) (2017-01-26)
+
+
+
+<a name="8.6.4"></a>
+## [8.6.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.3...v8.6.4) (2017-01-26)
+
+
+
 <a name="8.6.3"></a>
 ## [8.6.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.2...v8.6.3) (2017-01-26)
 
