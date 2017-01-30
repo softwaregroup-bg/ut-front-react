@@ -12,6 +12,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Button } from 'reactstrap';
 
+import {generateUniqueId} from '../../utils/helpers';
+
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -104,9 +106,10 @@ class GridToolBox extends Component {
     getDefaultValuesFromProps() {
         let defaultValues = {};
         for (let filter of this.props.filterElements) {
-            if (filter.type === filterElementTypes.datePickerBetween) {
-                defaultValues.from = filter.defaultValue.from;
-                defaultValues.to = filter.defaultValue.to;
+            if (typeof filter.name === 'object') {
+                Object.keys(filter.name).forEach(key => {
+                    defaultValues[filter.name[key]] = filter.defaultValue[key];
+                });
             } else {
                 defaultValues[filter.name] = filter.defaultValue;
             }
@@ -120,20 +123,19 @@ class GridToolBox extends Component {
     }
     getTooltip() {
         let content = [];
-        let uniqueKey = 1000;
         this.props.filterElements.forEach((filter) => {
             if (filter.type === filterElementTypes.datePickerBetween) {
                 if (filter.defaultValue.from) {
                     let value = filter.defaultValue.from;
                     value = new Date(value);
-                    content.push(<div key={--uniqueKey}>
+                    content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelFrom}: </span> {value.toLocaleDateString()}</span>
                     </div>);
                 }
                 if (filter.defaultValue.to) {
                     let value = filter.defaultValue.to;
                     value = new Date(value);
-                    content.push(<div key={++uniqueKey}>
+                    content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelTo}: </span> {value.toLocaleDateString()}</span>
                     </div>);
                 }
@@ -144,16 +146,15 @@ class GridToolBox extends Component {
                             return true;
                         }
                     });
-                    content.push(<div key={uniqueKey}>
+                    content.push(<div key={generateUniqueId()}>
                     <span><span className={style.bold}>{filter.label}: </span> {obj[0].name}</span>
                 </div>);
                 }
             } else if (filter.defaultValue) {
-                content.push(<div key={uniqueKey}>
+                content.push(<div key={generateUniqueId()}>
                     <span><span className={style.bold}>{filter.label}: </span> {filter.defaultValue}</span>
                 </div>);
             }
-            uniqueKey++;
         });
         return content;
     }
@@ -189,15 +190,15 @@ class GridToolBox extends Component {
                     </div>
                 );
             case filterElementTypes.datePickerBetween:
-                let { from, to } = this.state.filters;
+                let filters = this.state.filters;
                 let defaultValue = {
-                    from,
-                    to
+                    from: filters[filterElement.name.from],
+                    to: filters[filterElement.name.to]
                 };
                 return (
                     <div>
                         <DatePickerBetween onChange={function(obj) {
-                            onChange(obj.key, obj.value);
+                            onChange(filterElement.name[obj.key], obj.value);
                         }} withVerticalClass defaultValue={defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
                     </div>
                 );
