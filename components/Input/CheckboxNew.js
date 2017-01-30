@@ -22,7 +22,7 @@ export default class CheckboxNew extends Component {
         const { checked, disabled } = this.props;
 
         return classNames(styles.checkboxNew, {
-            [styles.checked]: checked,
+            [styles.checkedCheckbox]: checked,
             [styles.notAllowed]: disabled
         });
     }

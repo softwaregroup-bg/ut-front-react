@@ -162,14 +162,14 @@
 
 .checkboxNew {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: #fff;
     border: 1px solid #D7D7D7;
     cursor: pointer;
 }
 
-.checkboxNew.checked {
+.checkboxNew.checkedCheckbox {
     background: url('./images/checkbox.png');
     background-size: contain;
     border: none;
