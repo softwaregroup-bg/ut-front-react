@@ -87,10 +87,11 @@ class IPut extends Component {
  * Keydown Event
  */
     handleKeyDown(e, i) {
-    /* 37 = ←, 39 = →, 8 = backspace */
+    /* 37 = ←, 39 = →, 8 = backspace, 190 & 110 = dot */
         let domId = i;
         if ((e.keyCode === 37 || e.keyCode === 8) && getRange(e.target).end === 0 && i > 0) { domId = i - 1; }
         if (e.keyCode === 39 && getRange(e.target).end === e.target.value.length && i < 3) { domId = i + 1; }
+        if ((e.keyCode === 190 || e.keyCode === 110) && getRange(e.target).end > 0 && i < 3) { domId = i + 1; }
         this[`_input-${domId}`].focus();
     }
 /**
