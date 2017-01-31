@@ -193,6 +193,12 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     background-size: 18px 18px;
     border: none;
 }
+span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label span {
+    background: url('./images/disabled_checkbox.png');
+    background-position: center center;
+    background-size: 18px 18px;
+    border: none;
+}
 
 .notAllowed {
     cursor: not-allowed !important;
