@@ -1,3 +1,13 @@
+<a name="8.7.1"></a>
+## [8.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.0...v8.7.1) (2017-01-31)
+
+
+### Bug Fixes
+
+* render tabs we have permissions for only ([b5ead31](https://github.com/softwaregroup-bg/ut-front-react/commit/b5ead31))
+
+
+
 <a name="8.7.0"></a>
 # [8.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.7...v8.7.0) (2017-01-31)
 
