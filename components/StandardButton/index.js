@@ -8,7 +8,7 @@ const Button = ({
     onClick,
     className
 }) => (
-    <button type={type} className={getClass(buttonStyles, className)} onClick={onClick}>
+    <button type={type} className={buttonStyles[className] || getClass(buttonStyles, className) || className} onClick={onClick}>
         {label}
     </button>
 );
