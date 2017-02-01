@@ -5,7 +5,6 @@
     width: 100%;
     position: relative;
     font-weight: normal;
-    height: 30px;
 }
 
 .dp {
@@ -73,13 +72,15 @@
 }
 
 .verticalWrapper .dpWrap .label{
-    width: 23%;
-    text-align: center;
+    width: 28%;
+    text-align: left;
+    font-size: 14px;
+    color: #595959;
     font-weight: bold;
 }
 
 .verticalWrapper .dpWrap .dp{
-    width: 74%;
+    width: 70%;
     float: right;
 }
 
