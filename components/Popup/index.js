@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import { Portal } from 'react-overlays';
 import Overlay from '../Overlay';
+import ActionButtons from '../ActionButtons';
 import StandardButton from '../StandardButton';
 import popupStyles from './styles.css';
-import { Portal } from 'react-overlays';
 
 const Popup = ({
     isOpen,
@@ -27,8 +28,7 @@ const Popup = ({
                     {children}
                 </div>
                 <div className={popupStyles.popupFooter}>
-                    {actionButtons ? actionButtons : false}
-                    <StandardButton className={popupStyles.closePopupBtn} label={'Cancel'} onClick={closePopup}/>
+                    <ActionButtons buttons={actionButtons}/>
                 </div>
             </div>
         </div> : false }
