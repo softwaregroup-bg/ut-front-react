@@ -24,9 +24,9 @@ class Layout extends Component {
                       tabset={this.context.mainTabset}
                       headerText={this.props.headerText} />
                     <TabMenu defaultLocation={this.context.mainUrl} />
-                    <div id="appContent">
+                    <div id='appContent'>
                         {this.props.children}
-                        <div id="controls" className={styles.controls}/>
+                        <div id='controls' className={styles.controls} />
                     </div>
                 </div>
             );
