@@ -17,6 +17,9 @@ import {generateUniqueId} from '../../utils/helpers';
 import classnames from 'classnames';
 import style from './style.css';
 
+const dropDrownAllOptionKey = '__all__';
+const dropDrownPlaceholderOptionKey = '__placeholder__';
+
 class GridToolBox extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +58,7 @@ class GridToolBox extends Component {
                     foundActiveFilter = true;
                 }
             } else if (currenctFilterElement.type === 'dropDown') {
-                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== '__all__') {
+                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
                     foundActiveFilter = true;
                 }
             } else if (currenctFilterElement.defaultValue) {
@@ -140,7 +143,7 @@ class GridToolBox extends Component {
                     </div>);
                 }
             } else if (filter.type === filterElementTypes.dropDown) {
-                if (filter.defaultValue && filter.defaultValue !== '__all__') {
+                if (filter.defaultValue && filter.defaultValue !== dropDrownAllOptionKey && filter.defaultValue !== dropDrownPlaceholderOptionKey) {
                     let obj = filter.data.filter((dropdownItem) => {
                         if (filter.defaultValue === dropdownItem.key) {
                             return true;
@@ -179,6 +182,7 @@ class GridToolBox extends Component {
                           onChange(filterElement.name, obj.value);
                       }}
                       canSelectPlaceholder={filterElement.canSelectPlaceholder}
+                      boldLabel
                     />
                 );
             case filterElementTypes.searchBox:
@@ -231,10 +235,11 @@ class GridToolBox extends Component {
         let apply = () => {
             let result = {};
             Object.keys(this.state.filters).forEach((objKey) => {
-                if (this.state.filters[objKey] === '__all__') {
+                let objectKey = this.state.filters[objKey];
+                if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
                     result[objKey] = '';
                 } else {
-                    result[objKey] = this.state.filters[objKey];
+                    result[objKey] = objectKey;
                 }
             });
             this.props.batchChange(result);
