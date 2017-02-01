@@ -10,7 +10,9 @@ export default class DatePickerBetween extends Component {
         this.state = props.defaultValue;
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
+        this.getContextStyles = this.getContextStyles.bind(this);
     }
     componentWillReceiveProps(newProps) {
         this.setState(newProps.defaultValue);
