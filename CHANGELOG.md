@@ -1,3 +1,39 @@
+<a name="8.7.3"></a>
+## [8.7.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.2...v8.7.3) (2017-02-01)
+
+
+
+<a name="8.7.2"></a>
+## [8.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.1...v8.7.2) (2017-02-01)
+
+
+
+<a name="8.7.1"></a>
+## [8.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.0...v8.7.1) (2017-01-31)
+
+
+### Bug Fixes
+
+* render tabs we have permissions for only ([b5ead31](https://github.com/softwaregroup-bg/ut-front-react/commit/b5ead31))
+
+
+
+<a name="8.7.0"></a>
+# [8.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.7...v8.7.0) (2017-01-31)
+
+
+### Features
+
+* UIS-701 add ability to clear the state from the component ([4f42d4b](https://github.com/softwaregroup-bg/ut-front-react/commit/4f42d4b))
+* UIS-701 add placeholder to the ip input component ([5d2e0ff](https://github.com/softwaregroup-bg/ut-front-react/commit/5d2e0ff))
+* UIS-701 add readonly property to the component ([28c55c7](https://github.com/softwaregroup-bg/ut-front-react/commit/28c55c7))
+* UIS-701 add special handling when dot key is pressed ([0e52063](https://github.com/softwaregroup-bg/ut-front-react/commit/0e52063))
+* UIS-701 change interface and add placeholder ([f64a334](https://github.com/softwaregroup-bg/ut-front-react/commit/f64a334))
+* UIS-701 create range component ([b4d0b95](https://github.com/softwaregroup-bg/ut-front-react/commit/b4d0b95))
+* UIS-701 fix errors for the range component ([6667752](https://github.com/softwaregroup-bg/ut-front-react/commit/6667752))
+
+
+
 <a name="8.6.7"></a>
 ## [8.6.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.6...v8.6.7) (2017-01-27)
 
