@@ -7,14 +7,14 @@
 }
 
 .popupContainer {
-    position: relative;;
-    padding: 15px;
-    padding-bottom: 0;
+    position: relative;
     display: flex;
     flex-direction: column;
     top: 50%;
     left: 50%;
-    width: 400px;
+    width: 768px;
+    padding: 15px;
+    padding-bottom: 0;
     transform: translate(-50%, -50%);
     background-color: white;
     z-index: 22;

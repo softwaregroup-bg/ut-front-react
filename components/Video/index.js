@@ -19,9 +19,7 @@ export default class Video extends Component {
     }
 
     save() {
-        let { save } = this.props;
-
-        save(this.refs.vdieoNode);
+        this.props.save(this.refs.vdieoNode);
     }
 
     render() {

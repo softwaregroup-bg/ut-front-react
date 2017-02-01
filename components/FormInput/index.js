@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './styles.css';
+import { getClass } from '../../utils/helpers.js';
 
 export default class FormInput extends Component {
     constructor(props) {
@@ -13,25 +14,25 @@ export default class FormInput extends Component {
     }
 
     render() {
-        let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, accept } = this.props;
+        let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden } = this.props;
         let { onBlur, onChange } = this.props;
         let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
 
         return (
-            <div className={getClass(inputClassName)}>
-                <input
-                  disabled={disabled}
-                  name={name}
-                  type={type}
-                  data-hidden={!!hidden}
-                  placeholder={placeholder}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  tabIndex={tabIndex}
-                  ref='inputNode' />
-                  { label ? <label onClick={this.onLabelClick} className={styles.label} > {label} </label> : false }
-                  { error ? <div className={styles.errorMessage}>{error}</div> : false }
-            </div>
+           <div className={getClass(styles, inputClassName)}>
+               <input
+                 disabled={disabled}
+                 name={name}
+                 type={type}
+                 data-hidden={!!hidden}
+                 placeholder={placeholder}
+                 onChange={onChange}
+                 onBlur={onBlur}
+                 tabIndex={tabIndex}
+                 ref='inputNode' />
+                 { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
+                 { error ? <div className={styles.errorMessage}>{error}</div> : false }
+           </div>
         );
     }
 }
