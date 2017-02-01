@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import overlayStyles from './styles.css';
 
 const Overlay = ({
@@ -7,5 +7,10 @@ const Overlay = ({
 }) => (
     <div className={overlayStyles.defaultOverlay + ' ' + className} onClick={onClick} />
 );
+
+Overlay.propTypes = {
+    className: PropTypes.string,
+    onClick: PropTypes.func
+};
 
 export default Overlay;

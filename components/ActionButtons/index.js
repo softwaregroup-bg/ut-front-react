@@ -1,20 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import StandardButton from '../StandardButton';
 import actionButtonsStyles from './styles.css';
 
-export default class actionButtons extends Component {
-    constructor(props) {
-        super(props);
-
-        this.createActionButtons = this.createActionButtons.bind(this);
-    }
-
+export default class ActionButtons extends Component {
     createActionButtons() {
         let { buttons } = this.props;
 
-        return buttons.map(button => {
-            return <StandardButton className={button.className} onClick={button.onClick}/>
-        })
+        return buttons.map((button, index) => {
+            return <StandardButton key={index} className={button.className} onClick={button.onClick} />;
+        });
     }
 
     render() {
@@ -22,6 +16,10 @@ export default class actionButtons extends Component {
             <div className={actionButtonsStyles.actionButtonsContainer}>
                 {this.createActionButtons()}
             </div>
-        )
+        );
     }
 }
+
+ActionButtons.propTypes = {
+    buttons: PropTypes.array
+};
