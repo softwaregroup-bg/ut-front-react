@@ -1,4 +1,4 @@
-/* in order to have theming first import the default component config and then the implementation config to override the variables*/
+    /* in order to have theming first import the default component config and then the implementation config to override the variables*/
 @import './default-config.css';
 /* implementation config; in every implementation the file must be named exactly config.css in order for the theming to work */
 @import 'config.css';
@@ -95,5 +95,5 @@
 .actionBtn {
     composes: defaultBtn;
     width: 85px;
-    height: 40px;
+    height: 35px;
 }
