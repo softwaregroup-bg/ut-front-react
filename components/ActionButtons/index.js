@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 import StandardButton from '../StandardButton';
 import actionButtonsStyles from './styles.css';
 
 const ActionButtons = ({
-    buttons
+    buttons,
+    className
 }) => (
-    <div className={actionButtonsStyles.actionButtonsContainer}>
+    <div className={classnames(actionButtonsStyles.actionButtonsContainer, className)}>
         {buttons.map((button, index) => {
             return (
                 <StandardButton key={index}
