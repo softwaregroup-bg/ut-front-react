@@ -1,3 +1,6 @@
+@import './default-config.css';
+@import 'config.css';
+
 .modalContainer {
     position: absolute;
     top:0;
@@ -13,10 +16,8 @@
     top: 50%;
     left: 50%;
     width: 768px;
-    padding: 15px;
-    padding-bottom: 0;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #FFF;
     z-index: 22;
 }
 
@@ -24,18 +25,22 @@
     margin-left: auto;
 }
 
-.popupHeader {
+.popupSection {
     display: flex;
-    flex: 1;
+    align-items: center;
     height: 50px;
-    border-bottom: 1px solid black;
+    padding-right: 12px;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+}
+
+.popupHeader {
+    font-size: 18px;
+    border-bottom: 1px solid #D7D6D6;
 }
 
 .popupFooter {
-    display: flex;
-    align-items: center;
-    height: 65px;
-    border-top: 1px solid black;
+    border-top: 1px solid #D7D6D6;
 }
 
 .closeBtn {
