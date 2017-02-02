@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import StandardButton from '../StandardButton';
 import actionButtonsStyles from './styles.css';
@@ -11,17 +11,18 @@ const ActionButtons = ({
         {buttons.map((button, index) => {
             return (
                 <StandardButton key={index}
-                type={button.type}
-                label={button.label}
-                className={button.className}
-                onClick={button.onClick} />
-            )
+                  type={button.type}
+                  label={button.label}
+                  className={button.className}
+                  onClick={button.onClick} />
+            );
         })}
     </div>
 );
 
 ActionButtons.propTypes = {
-    buttons: PropTypes.array
+    buttons: PropTypes.array,
+    className: PropTypes.string
 };
 
 export default ActionButtons;

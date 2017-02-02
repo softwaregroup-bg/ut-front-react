@@ -46,7 +46,8 @@ Popup.propTypes = {
     closeOnOverlayClick: PropTypes.bool,
     actionButtons: PropTypes.array,
     closePopup: PropTypes.func,
-    children: PropTypes.object
+    children: PropTypes.object,
+    buttonsClass: PropTypes.string
 };
 
 export default Popup;
