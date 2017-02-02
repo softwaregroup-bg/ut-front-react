@@ -1,27 +1,19 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 import style from './style.css';
 
 const Container = (props) => {
     let classes = props.fluid ? style['container-fluid'] : style.container;
-    let inlineStyle = {};
-    inlineStyle.width = props.width ? props.width : null;
-    inlineStyle.minWidth = props.minWidth ? props.minWidth : null;
-    inlineStyle.maxWidth = props.maxWidth ? props.maxWidth : null;
+    classes = props.className ? classnames(classes, props.className) : classes;
     return (
-        <div className={classes} style={inlineStyle}>{props.children}</div>
+        <div className={classes}>{props.children}</div>
     );
 };
 
 Container.propTypes = {
     children: PropTypes.any,
     fluid: PropTypes.bool,
-    width: PropTypes.string,
-    minWidth: PropTypes.string,
-    maxWidth: PropTypes.string
-};
-
-Container.defaultProps = {
-    fluid: true
+    className: PropTypes.string
 };
 
 export default Container;
