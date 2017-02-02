@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import FilePreview from '../FilePreview';
+import FilePreview from './FilePreview';
 import Video from '../Video';
 import fileUploadStyles from './styles.css';
 
