@@ -4,8 +4,8 @@ import fileUploadStyles from '../styles.css';
 export default class FilePreview extends Component {
     render() {
         return (
-            <div classname={fileUploadStyles.filePreviewContainer}>
-                
+            <div className={fileUploadStyles.filePreviewContainer}>
+
             </div>
         );
     }
