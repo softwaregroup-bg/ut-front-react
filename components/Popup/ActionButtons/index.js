@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import StandardButton from '../StandardButton';
+import StandardButton from '../../StandardButton';
 import actionButtonsStyles from './styles.css';
 
 const ActionButtons = ({

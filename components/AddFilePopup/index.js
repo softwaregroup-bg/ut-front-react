@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import addFilePopupStyles from './styles.css';
 import Popup from '../Popup';
-import AddFileMenu from '../AddFileMenu';
-import FileUpload from '../FileUpload';
+import AddFileMenu from '../Popup/AddFileMenu';
+import FileUpload from '../Popup/FileUpload';
 
+//TODO: add children
 const AddFilePopup = ({
     isOpen,
     hasOverlay,
@@ -16,7 +17,8 @@ const AddFilePopup = ({
     file,
     addFileOption,
     addFile,
-    closePopup
+    closePopup,
+    children
 }) => (
     <Popup className={addFilePopupStyles.addFilePopup}
       isOpen={isOpen}

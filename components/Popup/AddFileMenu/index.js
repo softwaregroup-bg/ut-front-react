@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import StandardButton from '../StandardButton';
-import FormInput from '../FormInput';
+import StandardButton from '../../StandardButton';
+import FormInput from '../../FormInput';
 import addFileStyles from './styles.css';
 
 export default class AddFileMenu extends Component {
