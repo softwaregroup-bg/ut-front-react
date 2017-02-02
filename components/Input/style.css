@@ -63,8 +63,9 @@
 
 .outerWrap .labelWrap {
     width: 25%;
+    font-size: 14px;
     font-weight: bold;
-    vertical-align: middle;
+    text-align: left;
 }
 
 .outerWrap .inputWrap {

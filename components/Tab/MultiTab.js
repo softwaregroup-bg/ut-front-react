@@ -10,8 +10,8 @@ import {generateUniqueId} from '../../utils/helpers';
 const multiTab = 'multiTab';
 
 export default class MultiTab extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             menuToggled: false
@@ -30,23 +30,28 @@ export default class MultiTab extends Component {
     }
     getMenuItems() {
         const { multi } = this.props.tab;
-
         return multi.reduce((tabs, currentTab) => {
-            if (currentTab.multi) {
-                tabs.push((
-                    <MultiTab
-                      tab={currentTab}
-                      key={generateUniqueId()}
-                      positioningDirections={'top-right'}
-                      rightArrowIcon />
-                ));
-            } else {
-                tabs.push((
-                    <Tab
-                      key={generateUniqueId()}
-                      tab={currentTab}
-                      className={styles.menuItemTab} />
+            let hasPermission = true;
+            currentTab.permission.forEach(p => {
+                hasPermission = hasPermission && this.context.checkPermission(p);
+            });
+            if (hasPermission) {
+                if (currentTab.multi) {
+                    tabs.push((
+                        <MultiTab
+                          tab={currentTab}
+                          key={generateUniqueId()}
+                          positioningDirections={'top-right'}
+                          rightArrowIcon />
                     ));
+                } else {
+                    tabs.push((
+                        <Tab
+                          key={generateUniqueId()}
+                          tab={currentTab}
+                          className={styles.menuItemTab} />
+                        ));
+                }
             }
 
             return tabs;
@@ -71,7 +76,10 @@ export default class MultiTab extends Component {
 
     render() {
         const { tab } = this.props;
-
+        let menuItems = this.getMenuItems();
+        if (!menuItems.length) {
+            return null;
+        }
         return (
             <div
               className={styles.navigationMultiTab}
@@ -112,4 +120,8 @@ MultiTab.propTypes = {
 MultiTab.defaultProps = {
     positioningDirections: 'bottom-left',
     rightArrowIcon: false
+};
+
+MultiTab.contextTypes = {
+    checkPermission: PropTypes.func
 };

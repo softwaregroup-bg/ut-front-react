@@ -1,3 +1,55 @@
+<a name="8.7.4"></a>
+## [8.7.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.3...v8.7.4) (2017-02-02)
+
+
+### Bug Fixes
+
+* define methods in component constructor ([f0750e2](https://github.com/softwaregroup-bg/ut-front-react/commit/f0750e2))
+* equalize input label styles ([76544ab](https://github.com/softwaregroup-bg/ut-front-react/commit/76544ab))
+* improve dropdown value check ([55f71ae](https://github.com/softwaregroup-bg/ut-front-react/commit/55f71ae))
+* noop ([f8b4dca](https://github.com/softwaregroup-bg/ut-front-react/commit/f8b4dca))
+* support multiple datepickers in grid toolbox ([d9ad679](https://github.com/softwaregroup-bg/ut-front-react/commit/d9ad679))
+* toggle grid columns helpers ([1286bc8](https://github.com/softwaregroup-bg/ut-front-react/commit/1286bc8))
+* use auto height for date picker wrap ([9669e58](https://github.com/softwaregroup-bg/ut-front-react/commit/9669e58))
+
+
+
+<a name="8.7.3"></a>
+## [8.7.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.2...v8.7.3) (2017-02-01)
+
+
+
+<a name="8.7.2"></a>
+## [8.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.1...v8.7.2) (2017-02-01)
+
+
+
+<a name="8.7.1"></a>
+## [8.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.0...v8.7.1) (2017-01-31)
+
+
+### Bug Fixes
+
+* render tabs we have permissions for only ([b5ead31](https://github.com/softwaregroup-bg/ut-front-react/commit/b5ead31))
+
+
+
+<a name="8.7.0"></a>
+# [8.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.7...v8.7.0) (2017-01-31)
+
+
+### Features
+
+* UIS-701 add ability to clear the state from the component ([4f42d4b](https://github.com/softwaregroup-bg/ut-front-react/commit/4f42d4b))
+* UIS-701 add placeholder to the ip input component ([5d2e0ff](https://github.com/softwaregroup-bg/ut-front-react/commit/5d2e0ff))
+* UIS-701 add readonly property to the component ([28c55c7](https://github.com/softwaregroup-bg/ut-front-react/commit/28c55c7))
+* UIS-701 add special handling when dot key is pressed ([0e52063](https://github.com/softwaregroup-bg/ut-front-react/commit/0e52063))
+* UIS-701 change interface and add placeholder ([f64a334](https://github.com/softwaregroup-bg/ut-front-react/commit/f64a334))
+* UIS-701 create range component ([b4d0b95](https://github.com/softwaregroup-bg/ut-front-react/commit/b4d0b95))
+* UIS-701 fix errors for the range component ([6667752](https://github.com/softwaregroup-bg/ut-front-react/commit/6667752))
+
+
+
 <a name="8.6.7"></a>
 ## [8.6.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.6.6...v8.6.7) (2017-01-27)
 
