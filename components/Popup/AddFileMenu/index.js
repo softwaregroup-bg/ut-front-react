@@ -19,23 +19,23 @@ export default class AddFileMenu extends Component {
     }
 
     onFileSelect() {
-        let { onAddFile } = this.props;
+        let { addFile } = this.props;
         let inputNode = this.refs.fileInput.refs.inputNode;
 
         let fileReader = new FileReader();
 
         if (inputNode.files[0]) {
             fileReader.addEventListener('loadend', (e) => {
-                onAddFile('upload', e.target.result);
+                addFile('upload', e.target.result);
             });
 
             fileReader.readAsDataURL(inputNode.files[0]);
         }
     }
     capturePhoto() {
-        let { onAddFile } = this.props;
+        let { addFile } = this.props;
 
-        onAddFile('capture');
+        addFile('capture');
     }
 
     render() {
@@ -57,5 +57,5 @@ export default class AddFileMenu extends Component {
 
 AddFileMenu.propTypes = {
     className: PropTypes.string,
-    onAddFile: PropTypes.func
+    addFile: PropTypes.func
 };

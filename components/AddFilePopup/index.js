@@ -4,7 +4,6 @@ import Popup from '../Popup';
 import AddFileMenu from '../Popup/AddFileMenu';
 import FileUpload from '../Popup/FileUpload';
 
-//TODO: add children
 const AddFilePopup = ({
     isOpen,
     hasOverlay,
@@ -15,10 +14,11 @@ const AddFilePopup = ({
     closeOnOverlayClick,
     actionButtons,
     file,
+    children,
     addFileOption,
     addFile,
     closePopup,
-    children
+    setUploadOption
 }) => (
     <Popup className={addFilePopupStyles.addFilePopup}
       isOpen={isOpen}
@@ -31,7 +31,7 @@ const AddFilePopup = ({
       closePopup={closePopup}
       actionButtons={actionButtons}>
         {children}
-        {addFileOption === 'initial'? <AddFileMenu onAddFile={addFile} /> :
+        {addFileOption === 'initial'? <AddFileMenu addFile={addFile} /> :
         <FileUpload file={file} uploadType={addFileOption} />}
     </Popup>
 );
