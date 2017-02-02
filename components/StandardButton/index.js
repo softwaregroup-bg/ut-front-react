@@ -9,12 +9,17 @@ const Button = ({
     type,
     label,
     onClick,
-    className
+    className,
+    disabled
 }) => {
     let cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
 
+    if (disabled) {
+        cssClass = classNames(cssClass, buttonStyles.disabledBtn);
+    }
+
     return (
-      <button type={type} className={classNames(cssClass)} onClick={onClick}>
+      <button disabled={disabled} type={type} className={classNames(cssClass)} onClick={onClick}>
         {label}
       </button>
     );
@@ -24,6 +29,7 @@ Button.propTypes = {
     type: PropTypes.string,
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     label: PropTypes.string,
+    disabled: PropTypes.bool,
     onClick: PropTypes.func
 };
 

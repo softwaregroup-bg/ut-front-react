@@ -32,6 +32,21 @@
     width: 100%;
 }
 
+.disabledBtn {
+    background-color: #cbc8ce;
+    cursor: not-allowed;
+}
+
+.disabledBtn:hover {
+    background-color: #cbc8ce;
+    cursor: not-allowed;
+}
+
+.disabledBtn:active {
+    background-color: #cbc8ce;
+    cursor: not-allowed;
+}
+
 .defaultBtn {
     width: auto;
     font-size: 14px;
