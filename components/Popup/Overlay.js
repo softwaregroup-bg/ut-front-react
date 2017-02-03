@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import overlayStyles from './styles.css';
+import popupStyles from './styles.css';
 
 const Overlay = ({
     className,
     onClick
 }) => (
-    <div className={overlayStyles.defaultOverlay + ' ' + className} onClick={onClick} />
+    <div className={popupStyles.defaultOverlay + ' ' + className} onClick={onClick} />
 );
 
 Overlay.propTypes = {
