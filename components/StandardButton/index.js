@@ -10,16 +10,19 @@ const Button = ({
     label,
     onClick,
     className,
-    disabled
+    disabled,
+    disabledClassName
 }) => {
-    let cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
-
+    /* If you want to use both internal modular CSS (from the button itself) and external (in module context) use className as array.
+       Pass the internal classes (from the button itself) like strings ('standardBtn') and the external ones already mapped (styles.[cssClassHere]). */
+    var cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
+    var disabledClass = '';
     if (disabled) {
-        cssClass = classNames(cssClass, buttonStyles.disabledBtn);
+        disabledClass = Array.isArray(disabledClassName) ? disabledClassName.map(getClassInternal) : getClassInternal(disabledClassName);
     }
 
     return (
-      <button disabled={disabled} type={type} className={classNames(cssClass)} onClick={onClick}>
+      <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
         {label}
       </button>
     );
@@ -30,12 +33,14 @@ Button.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     label: PropTypes.string,
     disabled: PropTypes.bool,
+    disabledClassName: PropTypes.string,
     onClick: PropTypes.func
 };
 
 Button.defaultProps = {
     type: 'button',
     className: 'standardBtn',
+    disabledClassName: buttonStyles.disabledBtn,
     onClick: () => {}
 };
 
