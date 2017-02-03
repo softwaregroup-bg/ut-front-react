@@ -1,0 +1,8 @@
+.verticalWrapper {
+    height: 100%;
+}
+
+.vertical {
+    overflow: hidden;
+    width: 100%;
+}

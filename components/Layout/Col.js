@@ -41,16 +41,12 @@ const Col = (props) => {
         }
     });
     // gutter
-    if (props.gutter) {
-        if (props.gutter === true) {
-            colClasses.push('col-gutter');
-        } else if (props.gutter != null && typeof props.gutter === 'object') {
-            if (props.gutter.left) {
-                colClasses.push('col-gutter-left');
-            }
-            if (props.gutter.right) {
-                colClasses.push('col-gutter-right');
-            }
+    if (props.gutter != null && typeof props.gutter === 'object') {
+        if (props.gutter.left === false) {
+            colClasses.push('col-no-gutter-left');
+        }
+        if (props.gutter.right === false) {
+            colClasses.push('col-no-gutter-right');
         }
     }
     let classes = () => {
@@ -58,6 +54,9 @@ const Col = (props) => {
         colClasses.forEach((clss) => {
             combinedClasses = classnames(combinedClasses, style[clss]);
         });
+        if (props.className) {
+            combinedClasses = classnames(combinedClasses, props.className);
+        }
         return combinedClasses;
     };
     return (
@@ -80,13 +79,11 @@ const columnProps = PropTypes.oneOfType([
 
 Col.propTypes = {
     children: PropTypes.any,
-    gutter: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.shape({
-            left: PropTypes.bool,
-            right: PropTypes.bool
-        })
-    ]),
+    gutter: PropTypes.shape({
+        left: PropTypes.bool,
+        right: PropTypes.bool
+    }),
+    className: PropTypes.string,
     xs: columnProps,
     sm: columnProps,
     md: columnProps,
