@@ -1,3 +1,13 @@
+<a name="8.7.6"></a>
+## [8.7.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.5...v8.7.6) (2017-02-03)
+
+
+### Bug Fixes
+
+* UI-823: misplaced menu ([69431d2](https://github.com/softwaregroup-bg/ut-front-react/commit/69431d2))
+
+
+
 <a name="8.7.5"></a>
 ## [8.7.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.4...v8.7.5) (2017-02-03)
 
