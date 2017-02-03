@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import style from './style.css';
+import style from './verticalStyles.css';
 
 const Vertical = (props) => {
     let height = props.fixedComponentHeight + 'px';
     return (
-        <div className={style.h100}>
+        <div className={style.verticalWrapper}>
             <div style={{height: height}}>{props.fixedComponent}</div>
             <div style={{height: 'calc(100% - ' + height + ')'}} className={style.vertical}>{props.children}</div>
         </div>
