@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Portal } from 'react-overlays';
 import classnames from 'classnames';
-import Overlay from './Overlay';
-import ActionButtons from './ActionButtons';
+import Overlay from './Overlay.js';
+import ActionButtons from './actionButtons';
 import StandardButton from '../StandardButton';
 import popupStyles from './styles.css';
 

@@ -1,0 +1,7 @@
+.addFileMenuCotainer {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+}
