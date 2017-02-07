@@ -63,8 +63,9 @@
 
 .outerWrap .labelWrap {
     width: 25%;
+    font-size: 14px;
     font-weight: bold;
-    vertical-align: middle;
+    text-align: left;
 }
 
 .outerWrap .inputWrap {
@@ -223,6 +224,12 @@ span.checkBoxWrapper .innerWrap .lableWrap {
 
 span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     background: url('./images/checkbox.png');
+    background-position: center center;
+    background-size: 18px 18px;
+    border: none;
+}
+span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label span {
+    background: url('./images/disabled_checkbox.png');
     background-position: center center;
     background-size: 18px 18px;
     border: none;

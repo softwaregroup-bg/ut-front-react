@@ -12,8 +12,13 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Button } from 'reactstrap';
 
+import {generateUniqueId} from '../../utils/helpers';
+
 import classnames from 'classnames';
 import style from './style.css';
+
+const dropDrownAllOptionKey = '__all__';
+const dropDrownPlaceholderOptionKey = '__placeholder__';
 
 class GridToolBox extends Component {
     constructor(props) {
@@ -53,7 +58,7 @@ class GridToolBox extends Component {
                     foundActiveFilter = true;
                 }
             } else if (currenctFilterElement.type === 'dropDown') {
-                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== '__all__') {
+                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
                     foundActiveFilter = true;
                 }
             } else if (currenctFilterElement.defaultValue) {
@@ -104,9 +109,10 @@ class GridToolBox extends Component {
     getDefaultValuesFromProps() {
         let defaultValues = {};
         for (let filter of this.props.filterElements) {
-            if (filter.type === filterElementTypes.datePickerBetween) {
-                defaultValues.from = filter.defaultValue.from;
-                defaultValues.to = filter.defaultValue.to;
+            if (typeof filter.name === 'object') {
+                Object.keys(filter.name).forEach(key => {
+                    defaultValues[filter.name[key]] = filter.defaultValue[key];
+                });
             } else {
                 defaultValues[filter.name] = filter.defaultValue;
             }
@@ -120,40 +126,38 @@ class GridToolBox extends Component {
     }
     getTooltip() {
         let content = [];
-        let uniqueKey = 1000;
         this.props.filterElements.forEach((filter) => {
             if (filter.type === filterElementTypes.datePickerBetween) {
                 if (filter.defaultValue.from) {
                     let value = filter.defaultValue.from;
                     value = new Date(value);
-                    content.push(<div key={--uniqueKey}>
+                    content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelFrom}: </span> {value.toLocaleDateString()}</span>
                     </div>);
                 }
                 if (filter.defaultValue.to) {
                     let value = filter.defaultValue.to;
                     value = new Date(value);
-                    content.push(<div key={++uniqueKey}>
+                    content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelTo}: </span> {value.toLocaleDateString()}</span>
                     </div>);
                 }
             } else if (filter.type === filterElementTypes.dropDown) {
-                if (filter.defaultValue && filter.defaultValue !== '__all__') {
+                if (filter.defaultValue && filter.defaultValue !== dropDrownAllOptionKey && filter.defaultValue !== dropDrownPlaceholderOptionKey) {
                     let obj = filter.data.filter((dropdownItem) => {
                         if (filter.defaultValue === dropdownItem.key) {
                             return true;
                         }
                     });
-                    content.push(<div key={uniqueKey}>
+                    content.push(<div key={generateUniqueId()}>
                     <span><span className={style.bold}>{filter.label}: </span> {obj[0].name}</span>
                 </div>);
                 }
             } else if (filter.defaultValue) {
-                content.push(<div key={uniqueKey}>
+                content.push(<div key={generateUniqueId()}>
                     <span><span className={style.bold}>{filter.label}: </span> {filter.defaultValue}</span>
                 </div>);
             }
-            uniqueKey++;
         });
         return content;
     }
@@ -178,6 +182,7 @@ class GridToolBox extends Component {
                           onChange(filterElement.name, obj.value);
                       }}
                       canSelectPlaceholder={filterElement.canSelectPlaceholder}
+                      boldLabel
                     />
                 );
             case filterElementTypes.searchBox:
@@ -189,15 +194,15 @@ class GridToolBox extends Component {
                     </div>
                 );
             case filterElementTypes.datePickerBetween:
-                let { from, to } = this.state.filters;
+                let filters = this.state.filters;
                 let defaultValue = {
-                    from,
-                    to
+                    from: filters[filterElement.name.from],
+                    to: filters[filterElement.name.to]
                 };
                 return (
                     <div>
                         <DatePickerBetween onChange={function(obj) {
-                            onChange(obj.key, obj.value);
+                            onChange(filterElement.name[obj.key], obj.value);
                         }} withVerticalClass defaultValue={defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
                     </div>
                 );
@@ -230,10 +235,11 @@ class GridToolBox extends Component {
         let apply = () => {
             let result = {};
             Object.keys(this.state.filters).forEach((objKey) => {
-                if (this.state.filters[objKey] === '__all__') {
+                let objectKey = this.state.filters[objKey];
+                if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
                     result[objKey] = '';
                 } else {
-                    result[objKey] = this.state.filters[objKey];
+                    result[objKey] = objectKey;
                 }
             });
             this.props.batchChange(result);

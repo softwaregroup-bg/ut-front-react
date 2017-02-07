@@ -4,13 +4,17 @@ import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
 import {dateTimeFormat, formatIso} from 'material-ui/DatePicker/dateUtils';
 import style from '../style.css';
 
+const noop = () => {};
+
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
         this.state = props.defaultValue;
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
+        this.getContextStyles = this.getContextStyles.bind(this);
     }
     componentWillReceiveProps(newProps) {
         this.setState(newProps.defaultValue);
@@ -86,14 +90,14 @@ export default class DatePickerBetween extends Component {
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
                         {this.props.labelFrom ? (<span className={style.label}>{this.props.labelFrom}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
-                            <input value={this.state.from ? this.formatDate(this.state.from) : ''} type='text' onKeyUp={this.handleKeyPress('from')} />
+                            <input value={this.state.from ? this.formatDate(this.state.from) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
                         {this.props.labelTo ? (<span className={style.label}>{this.props.labelTo}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
-                            <input value={this.state.to ? this.formatDate(this.state.to) : ''} type='text' onKeyUp={this.handleKeyPress('to')} />
+                            <input value={this.state.to ? this.formatDate(this.state.to) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
                             <button onClick={this.handleOpen('to')} />
                         </div>
                     </div>

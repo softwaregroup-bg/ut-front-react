@@ -13,7 +13,7 @@ const Checkbox = (props) => {
     if (props.label) {
         label = <p>{props.label}</p>;
     }
-    let isDisabledClass = isDisabled ? style.notAllowed : style.pointer;
+    let isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
 
     return (
         <span className={classnames(style.checkBoxWrapper, isDisabledClass)} onTouchTap={isDisabled ? noop : props.onClick}>

@@ -1,3 +1,59 @@
+<a name="8.7.11"></a>
+## [8.7.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.10...v8.7.11) (2017-02-06)
+
+
+
+<a name="8.7.10"></a>
+## [8.7.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.9...v8.7.10) (2017-02-06)
+
+
+
+<a name="8.7.9"></a>
+## [8.7.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.8...v8.7.9) (2017-02-06)
+
+
+
+<a name="8.7.8"></a>
+## [8.7.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.7...v8.7.8) (2017-02-03)
+
+
+
+<a name="8.7.7"></a>
+## [8.7.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.6...v8.7.7) (2017-02-03)
+
+
+
+<a name="8.7.6"></a>
+## [8.7.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.5...v8.7.6) (2017-02-03)
+
+
+### Bug Fixes
+
+* UI-823: misplaced menu ([69431d2](https://github.com/softwaregroup-bg/ut-front-react/commit/69431d2))
+
+
+
+<a name="8.7.5"></a>
+## [8.7.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.4...v8.7.5) (2017-02-03)
+
+
+
+<a name="8.7.4"></a>
+## [8.7.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.3...v8.7.4) (2017-02-02)
+
+
+### Bug Fixes
+
+* define methods in component constructor ([f0750e2](https://github.com/softwaregroup-bg/ut-front-react/commit/f0750e2))
+* equalize input label styles ([76544ab](https://github.com/softwaregroup-bg/ut-front-react/commit/76544ab))
+* improve dropdown value check ([55f71ae](https://github.com/softwaregroup-bg/ut-front-react/commit/55f71ae))
+* noop ([f8b4dca](https://github.com/softwaregroup-bg/ut-front-react/commit/f8b4dca))
+* support multiple datepickers in grid toolbox ([d9ad679](https://github.com/softwaregroup-bg/ut-front-react/commit/d9ad679))
+* toggle grid columns helpers ([1286bc8](https://github.com/softwaregroup-bg/ut-front-react/commit/1286bc8))
+* use auto height for date picker wrap ([9669e58](https://github.com/softwaregroup-bg/ut-front-react/commit/9669e58))
+
+
+
 <a name="8.7.3"></a>
 ## [8.7.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.2...v8.7.3) (2017-02-01)
 
