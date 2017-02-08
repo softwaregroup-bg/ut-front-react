@@ -56,6 +56,9 @@ export const login = (state = defaultLoginState, action) => {
     let validationResult;
     switch (action.type) {
         case LOGOUT:
+            if (action.methodRequestState === 'finished') {
+                return state.set('authenticated', false);
+            }
             return state;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
