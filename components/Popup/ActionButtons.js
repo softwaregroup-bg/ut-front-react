@@ -25,4 +25,8 @@ ActionButtons.propTypes = {
     className: PropTypes.string
 };
 
+ActionButtons.defaultProps = {
+    buttons: []
+};
+
 export default ActionButtons;
