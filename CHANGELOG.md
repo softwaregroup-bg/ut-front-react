@@ -1,3 +1,38 @@
+<a name="8.7.11"></a>
+## [8.7.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.10...v8.7.11) (2017-02-06)
+
+
+
+<a name="8.7.10"></a>
+## [8.7.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.9...v8.7.10) (2017-02-06)
+
+
+
+<a name="8.7.9"></a>
+## [8.7.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.8...v8.7.9) (2017-02-06)
+
+
+
+<a name="8.7.8"></a>
+## [8.7.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.7...v8.7.8) (2017-02-03)
+
+
+
+<a name="8.7.7"></a>
+## [8.7.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.6...v8.7.7) (2017-02-03)
+
+
+
+<a name="8.7.6"></a>
+## [8.7.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.5...v8.7.6) (2017-02-03)
+
+
+### Bug Fixes
+
+* UI-823: misplaced menu ([69431d2](https://github.com/softwaregroup-bg/ut-front-react/commit/69431d2))
+
+
+
 <a name="8.7.5"></a>
 ## [8.7.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.4...v8.7.5) (2017-02-03)
 
