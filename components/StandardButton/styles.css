@@ -94,6 +94,7 @@
 
 .actionBtn {
     box-sizing: border-box;
+    margin-left: 15px;
     padding: 5px 20px;
     background: var(--ut-front-react-defaultBtnBgColor);
     border: 1px solid var(--ut-front-react-defaultBtnBgColor);
@@ -108,5 +109,6 @@
 }
 
 .actionBtn.primary:hover {
-
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
 }

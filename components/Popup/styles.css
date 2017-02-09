@@ -41,9 +41,14 @@
 }
 
 .closeBtn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     margin-left: auto;
+    background: url('./images/closeTab.png') center no-repeat;
+}
+
+.closeBtn:hover {
+    background: url('./images/closeTabHover.png') center no-repeat;
 }
 
 .closePopupBtn {

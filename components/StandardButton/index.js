@@ -5,11 +5,10 @@ import { getClass } from '../../utils/helpers';
 
 const getClassInternal = (className) => {
     return buttonStyles[className] || getClass(buttonStyles, className) || className;
-}
+};
 
 const Button = ({
     type,
-    isPrimary,
     label,
     onClick,
     className,
