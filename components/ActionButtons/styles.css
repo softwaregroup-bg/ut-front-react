@@ -1,3 +1,5 @@
 .actionButtonsContainer {
-    margin-left: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    flex: 1;
 }
