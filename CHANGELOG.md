@@ -1,3 +1,29 @@
+<a name="8.8.0"></a>
+# [8.8.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.11...v8.8.0) (2017-02-09)
+
+
+### Features
+
+* UIS-1022 ([f611613](https://github.com/softwaregroup-bg/ut-front-react/commit/f611613))
+* UIS-1022 Add default props to ActionButtons ([9618602](https://github.com/softwaregroup-bg/ut-front-react/commit/9618602))
+* UIS-1022: Add file preview logic ([839e566](https://github.com/softwaregroup-bg/ut-front-react/commit/839e566))
+* UIS-1022: Fix action buttons styles and add close window icon to popup ([06d7d6d](https://github.com/softwaregroup-bg/ut-front-react/commit/06d7d6d))
+* UIS-1022: Fix components paths and reorder dile structure ([e8486bf](https://github.com/softwaregroup-bg/ut-front-react/commit/e8486bf))
+* UIS-1022: Fix FormInput styles ([e643d9a](https://github.com/softwaregroup-bg/ut-front-react/commit/e643d9a))
+* UIS-1022: Fix Popup padding ([b33f717](https://github.com/softwaregroup-bg/ut-front-react/commit/b33f717))
+* UIS-1022: Fix Popup styles ([87492f0](https://github.com/softwaregroup-bg/ut-front-react/commit/87492f0))
+* UIS-1022: Implement AddPhoto component ([3f9c694](https://github.com/softwaregroup-bg/ut-front-react/commit/3f9c694))
+* UIS-1022: Implement Popup using addFile from container ([ee98162](https://github.com/softwaregroup-bg/ut-front-react/commit/ee98162))
+* UIS-1022: Implement TakePhoto component ([af0dcdf](https://github.com/softwaregroup-bg/ut-front-react/commit/af0dcdf))
+* UIS-1022: Move ActionButtons.js to components ([702eedd](https://github.com/softwaregroup-bg/ut-front-react/commit/702eedd))
+* UIS-1022: Move AddFile popup to customer module ([ec7d9d7](https://github.com/softwaregroup-bg/ut-front-react/commit/ec7d9d7))
+* UIS-1022: Move AddFilePopup to ut-customer ([a1d2792](https://github.com/softwaregroup-bg/ut-front-react/commit/a1d2792))
+* UIS-1022: Move components' folders ([cdfd31d](https://github.com/softwaregroup-bg/ut-front-react/commit/cdfd31d))
+* UIS-1022: Move FilePreview to FileUpload component ([191520d](https://github.com/softwaregroup-bg/ut-front-react/commit/191520d))
+* UIS-1022: Move FileUpload Component to ut-front-react ([1d89d75](https://github.com/softwaregroup-bg/ut-front-react/commit/1d89d75))
+
+
+
 <a name="8.7.11"></a>
 ## [8.7.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.10...v8.7.11) (2017-02-06)
 
