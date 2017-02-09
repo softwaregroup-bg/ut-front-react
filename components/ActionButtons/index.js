@@ -10,11 +10,7 @@ const ActionButtons = ({
     <div className={classnames(actionButtonsStyles.actionButtonsContainer, className)}>
         {buttons.map((button, index) => {
             return (
-                <StandardButton key={index}
-                  type={button.type}
-                  label={button.label}
-                  className={button.className}
-                  onClick={button.onClick} />
+                <StandardButton key={index} {...button} />
             );
         })}
     </div>
