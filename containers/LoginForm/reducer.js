@@ -68,7 +68,8 @@ export const login = (state = defaultLoginState, action) => {
                     let err = action.error.type.split('.');
                     let type = err[err.length - 1];
 
-                    return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message);
+                    return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message)
+                    .setIn(['loginForm', 'inputs', 'username', 'disabled'], false);
                 } else if (action.result) {
                     return state.set('authenticated', true)
                                 .set('cookieChecked', true)
