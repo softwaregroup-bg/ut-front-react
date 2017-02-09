@@ -57,7 +57,7 @@ export const login = (state = defaultLoginState, action) => {
     switch (action.type) {
         case LOGOUT:
             if (action.methodRequestState === 'finished') {
-                return state.set('authenticated', false);
+                return defaultLoginState;
             }
             return state;
         case LOGIN:
