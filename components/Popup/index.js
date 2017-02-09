@@ -3,7 +3,6 @@ import { Portal } from 'react-overlays';
 import classnames from 'classnames';
 import Overlay from './Overlay.js';
 import ActionButtons from '../ActionButtons';
-import StandardButton from '../StandardButton';
 import popupStyles from './styles.css';
 
 const Popup = ({
@@ -24,7 +23,7 @@ const Popup = ({
             <div className={popupStyles.popupContainer}>
                 <div className={classnames(popupStyles.popupSection, popupStyles.popupHeader, headerClass)}>
                     <span className={popupStyles.headerText}>{headerText}</span>
-                    <StandardButton className={popupStyles.closeBtn} onClick={closePopup} />
+                    <div className={popupStyles.closeBtn} onClick={closePopup} />
                 </div>
                 <div className={popupStyles.popupBody}>
                     {children}
