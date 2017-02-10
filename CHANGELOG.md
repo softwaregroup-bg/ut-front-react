@@ -1,3 +1,13 @@
+<a name="8.8.2"></a>
+## [8.8.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.1...v8.8.2) (2017-02-10)
+
+
+### Bug Fixes
+
+* pass menuitem classname to inner multitabs ([2618e22](https://github.com/softwaregroup-bg/ut-front-react/commit/2618e22))
+
+
+
 <a name="8.8.1"></a>
 ## [8.8.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.0...v8.8.1) (2017-02-10)
 
