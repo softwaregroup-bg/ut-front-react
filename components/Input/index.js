@@ -68,14 +68,22 @@ class TextField extends Component {
         onChange(objectToPassOnChange);
     }
 
+    get inputClassName() {
+        const { valid, isEdited } = this.state;
+        const { readonly } = this.props;
+        return classnames(style.input, {
+            [style.editedInputStyle]: isEdited,
+            [style.error]: !valid.isValid,
+            [style.readonlyInput]: readonly
+        });
+    }
+
     render() {
         let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, wrapperClassName, labelClassName } = this.props;
         let { isValid, errorMessage } = this.state.valid;
-        let errorInputStyle = !isValid ? style.error : '';
         let zeroHeightStyle = isValid ? style.hh : '';
-        let editedInputStyle = this.state.isEdited ? style.editedInputStyle : '';
 
-        let input = <input ref='textInput' type={type} className={classnames(style.input, errorInputStyle, editedInputStyle)} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        let input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (

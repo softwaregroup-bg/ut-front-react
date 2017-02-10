@@ -81,6 +81,10 @@
     background: #fff4a3 !important;
 }
 
+.readonlyInput {
+    opacity: 0.7;
+}
+
 /* Date picker */
 .datePicker {
     width: 100% !important;
