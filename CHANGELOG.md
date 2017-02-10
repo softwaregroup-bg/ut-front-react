@@ -1,3 +1,13 @@
+<a name="8.8.1"></a>
+## [8.8.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.0...v8.8.1) (2017-02-10)
+
+
+### Bug Fixes
+
+* UIS-2232 ([7677868](https://github.com/softwaregroup-bg/ut-front-react/commit/7677868))
+
+
+
 <a name="8.8.0"></a>
 # [8.8.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.7.11...v8.8.0) (2017-02-09)
 
