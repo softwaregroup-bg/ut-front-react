@@ -12,7 +12,7 @@
     flex-direction: column;
     top: 50%;
     left: 50%;
-    width: 768px;
+    max-width: 770px;
     transform: translate(-50%, -50%);
     background-color: #FFF;
     z-index: 22;

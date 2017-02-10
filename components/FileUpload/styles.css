@@ -10,3 +10,13 @@
 .addFileBtn:hover {
     background-color: #F9F9F9;
 }
+
+.filePreviewContainer {
+    width: 200px;
+    height: 200px;
+}
+
+.filePreviewContainer img {
+    width:100%;
+    height:100%
+}
