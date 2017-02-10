@@ -3,7 +3,9 @@ import classNames from 'classnames';
 import buttonStyles from './styles.css';
 import { getClass } from '../../utils/helpers';
 
-const getClassInternal = (className) => buttonStyles[className] || getClass(buttonStyles, className) || className;
+const getClassInternal = (className) => {
+    return buttonStyles[className] || getClass(buttonStyles, className) || className;
+};
 
 const Button = ({
     type,
