@@ -42,7 +42,8 @@ export default class MultiTab extends Component {
                           tab={currentTab}
                           key={generateUniqueId()}
                           positioningDirections={'top-right'}
-                          rightArrowIcon />
+                          rightArrowIcon
+                          className={styles.menuItemTab} />
                     ));
                 } else {
                     tabs.push((
@@ -75,7 +76,7 @@ export default class MultiTab extends Component {
     }
 
     render() {
-        const { tab } = this.props;
+        const { className, tab } = this.props;
         let menuItems = this.getMenuItems();
         if (!menuItems.length) {
             return null;
@@ -91,7 +92,7 @@ export default class MultiTab extends Component {
                   onClick={this.onClick}
                   to={tab.routeName}
                   params={tab.routeParams}
-                  className={classNames(styles.navigationTab)}
+                  className={classNames(className, styles.navigationTab)}
                   activeClassName={styles.navigationTabActive} >
                     {tab.title}
                     {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
@@ -110,6 +111,7 @@ export default class MultiTab extends Component {
 }
 
 MultiTab.propTypes = {
+    className: PropTypes.string,
     positioningDirections: PropTypes.string,
     tab: PropTypes.object,
     onClick: PropTypes.func,
