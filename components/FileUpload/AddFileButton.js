@@ -7,12 +7,14 @@ const AddFileButton = ({
     label,
     children,
     onClick
-}) => (
-    <div className={classnames(fileUploadStyles.addFileBtn, className)} onClick={onClick}>
-        <span>{label}</span>
-        {children}
-    </div>
-);
+}) => {
+    return (
+        <div className={classnames(fileUploadStyles.addFileBtn, className)} onClick={onClick}>
+            <span>{label}</span>
+            {children}
+        </div>
+    )
+};
 
 AddFileButton.propTypes = {
     className: PropTypes.string,

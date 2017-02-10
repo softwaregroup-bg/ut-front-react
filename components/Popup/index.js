@@ -11,6 +11,8 @@ const Popup = ({
     headerText,
     footerClass,
     buttonsClass,
+    bodyClass,
+    popupClass,
     hasOverlay,
     closeOnOverlayClick,
     actionButtons,
@@ -20,12 +22,12 @@ const Popup = ({
     <Portal container={() => { return document.getElementById('controls'); }}>
         { isOpen ? <div className={popupStyles.modalContainer}>
             { hasOverlay ? <Overlay onClick={closeOnOverlayClick ? closePopup : null} /> : false }
-            <div className={popupStyles.popupContainer}>
+            <div className={classnames(popupStyles.popupContainer, popupClass)}>
                 <div className={classnames(popupStyles.popupSection, popupStyles.popupHeader, headerClass)}>
                     <span className={popupStyles.headerText}>{headerText}</span>
                     <div className={popupStyles.closeBtn} onClick={closePopup} />
                 </div>
-                <div className={popupStyles.popupBody}>
+                <div className={classnames(popupStyles.popupBody, bodyClass)}>
                     {children}
                 </div>
                 <div className={classnames(popupStyles.popupSection, popupStyles.popupFooter, footerClass)}>
@@ -46,7 +48,9 @@ Popup.propTypes = {
     actionButtons: PropTypes.array,
     closePopup: PropTypes.func,
     children: PropTypes.object,
-    buttonsClass: PropTypes.string
+    buttonsClass: PropTypes.string,
+    bodyClass: PropTypes.string,
+    popupClass: PropTypes.string
 };
 
 export default Popup;
