@@ -1,56 +1,48 @@
 import React, { PropTypes } from 'react';
 import { Portal } from 'react-overlays';
 import classnames from 'classnames';
-import Overlay from './Overlay.js';
-import ActionButtons from '../ActionButtons';
-import popupStyles from './styles.css';
+import Header from './Header.js';
+import Footer from './Footer.js';
+import styles from './styles.css';
 
 const Popup = ({
     isOpen,
-    headerClass,
-    headerText,
-    footerClass,
-    buttonsClass,
-    bodyClass,
-    popupClass,
+    className,
     hasOverlay,
     closeOnOverlayClick,
-    actionButtons,
-    closePopup,
-    children
-}) => (
-    <Portal container={() => { return document.getElementById('controls'); }}>
-        { isOpen ? <div className={popupStyles.modalContainer}>
-            { hasOverlay ? <Overlay onClick={closeOnOverlayClick ? closePopup : null} /> : false }
-            <div className={classnames(popupStyles.popupContainer, popupClass)}>
-                <div className={classnames(popupStyles.popupSection, popupStyles.popupHeader, headerClass)}>
-                    <span className={popupStyles.headerText}>{headerText}</span>
-                    <div className={popupStyles.closeBtn} onClick={closePopup} />
+    header,
+    footer,
+    children,
+    closePopup
+}) => {
+    return (
+        <Portal container={() => { return document.getElementById('controls'); }}>
+            { isOpen ? <div className={styles.modalContainer}>
+                { hasOverlay ? <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> : false }
+                <div className={classnames(styles.popupContainer, className)}>
+                    { header ? <Header className={header.className} text={header.text} closePopup={closePopup} /> : false }
+                    { children }
+                    { footer ? <Footer className={footer.className} actionButtons={footer.actionButtons} /> : false }
                 </div>
-                <div className={classnames(popupStyles.popupBody, bodyClass)}>
-                    {children}
-                </div>
-                <div className={classnames(popupStyles.popupSection, popupStyles.popupFooter, footerClass)}>
-                    <ActionButtons className={buttonsClass} buttons={actionButtons} />
-                </div>
-            </div>
-        </div> : false }
-    </Portal>
-);
+            </div> : false }
+        </Portal>
+    );
+};
 
 Popup.propTypes = {
-    isOpen: PropTypes.bool,
-    headerClass: PropTypes.string,
-    headerText: PropTypes.string,
-    footerClass: PropTypes.string,
+    isOpen: PropTypes.bool.isRequired,
+    className: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
-    actionButtons: PropTypes.array,
-    closePopup: PropTypes.func,
+    header: PropTypes.object,
+    footer: PropTypes.object,
     children: PropTypes.array,
-    buttonsClass: PropTypes.string,
-    bodyClass: PropTypes.string,
-    popupClass: PropTypes.string
+    closePopup: PropTypes.func
+};
+
+Popup.defaultProps = {
+    hasOverlay: true,
+    closeOnOverlayClick: false
 };
 
 export default Popup;
