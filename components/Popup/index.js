@@ -7,6 +7,7 @@ import styles from './styles.css';
 
 const Popup = ({
     isOpen,
+    container,
     className,
     hasOverlay,
     closeOnOverlayClick,
@@ -15,8 +16,10 @@ const Popup = ({
     children,
     closePopup
 }) => {
+    /* The Portal component renders its children into a new subtree outside of current component hierarchy. */
+    /* Its children will be appended to the [container] specified (default: div#controls, located in the Layout component) */
     return (
-        <Portal container={() => { return document.getElementById('controls'); }}>
+        <Portal closeOnEsc container={() => { return document.getElementById(container); }}>
             { isOpen ? <div className={styles.modalContainer}>
                 { hasOverlay ? <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> : false }
                 <div className={classnames(styles.popupContainer, className)}>
@@ -31,6 +34,7 @@ const Popup = ({
 
 Popup.propTypes = {
     isOpen: PropTypes.bool.isRequired,
+    container: PropTypes.string,
     className: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
@@ -42,6 +46,7 @@ Popup.propTypes = {
 
 Popup.defaultProps = {
     hasOverlay: true,
+    container: 'controls',
     closeOnOverlayClick: false
 };
 
