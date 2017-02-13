@@ -4,18 +4,22 @@ import fileUploadStyles from './styles.css';
 
 const AddFileButton = ({
     className,
+    name,
     label,
     children,
     onClick
-}) => (
-    <div className={classnames(fileUploadStyles.addFileBtn, className)} onClick={onClick}>
-        <span>{label}</span>
-        {children}
-    </div>
-);
+}) => {
+    return (
+        <div className={classnames(fileUploadStyles.addFileBtn, className)} onClick={onClick} data-type={name}>
+            <span>{label}</span>
+            {children}
+        </div>
+    );
+};
 
 AddFileButton.propTypes = {
     className: PropTypes.string,
+    name: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func,
     children: PropTypes.object
