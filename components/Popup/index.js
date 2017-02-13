@@ -40,7 +40,10 @@ Popup.propTypes = {
     closeOnOverlayClick: PropTypes.bool,
     header: PropTypes.object,
     footer: PropTypes.object,
-    children: PropTypes.array,
+    children: PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object
+    ]),
     closePopup: PropTypes.func
 };
 
