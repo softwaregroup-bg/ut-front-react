@@ -20,14 +20,14 @@ const Popup = ({
     /* Its children will be appended to the [container] specified (default: div#controls, located in the Layout component) */
     return (
         <Portal container={() => { return document.getElementById(container); }}>
-            { isOpen ? <div className={styles.modalContainer}>
-                { hasOverlay ? <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> : false }
+            { isOpen && <div className={styles.modalContainer}>
+                { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
                 <div className={classnames(styles.popupContainer, className)}>
-                    { header ? <Header className={header.className} text={header.text} closePopup={closePopup} /> : false }
+                    { header && <Header className={header.className} text={header.text} closePopup={closePopup} /> }
                     { children }
-                    { footer ? <Footer className={footer.className} actionButtons={footer.actionButtons} /> : false }
+                    { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
-            </div> : false }
+            </div> }
         </Portal>
     );
 };
@@ -38,11 +38,18 @@ Popup.propTypes = {
     className: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
-    header: PropTypes.object,
-    footer: PropTypes.object,
+    header: PropTypes.shape({
+        className: PropTypes.string,
+        text: PropTypes.string,
+        closePopup: PropTypes.func
+    }),
+    footer: PropTypes.shape({
+        className: PropTypes.string,
+        actionButtons: PropTypes.array
+    }),
     children: PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.object
+        PropTypes.array,
+        PropTypes.object
     ]),
     closePopup: PropTypes.func
 };

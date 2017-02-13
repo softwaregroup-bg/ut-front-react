@@ -9,7 +9,8 @@ const Footer = ({
 }) => {
     return (
         <div className={classnames(styles.popupFooter, className)}>
-            { actionButtons ? actionButtons.map((button, index) => <Button key={index} {...button} />) : false }
+            { actionButtons &&
+            actionButtons.map((button, index) => <Button key={index} className={button.className} label={button.label} onClick={button.onClick} />)}
         </div>
     );
 };
