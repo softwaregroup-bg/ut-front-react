@@ -62,8 +62,8 @@ class MultiCheckbox extends Component {
             this.handleClick(checked, states);
         };
         return (
-            <div className={classnames(styles.multiCheckboxWrapper, ifReadOnly)} onClick={handleClick}>
-                <span className={classnames(styles.multiCheckbox, customStyle)}>{showStateName && states[checked]['name']}</span>
+            <div className={classnames(styles.multiCheckboxWrapper)} onClick={handleClick}>
+                <span className={classnames(styles.multiCheckbox, customStyle, ifReadOnly)}>{showStateName && states[checked]['name']}</span>
                 <span className={styles.multiCheckboxLabel}>{label}</span>
                 {!isValid && <div className={styles.multiCheckboxError}>{states[checked]['errorMessage']}</div>}
             </div>
