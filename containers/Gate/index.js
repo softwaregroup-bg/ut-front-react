@@ -43,6 +43,8 @@ class Gate extends Component {
             this.context.router.push('/login');
         } else if (!forceLogOut && nextProps.forceLogOut) {
             logout();
+        } else if (!nextProps.authenticated) {
+            this.context.router.push('/login');
         }
     }
 
@@ -75,7 +77,8 @@ export default connect(
         result: login.get('result'),
         gate: gate,
         forceLogOut: gate.get('forceLogOut'),
-        loaded: gate.get('loaded')
+        loaded: gate.get('loaded'),
+        login: login
     }),
     { cookieCheck, fetchTranslations, logout }
 )(Gate);

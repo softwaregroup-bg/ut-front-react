@@ -73,7 +73,7 @@ input:-webkit-autofill {
     border: 1px solid #E84949;
 }
 
-.hidden {
+.loginInput.hidden {
     display: none;
 }
 

@@ -3,16 +3,13 @@ import { connect } from 'react-redux';
 import Header from '../../components/HeaderNew';
 import TabMenu from '../../containers/TabMenu';
 import { logout } from '../../containers/LoginForm/actions';
-import styles from './style.css';
 
 class Layout extends Component {
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || '';
     }
-
     render() {
         let result = this.props.login.get('result');
-
         if (result) {
             return (
                 <div className={this.getStyle('implWrapper')}>
@@ -24,10 +21,7 @@ class Layout extends Component {
                       tabset={this.context.mainTabset}
                       headerText={this.props.headerText} />
                     <TabMenu defaultLocation={this.context.mainUrl} />
-                    <div id='appContent'>
-                        {this.props.children}
-                        <div id='controls' className={styles.controls} />
-                    </div>
+                    {this.props.children}
                 </div>
             );
         } else {

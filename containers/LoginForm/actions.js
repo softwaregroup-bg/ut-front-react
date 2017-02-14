@@ -42,5 +42,5 @@ export const logout = (params) => ({
     type: LOGOUT,
     method: 'identity.closeSession',
     suppressErrorWindow: true,
-    params: {}
+    params: { }
 });
