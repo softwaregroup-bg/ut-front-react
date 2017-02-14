@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import buttonStyles from './styles.css';
 import { getClass } from '../../utils/helpers';
+import { Link } from 'react-router';
 
 const getClassInternal = (className) => {
     return buttonStyles[className] || getClass(buttonStyles, className) || className;
@@ -13,7 +14,8 @@ const Button = ({
     onClick,
     className,
     disabled,
-    disabledClassName
+    disabledClassName,
+    href
 }) => {
     /* If you want to use both internal modular CSS (from the button itself) and external (in module context) use className as array.
        Pass the internal classes (from the button itself) like strings ('standardBtn') and the external ones already mapped (styles.[cssClassHere]). */
@@ -21,6 +23,16 @@ const Button = ({
     var disabledClass = '';
     if (disabled) {
         disabledClass = Array.isArray(disabledClassName) ? disabledClassName.map(getClassInternal) : getClassInternal(disabledClassName);
+    }
+
+    if (href) {
+        return (
+            <Link to={href}>
+              <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+                {label}
+              </button>
+            </Link>
+        );
     }
 
     return (
@@ -36,6 +48,7 @@ Button.propTypes = {
     label: PropTypes.string,
     disabled: PropTypes.bool,
     disabledClassName: PropTypes.string,
+    href: PropTypes.string,
     onClick: PropTypes.func
 };
 

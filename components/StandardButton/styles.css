@@ -9,6 +9,7 @@
     font-family: OpenSans;
     font-size: var(--ut-front-react-standardBtnFontSize);
     font-weight: 500;
+    outline: 0;
 }
 
 .standardBtn {
@@ -20,10 +21,16 @@
 }
 
 .standardBtn:hover {
+    outline: 0;
     background-color: var(--ut-front-react-standardBtnHoverColor);
 }
 
+.standardBtn:focus {
+    outline: 0;
+}
+
 .standardBtn:active {
+    outline: 0;
     background-color: var(--ut-front-react-standardBtnActiveColor);
 }
 
