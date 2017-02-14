@@ -18,6 +18,18 @@ class GridRow extends Component {
         this.toggleCheck = this.toggleCheck.bind(this);
     }
 
+    componentWillReceiveProps({ checked, data }) {
+        if (checked !== this.props.checked) {
+            this.setState({checked});
+        }
+
+        if (this.props.canCheck === false && this.state.selected && this.props.data.get('actorId') !== data.get('actorId')) {
+            // Case: if the data item is different but the previous one was selected - reset selected state
+            this.props.subscribeUnselect(() => {});
+            this.setState({selected: false});
+        }
+    }
+
     componentWillUnmount() {
         this.disableDeselect = true;
     }
@@ -47,17 +59,6 @@ class GridRow extends Component {
 
     clearChecked() {
         this.setState({checked: false});
-    }
-
-    componentWillReceiveProps({ checked, data }) {
-        if (checked !== this.props.checked) {
-            this.setState({checked});
-        }
-
-        if (this.state.selected && this.props.data.get('actorId') !== data.get('actorId')) {
-            // Case: if the data item is different but the previous one was selected - reset selected state
-            this.setState({selected: false});
-        }
     }
 
     renderColumns() {
