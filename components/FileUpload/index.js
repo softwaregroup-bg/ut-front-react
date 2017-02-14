@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import StandardButton from '../StandardButton';
+import classnames from 'classnames';
+import AddFileButton from './AddFileButton';
 import FormInput from '../FormInput';
-import FilePreview from './FilePreview.js';
+import FilePreview from './FilePreview';
+import fileUploadStyles from './styles.css';
 
 export default class FileUpload extends Component {
     constructor(props) {
@@ -46,7 +48,11 @@ export default class FileUpload extends Component {
                   hidden
                   type='file'
                   onChange={this.onChange} />
-                { showPreview ? <FilePreview file={file} /> : <StandardButton className={button.className} label={button.label} onClick={this.onFileUploadClick} /> }
+                {showPreview ? <FilePreview file={file} />
+                : <AddFileButton
+                  className={classnames(fileUploadStyles[button.className], button.className)}
+                  label={button.label}
+                  onClick={this.onFileUploadClick} />}
             </div>
         );
     }
