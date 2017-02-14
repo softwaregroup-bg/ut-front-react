@@ -341,6 +341,7 @@ input:read-only{
 
 .multiCheckboxReadOnly {
     color: lightgrey;
+    cursor: not-allowed !important; /* it needs to be important to overwrite the cursor: pointer */ 
 }
 
 .multiCheckboxLabel {
