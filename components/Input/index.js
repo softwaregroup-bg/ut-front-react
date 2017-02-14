@@ -69,7 +69,7 @@ class TextField extends Component {
     }
 
     render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText } = this.props;
+        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let errorInputStyle = !isValid ? style.error : '';
         let zeroHeightStyle = isValid ? style.hh : '';
