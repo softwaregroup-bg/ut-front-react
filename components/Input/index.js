@@ -69,7 +69,7 @@ class TextField extends Component {
     }
 
     render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText } = this.props;
+        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let errorInputStyle = !isValid ? style.error : '';
         let zeroHeightStyle = isValid ? style.hh : '';
@@ -83,7 +83,7 @@ class TextField extends Component {
                     <div className={classnames(style.lableWrap, {[style.boldLabel]: this.props.boldLabel})}>
                         {label} {this.props.validators.length > 0 && '*'}
                     </div>
-                    <div className={style.inputWrap}>
+                    <div className={classnames(style.inputWrap, inputWrapClassName)}>
                         {input}
                         {tooltip}
                         <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
@@ -92,7 +92,7 @@ class TextField extends Component {
             );
         } else {
             return (
-                <div className={style.inputWrap}>
+                <div className={classnames(style.inputWrap, inputWrapClassName)}>
                     {input}
                     {tooltip}
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
@@ -114,6 +114,7 @@ TextField.propTypes = {
     boldLabel: PropTypes.bool,
     onClick: PropTypes.func,
     onBlur: PropTypes.func,
+    inputWrapClassName: PropTypes.string,
 
     // Validation
     validators: PropTypes.arrayOf(
