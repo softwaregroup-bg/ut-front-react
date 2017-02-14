@@ -1,3 +1,13 @@
+<a name="8.9.0"></a>
+# [8.9.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.3...v8.9.0) (2017-02-14)
+
+
+### Features
+
+* add outer style functionality ([596ff5b](https://github.com/softwaregroup-bg/ut-front-react/commit/596ff5b))
+
+
+
 <a name="8.8.3"></a>
 ## [8.8.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.2...v8.8.3) (2017-02-13)
 
