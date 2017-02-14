@@ -1,3 +1,13 @@
+<a name="8.9.1"></a>
+## [8.9.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.0...v8.9.1) (2017-02-14)
+
+
+### Bug Fixes
+
+* add forgotten variable inputWrapClassName ([bb3050f](https://github.com/softwaregroup-bg/ut-front-react/commit/bb3050f))
+
+
+
 <a name="8.9.0"></a>
 # [8.9.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.3...v8.9.0) (2017-02-14)
 
