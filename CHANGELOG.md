@@ -1,3 +1,14 @@
+<a name="8.9.2"></a>
+## [8.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.1...v8.9.2) (2017-02-14)
+
+
+### Bug Fixes
+
+* expand advanced search content ([b9d4764](https://github.com/softwaregroup-bg/ut-front-react/commit/b9d4764))
+* proptypes allow node for placeholder and label ([#151](https://github.com/softwaregroup-bg/ut-front-react/issues/151)) ([a33f145](https://github.com/softwaregroup-bg/ut-front-react/commit/a33f145))
+
+
+
 <a name="8.9.1"></a>
 ## [8.9.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.0...v8.9.1) (2017-02-14)
 
