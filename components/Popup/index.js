@@ -45,7 +45,11 @@ Popup.propTypes = {
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,
-        actionButtons: PropTypes.array
+        actionButtons: PropTypes.arrayOf(PropTypes.shape({
+            className: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+            label: PropTypes.string,
+            onClick: PropTypes.func
+        }))
     }),
     children: PropTypes.oneOfType([
         PropTypes.array,
