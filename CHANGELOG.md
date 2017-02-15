@@ -1,3 +1,34 @@
+<a name="8.9.2"></a>
+## [8.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.1...v8.9.2) (2017-02-14)
+
+
+### Bug Fixes
+
+* expand advanced search content ([b9d4764](https://github.com/softwaregroup-bg/ut-front-react/commit/b9d4764))
+* proptypes allow node for placeholder and label ([#151](https://github.com/softwaregroup-bg/ut-front-react/issues/151)) ([a33f145](https://github.com/softwaregroup-bg/ut-front-react/commit/a33f145))
+
+
+
+<a name="8.9.1"></a>
+## [8.9.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.0...v8.9.1) (2017-02-14)
+
+
+### Bug Fixes
+
+* add forgotten variable inputWrapClassName ([bb3050f](https://github.com/softwaregroup-bg/ut-front-react/commit/bb3050f))
+
+
+
+<a name="8.9.0"></a>
+# [8.9.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.3...v8.9.0) (2017-02-14)
+
+
+### Features
+
+* add outer style functionality ([596ff5b](https://github.com/softwaregroup-bg/ut-front-react/commit/596ff5b))
+
+
+
 <a name="8.8.3"></a>
 ## [8.8.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.8.2...v8.8.3) (2017-02-13)
 
