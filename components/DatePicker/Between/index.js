@@ -138,15 +138,15 @@ DatePickerBetween.defaultProps = {
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
     locale: PropTypes.string,
-    okLabel: PropTypes.string,
-    cancelLabel: PropTypes.string,
+    okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     firstDayOfWeek: PropTypes.number,
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     withVerticalClass: PropTypes.bool,
-    masterLabel: PropTypes.string,
-    labelFrom: PropTypes.string,
-    labelTo: PropTypes.string,
+    masterLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     DateTimeFormat: PropTypes.func,
     onChange: PropTypes.func
 };

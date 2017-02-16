@@ -523,7 +523,7 @@ GridToolBox.propTypes = {
         PropTypes.shape({
             type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween]).isRequired,
             // Common
-            placeholder: PropTypes.string,
+            placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
 
             // DropDown
