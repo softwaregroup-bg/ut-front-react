@@ -1,4 +1,5 @@
-import { LOGIN, BIO_LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
+import { LOGIN, BIO_LOGIN, COOKIE_CHECK, VALIDATE_FORM, SET_INPUT_VALUE } from './actionTypes';
+import { LOGOUT } from 'ut-front/react/actionTypes';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -41,6 +42,12 @@ export const validateForm = () => ({
 export const logout = (params) => ({
     type: LOGOUT,
     method: 'identity.closeSession',
+    suppressErrorWindow: true,
+    params: { }
+});
+
+export const resetState = (params) => ({
+    type: 'RESET',
     suppressErrorWindow: true,
     params: { }
 });

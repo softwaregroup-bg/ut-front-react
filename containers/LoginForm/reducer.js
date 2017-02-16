@@ -1,5 +1,6 @@
 import Immutable from 'immutable';
-import { LOGIN, BIO_LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
+import { LOGIN, BIO_LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK } from './actionTypes';
+import { LOGOUT } from 'ut-front/react/actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
 
@@ -57,7 +58,6 @@ export const login = (state = defaultLoginState, action) => {
     switch (action.type) {
         case LOGOUT:
              if (action.methodRequestState === 'finished') {
-                return defaultLoginState;
              }
              return state;
         case LOGIN:
