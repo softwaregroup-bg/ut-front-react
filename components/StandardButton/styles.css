@@ -39,18 +39,10 @@
     width: 100%;
 }
 
-.disabledBtn {
-    background-color: #cbc8ce;
-    cursor: not-allowed;
-}
-
-.disabledBtn:hover {
-    background-color: #cbc8ce;
-    cursor: not-allowed;
-}
-
-.disabledBtn:active {
-    background-color: #cbc8ce;
+.disabledBtn,
+.disabledBtn:hover,
+..disabledBtn:active {
+    background-color: var(--ut-front-react-disabledBtnBackgroundColor);
     cursor: not-allowed;
 }
 
@@ -125,9 +117,9 @@
 }
 
 .actionBtn:hover, .actionBtn.primary {
-    border: 1px solid #CCCCCC;
+    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
     border-radius: 2px;
-    background-color: #FFF;
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
 }
 
 .actionBtn.primary:hover {
@@ -143,9 +135,9 @@
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    background: #f4f4f4;
-    border: 1px solid #dcdcdc;
-    color: #444 !important;
+    background: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    color: var(--ut-front-react-defaultBtnColor) !important;
     text-transform: none;
     padding: 4px 20px;
     font-size: 1em;
@@ -160,9 +152,8 @@
 }
 
 .secondaryButton:hover {
-    background-color: #f4f4f4;
-    border-color: #999;
-    color: #000;
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    color: var(--ut-front-react-defaultDarkBgBtnColorHover);
     outline: 0;
 }
 
@@ -172,8 +163,8 @@
 }
 
 .disabledsecondaryButton:hover {
-    background-color: #f4f4f4;
-    border: 1px solid #dcdcdc;
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
     outline: 0;
     cursor: not-allowed;
 }

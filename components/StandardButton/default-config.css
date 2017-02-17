@@ -19,6 +19,7 @@
     --ut-front-react-defaultDarkBgBtnColorActive: #000000;
     --ut-front-react-defaultDarkBgBtnBorderColorActive: #999999;
     --ut-front-react-defaultDarkBgBtnBgColorActive: #fafafa;
+    --ut-front-react-disabledBtnBackgroundColor: #cbc8ce;
 
     /* config */
     --ut-front-react-standardBtnWidth: 146px;
