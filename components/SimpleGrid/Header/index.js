@@ -69,7 +69,7 @@ export class Header extends Component {
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'globalMenu') {
-                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields()} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields()} transformCellValue={this.props.transformCellValue} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         }
                     })}
                 </tr>
