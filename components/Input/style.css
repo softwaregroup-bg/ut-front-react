@@ -82,7 +82,8 @@
 }
 
 .readonlyInput {
-    opacity: 0.7;
+    cursor: not-allowed;
+    color: #a9a9a9;
 }
 
 /* Date picker */
@@ -457,5 +458,5 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 }
 
 .buttonInput {
-    padding-right: 80px;
+    padding-right: 100px;
 }
