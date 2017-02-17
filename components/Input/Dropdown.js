@@ -100,7 +100,7 @@ class Dropdown extends Component {
                 <DropDownMenu
                   value={this.state.value}
                   onChange={this.handleChange}
-                  autoWidth={false}
+                  autoWidth={this.props.menuAutoWidth}
                   disabled={this.props.disabled}
                   className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}
                   iconStyle={iconStyles}
@@ -159,6 +159,7 @@ Dropdown.propTypes = {
     canSelectPlaceholder: PropTypes.bool,
     onSelect: PropTypes.func,
     disabled: PropTypes.bool,
+    menuAutoWidth: PropTypes.bool,
     mergeStyles: PropTypes.object,
     iconStyles: PropTypes.object,
     // if you want to style the width of the dropdown, add a wrapper element that has min-width and max-width properties
@@ -182,7 +183,8 @@ Dropdown.defaultProps = {
     onSelect: () => {},
     isValid: true,
     errorMessage: '',
-    isEdited: false
+    isEdited: false,
+    menuAutoWidth: false
 };
 
 export default Dropdown;

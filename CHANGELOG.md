@@ -1,3 +1,13 @@
+<a name="8.9.3"></a>
+## [8.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.2...v8.9.3) (2017-02-17)
+
+
+### Bug Fixes
+
+* expose menu width property ([c203652](https://github.com/softwaregroup-bg/ut-front-react/commit/c203652))
+
+
+
 <a name="8.9.2"></a>
 ## [8.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.1...v8.9.2) (2017-02-14)
 
