@@ -1,3 +1,13 @@
+<a name="8.9.4"></a>
+## [8.9.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.3...v8.9.4) (2017-02-17)
+
+
+### Bug Fixes
+
+* UI-898 translate column names in grid configuration ([135e49b](https://github.com/softwaregroup-bg/ut-front-react/commit/135e49b))
+
+
+
 <a name="8.9.3"></a>
 ## [8.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.2...v8.9.3) (2017-02-17)
 
