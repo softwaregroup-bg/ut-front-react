@@ -1,0 +1,11 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body>div[id='utApp'],
+body>div[id='utApp']>div,
+.h100pr {
+    height: 100%;
+}
