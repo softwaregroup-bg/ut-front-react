@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import preloader from '../../components/Preloader';
 import errorWindow from '../../components/ErrorWindow';
 import {close} from './actions';
+import style from './style.css';
 
 const Preloader = connect(
     (state) => {
@@ -27,7 +28,7 @@ const Main = React.createClass({
     },
     render() {
         return (
-            <div className='wrapper'>
+            <div className={style.h100pr}>
                 {this.props.children}
                 <Preloader />
                 <ErrorWindow />
