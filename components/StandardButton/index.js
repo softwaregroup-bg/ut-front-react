@@ -47,7 +47,7 @@ Button.propTypes = {
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     label: PropTypes.string,
     disabled: PropTypes.bool,
-    disabledClassName: PropTypes.string,
+    disabledClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     href: PropTypes.string,
     onClick: PropTypes.func
 };

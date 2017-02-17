@@ -134,3 +134,46 @@
     border-color: var(--ut-front-react-defaultBtnBorderColorHover);
     background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
 }
+
+.secondaryButton {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    color: #444 !important;
+    text-transform: none;
+    padding: 4px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    height: 30px;
+    user-select: none;
+    margin: 0;
+}
+
+.secondaryButton:focus {
+  outline: 0;
+}
+
+.secondaryButton:hover {
+    background-color: #f4f4f4;
+    border-color: #999;
+    color: #000;
+    outline: 0;
+}
+
+.disabledsecondaryButton {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.disabledsecondaryButton:hover {
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    outline: 0;
+    cursor: not-allowed;
+}

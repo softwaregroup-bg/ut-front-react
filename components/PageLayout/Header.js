@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Button from '../../components/StandardButton';
+import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router';
 import { getBreadcrumbsStringFromPathString } from './helpers';
 
@@ -49,9 +49,9 @@ const Header = React.createClass({
                             return (
                                 <div key={i} className={style.buttonWrap}>
                                     {(i > 0) && <span className='w20' />}
-                                    <Button
-                                      className={[style.headerButton]}
-                                      disabledClassName={style.disabledHeaderButton}
+                                    <StandardButton
+                                      className='secondaryButton'
+                                      disabledClassName='disabledsecondaryButton'
                                       onClick={btn.onClick}
                                       disabled={btn.disabled === true}
                                       label={btn.text} />
@@ -61,9 +61,9 @@ const Header = React.createClass({
                             return (
                                 <Link key={i} to={btn.href} className={style.buttonWrap}>
                                     {(i > 0) && <span className='w20' />}
-                                    <Button
-                                      className={[style.headerButton]}
-                                      disabledClassName={style.disabledHeaderButton}
+                                    <StandardButton
+                                      className='secondaryButton'
+                                      disabledClassName='disabledsecondaryButton'
                                       disabled={btn.disabled === true}
                                       label={btn.text} />
                                 </Link>
