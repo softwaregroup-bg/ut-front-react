@@ -52,6 +52,8 @@
 
 .popupFooter {
     composes: popupSection;
+    flex-direction: row-reverse;
+    padding-right: 20px;
     border-top: 1px solid var(--ut-front-react-popupSectionBorderColor);
 }
 
