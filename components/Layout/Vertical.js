@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import style from './verticalStyles.css';
+import { getMarginBox } from '../../utils/dom';
 
 class Vertical extends Component {
     constructor(props) {
@@ -19,10 +20,10 @@ class Vertical extends Component {
     }
 
     updateHeight() {
-        let { clientHeight } = this.refs.fixedComponent;
-        if (clientHeight !== this.state.fixedComponent) {
+        let height = getMarginBox(this.refs.fixedComponent).height;
+        if (height !== this.state.fixedComponent) {
             this.setState({
-                fixedComponent: clientHeight
+                fixedComponent: height
             });
         }
     }
