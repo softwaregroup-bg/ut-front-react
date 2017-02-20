@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
 import Tree from '../BusinessUnitsTree';
+import StandardButton from '../StandardButton';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import classnames from 'classnames';
 import style from './styles.css';
 
 const innerWrapTopMargin = 35;
@@ -96,7 +96,12 @@ class BusinessUnits extends Component {
                 // });
                 this.props.clearSelectedBusinessUnit();
             };
-            clearButton = <button className={classnames('button', 'btn', 'btn-primary', this.getStyle('clearButton'))} onClick={clearSelection}>Unselect all</button>;
+            clearButton = <StandardButton
+              onClick={clearSelection}
+              disabled={!this.state.selected.id}
+              label='Unselect all'
+              className={['secondaryButton', this.getStyle('clearButton')]}
+              disabledClassName='disabledsecondaryButton' />;
         }
 
         return (
