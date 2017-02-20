@@ -1,7 +1,9 @@
 export const filterElementTypes = {
     dropDown: 'dropDown',
     searchBox: 'searchBox',
-    datePickerBetween: 'datePickerBetween'
+    datePickerBetween: 'datePickerBetween',
+    timePickerBetween: 'timePickerBetween',
+    clear: 'clear'
 };
 
 export const actionButtonElementTypes = {
