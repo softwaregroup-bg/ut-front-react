@@ -45,7 +45,7 @@
 
 .disabledBtn,
 .disabledBtn:hover,
-..disabledBtn:active {
+.disabledBtn:active {
     background-color: var(--ut-front-react-disabledBtnBackgroundColor);
     cursor: not-allowed;
 }
