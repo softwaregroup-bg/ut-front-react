@@ -12,6 +12,10 @@
     outline: 0;
 }
 
+.button:active, .button:focus, .button:hover {
+    outline: 0;
+}
+
 .standardBtn {
     composes: button;
     width: var(--ut-front-react-loginButtonWidth);
@@ -166,4 +170,40 @@
     border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
     outline: 0;
     cursor: not-allowed;
+}
+
+/* Dialog window buttons */
+
+.dialogButton {
+    composes: button;
+    height: 40px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.primaryDialog {
+    composes: dialogButton;
+    background-color: var(--ut-front-react-standardBtnBgColor);
+    color: var(--ut-front-react-standardBtnTextColor);
+}
+
+.primaryDialog:active {
+    background-color: var(--ut-front-react-standardBtnActiveColor);
+}
+
+.primaryDialog:hover {
+    background-color: var(--ut-front-react-standardBtnHoverColor);
+}
+
+.secondaryDialog {
+    composes: dialogButton;
+    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
+    border: 1px solid var(--ut-front-react-secondaryDialogBtnBackgroundColor);
+    color: var(--ut-front-react-secondaryDialogBtnColor);
+}
+
+.secondaryDialog:hover {
+    border: 1px solid var(--ut-front-react-secondaryDialogBtnBorderHover);
+    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
 }
