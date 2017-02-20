@@ -1,3 +1,14 @@
+<a name="8.9.6"></a>
+## [8.9.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.5...v8.9.6) (2017-02-20)
+
+
+### Bug Fixes
+
+* refactor hardcoded values ([6d808bc](https://github.com/softwaregroup-bg/ut-front-react/commit/6d808bc))
+* remove redundant code ([2b4bff6](https://github.com/softwaregroup-bg/ut-front-react/commit/2b4bff6))
+
+
+
 <a name="8.9.5"></a>
 ## [8.9.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.4...v8.9.5) (2017-02-20)
 
