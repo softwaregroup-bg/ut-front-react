@@ -24,11 +24,9 @@
     z-index: 21;
 }
 
-/*if you want to have a popup with different width, override the flex-basis prop*/
 .popupContainer {
     display: flex;
     flex-direction: column;
-    flex-basis: 540px;
     min-width: 500px;
     background-color: var(--ut-front-react-popupColor);
     z-index: 22;
