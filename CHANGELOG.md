@@ -1,3 +1,60 @@
+<a name="8.10.0"></a>
+# [8.10.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.6...v8.10.0) (2017-02-21)
+
+
+### Features
+
+* customize grid rows with rowStyle column ([#156](https://github.com/softwaregroup-bg/ut-front-react/issues/156)) ([e9ae199](https://github.com/softwaregroup-bg/ut-front-react/commit/e9ae199))
+
+
+
+<a name="8.9.6"></a>
+## [8.9.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.5...v8.9.6) (2017-02-20)
+
+
+### Bug Fixes
+
+* refactor hardcoded values ([6d808bc](https://github.com/softwaregroup-bg/ut-front-react/commit/6d808bc))
+* remove redundant code ([2b4bff6](https://github.com/softwaregroup-bg/ut-front-react/commit/2b4bff6))
+
+
+
+<a name="8.9.5"></a>
+## [8.9.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.4...v8.9.5) (2017-02-20)
+
+
+
+<a name="8.9.4"></a>
+## [8.9.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.3...v8.9.4) (2017-02-17)
+
+
+### Bug Fixes
+
+* UI-898 translate column names in grid configuration ([135e49b](https://github.com/softwaregroup-bg/ut-front-react/commit/135e49b))
+
+
+
+<a name="8.9.3"></a>
+## [8.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.2...v8.9.3) (2017-02-17)
+
+
+### Bug Fixes
+
+* expose menu width property ([c203652](https://github.com/softwaregroup-bg/ut-front-react/commit/c203652))
+
+
+
+<a name="8.9.2"></a>
+## [8.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.1...v8.9.2) (2017-02-14)
+
+
+### Bug Fixes
+
+* expand advanced search content ([b9d4764](https://github.com/softwaregroup-bg/ut-front-react/commit/b9d4764))
+* proptypes allow node for placeholder and label ([#151](https://github.com/softwaregroup-bg/ut-front-react/issues/151)) ([a33f145](https://github.com/softwaregroup-bg/ut-front-react/commit/a33f145))
+
+
+
 <a name="8.9.1"></a>
 ## [8.9.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.0...v8.9.1) (2017-02-14)
 

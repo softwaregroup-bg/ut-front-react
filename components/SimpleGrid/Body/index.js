@@ -30,6 +30,7 @@ export class Body extends Component {
                       handleClick={this.props.handleRowClick}
                       rowsChecked={this.props.rowsChecked}
                       handleCellClick={this.props.handleCellClick}
+                      rowStyleField={this.props.rowStyleField}
                     />
                 ));
             } else {
@@ -57,7 +58,8 @@ Body.propTypes = {
     globalMenu: PropTypes.bool,
     handleRowClick: PropTypes.func,
     rowsChecked: PropTypes.array,
-    handleCellClick: PropTypes.func
+    handleCellClick: PropTypes.func,
+    rowStyleField: PropTypes.string
 };
 
 Body.defaultProps = {

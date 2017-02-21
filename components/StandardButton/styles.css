@@ -9,6 +9,11 @@
     font-family: OpenSans;
     font-size: var(--ut-front-react-standardBtnFontSize);
     font-weight: 500;
+    outline: 0;
+}
+
+.button:active, .button:focus, .button:hover {
+    outline: 0;
 }
 
 .standardBtn {
@@ -20,16 +25,29 @@
 }
 
 .standardBtn:hover {
+    outline: 0;
     background-color: var(--ut-front-react-standardBtnHoverColor);
 }
 
+.standardBtn:focus {
+    outline: 0;
+}
+
 .standardBtn:active {
+    outline: 0;
     background-color: var(--ut-front-react-standardBtnActiveColor);
 }
 
 .loginBtn {
     font-size: 14px;
     width: 100%;
+}
+
+.disabledBtn,
+.disabledBtn:hover,
+.disabledBtn:active {
+    background-color: var(--ut-front-react-disabledBtnBackgroundColor);
+    cursor: not-allowed;
 }
 
 .defaultBtn {
@@ -78,12 +96,11 @@
     border-color: var(--ut-front-react-defaultDarkBgBtnBorderColorActive);
 }
 
-.standardInputButton {
-    width: 60px;
-    height: 32px;
+.secondaryInputButton {
     position: absolute;
     right: 0;
-    bottom: -1px;
+    bottom: 0;
+    border-radius: 0px !important;
     float: right;
 }
 
@@ -103,12 +120,90 @@
 }
 
 .actionBtn:hover, .actionBtn.primary {
-    border: 1px solid #CCCCCC;
+    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
     border-radius: 2px;
-    background-color: #FFF;
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
 }
 
 .actionBtn.primary:hover {
     border-color: var(--ut-front-react-defaultBtnBorderColorHover);
     background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+}
+
+.secondaryButton {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    color: var(--ut-front-react-defaultBtnColor) !important;
+    text-transform: none;
+    padding: 4px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    height: 30px;
+    user-select: none;
+    margin: 0;
+}
+
+.secondaryButton:focus {
+  outline: 0;
+}
+
+.secondaryButton:hover {
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    color: var(--ut-front-react-defaultDarkBgBtnColorHover);
+    outline: 0;
+}
+
+.disabledsecondaryButton {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.disabledsecondaryButton:hover {
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    outline: 0;
+    cursor: not-allowed;
+}
+
+/* Dialog window buttons */
+
+.dialogButton {
+    composes: button;
+    height: 40px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.primaryDialog {
+    composes: dialogButton;
+    background-color: var(--ut-front-react-standardBtnBgColor);
+    color: var(--ut-front-react-standardBtnTextColor);
+}
+
+.primaryDialog:active {
+    background-color: var(--ut-front-react-standardBtnActiveColor);
+}
+
+.primaryDialog:hover {
+    background-color: var(--ut-front-react-standardBtnHoverColor);
+}
+
+.secondaryDialog {
+    composes: dialogButton;
+    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
+    border: 1px solid var(--ut-front-react-secondaryDialogBtnBackgroundColor);
+    color: var(--ut-front-react-secondaryDialogBtnColor);
+}
+
+.secondaryDialog:hover {
+    border: 1px solid var(--ut-front-react-secondaryDialogBtnBorderHover);
+    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
 }
