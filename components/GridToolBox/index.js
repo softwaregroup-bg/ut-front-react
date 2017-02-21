@@ -7,6 +7,7 @@ import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
 import DatePickerBetween from './../DatePicker/Between';
+import MultiSelect from '../Input/MultiSelectDropdown';
 import ConfirmDialog from '../ConfirmDialog';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -61,6 +62,10 @@ class GridToolBox extends Component {
                 if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
                     foundActiveFilter = true;
                 }
+            } else if (currenctFilterElement.type === 'multiDropDown') {
+                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
+                    foundActiveFilter = true;
+                }
             } else if (currenctFilterElement.defaultValue) {
                 foundActiveFilter = true;
             }
@@ -88,6 +93,16 @@ class GridToolBox extends Component {
                       defaultSelected={filterElement.defaultValue}
                       onSelect={filterElement.onSelect}
                       canSelectPlaceholder={filterElement.canSelectPlaceholder}
+                    />
+                );
+            case filterElementTypes.multiDropDown:
+                return (
+                    <MultiSelect
+                      placeholder={filterElement.placeholder}
+                      defaultSelected={filterElement.defaultValue}
+                      onSelect={filterElement.onSelect}
+                      data={filterElement.data}
+                      keyProp={filterElement.keyProp}
                     />
                 );
             case filterElementTypes.searchBox:
@@ -521,7 +536,7 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween]).isRequired,
+            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween, filterElementTypes.multiDropDown]).isRequired,
             // Common
             placeholder: PropTypes.string,
             defaultValue: PropTypes.any,
