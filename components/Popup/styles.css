@@ -24,11 +24,9 @@
     z-index: 21;
 }
 
-/*if you want to have a popup with different width, override the flex-basis prop*/
 .popupContainer {
     display: flex;
     flex-direction: column;
-    flex-basis: 540px;
     min-width: 500px;
     background-color: var(--ut-front-react-popupColor);
     z-index: 22;
@@ -38,30 +36,32 @@
     display: flex;
     align-items: center;
     flex-basis: 50px;
-    padding-right: 20px;
     box-sizing: border-box;
     background-color: var(--ut-front-react-popupSectionColor);
 }
 
 .popupHeader {
     composes: popupSection;
+    justify-content: center;
+    position: relative;
     font-size: 18px;
     border-bottom: 1px solid var(--ut-front-react-popupSectionBorderColor);
 }
 
-.headerText {
-    margin-left: auto;
-}
-
 .popupFooter {
     composes: popupSection;
+    flex-direction: row-reverse;
+    padding-right: 20px;
     border-top: 1px solid var(--ut-front-react-popupSectionBorderColor);
 }
 
 .closeBtn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
     width: 32px;
     height: 32px;
-    margin-left: auto;
     background: url('./images/closeTab.png') center no-repeat;
 }
 
