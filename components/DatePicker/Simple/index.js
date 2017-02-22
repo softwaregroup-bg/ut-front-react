@@ -47,6 +47,8 @@ export default class DatePicker extends Component {
                       minDate={this.props.minDate}
                       maxDate={this.props.maxDate}
                       disabled={this.props.disabled}
+                      hintText={this.props.hintText}
+                      hintStyle={this.props.hintStyle}
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
@@ -59,7 +61,12 @@ DatePicker.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
-    isValid: true
+    isValid: true,
+    hintText: ' ',
+    hintStyle: {
+        margin: '0 0 4px 10px',
+        bottom: '0px'
+    }
 };
 DatePicker.propTypes = {
     defaultValue: PropTypes.object, // accepts new Date() object or empty object or null
@@ -79,7 +86,9 @@ DatePicker.propTypes = {
     maxDate: PropTypes.object,
     disabled: PropTypes.bool,
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    hintText: PropTypes.string,
+    hintStyle: PropTypes.object
 };
 
 DatePicker.contextTypes = {
