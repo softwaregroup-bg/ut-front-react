@@ -26,6 +26,11 @@ export default class DatePicker extends Component {
             height: '30px'
         };
 
+        let hintStyle = {
+            margin: '0 0 4px 10px',
+            bottom: '0px'
+        };
+
         let zeroHeightStyle = isValid ? style.hh : '';
         let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
 
@@ -48,7 +53,7 @@ export default class DatePicker extends Component {
                       maxDate={this.props.maxDate}
                       disabled={this.props.disabled}
                       hintText={this.props.hintText}
-                      hintStyle={this.props.hintStyle}
+                      hintStyle={hintStyle}
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
@@ -62,11 +67,7 @@ DatePicker.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     isValid: true,
-    hintText: ' ',
-    hintStyle: {
-        margin: '0 0 4px 10px',
-        bottom: '0px'
-    }
+    hintText: ' '
 };
 DatePicker.propTypes = {
     defaultValue: PropTypes.object, // accepts new Date() object or empty object or null
@@ -87,8 +88,7 @@ DatePicker.propTypes = {
     disabled: PropTypes.bool,
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
-    hintText: PropTypes.string,
-    hintStyle: PropTypes.object
+    hintText: PropTypes.string
 };
 
 DatePicker.contextTypes = {
