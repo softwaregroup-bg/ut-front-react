@@ -2,7 +2,7 @@ export const filterElementTypes = {
     dropDown: 'dropDown',
     searchBox: 'searchBox',
     datePickerBetween: 'datePickerBetween',
-    timePickerBetween: 'timePickerBetween', // todo
+    dateTimePickerBetween: 'dateTimePickerBetween', // todo
     clear: 'clear'
 };
 
