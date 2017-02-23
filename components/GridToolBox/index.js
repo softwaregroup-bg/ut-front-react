@@ -7,6 +7,7 @@ import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
 import DatePickerBetween from './../DatePicker/Between';
+import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -204,6 +205,12 @@ class GridToolBox extends Component {
                         <DatePickerBetween onChange={function(obj) {
                             onChange(filterElement.name[obj.key], obj.value);
                         }} withVerticalClass defaultValue={defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
+                    </div>
+                );
+            case filterElementTypes.dateTimePickerBetween:
+                return (
+                    <div>
+                        <DateTimePickerBetween />
                     </div>
                 );
             default:
@@ -521,7 +528,13 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween, filterElementTypes.clear]).isRequired,
+            type: PropTypes.oneOf([
+                filterElementTypes.dropDown,
+                filterElementTypes.searchBox,
+                filterElementTypes.datePickerBetween,
+                filterElementTypes.dateTimePickerBetween,
+                filterElementTypes.clear
+            ]).isRequired,
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
