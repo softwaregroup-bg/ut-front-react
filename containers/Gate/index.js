@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Map } from 'immutable';
 import { connect } from 'react-redux';
-import Text from '../../components/Text';
 import Loader from '../../components/Loader';
 import { cookieCheck, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
