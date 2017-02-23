@@ -5,6 +5,7 @@ import {cookieCheck, logout} from '../../containers/LoginForm/actions';
 import Text from '../../components/Text';
 import {fetchTranslations} from './actions';
 import {translate, money, numberFormat, df, checkPermission, setPermissions} from '../../helpers.js';
+import Loader from '../../components/Loader';
 
 const Gate = React.createClass({
     propTypes: {
@@ -59,7 +60,7 @@ const Gate = React.createClass({
         if (this.props.login.get('result') && this.props.login.get('authenticated') && this.props.gate.get('loaded')) {
             return this.props.children;
         } else {
-            return <div><Text>Please wait...</Text></div>;
+            return <Loader />
         }
     }
 });

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import Text from '../../components/Text';
+import Loader from '../../components/Loader';
 import { cookieCheck, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
@@ -62,7 +63,7 @@ class Gate extends Component {
 
         return (
             <div>
-                { loaded ? this.props.children : <Text>Please wait...</Text> }
+                { loaded ? this.props.children : <Loader /> }
             </div>
         );
     }
