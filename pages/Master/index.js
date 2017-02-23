@@ -36,7 +36,7 @@ const Main = React.createClass({
 
 export default connect(({ preloadWindow }) => {
     return {
-        loadInfo: preloadWindow && preloadWindow.toJS() || {}
+        loadInfo: preloadWindow && preloadWindow.toJS()
     };
 })(Main);
 
