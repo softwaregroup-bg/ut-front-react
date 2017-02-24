@@ -33,7 +33,9 @@ class Vertical extends Component {
         return (
             <div className={style.verticalWrapper}>
                 <div ref='fixedComponent'>{this.props.fixedComponent}</div>
-                <div style={{height: 'calc(100% - ' + height + ')'}} className={style.vertical}>{this.props.children}</div>
+                <div style={{height: 'calc(100% - ' + height + ')'}} className={style.vertical}>
+                    <div className={style.innerContent}>{this.props.children}</div>
+                </div>
             </div>
         );
     }

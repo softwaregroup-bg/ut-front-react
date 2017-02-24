@@ -6,3 +6,8 @@
     overflow: hidden;
     width: 100%;
 }
+
+.innerContent {
+    height: 100%;
+    overflow: auto;
+}

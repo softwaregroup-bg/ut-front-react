@@ -29,8 +29,8 @@ class Layout extends Component {
         if (result) {
             return (
                 <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)}>
-                    <Vertical fixedComponent={header} fixedComponentHeight={59}>
-                        <Vertical fixedComponent={tabMenu} fixedComponentHeight={40}>
+                    <Vertical fixedComponent={header}>
+                        <Vertical fixedComponent={tabMenu}>
                             <div id='appContent' className={styles.h100pr}>
                                 {this.props.children}
                                 <div id='controls' className={styles.controls} />
