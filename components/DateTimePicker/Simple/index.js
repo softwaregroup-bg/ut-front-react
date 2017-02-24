@@ -1,10 +1,12 @@
 
 import React, { Component, PropTypes } from 'react';
-// import classnames from 'classnames';
+import classnames from 'classnames';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
 import {dateTimeFormat, formatIso} from 'material-ui/DatePicker/dateUtils';
 import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import {formatTime} from 'material-ui/TimePicker/timeUtils';
+
+import style from './style.css';
 
 const noop = () => {};
 
@@ -23,12 +25,17 @@ export default class DatePickerBetween extends Component {
             date: null
         };
     }
+
+    componentWillMount() {
+        this.setState({date: this.props.defaultValue});
+    }
+
     componentWillReceiveProps(newProps) {
         this.setState({date: newProps.defaultValue});
     }
     handleOpen(ref) {
         return () => {
-            this.refs[`${ref}DialogWindow`].show();
+            this.refs[ref].show();
         };
     }
     formatDate(date) {
@@ -71,6 +78,7 @@ export default class DatePickerBetween extends Component {
                         newDate = date;
                         newDate.setHours(0);
                         newDate.setMinutes(0);
+                        newDate.setSeconds(0);
                     } else {
                         newDate.setFullYear(date.getFullYear());
                         newDate.setMonth(date.getMonth());
@@ -80,11 +88,14 @@ export default class DatePickerBetween extends Component {
             } else {
                 return;
             }
+
+            newDate = (newDate && !isNaN(newDate.valueOf())) ? newDate : null;
+
             this.setState({
-                date: newDate && !isNaN(newDate.valueOf()) ? newDate : null
+                date: newDate
             });
             if (this.props.onChange) {
-                this.props.onChange({key: ref, value: date});
+                this.props.onChange({value: newDate});
             }
         };
     }
@@ -100,17 +111,22 @@ export default class DatePickerBetween extends Component {
         return null;
     }
     render() {
+        let { date } = this.state;
+
+        let outerWrapStyle = this.props.label ? style.outerWrap : style.outerWrapNoLabel;
+        let boldLabelStyle = this.props.boldLabel ? style.boldLabel : '';
+
         return (
-            <div>
-                {/* {this.props.label ? (<span className={classnames(style.label)}>{this.props.label}</span>) : ''} */}
-                <div>
-                    <div>
-                        <input value={this.state.date ? this.formatDate(this.state.date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
-                        <button onClick={this.handleOpen('date')} />
+            <div className={outerWrapStyle}>
+                 {this.props.label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{this.props.label}</span>) : ''}
+                <div className={style.innerWrap}>
+                    <div className={style.inputWrap}>
+                        <input value={date ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
+                        <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
-                    <div>
-                        <input value={this.state.date ? this.formatTime(this.state.date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
-                        <button onClick={this.handleOpen('time')} />
+                    <div className={style.inputWrap}>
+                        <input value={date ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div>
                 </div>
                 <DatePickerDialog
@@ -118,20 +134,20 @@ export default class DatePickerBetween extends Component {
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
                   container={this.props.container}
-                  initialDate={this.state.date || new Date()}
+                  initialDate={date || new Date()}
                   mode={this.props.mode}
                   onAccept={this.handleAccept('date')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
-                  ref='dateDialogWindow' />
+                  ref='date' />
                 <TimePickerDialog
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
-                  initialTime={this.state.date || new Date()}
+                  initialTime={date || new Date()}
                   mode={this.props.mode}
                   onAccept={this.handleAccept('time')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
                   format={this.props.timeFormat}
-                  ref='timeDialogWindow' />
+                  ref='time' />
             </div>
         );
     }
@@ -141,8 +157,7 @@ DatePickerBetween.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
-    timeFormat: '24hr',
-    locale: 'en-GB'
+    timeFormat: '24hr'
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
@@ -155,7 +170,8 @@ DatePickerBetween.propTypes = {
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     DateTimeFormat: PropTypes.func,
     timeFormat: PropTypes.oneOf(['ampm', '24hr']),
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    boldLabel: PropTypes.bool
 };
 
 DatePickerBetween.contextTypes = {
