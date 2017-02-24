@@ -44,13 +44,12 @@
     composes: popupSection;
     justify-content: center;
     position: relative;
-    font-size: 18px;
     border-bottom: 1px solid var(--ut-front-react-popupSectionBorderColor);
 }
 
 .popupFooter {
     composes: popupSection;
-    flex-direction: row-reverse;
+    justify-content: flex-end;
     padding-right: 20px;
     border-top: 1px solid var(--ut-front-react-popupSectionBorderColor);
 }
@@ -67,4 +66,19 @@
 
 .closeBtn:hover {
     background: url('./images/closeTabHover.png') center no-repeat;
+}
+
+.headerText {
+    font-size: 18px;
+    font-weight: 700;
+    color: #595959;
+    cursor: default;
+    user-select: none;
+}
+
+.popupContent {
+    padding: 40px;
+    /* TODO: Pass max-height as result of calculation on the browser viewport substracted by min top and bottom popup margin */
+    max-height: 500px;
+    overflow: auto;
 }
