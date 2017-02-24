@@ -130,6 +130,10 @@
     background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
 }
 
+.actionBtn, actionBtn.primary, .actionBtn:active, .actionBtn.primary:active {
+    outline: 0;
+}
+
 .secondaryButton {
     display: inline-block;
     font-weight: 400;

@@ -1,3 +1,38 @@
+<a name="8.11.3"></a>
+## [8.11.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.2...v8.11.3) (2017-02-24)
+
+
+
+<a name="8.11.2"></a>
+## [8.11.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.1...v8.11.2) (2017-02-24)
+
+
+
+<a name="8.11.1"></a>
+## [8.11.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.0...v8.11.1) (2017-02-24)
+
+
+
+<a name="8.11.0"></a>
+# [8.11.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.10.1...v8.11.0) (2017-02-24)
+
+
+### Bug Fixes
+
+* change dashboard image with transparent one ([ed0ca93](https://github.com/softwaregroup-bg/ut-front-react/commit/ed0ca93))
+* do not allow overwrite ot hint styles from outside the component ([cc4be25](https://github.com/softwaregroup-bg/ut-front-react/commit/cc4be25))
+* remove power recursion ([fa24efd](https://github.com/softwaregroup-bg/ut-front-react/commit/fa24efd))
+
+
+### Features
+
+* add hint to date picker component ([a959f1b](https://github.com/softwaregroup-bg/ut-front-react/commit/a959f1b))
+* new loader: Remove unused login prop ([2bcceb2](https://github.com/softwaregroup-bg/ut-front-react/commit/2bcceb2))
+* UIS-1022: Remove button outline ([e032393](https://github.com/softwaregroup-bg/ut-front-react/commit/e032393))
+* UIS-1244 add common functions for validating and parsing IPs ([7e7c7f8](https://github.com/softwaregroup-bg/ut-front-react/commit/7e7c7f8))
+
+
+
 <a name="8.10.1"></a>
 ## [8.10.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.10.0...v8.10.1) (2017-02-21)
 
