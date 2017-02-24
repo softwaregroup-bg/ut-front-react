@@ -14,7 +14,8 @@ export default class MultiTab extends Component {
         super(props, context);
 
         this.state = {
-            menuToggled: false
+            menuToggled: false,
+            hasValidChildren: false
         };
 
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -36,23 +37,22 @@ export default class MultiTab extends Component {
                 hasPermission = hasPermission && this.context.checkPermission(p);
             });
             if (hasPermission) {
+                let tab;
                 if (currentTab.multi) {
-                    tabs.push((
-                        <MultiTab
-                          tab={currentTab}
-                          key={generateUniqueId()}
-                          positioningDirections={'top-right'}
-                          rightArrowIcon
-                          className={styles.menuItemTab} />
-                    ));
+                    tab = (<MultiTab
+                      tab={currentTab}
+                      key={generateUniqueId()}
+                      positioningDirections={'top-right'}
+                      rightArrowIcon
+                      className={styles.menuItemTab} />);
                 } else {
-                    tabs.push((
-                        <Tab
-                          key={generateUniqueId()}
-                          tab={currentTab}
-                          className={styles.menuItemTab} />
-                        ));
+                    tab = (<Tab
+                      key={generateUniqueId()}
+                      tab={currentTab}
+                      className={styles.menuItemTab} />);
                 }
+
+                tabs.push(tab);
             }
 
             return tabs;
@@ -81,6 +81,7 @@ export default class MultiTab extends Component {
         if (!menuItems.length) {
             return null;
         }
+
         return (
             <div
               className={styles.navigationMultiTab}
@@ -98,7 +99,7 @@ export default class MultiTab extends Component {
                     {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
                 </Link>
                 <Menu
-                  fields={this.getMenuItems()}
+                  fields={menuItems}
                   open={this.state.menuToggled}
                   requestClose={this.requestCloseMenu}
                   anchorEl={this.rootElement}

@@ -130,6 +130,10 @@
     background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
 }
 
+.actionBtn, actionBtn.primary, .actionBtn:active, .actionBtn.primary:active {
+    outline: 0;
+}
+
 .secondaryButton {
     display: inline-block;
     font-weight: 400;
@@ -176,7 +180,7 @@
 
 .dialogButton {
     composes: button;
-    height: 40px;
+    height: 30px;
     margin-left: 10px;
     box-sizing: border-box;
     padding: 0 20px;

@@ -7,10 +7,13 @@ const Header = ({
     text,
     closePopup
 }) => {
+    // Additional outer div is used to fix positioning issue in Firefox. Do not remove it.
     return (
         <div className={classnames(styles.popupHeader, className)}>
-            <span className={styles.headerText}>{text}</span>
-            <div className={styles.closeBtn} onClick={closePopup} />
+            <div>
+                <span className={styles.headerText}>{text}</span>
+                <div className={styles.closeBtn} onClick={closePopup} />
+            </div>
         </div>
     );
 };

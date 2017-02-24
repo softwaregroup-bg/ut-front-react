@@ -9,6 +9,7 @@ const PopupInternal = ({
     isOpen,
     container,
     className,
+    contentClassName,
     hasOverlay,
     closeOnOverlayClick,
     header,
@@ -91,6 +92,7 @@ Popup.propTypes = {
         text: PropTypes.string,
         closePopup: PropTypes.func
     }),
+    contentClassName: PropTypes.string,
     footer: PropTypes.shape({
         className: PropTypes.string,
         actionButtons: PropTypes.arrayOf(PropTypes.shape({
