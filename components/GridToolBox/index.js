@@ -270,7 +270,7 @@ class GridToolBox extends Component {
     }
     getInputsCount() {
         let count = this.props.filterElements.reduce((previousValue, currentValue) => {
-            if (currentValue.type === filterElementTypes.datePickerBetween) {
+            if (currentValue.type === filterElementTypes.datePickerBetween || currentValue.type === filterElementTypes.dateTimePickerBetween) {
                 return previousValue + 2;
             } else {
                 return previousValue + 1;
@@ -360,7 +360,7 @@ class GridToolBox extends Component {
 
                 <div className={style.pullRight}>
                     {this.props.filterElements.map((el, i) => {
-                        let incrementNum = el.type === filterElementTypes.datePickerBetween ? 2 : 1; // datePicker has two input fields
+                        let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                         filtersNumber += incrementNum;
                         if (filtersNumber > this.props.maxVisibleInputs) {
                             return null;
