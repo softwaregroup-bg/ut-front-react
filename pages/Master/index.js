@@ -24,10 +24,9 @@ const Main = ({
     );
 };
 
-export default connect(({ preloadWindow, login }) => {
+export default connect(({ preloadWindow }) => {
     return {
-        loadInfo: preloadWindow && preloadWindow.toJS(),
-        login: login
+        loadInfo: preloadWindow && preloadWindow.toJS()
     };
 })(Main);
 
