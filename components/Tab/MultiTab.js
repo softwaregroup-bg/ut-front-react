@@ -32,28 +32,22 @@ export default class MultiTab extends Component {
     getMenuItems() {
         const { multi } = this.props.tab;
         return multi.reduce((tabs, currentTab) => {
-            let hasPermission = true;
-            currentTab.permission.forEach(p => {
-                hasPermission = hasPermission && this.context.checkPermission(p);
-            });
-            if (hasPermission) {
-                let tab;
-                if (currentTab.multi) {
-                    tab = (<MultiTab
-                      tab={currentTab}
-                      key={generateUniqueId()}
-                      positioningDirections={'top-right'}
-                      rightArrowIcon
-                      className={styles.menuItemTab} />);
-                } else {
-                    tab = (<Tab
-                      key={generateUniqueId()}
-                      tab={currentTab}
-                      className={styles.menuItemTab} />);
-                }
-
-                tabs.push(tab);
+            let tab;
+            if (currentTab.multi) {
+                tab = (<MultiTab
+                  tab={currentTab}
+                  key={generateUniqueId()}
+                  positioningDirections={'top-right'}
+                  rightArrowIcon
+                  className={styles.menuItemTab} />);
+            } else {
+                tab = (<Tab
+                  key={generateUniqueId()}
+                  tab={currentTab}
+                  className={styles.menuItemTab} />);
             }
+
+            tabs.push(tab);
 
             return tabs;
         }, []);
@@ -123,8 +117,4 @@ MultiTab.propTypes = {
 MultiTab.defaultProps = {
     positioningDirections: 'bottom-left',
     rightArrowIcon: false
-};
-
-MultiTab.contextTypes = {
-    checkPermission: PropTypes.func
 };
