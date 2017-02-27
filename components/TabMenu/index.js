@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactDom from 'react-dom';
+import classnames from 'classnames';
 import style from './style.css';
 import TabLink from './TabLink';
 import TabDropdown from './TabDropdown';
@@ -128,7 +129,7 @@ class TabMenu extends React.Component {
             offsetStyle = this.state.offset + 'px';
         }
         return (
-            <div className={this.getStyle('tabMenu')}>
+            <div className={classnames(style.TabMenu, this.getStyle('tabMenu'))}>
             <div className={this.getStyle('tabSelectorWrapper')} style={{display: displayBtnStyle}}>
                 <TabDropdown data={this.props.tabs} activeItem={this.state.activeTabIndex} onSelectItem={this.props.onClick} />
             </div>
