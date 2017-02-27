@@ -44,7 +44,15 @@
     composes: popupSection;
     justify-content: center;
     position: relative;
+    font-size: 18px;
     border-bottom: 1px solid var(--ut-front-react-popupSectionBorderColor);
+}
+
+.popupContent {
+    padding: 40px;
+    /* TODO: Pass max-height as result of calculation on the browser viewport substracted by min top and bottom popup margin */
+    max-height: 500px;
+    overflow: auto;
 }
 
 .popupFooter {
