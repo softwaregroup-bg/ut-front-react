@@ -100,7 +100,7 @@ class Dropdown extends Component {
                 <DropDownMenu
                   value={this.state.value}
                   onChange={this.handleChange}
-                  autoWidth={false}
+                  autoWidth={this.props.menuAutoWidth}
                   disabled={this.props.disabled}
                   className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}
                   iconStyle={iconStyles}
@@ -113,14 +113,14 @@ class Dropdown extends Component {
     }
 
     render() {
-        let { label, cssStyle, mergeStyles } = this.props;
+        let { label, cssStyle, mergeStyles, containerClassName } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let { isValid, errorMessage } = this.state.valid;
         let invalidStyle = isValid ? ddstyles.hiddenHeight : '';
 
         if (label) {
             return (
-                <div>
+                <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
                             {this.props.label}
@@ -134,7 +134,7 @@ class Dropdown extends Component {
             );
         } else {
             return (
-                <div>
+                <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         {this.renderDropDown()}
                     </div>
@@ -153,11 +153,13 @@ Dropdown.propTypes = {
     defaultSelected: PropTypes.any,
     label: PropTypes.node,
     boldLabel: PropTypes.bool,
+    containerClassName: PropTypes.string,
     placeholder: PropTypes.any,
     keyProp: PropTypes.string,
     canSelectPlaceholder: PropTypes.bool,
     onSelect: PropTypes.func,
     disabled: PropTypes.bool,
+    menuAutoWidth: PropTypes.bool,
     mergeStyles: PropTypes.object,
     iconStyles: PropTypes.object,
     // if you want to style the width of the dropdown, add a wrapper element that has min-width and max-width properties
@@ -181,7 +183,8 @@ Dropdown.defaultProps = {
     onSelect: () => {},
     isValid: true,
     errorMessage: '',
-    isEdited: false
+    isEdited: false,
+    menuAutoWidth: false
 };
 
 export default Dropdown;

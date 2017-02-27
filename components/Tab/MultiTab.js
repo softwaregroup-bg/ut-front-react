@@ -14,7 +14,8 @@ export default class MultiTab extends Component {
         super(props, context);
 
         this.state = {
-            menuToggled: false
+            menuToggled: false,
+            hasValidChildren: false
         };
 
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -31,29 +32,22 @@ export default class MultiTab extends Component {
     getMenuItems() {
         const { multi } = this.props.tab;
         return multi.reduce((tabs, currentTab) => {
-            let hasPermission = true;
-            currentTab.permission.forEach(p => {
-                hasPermission = hasPermission && this.context.checkPermission(p);
-            });
-            if (hasPermission) {
-                if (currentTab.multi) {
-                    tabs.push((
-                        <MultiTab
-                          tab={currentTab}
-                          key={generateUniqueId()}
-                          positioningDirections={'top-right'}
-                          rightArrowIcon
-                          className={styles.menuItemTab} />
-                    ));
-                } else {
-                    tabs.push((
-                        <Tab
-                          key={generateUniqueId()}
-                          tab={currentTab}
-                          className={styles.menuItemTab} />
-                        ));
-                }
+            let tab;
+            if (currentTab.multi) {
+                tab = (<MultiTab
+                  tab={currentTab}
+                  key={generateUniqueId()}
+                  positioningDirections={'top-right'}
+                  rightArrowIcon
+                  className={styles.menuItemTab} />);
+            } else {
+                tab = (<Tab
+                  key={generateUniqueId()}
+                  tab={currentTab}
+                  className={styles.menuItemTab} />);
             }
+
+            tabs.push(tab);
 
             return tabs;
         }, []);
@@ -81,6 +75,7 @@ export default class MultiTab extends Component {
         if (!menuItems.length) {
             return null;
         }
+
         return (
             <div
               className={styles.navigationMultiTab}
@@ -98,7 +93,7 @@ export default class MultiTab extends Component {
                     {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
                 </Link>
                 <Menu
-                  fields={this.getMenuItems()}
+                  fields={menuItems}
                   open={this.state.menuToggled}
                   requestClose={this.requestCloseMenu}
                   anchorEl={this.rootElement}
@@ -122,8 +117,4 @@ MultiTab.propTypes = {
 MultiTab.defaultProps = {
     positioningDirections: 'bottom-left',
     rightArrowIcon: false
-};
-
-MultiTab.contextTypes = {
-    checkPermission: PropTypes.func
 };

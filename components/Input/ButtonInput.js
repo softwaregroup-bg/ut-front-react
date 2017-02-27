@@ -39,7 +39,7 @@ class ButtonInput extends Component {
                       onChange={this.onChange} />
                     <StandardButton
                       type='password'
-                      className='standardBtn standardInputButton'
+                      className='secondaryButton secondaryInputButton'
                       onClick={this.props.onClick}
                       label={this.props.btnText} />
                 </div>

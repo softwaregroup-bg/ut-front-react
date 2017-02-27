@@ -57,11 +57,48 @@ export class Header extends Component {
             return v;
         }).toJS();
     }
+    getSpanFields(fields) {
+        let spanFields = fromJS(this.props.spanFields).map((spanField) => {
+            return spanField.update('children', (child) => {
+                return child.filter((c) => {
+                    return fields.find((f) => {
+                        return (f.get('visible') === undefined || f.get('visible')) && f.get('name') === c;
+                    });
+                });
+            });
+        }).filter((spanField) => (spanField.get('children').size));
+        let spanDrawn = {};
+
+        return (<tr className={this.getStyle('gridHeaderTr')}>
+            {fields
+                .filter((field) => {
+                    return field.get('visible', true);
+                })
+                .map((field, idx, array) => {
+                    var found = spanFields.filter((spanField) => {
+                        return spanField.get('children').filter((child) => {
+                            return child === field.get('name');
+                        }).size > 0;
+                    });
+
+                    if (found.size > 0) {
+                        let identifier = found.getIn([0, 'children']).join();
+                        if (!spanDrawn[identifier]) {
+                            spanDrawn[identifier] = 1;
+                            return <td className={(array.get(idx + 1) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : '')} key={idx} colSpan={found.getIn([0, 'children']).size}>{found.getIn([0, 'title']).toJS()}</td>;
+                        }
+                    } else {
+                        return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;
+                    }
+                })}
+        </tr>);
+    }
     render() {
         let fields = this.getFields();
 
         return (
             <thead>
+                {this.getSpanFields(fields)}
                 <tr className={this.getStyle('gridHeaderTr')}>
                     {fields.map((field, idx) => {
                         if (!field.get('internal')) {
@@ -69,7 +106,7 @@ export class Header extends Component {
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'globalMenu') {
-                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields()} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields()} transformCellValue={this.props.transformCellValue} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         }
                     })}
                 </tr>
@@ -81,6 +118,10 @@ export class Header extends Component {
 Header.propTypes = {
     externalStyle: PropTypes.object,
     fields: propTypeFields,
+    spanFields: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.node.isRequired,
+        children: PropTypes.arrayOf(PropTypes.node).isRequired
+    })),
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
     // if true will allow order by multiple columns

@@ -1,3 +1,179 @@
+<a name="8.12.0"></a>
+# [8.12.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.15...v8.12.0) (2017-02-27)
+
+
+### Features
+
+* span column ([130b151](https://github.com/softwaregroup-bg/ut-front-react/commit/130b151))
+
+
+
+<a name="8.11.15"></a>
+## [8.11.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.14...v8.11.15) (2017-02-27)
+
+
+
+<a name="8.11.14"></a>
+## [8.11.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.13...v8.11.14) (2017-02-27)
+
+
+
+<a name="8.11.13"></a>
+## [8.11.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.12...v8.11.13) (2017-02-27)
+
+
+
+<a name="8.11.12"></a>
+## [8.11.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.11...v8.11.12) (2017-02-27)
+
+
+### Bug Fixes
+
+* refactor permissions precheck ([cb59326](https://github.com/softwaregroup-bg/ut-front-react/commit/cb59326))
+* UI-886 empty menu dropdown ([15f7a28](https://github.com/softwaregroup-bg/ut-front-react/commit/15f7a28))
+* UIS-1093 finish permission screen in roles ([2d07a3a](https://github.com/softwaregroup-bg/ut-front-react/commit/2d07a3a))
+* UIS-1093 fix multicheckbox readOnly option ([c5b138a](https://github.com/softwaregroup-bg/ut-front-react/commit/c5b138a))
+* UIS-1502 twaeak searchbox component ([9d065ab](https://github.com/softwaregroup-bg/ut-front-react/commit/9d065ab))
+
+
+
+<a name="8.11.11"></a>
+## [8.11.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.10...v8.11.11) (2017-02-27)
+
+
+### Bug Fixes
+
+* UIS-1202: fix padding in search box ([568c705](https://github.com/softwaregroup-bg/ut-front-react/commit/568c705))
+
+
+
+<a name="8.11.10"></a>
+## [8.11.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.9...v8.11.10) (2017-02-27)
+
+
+
+<a name="8.11.9"></a>
+## [8.11.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.8...v8.11.9) (2017-02-24)
+
+
+
+<a name="8.11.8"></a>
+## [8.11.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.7...v8.11.8) (2017-02-24)
+
+
+
+<a name="8.11.7"></a>
+## [8.11.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.6...v8.11.7) (2017-02-24)
+
+
+
+<a name="8.11.6"></a>
+## [8.11.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.5...v8.11.6) (2017-02-24)
+
+
+
+<a name="8.11.5"></a>
+## [8.11.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.4...v8.11.5) (2017-02-24)
+
+
+
+<a name="8.11.4"></a>
+## [8.11.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.3...v8.11.4) (2017-02-24)
+
+
+### Bug Fixes
+
+* UIS-1178: fix margin in login screen ([12aa1b9](https://github.com/softwaregroup-bg/ut-front-react/commit/12aa1b9))
+* update calendar icon ([65cf59b](https://github.com/softwaregroup-bg/ut-front-react/commit/65cf59b))
+
+
+
+<a name="8.11.3"></a>
+## [8.11.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.2...v8.11.3) (2017-02-24)
+
+
+
+<a name="8.11.2"></a>
+## [8.11.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.1...v8.11.2) (2017-02-24)
+
+
+
+<a name="8.11.1"></a>
+## [8.11.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.0...v8.11.1) (2017-02-24)
+
+
+
+<a name="8.11.0"></a>
+# [8.11.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.10.1...v8.11.0) (2017-02-24)
+
+
+### Bug Fixes
+
+* change dashboard image with transparent one ([ed0ca93](https://github.com/softwaregroup-bg/ut-front-react/commit/ed0ca93))
+* do not allow overwrite ot hint styles from outside the component ([cc4be25](https://github.com/softwaregroup-bg/ut-front-react/commit/cc4be25))
+* remove power recursion ([fa24efd](https://github.com/softwaregroup-bg/ut-front-react/commit/fa24efd))
+
+
+### Features
+
+* add hint to date picker component ([a959f1b](https://github.com/softwaregroup-bg/ut-front-react/commit/a959f1b))
+* new loader: Remove unused login prop ([2bcceb2](https://github.com/softwaregroup-bg/ut-front-react/commit/2bcceb2))
+* UIS-1022: Remove button outline ([e032393](https://github.com/softwaregroup-bg/ut-front-react/commit/e032393))
+* UIS-1244 add common functions for validating and parsing IPs ([7e7c7f8](https://github.com/softwaregroup-bg/ut-front-react/commit/7e7c7f8))
+
+
+
+<a name="8.10.1"></a>
+## [8.10.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.10.0...v8.10.1) (2017-02-21)
+
+
+
+<a name="8.10.0"></a>
+# [8.10.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.6...v8.10.0) (2017-02-21)
+
+
+### Features
+
+* customize grid rows with rowStyle column ([#156](https://github.com/softwaregroup-bg/ut-front-react/issues/156)) ([e9ae199](https://github.com/softwaregroup-bg/ut-front-react/commit/e9ae199))
+
+
+
+<a name="8.9.6"></a>
+## [8.9.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.5...v8.9.6) (2017-02-20)
+
+
+### Bug Fixes
+
+* refactor hardcoded values ([6d808bc](https://github.com/softwaregroup-bg/ut-front-react/commit/6d808bc))
+* remove redundant code ([2b4bff6](https://github.com/softwaregroup-bg/ut-front-react/commit/2b4bff6))
+
+
+
+<a name="8.9.5"></a>
+## [8.9.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.4...v8.9.5) (2017-02-20)
+
+
+
+<a name="8.9.4"></a>
+## [8.9.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.3...v8.9.4) (2017-02-17)
+
+
+### Bug Fixes
+
+* UI-898 translate column names in grid configuration ([135e49b](https://github.com/softwaregroup-bg/ut-front-react/commit/135e49b))
+
+
+
+<a name="8.9.3"></a>
+## [8.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.2...v8.9.3) (2017-02-17)
+
+
+### Bug Fixes
+
+* expose menu width property ([c203652](https://github.com/softwaregroup-bg/ut-front-react/commit/c203652))
+
+
+
 <a name="8.9.2"></a>
 ## [8.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.9.1...v8.9.2) (2017-02-14)
 
