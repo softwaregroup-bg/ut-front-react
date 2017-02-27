@@ -1,3 +1,39 @@
+<a name="8.11.9"></a>
+## [8.11.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.8...v8.11.9) (2017-02-24)
+
+
+
+<a name="8.11.8"></a>
+## [8.11.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.7...v8.11.8) (2017-02-24)
+
+
+
+<a name="8.11.7"></a>
+## [8.11.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.6...v8.11.7) (2017-02-24)
+
+
+
+<a name="8.11.6"></a>
+## [8.11.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.5...v8.11.6) (2017-02-24)
+
+
+
+<a name="8.11.5"></a>
+## [8.11.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.4...v8.11.5) (2017-02-24)
+
+
+
+<a name="8.11.4"></a>
+## [8.11.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.3...v8.11.4) (2017-02-24)
+
+
+### Bug Fixes
+
+* UIS-1178: fix margin in login screen ([12aa1b9](https://github.com/softwaregroup-bg/ut-front-react/commit/12aa1b9))
+* update calendar icon ([65cf59b](https://github.com/softwaregroup-bg/ut-front-react/commit/65cf59b))
+
+
+
 <a name="8.11.3"></a>
 ## [8.11.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.2...v8.11.3) (2017-02-24)
 
