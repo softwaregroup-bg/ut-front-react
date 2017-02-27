@@ -130,31 +130,35 @@ class TabMenu extends React.Component {
         }
         return (
             <div className={classnames(style.TabMenu, this.getStyle('tabMenu'))}>
-            <div className={this.getStyle('tabSelectorWrapper')} style={{display: displayBtnStyle}}>
-                <TabDropdown data={this.props.tabs} activeItem={this.state.activeTabIndex} onSelectItem={this.props.onClick} />
-            </div>
-            <table ref='tabset' className={this.getStyle('tabNavbar')} style={{left: offsetStyle}}>
-                <tbody>
-                    <tr>
-                    {this.props.tabs.map((tab, i) => {
-                        let onClose = (e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            let prev = this.props.tabs[i - 1]; // TODO: check perf
-                            let next = this.props.tabs[i + 1]; // TODO: check perf
-                            this.props.onTabClose(tab, prev, next);
-                        };
-                        let handleClick = () => this.props.onClick(tab);
-                        let isActive = tab.id === this.props.activeTab;
-                        return (
-                            <td key={i}>
-                                <TabLink onClose={onClose} {...tab} onClick={handleClick} isActive={isActive} />
-                            </td>
-                        );
-                    })}
-                    </tr>
-                </tbody>
-            </table>
+                <div className={this.getStyle('tabSelectorWrapper')} style={{display: displayBtnStyle}}>
+                    <TabDropdown data={this.props.tabs} activeItem={this.state.activeTabIndex} onSelectItem={this.props.onClick} />
+                </div>
+                <div className={style.relativeWrapper}>
+                    <div className={style.absoluteWrapper}>
+                        <table ref='tabset' className={this.getStyle('tabNavbar')} style={{left: offsetStyle}}>
+                            <tbody>
+                                <tr>
+                                    {this.props.tabs.map((tab, i) => {
+                                        let onClose = (e) => {
+                                            e.stopPropagation();
+                                            e.preventDefault();
+                                            let prev = this.props.tabs[i - 1]; // TODO: check perf
+                                            let next = this.props.tabs[i + 1]; // TODO: check perf
+                                            this.props.onTabClose(tab, prev, next);
+                                        };
+                                        let handleClick = () => this.props.onClick(tab);
+                                        let isActive = tab.id === this.props.activeTab;
+                                        return (
+                                            <td key={i}>
+                                                <TabLink onClose={onClose} {...tab} onClick={handleClick} isActive={isActive} />
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         );
     }
