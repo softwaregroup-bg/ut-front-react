@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import DateTimePicker from '../Simple';
 
+import style from './style.css';
+
 class DateTimePickerBetween extends Component {
     render() {
         let {
@@ -13,11 +15,14 @@ class DateTimePickerBetween extends Component {
             cancelLabel,
             firstDayOfWeek,
             onChange,
-            defaultValue
+            defaultValue,
+            withVerticalClass
         } = this.props;
 
+        let layoutClassName = !withVerticalClass ? style.horizontalAlign : '';
+
         return (
-            <div>
+            <div className={layoutClassName}>
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.from}
