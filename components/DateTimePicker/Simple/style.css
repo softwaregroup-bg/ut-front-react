@@ -36,9 +36,15 @@
 .inputWrap {
     border: 1px solid #D7D6D6;
 }
+.inputWrap:nth-child(1) {
+    margin-right: 5px;
+}
+.inputWrap:nth-child(2){
+    margin-left: 5px;    
+}
 
 .inputWrap input {
-    width: 85%;
+    width: 86%;
     padding: 4px 36px 4px 10px;
     border: none;
     height: 28px;
@@ -58,7 +64,6 @@
 
 .inputWrap button.dateButton {
     background-image: url('./images/calendar.png');
-    right: 0;
 }
 
 .inputWrap button.timeButton {
