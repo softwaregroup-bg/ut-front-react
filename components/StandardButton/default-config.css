@@ -2,14 +2,14 @@
 :root {
     /*colors*/
     --ut-front-react-standardBtnBgColor: #4096fd;
+    --ut-front-react-defaultDialogBtnBgColor: #4096fd;
     --ut-front-react-standardBtnHoverColor: #4f9efc;
+    --ut-front-react-standardDialogBtnHoverColor: #4f9efc;
     --ut-front-react-standardBtnActiveColor: #3d8dee;
+    --ut-front-react-standardDialogBtnActiveColor: #3d8dee;
     --ut-front-react-standardBtnTextColor: #FFFFFF;
     --ut-front-react-defaultBtnColor: #444444;
     --ut-front-react-defaultBtnBgColor: #f4f4f4;
-    --ut-front-react-defaultDialogBtnBgColor: #e93591;
-    --ut-front-react-standardDialogBtnHoverColor: #C06;
-    --ut-front-react-standardDialogBtnActiveColor: #C06;
     --ut-front-react-defaultBtnBorderColor: #dcdcdc;
     --ut-front-react-defaultBtnBorderColorHover: #999999;
     --ut-front-react-defaultBtnBackgroundColorHover: #f4f4f4;
