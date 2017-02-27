@@ -9,6 +9,7 @@ const PopupInternal = ({
     isOpen,
     container,
     className,
+    contentClassName,
     hasOverlay,
     closeOnOverlayClick,
     header,
@@ -21,7 +22,9 @@ const PopupInternal = ({
             { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
             <div className={classnames(styles.popupContainer, className)}>
                 { header && <Header className={header.className} text={header.text} closePopup={closePopup} /> }
-                { children }
+                <div className={classnames(styles.popupContent, contentClassName)}>
+                    { children }
+                </div>
                 { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
             </div>
         </div>
@@ -32,6 +35,7 @@ PopupInternal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     container: PropTypes.string,
     className: PropTypes.string,
+    contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
     header: PropTypes.shape({
@@ -84,6 +88,7 @@ Popup.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     container: PropTypes.string,
     className: PropTypes.string,
+    contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
     header: PropTypes.shape({
