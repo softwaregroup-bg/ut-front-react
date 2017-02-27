@@ -1,20 +1,19 @@
 import { List } from 'immutable';
 import { checkPermission } from '../../containers/Gate/helpers';
 
+// filters tabs we have no permission for as well as empty multitabs
 export function permissionPreCheck(tabList) {
-    let validated = tabList.reduce((tabs, currentTab) => {
+    return tabList.reduce((tabs, currentTab) => {
         let hasPermission = true;
-        if (currentTab.get('permission')) {
-            currentTab.get('permission').forEach(p => {
-                hasPermission = hasPermission && checkPermission(p);
-            });
-        }
+        currentTab.get('permission') && currentTab.get('permission').forEach(p => {
+            hasPermission = hasPermission && checkPermission(p);
+        });
         if (hasPermission) {
             if (currentTab.get('multi')) {
-                let validatedTab = permissionPreCheck(currentTab.get('multi'));
-                if (!validatedTab.equals(currentTab.get('multi'))) {
-                    if (validatedTab.size) {
-                        currentTab.set('multi', validatedTab);
+                let validChildren = permissionPreCheck(currentTab.get('multi'));
+                if (!validChildren.equals(currentTab.get('multi'))) {
+                    if (validChildren.size) {
+                        currentTab.set('multi', validChildren);
                     } else {
                         currentTab = null;
                     }
@@ -27,6 +26,4 @@ export function permissionPreCheck(tabList) {
 
         return tabs;
     }, List());
-
-    return validated;
 };
