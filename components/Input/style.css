@@ -81,6 +81,11 @@
     background: #fff4a3 !important;
 }
 
+.readonlyInput {
+    cursor: not-allowed;
+    color: #a9a9a9;
+}
+
 /* Date picker */
 .datePicker {
     width: 100% !important;
@@ -140,6 +145,40 @@
 .tpMinutesWrap {
     width: 80px;
     float: left;
+}
+
+/* CheckboxNew */
+.checkboxNewContainer {
+    display: block;
+}
+
+.checkboxNewAutoWidthContainer {
+    display: inline-block;
+}
+
+.checkboxNewWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.checkboxNewLabel {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.checkboxNew {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: 1px solid #D7D7D7;
+    cursor: pointer;
+}
+
+.checkboxNew.checkedCheckbox {
+    background: url('./images/checkbox.png');
+    background-size: contain;
+    border: none;
 }
 
 /* Checkbox */
@@ -421,5 +460,5 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 }
 
 .buttonInput {
-    padding-right: 80px;
+    padding-right: 100px;
 }

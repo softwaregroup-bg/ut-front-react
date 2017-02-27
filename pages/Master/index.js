@@ -1,41 +1,40 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import preloader from '../../components/Preloader';
-import errorWindow from '../../components/ErrorWindow';
-import {close} from './actions';
+import ErrorWindow from '../../components/ErrorWindow';
+import Loader from '../../components/Loader';
+import { close } from './actions';
 
-const Preloader = connect(
-    (state) => {
-        return (state.preloadWindow && state.preloadWindow.toJS()) || {};
-    }
-)(preloader);
-
-const ErrorWindow = connect(
+const ErrorWindowContainer = connect(
     (state) => {
         return (state.errorWindow && state.errorWindow.toJS()) || {};
     },
     {close}
-)(errorWindow);
+)(ErrorWindow);
 
-const Main = React.createClass({
-    propTypes: {
-        login: PropTypes.object,
-        children: PropTypes.object
-    },
-    contextTypes: {
-        router: PropTypes.object.isRequired
-    },
-    render() {
-        return (
-            <div className='wrapper'>
-                {this.props.children}
-                <Preloader />
-                <ErrorWindow />
-            </div>
-        );
-    }
-});
+const Main = ({
+    loadInfo,
+    children
+}) => {
+    return (
+        <div className='wrapper'>
+            { children }
+            { loadInfo && !!loadInfo.open && <Loader loadInfo={loadInfo} />}
+            <ErrorWindowContainer />
+        </div>
+    );
+};
 
-export default connect(
-    (state, ownProps) => ({login: state.login})
-)(Main);
+export default connect(({ preloadWindow }) => {
+    return {
+        loadInfo: preloadWindow && preloadWindow.toJS()
+    };
+})(Main);
+
+Main.propTypes = {
+    loadInfo: PropTypes.object,
+    children: PropTypes.object
+};
+
+Main.contextTypes = {
+    router: PropTypes.object.isRequired
+};

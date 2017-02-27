@@ -68,19 +68,27 @@ class TextField extends Component {
         onChange(objectToPassOnChange);
     }
 
-    render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName } = this.props;
-        let { isValid, errorMessage } = this.state.valid;
-        let errorInputStyle = !isValid ? style.error : '';
-        let zeroHeightStyle = isValid ? style.hh : '';
-        let editedInputStyle = this.state.isEdited ? style.editedInputStyle : '';
+    get inputClassName() {
+        const { valid, isEdited } = this.state;
+        const { readonly } = this.props;
+        return classnames(style.input, {
+            [style.editedInputStyle]: isEdited,
+            [style.error]: !valid.isValid,
+            [style.readonlyInput]: readonly
+        });
+    }
 
-        let input = <input ref='textInput' type={type} className={classnames(style.input, errorInputStyle, editedInputStyle)} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+    render() {
+        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        let { isValid, errorMessage } = this.state.valid;
+        let zeroHeightStyle = isValid ? style.hh : '';
+
+        let input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (
-                <div className={style.outerWrap}>
-                    <div className={classnames(style.lableWrap, {[style.boldLabel]: this.props.boldLabel})}>
+                <div className={classnames(style.outerWrap, wrapperClassName)}>
+                    <div className={classnames(style.lableWrap, labelClassName, {[style.boldLabel]: this.props.boldLabel})}>
                         {label} {this.props.validators.length > 0 && '*'}
                     </div>
                     <div className={classnames(style.inputWrap, inputWrapClassName)}>
@@ -108,6 +116,8 @@ TextField.propTypes = {
     label: PropTypes.node,
     type: PropTypes.string,
     placeholder: PropTypes.string,
+    wrapperClassName: PropTypes.string,
+    labelClassName: PropTypes.string,
     dependancyDisabledInputTooltipText: PropTypes.string,
     onChange: PropTypes.func,
     readonly: PropTypes.bool,

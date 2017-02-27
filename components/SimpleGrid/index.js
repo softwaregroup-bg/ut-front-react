@@ -51,6 +51,7 @@ export class SimpleGrid extends Component {
                   handleCellClick={this.props.handleCellClick}
                   handleRowClick={this.props.handleRowClick}
                   rowsChecked={this.props.rowsChecked}
+                  rowStyleField={this.props.rowStyleField}
                 />
             </table>
         );
@@ -79,7 +80,8 @@ SimpleGrid.propTypes = {
         checkbox: PropTypes.bool
     }),
     handleCellClick: PropTypes.func,
-    handleRowClick: PropTypes.func
+    handleRowClick: PropTypes.func,
+    rowStyleField: PropTypes.string
 };
 
 SimpleGrid.defaultProps = {

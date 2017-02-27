@@ -9,6 +9,7 @@ const Popup = ({
     isOpen,
     container,
     className,
+    contentClassName,
     hasOverlay,
     closeOnOverlayClick,
     header,
@@ -18,13 +19,15 @@ const Popup = ({
 }) => {
     /* The Portal component renders its children into a new subtree outside of current component hierarchy. */
     /* Its children will be appended to the [container] specified (default: div#controls, located in the Layout component) */
+
+    // TODO: Add max-height calculation for scroll functionality and remove max-height from styles.css
     return (
         <Portal container={() => { return document.getElementById(container); }}>
             { isOpen && <div className={styles.modalContainer}>
                 { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
                 <div className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} /> }
-                    { children }
+                    <div className={classnames(styles.popupContent, contentClassName)}>{ children }</div>
                     { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
             </div> }
@@ -43,6 +46,7 @@ Popup.propTypes = {
         text: PropTypes.string,
         closePopup: PropTypes.func
     }),
+    contentClassName: PropTypes.string,
     footer: PropTypes.shape({
         className: PropTypes.string,
         actionButtons: PropTypes.arrayOf(PropTypes.shape({
