@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Tab, MultiTab } from './../Tab';
+import { permissionPreCheck } from './helpers';
+import { fromJS } from 'immutable';
+
 import styles from './styles.css';
 
 export default class TabsContainer extends Component {
@@ -20,11 +23,12 @@ export default class TabsContainer extends Component {
     }
 
     getTabComponents(tabset) {
+        tabset = permissionPreCheck(fromJS(tabset)).toJS();
+
         return tabset.reduce((memo, tab, i) => {
             const isMulti = this.isMulti(tab);
-            const hasPermission = this.isPermissionCheckRequired(tab) ? this.hasPermission(tab.permission) : true;
 
-            hasPermission && memo.push(
+            memo.push(
                 <div key={i} className={styles.tabContainer}>
                   {isMulti ? <MultiTab tab={tab} /> : <Tab tab={tab} />}
                 </div>
