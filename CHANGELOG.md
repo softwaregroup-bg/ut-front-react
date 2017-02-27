@@ -1,3 +1,13 @@
+<a name="8.11.11"></a>
+## [8.11.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.10...v8.11.11) (2017-02-27)
+
+
+### Bug Fixes
+
+* UIS-1202: fix padding in search box ([568c705](https://github.com/softwaregroup-bg/ut-front-react/commit/568c705))
+
+
+
 <a name="8.11.10"></a>
 ## [8.11.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.9...v8.11.10) (2017-02-27)
 
