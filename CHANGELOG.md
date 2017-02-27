@@ -1,3 +1,13 @@
+<a name="8.12.0"></a>
+# [8.12.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.15...v8.12.0) (2017-02-27)
+
+
+### Features
+
+* span column ([130b151](https://github.com/softwaregroup-bg/ut-front-react/commit/130b151))
+
+
+
 <a name="8.11.15"></a>
 ## [8.11.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.14...v8.11.15) (2017-02-27)
 
