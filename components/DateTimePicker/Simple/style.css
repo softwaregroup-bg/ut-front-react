@@ -35,16 +35,19 @@
 
 .inputWrap {
     border: 1px solid #D7D6D6;
+    position: relative;
 }
+
 .inputWrap:nth-child(1) {
     margin-right: 5px;
 }
+
 .inputWrap:nth-child(2){
     margin-left: 5px;    
 }
 
 .inputWrap input {
-    width: 86%;
+    width: 100%;
     padding: 4px 36px 4px 10px;
     border: none;
     height: 28px;
@@ -53,7 +56,7 @@
 .inputWrap button.dateButton, .inputWrap button.timeButton {
     width: 26px;
     height: 26px;
-    position: relative;
+    position: absolute;
     top: 1px;
     right: 1px;
     border: none;
