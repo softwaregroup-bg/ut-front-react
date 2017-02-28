@@ -116,7 +116,7 @@ class GridToolBox extends Component {
                         <DateTimePickerBetween
                           onChange={filterElement.onChange}
                           defaultValue={filterElement.defaultValue}
-                          masterLabel={filterElement.masterLabel}
+                          timeFormat={filterElement.timeFormat.hour12 ? 'ampm' : '24hr'}
                           labelFrom={filterElement.labelFrom}
                           labelTo={filterElement.labelTo} />
                     </div>
@@ -151,7 +151,7 @@ class GridToolBox extends Component {
                     let date = new Date(filter.defaultValue.from);
                     let value = date.toLocaleDateString(filter.locale);
                     if (filter.type === filterElementTypes.dateTimePickerBetween) {
-                        value = `${value} ${date.toLocaleTimeString(filter.locale, {hour: '2-digit', minute: '2-digit'})}`;
+                        value = `${value} ${date.toLocaleTimeString(filter.locale, filter.timeFormat)}`;
                     }
                     content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelFrom}: </span> {value}</span>
@@ -161,7 +161,7 @@ class GridToolBox extends Component {
                     let date = new Date(filter.defaultValue.to);
                     let value = date.toLocaleDateString(filter.locale);
                     if (filter.type === filterElementTypes.dateTimePickerBetween) {
-                        value = `${value} ${date.toLocaleTimeString(filter.locale, {hour: '2-digit', minute: '2-digit'})}`;
+                        value = `${value} ${date.toLocaleTimeString(filter.locale, filter.timeFormat)}`;
                     }
                     content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelTo}: </span> {value}</span>
@@ -258,7 +258,7 @@ class GridToolBox extends Component {
                           }}
                           withVerticalClass
                           defaultValue={value}
-                          masterLabel={filterElement.masterLabel}
+                          timeFormat={filterElement.timeFormat.hour12 ? 'ampm' : '24hr'}
                           labelFrom={filterElement.labelFrom}
                           labelTo={filterElement.labelTo}
                           boldLabel />

@@ -27,6 +27,7 @@ class DateTimePickerBetween extends Component {
                     <DateTimePicker
                       defaultValue={defaultValue.from}
                       DateTimeFormat={DateTimeFormat}
+                      timeFormat={this.props.timeFormat}
                       locale={locale}
                       label={labelFrom}
                       okLabel={okLabel}
@@ -39,6 +40,7 @@ class DateTimePickerBetween extends Component {
                     <DateTimePicker
                       defaultValue={defaultValue.to}
                       DateTimeFormat={DateTimeFormat}
+                      timeFormat={this.props.timeFormat}
                       locale={locale}
                       label={labelTo}
                       okLabel={okLabel}
@@ -55,6 +57,7 @@ class DateTimePickerBetween extends Component {
 DateTimePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
     locale: PropTypes.string,
+    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     firstDayOfWeek: PropTypes.number,
