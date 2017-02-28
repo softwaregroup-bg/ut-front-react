@@ -114,10 +114,10 @@ export class Header extends Component {
                 var fieldsInSpanList = spanFields.filter((spanField) => {
                     return spanField.get('children').filter((child) => {
                         return child === field.get('name');
-                    }).size;
+                    }).size > 0;
                 });
 
-                if (fieldsInSpanList > 0) {
+                if (fieldsInSpanList.size > 0) {
                     let identifier = fieldsInSpanList.getIn([0, 'children']).join();
                     if (!spanDrawn[identifier]) {
                         spanDrawn[identifier] = 1;
