@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { LOGIN, BIO_LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK } from './actionTypes';
+import { LOGIN, BIO_LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LDAP, LDAP_INIT } from './actionTypes';
 import { LOGOUT } from 'ut-front/react/actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
@@ -57,9 +57,9 @@ export const login = (state = defaultLoginState, action) => {
     let validationResult;
     switch (action.type) {
         case LOGOUT:
-             if (action.methodRequestState === 'finished') {
-             }
-             return state;
+            if (action.methodRequestState === 'finished') {
+            }
+            return state;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
@@ -77,6 +77,23 @@ export const login = (state = defaultLoginState, action) => {
                 }
             }
             return state;
+        case LDAP:
+            if (action.methodRequestState === 'finished') {
+                state = state.setIn(['loginForm', 'shouldSubmit'], false);
+
+                if (action.error) {
+                    return state.set('formError', action.error.message)
+                            .setIn(['loginForm', 'inputs', 'username', 'disabled'], false)
+                            .setIn(['loginForm', 'shouldSubmit'], false);
+                } else if (action.result) {
+                    return state.set('authenticated', true)
+                                .set('cookieChecked', true)
+                                .set('formError', '');
+                }
+            }
+            return state;
+        case LDAP_INIT:
+            return updateLoginStep(state, 'ldap');
         case BIO_LOGIN:
             return state;
         case SET_INPUT_VALUE:

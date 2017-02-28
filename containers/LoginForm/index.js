@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck, bioScan } from './actions';
+import { setInputValue, validateForm, identityCheck, bioScan, identityLdapCheck, ldapInit } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -17,6 +17,14 @@ class LoginForm extends Component {
         this.syncInputsValuesWithStore = this.syncInputsValuesWithStore.bind(this);
 
         this.submit = this.submit.bind(this);
+    }
+
+    componentWillMount() {
+        let { ldapInit, ldap } = this.props;
+
+        if (ldap) {
+            ldapInit();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -72,9 +80,13 @@ class LoginForm extends Component {
     }
 
     submit(loginType, loginData) {
-        let { bioScan, identityCheck } = this.props;
+        let { bioScan, identityCheck, identityLdapCheck, ldap } = this.props;
 
-        loginType === 'bio' ? bioScan() : identityCheck(loginData);
+        if (ldap) {
+            identityLdapCheck(loginData);
+        } else {
+            loginType === 'bio' ? bioScan() : identityCheck(loginData);
+        }
     }
 
     render() {
@@ -107,7 +119,7 @@ export default connect(
             loginType: login.get('loginType')
         };
     },
-    { setInputValue, validateForm, identityCheck, bioScan }
+    { setInputValue, validateForm, identityCheck, bioScan, identityLdapCheck, ldapInit }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -122,7 +134,10 @@ LoginForm.propTypes = {
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,
-    bioScan: PropTypes.func
+    identityLdapCheck: PropTypes.func,
+    bioScan: PropTypes.func,
+    ldap: PropTypes.bool,
+    ldapInit: PropTypes.func
 };
 
 LoginForm.contextTypes = {
