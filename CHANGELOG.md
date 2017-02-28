@@ -1,3 +1,13 @@
+<a name="8.13.2"></a>
+## [8.13.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.1...v8.13.2) (2017-02-28)
+
+
+### Bug Fixes
+
+* header span title ([ad165d4](https://github.com/softwaregroup-bg/ut-front-react/commit/ad165d4))
+
+
+
 <a name="8.13.1"></a>
 ## [8.13.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.0...v8.13.1) (2017-02-28)
 
