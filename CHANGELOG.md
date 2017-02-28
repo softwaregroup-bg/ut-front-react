@@ -1,3 +1,13 @@
+<a name="8.13.1"></a>
+## [8.13.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.0...v8.13.1) (2017-02-28)
+
+
+### Bug Fixes
+
+* header span orders ([72077e5](https://github.com/softwaregroup-bg/ut-front-react/commit/72077e5))
+
+
+
 <a name="8.13.0"></a>
 # [8.13.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.12.0...v8.13.0) (2017-02-28)
 
