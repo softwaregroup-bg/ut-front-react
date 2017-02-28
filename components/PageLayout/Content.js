@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import styles from './style.css';
 
 const Content = ({children, style}) => (
-    <div className={classnames('tableCell', 'vaTop', 'h100pr', 'w100pr', styles.zIndex)} style={style}>
+    <div className={classnames(styles.h100pr, styles.w100pr)} style={style}>
         {children}
     </div>
 );

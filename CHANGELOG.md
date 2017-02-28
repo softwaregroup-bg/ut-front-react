@@ -1,3 +1,42 @@
+<a name="8.12.0"></a>
+# [8.12.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.15...v8.12.0) (2017-02-27)
+
+
+### Features
+
+* span column ([130b151](https://github.com/softwaregroup-bg/ut-front-react/commit/130b151))
+
+
+
+<a name="8.11.15"></a>
+## [8.11.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.14...v8.11.15) (2017-02-27)
+
+
+
+<a name="8.11.14"></a>
+## [8.11.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.13...v8.11.14) (2017-02-27)
+
+
+
+<a name="8.11.13"></a>
+## [8.11.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.12...v8.11.13) (2017-02-27)
+
+
+
+<a name="8.11.12"></a>
+## [8.11.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.11...v8.11.12) (2017-02-27)
+
+
+### Bug Fixes
+
+* refactor permissions precheck ([cb59326](https://github.com/softwaregroup-bg/ut-front-react/commit/cb59326))
+* UI-886 empty menu dropdown ([15f7a28](https://github.com/softwaregroup-bg/ut-front-react/commit/15f7a28))
+* UIS-1093 finish permission screen in roles ([2d07a3a](https://github.com/softwaregroup-bg/ut-front-react/commit/2d07a3a))
+* UIS-1093 fix multicheckbox readOnly option ([c5b138a](https://github.com/softwaregroup-bg/ut-front-react/commit/c5b138a))
+* UIS-1502 twaeak searchbox component ([9d065ab](https://github.com/softwaregroup-bg/ut-front-react/commit/9d065ab))
+
+
+
 <a name="8.11.11"></a>
 ## [8.11.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.10...v8.11.11) (2017-02-27)
 
