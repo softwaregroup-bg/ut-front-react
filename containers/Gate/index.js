@@ -5,6 +5,7 @@ import Loader from '../../components/Loader';
 import { cookieCheck, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
+import style from './style.css';
 
 class Gate extends Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class Gate extends Component {
         let { loaded } = this.props;
 
         return (
-            <div>
+            <div className={style.h100pr}>
                 { loaded ? this.props.children : <Loader /> }
             </div>
         );

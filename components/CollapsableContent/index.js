@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import style from './style.css';
 import toolTipStyle from './tooltipstyles.css';
 import collapableIcon from './images/collapsable.png';
+import { Vertical } from '../Layout';
 
 export default class CollapsableContent extends Component {
     constructor(props, context) {
@@ -81,14 +82,16 @@ export default class CollapsableContent extends Component {
             let currentStyles = this.props.showCollapsibleButton ? {paddingRight: '25px'} : {};
             return (
                 <div className={style.collapsableContentContainer} style={{...this.props.style, ...this.props.visibleStyles}}>
-                    <div className={this.getHeadingStyles()} style={currentStyles} onClick={this.toggle}>
+                    <Vertical fixedComponent={<div className={this.getHeadingStyles()} style={currentStyles} onClick={this.toggle}>
                         <div className={style.textWrap}>{this.props.heading}</div>
                         {this.props.info !== '' && <div className={style.toolTipWrap}><ToolTip styles={toolTipStyle}>{this.props.info}</ToolTip></div>}
                         {this.props.showCollapsibleButton && <div className={this.getToggleArrowStyles()} />}
                     </div>
-                    <div className={style.childWrap}>
-                        {this.props.children}
-                    </div>
+                    }>
+                        <div className={style.childWrap}>
+                            {this.props.children}
+                        </div>
+                    </Vertical>
                 </div>
             );
         }
