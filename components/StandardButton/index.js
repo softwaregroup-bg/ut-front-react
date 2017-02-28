@@ -15,11 +15,19 @@ const Button = ({
     className,
     disabled,
     disabledClassName,
-    href
+    href,
+    styleType
 }) => {
     /* If you want to use both internal modular CSS (from the button itself) and external (in module context) use className as array.
        Pass the internal classes (from the button itself) like strings ('standardBtn') and the external ones already mapped (styles.[cssClassHere]). */
     var cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
+    if (styleType) {
+        cssClass = classNames(cssClass, buttonStyles[styleType]);
+    }
+
+    if (!styleType && !className) {
+        cssClass = classNames(cssClass, buttonStyles.standardBtn);
+    }
     var disabledClass = '';
     if (disabled) {
         disabledClass = Array.isArray(disabledClassName) ? disabledClassName.map(getClassInternal) : getClassInternal(disabledClassName);
@@ -44,6 +52,7 @@ const Button = ({
 
 Button.propTypes = {
     type: PropTypes.string,
+    styleType: PropTypes.oneOf(['primaryLight', 'primaryDark', 'secondaryLight', 'secondaryDark']),
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     label: PropTypes.string,
     disabled: PropTypes.bool,
@@ -54,7 +63,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
     type: 'button',
-    className: 'standardBtn',
+    className: '',
     disabledClassName: buttonStyles.disabledBtn,
     onClick: () => {}
 };
