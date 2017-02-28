@@ -28,6 +28,7 @@ export class SimpleGrid extends Component {
                 {!this.props.hideHeader && <Header
                   externalStyle={this.props.externalStyle}
                   transformCellValue={this.props.transformCellValue}
+                  spanFields={this.props.spanFields}
                   fields={this.props.fields}
                   toggleColumnVisibility={this.props.toggleColumnVisibility}
                   orderBy={this.props.orderBy}
@@ -60,6 +61,10 @@ export class SimpleGrid extends Component {
 
 SimpleGrid.propTypes = {
     fields: propTypeFields,
+    spanFields: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.node.isRequired,
+        children: PropTypes.arrayOf(PropTypes.node).isRequired
+    })),
     data: propTypeData,
     externalStyle: PropTypes.object,
     orderBy: PropTypes.array,
@@ -86,6 +91,7 @@ SimpleGrid.propTypes = {
 
 SimpleGrid.defaultProps = {
     fields: [],
+    spanFields: [],
     data: [],
     rowsChecked: [],
     orderBy: [],

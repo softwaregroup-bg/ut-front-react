@@ -37,6 +37,9 @@ class SearchBox extends Component {
     }
 
     getStyle(name) {
+        if (this.props.useDefaultStyles) {
+            return style[name];
+        }
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
 
@@ -71,12 +74,14 @@ SearchBox.propTypes = {
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
     onSearch: PropTypes.func,
-    clearOnSearch: PropTypes.bool
+    clearOnSearch: PropTypes.bool,
+    useDefaultStyles: PropTypes.bool
 };
 
 SearchBox.defaultProps = {
     placeholder: '',
     defaultValue: '',
+    useDefaultStyles: false,
     boldLabel: false,
     isValid: true,
     externalStyle: {},
