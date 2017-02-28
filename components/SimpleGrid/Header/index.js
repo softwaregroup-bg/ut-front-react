@@ -1,10 +1,39 @@
 import React, { Component, PropTypes } from 'react';
-import {fromJS, Map} from 'immutable';
+import {fromJS, Map, List} from 'immutable';
 import {propTypeFields} from '../common';
 import Field from './Field';
 import MultiSelectField from './SpecialFields/MultiSelect';
 import GlobalMenu from './SpecialFields/GlobalMenu';
 import style from './styles.css';
+
+function findField(haystack, needle) {
+    return haystack.findKey((piece) => {
+        return piece.get('name') === needle;
+    });
+}
+
+function reorderFields(fields, spanFields) {
+    if (spanFields.size > 0) {
+        let spanFieldChildren = spanFields.first().get('children');
+        spanFields = spanFields.shift();
+        fields = spanFieldChildren.reduce((accumulated, spanFieldChild) => {
+            let fieldIdx = findField(accumulated, spanFieldChild);
+            let field = accumulated.get(fieldIdx);
+            let before = List();
+            let after = List();
+            if (fieldIdx > 0) {
+                before = accumulated.slice(0, fieldIdx);
+            }
+            if (fieldIdx < accumulated.size) {
+                after = accumulated.slice(fieldIdx + 1);
+            }
+            accumulated = before.concat(after).push(field);
+            return accumulated;
+        }, fields);
+        return reorderFields(fields, spanFields);
+    }
+    return fields;
+}
 
 export class Header extends Component {
     constructor(props) {
@@ -40,7 +69,7 @@ export class Header extends Component {
         }
     }
     getFields() {
-        let fields = fromJS(this.props.fields);
+        let fields = this.getRawFields();
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
@@ -50,14 +79,19 @@ export class Header extends Component {
         return fields;
     }
     getRawFields() {
-        return fromJS(this.props.fields).map((v) => {
+        let fields = fromJS(this.props.fields).map((v) => { // populate visible prop
             if (v.get('visible') === undefined) {
                 return v.set('visible', true);
             }
             return v;
-        }).toJS();
+        });
+        if (this.props.spanFields.length) {
+            fields = reorderFields(fields, fromJS(this.props.spanFields));
+        }
+        return fields;
     }
     getSpanFields(fields) {
+        // filter child fields that not shown
         let spanFields = fromJS(this.props.spanFields).map((spanField) => {
             return spanField.update('children', (child) => {
                 return child.filter((c) => {
@@ -67,30 +101,33 @@ export class Header extends Component {
                 });
             });
         }).filter((spanField) => (spanField.get('children').size));
+        if (!spanFields.size) {
+            return null;
+        }
         let spanDrawn = {};
 
         return (<tr className={this.getStyle('gridHeaderTr')}>
-            {fields
-                .filter((field) => {
-                    return field.get('visible', true);
-                })
-                .map((field, idx, array) => {
-                    var found = spanFields.filter((spanField) => {
-                        return spanField.get('children').filter((child) => {
-                            return child === field.get('name');
-                        }).size > 0;
-                    });
+            {fields.filter((field) => { // cleanup fields that are not visible
+                return field.get('visible', true);
+            })
+            .map((field, idx, array) => {
+                var fieldsInSpanList = spanFields.filter((spanField) => {
+                    return spanField.get('children').filter((child) => {
+                        return child === field.get('name');
+                    }).size;
+                });
 
-                    if (found.size > 0) {
-                        let identifier = found.getIn([0, 'children']).join();
-                        if (!spanDrawn[identifier]) {
-                            spanDrawn[identifier] = 1;
-                            return <td className={(array.get(idx + 1) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : '')} key={idx} colSpan={found.getIn([0, 'children']).size}>{found.getIn([0, 'title']).toJS()}</td>;
-                        }
-                    } else {
-                        return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;
+                if (fieldsInSpanList > 0) {
+                    let identifier = fieldsInSpanList.getIn([0, 'children']).join();
+                    if (!spanDrawn[identifier]) {
+                        spanDrawn[identifier] = 1;
+                        let childNum = fieldsInSpanList.getIn([0, 'children']).size;
+                        return <td className={(array.get(idx + 1) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : '')} key={idx} colSpan={childNum}>{fieldsInSpanList.getIn([0, 'title']).toJS()}</td>;
                     }
-                })}
+                } else {
+                    return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;
+                }
+            })}
         </tr>);
     }
     render() {
@@ -106,7 +143,7 @@ export class Header extends Component {
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'globalMenu') {
-                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields()} transformCellValue={this.props.transformCellValue} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields().toJS()} transformCellValue={this.props.transformCellValue} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         }
                     })}
                 </tr>
