@@ -1,3 +1,49 @@
+<a name="8.13.2"></a>
+## [8.13.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.1...v8.13.2) (2017-02-28)
+
+
+### Bug Fixes
+
+* header span title ([ad165d4](https://github.com/softwaregroup-bg/ut-front-react/commit/ad165d4))
+
+
+
+<a name="8.13.1"></a>
+## [8.13.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.0...v8.13.1) (2017-02-28)
+
+
+### Bug Fixes
+
+* header span orders ([72077e5](https://github.com/softwaregroup-bg/ut-front-react/commit/72077e5))
+
+
+
+<a name="8.13.0"></a>
+# [8.13.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.12.0...v8.13.0) (2017-02-28)
+
+
+### Bug Fixes
+
+* center datetimepicker label ([4ce0b1a](https://github.com/softwaregroup-bg/ut-front-react/commit/4ce0b1a))
+* change calendar image ([a0160fd](https://github.com/softwaregroup-bg/ut-front-react/commit/a0160fd))
+* datetime picker between range ([d9edf54](https://github.com/softwaregroup-bg/ut-front-react/commit/d9edf54))
+* datetime picker range ([7aaeade](https://github.com/softwaregroup-bg/ut-front-react/commit/7aaeade))
+* datetime picker styles ([c16137d](https://github.com/softwaregroup-bg/ut-front-react/commit/c16137d))
+* equalize input text color ([3146049](https://github.com/softwaregroup-bg/ut-front-react/commit/3146049))
+* expose additional fields in config ([1597423](https://github.com/softwaregroup-bg/ut-front-react/commit/1597423))
+* grid toolbox filter type checks ([4e305c6](https://github.com/softwaregroup-bg/ut-front-react/commit/4e305c6))
+* improve datetime picker ([a43573f](https://github.com/softwaregroup-bg/ut-front-react/commit/a43573f))
+* improve datetime picker styles ([69b8c1d](https://github.com/softwaregroup-bg/ut-front-react/commit/69b8c1d))
+* refactor gridToolbox component ([6eb5223](https://github.com/softwaregroup-bg/ut-front-react/commit/6eb5223))
+* remove comment line ([4b82d4f](https://github.com/softwaregroup-bg/ut-front-react/commit/4b82d4f))
+
+
+### Features
+
+* datetime picker ([7280884](https://github.com/softwaregroup-bg/ut-front-react/commit/7280884))
+
+
+
 <a name="8.12.0"></a>
 # [8.12.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.11.15...v8.12.0) (2017-02-27)
 

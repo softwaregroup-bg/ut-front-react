@@ -1,0 +1,6 @@
+.horizontalAlign {
+    display: flex;
+}
+.horizontalAlign span {
+    width: auto;
+}

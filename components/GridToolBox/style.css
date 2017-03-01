@@ -3,6 +3,7 @@
 
 .toolbarWrap {
     display: block;
+    min-width: 830px;
     overflow: hidden;
 }
 
