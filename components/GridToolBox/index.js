@@ -21,6 +21,8 @@ import style from './style.css';
 const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
 
+const defaultTimeFormat = { hour: '2-digit', minute: '2-digit', hour12: false };
+
 class GridToolBox extends Component {
     constructor(props) {
         super(props);
@@ -111,12 +113,14 @@ class GridToolBox extends Component {
                     </div>
                 );
             case filterElementTypes.dateTimePickerBetween:
+                let timeFormat = filterElement.timeFormat || defaultTimeFormat;
+
                 return (
                     <div>
                         <DateTimePickerBetween
                           onChange={filterElement.onChange}
                           defaultValue={filterElement.defaultValue}
-                          timeFormat={filterElement.timeFormat.hour12 ? 'ampm' : '24hr'}
+                          timeFormat={timeFormat.hour12 ? 'ampm' : '24hr'}
                           labelFrom={filterElement.labelFrom}
                           labelTo={filterElement.labelTo} />
                     </div>
@@ -147,11 +151,12 @@ class GridToolBox extends Component {
         let content = [];
         this.props.filterElements.forEach((filter) => {
             if (filter.type === filterElementTypes.datePickerBetween || filter.type === filterElementTypes.dateTimePickerBetween) {
+                let timeFormat = filter.timeFormat || defaultTimeFormat;
                 if (filter.defaultValue.from) {
                     let date = new Date(filter.defaultValue.from);
                     let value = date.toLocaleDateString(filter.locale);
                     if (filter.type === filterElementTypes.dateTimePickerBetween) {
-                        value = `${value} ${date.toLocaleTimeString(filter.locale, filter.timeFormat)}`;
+                        value = `${value} ${date.toLocaleTimeString(filter.locale, timeFormat)}`;
                     }
                     content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelFrom}: </span> {value}</span>
@@ -161,7 +166,7 @@ class GridToolBox extends Component {
                     let date = new Date(filter.defaultValue.to);
                     let value = date.toLocaleDateString(filter.locale);
                     if (filter.type === filterElementTypes.dateTimePickerBetween) {
-                        value = `${value} ${date.toLocaleTimeString(filter.locale, filter.timeFormat)}`;
+                        value = `${value} ${date.toLocaleTimeString(filter.locale, timeFormat)}`;
                     }
                     content.push(<div key={generateUniqueId()}>
                         <span><span className={style.bold}>{filter.labelTo}: </span> {value}</span>
@@ -250,6 +255,8 @@ class GridToolBox extends Component {
                     to: filters[filterElement.name.to]
                 };
 
+                let timeFormat = filterElement.timeFormat || defaultTimeFormat;
+
                 return (
                     <div>
                         <DateTimePickerBetween
@@ -258,7 +265,7 @@ class GridToolBox extends Component {
                           }}
                           withVerticalClass
                           defaultValue={value}
-                          timeFormat={filterElement.timeFormat.hour12 ? 'ampm' : '24hr'}
+                          timeFormat={timeFormat.hour12 ? 'ampm' : '24hr'}
                           labelFrom={filterElement.labelFrom}
                           labelTo={filterElement.labelTo}
                           boldLabel />
