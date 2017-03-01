@@ -4,7 +4,7 @@ import immutable from 'immutable';
 const defaultPreloadWindowState = immutable.fromJS({
     open: false,
     requests: 0,
-    message: 'Fetching content from backend, please wait!'
+    message: 'Loading, please wait...'
 });
 const defaultErrorWindowState = immutable.fromJS({
     open: false,

@@ -46,7 +46,7 @@ export default class GlobalMenu extends Component {
                   children={
                       <div onTouchTap={this.toggleColumnVisibility(f)} className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
                         <div className={this.getStyle('headerGlobalMenuFieldControlCheckbox')}><Checkbox isDisabled={false} checked={f.visible} /></div>
-                        <span className={this.getStyle('headerGlobalMenuFieldControlTitle')}>{f.title}</span>
+                        <span className={this.getStyle('headerGlobalMenuFieldControlTitle')}>{this.props.transformCellValue(f.title || '', f.name, undefined, true)}</span>
                       </div>
                   }
                 />
@@ -85,13 +85,15 @@ GlobalMenu.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     externalStyle: PropTypes.object,
     isChecked: PropTypes.bool,
-    toggleColumnVisibility: PropTypes.func
+    toggleColumnVisibility: PropTypes.func,
+    transformCellValue: PropTypes.func
 };
 
 GlobalMenu.defaultProps = {
     externalStyle: {},
     handleCheckboxSelect: (currentValue) => {},
-    toggleColumnVisibility: (field) => ({})
+    toggleColumnVisibility: (field) => ({}),
+    transformCellValue: (value, field, data, isHeader) => (value)
 };
 
 GlobalMenu.contextTypes = {

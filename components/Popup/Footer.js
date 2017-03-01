@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import Button from '../StandardButton';
+import StandardButton from '../StandardButton';
 import styles from './styles.css';
 
 const Footer = ({
@@ -10,7 +10,7 @@ const Footer = ({
     return (
         <div className={classnames(styles.popupFooter, className)}>
             { actionButtons &&
-            actionButtons.map((button, index) => <Button key={index} className={button.className} label={button.label} onClick={button.onClick} />)}
+            actionButtons.map((button, index) => <StandardButton key={index} {...button} />)}
         </div>
     );
 };

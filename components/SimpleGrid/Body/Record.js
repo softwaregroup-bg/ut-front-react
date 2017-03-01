@@ -33,9 +33,9 @@ export default class Record extends Component {
         let isChecked = this.handleIsRowChecked();
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
         let totalFields = fields.size - 1;
-
+        let customClass = this.props.rowStyleField && this.props.data[this.props.rowStyleField] || '';
         return (
-            <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass)}>
+            <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
                 {fields.map((field, idx) => (
                     !field.get('internal')
                     ? <Column
@@ -72,7 +72,8 @@ Record.propTypes = {
     transformCellValue: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
-    handleClick: PropTypes.func
+    handleClick: PropTypes.func,
+    rowStyleField: PropTypes.string
 };
 
 Record.defaultProps = {

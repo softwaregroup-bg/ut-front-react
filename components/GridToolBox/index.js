@@ -53,11 +53,11 @@ class GridToolBox extends Component {
         let foundActiveFilter = false;
         for (var i = 0; i < filterElements.length && !foundActiveFilter; i += 1) {
             let currenctFilterElement = filterElements[i];
-            if (currenctFilterElement.type === 'datePickerBetween') {
+            if (currenctFilterElement.type === filterElementTypes.datePickerBetween) {
                 if (currenctFilterElement.defaultValue.from || currenctFilterElement.defaultValue.to) {
                     foundActiveFilter = true;
                 }
-            } else if (currenctFilterElement.type === 'dropDown') {
+            } else if (currenctFilterElement.type === filterElementTypes.dropDown) {
                 if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
                     foundActiveFilter = true;
                 }
@@ -521,9 +521,9 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween]).isRequired,
+            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween, filterElementTypes.clear]).isRequired,
             // Common
-            placeholder: PropTypes.string,
+            placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
 
             // DropDown
