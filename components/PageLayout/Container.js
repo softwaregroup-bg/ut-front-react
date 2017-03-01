@@ -25,13 +25,11 @@ class Container extends Component {
             borderTop: this.props.bordered ? '' : 'none'
         };
         return (
-            <div style={{padding: '0 0 30px 0', height: window.innerHeight - (59 + 22 + 61)}}>
                 <div id={style.mainContentWrap} style={styles}>
-                    <div className='table w100pr h100pr'>
+                    <div className='w100pr h100pr'>
                         {this.props.children}
                     </div>
                 </div>
-            </div>
         );
     }
 }

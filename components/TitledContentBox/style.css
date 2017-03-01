@@ -12,7 +12,7 @@
 
 .titledContentWrap .headerWrap {
     width: 100%;
-    padding: 20px 3%;
+    padding: 13px 3%;
     display: block;
     border-bottom: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
     background: var(--ut-front-react-standardTitledContentBoxHeaderBackgroundColor);
