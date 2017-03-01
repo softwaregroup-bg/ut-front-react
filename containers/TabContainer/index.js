@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import immutable from 'immutable';
-import Tabs from 'ut-front-react/components/Tabs';
+import Tabs from '../../components/Tabs';
 import StatusDialog from '../../components/StatusDialog';
-import Header from 'ut-front-react/components/PageLayout/Header';
+import Header from '../../components/PageLayout/Header';
 
-import { validationTypes, textValidations, dropdownValidations } from 'ut-front-react/validator/constants';
+import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants';
 import { validateTab, validateAll } from './validator';
 import { prepareErrors } from './helper';
 import {validationTypes as customValidationTypes} from './constants';
-import { Vertical } from 'ut-front-react/components/Layout';
+import { Vertical } from '../../components/Layout';
 
 import style from './style.css';
 
