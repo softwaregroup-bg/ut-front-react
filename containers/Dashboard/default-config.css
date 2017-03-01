@@ -1,5 +1,6 @@
 :root {
     /*colors*/
+    --ut-front-react-standardDashboardBackground: #FFF;
     --ut-front-react-standardDashboardLogoWidth: 205px;
     --ut-front-react-standardDashboardLogoHeight: 136px;
 }
