@@ -1,3 +1,14 @@
+<a name="8.13.3"></a>
+## [8.13.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.2...v8.13.3) (2017-03-01)
+
+
+### Bug Fixes
+
+* set defalt time format ([041bf85](https://github.com/softwaregroup-bg/ut-front-react/commit/041bf85))
+* UIS-1456: change background color, image and positioning for standard dashboard ([acbb6f7](https://github.com/softwaregroup-bg/ut-front-react/commit/acbb6f7))
+
+
+
 <a name="8.13.2"></a>
 ## [8.13.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.1...v8.13.2) (2017-02-28)
 
