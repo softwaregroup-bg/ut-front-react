@@ -22,7 +22,7 @@ const Button = ({
        Pass the internal classes (from the button itself) like strings ('standardBtn') and the external ones already mapped (styles.[cssClassHere]). */
     var cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
     if (styleType) {
-        cssClass = classNames(cssClass, buttonStyles[styleType]);
+        cssClass = classNames(cssClass, buttonStyles[styleType], buttonStyles.predefined);
     }
 
     if (!styleType && !className) {
@@ -52,7 +52,7 @@ const Button = ({
 
 Button.propTypes = {
     type: PropTypes.string,
-    styleType: PropTypes.oneOf(['primaryLight', 'primaryDark', 'secondaryLight', 'secondaryDark']),
+    styleType: PropTypes.oneOf(['primaryLight', 'primaryDark', 'secondaryLight', 'secondaryDark', 'primaryDialog', 'secondaryDialog']),
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     label: PropTypes.string,
     disabled: PropTypes.bool,

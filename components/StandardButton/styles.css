@@ -176,45 +176,10 @@
     cursor: not-allowed;
 }
 
-/* Dialog window buttons */
-
-.dialogButton {
-    composes: button;
-    height: 30px;
-    margin-left: 10px;
-    box-sizing: border-box;
-    padding: 0 20px;
-}
-
-.primaryDialog {
-    composes: dialogButton;
-    background-color: var(--ut-front-react-standardBtnBgColor);
-    color: var(--ut-front-react-standardBtnTextColor);
-}
-
-.primaryDialog:active {
-    background-color: var(--ut-front-react-standardBtnActiveColor);
-}
-
-.primaryDialog:hover {
-    background-color: var(--ut-front-react-standardBtnHoverColor);
-}
-
-.secondaryDialog {
-    composes: dialogButton;
-    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
-    border: 1px solid var(--ut-front-react-secondaryDialogBtnBackgroundColor);
-    color: var(--ut-front-react-secondaryDialogBtnColor);
-}
-
-.secondaryDialog:hover {
-    border: 1px solid var(--ut-front-react-secondaryDialogBtnBorderHover);
-    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
-}
-
 /* PREDEFINED STYLES BY GUIDELINE */
 
 .predefined {
+    box-sizing: border-box;
     height: 30px;
     min-width: 70px;
     padding: 0 20px;
@@ -230,7 +195,6 @@
 }
 
 .primaryLight, .primaryDark {
-    composes: predefined;
     color: #fff;
     border: 1px solid #4096fd;
     background-color: #4096fd;
@@ -254,7 +218,6 @@
 }
 
 .secondaryLight {
-    composes: predefined;
     color: #444444;
     border: 1px solid #cccccc;
     background-color: #ffffff;
@@ -280,7 +243,6 @@
 }
 
 .secondaryDark {
-    composes: predefined;
     color: #444444;
     border: 1px solid #cccccc;
     background-color: #f4f4f4;
@@ -303,4 +265,44 @@
     border: 1px solid #dddddd;
     background-color: #f4f4f4;
     cursor: not-allowed;
+}
+
+.primaryDialog {
+    margin-left: 10px;
+    background-color: #4096fd;
+    border: 1px solid #4096fd;
+    color: #ffffff;
+}
+
+.primaryDialog:visited, .primaryDialog:focus, .primaryDialog:active {
+    background-color: #3d8dee;
+}
+
+.primaryDialog:hover {
+    background-color: #4f9efc;
+}
+
+.primaryDialog:disabled {
+    color: #999999;
+    border: 1px solid #dddddd;
+    background-color: #f4f4f4;
+    cursor: not-allowed;
+}
+
+.secondaryDialog {
+    margin-left: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+    color: #000000;
+}
+
+.secondaryDialog:hover {
+    border: 1px solid #D7D6D6;
+}
+
+.secondaryDialog:disabled {
+  color: #999999;
+  border: 1px solid #dddddd;
+  background-color: #f4f4f4;
+  cursor: not-allowed;
 }
