@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import immutable from 'immutable';
 import Tabs from 'ut-front-react/components/Tabs';
-import StatusDialog from '../StatusDialog';
+import StatusDialog from '../../components/StatusDialog';
 import Header from 'ut-front-react/components/PageLayout/Header';
 
 import { validationTypes, textValidations, dropdownValidations } from 'ut-front-react/validator/constants';
