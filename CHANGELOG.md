@@ -1,3 +1,14 @@
+<a name="8.13.9"></a>
+## [8.13.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.8...v8.13.9) (2017-03-02)
+
+
+### Bug Fixes
+
+* extend datepicker to have default icon when disabled ([88802f8](https://github.com/softwaregroup-bg/ut-front-react/commit/88802f8))
+* UI-938 ([faf8c0b](https://github.com/softwaregroup-bg/ut-front-react/commit/faf8c0b))
+
+
+
 <a name="8.13.8"></a>
 ## [8.13.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.7...v8.13.8) (2017-03-02)
 
