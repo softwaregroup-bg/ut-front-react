@@ -7,7 +7,6 @@ import style from './style.css';
 class DateTimePickerBetween extends Component {
     render() {
         let {
-            DateTimeFormat,
             locale,
             labelFrom,
             labelTo,
@@ -26,7 +25,7 @@ class DateTimePickerBetween extends Component {
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.from}
-                      DateTimeFormat={DateTimeFormat}
+                      dateFormat={this.props.dateFormat}
                       timeFormat={this.props.timeFormat}
                       locale={locale}
                       label={labelFrom}
@@ -39,7 +38,7 @@ class DateTimePickerBetween extends Component {
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.to}
-                      DateTimeFormat={DateTimeFormat}
+                      dateFormat={this.props.dateFormat}
                       timeFormat={this.props.timeFormat}
                       locale={locale}
                       label={labelTo}
@@ -57,14 +56,14 @@ class DateTimePickerBetween extends Component {
 DateTimePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
     locale: PropTypes.string,
-    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
+    timeFormat: PropTypes.object,
+    dateFormat: PropTypes.object,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     firstDayOfWeek: PropTypes.number,
     withVerticalClass: PropTypes.bool,
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    DateTimeFormat: PropTypes.func,
     onChange: PropTypes.func,
     boldLabel: PropTypes.bool
 };

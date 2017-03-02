@@ -2,9 +2,9 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
-import {dateTimeFormat, formatIso} from 'material-ui/DatePicker/dateUtils';
+import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
-import {formatTime} from 'material-ui/TimePicker/timeUtils';
+import { formatTime } from 'material-ui/TimePicker/timeUtils';
 
 import style from './style.css';
 
@@ -43,20 +43,19 @@ export default class DatePickerBetween extends Component {
             return '';
         }
         if (this.props.locale) {
-            const DateTimeFormat = this.props.DateTimeFormat || dateTimeFormat;
-            return new DateTimeFormat(this.props.locale, {
-                day: 'numeric',
-                month: 'numeric',
-                year: 'numeric'
-            }).format(date);
-        } else {
-            return formatIso(date);
+            return date.toLocaleDateString(this.props.locale, this.props.dateFormat);
         }
+
+        return formatIso(date);
     }
     formatTime(time) {
         if (!time || isNaN(time.valueOf())) {
             return '';
         }
+        if (this.props.locale) {
+            return time.toLocaleTimeString(this.props.locale, this.props.timeFormat);
+        }
+
         return formatTime(time, this.props.timeFormat);
     }
     handleAccept(ref) {
@@ -111,11 +110,14 @@ export default class DatePickerBetween extends Component {
         return null;
     }
     render() {
+        let { timeFormat } = this.props;
         let { date } = this.state;
 
         let outerWrapStyle = this.props.label ? style.outerWrap : style.outerWrapNoLabel;
         let boldLabelStyle = this.props.boldLabel ? style.boldLabel : '';
 
+        let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
+        debugger;
         return (
             <div className={outerWrapStyle}>
                  {this.props.label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{this.props.label}</span>) : ''}
@@ -130,7 +132,6 @@ export default class DatePickerBetween extends Component {
                     </div>
                 </div>
                 <DatePickerDialog
-                  DateTimeFormat={this.props.DateTimeFormat}
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
                   container={this.props.container}
@@ -146,7 +147,7 @@ export default class DatePickerBetween extends Component {
                   mode={this.props.mode}
                   onAccept={this.handleAccept('time')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
-                  format={this.props.timeFormat}
+                  format={format}
                   ref='time' />
             </div>
         );
@@ -168,8 +169,8 @@ DatePickerBetween.propTypes = {
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    DateTimeFormat: PropTypes.func,
-    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
+    timeFormat: PropTypes.object,
+    dateFormat: PropTypes.object,
     onChange: PropTypes.func,
     boldLabel: PropTypes.bool
 };
