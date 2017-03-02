@@ -1,3 +1,15 @@
+<a name="8.13.7"></a>
+## [8.13.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.6...v8.13.7) (2017-03-02)
+
+
+### Bug Fixes
+
+* UIS-1653 add TabContainer component to containers ([1624e7a](https://github.com/softwaregroup-bg/ut-front-react/commit/1624e7a))
+* UIS-1653 move TabContainer to ut-front-react ([b63a593](https://github.com/softwaregroup-bg/ut-front-react/commit/b63a593))
+* UIS-1653 move TabContainer to ut-front-react ([5927115](https://github.com/softwaregroup-bg/ut-front-react/commit/5927115))
+
+
+
 <a name="8.13.6"></a>
 ## [8.13.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.5...v8.13.6) (2017-03-02)
 
