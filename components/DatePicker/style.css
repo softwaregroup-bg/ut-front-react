@@ -122,6 +122,10 @@
     background-position: center center;
 }
 
+.datePickerIconDisabled {
+    background-color: #d7d6d6;
+}
+
 .error {
     border-color: #ff3333 !important;
 }
