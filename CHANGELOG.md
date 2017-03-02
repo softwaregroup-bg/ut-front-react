@@ -1,3 +1,13 @@
+<a name="8.13.4"></a>
+## [8.13.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.3...v8.13.4) (2017-03-02)
+
+
+### Bug Fixes
+
+* change timepicker icon ([ad3beaf](https://github.com/softwaregroup-bg/ut-front-react/commit/ad3beaf))
+
+
+
 <a name="8.13.3"></a>
 ## [8.13.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.2...v8.13.3) (2017-03-01)
 
