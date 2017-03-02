@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
+import {getLink} from 'ut-front/react/routerHelper';
+import Page from '../../components/PageLayout/Page';
 import { AddTab } from '../TabMenu';
 import style from './style.css';
-import {getLink} from 'ut-front/react/routerHelper';
 
 export class Dashboard extends Component {
     getStyle(name) {
@@ -9,12 +10,16 @@ export class Dashboard extends Component {
     }
     render() {
         return (
-            <div>
+            <Page>
                 <AddTab pathname={getLink('ut-impl:dashboard')} title={this.props.tabName} />
-                {this.props.children}
-                <div className={[this.getStyle('dashboardBg'), this.getStyle('dashboardImg')].join(' ')} />
-                <div className={this.getStyle('dashboardText')}>{this.props.pageText}</div>
-            </div>
+                <div className={[this.getStyle('background')]}>
+                    <div className={this.getStyle('marginTop')}>
+                        {this.props.children}
+                        <div className={this.getStyle('dashboardText')}>{this.props.pageText}</div>
+                        <div className={[this.getStyle('dashboardBg'), this.getStyle('dashboardImg')].join(' ')} />
+                    </div>
+                </div>
+            </Page>
         );
     }
 };

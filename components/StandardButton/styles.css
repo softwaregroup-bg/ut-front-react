@@ -188,16 +188,16 @@
 
 .primaryDialog {
     composes: dialogButton;
-    background-color: var(--ut-front-react-standardBtnBgColor);
+    background-color: var(--ut-front-react-defaultDialogBtnBgColor);
     color: var(--ut-front-react-standardBtnTextColor);
 }
 
 .primaryDialog:active {
-    background-color: var(--ut-front-react-standardBtnActiveColor);
+    background-color: var(--ut-front-react-standardDialogBtnActiveColor);
 }
 
 .primaryDialog:hover {
-    background-color: var(--ut-front-react-standardBtnHoverColor);
+    background-color: var(--ut-front-react-standardDialogBtnHoverColor);
 }
 
 .secondaryDialog {
