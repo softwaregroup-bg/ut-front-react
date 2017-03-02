@@ -14,9 +14,9 @@
     ]
 */
 
-import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations } from 'ut-front-react/validator/constants';
+import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations } from '../../validator/constants';
 import { validationTypes as validationTypesTabContainer } from './constants';
-import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule } from 'ut-front-react/validator';
+import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
 export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
