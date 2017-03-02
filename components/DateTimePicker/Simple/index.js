@@ -115,17 +115,17 @@ export default class DatePickerBetween extends Component {
         return null;
     }
     render() {
-        let { timeFormat } = this.props;
+        let { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container } = this.props;
         let { date } = this.state;
 
-        let outerWrapStyle = this.props.label ? style.outerWrap : style.outerWrapNoLabel;
-        let boldLabelStyle = this.props.boldLabel ? style.boldLabel : '';
+        let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
+        let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
         let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
 
         return (
             <div className={outerWrapStyle}>
-                 {this.props.label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{this.props.label}</span>) : ''}
+                 {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={style.innerWrap}>
                     <div className={style.inputWrap}>
                         <input value={date ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
@@ -137,21 +137,21 @@ export default class DatePickerBetween extends Component {
                     </div>
                 </div>
                 <DatePickerDialog
-                  cancelLabel={this.props.cancelLabel}
-                  okLabel={this.props.okLabel}
-                  container={this.props.container}
+                  cancelLabel={cancelLabel}
+                  okLabel={okLabel}
+                  container={container}
                   initialDate={date || new Date()}
-                  mode={this.props.mode}
+                  mode={mode}
                   onAccept={this.handleAccept('date')}
-                  firstDayOfWeek={this.props.firstDayOfWeek}
+                  firstDayOfWeek={firstDayOfWeek}
                   ref='date' />
                 <TimePickerDialog
-                  cancelLabel={this.props.cancelLabel}
-                  okLabel={this.props.okLabel}
+                  cancelLabel={cancelLabel}
+                  okLabel={okLabel}
                   initialTime={date || new Date()}
-                  mode={this.props.mode}
+                  mode={mode}
                   onAccept={this.handleAccept('time')}
-                  firstDayOfWeek={this.props.firstDayOfWeek}
+                  firstDayOfWeek={firstDayOfWeek}
                   format={format}
                   ref='time' />
             </div>
