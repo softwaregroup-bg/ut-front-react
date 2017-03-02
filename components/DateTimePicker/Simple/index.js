@@ -42,8 +42,10 @@ export default class DatePickerBetween extends Component {
         if (!date || isNaN(date.valueOf())) {
             return '';
         }
-        if (this.props.locale) {
-            return date.toLocaleDateString(this.props.locale, this.props.dateFormat);
+
+        let { locale, dateFormat } = this.props;
+        if (locale) {
+            return date.toLocaleDateString(locale, dateFormat);
         }
 
         return formatIso(date);
@@ -52,11 +54,14 @@ export default class DatePickerBetween extends Component {
         if (!time || isNaN(time.valueOf())) {
             return '';
         }
-        if (this.props.locale) {
-            return time.toLocaleTimeString(this.props.locale, this.props.timeFormat);
-        }
 
-        return formatTime(time, this.props.timeFormat);
+        let { locale, timeFormat } = this.props;
+        if (locale) {
+            return time.toLocaleTimeString(locale, timeFormat);
+        }
+        let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
+
+        return formatTime(time, format);
     }
     handleAccept(ref) {
         return (d) => {
@@ -117,7 +122,7 @@ export default class DatePickerBetween extends Component {
         let boldLabelStyle = this.props.boldLabel ? style.boldLabel : '';
 
         let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
-        debugger;
+
         return (
             <div className={outerWrapStyle}>
                  {this.props.label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{this.props.label}</span>) : ''}
