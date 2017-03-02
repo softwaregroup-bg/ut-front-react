@@ -1,3 +1,16 @@
+<a name="8.13.8"></a>
+## [8.13.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.7...v8.13.8) (2017-03-02)
+
+
+### Bug Fixes
+
+* equalize datetime format ([c6e01e2](https://github.com/softwaregroup-bg/ut-front-react/commit/c6e01e2))
+* lint & time format ([c38a3a2](https://github.com/softwaregroup-bg/ut-front-react/commit/c38a3a2))
+* refactor ([2d9deca](https://github.com/softwaregroup-bg/ut-front-react/commit/2d9deca))
+* refactor datetimepicker ([d29c4cc](https://github.com/softwaregroup-bg/ut-front-react/commit/d29c4cc))
+
+
+
 <a name="8.13.7"></a>
 ## [8.13.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.6...v8.13.7) (2017-03-02)
 
