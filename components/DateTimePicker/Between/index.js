@@ -12,10 +12,13 @@ class DateTimePickerBetween extends Component {
             labelTo,
             okLabel,
             cancelLabel,
+            boldLabel,
             firstDayOfWeek,
             onChange,
             defaultValue,
-            withVerticalClass
+            withVerticalClass,
+            dateFormat,
+            timeFormat
         } = this.props;
 
         let layoutClassName = !withVerticalClass ? style.horizontalAlign : '';
@@ -25,28 +28,28 @@ class DateTimePickerBetween extends Component {
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.from}
-                      dateFormat={this.props.dateFormat}
-                      timeFormat={this.props.timeFormat}
+                      dateFormat={dateFormat}
+                      timeFormat={timeFormat}
                       locale={locale}
                       label={labelFrom}
                       okLabel={okLabel}
                       cancelLabel={cancelLabel}
                       firstDayOfWeek={firstDayOfWeek}
                       onChange={({value}) => { onChange({key: 'from', value: value}); }}
-                      boldLabel={this.props.boldLabel} />
+                      boldLabel={boldLabel} />
                 </div>
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.to}
-                      dateFormat={this.props.dateFormat}
-                      timeFormat={this.props.timeFormat}
+                      dateFormat={dateFormat}
+                      timeFormat={timeFormat}
                       locale={locale}
                       label={labelTo}
                       okLabel={okLabel}
                       cancelLabel={cancelLabel}
                       firstDayOfWeek={firstDayOfWeek}
                       onChange={({value}) => { onChange({key: 'to', value: value}); }}
-                      boldLabel={this.props.boldLabel} />
+                      boldLabel={boldLabel} />
                 </div>
             </div>
         );
