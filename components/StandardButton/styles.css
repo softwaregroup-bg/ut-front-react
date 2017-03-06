@@ -251,7 +251,7 @@
 .secondaryDark:hover {
     color: #000000;
     border: 1px solid #999999;
-    background-color: #f4f4f4f4;
+    background-color: #f4f4f4;
 }
 
 .secondaryDark:focus, .secondaryDark:visited {
