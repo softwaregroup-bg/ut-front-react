@@ -16,6 +16,7 @@ class PopupInternal extends Component {
         };
         this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100);
         this.updateContentMaxHeight = this.updateContentMaxHeight.bind(this);
+        this.handleEsc = this.handleEsc.bind(this);
     }
 
     componentWillMount() {
@@ -23,10 +24,16 @@ class PopupInternal extends Component {
     }
 
     componentDidMount() {
+        const { closeOnEsc } = this.props;
+
+        if (closeOnEsc) {
+            document.addEventListener('keydown', this.handleEsc);
+        }
         this.updateContentMaxHeight();
     }
 
     componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleEsc);
         window.removeEventListener('resize', this.handleWindowResize);
     }
 
@@ -41,8 +48,26 @@ class PopupInternal extends Component {
         });
     }
 
+    handleEsc({ keyCode }) {
+        const { closePopup } = this.props;
+
+        if (keyCode === 27) {
+            closePopup();
+        }
+    }
+
     render() {
-        const { className, contentClassName, hasOverlay, closeOnOverlayClick, header, footer, children, closePopup } = this.props;
+        const {
+            className,
+            contentClassName,
+            hasOverlay,
+            closeOnOverlayClick,
+            header,
+            footer,
+            children,
+            closePopup
+        } = this.props;
+
         return (
             <div className={styles.modalContainer}>
                 { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
@@ -65,6 +90,7 @@ PopupInternal.propTypes = {
     contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
+    closeOnEsc: PropTypes.bool,
     header: PropTypes.shape({
         className: PropTypes.string,
         text: PropTypes.string,
