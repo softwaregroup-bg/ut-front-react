@@ -1,25 +1,32 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import dateFormat from 'date-fns/format';
+import Immutable from 'immutable';
 
 export class DateFormatter extends Component {
     render() {
-        if (this.props.children && this.props.children !== '') {
-            let formated = dateFormat(new Date(this.props.children), this.props.format || this.props.userFormat);
-            return (<span>{formated}</span>);
-        }
-        return false;
+        let date = new Date(this.props.date || 'invalid-date');
+
+        return !isNaN(date.getTime())
+            ? (<span>{dateFormat(date, this.props.format || this.props.userFormat)}</span>)
+            : false;
     }
-};
+}
 
 DateFormatter.propTypes = {
-    children: PropTypes.string,
+    date: PropTypes.string,
     format: PropTypes.string,
     userFormat: PropTypes.string
 };
 
 export default connect(
-    ({login}) => ({
-        userFormat: login.get('result') && login.getIn(['result', 'localisation', 'dateFormat']) ? login.getIn(['result', 'localisation', 'dateFormat']) : 'YYYY-MM-DD'
-    })
+    ({login}) => {
+        if (!(login instanceof Immutable.Map)) {
+            login = Immutable.fromJS(login);
+        }
+
+        return {
+            userFormat: login.getIn(['result', 'localisation', 'dateFormat']) || 'YYYY-MM-DD'
+        };
+    }
 )(DateFormatter);
