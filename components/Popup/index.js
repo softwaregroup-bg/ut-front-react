@@ -35,13 +35,10 @@ class PopupInternal extends Component {
 
     render() {
         const {
-            isOpen,
-            container,
             className,
             contentClassName,
             hasOverlay,
             closeOnOverlayClick,
-            closeOnEsc,
             header,
             footer,
             children,
