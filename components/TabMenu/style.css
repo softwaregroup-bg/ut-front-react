@@ -25,6 +25,16 @@
     transition: all 0.5s;
 }
 
+.relativeWrapper {
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+}
+
+.absoluteWrapper {
+    position: absolute;
+}
+
 .tabMenuWrap {
     position: relative;
     background: #EEEEEE;

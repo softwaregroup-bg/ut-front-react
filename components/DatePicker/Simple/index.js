@@ -18,7 +18,7 @@ export default class DatePicker extends Component {
         };
     }
     render() {
-        let {isValid, errorMessage} = this.props;
+        let {disabled, isValid, errorMessage} = this.props;
 
         let textFieldStyle = {
             cursor: 'pointer',
@@ -33,11 +33,12 @@ export default class DatePicker extends Component {
 
         let zeroHeightStyle = isValid ? style.hh : '';
         let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
+        let iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
 
         return (
             <div className={style.wrap}>
                 <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
-                    <div className={style.datePickerIcon} style={this.props.iconStyles} />
+                    <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
                       className={dpStyles}
                       textFieldStyle={textFieldStyle}

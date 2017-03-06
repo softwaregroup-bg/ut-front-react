@@ -7,10 +7,13 @@ import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
 import DatePickerBetween from './../DatePicker/Between';
+import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { Button } from 'reactstrap';
+import { formatIso } from 'material-ui/DatePicker/dateUtils';
+import { formatTime } from 'material-ui/TimePicker/timeUtils';
 
 import {generateUniqueId} from '../../utils/helpers';
 
@@ -19,6 +22,9 @@ import style from './style.css';
 
 const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
+
+const defaultTimeFormat = { hour: '2-digit', minute: '2-digit', hour12: false };
+const defaultDateFormat = { day: 'numeric', month: 'numeric', year: 'numeric' };
 
 class GridToolBox extends Component {
     constructor(props) {
@@ -53,7 +59,7 @@ class GridToolBox extends Component {
         let foundActiveFilter = false;
         for (var i = 0; i < filterElements.length && !foundActiveFilter; i += 1) {
             let currenctFilterElement = filterElements[i];
-            if (currenctFilterElement.type === filterElementTypes.datePickerBetween) {
+            if (currenctFilterElement.type === filterElementTypes.datePickerBetween || currenctFilterElement.type === filterElementTypes.dateTimePickerBetween) {
                 if (currenctFilterElement.defaultValue.from || currenctFilterElement.defaultValue.to) {
                     foundActiveFilter = true;
                 }
@@ -87,19 +93,42 @@ class GridToolBox extends Component {
                       placeholder={filterElement.placeholder}
                       defaultSelected={filterElement.defaultValue}
                       onSelect={filterElement.onSelect}
-                      canSelectPlaceholder={filterElement.canSelectPlaceholder}
-                    />
+                      canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
             case filterElementTypes.searchBox:
                 return (
                     <div>
-                        <SearchBox defaultValue={filterElement.defaultValue} placeholder={filterElement.placeholder} onSearch={filterElement.onSearch} />
+                        <SearchBox
+                          defaultValue={filterElement.defaultValue}
+                          placeholder={filterElement.placeholder}
+                          onSearch={filterElement.onSearch} />
                     </div>
                 );
             case filterElementTypes.datePickerBetween:
                 return (
                     <div>
-                        <DatePickerBetween onChange={filterElement.onChange} defaultValue={filterElement.defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
+                        <DatePickerBetween
+                          onChange={filterElement.onChange}
+                          defaultValue={filterElement.defaultValue}
+                          masterLabel={filterElement.masterLabel}
+                          labelFrom={filterElement.labelFrom}
+                          labelTo={filterElement.labelTo} />
+                    </div>
+                );
+            case filterElementTypes.dateTimePickerBetween:
+                let timeFormat = filterElement.timeFormat || defaultTimeFormat;
+                let dateFormat = filterElement.dateFormat || defaultDateFormat;
+
+                return (
+                    <div>
+                        <DateTimePickerBetween
+                          onChange={filterElement.onChange}
+                          defaultValue={filterElement.defaultValue}
+                          timeFormat={timeFormat}
+                          dateFormat={dateFormat}
+                          locale={filterElement.locale}
+                          labelFrom={filterElement.labelFrom}
+                          labelTo={filterElement.labelTo} />
                     </div>
                 );
             default:
@@ -109,7 +138,7 @@ class GridToolBox extends Component {
     getDefaultValuesFromProps() {
         let defaultValues = {};
         for (let filter of this.props.filterElements) {
-            if (typeof filter.name === 'object') {
+            if (typeof filter.name === typeof {}) {
                 Object.keys(filter.name).forEach(key => {
                     defaultValues[filter.name[key]] = filter.defaultValue[key];
                 });
@@ -127,19 +156,50 @@ class GridToolBox extends Component {
     getTooltip() {
         let content = [];
         this.props.filterElements.forEach((filter) => {
-            if (filter.type === filterElementTypes.datePickerBetween) {
+            if (filter.type === filterElementTypes.datePickerBetween || filter.type === filterElementTypes.dateTimePickerBetween) {
+                let timeFormat = filter.timeFormat || defaultTimeFormat;
+                let dateFormat = filter.dateFormat || defaultDateFormat;
+
                 if (filter.defaultValue.from) {
-                    let value = filter.defaultValue.from;
-                    value = new Date(value);
+                    let date = new Date(filter.defaultValue.from);
+
+                    let dateValue;
+                    let timeValue;
+                    if (filter.locale) {
+                        dateValue = date.toLocaleDateString(filter.locale, dateFormat);
+                        timeValue = date.toLocaleTimeString(filter.locale, timeFormat);
+                    } else {
+                        dateValue = formatIso(date);
+                        timeValue = formatTime(date);
+                    }
+
+                    let value = dateValue;
+                    if (filter.type === filterElementTypes.dateTimePickerBetween) {
+                        value = `${value} ${timeValue}`;
+                    }
                     content.push(<div key={generateUniqueId()}>
-                        <span><span className={style.bold}>{filter.labelFrom}: </span> {value.toLocaleDateString()}</span>
+                        <span><span className={style.bold}>{filter.labelFrom}: </span> {value}</span>
                     </div>);
                 }
                 if (filter.defaultValue.to) {
-                    let value = filter.defaultValue.to;
-                    value = new Date(value);
+                    let date = new Date(filter.defaultValue.to);
+
+                    let dateValue;
+                    let timeValue;
+                    if (filter.locale) {
+                        dateValue = date.toLocaleDateString(filter.locale, dateFormat);
+                        timeValue = date.toLocaleTimeString(filter.locale, timeFormat);
+                    } else {
+                        dateValue = formatIso(date);
+                        timeValue = formatTime(date);
+                    }
+
+                    let value = dateValue;
+                    if (filter.type === filterElementTypes.dateTimePickerBetween) {
+                        value = `${value} ${timeValue}`;
+                    }
                     content.push(<div key={generateUniqueId()}>
-                        <span><span className={style.bold}>{filter.labelTo}: </span> {value.toLocaleDateString()}</span>
+                        <span><span className={style.bold}>{filter.labelTo}: </span> {value}</span>
                     </div>);
                 }
             } else if (filter.type === filterElementTypes.dropDown) {
@@ -162,14 +222,16 @@ class GridToolBox extends Component {
         return content;
     }
     renderFilterInPopup(filterElement) {
+        let { filters } = this.state;
+
         let onChange = (key, value) => {
-            let filters = this.state.filters;
             filters[key] = value;
             this.setState({filters});
         };
-        let value = this.state.filters[filterElement.name];
+        let value;
         switch (filterElement.type) {
             case filterElementTypes.dropDown:
+                value = filters[filterElement.name];
                 return (
                     <Dropdown
                       {...filterElement}
@@ -186,24 +248,60 @@ class GridToolBox extends Component {
                     />
                 );
             case filterElementTypes.searchBox:
+                value = filters[filterElement.name];
+
                 return (
                     <div>
-                        <Input label={filterElement.label} defaultValue={value} placeholder={filterElement.placeholder} onChange={function(e) {
-                            onChange(filterElement.name, e.target.value);
-                        }} />
+                        <Input
+                          label={filterElement.label}
+                          defaultValue={value}
+                          placeholder={filterElement.placeholder}
+                          onChange={function(e) {
+                              onChange(filterElement.name, e.target.value);
+                          }} />
                     </div>
                 );
             case filterElementTypes.datePickerBetween:
-                let filters = this.state.filters;
-                let defaultValue = {
+                value = {
                     from: filters[filterElement.name.from],
                     to: filters[filterElement.name.to]
                 };
                 return (
                     <div>
-                        <DatePickerBetween onChange={function(obj) {
-                            onChange(filterElement.name[obj.key], obj.value);
-                        }} withVerticalClass defaultValue={defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
+                        <DatePickerBetween
+                          onChange={function(obj) {
+                              onChange(filterElement.name[obj.key], obj.value);
+                          }}
+                          withVerticalClass
+                          defaultValue={value}
+                          masterLabel={filterElement.masterLabel}
+                          labelFrom={filterElement.labelFrom}
+                          labelTo={filterElement.labelTo} />
+                    </div>
+                );
+            case filterElementTypes.dateTimePickerBetween:
+                value = {
+                    from: filters[filterElement.name.from],
+                    to: filters[filterElement.name.to]
+                };
+
+                let timeFormat = filterElement.timeFormat || defaultTimeFormat;
+                let dateFormat = filterElement.dateFormat || defaultDateFormat;
+
+                return (
+                    <div>
+                        <DateTimePickerBetween
+                          onChange={function(obj) {
+                              onChange(filterElement.name[obj.key], obj.value);
+                          }}
+                          withVerticalClass
+                          defaultValue={value}
+                          timeFormat={timeFormat}
+                          dateFormat={dateFormat}
+                          locale={filterElement.locale}
+                          labelFrom={filterElement.labelFrom}
+                          labelTo={filterElement.labelTo}
+                          boldLabel />
                     </div>
                 );
             default:
@@ -212,7 +310,7 @@ class GridToolBox extends Component {
     }
     getInputsCount() {
         let count = this.props.filterElements.reduce((previousValue, currentValue) => {
-            if (currentValue.type === filterElementTypes.datePickerBetween) {
+            if (currentValue.type === filterElementTypes.datePickerBetween || currentValue.type === filterElementTypes.dateTimePickerBetween) {
                 return previousValue + 2;
             } else {
                 return previousValue + 1;
@@ -232,6 +330,9 @@ class GridToolBox extends Component {
         return el;
     }
     renderAdvancedSearchDialog() {
+        if (!this.state.showFiltersPopup) {
+            return;
+        }
         let apply = () => {
             let result = {};
             Object.keys(this.state.filters).forEach((objKey) => {
@@ -299,7 +400,7 @@ class GridToolBox extends Component {
 
                 <div className={style.pullRight}>
                     {this.props.filterElements.map((el, i) => {
-                        let incrementNum = el.type === filterElementTypes.datePickerBetween ? 2 : 1; // datePicker has two input fields
+                        let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                         filtersNumber += incrementNum;
                         if (filtersNumber > this.props.maxVisibleInputs) {
                             return null;
@@ -521,7 +622,13 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween, filterElementTypes.clear]).isRequired,
+            type: PropTypes.oneOf([
+                filterElementTypes.dropDown,
+                filterElementTypes.searchBox,
+                filterElementTypes.datePickerBetween,
+                filterElementTypes.dateTimePickerBetween,
+                filterElementTypes.clear
+            ]).isRequired,
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,

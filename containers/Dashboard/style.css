@@ -1,18 +1,30 @@
 @import './default-config.css';
 @import 'config.css';
 
+.background {
+    display: flex; 
+    justify-content: space-around; 
+    height: 100%;
+    background: var(--ut-front-react-standardDashboardBackground);
+}
+
+.marginTop {
+    margin-top: 150px;
+}
+
 .dashboardBg {
-    margin: 150px auto 0;
+    margin: 0 auto;
     width: var(--ut-front-react-standardDashboardLogoWidth);
     height: var(--ut-front-react-standardDashboardLogoHeight);
 }
 
 .dashboardImg {
-    background: inline('./images/dashboard_admin.png') center no-repeat;
+    /*background: inline('./images/dashboard_admin.png') center no-repeat;*/
 }
 
 .dashboardText {
     display: block;
+    margin: 0 0 30px 0;
     text-align: center;
-    margin: 25px 0 0 0;
+    color: #cecece;
 }

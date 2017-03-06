@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import Header from '../../components/HeaderNew';
 import TabMenu from '../../containers/TabMenu';
 import { logout } from '../../containers/LoginForm/actions';
+import { Vertical } from '../../components/Layout';
 import styles from './style.css';
+import classnames from 'classnames';
 
 class Layout extends Component {
     getStyle(name) {
@@ -12,22 +14,29 @@ class Layout extends Component {
 
     render() {
         let result = this.props.login.get('result');
-
+        let header = (
+            <Header
+              currentLocation={this.props.location.pathname}
+              personInfo={result.toJS()}
+              logout={this.props.logout}
+              replaceWithBrakes
+              tabset={this.context.mainTabset}
+              headerText={this.props.headerText} />
+        );
+        let tabMenu = (
+            <TabMenu defaultLocation={this.context.mainUrl} />
+        );
         if (result) {
             return (
-                <div className={this.getStyle('implWrapper')}>
-                    <Header
-                      currentLocation={this.props.location.pathname}
-                      personInfo={result.toJS()}
-                      logout={this.props.logout}
-                      replaceWithBrakes
-                      tabset={this.context.mainTabset}
-                      headerText={this.props.headerText} />
-                    <TabMenu defaultLocation={this.context.mainUrl} />
-                    <div id='appContent'>
-                        {this.props.children}
-                        <div id='controls' className={styles.controls} />
-                    </div>
+                <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)}>
+                    <Vertical fixedComponent={header}>
+                        <Vertical fixedComponent={tabMenu}>
+                            <div id='appContent' className={styles.h100pr}>
+                                {this.props.children}
+                                <div id='controls' className={styles.controls} />
+                            </div>
+                        </Vertical>
+                    </Vertical>
                 </div>
             );
         } else {

@@ -22,3 +22,16 @@
     position: relative;
     padding: .75rem;
 }
+.gridHeaderTrSpanColumnContentless, .gridHeaderTrSpanColumnNotLast, .gridHeaderTrSpanColumnNotLast.gridHeaderTrSpanColumnContentless{
+    font-weight: bold;
+    text-align: center;
+    border-right: 1px solid #D7D6D6;
+    background: #eaeaea;
+}
+.gridHeaderTrSpanColumnContentless, .gridHeaderTrSpanColumnNotLast{
+    text-decoration: underline;
+}
+.gridHeaderTrSpanColumnContentless {
+    border: none;
+    text-decoration: none;
+}
