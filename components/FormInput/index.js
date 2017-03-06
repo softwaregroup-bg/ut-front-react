@@ -14,9 +14,10 @@ export default class FormInput extends Component {
     }
 
     render() {
-        let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden } = this.props;
+        let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
         let { onBlur, onChange } = this.props;
         let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
+        debugger;
 
         return (
            <div className={getClass(styles, inputClassName)}>
@@ -26,6 +27,7 @@ export default class FormInput extends Component {
                  type={type}
                  data-hidden={!!hidden}
                  placeholder={placeholder}
+                 accept={acceptType}
                  onChange={onChange}
                  onBlur={onBlur}
                  tabIndex={tabIndex}
@@ -51,6 +53,7 @@ FormInput.propTypes = {
     placeholder: PropTypes.string,
     className: PropTypes.string,
     error: PropTypes.string,
+    acceptType: PropTypes.string,
     tabIndex: PropTypes.number,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
