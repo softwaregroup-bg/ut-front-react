@@ -5,31 +5,64 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import styles from './styles.css';
 
-const PopupInternal = ({
-    isOpen,
-    container,
-    className,
-    contentClassName,
-    hasOverlay,
-    closeOnOverlayClick,
-    header,
-    footer,
-    children,
-    closePopup
-}) => {
-    return (
-        <div className={styles.modalContainer}>
-            { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
-            <div className={classnames(styles.popupContainer, className)}>
-                { header && <Header className={header.className} text={header.text} closePopup={closePopup} /> }
-                <div className={classnames(styles.popupContent, contentClassName)}>
-                    { children }
+class PopupInternal extends Component {
+    constructor() {
+        super();
+
+        this.handleEsc = this.handleEsc.bind(this);
+    }
+
+    componentDidMount() {
+        const { closeOnEsc } = this.props;
+
+        if (closeOnEsc) {
+            document.addEventListener('keydown', this.handleEsc);
+        }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleEsc);
+    }
+
+    handleEsc(e) {
+        const { keyCode } = e;
+        const { closePopup } = this.props;
+
+        if (keyCode === 27) {
+            closePopup();
+        }
+    }
+
+    render() {
+        const {
+            isOpen,
+            container,
+            className,
+            contentClassName,
+            hasOverlay,
+            closeOnOverlayClick,
+            closeOnEsc,
+            header,
+            footer,
+            children,
+            closePopup
+        } = this.props;
+
+        return (
+            <div className={styles.modalContainer}>
+                { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
+                <div className={classnames(styles.popupContainer, className)}>
+                    { header && <Header className={header.className} text={header.text} closePopup={closePopup} /> }
+                    <div className={classnames(styles.popupContent, contentClassName)}>
+                        { children }
+                    </div>
+                    { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
-                { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
             </div>
-        </div>
-    );
-};
+        );
+    }
+
+}
 
 PopupInternal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
@@ -38,6 +71,7 @@ PopupInternal.propTypes = {
     contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
+    closeOnEsc: PropTypes.bool,
     header: PropTypes.shape({
         className: PropTypes.string,
         text: PropTypes.string,

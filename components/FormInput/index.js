@@ -17,7 +17,6 @@ export default class FormInput extends Component {
         let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
         let { onBlur, onChange } = this.props;
         let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
-        debugger;
 
         return (
            <div className={getClass(styles, inputClassName)}>
