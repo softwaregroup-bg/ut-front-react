@@ -27,6 +27,14 @@ class LoginForm extends Component {
         }
     }
 
+    componentDidUpdate(nextProps, nextState) {
+        let { ldapInit, ldap, loginType } = this.props;
+
+        if (ldap && loginType !== 'ldap') {
+            ldapInit();
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         let { authenticated, shouldSubmit } = this.props;
 
@@ -137,6 +145,7 @@ LoginForm.propTypes = {
     identityLdapCheck: PropTypes.func,
     bioScan: PropTypes.func,
     ldap: PropTypes.bool,
+    loginType: PropTypes.any,
     ldapInit: PropTypes.func
 };
 
