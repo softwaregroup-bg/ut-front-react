@@ -135,10 +135,7 @@ Popup.propTypes = {
             onClick: PropTypes.func
         }))
     }),
-    children: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object
-    ]),
+    children: PropTypes.any,
     closePopup: PropTypes.func
 };
 
