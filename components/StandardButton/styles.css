@@ -176,38 +176,133 @@
     cursor: not-allowed;
 }
 
-/* Dialog window buttons */
+/* PREDEFINED STYLES BY GUIDELINE */
 
-.dialogButton {
-    composes: button;
-    height: 30px;
-    margin-left: 10px;
+.predefined {
     box-sizing: border-box;
+    height: 30px;
+    min-width: 70px;
     padding: 0 20px;
+    outline: 0;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.predefined:focus,
+.predefined:visited,
+.predefined:hover {
+    outline: 0;
+}
+
+.primaryLight, .primaryDark {
+    color: #fff;
+    border: 1px solid #4096fd;
+    background-color: #4096fd;
+}
+
+.primaryLight:hover, .primaryDark:hover {
+    border: 1px solid #4f9efc;
+    background-color: #4f9efc;
+}
+
+.primaryLight:focus, .primaryDark:visited {
+    border: #3d8dee;
+    background-color: #3d8dee;
+}
+
+.primaryLight:disabled, .primaryDark:disabled {
+    color: #999999;
+    border: 1px solid #dddddd;
+    background-color: #f4f4f4;
+    cursor: not-allowed;
+}
+
+.secondaryLight {
+    color: #444444;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+}
+
+.secondaryLight:hover {
+    color: #000000;
+    border: 1px solid #999999;
+    background-color: #ffffff;
+}
+
+.secondaryLight:focus, .secondaryLight:visited {
+    color: #000000;
+    border: 1px solid #999999;
+    background-color: #fafafa;
+}
+
+.secondaryLight:disabled {
+    color: #999999;
+    border: 1px solid #dddddd;
+    background-color: #f4f4f4;
+    cursor: not-allowed;
+}
+
+.secondaryDark {
+    color: #444444;
+    border: 1px solid #cccccc;
+    background-color: #f4f4f4;
+}
+
+.secondaryDark:hover {
+    color: #000000;
+    border: 1px solid #999999;
+    background-color: #f4f4f4;
+}
+
+.secondaryDark:focus, .secondaryDark:visited {
+    color: #000000;
+    border: 1px solid #999999;
+    background-color: #ececec;
+}
+
+.secondaryDark:disabled {
+    color: #999999;
+    border: 1px solid #dddddd;
+    background-color: #f4f4f4;
+    cursor: not-allowed;
 }
 
 .primaryDialog {
-    composes: dialogButton;
-    background-color: var(--ut-front-react-defaultDialogBtnBgColor);
-    color: var(--ut-front-react-standardBtnTextColor);
+    margin-left: 10px;
+    background-color: #4096fd;
+    border: 1px solid #4096fd;
+    color: #ffffff;
 }
 
-.primaryDialog:active {
-    background-color: var(--ut-front-react-standardDialogBtnActiveColor);
+.primaryDialog:visited, .primaryDialog:focus, .primaryDialog:active {
+    background-color: #3d8dee;
 }
 
 .primaryDialog:hover {
-    background-color: var(--ut-front-react-standardDialogBtnHoverColor);
+    background-color: #4f9efc;
+}
+
+.primaryDialog:disabled {
+    color: #999999;
+    border: 1px solid #dddddd;
+    background-color: #f4f4f4;
+    cursor: not-allowed;
 }
 
 .secondaryDialog {
-    composes: dialogButton;
-    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
-    border: 1px solid var(--ut-front-react-secondaryDialogBtnBackgroundColor);
-    color: var(--ut-front-react-secondaryDialogBtnColor);
+    margin-left: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+    color: #000000;
 }
 
 .secondaryDialog:hover {
-    border: 1px solid var(--ut-front-react-secondaryDialogBtnBorderHover);
-    background-color: var(--ut-front-react-secondaryDialogBtnBackgroundColor);
+    border: 1px solid #D7D6D6;
+}
+
+.secondaryDialog:disabled {
+  color: #999999;
+  border: 1px solid #dddddd;
+  background-color: #f4f4f4;
+  cursor: not-allowed;
 }
