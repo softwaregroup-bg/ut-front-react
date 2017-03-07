@@ -22,6 +22,7 @@ const Header = ({
 Header.propTypes = {
     className: PropTypes.string,
     text: PropTypes.string,
+    hasCloseBtn: PropTypes.bool,
     closePopup: PropTypes.func
 };
 
