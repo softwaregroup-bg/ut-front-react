@@ -11,6 +11,7 @@ const getClassInternal = (className) => {
 const Button = ({
     type,
     label,
+    icon,
     onClick,
     className,
     disabled,
@@ -37,6 +38,7 @@ const Button = ({
         return (
             <Link to={href}>
               <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+                {icon && <span className={icon} />}
                 {label}
               </button>
             </Link>
@@ -45,6 +47,7 @@ const Button = ({
 
     return (
       <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+        {icon && <span className={icon} />}
         {label}
       </button>
     );
@@ -55,6 +58,7 @@ Button.propTypes = {
     styleType: PropTypes.oneOf(['primaryLight', 'primaryDark', 'secondaryLight', 'secondaryDark', 'primaryDialog', 'secondaryDialog']),
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     label: PropTypes.string,
+    icon: PropTypes.string,
     disabled: PropTypes.bool,
     disabledClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     href: PropTypes.string,
