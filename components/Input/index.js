@@ -89,7 +89,7 @@ class TextField extends Component {
             return (
                 <div className={classnames(style.outerWrap, wrapperClassName)}>
                     <div className={classnames(style.lableWrap, labelClassName, {[style.boldLabel]: this.props.boldLabel})}>
-                        {label} {this.props.validators.length > 0 && '*'}
+                        {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={classnames(style.inputWrap, inputWrapClassName)}>
                         {input}
