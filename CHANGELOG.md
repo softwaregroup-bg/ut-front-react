@@ -1,3 +1,13 @@
+<a name="8.14.0"></a>
+# [8.14.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.12...v8.14.0) (2017-03-08)
+
+
+### Features
+
+* UIS-968 add active tab ([#190](https://github.com/softwaregroup-bg/ut-front-react/issues/190)) ([b7ad396](https://github.com/softwaregroup-bg/ut-front-react/commit/b7ad396))
+
+
+
 <a name="8.13.12"></a>
 ## [8.13.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.11...v8.13.12) (2017-03-08)
 
