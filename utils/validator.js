@@ -17,6 +17,16 @@ const validators = {
     },
     length: (value, length) => {
         return value.length === length;
+    },
+    regex: (value, regex) => {
+        var regexPattern = new RegExp(regex);
+        return regexPattern.test(value);
+    },
+    numbersOnly: (value, shouldBeValidated) => {
+        if (shouldBeValidated) {
+            return /^\d+$/.test(value);
+        }
+        return true;
     }
 };
 
@@ -35,6 +45,12 @@ const defaultErrorMessagingMapping = {
     },
     length: ({ input, length }) => {
         return `OTP code must be exactly ${length} characters long`;
+    },
+    regex: ({ input, regex }) => {
+        return 'Invalid input';
+    },
+    numbersOnly: ({ input }) => {
+        return 'Field must contains only numbers';
     }
 };
 
@@ -45,22 +61,26 @@ export class Validator {
     }
 
     validateInput(input, value, inputs) {
-        const { validations, validateOrder } = this.config[input];
-        let error = '';
+        if (this.config[input]) {
+            const { validations, validateOrder } = this.config[input];
+            let error = '';
 
-        validateOrder.every((validationRule) => {
-            let isValid = validators[validationRule](value, validations[validationRule], inputs);
-            if (!isValid) {
-                error = this.errorMapping[validationRule]({...validations, input});
-            }
+            validateOrder.every((validationRule) => {
+                let isValid = validators[validationRule](value, validations[validationRule], inputs);
+                if (!isValid) {
+                    error = this.errorMapping[validationRule]({...validations, input});
+                }
 
-            return isValid;
-        });
+                return isValid;
+            });
 
-        return {
-            isValid: !error,
-            error
-        };
+            return {
+                isValid: !error,
+                error
+            };
+        }
+
+        return { isValid: true };
     }
 
     validateAll(inputs) {
@@ -81,5 +101,23 @@ export class Validator {
             invalidField,
             error: validationError
         };
+    }
+
+    validateAllFlat(data) {
+        let result = [];
+
+        for (var property in data) {
+            if (this.config[property]) {
+                let isValid = this.validateInput(property, data[property]);
+                if (!isValid.isValid) {
+                    result.push({
+                        field: property,
+                        error: isValid.error
+                    });
+                }
+            }
+        }
+
+        return result;
     }
 }
