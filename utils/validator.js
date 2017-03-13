@@ -71,22 +71,19 @@ export class Validator {
         const { validations, validateOrder } = this.config[input];
         let error = '';
 
-            validateOrder.every((validationRule) => {
-                let isValid = validators[validationRule](value, validations[validationRule], inputs);
-                if (!isValid) {
-                    error = this.errorMapping[validationRule]({...validations, input});
-                }
+        validateOrder.every((validationRule) => {
+            let isValid = validators[validationRule](value, validations[validationRule], inputs);
+            if (!isValid) {
+                error = this.errorMapping[validationRule]({...validations, input});
+            }
 
-                return isValid;
-            });
+            return isValid;
+        });
 
-            return {
-                isValid: !error,
-                error
-            };
-        }
-
-        return { isValid: true };
+        return {
+            isValid: !error,
+            error
+        };
     }
 
     validateAllFlat(inputs) {
@@ -127,24 +124,5 @@ export class Validator {
             invalidField,
             error: validationError
         };
-    }
-
-    validateAllFlat(inputs) {
-        // if input values ARE NOT objects with key value
-        // inputs - immutable Map with 'data' and 'edited' key filled flat with the data
-        let errors = [];
-        let computedData = inputs.get('data').merge(inputs.get('edited'));
-        let keys = computedData.keySeq().toArray();
-        keys.forEach((key) => {
-            let validationResult = this.validateInput(key, computedData.get(key));
-            if (!validationResult.isValid) {
-                errors.push({
-                    field: key,
-                    error: validationResult.error
-                });
-            }
-        });
-
-        return errors;
     }
 }
