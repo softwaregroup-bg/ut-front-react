@@ -92,7 +92,9 @@ export const money = (amount, currency, locale) => {
 };
 
 export const numberFormat = (props) => (num, format) => {
-    if (!format) format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) || '2|.|';
+    if (!format) {
+        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) ? props.login.getIn(['result', 'localisation', 'numberFormat']) : '2|.|';
+    }
     var parts = format.split('|');
     if (parts.length !== 3) return num;
     num = parseInt(num).toFixed(parseInt(parts[0]));
@@ -102,7 +104,9 @@ export const numberFormat = (props) => (num, format) => {
 };
 
 export const df = (props) => (date, format) => {
-    if (!format) format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'dateFormat']) || 'YYYY-MM-DD';
+    if (!format) {
+        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'dateFormat']) ? props.login.getIn(['result', 'localisation', 'dateFormat']) : 'YYYY-MM-DD';
+    }
     return dateFormat(new Date(date), format);
 };
 

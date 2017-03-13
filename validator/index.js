@@ -176,7 +176,7 @@ export const arrayWithArrayIsRequiredRule = (array, textProp, rule, result) => {
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
-        if (currentValue && currentValue.size === 0 || currentValue.length === 0) {
+        if (currentValue && (currentValue.size === 0 || currentValue.length === 0)) {
             result.isValid = false;
             rule.index = index;
             result.errors.push(getErrorObject(rule));
