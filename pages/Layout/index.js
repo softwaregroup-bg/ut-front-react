@@ -33,7 +33,6 @@ class Layout extends Component {
                         <Vertical fixedComponent={tabMenu}>
                             <div id='appContent' className={styles.h100pr}>
                                 {this.props.children}
-                                <div id='controls' className={styles.controls} />
                             </div>
                         </Vertical>
                     </Vertical>

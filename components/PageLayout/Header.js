@@ -50,8 +50,7 @@ const Header = React.createClass({
                                 <div key={i} className={style.buttonWrap}>
                                     {(i > 0) && <span className='w20' />}
                                     <StandardButton
-                                      className='secondaryButton'
-                                      disabledClassName='disabledsecondaryButton'
+                                      styleType='secondaryDark'
                                       onClick={btn.onClick}
                                       disabled={btn.disabled === true}
                                       label={btn.text} />
@@ -62,8 +61,7 @@ const Header = React.createClass({
                                 <Link key={i} to={btn.href} className={style.buttonWrap}>
                                     {(i > 0) && <span className='w20' />}
                                     <StandardButton
-                                      className='secondaryButton'
-                                      disabledClassName='disabledsecondaryButton'
+                                      styleType='secondaryDark'
                                       disabled={btn.disabled === true}
                                       label={btn.text} />
                                 </Link>

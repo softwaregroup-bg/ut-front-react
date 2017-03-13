@@ -46,11 +46,11 @@ const defaultErrorMessagingMapping = {
     length: ({ input, length }) => {
         return `OTP code must be exactly ${length} characters long`;
     },
-    regex: ({ input, regex }) => {
-        return 'Invalid input';
-    },
     numbersOnly: ({ input }) => {
-        return 'Field must contains only numbers';
+        return `Please enter only numeric characters.`;
+    },
+    regex: ({ input }) => {
+        return `Invalid field.`;
     }
 };
 
@@ -61,9 +61,15 @@ export class Validator {
     }
 
     validateInput(input, value, inputs) {
-        if (this.config[input]) {
-            const { validations, validateOrder } = this.config[input];
-            let error = '';
+        if (!this.config[input]) {
+            // If there is no validation for this input - simulate passing validation
+            return {
+                isValid: true,
+                error: ''
+            };
+        }
+        const { validations, validateOrder } = this.config[input];
+        let error = '';
 
             validateOrder.every((validationRule) => {
                 let isValid = validators[validationRule](value, validations[validationRule], inputs);
@@ -83,7 +89,27 @@ export class Validator {
         return { isValid: true };
     }
 
+    validateAllFlat(inputs) {
+        // if input values ARE NOT objects with key value
+        // inputs - immutable Map with 'data' and 'edited' key filled flat with the data
+        let errors = [];
+        let computedData = inputs.get('data').merge(inputs.get('edited'));
+        let keys = computedData.keySeq().toArray();
+        keys.forEach((key) => {
+            let validationResult = this.validateInput(key, computedData.get(key));
+            if (!validationResult.isValid) {
+                errors.push({
+                    field: key,
+                    error: validationResult.error
+                });
+            }
+        });
+
+        return errors;
+    }
+
     validateAll(inputs) {
+        // if input values ARE objects with key value
         let validationError = '';
         let invalidField = '';
 

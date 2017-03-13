@@ -1,3 +1,38 @@
+<a name="8.14.1"></a>
+## [8.14.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.0...v8.14.1) (2017-03-09)
+
+
+### Bug Fixes
+
+* dependencies ([6aec0c0](https://github.com/softwaregroup-bg/ut-front-react/commit/6aec0c0))
+
+
+
+<a name="8.14.0"></a>
+# [8.14.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.12...v8.14.0) (2017-03-08)
+
+
+### Features
+
+* UIS-968 add active tab ([#190](https://github.com/softwaregroup-bg/ut-front-react/issues/190)) ([b7ad396](https://github.com/softwaregroup-bg/ut-front-react/commit/b7ad396))
+
+
+
+<a name="8.13.12"></a>
+## [8.13.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.11...v8.13.12) (2017-03-08)
+
+
+
+<a name="8.13.11"></a>
+## [8.13.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.10...v8.13.11) (2017-03-07)
+
+
+
+<a name="8.13.10"></a>
+## [8.13.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.9...v8.13.10) (2017-03-06)
+
+
+
 <a name="8.13.9"></a>
 ## [8.13.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.8...v8.13.9) (2017-03-02)
 

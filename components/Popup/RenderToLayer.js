@@ -32,7 +32,9 @@ export default class RenderToLayer extends Component {
 
         if (open) {
             if (!this.layer) {
-                this.layer = document.getElementById(containerId);
+                this.layer = document.createElement('div');
+                this.layer.id = containerId;
+                document.body.appendChild(this.layer);
             }
 
             const layerElement = render();

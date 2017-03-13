@@ -16,7 +16,7 @@ class TabContainer extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            active: 0,
+            active: props.active || 0,
             statusObj: immutable.Map({})
         };
         this.handleActionButtonClick = this.handleActionButtonClick.bind(this);
@@ -244,6 +244,7 @@ TabContainer.propTypes = {
             )
         })
     ).isRequired,
+    active: PropTypes.number,
     actionButtons: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,

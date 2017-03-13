@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "8.13.9",
+  "version": "8.14.1",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
@@ -51,10 +51,10 @@
     "babel-preset-stage-0": "6.16.0",
     "css-loader": "0.26.1",
     "style-loader": "0.13.1",
-    "ut-tools": "^5.11.1"
+    "ut-tools": "^5.13.5"
   },
   "peerDependencies": {
-    "ut-front": "^6.4.2"
+    "ut-front": "^6.4.7"
   },
   "repository": {
     "type": "git",
