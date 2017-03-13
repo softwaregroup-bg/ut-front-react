@@ -103,21 +103,22 @@ export class Validator {
         };
     }
 
-    validateAllFlat(data) {
-        let result = [];
-
-        for (var property in data) {
-            if (this.config[property]) {
-                let isValid = this.validateInput(property, data[property]);
-                if (!isValid.isValid) {
-                    result.push({
-                        field: property,
-                        error: isValid.error
-                    });
-                }
+    validateAllFlat(inputs) {
+        // if input values ARE NOT objects with key value
+        // inputs - immutable Map with 'data' and 'edited' key filled flat with the data
+        let errors = [];
+        let computedData = inputs.get('data').merge(inputs.get('edited'));
+        let keys = computedData.keySeq().toArray();
+        keys.forEach((key) => {
+            let validationResult = this.validateInput(key, computedData.get(key));
+            if (!validationResult.isValid) {
+                errors.push({
+                    field: key,
+                    error: validationResult.error
+                });
             }
-        }
+        });
 
-        return result;
+        return errors;
     }
 }
