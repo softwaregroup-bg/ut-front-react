@@ -13,18 +13,8 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
             // Create new tab if this path is not already presented
             state.tabs.push(tab);
             state.usedPaths[action.pathname] = true;
-        } else {
-            // Update already created tab with new data (after fetch with new info)
-            var index;
-            state.tabs.forEach((currentTab, i) => {
-                if (tab.pathname === action.pathname) {
-                    index = i;
-                }
-            });
-            if (index !== undefined) {
-                state.tabs[index] = tab;
-            }
         }
+
         return {
             tabs: state.tabs,
             active: tab,
