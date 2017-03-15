@@ -1,3 +1,14 @@
+<a name="8.14.4"></a>
+## [8.14.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.3...v8.14.4) (2017-03-15)
+
+
+### Bug Fixes
+
+* breaking changes ([76aa008](https://github.com/softwaregroup-bg/ut-front-react/commit/76aa008))
+* not well formatted date: ([8c1ecb8](https://github.com/softwaregroup-bg/ut-front-react/commit/8c1ecb8))
+
+
+
 <a name="8.14.3"></a>
 ## [8.14.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.2...v8.14.3) (2017-03-14)
 
