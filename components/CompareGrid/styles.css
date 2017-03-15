@@ -1,0 +1,61 @@
+@import './default-config.css';
+@import 'config.css';
+
+.wrapper {
+    height: 100%;
+    border-top: none;
+    padding: 20px;
+}
+
+.accordion {
+    margin: 0;
+    padding: 0 !important;
+}
+
+.accordionTitle{
+    font-size: 1.4em;
+    background: white;
+    padding: 20px 17px;
+}
+
+.accordionBody {
+    background: #ECECEC;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    margin: 0 auto;
+}
+
+.half {
+    flex-basis: 50%;
+}
+
+.whole {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.titledBoxBody {
+    padding: 0 !important;
+}
+
+.titleBoxTitle {
+    border-bottom: none !important;
+}
+
+.rejectTextField {
+    background: var(--ut-front-react-standardCompareGridBackgroundColor);
+    text-align: center;
+    color: var(--ut-front-react-standardCompareGridRejectTextColor);
+    padding: 25px;
+    margin: 0;
+}
+.newUser {
+    background: var(--ut-front-react-standardCompareGridBackgroundColor);
+    text-align: center;
+    color: var(--ut-front-react-standardCompareGridNewUserTextColor);
+    padding: 25px;
+    margin: 0;
+}
