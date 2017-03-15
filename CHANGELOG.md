@@ -1,3 +1,13 @@
+<a name="8.14.5"></a>
+## [8.14.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.4...v8.14.5) (2017-03-15)
+
+
+### Bug Fixes
+
+* set datepicker cursor to not-allowed when datepicker is disabled ([901db2b](https://github.com/softwaregroup-bg/ut-front-react/commit/901db2b))
+
+
+
 <a name="8.14.4"></a>
 ## [8.14.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.3...v8.14.4) (2017-03-15)
 
