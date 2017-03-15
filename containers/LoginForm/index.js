@@ -117,6 +117,7 @@ LoginForm.propTypes = {
     title: PropTypes.string,
     buttonLabel: PropTypes.string,
     error: PropTypes.string,
+    loginType: PropTypes.any,
     shouldSubmit: PropTypes.bool,
     invalidField: PropTypes.string,
     setInputValue: PropTypes.func.isRequired,

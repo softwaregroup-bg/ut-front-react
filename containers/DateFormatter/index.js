@@ -20,6 +20,6 @@ DateFormatter.propTypes = {
 
 export default connect(
     ({login}) => ({
-        userFormat: login.get('result') && login.getIn(['result', 'localisation', 'dateFormat']) || 'YYYY-MM-DD'
+        userFormat: login.get('result') && login.getIn(['result', 'localisation', 'dateFormat']) ? login.getIn(['result', 'localisation', 'dateFormat']) : 'YYYY-MM-DD'
     })
 )(DateFormatter);

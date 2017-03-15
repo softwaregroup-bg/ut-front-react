@@ -275,4 +275,3 @@ storiesOf('Inputs, (Text, Textarea, Dropdown, Date, Radio, ..., ..)', module)
     />
     </MaterialUILayout>
 ));
-
