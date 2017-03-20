@@ -7,7 +7,6 @@ import Text from '../../../components/Text';
 import style from './style.css';
 
 export class ByCustomSearch extends Component {
-
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
