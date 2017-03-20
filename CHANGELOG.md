@@ -1,3 +1,13 @@
+<a name="8.16.0"></a>
+# [8.16.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.15.0...v8.16.0) (2017-03-20)
+
+
+### Features
+
+* added buttonsRaw prop ([2828629](https://github.com/softwaregroup-bg/ut-front-react/commit/2828629))
+
+
+
 <a name="8.15.0"></a>
 # [8.15.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.5...v8.15.0) (2017-03-17)
 
