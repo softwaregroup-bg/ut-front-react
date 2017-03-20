@@ -21,6 +21,7 @@ const Header = React.createClass({
     },
     getDefaultProps() {
         return {
+            buttonsRaw: [],
             buttons: [],
             location: undefined,
             breadcrumbsRemoveSlashes: 1
