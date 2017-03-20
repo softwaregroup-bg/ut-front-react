@@ -1,3 +1,13 @@
+<a name="8.15.0"></a>
+# [8.15.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.5...v8.15.0) (2017-03-17)
+
+
+### Features
+
+* UIS-1022: Add popup padding to config; remove popup content min width ([de34abb](https://github.com/softwaregroup-bg/ut-front-react/commit/de34abb))
+
+
+
 <a name="8.14.5"></a>
 ## [8.14.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.4...v8.14.5) (2017-03-15)
 
