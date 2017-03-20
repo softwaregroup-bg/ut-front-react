@@ -1,3 +1,13 @@
+<a name="8.16.2"></a>
+## [8.16.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.1...v8.16.2) (2017-03-20)
+
+
+### Bug Fixes
+
+* trim only strings ([2f392fc](https://github.com/softwaregroup-bg/ut-front-react/commit/2f392fc))
+
+
+
 <a name="8.16.1"></a>
 ## [8.16.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.0...v8.16.1) (2017-03-20)
 
