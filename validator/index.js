@@ -7,7 +7,7 @@ import immutable from 'immutable';
 export const isRequiredRule = (prop, rule, result) => {
     checkPasedResultObject(result);
 
-    let trimmed = prop ? prop.trim() : '';
+    let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -17,7 +17,7 @@ export const isRequiredRule = (prop, rule, result) => {
 export const lengthRule = (val, minVal, maxVal, rule, result) => {
     checkPasedResultObject(result);
 
-    let trimmedValue = val ? val.trim() : '';
+    let trimmedValue = val ? (val.trim ? val.trim() : val) : '';
     if (trimmedValue && (trimmedValue.length < minVal || trimmedValue.length > maxVal)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -57,7 +57,7 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
 
     checkPasedResultObject(result);
 
-    let trimmed = prop ? prop.trim() : '';
+    let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0 || prop === '__placeholder__') {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -107,7 +107,7 @@ export const arrayWithTextisRequiredRule = (array, textProp, rule, result) => {
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
-        let trimmed = currentValue ? currentValue.trim() : '';
+        let trimmed = currentValue ? (currentValue.trim ? currentValue.trim() : currentValue) : '';
         if (!currentValue || trimmed.length === 0) {
             result.isValid = false;
             rule.index = index;
