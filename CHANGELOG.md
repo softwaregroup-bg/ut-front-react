@@ -1,3 +1,13 @@
+<a name="8.16.1"></a>
+## [8.16.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.0...v8.16.1) (2017-03-20)
+
+
+### Bug Fixes
+
+* buttonsRaw array ([a7bbe92](https://github.com/softwaregroup-bg/ut-front-react/commit/a7bbe92))
+
+
+
 <a name="8.16.0"></a>
 # [8.16.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.15.0...v8.16.0) (2017-03-20)
 
