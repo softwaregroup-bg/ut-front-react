@@ -16,4 +16,5 @@
 .headerGlobalMenuItemWrap>div>span {
     display: flex !important;
     align-items: center;
+    min-height: 32px !important;
 }
