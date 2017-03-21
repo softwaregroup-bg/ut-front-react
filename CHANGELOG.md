@@ -1,3 +1,16 @@
+<a name="8.16.3"></a>
+## [8.16.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.2...v8.16.3) (2017-03-21)
+
+
+### Bug Fixes
+
+* allow array as key prop ([3344fe6](https://github.com/softwaregroup-bg/ut-front-react/commit/3344fe6))
+* equalize date pickers date format ([990880c](https://github.com/softwaregroup-bg/ut-front-react/commit/990880c))
+* improve datepicker styles ([6e21cfe](https://github.com/softwaregroup-bg/ut-front-react/commit/6e21cfe))
+* unused variables ([ac9cc05](https://github.com/softwaregroup-bg/ut-front-react/commit/ac9cc05))
+
+
+
 <a name="8.16.2"></a>
 ## [8.16.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.1...v8.16.2) (2017-03-20)
 
