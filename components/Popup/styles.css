@@ -28,7 +28,6 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    min-width: 500px;
     background-color: var(--ut-front-react-popupColor);
     z-index: 22;
 }

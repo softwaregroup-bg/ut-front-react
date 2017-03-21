@@ -112,7 +112,10 @@ class TextField extends Component {
 
 TextField.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    keyProp: PropTypes.string,
+    keyProp: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
     label: PropTypes.node,
     type: PropTypes.string,
     placeholder: PropTypes.string,
