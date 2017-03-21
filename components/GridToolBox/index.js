@@ -9,8 +9,7 @@ import SearchBox from '../SearchBox';
 import DatePickerBetween from './../DatePicker/Between';
 import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import StandardDialog from '../Popup';
 import { Button } from 'reactstrap';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
@@ -347,30 +346,25 @@ class GridToolBox extends Component {
             this.toggleAdvancedSearch();
         };
         let actionButtons = [
-            <FlatButton
-              label='Apply Search'
-              primary
-              onTouchTap={apply}
-          />,
-            <FlatButton
-              label='Cancel'
-              onTouchTap={this.toggleAdvancedSearch}
-        />
+            {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
+            {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
         ];
-        return <Dialog
+
+        return <StandardDialog
           key={2}
-          title={'Advanced Search'}
-          open={this.state.showFiltersPopup}
-          actions={actionButtons}
-            >
-                {this.props.filterElements.map((el, i) => {
-                    return (
-                        <div key={i} className={style.advancedSearchInputWrapper}>
-                            {this.renderFilterInPopup(el)}
-                        </div>
-                    );
-                })}
-        </Dialog>;
+          closePopup={this.toggleAdvancedSearch}
+          header={{text: 'Advanced Search'}}
+          isOpen={this.state.showFiltersPopup}
+          footer={{actionButtons: actionButtons}}
+          className={style.advancedSearchDialog}>
+            {this.props.filterElements.map((el, i) => {
+                return (
+                    <div key={i} className={style.advancedSearchInputWrapper}>
+                        {this.renderFilterInPopup(el)}
+                    </div>
+                );
+            })}
+        </StandardDialog>;
     }
     renderAdvanced() {
         let { maxVisibleInputs, showAdvanced } = this.props;
