@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Menu from 'material-ui/Menu';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
@@ -52,8 +51,7 @@ export default class GlobalMenu extends Component {
                         <Checkbox isDisabled={false} checked={f.visible} />
                         {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
                       </div>
-                  }
-                />
+                  } />
             ));
     }
     getMenu() {
