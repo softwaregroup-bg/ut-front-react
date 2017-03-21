@@ -445,6 +445,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownMenuItemWrap {
     align-items: center;
+    min-height: 32px !important;
 }
 
 .multiSelectDropdownPlaceholder {
