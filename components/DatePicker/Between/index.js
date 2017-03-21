@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
-import {dateTimeFormat, formatIso} from 'material-ui/DatePicker/dateUtils';
+import {formatIso} from 'material-ui/DatePicker/dateUtils';
 import style from '../style.css';
 
 const noop = () => {};
@@ -25,16 +25,16 @@ export default class DatePickerBetween extends Component {
         };
     }
     formatDate(date) {
-        if (this.props.locale) {
-            const DateTimeFormat = this.props.DateTimeFormat || dateTimeFormat;
-            return new DateTimeFormat(this.props.locale, {
-                day: 'numeric',
-                month: 'numeric',
-                year: 'numeric'
-            }).format(date);
-        } else {
-            return formatIso(date);
+        if (!date || isNaN(date.valueOf())) {
+            return '';
         }
+
+        let { locale, dateFormat } = this.props;
+        if (locale) {
+            return date.toLocaleDateString(locale, dateFormat);
+        }
+
+        return formatIso(date);
     }
     handleAccept(ref) {
         return (date) => {
@@ -103,7 +103,6 @@ export default class DatePickerBetween extends Component {
                     </div>
                 </div>
                 <DatePickerDialog
-                  DateTimeFormat={this.props.DateTimeFormat}
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
                   container={this.props.container}
@@ -114,7 +113,6 @@ export default class DatePickerBetween extends Component {
                   ref='fromDialogWindow'
                 />
                 <DatePickerDialog
-                  DateTimeFormat={this.props.DateTimeFormat}
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
                   container={this.props.container}
@@ -147,7 +145,7 @@ DatePickerBetween.propTypes = {
     masterLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    DateTimeFormat: PropTypes.func,
+    dateFormat: PropTypes.object,
     onChange: PropTypes.func
 };
 
