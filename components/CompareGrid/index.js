@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import Accordion from 'ut-front-react/components/Accordion';
+import Accordion from '../Accordion';
 import CompareGridItem from './CompareGridItem';
 import styles from './styles.css';
 
