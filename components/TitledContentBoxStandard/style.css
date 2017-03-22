@@ -1,0 +1,51 @@
+@import './default-config.css';
+@import 'config.css';
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  cursor: default;
+  flex-direction: column;
+  border: 1px solid var(--ut-front-react-standardTitledContentBoxStandardBorderColor);
+  margin-bottom: 20px;
+}
+
+.box {
+  height: 100%;
+  flex-basis: 100%;
+  flex-direction: column;
+}
+
+.header {
+  border-bottom: 1px solid var(--ut-front-react-standardTitledContentBoxStandardBorderColor);
+  background: var(--ut-front-react-standardTitledContentBoxStandardHeaderBackgroundColor);
+  padding: 20px;
+}
+
+.content {
+  background: var(--ut-front-react-standardTitledContentBoxStandardBackgroundColor);
+  padding: 15px 20px;
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.inputOuterWrapper {
+  padding: 10px 0;
+}
+
+.headerRightButton {
+  float: right;
+  color: var(--ut-front-react-standardTitledContentBoxStandardHeaderButtonColor);
+}
+
+span.headerRightButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.headerText {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: var(--ut-front-react-standardTitledContentBoxStandardTextColor);
+}
