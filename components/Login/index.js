@@ -112,17 +112,17 @@ const Login = React.createClass({
         return true;
     },
     passwordLogIn(e) {
-        if (!e || !e.keyCode || e.keyCode === 13 && (this.refs.password.getValue().length > 0)) {
+        if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.password.getValue().length > 0)) {
             this.loginWithUserPass();
         }
     },
     userLogIn(e) {
-        if (!e || !e.keyCode || e.keyCode === 13 && (this.refs.username.getValue().length > 0)) {
+        if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.username.getValue().length > 0)) {
             this.loginWithUser();
         }
     },
     otpLogIn(e) {
-        if (!e || !e.keyCode || e.keyCode === 13 && (this.refs.otp.getValue().length > 0)) {
+        if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.otp.getValue().length > 0)) {
             this.loginWithOtp();
         }
     },

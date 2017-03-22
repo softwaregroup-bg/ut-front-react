@@ -8,10 +8,13 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
             canClose: true,
             isMain: action.isMain
         };
+
         if (!state.usedPaths[action.pathname]) {
+            // Create new tab if this path is not already presented
             state.tabs.push(tab);
             state.usedPaths[action.pathname] = true;
         }
+
         return {
             tabs: state.tabs,
             active: tab,

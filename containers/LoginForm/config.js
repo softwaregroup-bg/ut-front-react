@@ -109,5 +109,11 @@ export const loginSteps = {
         disabledFields: ['username'],
         buttonLabel: 'Login',
         title: 'Login with OTP'
+    },
+    'checkLdapUser': {
+        inputs: getInputs(['username', 'hiddenPassword', 'password']),
+        disabledFields: ['username'],
+        buttonLabel: 'Login',
+        title: 'Login with password'
     }
 };

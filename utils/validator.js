@@ -18,12 +18,15 @@ const validators = {
     length: (value, length) => {
         return value.length === length;
     },
-    numbersOnly: (value) => {
-        const regex = /^[0-9]+$/;
-        return regex.test(value);
-    },
     regex: (value, regex) => {
-        return regex.test(value);
+        var regexPattern = new RegExp(regex);
+        return regexPattern.test(value);
+    },
+    numbersOnly: (value, shouldBeValidated) => {
+        if (shouldBeValidated) {
+            return /^\d+$/.test(value);
+        }
+        return true;
     }
 };
 
@@ -47,7 +50,7 @@ const defaultErrorMessagingMapping = {
         return `Please enter only numeric characters.`;
     },
     regex: ({ input }) => {
-        return `Field does not meet the conditions to be correctly filled.`;
+        return `Invalid field.`;
     }
 };
 
