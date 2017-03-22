@@ -11,7 +11,7 @@ const CompareGrid = ({isNew, isDeleted, rejectReason, data, staticStrings}) => {
     });
     return (
         <div className={styles.wrapper}>
-            {isNew && !isDeleted && <h1 className={styles.newUser}>{staticStrings.headingIsNew}</h1>}
+            {isNew && !isDeleted && <h1 className={styles.newEntity}>{staticStrings.headingIsNew}</h1>}
             {isDeleted && <h1 className={styles.rejectTextField}>{staticStrings.headingWillBeDeleted}</h1>}
             {rejectReason &&
                 <Accordion

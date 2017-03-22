@@ -1,4 +1,3 @@
-@import './default-config.css';
 @import 'config.css';
 
 .wrapper {
@@ -46,16 +45,16 @@
 }
 
 .rejectTextField {
-    background: var(--ut-front-react-standardCompareGridBackgroundColor);
+    background: #ffffff;
     text-align: center;
-    color: var(--ut-front-react-standardCompareGridRejectTextColor);
+    color: #2881ec;
     padding: 25px;
     margin: 0;
 }
-.newUser {
-    background: var(--ut-front-react-standardCompareGridBackgroundColor);
+.newEntity {
+    background: #ffffff;
     text-align: center;
-    color: var(--ut-front-react-standardCompareGridNewUserTextColor);
+    color: #2881ec;
     padding: 25px;
     margin: 0;
 }
