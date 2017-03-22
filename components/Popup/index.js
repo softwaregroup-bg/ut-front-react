@@ -1,35 +1,87 @@
 import React, { Component, PropTypes } from 'react';
-import RenderToLayer from './RenderToLayer';
 import classnames from 'classnames';
+import debounce from 'lodash.debounce';
+import RenderToLayer from './RenderToLayer';
 import Header from './Header.js';
 import Footer from './Footer.js';
+import { POPUP_MIN_OFFSETS, POPUP_HEADER_HEIGHT, POPUP_FOOTER_HEIGHT } from './config';
+
 import styles from './styles.css';
 
-const PopupInternal = ({
-    isOpen,
-    container,
-    className,
-    contentClassName,
-    hasOverlay,
-    closeOnOverlayClick,
-    header,
-    footer,
-    children,
-    closePopup
-}) => {
-    return (
-        <div className={styles.modalContainer}>
-            { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
-            <div className={classnames(styles.popupContainer, className)}>
-                { header && <Header className={header.className} text={header.text} closePopup={closePopup} /> }
-                <div className={classnames(styles.popupContent, contentClassName)}>
-                    { children }
+class PopupInternal extends Component {
+    constructor() {
+        super();
+        this.state = {
+            contentMaxHeight: ''
+        };
+        this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100);
+        this.updateContentMaxHeight = this.updateContentMaxHeight.bind(this);
+        this.handleEsc = this.handleEsc.bind(this);
+    }
+
+    componentWillMount() {
+        window.addEventListener('resize', this.handleWindowResize);
+    }
+
+    componentDidMount() {
+        const { closeOnEsc } = this.props;
+
+        if (closeOnEsc) {
+            document.addEventListener('keydown', this.handleEsc);
+        }
+        this.updateContentMaxHeight();
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleEsc);
+        window.removeEventListener('resize', this.handleWindowResize);
+    }
+
+    handleWindowResize() {
+        this.updateContentMaxHeight();
+    }
+
+    updateContentMaxHeight() {
+        const contentMaxHeight = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT;
+        this.setState({
+            contentMaxHeight: `${contentMaxHeight}px`
+        });
+    }
+
+    handleEsc({ keyCode }) {
+        const { closePopup } = this.props;
+
+        if (keyCode === 27) {
+            closePopup();
+        }
+    }
+
+    render() {
+        const {
+            className,
+            contentClassName,
+            hasOverlay,
+            closeOnOverlayClick,
+            header,
+            footer,
+            children,
+            closePopup
+        } = this.props;
+
+        return (
+            <div className={styles.modalContainer}>
+                { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
+                <div className={classnames(styles.popupContainer, className)}>
+                    { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
+                    <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
+                        { children }
+                    </div>
+                    { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
-                { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 PopupInternal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
@@ -38,9 +90,11 @@ PopupInternal.propTypes = {
     contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
+    closeOnEsc: PropTypes.bool,
     header: PropTypes.shape({
         className: PropTypes.string,
         text: PropTypes.string,
+        closeIcon: PropTypes.bool,
         closePopup: PropTypes.func
     }),
     footer: PropTypes.shape({

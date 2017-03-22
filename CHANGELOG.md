@@ -1,3 +1,189 @@
+<a name="8.16.3"></a>
+## [8.16.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.2...v8.16.3) (2017-03-21)
+
+
+### Bug Fixes
+
+* allow array as key prop ([3344fe6](https://github.com/softwaregroup-bg/ut-front-react/commit/3344fe6))
+* equalize date pickers date format ([990880c](https://github.com/softwaregroup-bg/ut-front-react/commit/990880c))
+* improve datepicker styles ([6e21cfe](https://github.com/softwaregroup-bg/ut-front-react/commit/6e21cfe))
+* unused variables ([ac9cc05](https://github.com/softwaregroup-bg/ut-front-react/commit/ac9cc05))
+
+
+
+<a name="8.16.2"></a>
+## [8.16.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.1...v8.16.2) (2017-03-20)
+
+
+### Bug Fixes
+
+* trim only strings ([2f392fc](https://github.com/softwaregroup-bg/ut-front-react/commit/2f392fc))
+
+
+
+<a name="8.16.1"></a>
+## [8.16.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.0...v8.16.1) (2017-03-20)
+
+
+### Bug Fixes
+
+* buttonsRaw array ([a7bbe92](https://github.com/softwaregroup-bg/ut-front-react/commit/a7bbe92))
+
+
+
+<a name="8.16.0"></a>
+# [8.16.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.15.0...v8.16.0) (2017-03-20)
+
+
+### Features
+
+* added buttonsRaw prop ([2828629](https://github.com/softwaregroup-bg/ut-front-react/commit/2828629))
+
+
+
+<a name="8.15.0"></a>
+# [8.15.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.5...v8.15.0) (2017-03-17)
+
+
+### Features
+
+* UIS-1022: Add popup padding to config; remove popup content min width ([de34abb](https://github.com/softwaregroup-bg/ut-front-react/commit/de34abb))
+
+
+
+<a name="8.14.5"></a>
+## [8.14.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.4...v8.14.5) (2017-03-15)
+
+
+### Bug Fixes
+
+* set datepicker cursor to not-allowed when datepicker is disabled ([901db2b](https://github.com/softwaregroup-bg/ut-front-react/commit/901db2b))
+
+
+
+<a name="8.14.4"></a>
+## [8.14.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.3...v8.14.4) (2017-03-15)
+
+
+### Bug Fixes
+
+* breaking changes ([76aa008](https://github.com/softwaregroup-bg/ut-front-react/commit/76aa008))
+* not well formatted date: ([8c1ecb8](https://github.com/softwaregroup-bg/ut-front-react/commit/8c1ecb8))
+
+
+
+<a name="8.14.3"></a>
+## [8.14.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.2...v8.14.3) (2017-03-14)
+
+
+
+<a name="8.14.2"></a>
+## [8.14.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.1...v8.14.2) (2017-03-14)
+
+
+
+<a name="8.14.1"></a>
+## [8.14.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.14.0...v8.14.1) (2017-03-09)
+
+
+### Bug Fixes
+
+* dependencies ([6aec0c0](https://github.com/softwaregroup-bg/ut-front-react/commit/6aec0c0))
+
+
+
+<a name="8.14.0"></a>
+# [8.14.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.12...v8.14.0) (2017-03-08)
+
+
+### Features
+
+* UIS-968 add active tab ([#190](https://github.com/softwaregroup-bg/ut-front-react/issues/190)) ([b7ad396](https://github.com/softwaregroup-bg/ut-front-react/commit/b7ad396))
+
+
+
+<a name="8.13.12"></a>
+## [8.13.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.11...v8.13.12) (2017-03-08)
+
+
+
+<a name="8.13.11"></a>
+## [8.13.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.10...v8.13.11) (2017-03-07)
+
+
+
+<a name="8.13.10"></a>
+## [8.13.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.9...v8.13.10) (2017-03-06)
+
+
+
+<a name="8.13.9"></a>
+## [8.13.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.8...v8.13.9) (2017-03-02)
+
+
+### Bug Fixes
+
+* extend datepicker to have default icon when disabled ([88802f8](https://github.com/softwaregroup-bg/ut-front-react/commit/88802f8))
+* UI-938 ([faf8c0b](https://github.com/softwaregroup-bg/ut-front-react/commit/faf8c0b))
+
+
+
+<a name="8.13.8"></a>
+## [8.13.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.7...v8.13.8) (2017-03-02)
+
+
+### Bug Fixes
+
+* equalize datetime format ([c6e01e2](https://github.com/softwaregroup-bg/ut-front-react/commit/c6e01e2))
+* lint & time format ([c38a3a2](https://github.com/softwaregroup-bg/ut-front-react/commit/c38a3a2))
+* refactor ([2d9deca](https://github.com/softwaregroup-bg/ut-front-react/commit/2d9deca))
+* refactor datetimepicker ([d29c4cc](https://github.com/softwaregroup-bg/ut-front-react/commit/d29c4cc))
+
+
+
+<a name="8.13.7"></a>
+## [8.13.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.6...v8.13.7) (2017-03-02)
+
+
+### Bug Fixes
+
+* UIS-1653 add TabContainer component to containers ([1624e7a](https://github.com/softwaregroup-bg/ut-front-react/commit/1624e7a))
+* UIS-1653 move TabContainer to ut-front-react ([b63a593](https://github.com/softwaregroup-bg/ut-front-react/commit/b63a593))
+* UIS-1653 move TabContainer to ut-front-react ([5927115](https://github.com/softwaregroup-bg/ut-front-react/commit/5927115))
+
+
+
+<a name="8.13.6"></a>
+## [8.13.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.5...v8.13.6) (2017-03-02)
+
+
+
+<a name="8.13.5"></a>
+## [8.13.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.4...v8.13.5) (2017-03-02)
+
+
+
+<a name="8.13.4"></a>
+## [8.13.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.3...v8.13.4) (2017-03-02)
+
+
+### Bug Fixes
+
+* change timepicker icon ([ad3beaf](https://github.com/softwaregroup-bg/ut-front-react/commit/ad3beaf))
+
+
+
+<a name="8.13.3"></a>
+## [8.13.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.2...v8.13.3) (2017-03-01)
+
+
+### Bug Fixes
+
+* set defalt time format ([041bf85](https://github.com/softwaregroup-bg/ut-front-react/commit/041bf85))
+* UIS-1456: change background color, image and positioning for standard dashboard ([acbb6f7](https://github.com/softwaregroup-bg/ut-front-react/commit/acbb6f7))
+
+
+
 <a name="8.13.2"></a>
 ## [8.13.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.13.1...v8.13.2) (2017-02-28)
 

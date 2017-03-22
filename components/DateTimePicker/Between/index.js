@@ -7,16 +7,18 @@ import style from './style.css';
 class DateTimePickerBetween extends Component {
     render() {
         let {
-            DateTimeFormat,
             locale,
             labelFrom,
             labelTo,
             okLabel,
             cancelLabel,
+            boldLabel,
             firstDayOfWeek,
             onChange,
             defaultValue,
-            withVerticalClass
+            withVerticalClass,
+            dateFormat,
+            timeFormat
         } = this.props;
 
         let layoutClassName = !withVerticalClass ? style.horizontalAlign : '';
@@ -26,28 +28,28 @@ class DateTimePickerBetween extends Component {
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.from}
-                      DateTimeFormat={DateTimeFormat}
-                      timeFormat={this.props.timeFormat}
+                      dateFormat={dateFormat}
+                      timeFormat={timeFormat}
                       locale={locale}
                       label={labelFrom}
                       okLabel={okLabel}
                       cancelLabel={cancelLabel}
                       firstDayOfWeek={firstDayOfWeek}
                       onChange={({value}) => { onChange({key: 'from', value: value}); }}
-                      boldLabel={this.props.boldLabel} />
+                      boldLabel={boldLabel} />
                 </div>
                 <div>
                     <DateTimePicker
                       defaultValue={defaultValue.to}
-                      DateTimeFormat={DateTimeFormat}
-                      timeFormat={this.props.timeFormat}
+                      dateFormat={dateFormat}
+                      timeFormat={timeFormat}
                       locale={locale}
                       label={labelTo}
                       okLabel={okLabel}
                       cancelLabel={cancelLabel}
                       firstDayOfWeek={firstDayOfWeek}
                       onChange={({value}) => { onChange({key: 'to', value: value}); }}
-                      boldLabel={this.props.boldLabel} />
+                      boldLabel={boldLabel} />
                 </div>
             </div>
         );
@@ -57,14 +59,14 @@ class DateTimePickerBetween extends Component {
 DateTimePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
     locale: PropTypes.string,
-    timeFormat: PropTypes.oneOf(['ampm', '24hr']),
+    timeFormat: PropTypes.object,
+    dateFormat: PropTypes.object,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     firstDayOfWeek: PropTypes.number,
     withVerticalClass: PropTypes.bool,
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    DateTimeFormat: PropTypes.func,
     onChange: PropTypes.func,
     boldLabel: PropTypes.bool
 };

@@ -26,8 +26,8 @@
 
 .popupContainer {
     display: flex;
+    position: relative;
     flex-direction: column;
-    min-width: 500px;
     background-color: var(--ut-front-react-popupColor);
     z-index: 22;
 }
@@ -50,8 +50,6 @@
 
 .popupContent {
     padding: 40px;
-    /* TODO: Pass max-height as result of calculation on the browser viewport substracted by min top and bottom popup margin */
-    max-height: 500px;
     overflow: auto;
 }
 
@@ -82,11 +80,4 @@
     color: #595959;
     cursor: default;
     user-select: none;
-}
-
-.popupContent {
-    padding: 40px;
-    /* TODO: Pass max-height as result of calculation on the browser viewport substracted by min top and bottom popup margin */
-    max-height: 500px;
-    overflow: auto;
 }

@@ -8,7 +8,6 @@ import Dropdown from './Dropdown';
 import Checkbox from './Checkbox';
 
 class MultiSelectDropdown extends Dropdown {
-
     constructor(props) {
         super(props);
 
