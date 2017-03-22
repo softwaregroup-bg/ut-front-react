@@ -112,7 +112,7 @@ class GridToolBox extends Component {
                 });
         } else {
             // dont change values in the background when advanced is open
-            filterValue  = (showFiltersPopup && !inDialog)
+            filterValue = (showFiltersPopup && !inDialog)
                 ? filterElement.defaultValue
                 : (filterElement.defaultValue || filters[filterElement.name]);
         }
@@ -155,7 +155,7 @@ class GridToolBox extends Component {
                               onChange(filterElement.name, e.target.value);
                           }} />
                     </div>);
-            case filterElementTypes.datePickerBetween:              
+            case filterElementTypes.datePickerBetween:
                 return (<div>
                             <DatePickerBetween
                               onChange={filterAutoFetch
