@@ -10,6 +10,7 @@ import DatePickerBetween from './../DatePicker/Between';
 import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
+import StandardButton from '../StandardButton';
 import { Button } from 'reactstrap';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
@@ -39,6 +40,7 @@ class GridToolBox extends Component {
         this.openRefDialogWithMessage = this.openRefDialogWithMessage.bind(this);
         this.renderActionButton = this.renderActionButton.bind(this);
         this.toggleAdvancedSearch = this.toggleAdvancedSearch.bind(this);
+        this.applyFilters = this.applyFilters.bind(this);
     }
 
     componentWillMount() {
@@ -46,278 +48,270 @@ class GridToolBox extends Component {
     }
 
     componentWillReceiveProps({ selected, checked, filterElements }) {
-        if (selected.size === 0 && checked.size === 0) {
-            this.setState({ showFilters: true });
-        } else {
-            this.setState({ showFilters: false });
-        }
+        let showFilters = (selected.size === 0 && checked.size === 0);
+        this.setState({showFilters});
+
         this.checkActiveFilters(filterElements);
     }
 
     checkActiveFilters(filterElements = []) {
         let foundActiveFilter = false;
-        for (var i = 0; i < filterElements.length && !foundActiveFilter; i += 1) {
-            let currenctFilterElement = filterElements[i];
-            if (currenctFilterElement.type === filterElementTypes.datePickerBetween || currenctFilterElement.type === filterElementTypes.dateTimePickerBetween) {
-                if (currenctFilterElement.defaultValue.from || currenctFilterElement.defaultValue.to) {
-                    foundActiveFilter = true;
-                }
-            } else if (currenctFilterElement.type === filterElementTypes.dropDown) {
-                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
-                    foundActiveFilter = true;
-                }
-            } else if (currenctFilterElement.defaultValue) {
-                foundActiveFilter = true;
+        filterElements.forEach((filter) => {
+            let hasValue;
+            switch (filter.type) {
+                case filterElementTypes.datePickerBetween:
+                case filterElementTypes.dateTimePickerBetween:
+                    hasValue = !!(filter.defaultValue.from ||
+                        filter.defaultValue.to);
+                    break;
+                case filterElementTypes.dropDown:
+                    hasValue = !!(filter.defaultValue &&
+                        filter.defaultValue !== dropDrownAllOptionKey &&
+                        filter.defaultValue !== dropDrownPlaceholderOptionKey);
+                    break;
+                default:
+                    hasValue = !!filter.defaultValue;
+                    break;
             }
-        }
 
-        if (foundActiveFilter) {
-            this.setState({hasActiveFilters: true});
+            foundActiveFilter = foundActiveFilter || hasValue;
+        });
+
+        this.setState({hasActiveFilters: foundActiveFilter});
+    }
+
+    hasSelectedOrChecked() {
+        let { selected, checked } = this.props;
+
+        return selected.size > 0 || checked.size > 0;
+    }
+
+    renderFilter(filterElement, inDialog = false) {
+        let { filterAutoFetch } = this.props;
+        let { filters, showFiltersPopup } = this.state;
+
+        let onChange = (key, value) => {
+            filters[key] = value;
+            this.setState({filters});
+        };
+
+        let filterValue;
+
+        if (filterElement.type === filterElementTypes.datePickerBetween || filterElement.type === filterElementTypes.dateTimePickerBetween) {
+            let defaultEmpty = true;
+            Object.keys(filterElement.defaultValue).forEach(k => {
+                defaultEmpty = defaultEmpty && !!filterElement.defaultValue[k];
+            });
+
+            // dont change values in the background when advanced is open
+            filterValue = (showFiltersPopup && !inDialog)
+                ? filterElement.defaultValue
+                : ((!defaultEmpty && filterElement.defaultValue) || {
+                    from: filters[filterElement.name.from],
+                    to: filters[filterElement.name.to]
+                });
         } else {
-            this.setState({hasActiveFilters: false});
+            // dont change values in the background when advanced is open
+            filterValue  = (showFiltersPopup && !inDialog)
+                ? filterElement.defaultValue
+                : (filterElement.defaultValue || filters[filterElement.name]);
         }
-    }
 
-    haveSelectedOrChecked() {
-        return this.props.selected.size > 0 || this.props.checked.size > 0;
-    }
+        let label = inDialog
+            ? filterElement.label
+            : null;
 
-    renderFilter(filterElement) {
         switch (filterElement.type) {
             case filterElementTypes.dropDown:
                 return (
                     <Dropdown
+                      label={label}
+                      boldLabel={inDialog}
                       data={filterElement.data}
                       customTheme
                       placeholder={filterElement.placeholder}
-                      defaultSelected={filterElement.defaultValue}
-                      onSelect={filterElement.onSelect}
+                      defaultSelected={filterValue}
+                      onSelect={filterAutoFetch && !inDialog
+                        ? filterElement.onSelect
+                        : function(obj) {
+                            onChange(filterElement.name, obj.value);
+                        }}
                       canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
             case filterElementTypes.searchBox:
-                return (
-                    <div>
-                        <SearchBox
-                          defaultValue={filterElement.defaultValue}
+                return (filterAutoFetch && !inDialog)
+                    ? (<div>
+                            <SearchBox
+                              defaultValue={filterValue}
+                              placeholder={filterElement.placeholder}
+                              onSearch={filterElement.onSearch} />
+                        </div>)
+                    : (<div>
+                        <Input
+                          label={label}
+                          defaultValue={filterValue}
                           placeholder={filterElement.placeholder}
-                          onSearch={filterElement.onSearch} />
-                    </div>
-                );
-            case filterElementTypes.datePickerBetween:
-                return (
-                    <div>
-                        <DatePickerBetween
-                          onChange={filterElement.onChange}
-                          defaultValue={filterElement.defaultValue}
-                          masterLabel={filterElement.masterLabel}
-                          labelFrom={filterElement.labelFrom}
-                          labelTo={filterElement.labelTo} />
-                    </div>
-                );
+                          onChange={function(e) {
+                              onChange(filterElement.name, e.target.value);
+                          }} />
+                    </div>);
+            case filterElementTypes.datePickerBetween:              
+                return (<div>
+                            <DatePickerBetween
+                              onChange={filterAutoFetch
+                                  ? filterElement.onChange
+                                  : function(obj) {
+                                      onChange(filterElement.name[obj.key], obj.value);
+                                  }}
+                              withVerticalClass={inDialog}
+                              defaultValue={filterValue}
+                              dateFormat={filterElement.dateFormat || defaultDateFormat}
+                              locale={filterElement.locale}
+                              masterLabel={filterElement.masterLabel}
+                              labelFrom={filterElement.labelFrom}
+                              labelTo={filterElement.labelTo}
+                              boldLabel={inDialog} />
+                        </div>);
             case filterElementTypes.dateTimePickerBetween:
-                let timeFormat = filterElement.timeFormat || defaultTimeFormat;
-                let dateFormat = filterElement.dateFormat || defaultDateFormat;
-
-                return (
-                    <div>
-                        <DateTimePickerBetween
-                          onChange={filterElement.onChange}
-                          defaultValue={filterElement.defaultValue}
-                          timeFormat={timeFormat}
-                          dateFormat={dateFormat}
-                          locale={filterElement.locale}
-                          labelFrom={filterElement.labelFrom}
-                          labelTo={filterElement.labelTo} />
-                    </div>
-                );
+                return (<div>
+                            <DateTimePickerBetween
+                              onChange={filterAutoFetch
+                                  ? filterElement.onChange
+                                  : function(obj) {
+                                      onChange(filterElement.name[obj.key], obj.value);
+                                  }}
+                              withVerticalClass={inDialog}
+                              defaultValue={filterValue}
+                              timeFormat={filterElement.timeFormat || defaultTimeFormat}
+                              dateFormat={filterElement.dateFormat || defaultDateFormat}
+                              locale={filterElement.locale}
+                              labelFrom={filterElement.labelFrom}
+                              labelTo={filterElement.labelTo}
+                              boldLabel={inDialog} />
+                        </div>);
             default:
                 return <div />;
         }
     }
+
     getDefaultValuesFromProps() {
+        let { filterElements } = this.props;
         let defaultValues = {};
-        for (let filter of this.props.filterElements) {
+
+        filterElements.forEach(filter => {
             if (typeof filter.name === typeof {}) {
+                // range filters
                 Object.keys(filter.name).forEach(key => {
                     defaultValues[filter.name[key]] = filter.defaultValue[key];
                 });
             } else {
                 defaultValues[filter.name] = filter.defaultValue;
             }
-        }
+        });
+
         return defaultValues;
     }
+
     toggleAdvancedSearch() {
-        let defaultValues = this.getDefaultValuesFromProps();
-        let showFiltersPopup = !this.state.showFiltersPopup;
-        this.setState({showFiltersPopup, filters: defaultValues});
+        let {showFiltersPopup} = this.state;
+
+        let defaultValues = {};
+
+        if (!showFiltersPopup) {
+            // get applied filters when opening advanced search;
+            defaultValues = this.getDefaultValuesFromProps();
+        }
+
+        this.setState({
+            showFiltersPopup: !showFiltersPopup,
+            filters: defaultValues
+        });
     }
+
     getTooltip() {
+        let { filterElements } = this.props;
+
         let content = [];
-        this.props.filterElements.forEach((filter) => {
-            if (filter.type === filterElementTypes.datePickerBetween || filter.type === filterElementTypes.dateTimePickerBetween) {
-                let timeFormat = filter.timeFormat || defaultTimeFormat;
-                let dateFormat = filter.dateFormat || defaultDateFormat;
 
-                if (filter.defaultValue.from) {
-                    let date = new Date(filter.defaultValue.from);
+        filterElements.forEach((filter) => {
+            switch (filter.type) {
+                case filterElementTypes.datePickerBetween:
+                case filterElementTypes.dateTimePickerBetween:
+                    let timeFormat = filter.timeFormat || defaultTimeFormat;
+                    let dateFormat = filter.dateFormat || defaultDateFormat;
 
-                    let dateValue;
-                    let timeValue;
-                    if (filter.locale) {
-                        dateValue = date.toLocaleDateString(filter.locale, dateFormat);
-                        timeValue = date.toLocaleTimeString(filter.locale, timeFormat);
-                    } else {
-                        dateValue = formatIso(date);
-                        timeValue = formatTime(date);
-                    }
-
-                    let value = dateValue;
-                    if (filter.type === filterElementTypes.dateTimePickerBetween) {
-                        value = `${value} ${timeValue}`;
-                    }
-                    content.push(<div key={generateUniqueId()}>
-                        <span><span className={style.bold}>{filter.labelFrom}: </span> {value}</span>
-                    </div>);
-                }
-                if (filter.defaultValue.to) {
-                    let date = new Date(filter.defaultValue.to);
-
-                    let dateValue;
-                    let timeValue;
-                    if (filter.locale) {
-                        dateValue = date.toLocaleDateString(filter.locale, dateFormat);
-                        timeValue = date.toLocaleTimeString(filter.locale, timeFormat);
-                    } else {
-                        dateValue = formatIso(date);
-                        timeValue = formatTime(date);
-                    }
-
-                    let value = dateValue;
-                    if (filter.type === filterElementTypes.dateTimePickerBetween) {
-                        value = `${value} ${timeValue}`;
-                    }
-                    content.push(<div key={generateUniqueId()}>
-                        <span><span className={style.bold}>{filter.labelTo}: </span> {value}</span>
-                    </div>);
-                }
-            } else if (filter.type === filterElementTypes.dropDown) {
-                if (filter.defaultValue && filter.defaultValue !== dropDrownAllOptionKey && filter.defaultValue !== dropDrownPlaceholderOptionKey) {
-                    let obj = filter.data.filter((dropdownItem) => {
-                        if (filter.defaultValue === dropdownItem.key) {
-                            return true;
+                    Object.keys(filter.defaultValue).forEach(key => {
+                        if (!filter.defaultValue[key]) {
+                            return;
                         }
+
+                        let date = new Date(filter.defaultValue[key]);
+                        let dateValue;
+                        let timeValue;
+
+                        if (filter.locale) {
+                            dateValue = date.toLocaleDateString(filter.locale, dateFormat);
+                            timeValue = date.toLocaleTimeString(filter.locale, timeFormat);
+                        } else {
+                            dateValue = formatIso(date);
+                            timeValue = formatTime(date);
+                        }
+
+                        let value = dateValue;
+
+                        if (filter.type === filterElementTypes.dateTimePickerBetween) {
+                            value = `${value} ${timeValue}`;
+                        }
+
+                        key = `label${key.charAt(0).toUpperCase() + key.slice(1)}`;
+
+                        content.push(<div key={generateUniqueId()}>
+                            <span><span className={style.bold}>{filter[key]}: </span> {value}</span>
+                        </div>);
                     });
-                    content.push(<div key={generateUniqueId()}>
-                    <span><span className={style.bold}>{filter.label}: </span> {obj[0].name}</span>
-                </div>);
-                }
-            } else if (filter.defaultValue) {
-                content.push(<div key={generateUniqueId()}>
-                    <span><span className={style.bold}>{filter.label}: </span> {filter.defaultValue}</span>
-                </div>);
+                    break;
+                case filterElementTypes.dropDown:
+                    if (filter.defaultValue && filter.defaultValue !== dropDrownAllOptionKey && filter.defaultValue !== dropDrownPlaceholderOptionKey) {
+                        let obj = filter.data.filter((dropdownItem) => {
+                            if (filter.defaultValue === dropdownItem.key) {
+                                return true;
+                            }
+                        });
+
+                        content.push(<div key={generateUniqueId()}>
+                            <span><span className={style.bold}>{filter.label}: </span> {obj[0].name}</span>
+                        </div>);
+                    }
+                    break;
+                default:
+                    if (filter.defaultValue) {
+                        content.push(<div key={generateUniqueId()}>
+                            <span><span className={style.bold}>{filter.label}: </span> {filter.defaultValue}</span>
+                        </div>);
+                    }
+                    break;
             }
         });
+
         return content;
     }
-    renderFilterInPopup(filterElement) {
-        let { filters } = this.state;
 
-        let onChange = (key, value) => {
-            filters[key] = value;
-            this.setState({filters});
-        };
-        let value;
-        switch (filterElement.type) {
-            case filterElementTypes.dropDown:
-                value = filters[filterElement.name];
-                return (
-                    <Dropdown
-                      {...filterElement}
-                      data={filterElement.data}
-                    //   style={{color: '#0074ba'}}
-                      customTheme
-                      placeholder={filterElement.placeholder}
-                      defaultSelected={value}
-                      onSelect={function(obj) {
-                          onChange(filterElement.name, obj.value);
-                      }}
-                      canSelectPlaceholder={filterElement.canSelectPlaceholder}
-                      boldLabel
-                    />
-                );
-            case filterElementTypes.searchBox:
-                value = filters[filterElement.name];
-
-                return (
-                    <div>
-                        <Input
-                          label={filterElement.label}
-                          defaultValue={value}
-                          placeholder={filterElement.placeholder}
-                          onChange={function(e) {
-                              onChange(filterElement.name, e.target.value);
-                          }} />
-                    </div>
-                );
-            case filterElementTypes.datePickerBetween:
-                value = {
-                    from: filters[filterElement.name.from],
-                    to: filters[filterElement.name.to]
-                };
-                return (
-                    <div>
-                        <DatePickerBetween
-                          onChange={function(obj) {
-                              onChange(filterElement.name[obj.key], obj.value);
-                          }}
-                          withVerticalClass
-                          defaultValue={value}
-                          masterLabel={filterElement.masterLabel}
-                          labelFrom={filterElement.labelFrom}
-                          labelTo={filterElement.labelTo} />
-                    </div>
-                );
-            case filterElementTypes.dateTimePickerBetween:
-                value = {
-                    from: filters[filterElement.name.from],
-                    to: filters[filterElement.name.to]
-                };
-
-                let timeFormat = filterElement.timeFormat || defaultTimeFormat;
-                let dateFormat = filterElement.dateFormat || defaultDateFormat;
-
-                return (
-                    <div>
-                        <DateTimePickerBetween
-                          onChange={function(obj) {
-                              onChange(filterElement.name[obj.key], obj.value);
-                          }}
-                          withVerticalClass
-                          defaultValue={value}
-                          timeFormat={timeFormat}
-                          dateFormat={dateFormat}
-                          locale={filterElement.locale}
-                          labelFrom={filterElement.labelFrom}
-                          labelTo={filterElement.labelTo}
-                          boldLabel />
-                    </div>
-                );
-            default:
-                return <div />;
-        }
-    }
     getInputsCount() {
-        let count = this.props.filterElements.reduce((previousValue, currentValue) => {
-            if (currentValue.type === filterElementTypes.datePickerBetween || currentValue.type === filterElementTypes.dateTimePickerBetween) {
-                return previousValue + 2;
-            } else {
-                return previousValue + 1;
+        let { filterElements } = this.props;
+
+        let count = filterElements.reduce((previousValue, currentValue) => {
+            switch (currentValue.type) {
+                case filterElementTypes.datePickerBetween:
+                case filterElementTypes.dateTimePickerBetween:
+                    return previousValue + 2;
+                default:
+                    return previousValue + 1;
             }
         }, 0);
 
         return count;
     }
+
     renderAdvancedButton() {
         let tooltipContent = this.getTooltip();
         let el = <span key={1} className={style.advancedSearchIconWrapper}>
@@ -326,32 +320,26 @@ class GridToolBox extends Component {
                 {tooltipContent}
             </div> : null}
         </span>;
+
         return el;
     }
+
     renderAdvancedSearchDialog() {
         if (!this.state.showFiltersPopup) {
             return;
         }
+
         let apply = () => {
-            let result = {};
-            Object.keys(this.state.filters).forEach((objKey) => {
-                let objectKey = this.state.filters[objKey];
-                if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
-                    result[objKey] = '';
-                } else {
-                    result[objKey] = objectKey;
-                }
-            });
-            this.props.batchChange(result);
+            this.applyFilters();
             this.toggleAdvancedSearch();
         };
+
         let actionButtons = [
             {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
             {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
         ];
 
         return <StandardDialog
-          key={2}
           closePopup={this.toggleAdvancedSearch}
           header={{text: 'Advanced Search'}}
           isOpen={this.state.showFiltersPopup}
@@ -360,40 +348,48 @@ class GridToolBox extends Component {
             {this.props.filterElements.map((el, i) => {
                 return (
                     <div key={i} className={style.advancedSearchInputWrapper}>
-                        {this.renderFilterInPopup(el)}
+                        {this.renderFilter(el, true)}
                     </div>
                 );
             })}
         </StandardDialog>;
     }
+
     renderAdvanced() {
         let { maxVisibleInputs, showAdvanced } = this.props;
         let count = this.getInputsCount();
         if (count > maxVisibleInputs || showAdvanced) {
             let advancedSearchBtn = this.renderAdvancedButton();
             let advancedDialog = this.renderAdvancedSearchDialog();
+
             return [advancedSearchBtn, advancedDialog];
         }
+
         return null;
     }
+
     renderFilters() {
-        let labelClass = this.haveSelectedOrChecked() ? style.link : '';
-        let toggle = () => this.haveSelectedOrChecked() && this.setState({showFilters: false});
+        let { filterElements } = this.props;
+
+        let hasSelectedOrChecked = this.hasSelectedOrChecked();
+
+        let labelClass = hasSelectedOrChecked ? style.link : '';
+        let toggle = () => hasSelectedOrChecked && this.setState({showFilters: false});
         let filtersNumber = 0;
         let leftSide;
-        if (this.props.filterElements.length === 1 && this.props.filterElements[0]['type'] === filterElementTypes.searchBox) {
-            leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : '';
+        if (filterElements.length === 1 && filterElements[0]['type'] === filterElementTypes.searchBox) {
+            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : '';
         } else {
-            leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : 'Filter by';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by';
         }
+
         return (
             <div className={style.toolbarWrap}>
                 <div className={classnames(style.toolbarElement, style.label, labelClass)} onClick={toggle}>
                     {leftSide}
                 </div>
-
                 <div className={style.pullRight}>
-                    {this.props.filterElements.map((el, i) => {
+                    {filterElements.map((el, i) => {
                         let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                         filtersNumber += incrementNum;
                         if (filtersNumber > this.props.maxVisibleInputs) {
@@ -406,12 +402,27 @@ class GridToolBox extends Component {
                             );
                         }
                     })}
-                    {this.state.hasActiveFilters && <div onClick={this.props.clearFilters} className={classnames(style.toolbarElement, style.noRightMargin, style.closeArrow)} />}
                     {this.renderAdvanced()}
+                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <StandardButton onClick={this.applyFilters} styleType='secondaryLight' label='Apply Search' className={style.toolbarElement} />}
+                    {this.state.hasActiveFilters && <div onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={classnames(style.toolbarElement, style.closeArrow)} />}
                 </div>
-
             </div>
         );
+    }
+
+    applyFilters() {
+        let result = {};
+        Object.keys(this.state.filters).forEach((objKey) => {
+            let objectKey = this.state.filters[objKey];
+            if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
+                result[objKey] = '';
+            } else {
+                result[objKey] = objectKey;
+            }
+        });
+
+        this.props.batchChange(result);
+        this.setState({filters: {}});
     }
 
     renderActionButton(actionButtonElement, index) {
@@ -558,11 +569,13 @@ class GridToolBox extends Component {
     }
 
     propStatus(property, selectProperty) {
+        let { selected, checked } = this.props;
+
         let canDoAction = true;
         let status = null;
 
-        if (this.props.checked.size > 0) {
-            for (let checkedItem of this.props.checked) {
+        if (checked.size > 0) {
+            for (let checkedItem of checked) {
                 if (status !== null && status !== checkedItem.get(property)) {
                     canDoAction = false;
                     break;
@@ -570,7 +583,6 @@ class GridToolBox extends Component {
                 status = checkedItem.get(property);
             }
         } else {
-            let selected = this.props.selected;
             status = selected.getIn(selectProperty) || selected.get(property);
         }
 
@@ -697,6 +709,7 @@ GridToolBox.propTypes = {
     ),
     maxVisibleInputs: PropTypes.number,
     showAdvanced: PropTypes.bool,
+    filterAutoFetch: PropTypes.bool,
     clearFilters: PropTypes.func,
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
@@ -706,6 +719,7 @@ GridToolBox.propTypes = {
 GridToolBox.defaultProps = {
     maxVisibleInputs: 4,
     showAdvanced: false,
+    filterAutoFetch: true,
     clearFilters: () => {},
     batchChange: () => {},
     selected: Immutable.Map({}),
