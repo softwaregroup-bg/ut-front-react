@@ -1,7 +1,7 @@
 import React, { Component, PropTypes} from 'react';
-import Popup from 'ut-front-react/components/Popup';
-import Radio from 'ut-front-react/components/Input/Radio';
 import { getLink } from 'ut-front/react/routerHelper';
+import Popup from '../Popup';
+import Radio from '../Input/Radio';
 import styles from './style.css';
 
 export default class CustomerTypesDialog extends Component {
