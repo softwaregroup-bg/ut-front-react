@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Menu from 'material-ui/Menu';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
@@ -33,23 +32,26 @@ export default class GlobalMenu extends Component {
     }
     toggleColumnVisibility(field) {
         return () => {
-            this.handleMenuClose();
-            this.props.toggleColumnVisibility(field);
+            if (this.props.fields.filter(f => (f.visible)).length > 1 || !field.visible) {
+                this.props.toggleColumnVisibility(field);
+            }
+            return false;
         };
     }
     getItems() {
         return this.props
             .fields
             .filter((f) => (!f.internal))
-            .map((f) => (
+            .map((f, idx) => (
                 <MenuItem
+                  key={idx}
+                  onTouchTap={this.toggleColumnVisibility(f)}
                   children={
-                      <div onTouchTap={this.toggleColumnVisibility(f)} className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
-                        <div className={this.getStyle('headerGlobalMenuFieldControlCheckbox')}><Checkbox isDisabled={false} checked={f.visible} /></div>
-                        <span className={this.getStyle('headerGlobalMenuFieldControlTitle')}>{this.props.transformCellValue(f.title || '', f.name, undefined, true)}</span>
+                      <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
+                        <Checkbox isDisabled={false} checked={f.visible} />
+                        {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
                       </div>
-                  }
-                />
+                  } />
             ));
     }
     getMenu() {
@@ -61,13 +63,11 @@ export default class GlobalMenu extends Component {
               targetOrigin={{horizontal: 'left', vertical: 'top'}}
               onRequestClose={this.handleMenuClose}
               animation={PopoverAnimationVertical}
-            >
-                <Menu>
-                    <MenuItem
-                      primaryText='Columns'
-                      rightIcon={<ArrowDropRight />}
-                      menuItems={this.getItems()}
-                    />
+              className={this.getStyle('headerGlobalMenuPopoverWrap')}>
+                <Menu
+                  className={this.getStyle('headerGlobalMenuItemWrap')}
+                  disableAutoFocus>
+                    { this.getItems() }
                 </Menu>
             </Popover>
         );
