@@ -86,7 +86,7 @@ class GridToolBox extends Component {
         return selected.size > 0 || checked.size > 0;
     }
 
-    renderFilter(filterElement, inDialog = false) {
+    renderFilter(filterElement, renderInDialog = false) {
         let { filterAutoFetch } = this.props;
         let { filters, showFiltersPopup } = this.state;
 
@@ -98,26 +98,26 @@ class GridToolBox extends Component {
         let filterValue;
 
         if (filterElement.type === filterElementTypes.datePickerBetween || filterElement.type === filterElementTypes.dateTimePickerBetween) {
-            let defaultEmpty = true;
-            Object.keys(filterElement.defaultValue).forEach(k => {
-                defaultEmpty = defaultEmpty && !!filterElement.defaultValue[k];
+            let filterStateEmpty = true;
+            Object.keys(filterElement.name).forEach(k => {
+                filterStateEmpty = filterStateEmpty && !filters.hasOwnProperty(filterElement.name[k]);
             });
-
-            // dont change values in the background when advanced is open
-            filterValue = (showFiltersPopup && !inDialog)
+            filterValue = filterStateEmpty
                 ? filterElement.defaultValue
-                : ((!defaultEmpty && filterElement.defaultValue) || {
+                : {
                     from: filters[filterElement.name.from],
                     to: filters[filterElement.name.to]
-                });
+                };
         } else {
-            // dont change values in the background when advanced is open
-            filterValue = (showFiltersPopup && !inDialog)
-                ? filterElement.defaultValue
-                : (filterElement.defaultValue || filters[filterElement.name]);
+            filterValue = filters[filterElement.name] || filterElement.defaultValue;
         }
 
-        let label = inDialog
+        if (showFiltersPopup && !renderInDialog) {
+        // dont change values in the background when advanced is open
+            filterValue = filterElement.defaultValue;
+        }
+
+        let label = renderInDialog
             ? filterElement.label
             : null;
 
@@ -126,12 +126,12 @@ class GridToolBox extends Component {
                 return (
                     <Dropdown
                       label={label}
-                      boldLabel={inDialog}
+                      boldLabel={renderInDialog}
                       data={filterElement.data}
                       customTheme
                       placeholder={filterElement.placeholder}
                       defaultSelected={filterValue}
-                      onSelect={filterAutoFetch && !inDialog
+                      onSelect={filterAutoFetch && !renderInDialog
                         ? filterElement.onSelect
                         : function(obj) {
                             onChange(filterElement.name, obj.value);
@@ -139,7 +139,7 @@ class GridToolBox extends Component {
                       canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
             case filterElementTypes.searchBox:
-                return (filterAutoFetch && !inDialog)
+                return (filterAutoFetch && !renderInDialog)
                     ? (<div>
                             <SearchBox
                               defaultValue={filterValue}
@@ -149,7 +149,7 @@ class GridToolBox extends Component {
                     : (<div>
                         <Input
                           label={label}
-                          defaultValue={filterValue}
+                          value={filterValue || ''}
                           placeholder={filterElement.placeholder}
                           onChange={function(e) {
                               onChange(filterElement.name, e.target.value);
@@ -158,36 +158,36 @@ class GridToolBox extends Component {
             case filterElementTypes.datePickerBetween:
                 return (<div>
                             <DatePickerBetween
-                              onChange={filterAutoFetch
+                              onChange={filterAutoFetch && !renderInDialog
                                   ? filterElement.onChange
                                   : function(obj) {
                                       onChange(filterElement.name[obj.key], obj.value);
                                   }}
-                              withVerticalClass={inDialog}
+                              withVerticalClass={renderInDialog}
                               defaultValue={filterValue}
                               dateFormat={filterElement.dateFormat || defaultDateFormat}
                               locale={filterElement.locale}
                               masterLabel={filterElement.masterLabel}
                               labelFrom={filterElement.labelFrom}
                               labelTo={filterElement.labelTo}
-                              boldLabel={inDialog} />
+                              boldLabel={renderInDialog} />
                         </div>);
             case filterElementTypes.dateTimePickerBetween:
                 return (<div>
                             <DateTimePickerBetween
-                              onChange={filterAutoFetch
+                              onChange={filterAutoFetch && !renderInDialog
                                   ? filterElement.onChange
                                   : function(obj) {
                                       onChange(filterElement.name[obj.key], obj.value);
                                   }}
-                              withVerticalClass={inDialog}
+                              withVerticalClass={renderInDialog}
                               defaultValue={filterValue}
                               timeFormat={filterElement.timeFormat || defaultTimeFormat}
                               dateFormat={filterElement.dateFormat || defaultDateFormat}
                               locale={filterElement.locale}
                               labelFrom={filterElement.labelFrom}
                               labelTo={filterElement.labelTo}
-                              boldLabel={inDialog} />
+                              boldLabel={renderInDialog} />
                         </div>);
             default:
                 return <div />;
@@ -403,7 +403,7 @@ class GridToolBox extends Component {
                         }
                     })}
                     {this.renderAdvanced()}
-                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <StandardButton onClick={this.applyFilters} styleType='secondaryLight' label='Apply Search' className={style.toolbarElement} />}
+                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' className={style.toolbarElement} />}
                     {this.state.hasActiveFilters && <div onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={classnames(style.toolbarElement, style.closeArrow)} />}
                 </div>
             </div>
