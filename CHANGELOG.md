@@ -1,3 +1,17 @@
+<a name="8.18.1"></a>
+## [8.18.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.0...v8.18.1) (2017-03-23)
+
+
+### Bug Fixes
+
+* change advanced search dialog and buttons with standard ones ([2a30a25](https://github.com/softwaregroup-bg/ut-front-react/commit/2a30a25))
+* datepickers default props ([44f6d9e](https://github.com/softwaregroup-bg/ut-front-react/commit/44f6d9e))
+* filter values ([4371691](https://github.com/softwaregroup-bg/ut-front-react/commit/4371691))
+* major refactor, support manual fetch on filter change ([a94697c](https://github.com/softwaregroup-bg/ut-front-react/commit/a94697c))
+* multiple spaces ([bf98d46](https://github.com/softwaregroup-bg/ut-front-react/commit/bf98d46))
+
+
+
 <a name="8.18.0"></a>
 # [8.18.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.17.0...v8.18.0) (2017-03-23)
 

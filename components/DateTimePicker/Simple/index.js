@@ -121,7 +121,7 @@ export default class DatePickerBetween extends Component {
         let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
-        let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
+        let format = timeFormat.hour12 ? 'ampm' : '24hr';
 
         return (
             <div className={outerWrapStyle}>
@@ -163,7 +163,8 @@ DatePickerBetween.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
-    timeFormat: '24hr'
+    timeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
+    dateFormat: { day: 'numeric', month: 'numeric', year: 'numeric' }
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
