@@ -16,7 +16,7 @@
 
 import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations } from '../../validator/constants';
 import { validationTypes as validationTypesTabContainer } from './constants';
-import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule } from '../../validator';
+import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
 export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
@@ -53,6 +53,9 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     }
                     if (validation.type === validationTypes.text && rule.type === textValidations.length) {
                         lengthRule(currentValue, rule.minVal, rule.maxVal, rule, result);
+                    }
+                    if (validation.type === validationTypes.text && rule.type === textValidations.decimalOnly) {
+                        isDecimalOnlyRule(currentValue, rule.precision, rule.scale, rule, result);
                     }
                     if (validation.type === validationTypes.text && rule.type === textValidations.regex) {
                         regexRule(currentValue, rule.value, rule, result);
