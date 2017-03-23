@@ -1,3 +1,13 @@
+<a name="8.18.0"></a>
+# [8.18.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.17.0...v8.18.0) (2017-03-23)
+
+
+### Features
+
+* UIS-2001: added decimal text input validation ([#209](https://github.com/softwaregroup-bg/ut-front-react/issues/209)) ([70459b9](https://github.com/softwaregroup-bg/ut-front-react/commit/70459b9))
+
+
+
 <a name="8.17.0"></a>
 # [8.17.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.3...v8.17.0) (2017-03-23)
 
