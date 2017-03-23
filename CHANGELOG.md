@@ -1,3 +1,17 @@
+<a name="8.17.0"></a>
+# [8.17.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.3...v8.17.0) (2017-03-23)
+
+
+### Features
+
+* UIS-1841: add new line at the end of components/CompareGrid/styles.css ([d8e8553](https://github.com/softwaregroup-bg/ut-front-react/commit/d8e8553))
+* UIS-1841: added new line at end of file in components/CompareGrid/default-config.css ([6811538](https://github.com/softwaregroup-bg/ut-front-react/commit/6811538))
+* UIS-1841: export CompareGrid and ConfirmRejectionDialog ([cbf25f6](https://github.com/softwaregroup-bg/ut-front-react/commit/cbf25f6))
+* UIS-1841: fix linting errors ([e544fc7](https://github.com/softwaregroup-bg/ut-front-react/commit/e544fc7))
+* UIS-1841: removed default-config.css ([22faf16](https://github.com/softwaregroup-bg/ut-front-react/commit/22faf16))
+
+
+
 <a name="8.16.3"></a>
 ## [8.16.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.16.2...v8.16.3) (2017-03-21)
 
