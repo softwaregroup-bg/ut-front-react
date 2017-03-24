@@ -6,6 +6,10 @@ import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Checkbox from '../../../Input/Checkbox';
 import style from './GlobalMenu.css';
 
+import { closest } from '../../../../utils/dom';
+
+const menuFieldControl = 'menuFieldControl';
+
 export default class GlobalMenu extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +18,18 @@ export default class GlobalMenu extends Component {
         this.toggleColumnVisibility = this.toggleColumnVisibility.bind(this);
         this.state = {menuOpened: false};
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.fields.filter(f => (f.visible)).length > this.props.fields.filter(f => (f.visible)).length) {
+            // prevents horizontal scroll /if any/ movement when adding visible columns
+            let fieldControlEl = document.getElementById(menuFieldControl);
+            let tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
+            tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
+
+            this.setState({updateThyself: true});
+        }
+    }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
@@ -35,6 +51,7 @@ export default class GlobalMenu extends Component {
             if (this.props.fields.filter(f => (f.visible)).length > 1 || !field.visible) {
                 this.props.toggleColumnVisibility(field);
             }
+
             return false;
         };
     }
@@ -73,7 +90,7 @@ export default class GlobalMenu extends Component {
         );
     }
     render() {
-        return (<th className={style.headerGlobalMenuField}>
+        return (<th id={menuFieldControl} className={style.headerGlobalMenuField}>
             <div onTouchTap={this.handleMenuOpen} className={this.getStyle('headerGlobalMenuFieldControl')}><SettingsIcon /></div>
             {this.getMenu()}
         </th>);
