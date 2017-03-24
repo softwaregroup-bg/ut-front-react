@@ -8,7 +8,7 @@ export default class CustomerTypesDialog extends Component {
     constructor() {
         super();
         this.state = {
-            value: ''
+            value: 'client'
         };
         this.onChange = this.onChange.bind(this);
     }
@@ -24,7 +24,7 @@ export default class CustomerTypesDialog extends Component {
     get radioOptions() {
         let { customerTypes } = this.props;
         customerTypes = customerTypes.toJS();
-        return customerTypes.map(type => ({
+        return customerTypes.map((type) => ({
             label: type.name,
             value: type.key,
             name: type.customerTypes,
@@ -51,7 +51,7 @@ export default class CustomerTypesDialog extends Component {
     get dialogHeader() {
         return {
             className: styles.dialogHeader,
-            text: `Choose customer type`
+            text: 'Choose customer type'
         };
     }
 
