@@ -24,10 +24,18 @@ export default class GlobalMenu extends Component {
             // prevents horizontal scroll /if any/ movement when adding visible columns
             let fieldControlEl = document.getElementById(menuFieldControl);
             let tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
-            tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
 
-            // update thyself
-            this.setState({});
+            if (tableWrap.scrollWidth > tableWrap.clientWidth) {
+                tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
+                // update thyself
+                this.setState({});
+            } else if (tableWrap.scrollWidth > tableWrap.clientWidth) {
+                setTimeout(() => {
+                    tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
+                    // update thyself
+                    this.setState({});
+                }, 1);
+            }
         }
     }
 
