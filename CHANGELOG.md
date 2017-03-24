@@ -1,3 +1,24 @@
+<a name="8.18.3"></a>
+## [8.18.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.2...v8.18.3) (2017-03-24)
+
+
+### Bug Fixes
+
+* dom keys ([004c2ee](https://github.com/softwaregroup-bg/ut-front-react/commit/004c2ee))
+* dom keys ([2c09cd5](https://github.com/softwaregroup-bg/ut-front-react/commit/2c09cd5))
+* equalize dropdown item styles ([9c5c1a8](https://github.com/softwaregroup-bg/ut-front-react/commit/9c5c1a8))
+* glitch when horizontal scroll appears ([4ee66db](https://github.com/softwaregroup-bg/ut-front-react/commit/4ee66db))
+* grid config menu styles && atleast one column checked ([25bab3b](https://github.com/softwaregroup-bg/ut-front-react/commit/25bab3b))
+* more reasonable update sentence ([c7a103a](https://github.com/softwaregroup-bg/ut-front-react/commit/c7a103a))
+* multiselect dropdown styles ([a021659](https://github.com/softwaregroup-bg/ut-front-react/commit/a021659))
+* prevent horizontal scroll movement when adding visible columns ([7f624cd](https://github.com/softwaregroup-bg/ut-front-react/commit/7f624cd))
+* render checkbox label if set only ([67be0ff](https://github.com/softwaregroup-bg/ut-front-react/commit/67be0ff))
+* styles ([6f6e2dc](https://github.com/softwaregroup-bg/ut-front-react/commit/6f6e2dc))
+* trailing spaces ([16478a1](https://github.com/softwaregroup-bg/ut-front-react/commit/16478a1))
+* unused props ([1b3f87f](https://github.com/softwaregroup-bg/ut-front-react/commit/1b3f87f))
+
+
+
 <a name="8.18.2"></a>
 ## [8.18.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.1...v8.18.2) (2017-03-24)
 
