@@ -18,6 +18,7 @@ export const textValidations = {
     isRequiredOnCondition: 'isRequiredOnCondition',
     email: 'email',
     numberOnly: 'numberOnly',
+    decimalOnly: 'decimalOnly', // precision, scale
     uniqueValue: 'uniqueValue',
     length: 'length', // minVal, maxVal
     regex: 'regex'  // value

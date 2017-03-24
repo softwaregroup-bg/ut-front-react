@@ -155,7 +155,10 @@ Dropdown.propTypes = {
     boldLabel: PropTypes.bool,
     containerClassName: PropTypes.string,
     placeholder: PropTypes.any,
-    keyProp: PropTypes.string,
+    keyProp: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
     canSelectPlaceholder: PropTypes.bool,
     onSelect: PropTypes.func,
     disabled: PropTypes.bool,
