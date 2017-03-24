@@ -113,6 +113,10 @@
     margin: 5px auto;
 }
 
+.advancedSearchDialog {
+    width: 40%;
+}
+
 .bold {
     font-weight: bold;
 }

@@ -131,7 +131,8 @@ DatePickerBetween.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
-    withVerticalClass: false
+    withVerticalClass: false,
+    dateFormat: { day: 'numeric', month: 'numeric', year: 'numeric' }
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
