@@ -15,8 +15,6 @@ import { Button } from 'reactstrap';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
 
-import {generateUniqueId} from '../../utils/helpers';
-
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -233,7 +231,7 @@ class GridToolBox extends Component {
 
         let content = [];
 
-        filterElements.forEach((filter) => {
+        filterElements.forEach((filter, idx) => {
             switch (filter.type) {
                 case filterElementTypes.datePickerBetween:
                 case filterElementTypes.dateTimePickerBetween:
@@ -265,7 +263,7 @@ class GridToolBox extends Component {
 
                         key = `label${key.charAt(0).toUpperCase() + key.slice(1)}`;
 
-                        content.push(<div key={generateUniqueId()}>
+                        content.push(<div key={idx + key}>
                             <span><span className={style.bold}>{filter[key]}: </span> {value}</span>
                         </div>);
                     });
@@ -278,14 +276,14 @@ class GridToolBox extends Component {
                             }
                         });
 
-                        content.push(<div key={generateUniqueId()}>
+                        content.push(<div key={idx}>
                             <span><span className={style.bold}>{filter.label}: </span> {obj[0].name}</span>
                         </div>);
                     }
                     break;
                 default:
                     if (filter.defaultValue) {
-                        content.push(<div key={generateUniqueId()}>
+                        content.push(<div key={idx}>
                             <span><span className={style.bold}>{filter.label}: </span> {filter.defaultValue}</span>
                         </div>);
                     }
