@@ -238,6 +238,31 @@ export const isNumberOnlyRule = (props, rule, result) => {
 
 /* End isNumber validation */
 
+/**
+ * isDecimal validation
+ *
+ * Validates that the field is numeric, or numeric with decimal point.
+ * Scale and precision must be specified.
+ * @param {String} value - the value to validate
+ * @param {Number} precision - total count of number characters
+ * @param {Number} scale - number of characters after the decimal point.
+ */
+export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
+    checkPasedResultObject(result);
+    if (!value) {
+        return true;
+    }
+    let digitsLeftOfDecimalPoint = precision - scale;
+    let regex = new RegExp('^(\\d{0,' + digitsLeftOfDecimalPoint + '}\\.?\\d{0,' + scale + '}|\\.\\d{1,' + scale + '})$');
+
+    if (value !== '' && !(regex.test(value))) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
+/* End isDecimal validation */
+
 /* Is valid email validation */
 
 export const isValidEmailRule = (props, rule, result) => {
