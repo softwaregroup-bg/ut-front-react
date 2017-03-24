@@ -90,7 +90,7 @@ class MultiSelectDropdown extends Dropdown {
                     <span>{placeholder}</span>
                 </div>
             </MenuItem>,
-            <Divider 
+            <Divider
               key={Math.random() + '-ddfg'} />
         ];
         data.forEach((item) => {
