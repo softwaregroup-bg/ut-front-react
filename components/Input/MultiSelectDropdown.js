@@ -83,7 +83,7 @@ class MultiSelectDropdown extends Dropdown {
             <MenuItem
               className={ddstyles.multiSelectDropdownMenuItemWrap}
               onTouchTap={this.toggleAllChecks}
-              key={1 + '-ddfg'}>
+              key={'1-ddfg'}>
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
                     <Checkbox
                       checked={values.length === data.length} />
@@ -91,7 +91,7 @@ class MultiSelectDropdown extends Dropdown {
                 </div>
             </MenuItem>,
             <Divider
-              key={2 + '-ddfg'} />
+              key={'2-ddfg'} />
         ];
         data.forEach((item) => {
             let isChecked = values.findIndex((i) => {
