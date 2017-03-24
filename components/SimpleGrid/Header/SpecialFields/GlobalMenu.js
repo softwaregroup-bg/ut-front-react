@@ -26,7 +26,8 @@ export default class GlobalMenu extends Component {
             let tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
             tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
 
-            this.setState({updateThyself: true});
+            // update thyself
+            this.setState({});
         }
     }
 
