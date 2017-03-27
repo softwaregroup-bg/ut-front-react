@@ -50,6 +50,9 @@
     width: 60px;
     float: left;
 }
+.numberInput {
+    box-shadow: none;
+}
 .pageSwitherWrap .numberInputWrap .numberInput {
     width: 90%;
     padding: 1% 5%;

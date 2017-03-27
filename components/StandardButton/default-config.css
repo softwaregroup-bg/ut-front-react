@@ -1,5 +1,57 @@
 /* button default colors and configuration*/
 :root {
+    /* PREDEFINED STYLES BY STYLE GUIDELINE */
+    /* Primary button */
+    --ut-front-react-primaryColor: #ffffff;
+    --ut-front-react-primaryBorderColor: #4096fd;
+    --ut-front-react-primaryBgColor: #4096fd;
+    --ut-front-react-primaryBorderColorHover: #4f9efc;
+    --ut-front-react-primaryBgColorHover: #4f9efc;
+    --ut-front-react-primaryBorderColorFocus: #3d8dee;
+    --ut-front-react-primaryBgColorFocus: #3d8dee;
+    --ut-front-react-primaryColorDisabled: #999999;
+    --ut-front-react-primaryBorderColorDisabled: #dddddd;
+    --ut-front-react-primaryBgColorDisabled: #f4f4f4;
+    /* Secondary light button (on dark background) */
+    --ut-front-react-secondaryLightColor: #444444;
+    --ut-front-react-secondaryLightBorderColor: #cccccc;
+    --ut-front-react-secondaryLightBgColor: #ffffff;
+    --ut-front-react-secondaryLightColorHover: #000000;
+    --ut-front-react-secondaryLightBorderColorHover: #999999;
+    --ut-front-react-secondaryLightBgColorHover: #ffffff;
+    --ut-front-react-secondaryLightColorFocus: #000000;
+    --ut-front-react-secondaryLightBorderColorFocus: #999999;
+    --ut-front-react-secondaryLightBgColorFocus: #fafafa;
+    --ut-front-react-secondaryLightColorDisabled: #999999;
+    --ut-front-react-secondaryLightBorderColorDisabled: #dddddd;
+    --ut-front-react-secondaryLightBgColorDisabled: #f4f4f4;
+    /* Secondary dark button (on light background) */
+    --ut-front-react-secondaryDarkColor: #444444;
+    --ut-front-react-secondaryDarkBorderColor: #cccccc;
+    --ut-front-react-secondaryDarkBgColor: #f4f4f4;
+    --ut-front-react-secondaryDarkColorHover: #000000;
+    --ut-front-react-secondaryDarkBorderColorHover: #999999;
+    --ut-front-react-secondaryDarkBgColorHover: #f4f4f4;
+    --ut-front-react-secondaryDarkColorFocus: #000000;
+    --ut-front-react-secondaryDarkBorderColorFocus: #999999;
+    --ut-front-react-secondaryDarkBgColorFocus: #ececec;
+    --ut-front-react-secondaryDarkColorDisabled: #999999;
+    --ut-front-react-secondaryDarkBorderColorDisabled: #dddddd;
+    --ut-front-react-secondaryDarkBgColorDisabled: #f4f4f4;
+    /* Secondary dialog (special Cancel button) */
+    --ut-front-react-secondaryDialogColor: #000000;
+    --ut-front-react-secondaryDialogBorderColor: #f5f5f5;
+    --ut-front-react-secondaryDialogBgColor: #f5f5f5;
+    --ut-front-react-secondaryDialogBorderColorHover: #d7d6d6;
+    --ut-front-react-secondaryDialogColorDisabled: #999999;
+    --ut-front-react-secondaryDialogBorderColor: #dddddd;
+    --ut-front-react-secondaryDialogBgColorDisabled: #f4f4f4;
+    /* Predefined buttons properties */
+    --ut-front-react-predefinedHeight: 30px;
+    --ut-front-react-predefinedMinWidth: 70px;
+    --ut-front-react-predefinedPadding: 0 20px;
+    --ut-front-react-predefinedFontSize: 14px;
+    --ut-front-react-predefinedBorderRadius: 2px;
     /*colors*/
     --ut-front-react-standardBtnBgColor: #4096fd;
     --ut-front-react-defaultDialogBtnBgColor: #4096fd;
