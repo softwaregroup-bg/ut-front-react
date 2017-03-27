@@ -7,7 +7,7 @@ import immutable from 'immutable';
 export const isRequiredRule = (prop, rule, result) => {
     checkPasedResultObject(result);
 
-    let trimmed = prop ? prop.trim() : '';
+    let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -17,7 +17,7 @@ export const isRequiredRule = (prop, rule, result) => {
 export const lengthRule = (val, minVal, maxVal, rule, result) => {
     checkPasedResultObject(result);
 
-    let trimmedValue = val ? val.trim() : '';
+    let trimmedValue = val ? (val.trim ? val.trim() : val) : '';
     if (trimmedValue && (trimmedValue.length < minVal || trimmedValue.length > maxVal)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -57,7 +57,7 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
 
     checkPasedResultObject(result);
 
-    let trimmed = prop ? prop.trim() : '';
+    let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0 || prop === '__placeholder__') {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -107,7 +107,7 @@ export const arrayWithTextisRequiredRule = (array, textProp, rule, result) => {
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
-        let trimmed = currentValue ? currentValue.trim() : '';
+        let trimmed = currentValue ? (currentValue.trim ? currentValue.trim() : currentValue) : '';
         if (!currentValue || trimmed.length === 0) {
             result.isValid = false;
             rule.index = index;
@@ -176,7 +176,7 @@ export const arrayWithArrayIsRequiredRule = (array, textProp, rule, result) => {
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
-        if (currentValue && currentValue.size === 0 || currentValue.length === 0) {
+        if (currentValue && (currentValue.size === 0 || currentValue.length === 0)) {
             result.isValid = false;
             rule.index = index;
             result.errors.push(getErrorObject(rule));
@@ -237,6 +237,31 @@ export const isNumberOnlyRule = (props, rule, result) => {
 };
 
 /* End isNumber validation */
+
+/**
+ * isDecimal validation
+ *
+ * Validates that the field is numeric, or numeric with decimal point.
+ * Scale and precision must be specified.
+ * @param {String} value - the value to validate
+ * @param {Number} precision - total count of number characters
+ * @param {Number} scale - number of characters after the decimal point.
+ */
+export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
+    checkPasedResultObject(result);
+    if (!value) {
+        return true;
+    }
+    let digitsLeftOfDecimalPoint = precision - scale;
+    let regex = new RegExp('^(\\d{0,' + digitsLeftOfDecimalPoint + '}\\.?\\d{0,' + scale + '}|\\.\\d{1,' + scale + '})$');
+
+    if (value !== '' && !(regex.test(value))) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
+/* End isDecimal validation */
 
 /* Is valid email validation */
 

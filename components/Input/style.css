@@ -117,7 +117,6 @@
 
 .textareaWrap {
     width: 70%;
-    display: table-cell;
 }
 
 .textareaWrap textarea {
@@ -127,7 +126,6 @@
 }
 
 .textareaLabelWrap {
-    display: table-cell;
     font-weight: bold;
     vertical-align: top
 }
@@ -434,17 +432,20 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownMenu {
     display: block !important;
-    padding: 16px 0 !important;
 }
 
 .multiSelectDropdownMenu div {
-    max-height: 100%;
     font-size: 15px;
     line-height: 32px;
 }
-.multiSelectDropdownMenu div>span, .multiSelectDropdownMenu div>div {
-    min-height: auto !important;
-    padding: 0 8px;
+
+.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem {
+    display: flex !important;
+}
+
+.multiSelectDropdownMenuItemWrap {
+    align-items: center;
+    min-height: 32px !important;
 }
 
 .multiSelectDropdownPlaceholder {

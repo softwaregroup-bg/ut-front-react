@@ -89,7 +89,7 @@ class TextField extends Component {
             return (
                 <div className={classnames(style.outerWrap, wrapperClassName)}>
                     <div className={classnames(style.lableWrap, labelClassName, {[style.boldLabel]: this.props.boldLabel})}>
-                        {label} {this.props.validators.length > 0 && '*'}
+                        {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={classnames(style.inputWrap, inputWrapClassName)}>
                         {input}
@@ -112,7 +112,10 @@ class TextField extends Component {
 
 TextField.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    keyProp: PropTypes.string,
+    keyProp: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
     label: PropTypes.node,
     type: PropTypes.string,
     placeholder: PropTypes.string,
@@ -129,7 +132,7 @@ TextField.propTypes = {
     // Validation
     validators: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
             values: PropTypes.any,
             errorMessage: PropTypes.string
         })

@@ -49,7 +49,7 @@ class LoginForm extends Component {
     syncInputsValuesWithStore(form) {
         const { setInputValue, inputs } = this.props;
         let allInputs = form.querySelectorAll('input');
-
+        allInputs = Array.prototype.slice.call(allInputs); // convert NodeList to Array - required for IE
         allInputs.forEach((input) => {
             let { name, value } = input;
             // This sync does not apply to hidden fields
@@ -117,6 +117,7 @@ LoginForm.propTypes = {
     title: PropTypes.string,
     buttonLabel: PropTypes.string,
     error: PropTypes.string,
+    loginType: PropTypes.any,
     shouldSubmit: PropTypes.bool,
     invalidField: PropTypes.string,
     setInputValue: PropTypes.func.isRequired,

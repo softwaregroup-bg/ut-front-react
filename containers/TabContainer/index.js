@@ -16,7 +16,7 @@ class TabContainer extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            active: 0,
+            active: props.active || 0,
             statusObj: immutable.Map({})
         };
         this.handleActionButtonClick = this.handleActionButtonClick.bind(this);
@@ -236,7 +236,7 @@ TabContainer.propTypes = {
                     type: PropTypes.oneOf([validationTypes.text, validationTypes.array, validationTypes.arrayWithTextElements, validationTypes.dropdown, validationTypes.defaultRole, validationTypes.arrayWithArrayElements, validationTypes.radio, customValidationTypes.hasRaisedError]),
                     rules: PropTypes.arrayOf(
                          PropTypes.shape({
-                             type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequiredOnCondition]),
+                             type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequiredOnCondition]),
                              errorMessage: PropTypes.string
                          })
                     )
@@ -244,6 +244,7 @@ TabContainer.propTypes = {
             )
         })
     ).isRequired,
+    active: PropTypes.number,
     actionButtons: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,

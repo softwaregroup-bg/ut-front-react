@@ -1,11 +1,21 @@
-.headerGlobalMenuFieldControlTitle, .headerGlobalMenuFieldControlCheckbox {
-    float: left;
-}
 .headerGlobalMenuFieldControl, .headerGlobalMenuFieldControlContainer {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     overflow: hidden;
+    font-size: 15px;
+    line-height: 32px;
 }
 .headerGlobalMenuField {
-    width: 50px;
+    width: .1%;
     text-align: right;
+}
+
+.headerGlobalMenuPopoverWrap {
+   max-height: 50% !important;
+}
+.headerGlobalMenuItemWrap>div>span {
+    display: flex !important;
+    align-items: center;
+    min-height: 32px !important;
 }

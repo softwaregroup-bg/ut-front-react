@@ -125,7 +125,6 @@ class Container extends Component {
 
             this.updateLocalStorage(this.resizeIndex, this.resizeIndex + 1);
 
-            this.resizeIndex - 1;
             this.firstColDom = null;
             this.secondColDom = null;
         }
