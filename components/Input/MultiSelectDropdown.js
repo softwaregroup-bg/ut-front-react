@@ -2,6 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -72,28 +74,41 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     getMenuItems() {
-        let {data, placeholder} = this.props;
+        let {data, placeholder, cssStyle, mergeStyles} = this.props;
         let {values} = this.state;
 
+        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+
         let menuItems = [
-            <Checkbox
-              key={Math.random() + '-ddfg'}
-              onClick={this.toggleAllChecks}
-              label={placeholder}
-              checked={values.length === data.length}
-            />
+            <MenuItem
+              className={ddstyles.multiSelectDropdownMenuItemWrap}
+              onTouchTap={this.toggleAllChecks}
+              key={'1-ddfg'}>
+                <div className={ddstyles.multiSelectDropdownMenuItem}>
+                    <Checkbox
+                      checked={values.length === data.length} />
+                    <span>{placeholder}</span>
+                </div>
+            </MenuItem>,
+            <Divider
+              key={'2-ddfg'} />
         ];
         data.forEach((item) => {
             let isChecked = values.findIndex((i) => {
                 return item.key === i.key;
             }) > -1;
             menuItems.push(
-                <Checkbox
-                  onClick={() => { this.handleChange(item); }}
-                  checked={isChecked}
-                  disabled={item.disabled}
-                  label={item.name}
-                  key={item.key} />
+                <MenuItem
+                  className={ddstyles.multiSelectDropdownMenuItemWrap}
+                  onTouchTap={() => { this.handleChange(item); }}
+                  key={item.key}>
+                    <div className={ddstyles.multiSelectDropdownMenuItem}>
+                        <Checkbox
+                          checked={isChecked}
+                          disabled={item.disabled} />
+                        <span>{item.name}</span>
+                    </div>
+                </MenuItem>
             );
         });
 

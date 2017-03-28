@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import Menu from 'material-ui/Menu';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Checkbox from '../../../Input/Checkbox';
 import style from './GlobalMenu.css';
+
+import { closest } from '../../../../utils/dom';
+
+const menuFieldControl = 'menuFieldControl';
 
 export default class GlobalMenu extends Component {
     constructor(props) {
@@ -15,6 +18,27 @@ export default class GlobalMenu extends Component {
         this.toggleColumnVisibility = this.toggleColumnVisibility.bind(this);
         this.state = {menuOpened: false};
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.fields.filter(f => (f.visible)).length > this.props.fields.filter(f => (f.visible)).length) {
+            // prevents horizontal scroll /if any/ movement when adding visible columns
+            let fieldControlEl = document.getElementById(menuFieldControl);
+            let tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
+
+            if (tableWrap.scrollWidth > tableWrap.clientWidth) {
+                tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
+                // update thyself
+                this.setState({});
+            } else if (tableWrap.scrollWidth > tableWrap.clientWidth) {
+                setTimeout(() => {
+                    tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
+                    // update thyself
+                    this.setState({});
+                }, 1);
+            }
+        }
+    }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
@@ -33,23 +57,27 @@ export default class GlobalMenu extends Component {
     }
     toggleColumnVisibility(field) {
         return () => {
-            this.handleMenuClose();
-            this.props.toggleColumnVisibility(field);
+            if (this.props.fields.filter(f => (f.visible)).length > 1 || !field.visible) {
+                this.props.toggleColumnVisibility(field);
+            }
+
+            return false;
         };
     }
     getItems() {
         return this.props
             .fields
             .filter((f) => (!f.internal))
-            .map((f) => (
+            .map((f, idx) => (
                 <MenuItem
+                  key={idx}
+                  onTouchTap={this.toggleColumnVisibility(f)}
                   children={
-                      <div onTouchTap={this.toggleColumnVisibility(f)} className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
-                        <div className={this.getStyle('headerGlobalMenuFieldControlCheckbox')}><Checkbox isDisabled={false} checked={f.visible} /></div>
-                        <span className={this.getStyle('headerGlobalMenuFieldControlTitle')}>{this.props.transformCellValue(f.title || '', f.name, undefined, true)}</span>
+                      <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
+                        <Checkbox isDisabled={false} checked={f.visible} />
+                        {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
                       </div>
-                  }
-                />
+                  } />
             ));
     }
     getMenu() {
@@ -61,19 +89,17 @@ export default class GlobalMenu extends Component {
               targetOrigin={{horizontal: 'left', vertical: 'top'}}
               onRequestClose={this.handleMenuClose}
               animation={PopoverAnimationVertical}
-            >
-                <Menu>
-                    <MenuItem
-                      primaryText='Columns'
-                      rightIcon={<ArrowDropRight />}
-                      menuItems={this.getItems()}
-                    />
+              className={this.getStyle('headerGlobalMenuPopoverWrap')}>
+                <Menu
+                  className={this.getStyle('headerGlobalMenuItemWrap')}
+                  disableAutoFocus>
+                    { this.getItems() }
                 </Menu>
             </Popover>
         );
     }
     render() {
-        return (<th className={style.headerGlobalMenuField}>
+        return (<th id={menuFieldControl} className={style.headerGlobalMenuField}>
             <div onTouchTap={this.handleMenuOpen} className={this.getStyle('headerGlobalMenuFieldControl')}><SettingsIcon /></div>
             {this.getMenu()}
         </th>);

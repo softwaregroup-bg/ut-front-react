@@ -236,7 +236,7 @@ TabContainer.propTypes = {
                     type: PropTypes.oneOf([validationTypes.text, validationTypes.array, validationTypes.arrayWithTextElements, validationTypes.dropdown, validationTypes.defaultRole, validationTypes.arrayWithArrayElements, validationTypes.radio, customValidationTypes.hasRaisedError, validationTypes.object]),
                     rules: PropTypes.arrayOf(
                          PropTypes.shape({
-                             type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequiredOnCondition]),
+                             type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequiredOnCondition]),
                              errorMessage: PropTypes.string
                          })
                     )
