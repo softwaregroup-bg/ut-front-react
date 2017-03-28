@@ -463,3 +463,10 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .buttonInput {
     padding-right: 100px;
 }
+
+.groupMenuItem {
+    padding-top: 8px !important;
+}
+.defaultCursor {
+    cursor: default !important;
+}
