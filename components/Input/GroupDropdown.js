@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
@@ -38,15 +38,13 @@ class GroupDropdown extends Dropdown {
     }
 
     get dropdownPlaceholder() {
-        const {value} = this.state;
         const {defaultSelected, data, placeholder} = this.props;
-        
-        const selected = data.find(item => item.key === defaultSelected)
-        return (selected && selected.name) || placeholder
+        const selected = data.find(item => item.key === defaultSelected);
+        return (selected && selected.name) || placeholder;
     }
 
     getMenuItems() {
-        let { data, placeholder, canSelectPlaceholder } = this.props;
+        let { data } = this.props;
         const groups = data.reduce((acc, curr) => {
             let group = acc[curr.group] = acc[curr.group] || [];
             group.push({
@@ -60,21 +58,21 @@ class GroupDropdown extends Dropdown {
                 <div key={group}>
                     {/* the material ui api allows manipulation of  */}
                     <MenuItem
-                        key={group}
-                        className={classnames(style.groupMenuItem, style.defaultCursor)}
-                        disabled
-                        primaryText={group}
+                      key={group}
+                      className={classnames(style.groupMenuItem, style.defaultCursor)}
+                      disabled
+                      primaryText={group}
                     />
                     <Divider />
                     {
                         groups[group].map((item, i) => (
                             <MenuItem
-                                key={item.key + '-' + i}
-                                className={style.groupMenuItem}
-                                disabled={item.disabled}
-                                value={item.key}
-                                onTouchTap={() => { this.handleChange(item); }}
-                                primaryText={item.name}
+                              key={item.key + '-' + i}
+                              className={style.groupMenuItem}
+                              disabled={item.disabled}
+                              value={item.key}
+                              onTouchTap={() => { this.handleChange(item); }}
+                              primaryText={item.name}
                             />
                         ))
                     }
@@ -129,9 +127,5 @@ class GroupDropdown extends Dropdown {
         );
     }
 }
-
-GroupDropdown.propTypes = {
-
-};
 
 export default GroupDropdown;

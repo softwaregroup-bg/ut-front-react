@@ -12,7 +12,6 @@ export class Body extends Component {
         let space = <span>&nbsp;</span>;
         let fields = this.props.fields.filter((f) => (!(f.visible === false)));
         let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.globalMenu ? 1 : 0);
-        // console.log(fields);
 
         if (this.props.data.length) {
             if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= this.props.data.length) {
