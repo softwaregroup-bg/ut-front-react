@@ -38,9 +38,6 @@ class Dropdown extends Component {
     }
 
     handleChange(event, index, value) {
-        console.log('event', event)
-        console.log('index', index)
-        console.log('value', value)
         let { onSelect, keyProp } = this.props;
         let objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
 
