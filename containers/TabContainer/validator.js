@@ -14,9 +14,9 @@
     ]
 */
 
-import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations } from '../../validator/constants';
+import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations, objectValidations } from '../../validator/constants';
 import { validationTypes as validationTypesTabContainer } from './constants';
-import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule } from '../../validator';
+import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
 export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
@@ -87,6 +87,9 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     }
                     if (validation.type === validationTypes.defaultRole && rule.type === defaultRoleValidations.isRequired) {
                         defaultRoleRule(currentValue, getAssignedRoles(sourceMap.get('roles'), sourceMap.getIn(['localData', 'assignedRoles'])), rule, result);
+                    }
+                    if (validation.type === validationTypes.object && rule.type === objectValidations.hasKeys) {
+                        hasKeysRule(currentValue, rule, result);
                     }
 
                     // custom for password hash in user -> credentials tab

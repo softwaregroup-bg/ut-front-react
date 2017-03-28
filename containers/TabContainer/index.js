@@ -233,7 +233,7 @@ TabContainer.propTypes = {
             validations: PropTypes.arrayOf(
                 PropTypes.shape({
                     key: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-                    type: PropTypes.oneOf([validationTypes.text, validationTypes.array, validationTypes.arrayWithTextElements, validationTypes.dropdown, validationTypes.defaultRole, validationTypes.arrayWithArrayElements, validationTypes.radio, customValidationTypes.hasRaisedError]),
+                    type: PropTypes.oneOf([validationTypes.text, validationTypes.array, validationTypes.arrayWithTextElements, validationTypes.dropdown, validationTypes.defaultRole, validationTypes.arrayWithArrayElements, validationTypes.radio, customValidationTypes.hasRaisedError, validationTypes.object]),
                     rules: PropTypes.arrayOf(
                          PropTypes.shape({
                              type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequiredOnCondition]),
