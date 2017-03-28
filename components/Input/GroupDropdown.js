@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
+import Divider from 'material-ui/Divider';
+import MenuItem from 'material-ui/MenuItem';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -15,10 +17,70 @@ class GroupDropdown extends Dropdown {
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
         this.toggleOpen = this.toggleOpen.bind(this);
+        this.toggleClose = this.toggleClose.bind(this);
     }
 
     toggleOpen(event) {
         return this.setState({open: true, anchorEl: event.currentTarget});
+    }
+
+    toggleClose() {
+        return this.setState({open: false});
+    }
+
+    handleChange(item) {
+        let { onSelect, keyProp } = this.props;
+        let objectToPassOnChange = {key: keyProp, value: item.key, initValue: this.state.value};
+
+        this.setState({value: item.key, valid: {isValid: true, errorMessage: ''}});
+        onSelect(objectToPassOnChange);
+        this.toggleClose();
+    }
+
+    get dropdownPlaceholder() {
+        const {value} = this.state;
+        const {defaultSelected, data, placeholder} = this.props;
+        
+        const selected = data.find(item => item.key === defaultSelected)
+        return (selected && selected.name) || placeholder
+    }
+
+    getMenuItems() {
+        let { data, placeholder, canSelectPlaceholder } = this.props;
+        const groups = data.reduce((acc, curr) => {
+            let group = acc[curr.group] = acc[curr.group] || [];
+            group.push({
+                key: curr.key,
+                name: curr.name
+            });
+            return acc;
+        }, {});
+        return Object.keys(groups).map(group => {
+            return (
+                <div key={group}>
+                    {/* the material ui api allows manipulation of  */}
+                    <MenuItem
+                        key={group}
+                        className={classnames(style.groupMenuItem, style.defaultCursor)}
+                        disabled
+                        primaryText={group}
+                    />
+                    <Divider />
+                    {
+                        groups[group].map((item, i) => (
+                            <MenuItem
+                                key={item.key + '-' + i}
+                                className={style.groupMenuItem}
+                                disabled={item.disabled}
+                                value={item.key}
+                                onTouchTap={() => { this.handleChange(item); }}
+                                primaryText={item.name}
+                            />
+                        ))
+                    }
+                </div>
+            );
+        });
     }
 
     render() {
@@ -39,7 +101,7 @@ class GroupDropdown extends Dropdown {
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
-                                {this.props.placeholder}
+                                {this.dropdownPlaceholder}
                             </div>
                         </div>
                         <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
@@ -56,7 +118,6 @@ class GroupDropdown extends Dropdown {
                     <Menu
                       autoWidth={false}
                       disableAutoFocus
-                      multiple
                       value={this.state.value}
                       maxHeight={300}
                       style={{width: rootElementWidth}}
