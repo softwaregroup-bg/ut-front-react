@@ -147,8 +147,7 @@ Popup.propTypes = {
     closeOnOverlayClick: PropTypes.bool,
     header: PropTypes.shape({
         className: PropTypes.string,
-        text: PropTypes.string,
-        closePopup: PropTypes.func
+        text: PropTypes.string
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,
