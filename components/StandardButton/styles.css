@@ -109,31 +109,6 @@
     height: 30px;
 }
 
-.actionBtn {
-    box-sizing: border-box;
-    margin-left: 15px;
-    padding: 5px 20px;
-    background: var(--ut-front-react-defaultBtnBgColor);
-    border: 1px solid var(--ut-front-react-defaultBtnBgColor);
-    outline: 0;
-    font-size: 14px;
-}
-
-.actionBtn:hover, .actionBtn.primary {
-    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
-    border-radius: 2px;
-    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
-}
-
-.actionBtn.primary:hover {
-    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
-    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
-}
-
-.actionBtn, actionBtn.primary, .actionBtn:active, .actionBtn.primary:active {
-    outline: 0;
-}
-
 .secondaryButton {
     display: inline-block;
     font-weight: 400;
@@ -295,16 +270,18 @@
 .secondaryDialog {
     margin-left: 10px;
     color: var(--ut-front-react-secondaryDialogColor);
-    border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
+    border: 1px solid var(--ut-front-react-secondaryDialogBgColor);
     background-color: var(--ut-front-react-secondaryDialogBgColor);
 }
 
 .secondaryDialog:hover {
-    border: 1px solid var(--ut-front-react-secondaryDialogBorderColorHover);
+    color: var(--ut-front-react-secondaryLightColorHover);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorHover);
+    background-color: var(--ut-front-react-secondaryLightBgColorHover);
 }
 
 .secondaryDialog:disabled {
-  color: var(--ut-front-react-secondaryDialogColorDisabled);
-  border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
-  background-color: var(--ut-front-react-secondaryDialogBgColorDisabled);
+    color: var(--ut-front-react-secondaryDialogColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
+    background-color: var(--ut-front-react-secondaryDialogBgColorDisabled);
 }
