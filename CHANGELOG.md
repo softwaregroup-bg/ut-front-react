@@ -1,3 +1,33 @@
+<a name="8.18.7"></a>
+## [8.18.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.6...v8.18.7) (2017-04-03)
+
+
+
+<a name="8.18.6"></a>
+## [8.18.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.5...v8.18.6) (2017-04-03)
+
+
+### Bug Fixes
+
+* UIS-1068 allow implementation styles override on login ([#219](https://github.com/softwaregroup-bg/ut-front-react/issues/219)) ([8f0d439](https://github.com/softwaregroup-bg/ut-front-react/commit/8f0d439))
+
+
+
+<a name="8.18.5"></a>
+## [8.18.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.4...v8.18.5) (2017-03-29)
+
+
+
+<a name="8.18.4"></a>
+## [8.18.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.3...v8.18.4) (2017-03-29)
+
+
+### Bug Fixes
+
+* UIS-2062 extend dropdown ([2da72cc](https://github.com/softwaregroup-bg/ut-front-react/commit/2da72cc))
+
+
+
 <a name="8.18.3"></a>
 ## [8.18.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.2...v8.18.3) (2017-03-24)
 
