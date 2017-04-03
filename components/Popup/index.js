@@ -76,7 +76,7 @@ class PopupInternal extends Component {
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
-                    { footer && <Footer className={footer.className} actionButtons={footer.actionButtons} /> }
+                    { footer && <Footer leftNode={footer.leftNode} className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
             </div>
         );
@@ -94,8 +94,7 @@ PopupInternal.propTypes = {
     header: PropTypes.shape({
         className: PropTypes.string,
         text: PropTypes.string,
-        closeIcon: PropTypes.bool,
-        closePopup: PropTypes.func
+        closeIcon: PropTypes.bool
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,
@@ -103,7 +102,8 @@ PopupInternal.propTypes = {
             className: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
             label: PropTypes.string,
             onClick: PropTypes.func
-        }))
+        })),
+        leftNode: PropTypes.node
     }),
     children: PropTypes.any,
     closePopup: PropTypes.func
@@ -152,7 +152,8 @@ Popup.propTypes = {
             className: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
             label: PropTypes.string,
             onClick: PropTypes.func
-        }))
+        })),
+        leftNode: PropTypes.node
     }),
     children: PropTypes.any,
     closePopup: PropTypes.func
