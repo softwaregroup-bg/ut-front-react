@@ -1,14 +1,23 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
+import classnames from 'classnames';
 import LoginForm from '../../containers/LoginForm';
 import { getClass } from '../../utils/helpers';
 import styles from './styles.css';
 
-const LoginPage = () => (
-    <div className={styles.loginContainer}>
-        <div className={getClass(styles, 'loginLogo loginPageHeader')} />
-        <LoginForm />
-        <div className={getClass(styles, 'loginLogo loginPageFooter')} />
-    </div>
-);
+class LoginPage extends Component {
+    render() {
+        return (
+            <div className={styles.loginContainer}>
+                <div className={classnames(this.context.implementationStyle.loginLogoHeader, getClass(styles, 'loginLogo loginPageHeader'))} />
+                    <LoginForm />
+                <div className={classnames(this.context.implementationStyle.loginLogoFooter, getClass(styles, 'loginLogo loginPageFooter'))} />
+            </div>
+        );
+    }
+}
+
+LoginPage.contextTypes = {
+    implementationStyle: PropTypes.object
+};
 
 export default LoginPage;
