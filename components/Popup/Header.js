@@ -25,7 +25,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
     className: PropTypes.string,
-    text: PropTypes.string,
+    text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     closeIcon: PropTypes.bool,
     closePopup: PropTypes.func
 };
