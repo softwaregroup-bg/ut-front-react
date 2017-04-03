@@ -1,3 +1,13 @@
+<a name="8.18.6"></a>
+## [8.18.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.5...v8.18.6) (2017-04-03)
+
+
+### Bug Fixes
+
+* UIS-1068 allow implementation styles override on login ([#219](https://github.com/softwaregroup-bg/ut-front-react/issues/219)) ([8f0d439](https://github.com/softwaregroup-bg/ut-front-react/commit/8f0d439))
+
+
+
 <a name="8.18.5"></a>
 ## [8.18.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.4...v8.18.5) (2017-03-29)
 
