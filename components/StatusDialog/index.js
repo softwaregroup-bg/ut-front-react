@@ -20,7 +20,6 @@ const StatusDialog = ({ status, onClose }) => {
     if (message) {
         displayMsg.push(message);
     }
-    displayMsg.push('asds');
 
     return (
         <div>
