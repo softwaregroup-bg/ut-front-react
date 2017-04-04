@@ -1,3 +1,13 @@
+<a name="8.18.10"></a>
+## [8.18.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.9...v8.18.10) (2017-04-04)
+
+
+### Bug Fixes
+
+* remove wrong message ([3136b03](https://github.com/softwaregroup-bg/ut-front-react/commit/3136b03))
+
+
+
 <a name="8.18.9"></a>
 ## [8.18.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.8...v8.18.9) (2017-04-04)
 
