@@ -1,3 +1,13 @@
+<a name="8.18.9"></a>
+## [8.18.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.8...v8.18.9) (2017-04-04)
+
+
+### Bug Fixes
+
+* filter default value ([3d8abe8](https://github.com/softwaregroup-bg/ut-front-react/commit/3d8abe8))
+
+
+
 <a name="8.18.8"></a>
 ## [8.18.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.7...v8.18.8) (2017-04-03)
 
