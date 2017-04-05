@@ -104,7 +104,13 @@ class TreeNavigation extends React.Component {
     }
 
     render() {
-        return <div className={style.scrollableTreeWrap} style={this.props.styles.main}><div className={style.innerTrWrap}>{this.renderNodes(this.props.data)}</div></div>;
+        return (
+            <div className={style.scrollableTreeWrap}>
+                <div className={style.innerTrWrap}>
+                    {this.renderNodes(this.props.data)}
+                </div>
+            </div>
+        );
     }
 }
 
