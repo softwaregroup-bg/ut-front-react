@@ -211,7 +211,7 @@ class TabContainer extends Component {
                             />
                         </div>}
                     >
-                        <div className={style.contentComponentWrapper}>
+                        <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
                             {activeTab.component}
                         </div>
                     </Vertical>
@@ -241,7 +241,8 @@ TabContainer.propTypes = {
                          })
                     )
                 })
-            )
+            ),
+            styleContentWrapper: PropTypes.object
         })
     ).isRequired,
     active: PropTypes.number,
