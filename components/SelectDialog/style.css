@@ -2,7 +2,7 @@
 @import 'config.css';
 
 .selectDialogWrapper {
-    width: 400px;
+    min-width: 400px;
 }
 
 .searchInputWrapper {

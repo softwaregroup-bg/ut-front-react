@@ -107,7 +107,9 @@ class GridToolBox extends Component {
                     to: filters[filterElement.name.to]
                 };
         } else {
-            filterValue = filters[filterElement.name] || filterElement.defaultValue;
+            filterValue = (filters.hasOwnProperty(filterElement.name))
+                ? filters[filterElement.name]
+                : filterElement.defaultValue;
         }
 
         if (showFiltersPopup && !renderInDialog) {

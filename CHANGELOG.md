@@ -1,3 +1,38 @@
+<a name="8.18.11"></a>
+## [8.18.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.10...v8.18.11) (2017-04-06)
+
+
+### Bug Fixes
+
+* order icon ([ba179f2](https://github.com/softwaregroup-bg/ut-front-react/commit/ba179f2))
+
+
+
+<a name="8.18.10"></a>
+## [8.18.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.9...v8.18.10) (2017-04-04)
+
+
+### Bug Fixes
+
+* remove wrong message ([3136b03](https://github.com/softwaregroup-bg/ut-front-react/commit/3136b03))
+
+
+
+<a name="8.18.9"></a>
+## [8.18.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.8...v8.18.9) (2017-04-04)
+
+
+### Bug Fixes
+
+* filter default value ([3d8abe8](https://github.com/softwaregroup-bg/ut-front-react/commit/3d8abe8))
+
+
+
+<a name="8.18.8"></a>
+## [8.18.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.7...v8.18.8) (2017-04-03)
+
+
+
 <a name="8.18.7"></a>
 ## [8.18.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.6...v8.18.7) (2017-04-03)
 
