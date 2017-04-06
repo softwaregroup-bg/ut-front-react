@@ -62,9 +62,9 @@
 }
 
 .leftNode {
-    position: absolute;
-    left: 20px;
-    bottom: 0;
+    justify-content: flex-start;
+    flex: 1;
+    padding-left: 20px;
 }
 
 .closeBtn {
