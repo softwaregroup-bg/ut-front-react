@@ -1,3 +1,13 @@
+<a name="8.19.0"></a>
+# [8.19.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.12...v8.19.0) (2017-04-07)
+
+
+### Features
+
+* UIS-2224 allow tabs to accept styles for the content wrapper ([770ce47](https://github.com/softwaregroup-bg/ut-front-react/commit/770ce47))
+
+
+
 <a name="8.18.12"></a>
 ## [8.18.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.11...v8.18.12) (2017-04-06)
 
