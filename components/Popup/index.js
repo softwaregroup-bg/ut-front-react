@@ -4,7 +4,12 @@ import debounce from 'lodash.debounce';
 import RenderToLayer from './RenderToLayer';
 import Header from './Header.js';
 import Footer from './Footer.js';
-import { POPUP_MIN_OFFSETS, POPUP_HEADER_HEIGHT, POPUP_FOOTER_HEIGHT } from './config';
+import {
+    POPUP_MIN_OFFSETS,
+    POPUP_HEADER_HEIGHT,
+    POPUP_FOOTER_HEIGHT,
+    POPUP_MIN_SIDE_OFFSETS
+} from './config';
 
 import styles from './styles.css';
 
@@ -12,10 +17,11 @@ class PopupInternal extends Component {
     constructor() {
         super();
         this.state = {
-            contentMaxHeight: ''
+            contentMaxHeight: '',
+            contentMaxWidth: ''
         };
         this.handleWindowResize = debounce(this.handleWindowResize.bind(this), 100);
-        this.updateContentMaxHeight = this.updateContentMaxHeight.bind(this);
+        this.updateContentDimensions = this.updateContentDimensions.bind(this);
         this.handleEsc = this.handleEsc.bind(this);
     }
 
@@ -29,7 +35,7 @@ class PopupInternal extends Component {
         if (closeOnEsc) {
             document.addEventListener('keydown', this.handleEsc);
         }
-        this.updateContentMaxHeight();
+        this.updateContentDimensions();
     }
 
     componentWillUnmount() {
@@ -38,12 +44,15 @@ class PopupInternal extends Component {
     }
 
     handleWindowResize() {
-        this.updateContentMaxHeight();
+        this.updateContentDimensions();
     }
 
-    updateContentMaxHeight() {
+    updateContentDimensions() {
         const contentMaxHeight = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT;
+        const contentMaxWidth = window.innerWidth - POPUP_MIN_SIDE_OFFSETS;
+
         this.setState({
+            contentMaxWidth: `${contentMaxWidth}px`,
             contentMaxHeight: `${contentMaxHeight}px`
         });
     }
@@ -68,12 +77,14 @@ class PopupInternal extends Component {
             closePopup
         } = this.props;
 
+        const { contentMaxWidth, contentMaxHeight } = this.state;
+
         return (
             <div className={styles.modalContainer}>
                 { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
-                <div className={classnames(styles.popupContainer, className)}>
+                <div style={{maxWidth: contentMaxWidth}} className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
-                    <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
+                    <div style={{maxHeight: contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
                     { footer && <Footer leftNode={footer.leftNode} className={footer.className} actionButtons={footer.actionButtons} /> }

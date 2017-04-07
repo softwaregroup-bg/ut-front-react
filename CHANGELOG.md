@@ -1,3 +1,18 @@
+<a name="8.18.12"></a>
+## [8.18.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.11...v8.18.12) (2017-04-06)
+
+
+
+<a name="8.18.11"></a>
+## [8.18.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.10...v8.18.11) (2017-04-06)
+
+
+### Bug Fixes
+
+* order icon ([ba179f2](https://github.com/softwaregroup-bg/ut-front-react/commit/ba179f2))
+
+
+
 <a name="8.18.10"></a>
 ## [8.18.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.9...v8.18.10) (2017-04-04)
 
