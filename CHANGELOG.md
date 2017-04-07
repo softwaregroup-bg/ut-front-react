@@ -1,3 +1,13 @@
+<a name="8.19.3"></a>
+## [8.19.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.2...v8.19.3) (2017-04-07)
+
+
+### Bug Fixes
+
+* UIS-1783 fix bug about multiple scrollbars for the BU tree ([a3c54d1](https://github.com/softwaregroup-bg/ut-front-react/commit/a3c54d1))
+
+
+
 <a name="8.19.2"></a>
 ## [8.19.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.1...v8.19.2) (2017-04-07)
 
