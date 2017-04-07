@@ -1,3 +1,13 @@
+<a name="8.19.2"></a>
+## [8.19.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.1...v8.19.2) (2017-04-07)
+
+
+### Bug Fixes
+
+* add classname ([15ae820](https://github.com/softwaregroup-bg/ut-front-react/commit/15ae820))
+
+
+
 <a name="8.19.1"></a>
 ## [8.19.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.0...v8.19.1) (2017-04-07)
 
