@@ -401,7 +401,7 @@ input:read-only{
     font-weight: bold;
 }
 
-/* Magic: do NOT touch! */
+/* Dropdown arrow background color */
 div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     color: var(--ut-front-react-standardDropdownSelectedColor) !important;
 }
