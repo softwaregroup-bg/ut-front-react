@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "8.19.3",
+  "version": "8.19.4",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
