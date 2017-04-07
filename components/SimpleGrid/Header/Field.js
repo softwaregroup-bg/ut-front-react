@@ -26,7 +26,7 @@ export default class Field extends Component {
         }
         return (
             <th className={this.getStyle('girdHeading')} onTouchTap={this.handleOrder}>
-                <span>
+                <span className={this.getStyle('gridHeadingInner')}>
                     {this.props.transformCellValue(this.props.field.title || '', this.props.field, undefined, true)}
                     <span className={classnames.apply(undefined, styles)} />
                 </span>
