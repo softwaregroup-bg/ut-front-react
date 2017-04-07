@@ -1,3 +1,13 @@
+<a name="8.19.1"></a>
+## [8.19.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.0...v8.19.1) (2017-04-07)
+
+
+### Bug Fixes
+
+* MCTUNE-2661 refactor component to display all items on one row ([4abd8e5](https://github.com/softwaregroup-bg/ut-front-react/commit/4abd8e5))
+
+
+
 <a name="8.19.0"></a>
 # [8.19.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.12...v8.19.0) (2017-04-07)
 
