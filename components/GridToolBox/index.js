@@ -384,11 +384,12 @@ class GridToolBox extends Component {
         }
 
         return (
-            <div className={style.toolbarWrap}>
-                <div className={classnames(style.toolbarElement, style.label, labelClass)} onClick={toggle}>
+            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
+                <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
                     {leftSide}
                 </div>
-                <div className={style.pullRight}>
+                <div className={classnames(style.pullRight, style.tableCell)}>
+                    <div className={classnames(style.table, style.fixedHeight)}>
                     {filterElements.map((el, i) => {
                         let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                         filtersNumber += incrementNum;
@@ -396,8 +397,10 @@ class GridToolBox extends Component {
                             return null;
                         } else {
                             return (
-                                <div key={i} className={classnames(style.toolbarElement, style.minWidthed)} style={el.styles}>
-                                    {this.renderFilter(el)}
+                                <div key={i} className={classnames(style.toolbarElement, style.tableCell)} style={el.styles}>
+                                    <div className={style.minWidthed}>
+                                        {this.renderFilter(el)}
+                                    </div>
                                 </div>
                             );
                         }
@@ -405,6 +408,7 @@ class GridToolBox extends Component {
                     {this.renderAdvanced()}
                     {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' className={style.toolbarElement} />}
                     {this.state.hasActiveFilters && <div onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={classnames(style.toolbarElement, style.closeArrow)} />}
+                    </div>
                 </div>
             </div>
         );
@@ -593,20 +597,21 @@ class GridToolBox extends Component {
         let toggle = () => this.setState({showFilters: true});
 
         return (
-            <div className={style.toolbarWrap}>
-
-                <div className={classnames(style.toolbarElement, style.label, style.link)} onClick={toggle}>
+            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
+                <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
                     Show filters
                 </div>
 
-                <div className={style.pullRight}>
+                <div className={classnames(style.pullRight, style.tableCell)}>
+                    <div className={classnames(style.table, style.fixedHeight)}>
                     {this.props.actionButtonElements.map((el, i) => {
                         return (
-                            <div key={i} className={style.leftFloat}>
+                            <div key={i} className={classnames(style.tableCell, style.spacer)}>
                                 {this.renderActionButton(el, i)}
                             </div>
                         );
                     })}
+                    </div>
                 </div>
 
             </div>
