@@ -1,3 +1,53 @@
+<a name="8.19.4"></a>
+## [8.19.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.3...v8.19.4) (2017-04-07)
+
+
+
+<a name="8.19.3"></a>
+## [8.19.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.2...v8.19.3) (2017-04-07)
+
+
+### Bug Fixes
+
+* UIS-1783 fix bug about multiple scrollbars for the BU tree ([a3c54d1](https://github.com/softwaregroup-bg/ut-front-react/commit/a3c54d1))
+
+
+
+<a name="8.19.2"></a>
+## [8.19.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.1...v8.19.2) (2017-04-07)
+
+
+### Bug Fixes
+
+* add classname ([15ae820](https://github.com/softwaregroup-bg/ut-front-react/commit/15ae820))
+
+
+
+<a name="8.19.1"></a>
+## [8.19.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.0...v8.19.1) (2017-04-07)
+
+
+### Bug Fixes
+
+* MCTUNE-2661 refactor component to display all items on one row ([4abd8e5](https://github.com/softwaregroup-bg/ut-front-react/commit/4abd8e5))
+
+
+
+<a name="8.19.0"></a>
+# [8.19.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.12...v8.19.0) (2017-04-07)
+
+
+### Features
+
+* UIS-2224 allow tabs to accept styles for the content wrapper ([770ce47](https://github.com/softwaregroup-bg/ut-front-react/commit/770ce47))
+
+
+
+<a name="8.18.12"></a>
+## [8.18.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.11...v8.18.12) (2017-04-06)
+
+
+
 <a name="8.18.11"></a>
 ## [8.18.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.10...v8.18.11) (2017-04-06)
 

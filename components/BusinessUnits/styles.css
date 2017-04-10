@@ -6,21 +6,16 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 .treeStructureWrap .treeWrap {
     width: 100%;
-    /* height, margin-top are set with js */
+    height: 100%;
     position: relative;
 }
 
 .clearButton {
-    width: 90%;
-    margin: 20px 5% 10px;
-    position: absolute;
-    z-index: 1;
+    width: calc(100% - 20px); /* reduce with width with the side margins*/
+    margin: 0px 10px 15px 10px;
     cursor: pointer;
 }

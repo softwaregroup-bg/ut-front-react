@@ -4,26 +4,9 @@
 .scrollableTreeWrap {
     width: 100%;
     height: 100%;
-    position: absolute;
-    box-sizing: border-box;
-    overflow: auto;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-}
-.scrollableTreeWrap::-webkit-scrollbar-track {
-	border: 1px solid var(--ut-front-react-standardBusinessUnitsTreeBorderColor);
-	background-color: var(--ut-front-react-standardBusinessUnitsTreeBackgroundWhiteColor);
-}
-.scrollableTreeWrap::-webkit-scrollbar {
-	width: 8px;
-    height: 8px;
-    border-radius: 8px;
-	background-color: var(--ut-front-react-standardBusinessUnitsTreeBackgroundColor);
-}
-.scrollableTreeWrap::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-	background-color: var(--ut-front-react-standardBusinessUnitsTreeBackgroundColor);
 }
 
 .innerTrWrap {

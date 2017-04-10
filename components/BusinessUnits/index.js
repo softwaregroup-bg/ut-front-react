@@ -3,10 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import Tree from '../BusinessUnitsTree';
 import StandardButton from '../StandardButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import { Vertical } from '../Layout';
 
 import style from './styles.css';
-
-const innerWrapTopMargin = 35;
 
 class BusinessUnits extends Component {
     constructor(props, context) {
@@ -19,13 +18,8 @@ class BusinessUnits extends Component {
         this.state = {
             selected: props.active,
             filter: this.unselectedValue,
-            reset: false,
-            treeStructureInnerWrapHeight: '400px',
-            treeStructureInnerWrapTopMargin: innerWrapTopMargin + 'px',
-            treeStructureInnerWrapHeightWasCalculater: false
+            reset: false
         };
-
-        this.handleResize = this.handleResize.bind(this);
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -40,36 +34,8 @@ class BusinessUnits extends Component {
         }
     }
 
-    componentDidMount() {
-        this.handleResizeForceUpdate = true;
-        window.addEventListener('resize', this.handleResize);
-    }
-
-    componentDidUpdate() {
-        this.handleResize();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleResize);
-    }
-
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    }
-
-    handleResize() {
-        let outerWrapHeight = this.refs.outerWrap.clientHeight;
-        let topMargin = innerWrapTopMargin; // 31 is the top margin
-        let innerWrapHeight = outerWrapHeight - topMargin;
-
-        if (this.handleResizeForceUpdate || !this.state.treeStructureInnerWrapHeightWasCalculater) {
-            this.handleResizeForceUpdate = false;
-            this.setState({
-                treeStructureInnerWrapHeight: innerWrapHeight + 'px',
-                treeStructureInnerWrapTopMargin: topMargin + 'px',
-                treeStructureInnerWrapHeightWasCalculater: true
-            });
-        }
     }
 
     getBusinessUnits() {
@@ -82,18 +48,9 @@ class BusinessUnits extends Component {
     }
 
     render() {
-        let clearButton;
+        let clearButton = <span />;
         if (this.props.clearSelectedBusinessUnit && !this.props.isLoading) {
             let clearSelection = () => {
-                // this.setState({
-                //     filter: {
-                //         key: 'null',
-                //         inner: undefined,
-                //         name: 'Select'
-                //     },
-                //     selected: undefined,
-                //     reset: true
-                // });
                 this.props.clearSelectedBusinessUnit();
             };
             clearButton = <StandardButton
@@ -105,13 +62,9 @@ class BusinessUnits extends Component {
         }
 
         return (
-            <div className={style.treeStructureWrap} ref='outerWrap'>
-                <div className={style.treeWrap}
-                  style={{height: this.state.treeStructureInnerWrapHeight, marginTop: this.state.treeStructureInnerWrapTopMargin}}
-                >
-
-                    {clearButton}
-
+            <div className={style.treeStructureWrap}>
+                <div className={style.treeWrap}>
+                <Vertical fixedComponent={clearButton}>
                     {this.props.isLoading && <CircularProgress style={{display: 'block', margin: '40px auto 0px auto'}} size={45} />}
                     {!this.props.isLoading && <Tree
                       onSelect={this.props.selectBusinessUnit}
@@ -122,7 +75,7 @@ class BusinessUnits extends Component {
                       reset={this.state.reset}
                       styles={this.props.styles}
                     />}
-
+                </Vertical>
                 </div>
             </div>
         );
@@ -140,7 +93,6 @@ BusinessUnits.propTypes = {
     active: Tree.propTypes.active,
     openElements: Tree.propTypes.openElements,
     styles: PropTypes.object,
-    outerWrapHeight: PropTypes.number,
 
     // Functions
     selectBusinessUnit: PropTypes.func,

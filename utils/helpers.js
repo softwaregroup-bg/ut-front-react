@@ -65,3 +65,5 @@ const assign = (to, from) => {
     }
     return to;
 };
+
+export const capitalizeEveryWord = (string) => string.split(' ').map((word) => capitalizeFirstLetter(word)).join(' ');
