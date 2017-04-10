@@ -1,0 +1,89 @@
+.documentsWrap {
+    width: 100%;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.noUploadedDocumentsWrap {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.deleteDialogFooter {
+    justify-content: flex-end;
+}
+
+#paginationWrap {
+    width: 100%;
+    padding: 10px 0 0 0;
+}
+
+/*FileDetails styles*/
+.fileDetailsContainer {
+    display: flex;
+    padding: 40px;
+}
+
+.detailsRow {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid #CCC;
+}
+
+.detailName {
+    font-weight: 700;
+    width: 160px;
+}
+
+.fileDetails {
+    width: 400px;
+    margin-left:40px;
+}
+
+.filePreview {
+    cursor: pointer;
+}
+
+.fileDetailsNoText {
+    font-style: italic;
+}
+
+.originalFilePreview {
+    padding: 0 100px;
+}
+
+/* FileView styles */
+.noPictureDocument {
+    width: 230px;
+    height: 230px;
+    line-height: 230px;
+    text-align: center;
+    color: #595959;
+    font-size: 28px;
+    text-transform: uppercase;
+    border: 1px solid #D7D6D6;
+    background: #F5F5F5;
+}
+
+.noPictureDocumentInvalidType {
+    width: 230px;
+    height: 230px;
+    line-height: 230px;
+    text-align: center;
+    color: #595959;
+    font-size: 28px;
+    text-transform: uppercase;
+    border: 1px solid #FFBFBF;
+    background: #FFEFEF;
+}
+
+.fileViewOriginalButtonWrap {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

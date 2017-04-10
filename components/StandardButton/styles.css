@@ -109,6 +109,30 @@
     height: 30px;
 }
 
+.actionBtn {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    background: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBgColor);
+    outline: 0;
+    font-size: 14px;
+}
+
+.actionBtn:hover, .actionBtn.primary {
+    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
+    border-radius: 2px;
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
+}
+
+.actionBtn.primary:hover {
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+}
+
+.actionBtn, actionBtn.primary, .actionBtn:active, .actionBtn.primary:active {
+    outline: 0;
+}
+
 .secondaryButton {
     display: inline-block;
     font-weight: 400;
