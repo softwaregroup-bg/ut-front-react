@@ -117,7 +117,6 @@
 
 .textareaWrap {
     width: 70%;
-    display: table-cell;
 }
 
 .textareaWrap textarea {
@@ -127,7 +126,6 @@
 }
 
 .textareaLabelWrap {
-    display: table-cell;
     font-weight: bold;
     vertical-align: top
 }
@@ -403,7 +401,7 @@ input:read-only{
     font-weight: bold;
 }
 
-/* Magic: do NOT touch! */
+/* Dropdown arrow background color */
 div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     color: var(--ut-front-react-standardDropdownSelectedColor) !important;
 }
@@ -434,17 +432,20 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .multiSelectDropdownMenu {
     display: block !important;
-    padding: 16px 0 !important;
 }
 
 .multiSelectDropdownMenu div {
-    max-height: 100%;
     font-size: 15px;
     line-height: 32px;
 }
-.multiSelectDropdownMenu div>span, .multiSelectDropdownMenu div>div {
-    min-height: auto !important;
-    padding: 0 8px;
+
+.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem {
+    display: flex !important;
+}
+
+.multiSelectDropdownMenuItemWrap {
+    align-items: center;
+    min-height: 32px !important;
 }
 
 .multiSelectDropdownPlaceholder {
@@ -461,4 +462,11 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .buttonInput {
     padding-right: 100px;
+}
+
+.groupMenuItem {
+    padding-top: 8px !important;
+}
+.defaultCursor {
+    cursor: default !important;
 }

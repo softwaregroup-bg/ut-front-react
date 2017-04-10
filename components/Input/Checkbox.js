@@ -20,7 +20,7 @@ const Checkbox = (props) => {
             <input {...propsLeft} type='checkbox' onChange={noop} className={classnames(style.checkBox, isDisabledClass)} />
             <div className={style.innerWrap}>
                 <label className={style.checkBoxWrap}><span className={classnames(style.checkBoxSpanWrapper, isDisabledClass)} /></label>
-                <div className={style.lableWrap}>{label}</div>
+                {label && <div className={style.lableWrap}>{label}</div>}
             </div>
         </span>
     );

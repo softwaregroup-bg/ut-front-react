@@ -28,12 +28,13 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    min-width: 500px;
+    min-width: 540px;
     background-color: var(--ut-front-react-popupColor);
     z-index: 22;
 }
 
 .popupSection {
+    position: relative;
     display: flex;
     align-items: center;
     flex-basis: 50px;
@@ -44,7 +45,6 @@
 .popupHeader {
     composes: popupSection;
     justify-content: center;
-    position: relative;
     font-size: 18px;
     border-bottom: 1px solid var(--ut-front-react-popupSectionBorderColor);
 }
@@ -59,6 +59,12 @@
     justify-content: flex-end;
     padding-right: 20px;
     border-top: 1px solid var(--ut-front-react-popupSectionBorderColor);
+}
+
+.leftNode {
+    justify-content: flex-start;
+    flex: 1;
+    padding-left: 20px;
 }
 
 .closeBtn {

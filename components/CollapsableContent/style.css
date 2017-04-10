@@ -1,6 +1,4 @@
 .collapsableContentContainer {
-    overflow-x: hidden;
-    overflow-y: auto;
     background-color: #F9F9F9;
 	position: relative;
 }
@@ -72,5 +70,10 @@
 }
 
 .collapsableContentContainer .childWrap {
-    margin-top: 16px;
+    margin-top: 15px;
+    height: calc(100% - 15px);
+}
+
+.collapsableContentContainer .childWrap>div { /* This fix is for backwards compatibility */
+    height: 100%;
 }

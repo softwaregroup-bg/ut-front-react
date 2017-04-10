@@ -47,7 +47,7 @@ class Container extends Component {
         // Resizible logic
         this.setResizorsHeight();
         let initObjects = this.props.cols.map((col) => {
-            return {domId: col.id, minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
+            return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
         });
         this.initResize(initObjects);
         document.onmouseup = this.updateOnMouseUp;
@@ -278,7 +278,7 @@ class Container extends Component {
                       heading={col.heading}
                       info={col.info}
                       orientation={col.right ? 'right' : 'left'}
-                      visibleStyles={{height: '100%', ...collapsableContenetStyles}}
+                      visibleStyles={{height: this.state.height, ...collapsableContenetStyles}}
                       isCollapsed={isCollapsed}
                       onCollapse={onCollapseHanlder}
                     >
@@ -287,7 +287,7 @@ class Container extends Component {
                 );
             case resizibleTypes.CONTENT:
                 return (
-                    <div className={style.contentWrap}>
+                    <div className={style.contentWrap} style={{height: this.state.height, overflow: 'auto'}}>
                         {col.child}
                     </div>
                 );
@@ -305,9 +305,11 @@ class Container extends Component {
                 this.setPosition(e, (index - 1));
             };
 
+            let contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
+
             let colResult = (
                 <div id={col.id} key={index} className={style.col} style={currentStyles}>
-                    <div className={style.innerCol} style={col.innerColStyles}>
+                    <div className={contentClass} style={col.innerColStyles}>
                         {this.renderCol(col, index)}
                     </div>
 

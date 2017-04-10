@@ -10,7 +10,8 @@ export const validationTypes = {
     dropdown: 'dropdown',
     radio: 'radio',
     defaultRole: 'defaultRole', // ?? this should not be here, ut-front-react should not know about specific details in ut-user
-    custom: 'custom'
+    custom: 'custom',
+    object: 'object'
 };
 
 export const textValidations = {
@@ -18,6 +19,7 @@ export const textValidations = {
     isRequiredOnCondition: 'isRequiredOnCondition',
     email: 'email',
     numberOnly: 'numberOnly',
+    decimalOnly: 'decimalOnly', // precision, scale
     uniqueValue: 'uniqueValue',
     length: 'length', // minVal, maxVal
     regex: 'regex'  // value
@@ -37,4 +39,8 @@ export const dropdownValidations = {
 
 export const defaultRoleValidations = {
     isRequired: 'isRequired'
+};
+
+export const objectValidations = {
+    hasKeys: 'hasKeys'
 };

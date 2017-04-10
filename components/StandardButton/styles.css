@@ -175,16 +175,17 @@
     cursor: not-allowed;
 }
 
-/* PREDEFINED STYLES BY GUIDELINE */
+/* PREDEFINED STYLES BY STYLE GUIDELINE */
 
 .predefined {
     box-sizing: border-box;
-    height: 30px;
-    min-width: 70px;
-    padding: 0 20px;
+    height: var(--ut-front-react-predefinedHeight);
+    min-width: var(--ut-front-react-predefinedMinWidth);
+    padding: var(--ut-front-react-predefinedPadding);
     outline: 0;
-    font-size: 14px;
-    border-radius: 2px;
+    font-size: var(--ut-front-react-predefinedFontSize);
+    border-radius: var(--ut-front-react-predefinedBorderRadius);
+    cursor: pointer;
 }
 
 .predefined:focus,
@@ -193,115 +194,118 @@
     outline: 0;
 }
 
+.predefined:disabled {
+    cursor: not-allowed;
+}
+
 .primaryLight, .primaryDark {
-    color: #fff;
-    border: 1px solid #4096fd;
-    background-color: #4096fd;
+    color: var(--ut-front-react-primaryColor);
+    border: 1px solid var(--ut-front-react-primaryBorderColor);
+    background-color: var(--ut-front-react-primaryBgColor);
 }
 
 .primaryLight:hover, .primaryDark:hover {
-    border: 1px solid #4f9efc;
-    background-color: #4f9efc;
+    border: 1px solid var(--ut-front-react-primaryBorderColorHover);
+    background-color: var(--ut-front-react-primaryBgColorHover);
 }
 
 .primaryLight:focus, .primaryDark:visited {
-    border: #3d8dee;
-    background-color: #3d8dee;
+    border: var(--ut-front-react-primaryBorderColorFocus);
+    background-color: var(--ut-front-react-primaryBgColorFocus);
 }
 
 .primaryLight:disabled, .primaryDark:disabled {
-    color: #999999;
-    border: 1px solid #dddddd;
-    background-color: #f4f4f4;
-    cursor: not-allowed;
+    color: var(--ut-front-react-primaryColorDisabled);
+    border: 1px solid var(--ut-front-react-primaryBorderColorDisabled);
+    background-color: var(--ut-front-react-primaryBgColorDisabled);
 }
 
 .secondaryLight {
-    color: #444444;
-    border: 1px solid #cccccc;
-    background-color: #ffffff;
+    color: var(--ut-front-react-secondaryLightColor);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColor);
+    background-color: var(--ut-front-react-secondaryLightBgColor);
 }
 
 .secondaryLight:hover {
-    color: #000000;
-    border: 1px solid #999999;
-    background-color: #ffffff;
+    color: var(--ut-front-react-secondaryLightColorHover);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorHover);
+    background-color: var(--ut-front-react-secondaryLightBgColorHover);
 }
 
 .secondaryLight:focus, .secondaryLight:visited {
-    color: #000000;
-    border: 1px solid #999999;
-    background-color: #fafafa;
+    color: var(--ut-front-react-secondaryLightColorFocus);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorFocus);
+    background-color: var(--ut-front-react-secondaryLightBgColorFocus);
 }
 
 .secondaryLight:disabled {
-    color: #999999;
-    border: 1px solid #dddddd;
-    background-color: #f4f4f4;
-    cursor: not-allowed;
+    color: var(--ut-front-react-secondaryLightColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorDisabled);
+    background-color: var(--ut-front-react-secondaryLightBgColorDisabled);
 }
 
 .secondaryDark {
-    color: #444444;
-    border: 1px solid #cccccc;
-    background-color: #f4f4f4;
+    color: var(--ut-front-react-secondaryDarkColor);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColor);
+    background-color: var(--ut-front-react-secondaryDarkBgColor);
 }
 
 .secondaryDark:hover {
-    color: #000000;
-    border: 1px solid #999999;
-    background-color: #f4f4f4;
+    color: var(--ut-front-react-secondaryDarkColorHover);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColorHover);
+    background-color: var(--ut-front-react-secondaryDarkBgColorHover);
 }
 
 .secondaryDark:focus, .secondaryDark:visited {
-    color: #000000;
-    border: 1px solid #999999;
-    background-color: #ececec;
+    color: var(--ut-front-react-secondaryDarkColorFocus);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColorFocus);
+    background-color: var(--ut-front-react-secondaryDarkBgColorFocus);
 }
 
 .secondaryDark:disabled {
-    color: #999999;
-    border: 1px solid #dddddd;
-    background-color: #f4f4f4;
-    cursor: not-allowed;
+    color: var(--ut-front-react-secondaryDarkColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColorDisabled);
+    background-color: var(--ut-front-react-secondaryDarkBgColorDisabled);
 }
 
 .primaryDialog {
     margin-left: 10px;
-    background-color: #4096fd;
-    border: 1px solid #4096fd;
-    color: #ffffff;
-}
-
-.primaryDialog:visited, .primaryDialog:focus, .primaryDialog:active {
-    background-color: #3d8dee;
+    color: var(--ut-front-react-primaryColor);
+    border: 1px solid var(--ut-front-react-primaryBorderColor);
+    background-color: var(--ut-front-react-primaryBgColor);
 }
 
 .primaryDialog:hover {
-    background-color: #4f9efc;
+    border: 1px solid var(--ut-front-react-primaryBorderColorHover);
+    background-color: var(--ut-front-react-primaryBgColorHover);
+}
+
+.primaryDialog:visited, .primaryDialog:focus, .primaryDialog:active {
+    border: 1px solid var(--ut-front-react-primaryBorderColorFocus);
+    background-color: var(--ut-front-react-primaryBgColorFocus);
 }
 
 .primaryDialog:disabled {
-    color: #999999;
-    border: 1px solid #dddddd;
-    background-color: #f4f4f4;
-    cursor: not-allowed;
+    color: var(--ut-front-react-primaryColorDisabled);
+    border: 1px solid var(--ut-front-react-primaryBorderColorDisabled);
+    background-color: var(--ut-front-react-primaryBgColorDisabled);
 }
 
 .secondaryDialog {
     margin-left: 10px;
-    background-color: #f5f5f5;
-    border: 1px solid #f5f5f5;
-    color: #000000;
+    color: var(--ut-front-react-secondaryDialogColor);
+    border: 1px solid var(--ut-front-react-secondaryDialogBgColor);
+    background-color: var(--ut-front-react-secondaryDialogBgColor);
 }
 
 .secondaryDialog:hover {
-    border: 1px solid #D7D6D6;
+    color: var(--ut-front-react-secondaryLightColorHover);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorHover);
+    background-color: var(--ut-front-react-secondaryLightBgColorHover);
 }
 
 .secondaryDialog:disabled {
-  color: #999999;
-  border: 1px solid #dddddd;
-  background-color: #f4f4f4;
-  cursor: not-allowed;
+    color: var(--ut-front-react-secondaryDialogColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
+    background-color: var(--ut-front-react-secondaryDialogBgColorDisabled);
 }
