@@ -65,8 +65,7 @@ FileDetailedView.propTypes = {
     scaleDimensions: PropTypes.shape({
         width: PropTypes.number,
         height: PropTypes.number
-    }),
-    onClick: PropTypes.func
+    })
 };
 
 FileDetailedView.defaultProps = {

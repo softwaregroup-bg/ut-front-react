@@ -97,14 +97,6 @@ FileDetailsPopup.propTypes = {
             description: PropTypes.string
         }).isRequired
     }),
-    scaleDimensions: PropTypes.shape({
-        width: PropTypes.number,
-        height: PropTypes.number
-    }),
-    originalFileScaleDimensions: PropTypes.shape({
-        width: PropTypes.number,
-        height: PropTypes.number
-    }),
     closePopup: PropTypes.func
 };
 

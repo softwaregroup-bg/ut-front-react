@@ -150,4 +150,3 @@ export const calculateAspectRatio = (file, scaleDimensions) => {
         };
     }
 };
-

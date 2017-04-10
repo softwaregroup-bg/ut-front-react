@@ -45,8 +45,8 @@ class Documents extends Component {
     get header() {
         let { identifier, selectedAttachment, onDelete } = this.props;
 
-        let button1Click1 = () => { console.log('Add new'); };
-        let button1Click5 = () => { console.log('Replace'); };
+        let button1Click1 = () => { // console.log('Add new'); };
+        let button1Click5 = () => { // console.log('Replace'); };
 
         let disabledButtonsState = !selectedAttachment;
 

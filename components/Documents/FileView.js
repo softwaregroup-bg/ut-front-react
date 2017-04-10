@@ -5,7 +5,6 @@ import { mapContentTypeToExtension } from './helpers';
 import { calculateAspectRatio } from '../../helpers';
 import styles from './style.css';
 
-
 class FileView extends Component {
     render() {
         const { file, scaleDimensions, showOriginalFileButton, onFileClick } = this.props;
