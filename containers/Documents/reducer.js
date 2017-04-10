@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { FETCH_DOCUMENTS, SELECT_ATTACHMENT, DELETE_DOCUMENT, UPDATE_PAGINATION } from './actionTypes';
+import { FETCH_DOCUMENTS, SELECT_ATTACHMENT, DELETE_DOCUMENT, UPDATE_PAGINATION, UPDATE_ORDER } from './actionTypes';
 import { methodRequestState } from '../../constants';
 import { parseFetchDocumentsResult } from './helpers';
 
@@ -63,8 +63,22 @@ const documents = (state = defaultState, action) => {
                 pageNumber: props.pagination.get('pageNumber')
             });
             return state
-                .setIn([action.props.identifier, 'requiresFetch'], true)
-                .setIn([action.props.identifier, 'filters', 'paging'], newPagination);
+                .setIn([action.props.identifier, 'filters', 'paging'], newPagination)
+                .setIn([action.props.identifier, 'requiresFetch'], true);
+        case UPDATE_ORDER:
+            if (props.sortDirection === 0) {
+                return state
+                    .deleteIn([action.props.identifier, 'filters', 'orderBy'])
+                    .setIn([action.props.identifier, 'requiresFetch'], true);
+            } else {
+                let newOrder = Immutable.fromJS({
+                    dir: props.sortDirection === 2 ? 'DESC' : 'ASC',
+                    field: props.sortKey
+                });
+                return state
+                    .setIn([action.props.identifier, 'filters', 'orderBy'], newOrder)
+                    .setIn([action.props.identifier, 'requiresFetch'], true);
+            }
         default:
             return state;
     }
