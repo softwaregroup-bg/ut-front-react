@@ -4,8 +4,11 @@ import StandardButton from '../StandardButton';
 import style from './style.css';
 
 class ButtonsHeader extends Component {
-    renderButton(label, onClick, isLeftOriented, key) {
+    renderButton(label, onClick, disabled, isLeftOriented, key) {
         key = key || new Date().getTime();
+        if (typeof disabled === 'undefined') {
+            disabled = false;
+        }
         if (typeof isLeftOriented === 'undefined') {
             isLeftOriented = true;
         }
@@ -14,7 +17,7 @@ class ButtonsHeader extends Component {
 
         return (
             <div key={key} className={wrapperClassName}>
-                <StandardButton label={label} onClick={onClick} styleType='secondaryLight' />
+                <StandardButton label={label} onClick={onClick} disabled={disabled} styleType='secondaryLight' />
             </div>
         );
     }
@@ -26,13 +29,13 @@ class ButtonsHeader extends Component {
 
         if (config.left && Array.isArray(config.left) && config.left.length > 0) {
             leftButtons = config.left.map((conf, index) => {
-                return this.renderButton(conf.label, conf.onClick, true, index);
+                return this.renderButton(conf.label, conf.onClick, conf.disabled, true, index);
             });
         }
 
         if (config.right && Array.isArray(config.right) && config.right.length > 0) {
             rightButtons = config.right.reverse().map((conf, index) => {
-                return this.renderButton(conf.label, conf.onClick, false, index);
+                return this.renderButton(conf.label, conf.onClick, conf.disabled, false, index);
             });
         }
 
@@ -49,11 +52,13 @@ ButtonsHeader.propTypes = {
     config: PropTypes.shape({
         left: PropTypes.arrayOf(PropTypes.shape({
             label: PropTypes.string.isRequired,
-            onClick: PropTypes.func.isRequired
+            onClick: PropTypes.func.isRequired,
+            disabled: PropTypes.bool
         })),
         right: PropTypes.arrayOf(PropTypes.shape({
             label: PropTypes.string.isRequired,
-            onClick: PropTypes.func.isRequired
+            onClick: PropTypes.func.isRequired,
+            disabled: PropTypes.bool
         }))
     }).isRequired
 };
