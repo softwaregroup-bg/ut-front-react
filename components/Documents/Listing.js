@@ -56,12 +56,13 @@ class Documents extends Component {
         };
         // Download button
         let downloadButtonHandler = () => {
-            let fileTimestamp = new Date().getTime();
             let tempLink = document.createElement('a');
             tempLink.href = `${documentPrefix}${selectedAttachment.get('filename')}`;
-            tempLink.setAttribute('download', `${selectedAttachment.get('documentTypeId')}-${fileTimestamp}.${selectedAttachment.get('extension')}`);
+            tempLink.setAttribute('download', `${selectedAttachment.get('documentTypeId')}-${selectedAttachment.get('filename')}.${selectedAttachment.get('extension')}`);
             tempLink.setAttribute('target', '_blank');
+            document.body.appendChild(tempLink);
             tempLink.click();
+            document.body.removeChild(tempLink);
         };
         // Delete
         let openDeleteConfirmationDialog = () => {
@@ -116,15 +117,15 @@ class Documents extends Component {
         }
 
         let deletePopupActionButtons = [{
-            name: 'no',
-            styleType: 'primaryDialog',
-            label: 'No',
-            onClick: closeDeleteConfirmationDialog
-        }, {
             name: 'yes',
-            styleType: 'secondaryDialog',
+            styleType: 'primaryDialog',
             label: 'Yes',
             onClick: handleDeleteDocument
+        }, {
+            name: 'no',
+            styleType: 'secondaryDialog',
+            label: 'No',
+            onClick: closeDeleteConfirmationDialog
         }];
 
         return (
