@@ -45,7 +45,7 @@ class TabDropDown extends React.Component {
                       activeClassName={activeClassName}
                       className={style.tabDdLink}
                       to={(tab && tab.pathname) ? tab.pathname : '#/'}
-                      title={tab.title}
+                      title={tab.title && tab.title.props && tab.title.props.children}
                       onClick={handleClick}
                     >{tab.title}</Link>
                 </li>
