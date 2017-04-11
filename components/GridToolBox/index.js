@@ -668,6 +668,7 @@ GridToolBox.propTypes = {
                 actionButtonElementTypes.button,
                 actionButtonElementTypes.buttonWithConfirmPopUp,
                 actionButtonElementTypes.buttonWithPopUpsDependingOnProperty,
+                actionButtonElementTypes.buttonWithPopUpsDependingOnPropertyValue,
                 actionButtonElementTypes.buttonWithMultipleDialogs
             ]),
             // Common
