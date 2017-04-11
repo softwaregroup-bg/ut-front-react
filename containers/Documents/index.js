@@ -6,7 +6,7 @@ import DocumentsListing from '../../components/Documents/Listing';
 
 class DocumentsContainer extends Component {
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder } = this.props;
+        let { uniqueIdentifier, identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -14,6 +14,7 @@ class DocumentsContainer extends Component {
 
         return (
             <DocumentsListing
+              uniqueIdentifier={uniqueIdentifier}
               identifier={identifier}
               actorId={actorId}
               activeAttachments={activeAttachments}
@@ -25,12 +26,14 @@ class DocumentsContainer extends Component {
               onDelete={deleteAttachments}
               updatePagination={updatePagination}
               updateOrder={updateOrder}
+              permissions={permissions}
             />
         );
     }
 }
 
 DocumentsContainer.propTypes = {
+    uniqueIdentifier: DocumentsListing.propTypes.identifier,
     identifier: DocumentsListing.propTypes.identifier,
     actorId: DocumentsListing.propTypes.actorId,
     attachments: PropTypes.object, // immutable object
@@ -38,7 +41,9 @@ DocumentsContainer.propTypes = {
     selectAttachments: PropTypes.func,
     deleteAttachments: PropTypes.func,
     updatePagination: PropTypes.func,
-    updateOrder: PropTypes.func
+    updateOrder: PropTypes.func,
+
+    permissions: DocumentsListing.propTypes.permissions
 };
 
 export default connect(

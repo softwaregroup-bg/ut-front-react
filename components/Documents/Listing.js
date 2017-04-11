@@ -77,33 +77,43 @@ class Documents extends Component {
         };
 
         let headerButtonsConfig = {
-            left: [
-                {
-                    label: 'Add Document',
-                    onClick: button1Click1
-                },
-                {
-                    label: 'Details',
-                    disabled: disabledButtonsState,
-                    onClick: openDetailsDialog
-                },
-                {
-                    label: 'Download',
-                    disabled: disabledButtonsState,
-                    onClick: downloadButtonHandler
-                },
-                {
-                    label: 'Delete',
-                    disabled: disabledButtonsState,
-                    onClick: openDeleteConfirmationDialog
-                },
-                {
-                    label: 'Replace',
-                    disabled: disabledButtonsState,
-                    onClick: button1Click5
-                }
-            ]
+            left: []
         };
+
+        if (this.props.permissions.add) {
+            headerButtonsConfig.left.push({
+                label: 'Add Document',
+                onClick: button1Click1
+            });
+        }
+        if (this.props.permissions.view) {
+            headerButtonsConfig.left.push({
+                label: 'Details',
+                disabled: disabledButtonsState,
+                onClick: openDetailsDialog
+            });
+        }
+        if (this.props.permissions.download) {
+            headerButtonsConfig.left.push({
+                label: 'Download',
+                disabled: disabledButtonsState,
+                onClick: downloadButtonHandler
+            });
+        }
+        if (this.props.permissions.delete) {
+            headerButtonsConfig.left.push({
+                label: 'Delete',
+                disabled: disabledButtonsState,
+                onClick: openDeleteConfirmationDialog
+            });
+        }
+        if (this.props.permissions.replace) {
+            headerButtonsConfig.left.push({
+                label: 'Replace',
+                disabled: disabledButtonsState,
+                onClick: button1Click5
+            });
+        }
 
         let deletePopupActionButtons = [{
             name: 'no',
@@ -244,6 +254,7 @@ Documents.propTypes = {
      *  identifier convention: module_tab_subtab
      *  e.g. In Customer module, Customers tab with Documents sub tab: customer_customers_documents
      */
+    uniqueIdentifier: PropTypes.string.isRequired,
     identifier: PropTypes.string.isRequired,
     actorId: PropTypes.number,
     activeAttachments: PropTypes.object, // immutable list
@@ -256,7 +267,18 @@ Documents.propTypes = {
     onGridSelect: PropTypes.func,
     onDelete: PropTypes.func,
     updatePagination: PropTypes.func,
-    updateOrder: PropTypes.func
+    updateOrder: PropTypes.func,
+
+    permissions: PropTypes.shape({
+        add: PropTypes.bool,
+        edit: PropTypes.bool,
+        view: PropTypes.bool,
+        download: PropTypes.bool,
+        delete: PropTypes.bool,
+        replace: PropTypes.bool,
+        archive: PropTypes.bool,
+        viewArchive: PropTypes.bool
+    })
 };
 
 Documents.defaultProps = {
