@@ -60,9 +60,8 @@
 }
 
 .toolbarWrap .closeArrow {
-    width: 28px;
-    height: 28px;
-    margin-top: 13px;
+    width: 30px;
+    height: 30px;
     background-color: var(--ut-front-react-standardGridToolBoxCloseArrowBackgroundColor);
     background-image: url('./images/clearfilters-arrow.png');
     background-repeat: no-repeat;
@@ -75,16 +74,13 @@
 }
 
 .advancedSearchIconWrapper {
-    display: inline-block;
-    margin-left: 10px;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
 }
 
 .advancedSearchIcon {
-    width: 28px;
-    height: 28px;
-    margin-top: 13px;
+    width: 30px;
+    height: 30px;
     background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
