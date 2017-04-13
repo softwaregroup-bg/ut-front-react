@@ -9,18 +9,12 @@ const Accordion = React.createClass({
         className: PropTypes.string,
         fullWidth: PropTypes.bool
     },
-    getInitialState: function() {
-        return { collapsed: this.props.collapsed || false };
-    },
-    componentWillReceiveProps: function(nextProps) {
-        this.setState({ collapsed: nextProps.collapsed });
-    },
     handleToggle: function() {
         this.setState({ collapsed: !this.state.collapsed });
     },
     render() {
         return (
-          <Box title={this.props.title} showAccordeon {...this.props} collapsed={this.state.collapsed} onToggle={this.handleToggle}>
+          <Box title={this.props.title} showAccordeon {...this.props} onToggle={this.handleToggle}>
             {this.props.children}
           </Box>
         );
