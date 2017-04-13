@@ -1,3 +1,13 @@
+<a name="8.19.9"></a>
+## [8.19.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.8...v8.19.9) (2017-04-13)
+
+
+### Bug Fixes
+
+* expose navigation logo to implementation styles ([#237](https://github.com/softwaregroup-bg/ut-front-react/issues/237)) ([b6fb2c8](https://github.com/softwaregroup-bg/ut-front-react/commit/b6fb2c8))
+
+
+
 <a name="8.19.8"></a>
 ## [8.19.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.7...v8.19.8) (2017-04-12)
 
