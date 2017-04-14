@@ -406,8 +406,8 @@ class GridToolBox extends Component {
                         }
                     })}
                     {this.renderAdvanced()}
-                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}><StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' className={style.toolbarElement} /></div>}
-                    {this.state.hasActiveFilters && <div className={classnames(style.toolbarElement, style.tableCell)}><div key='closeBtn' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={classnames(style.toolbarElement, style.closeArrow)} /></div>}
+                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}><StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' /></div>}
+                    {this.state.hasActiveFilters && <div className={classnames(style.toolbarElement, style.tableCell)}><div key='closeBtn' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} /></div>}
                     </div>
                 </div>
             </div>
