@@ -1,3 +1,13 @@
+<a name="8.19.11"></a>
+## [8.19.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.10...v8.19.11) (2017-04-14)
+
+
+### Bug Fixes
+
+* remove classnames ([#241](https://github.com/softwaregroup-bg/ut-front-react/issues/241)) ([59b88a5](https://github.com/softwaregroup-bg/ut-front-react/commit/59b88a5))
+
+
+
 <a name="8.19.10"></a>
 ## [8.19.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.9...v8.19.10) (2017-04-13)
 
