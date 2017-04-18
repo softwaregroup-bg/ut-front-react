@@ -1,6 +1,4 @@
 var path = require('path');
-console.log(111111111111111 + path.resolve(require.resolve('ut-front-react'),'../', 'assets', 'css'))
-console.log(222222222222222 + path.resolve(require.resolve('bootstrap'), '../..'))
 
 module.exports = {
     start: function() {

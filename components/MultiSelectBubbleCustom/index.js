@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import Select from 'react-select';
+import { Creatable } from 'react-select';
 import style from './style.css';
 
 /**
@@ -8,7 +8,7 @@ import style from './style.css';
  * of JedWatson. It is wrapped so that it can be used
  * in UT as dropdown.
  */
-class MultiSelectBubble extends Component {
+class MultiSelectBubbleCustom extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ class MultiSelectBubble extends Component {
             {label}
         </div>
         <div className={style.inputWrap}>
-           <Select
+           <Creatable
               name={name}
               value={value}
               options={options}
@@ -42,7 +42,7 @@ class MultiSelectBubble extends Component {
   }
 }
 
-MultiSelectBubble.propTypes = {
+MultiSelectBubbleCustom.propTypes = {
   name: PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.object),
   options: PropTypes.arrayOf(PropTypes.shape({
@@ -53,10 +53,10 @@ MultiSelectBubble.propTypes = {
   label: PropTypes.string,
 }
 
-MultiSelectBubble.defaultProps = {
+MultiSelectBubbleCustom.defaultProps = {
     name: 'react-select-dropdown',
     errorMessage: '',
     isEdited: false
 };
 
-export default MultiSelectBubble;
+export default MultiSelectBubbleCustom;
