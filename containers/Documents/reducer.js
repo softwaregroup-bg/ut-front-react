@@ -19,14 +19,14 @@ const getDaultAttachmentObject = function() {
 };
 
 const defaultState = Immutable.fromJS({
-    common: {
-        filters: {
-            paging: {
-                pageSize: defaultPageSize,
-                pageNumber: 1
-            }
-        }
-    }
+    // common: {
+    //     filters: {
+    //         paging: {
+    //             pageSize: defaultPageSize,
+    //             pageNumber: 1
+    //         }
+    //     }
+    // }
 });
 const documents = (state = defaultState, action) => {
     const { type, props } = action;

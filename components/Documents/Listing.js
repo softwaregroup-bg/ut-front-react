@@ -10,6 +10,9 @@ import DateComponent from '../Date';
 import Popup from '../Popup';
 import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
+import { capitalizeFirstLetter } from '../../utils/helpers';
+
+import DocumentUpload from 'ut-customer/ui/react/components/DocumentUpload';
 
 import style from './style.css';
 
@@ -17,11 +20,13 @@ class Documents extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isOpen: false,
             showDetailsPopUp: false,
             showDeleteConfirmationPopup: false
         };
 
         this.fetchDocs = this.fetchDocs.bind(this);
+        this.mapColumn = this.mapColumn.bind(this);
     }
 
     componentWillMount() {
@@ -45,7 +50,11 @@ class Documents extends Component {
     get header() {
         let { identifier, selectedAttachment, onDelete } = this.props;
 
-        let button1Click1 = () => { /* console.log('Add new'); */ };
+        let addNewDocumentHandler = () => {
+            this.setState({
+                isOpen: true
+            });
+        };
         let button1Click5 = () => { /* console.log('Replace'); */ };
 
         let disabledButtonsState = !selectedAttachment;
@@ -84,7 +93,7 @@ class Documents extends Component {
         if (this.props.permissions.add) {
             headerButtonsConfig.left.push({
                 label: 'Add Document',
-                onClick: button1Click1
+                onClick: addNewDocumentHandler
             });
         }
         if (this.props.permissions.view) {
@@ -151,8 +160,18 @@ class Documents extends Component {
     }
 
     mapColumn(col, colData) {
+        if (col.key === 'documentType') {
+            // let handleClick = (event) => {
+            //     event.preventDefault();
+            //     event.stopPropagation();
+            //     // open the preview dialog
+            //     this.setState({ showDetailsPopUp: true });
+            // };
+            // return <a onClick={handleClick}>{capitalizeFirstLetter(colData)}</a>;
+            return capitalizeFirstLetter(colData);
+        }
         if (col.key === 'statusId') {
-            return colData.charAt(0).toUpperCase() + colData.slice(1);
+            return capitalizeFirstLetter(colData);
         }
         if (col.key === 'documentDescription') {
             return colData || '(no description)';
@@ -236,6 +255,21 @@ class Documents extends Component {
         }
     }
 
+    get renderDocumentUplodDialog() {
+        let closeHandler = () => {
+            this.setState({
+                isOpen: false
+            });
+        };
+        return (
+            <DocumentUpload
+              isOpen={this.state.isOpen}
+              header={{text: 'Add Document'}}
+              closePopup={closeHandler}
+            />
+        );
+    }
+
     render() {
         return (
             <div className={style.documentsWrap}>
@@ -245,6 +279,7 @@ class Documents extends Component {
                   fixedComponent={this.header}
                   children={this.content}
                 />
+                {this.renderDocumentUplodDialog}
             </div>
         );
     }
@@ -255,7 +290,6 @@ Documents.propTypes = {
      *  identifier convention: module_tab_subtab
      *  e.g. In Customer module, Customers tab with Documents sub tab: customer_customers_documents
      */
-    uniqueIdentifier: PropTypes.string.isRequired,
     identifier: PropTypes.string.isRequired,
     actorId: PropTypes.number,
     activeAttachments: PropTypes.object, // immutable list
