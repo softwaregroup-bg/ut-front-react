@@ -12,6 +12,8 @@ import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 
+import DocumentUpload from '../DocumentUpload';
+
 import style from './style.css';
 
 class Documents extends Component {
@@ -90,7 +92,7 @@ class Documents extends Component {
 
         if (this.props.permissions.add) {
             headerButtonsConfig.left.push({
-                label: 'Add Document',
+                label: '+ ' + 'Add Document',
                 onClick: addNewDocumentHandler
             });
         }
@@ -260,10 +262,14 @@ class Documents extends Component {
             });
         };
         return (
-            <Popup
+            <DocumentUpload
               isOpen={this.state.isOpen}
               header={{text: 'Add Document'}}
               closePopup={closeHandler}
+              scaleDimensions={{width: 350, height: 350}}
+              additionalContent={<button onClick={() => { console.log('clickd'); }}>Test</button>}
+              additionalContentValidate={() => { console.log('validating...'); }}
+              isAdditionalContentValid={false}
             />
         );
     }
