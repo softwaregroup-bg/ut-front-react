@@ -12,8 +12,6 @@ import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 
-import DocumentUpload from 'ut-customer/ui/react/components/DocumentUpload';
-
 import style from './style.css';
 
 class Documents extends Component {
@@ -262,7 +260,7 @@ class Documents extends Component {
             });
         };
         return (
-            <DocumentUpload
+            <Popup
               isOpen={this.state.isOpen}
               header={{text: 'Add Document'}}
               closePopup={closeHandler}
@@ -295,7 +293,7 @@ Documents.propTypes = {
     activeAttachments: PropTypes.object, // immutable list
     selectedAttachment: PropTypes.object, // immutable object
     requiresFetch: PropTypes.bool,
-    fetchFilters: PropTypes.object.isRequired, // immutable object
+    fetchFilters: PropTypes.object, // immutable object
 
     // funcs
     fetchDocuments: PropTypes.func.isRequired,
