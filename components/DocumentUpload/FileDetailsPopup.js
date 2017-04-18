@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Popup from '../Popup';
 import FileDetailedView from './FileDetailedView';
-import { getFileDimensions } from '../../../../utils/image';
+import { getFileDimensions } from '../../utils/image';
 import { POPUP_MIN_OFFSETS, POPUP_HEADER_HEIGHT, POPUP_FOOTER_HEIGHT, POPUP_PADDING } from '../Popup/config';
 import styles from './styles.css';
 

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import AddFileButton from './AddFileButton';
 import PhotoPreview from './PhotoPreview';
 import Tooltip from './Tooltip';
-import { resizeImage } from '../../../../utils/image';
+import { resizeImage } from '../../utils/image';
 import styles from './styles.css';
 
 const PhotoContainer = ({

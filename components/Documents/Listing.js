@@ -267,8 +267,8 @@ class Documents extends Component {
               header={{text: 'Add Document'}}
               closePopup={closeHandler}
               scaleDimensions={{width: 350, height: 350}}
-              additionalContent={<button onClick={() => { console.log('clickd'); }}>Test</button>}
-              additionalContentValidate={() => { console.log('validating...'); }}
+              additionalContent={<button onClick={() => {}}>Test</button>}
+              additionalContentValidate={() => {}}
               isAdditionalContentValid={false}
             />
         );

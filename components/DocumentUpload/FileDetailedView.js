@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { resizeImage } from '../../../../utils/image';
+import { resizeImage } from '../../utils/image';
 import { detailsMapping } from './config';
 import classnames from 'classnames';
 import styles from './styles.css';
