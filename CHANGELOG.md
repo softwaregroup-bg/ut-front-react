@@ -1,3 +1,13 @@
+<a name="8.19.12"></a>
+## [8.19.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.11...v8.19.12) (2017-04-19)
+
+
+### Bug Fixes
+
+* check if immutable ([78f674a](https://github.com/softwaregroup-bg/ut-front-react/commit/78f674a))
+
+
+
 <a name="8.19.11"></a>
 ## [8.19.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.10...v8.19.11) (2017-04-14)
 
