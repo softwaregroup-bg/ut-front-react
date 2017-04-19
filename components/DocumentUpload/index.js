@@ -41,6 +41,8 @@ export default class DocumentUpload extends Component {
         this.crop = this.crop.bind(this);
 
         this.onCrop = this.onCrop.bind(this);
+
+        this.uploadFile = this.uploadFile.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextState) {
@@ -106,12 +108,11 @@ export default class DocumentUpload extends Component {
     }
 
     onUseFile() {
-        const { useFile } = this.props;
         const { screenshot, hasCropped } = this.state;
 
         // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
         if (hasCropped) {
-            useFile(screenshot);
+            this.uploadFile(screenshot);
         } else {
             this.crop();
 
@@ -138,11 +139,10 @@ export default class DocumentUpload extends Component {
     }
 
     onCrop(screenshot) {
-        const { useFile } = this.props;
         const { shouldUse } = this.state;
 
         if (shouldUse) {
-            useFile(screenshot);
+            this.uploadFile(screenshot);
         } else {
             this.setState({
                 screenshot,
@@ -244,6 +244,49 @@ export default class DocumentUpload extends Component {
         return getViewport(fileDimensions, scaleDimensions);
     }
 
+    uploadFile(file) {
+        let { useFile } = this.props;
+        var data = new window.FormData();
+        var img = this.dataURItoBlob(file);
+        data.append('file', img, 'photo.png');
+        var request = new window.XMLHttpRequest();
+        request.open('POST', '/file-upload', true);
+        request.onload = (e) => {
+            if (request.status >= 200 && request.status < 300 && request.responseText) {
+                let reader = new window.FileReader();
+                reader.onload = (data) => {
+                    let response = JSON.parse(request.responseText);
+                    useFile({
+                        filename: response.filename
+                    });
+                };
+                reader.readAsDataURL(img);
+            }
+            // todo some error in else
+        };
+        request.send(data);
+    }
+
+    dataURItoBlob(dataURI) {
+        // convert base64/URLEncoded data component to raw binary data held in a string
+        var byteString;
+        if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+            byteString = window.atob(dataURI.split(',')[1]);
+        } else {
+            byteString = unescape(dataURI.split(',')[1]);
+        }
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        return new window.Blob([ia], {type: mimeString});
+    }
+
     render() {
         const { isOpen, header, closePopup } = this.props;
         const { mode } = this.state;
@@ -264,6 +307,7 @@ export default class DocumentUpload extends Component {
 };
 
 DocumentUpload.defaultProps = {
+    useFile: () => {},
     additionalContent: '',
     additionalContentValidate: () => {},
     isAdditionalContentValid: true

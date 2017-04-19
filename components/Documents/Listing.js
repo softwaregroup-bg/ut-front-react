@@ -264,6 +264,9 @@ class Documents extends Component {
                 isOpen: false
             });
         };
+        let useFileHandler = (uploadedFile) => {
+            closeHandler();
+        };
         return (
             <DocumentUpload
               isOpen={this.state.isOpen}
@@ -272,7 +275,8 @@ class Documents extends Component {
               scaleDimensions={{width: 350, height: 350}}
               additionalContent={<button onClick={() => {}}>Test</button>}
               additionalContentValidate={() => {}}
-              isAdditionalContentValid={false}
+              isAdditionalContentValid
+              useFile={useFileHandler}
             />
         );
     }
