@@ -12,6 +12,9 @@ import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 
+import Input from '../Input';
+import Dropdown from '../Input/Dropdown';
+
 import DocumentUpload from '../DocumentUpload';
 
 import style from './style.css';
@@ -27,6 +30,7 @@ class Documents extends Component {
 
         this.fetchDocs = this.fetchDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
+        this.renderUploadDocumentForm = this.renderUploadDocumentForm.bind(this);
     }
 
     componentWillMount() {
@@ -258,6 +262,27 @@ class Documents extends Component {
         }
     }
 
+    renderUploadDocumentForm() {
+        return (
+            <div className={style.formWrapper}>
+                <div className={style.formRow}>
+                    <Dropdown
+                      label='File type'
+                      data={this.props.documentTypes}
+                      canSelectPlaceholder={false}
+                      placeholder='Select type'
+                    />
+                </div>
+                <div className={style.formRow}>
+                    <Input
+                      label='Description'
+                      placeholder='Description of the document'
+                    />
+                </div>
+            </div>
+        );
+    }
+
     get renderDocumentUplodDialog() {
         let closeHandler = () => {
             this.setState({
@@ -273,7 +298,7 @@ class Documents extends Component {
               header={{text: 'Add Document'}}
               closePopup={closeHandler}
               scaleDimensions={{width: 350, height: 350}}
-              additionalContent={<button onClick={() => {}}>Test</button>}
+              additionalContent={this.renderUploadDocumentForm()}
               additionalContentValidate={() => {}}
               isAdditionalContentValid
               useFile={useFileHandler}
@@ -315,6 +340,13 @@ Documents.propTypes = {
     updatePagination: PropTypes.func,
     updateOrder: PropTypes.func,
 
+    documentTypes: PropTypes.arrayOf(
+        PropTypes.shape({
+            key: PropTypes.string,
+            name: PropTypes.string
+        })
+    ),
+
     permissions: PropTypes.shape({
         add: PropTypes.bool,
         edit: PropTypes.bool,
@@ -332,7 +364,8 @@ Documents.defaultProps = {
     onGridSelect: () => {},
     onDelete: () => {},
     updatePagination: () => {},
-    updateOrder: () => {}
+    updateOrder: () => {},
+    documentTypes: []
 };
 
 export default Documents;

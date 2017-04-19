@@ -6,7 +6,7 @@ import DocumentsListing from '../../components/Documents/Listing';
 
 class DocumentsContainer extends Component {
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions } = this.props;
+        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -26,6 +26,7 @@ class DocumentsContainer extends Component {
               updatePagination={updatePagination}
               updateOrder={updateOrder}
               permissions={permissions}
+              documentTypes={documentTypes}
             />
         );
     }
@@ -41,7 +42,8 @@ DocumentsContainer.propTypes = {
     updatePagination: PropTypes.func,
     updateOrder: PropTypes.func,
 
-    permissions: DocumentsListing.propTypes.permissions
+    permissions: DocumentsListing.propTypes.permissions,
+    documentTypes: DocumentsListing.propTypes.documentTypes
 };
 
 export default connect(

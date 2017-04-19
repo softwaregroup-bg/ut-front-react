@@ -87,3 +87,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.formWrapper {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.formWrapper .formRow {
+    padding: 10px 0;
+    border-bottom: 1px solid #D6D6D6;
+}
