@@ -48,7 +48,7 @@ class Documents extends Component {
     }
 
     get header() {
-        let { identifier, selectedAttachment, onDelete } = this.props;
+        let { identifier, selectedAttachment, onDelete, activeAttachments } = this.props;
 
         let addNewDocumentHandler = () => {
             this.setState({
@@ -96,33 +96,36 @@ class Documents extends Component {
                 onClick: addNewDocumentHandler
             });
         }
-        if (this.props.permissions.view) {
-            headerButtonsConfig.left.push({
-                label: 'Details',
-                disabled: disabledButtonsState,
-                onClick: openDetailsDialog
-            });
-        }
-        if (this.props.permissions.download) {
-            headerButtonsConfig.left.push({
-                label: 'Download',
-                disabled: disabledButtonsState,
-                onClick: downloadButtonHandler
-            });
-        }
-        if (this.props.permissions.delete) {
-            headerButtonsConfig.left.push({
-                label: 'Delete',
-                disabled: disabledButtonsState,
-                onClick: openDeleteConfirmationDialog
-            });
-        }
-        if (this.props.permissions.replace) {
-            headerButtonsConfig.left.push({
-                label: 'Replace',
-                disabled: disabledButtonsState,
-                onClick: button1Click5
-            });
+
+        if (activeAttachments && activeAttachments.size > 0) {
+            if (this.props.permissions.view) {
+                headerButtonsConfig.left.push({
+                    label: 'Details',
+                    disabled: disabledButtonsState,
+                    onClick: openDetailsDialog
+                });
+            }
+            if (this.props.permissions.download) {
+                headerButtonsConfig.left.push({
+                    label: 'Download',
+                    disabled: disabledButtonsState,
+                    onClick: downloadButtonHandler
+                });
+            }
+            if (this.props.permissions.delete) {
+                headerButtonsConfig.left.push({
+                    label: 'Delete',
+                    disabled: disabledButtonsState,
+                    onClick: openDeleteConfirmationDialog
+                });
+            }
+            if (this.props.permissions.replace) {
+                headerButtonsConfig.left.push({
+                    label: 'Replace',
+                    disabled: disabledButtonsState,
+                    onClick: button1Click5
+                });
+            }
         }
 
         let deletePopupActionButtons = [{
@@ -217,7 +220,7 @@ class Documents extends Component {
         } else {
             return (
                 <div className={style.noUploadedDocumentsWrap}>
-                    <Text>No uploaded documents yet</Text>.
+                    {/* <Text>No uploaded documents yet</Text>. */}
                 </div>
             );
         }

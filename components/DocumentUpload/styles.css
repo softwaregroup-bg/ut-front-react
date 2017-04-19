@@ -107,7 +107,7 @@
     background-color: #FFF;
 }
 
-.uploadFileBtn {
+.uploadFileBtn, .changeFileBtn {
     margin-right: 10px;
 }
 
@@ -117,10 +117,11 @@
 
 .addFileBtn:not(.disabled):hover, .uploadFileBtn:hover {
     background-color: #F9F9F9;
+    cursor: pointer;
 }
 
 .addFileBtn.disabled {
-    cursor: default;
+    cursor: not-allowed;
     color: #CCC;
 }
 
