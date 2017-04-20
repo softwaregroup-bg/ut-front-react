@@ -81,9 +81,10 @@
     background: #fff4a3 !important;
 }
 
-.readonlyInput {
+.readonlyInput, .readonlyInput div {
     cursor: not-allowed;
-    color: #a9a9a9;
+    border-color: #EBEBEB !important;
+    color: #a9a9a9 !important;
 }
 
 /* Date picker */
@@ -283,6 +284,7 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
     position: relative;
     border: 1px solid #D6D6D6;
     height: 30px;
+    color: #595959;
 }
 
 .dropdownWrap div {
@@ -290,7 +292,7 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
     margin: 0 !important;
     line-height: 30px !important;
     border: none !important;
-    color: #595959 !important;
+    color: inherit !important;
     text-align: left !important;
 }
 
