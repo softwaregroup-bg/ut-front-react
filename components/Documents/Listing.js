@@ -25,12 +25,13 @@ class Documents extends Component {
         this.state = {
             isOpen: false,
             showDetailsPopUp: false,
-            showDeleteConfirmationPopup: false
+            showDeleteConfirmationPopup: false,
+            fileType: '',
+            description: ''
         };
 
         this.fetchDocs = this.fetchDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
-        this.renderUploadDocumentForm = this.renderUploadDocumentForm.bind(this);
     }
 
     componentWillMount() {
@@ -262,8 +263,8 @@ class Documents extends Component {
         }
     }
 
-    renderUploadDocumentForm() {
-        return (
+    get renderDocumentUplodDialog() {
+        let renderUploadDocumentForm = (
             <div className={style.formWrapper}>
                 <div className={style.formRow}>
                     <Dropdown
@@ -271,25 +272,47 @@ class Documents extends Component {
                       data={this.props.documentTypes}
                       canSelectPlaceholder={false}
                       placeholder='Select type'
+                      keyProp='fileType'
+                      defaultSelected={this.state.fileType}
+                      onSelect={(obj) => {
+                          this.setState({
+                              fileType: obj.value
+                          });
+                      }}
                     />
                 </div>
                 <div className={style.formRow}>
                     <Input
                       label='Description'
+                      keyProp='description'
                       placeholder='Description of the document'
+                      value={this.state.description}
+                      onChange={(obj) => {
+                          this.setState({
+                              description: obj.value
+                          });
+                      }}
                     />
                 </div>
             </div>
         );
-    }
-
-    get renderDocumentUplodDialog() {
         let closeHandler = () => {
             this.setState({
-                isOpen: false
+                isOpen: false,
+                fileType: '',
+                description: ''
             });
         };
         let useFileHandler = (uploadedFile) => {
+            let type;
+            for (let i = 0; i < this.props.documentTypes.length; i++) {
+                if (this.props.documentTypes[i].key === this.state.fileType) {
+                    type = this.props.documentTypes[i];
+                    break;
+                }
+            }
+            let status = 'New';
+            this.props.uploadNewDocument({type, status, description: this.state.description, ...uploadedFile});
             closeHandler();
         };
         return (
@@ -298,7 +321,7 @@ class Documents extends Component {
               header={{text: 'Add Document'}}
               closePopup={closeHandler}
               scaleDimensions={{width: 350, height: 350}}
-              additionalContent={this.renderUploadDocumentForm()}
+              additionalContent={renderUploadDocumentForm}
               additionalContentValidate={() => {}}
               isAdditionalContentValid
               useFile={useFileHandler}
@@ -346,6 +369,8 @@ Documents.propTypes = {
             name: PropTypes.string
         })
     ),
+
+    uploadNewDocument: PropTypes.func,
 
     permissions: PropTypes.shape({
         add: PropTypes.bool,

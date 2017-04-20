@@ -258,7 +258,8 @@ export default class DocumentUpload extends Component {
                     try {
                         let response = JSON.parse(request.responseText);
                         useFile({
-                            filename: response.filename
+                            filename: response.filename,
+                            dateCreated: new Date() // TODO: get this from the backend at some time
                         });
                     } catch (e) {
                         // TODO: handle error response
@@ -311,7 +312,7 @@ export default class DocumentUpload extends Component {
 };
 
 DocumentUpload.defaultProps = {
-    useFile: () => {},
+    useFile: () => ({}),
     additionalContent: '',
     additionalContentValidate: () => {},
     isAdditionalContentValid: true
