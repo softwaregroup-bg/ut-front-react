@@ -255,14 +255,18 @@ export default class DocumentUpload extends Component {
             if (request.status >= 200 && request.status < 300 && request.responseText) {
                 let reader = new window.FileReader();
                 reader.onload = (data) => {
-                    let response = JSON.parse(request.responseText);
-                    useFile({
-                        filename: response.filename
-                    });
+                    try {
+                        let response = JSON.parse(request.responseText);
+                        useFile({
+                            filename: response.filename
+                        });
+                    } catch (e) {
+                        // TODO: handle error response
+                    }
                 };
                 reader.readAsDataURL(img);
             }
-            // todo some error in else
+            // TODO: some error in else
         };
         request.send(data);
     }
