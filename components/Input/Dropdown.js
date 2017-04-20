@@ -79,6 +79,8 @@ class Dropdown extends Component {
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
         let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
         let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
+        let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
+
         let iconStyles = {
             fill: '#FFF',
             right: '0px',
@@ -94,7 +96,7 @@ class Dropdown extends Component {
         }
 
         return (
-            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle)}>
+            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, inputDisabled)}>
                 <div className={classnames(arrowIconDisabled, ddstyles.arrowIcon)} />
                 <div className={ddstyles.hideTextWrap} />
                 <DropDownMenu
