@@ -1,3 +1,5 @@
+import { validationTypes, textValidations, dropdownValidations } from 'ut-front-react/validator/constants.js';
+
 // Listing
 export const getListTableColumns = () => {
     return [
@@ -35,3 +37,23 @@ export const mapContentTypeToExtension = (contentType) => {
 
     return config[contentType] || 'unkown';
 };
+
+export function getDocumentTypeValidators() {
+    return {
+        key: ['fileType'],
+        type: validationTypes.dropdown,
+        rules: [
+            {type: dropdownValidations.isRequired, errorMessage: 'Please select a file type.'}
+        ]
+    };
+}
+
+export function getDocumentDescriptionValidators() {
+    return {
+        key: ['description'],
+        type: validationTypes.text,
+        rules: [
+            {type: textValidations.length, maxVal: 200, errorMessage: 'Description cannot exceeds 200 characters.'}
+        ]
+    };
+}

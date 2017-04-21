@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { getListTableColumns, getListTdStyles } from './helpers';
+import immutable from 'immutable';
+import { getListTableColumns, getListTdStyles, getDocumentTypeValidators, getDocumentDescriptionValidators } from './helpers';
 import { documentPrefix } from '../../constants';
 
 import { Vertical } from '../Layout';
@@ -11,6 +12,7 @@ import Popup from '../Popup';
 import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
+import { validateAll } from '../../utils/validator';
 
 import Input from '../Input';
 import Dropdown from '../Input/Dropdown';
@@ -27,11 +29,14 @@ class Documents extends Component {
             showDetailsPopUp: false,
             showDeleteConfirmationPopup: false,
             fileType: '',
-            description: ''
+            description: '',
+            isValidForm: false,
+            errors: {}
         };
 
         this.fetchDocs = this.fetchDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
     }
 
     componentWillMount() {
@@ -263,6 +268,23 @@ class Documents extends Component {
         }
     }
 
+    handleValidation(fileType, description) {
+        let result = validateAll(immutable.fromJS({
+            fileType: fileType,
+            description: description
+        }), [getDocumentTypeValidators(), getDocumentDescriptionValidators()]);
+        let errors = {};
+        if (result.errors && result.errors.length > 0) {
+            result.errors.forEach((err) => {
+                errors[err.key[0]] = err.errorMessage;
+            });
+        }
+        this.setState({
+            isValidForm: result.isValid,
+            errors: errors
+        });
+    };
+
     get renderDocumentUplodDialog() {
         let renderUploadDocumentForm = (
             <div className={style.formWrapper}>
@@ -277,8 +299,10 @@ class Documents extends Component {
                       onSelect={(obj) => {
                           this.setState({
                               fileType: obj.value
-                          });
+                          }, this.handleValidation(obj.value, this.state.description));
                       }}
+                      isValid={this.state.errors.fileType === undefined}
+                      errorMessage={this.state.errors.fileType}
                     />
                 </div>
                 <div className={style.formRow}>
@@ -290,8 +314,10 @@ class Documents extends Component {
                       onChange={(obj) => {
                           this.setState({
                               description: obj.value
-                          });
+                          }, this.handleValidation(this.state.fileType, obj.value));
                       }}
+                      isValid={this.state.errors.description === undefined}
+                      errorMessage={this.state.errors.description}
                     />
                 </div>
             </div>
@@ -300,7 +326,8 @@ class Documents extends Component {
             this.setState({
                 isOpen: false,
                 fileType: '',
-                description: ''
+                description: '',
+                isValidForm: false
             });
         };
         let useFileHandler = (uploadedFile) => {
@@ -322,8 +349,8 @@ class Documents extends Component {
               closePopup={closeHandler}
               scaleDimensions={{width: 350, height: 350}}
               additionalContent={renderUploadDocumentForm}
-              additionalContentValidate={() => {}}
-              isAdditionalContentValid
+              additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
+              isAdditionalContentValid={this.state.isValidForm}
               useFile={useFileHandler}
             />
         );

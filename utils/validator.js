@@ -149,7 +149,7 @@ export class Validator {
 }
 
 /*
- * @SourceMap is object with the fields that need to be validated
+ * @SourceMap is (immutable) object with the fields that need to be validated
  * example:
  * sourceMap: { name: 'some name', obj: {prop: ''} valuesInArray: [] }
  * @Validations is an array with objects of the shape:
