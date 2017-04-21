@@ -1,4 +1,4 @@
-import { validationTypes, textValidations, dropdownValidations } from 'ut-front-react/validator/constants.js';
+import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants.js';
 
 // Listing
 export const getListTableColumns = () => {
