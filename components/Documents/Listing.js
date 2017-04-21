@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import immutable from 'immutable';
-import { getListTableColumns, getListTdStyles, getDocumentTypeValidators, getDocumentDescriptionValidators } from './helpers';
+import { getListTableColumns, getListTdStyles } from './helpers';
 import { documentPrefix } from '../../constants';
 
 import { Vertical } from '../Layout';
@@ -12,12 +11,8 @@ import Popup from '../Popup';
 import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
-import { validateAll } from '../../utils/validator';
 
-import Input from '../Input';
-import Dropdown from '../Input/Dropdown';
-
-import DocumentUpload from '../DocumentUpload';
+import DocumentUploadWithForm from './DocumentUploadWithForm';
 
 import style from './style.css';
 
@@ -27,16 +22,11 @@ class Documents extends Component {
         this.state = {
             isOpen: false,
             showDetailsPopUp: false,
-            showDeleteConfirmationPopup: false,
-            fileType: '',
-            description: '',
-            isValidForm: false,
-            errors: {}
+            showDeleteConfirmationPopup: false
         };
 
         this.fetchDocs = this.fetchDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
     }
 
     componentWillMount() {
@@ -268,90 +258,19 @@ class Documents extends Component {
         }
     }
 
-    handleValidation(fileType, description) {
-        let result = validateAll(immutable.fromJS({
-            fileType: fileType,
-            description: description
-        }), [getDocumentTypeValidators(), getDocumentDescriptionValidators()]);
-        let errors = {};
-        if (result.errors && result.errors.length > 0) {
-            result.errors.forEach((err) => {
-                errors[err.key[0]] = err.errorMessage;
-            });
-        }
-        this.setState({
-            isValidForm: result.isValid,
-            errors: errors
-        });
-    };
-
     get renderDocumentUplodDialog() {
-        let renderUploadDocumentForm = (
-            <div className={style.formWrapper}>
-                <div className={style.formRow}>
-                    <Dropdown
-                      label='File type'
-                      data={this.props.documentTypes}
-                      canSelectPlaceholder={false}
-                      placeholder='Select type'
-                      keyProp='fileType'
-                      defaultSelected={this.state.fileType}
-                      onSelect={(obj) => {
-                          this.setState({
-                              fileType: obj.value
-                          }, this.handleValidation(obj.value, this.state.description));
-                      }}
-                      isValid={this.state.errors.fileType === undefined}
-                      errorMessage={this.state.errors.fileType}
-                    />
-                </div>
-                <div className={style.formRow}>
-                    <Input
-                      label='Description'
-                      keyProp='description'
-                      placeholder='Description of the document'
-                      value={this.state.description}
-                      onChange={(obj) => {
-                          this.setState({
-                              description: obj.value
-                          }, this.handleValidation(this.state.fileType, obj.value));
-                      }}
-                      isValid={this.state.errors.description === undefined}
-                      errorMessage={this.state.errors.description}
-                    />
-                </div>
-            </div>
-        );
         let closeHandler = () => {
             this.setState({
-                isOpen: false,
-                fileType: '',
-                description: '',
-                isValidForm: false
+                isOpen: false
             });
         };
-        let useFileHandler = (uploadedFile) => {
-            let type;
-            for (let i = 0; i < this.props.documentTypes.length; i++) {
-                if (this.props.documentTypes[i].key === this.state.fileType) {
-                    type = this.props.documentTypes[i];
-                    break;
-                }
-            }
-            let status = 'New';
-            this.props.uploadNewDocument({type, status, description: this.state.description, ...uploadedFile});
-            closeHandler();
-        };
         return (
-            <DocumentUpload
+            <DocumentUploadWithForm
               isOpen={this.state.isOpen}
               header={{text: 'Add Document'}}
               closePopup={closeHandler}
-              scaleDimensions={{width: 350, height: 350}}
-              additionalContent={renderUploadDocumentForm}
-              additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
-              isAdditionalContentValid={this.state.isValidForm}
-              useFile={useFileHandler}
+              uploadNewDocument={this.props.uploadNewDocument}
+              documentTypes={this.props.documentTypes}
             />
         );
     }
