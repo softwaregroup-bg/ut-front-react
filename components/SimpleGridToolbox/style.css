@@ -9,9 +9,10 @@
     height: 100%;
 }
 .simpleToolbox .label, .simpleToolbox .link {
-    margin: auto auto auto 0;
+    margin: auto auto auto 20px;
     min-width: 10%;
     flex-basis: auto;
+    text-align: left;
 }
 .simpleToolbox .link {
     cursor: pointer;
