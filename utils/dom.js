@@ -63,7 +63,7 @@ export const matches = (element, selector) => {
           (element.matches || element.msMatchesSelector ||
             element.mozMatchesSelector || element.webkitMatchesSelector);
 
-    return matchesNative ? matchesNative(selector) : matchesPolyfill(element, selector);
+    return matchesNative ? element.matches(selector) : matchesPolyfill(element, selector);
 };
 
 export const joinArrayWithBreakTags = (array) => {

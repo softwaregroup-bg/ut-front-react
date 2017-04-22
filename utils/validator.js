@@ -60,6 +60,10 @@ export class Validator {
         this.errorMapping = Object.assign({}, defaultErrorMessagingMapping, config.errorMessagingMapping);
     }
 
+    updateConfig(config) {
+        this.config = config;
+    }
+
     validateInput(input, value, inputs) {
         if (!this.config[input]) {
             // If there is no validation for this input - simulate passing validation

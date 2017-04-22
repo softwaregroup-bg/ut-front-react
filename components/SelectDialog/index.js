@@ -66,7 +66,18 @@ export default class SelectDialog extends Component {
     }
 
     selectUnit() {
-        this.props.onConfirm(this.state.selectedUnitIds);
+        let param;
+        if (this.props.multiSelect) {
+            param = this.props.data.filter((obj) => {
+                return this.state.selectedUnitIds.contains(obj.get('id'));
+            });
+        } else {
+            param = this.props.data.filter((obj) => {
+                return obj.get('id') === this.state.selectedUnitIds.get(0);
+            });
+            param = param.get(0);
+        }
+        this.props.onConfirm(param);
         this.closeDialog();
     }
 
@@ -138,7 +149,7 @@ SelectDialog.defaultProps = {
 };
 
 SelectDialog.propTypes = {
-    data: PropTypes.object, // immutable List
+    data: PropTypes.object, // immutable List, objects inside should be {id: '', title: ''}
     open: PropTypes.bool,
     searchPlaceholder: PropTypes.string,
     title: PropTypes.string,
@@ -149,6 +160,6 @@ SelectDialog.propTypes = {
     // closeDialog: PropTypes.func,
     confirmButtonLabel: PropTypes.string,
     cancelButtonLabel: PropTypes.string,
-    onConfirm: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired, // if (MultiSelect) { returns Immutable.List } else { returns Immutable.Object }
     onClose: PropTypes.func.isRequired
 };

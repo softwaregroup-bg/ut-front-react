@@ -1,3 +1,168 @@
+<a name="8.19.13"></a>
+## [8.19.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.12...v8.19.13) (2017-04-21)
+
+
+### Bug Fixes
+
+* equalize styles ([344201c](https://github.com/softwaregroup-bg/ut-front-react/commit/344201c))
+
+
+
+<a name="8.19.12"></a>
+## [8.19.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.11...v8.19.12) (2017-04-19)
+
+
+### Bug Fixes
+
+* check if immutable ([78f674a](https://github.com/softwaregroup-bg/ut-front-react/commit/78f674a))
+
+
+
+<a name="8.19.11"></a>
+## [8.19.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.10...v8.19.11) (2017-04-14)
+
+
+### Bug Fixes
+
+* remove classnames ([#241](https://github.com/softwaregroup-bg/ut-front-react/issues/241)) ([59b88a5](https://github.com/softwaregroup-bg/ut-front-react/commit/59b88a5))
+
+
+
+<a name="8.19.10"></a>
+## [8.19.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.9...v8.19.10) (2017-04-13)
+
+
+
+<a name="8.19.9"></a>
+## [8.19.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.8...v8.19.9) (2017-04-13)
+
+
+### Bug Fixes
+
+* expose navigation logo to implementation styles ([#237](https://github.com/softwaregroup-bg/ut-front-react/issues/237)) ([b6fb2c8](https://github.com/softwaregroup-bg/ut-front-react/commit/b6fb2c8))
+
+
+
+<a name="8.19.8"></a>
+## [8.19.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.7...v8.19.8) (2017-04-12)
+
+
+
+<a name="8.19.7"></a>
+## [8.19.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.6...v8.19.7) (2017-04-12)
+
+
+
+<a name="8.19.6"></a>
+## [8.19.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.5...v8.19.6) (2017-04-11)
+
+
+
+<a name="8.19.5"></a>
+## [8.19.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.4...v8.19.5) (2017-04-10)
+
+
+
+<a name="8.19.4"></a>
+## [8.19.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.3...v8.19.4) (2017-04-07)
+
+
+
+<a name="8.19.3"></a>
+## [8.19.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.2...v8.19.3) (2017-04-07)
+
+
+### Bug Fixes
+
+* UIS-1783 fix bug about multiple scrollbars for the BU tree ([a3c54d1](https://github.com/softwaregroup-bg/ut-front-react/commit/a3c54d1))
+
+
+
+<a name="8.19.2"></a>
+## [8.19.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.1...v8.19.2) (2017-04-07)
+
+
+### Bug Fixes
+
+* add classname ([15ae820](https://github.com/softwaregroup-bg/ut-front-react/commit/15ae820))
+
+
+
+<a name="8.19.1"></a>
+## [8.19.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.0...v8.19.1) (2017-04-07)
+
+
+### Bug Fixes
+
+* MCTUNE-2661 refactor component to display all items on one row ([4abd8e5](https://github.com/softwaregroup-bg/ut-front-react/commit/4abd8e5))
+
+
+
+<a name="8.19.0"></a>
+# [8.19.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.12...v8.19.0) (2017-04-07)
+
+
+### Features
+
+* UIS-2224 allow tabs to accept styles for the content wrapper ([770ce47](https://github.com/softwaregroup-bg/ut-front-react/commit/770ce47))
+
+
+
+<a name="8.18.12"></a>
+## [8.18.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.11...v8.18.12) (2017-04-06)
+
+
+
+<a name="8.18.11"></a>
+## [8.18.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.10...v8.18.11) (2017-04-06)
+
+
+### Bug Fixes
+
+* order icon ([ba179f2](https://github.com/softwaregroup-bg/ut-front-react/commit/ba179f2))
+
+
+
+<a name="8.18.10"></a>
+## [8.18.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.9...v8.18.10) (2017-04-04)
+
+
+### Bug Fixes
+
+* remove wrong message ([3136b03](https://github.com/softwaregroup-bg/ut-front-react/commit/3136b03))
+
+
+
+<a name="8.18.9"></a>
+## [8.18.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.8...v8.18.9) (2017-04-04)
+
+
+### Bug Fixes
+
+* filter default value ([3d8abe8](https://github.com/softwaregroup-bg/ut-front-react/commit/3d8abe8))
+
+
+
+<a name="8.18.8"></a>
+## [8.18.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.7...v8.18.8) (2017-04-03)
+
+
+
+<a name="8.18.7"></a>
+## [8.18.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.6...v8.18.7) (2017-04-03)
+
+
+
+<a name="8.18.6"></a>
+## [8.18.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.5...v8.18.6) (2017-04-03)
+
+
+### Bug Fixes
+
+* UIS-1068 allow implementation styles override on login ([#219](https://github.com/softwaregroup-bg/ut-front-react/issues/219)) ([8f0d439](https://github.com/softwaregroup-bg/ut-front-react/commit/8f0d439))
+
+
+
 <a name="8.18.5"></a>
 ## [8.18.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.18.4...v8.18.5) (2017-03-29)
 

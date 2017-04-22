@@ -23,7 +23,7 @@
 .headerLogoContainer {
   display: flex;
   align-items: center;
-  width: 15%;
+  width: var(--ut-front-react-standardHeaderLogoContainerWidth);
   min-width: 220px;
 }
 

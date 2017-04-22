@@ -1,0 +1,32 @@
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .leftContainer {
+    overflow: hidden;
+}
+
+.container .leftContainer .leftButtonsHeaderButton {
+    float: left;
+    margin-right: 10px;
+}
+
+.container .leftContainer .leftButtonsHeaderButton:last-child {
+    margin-right: 0;
+}
+
+.container .rightContainer {
+    overflow: hidden;
+}
+
+.container .rightButtonsHeaderButton {
+    float: right;
+    margin-left: 10px;
+}
+
+.container .rightButtonsHeaderButton:last-child {
+    margin-left: 0;
+}

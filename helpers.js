@@ -130,3 +130,23 @@ export const setPermissions = function(permissions) {
         return cache[action];
     };
 };
+
+export const calculateAspectRatio = (file, scaleDimensions) => {
+    const img = document.createElement('img');
+    img.src = file;
+
+    if (img.width === 0 && img.height === 0) {
+        // when image url is passed width and height can not be calculated
+        return {
+            width: scaleDimensions.width,
+            height: scaleDimensions.height
+        };
+    } else {
+        // cases when base64 data is passed
+        let ratio = Math.min(scaleDimensions.width / img.width, scaleDimensions.height / img.height);
+        return {
+            width: img.width * ratio,
+            height: img.height * ratio
+        };
+    }
+};

@@ -2,22 +2,37 @@
 @import 'config.css';
 
 .toolbarWrap {
-    display: block;
-    min-width: 830px;
+    width: 100%;
     overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #D7D6D6;
+}
+
+.fixedHeight {
+    height: 55px;
+}
+
+.table {
+    display: table;
+}
+
+.toolbarWrap>div,
+.tableCell {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .toolbarWrap .toolbarElement {
-    float: left;
-    margin: 12px 20px 0 0;
+    padding-right: 20px;
 }
 
 .toolbarWrap .toolbarElement:last-child {
-    margin-right: 0;
+    padding-right: 0;
 }
 
 .toolbarWrap .label {
-    margin-top: 18px;
+    text-align: left;
+    white-space: nowrap;
 }
 
 .toolbarWrap .link {
@@ -37,6 +52,7 @@
 
 .toolbarWrap .pullRight {
     float: right;
+    text-align: right;
 }
 
 .toolbarWrap .noRightMargin {
@@ -44,9 +60,8 @@
 }
 
 .toolbarWrap .closeArrow {
-    width: 28px;
-    height: 28px;
-    margin-top: 13px;
+    width: 30px;
+    height: 30px;
     background-color: var(--ut-front-react-standardGridToolBoxCloseArrowBackgroundColor);
     background-image: url('./images/clearfilters-arrow.png');
     background-repeat: no-repeat;
@@ -59,16 +74,13 @@
 }
 
 .advancedSearchIconWrapper {
-    display: inline-block;
-    margin-left: 10px;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
 }
 
 .advancedSearchIcon {
-    width: 28px;
-    height: 28px;
-    margin-top: 13px;
+    width: 30px;
+    height: 30px;
     background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
@@ -84,12 +96,8 @@
     background-color: var(--ut-front-react-standardGridToolBoxCloseArrowHoverBackgroundColor);
 }
 
-.toolbarWrap .button {
-    margin: 12px 0 0 10px;
-}
-
 .toolbarWrap .leftFloat {
-    float: left;
+    text-align: left;
 }
 
 .advancedSearchPopOver {
@@ -119,4 +127,12 @@
 
 .bold {
     font-weight: bold;
+}
+
+.spacer {
+    padding-right: 10px;
+}
+
+.space:last-child {
+    padding-right: 0px;
 }
