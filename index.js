@@ -21,7 +21,7 @@ module.exports = {
             config: {auth: false},
             handler: {
                 directory: {
-                    path: path.resolve(require.resolve('ut-front-react'),'../', 'components', 'MultiSelectBubble', 'assets'),
+                    path: path.resolve(require.resolve('ut-front-react'), '../', 'components', 'MultiSelectBubble', 'assets'),
                     listing: false,
                     index: true,
                     lookupCompressed: true
