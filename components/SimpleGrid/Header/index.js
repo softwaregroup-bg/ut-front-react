@@ -116,13 +116,17 @@ export class Header extends Component {
                         return child === field.get('name');
                     }).size > 0;
                 });
-
                 if (fieldsInSpanList.size > 0) {
                     let identifier = fieldsInSpanList.getIn([0, 'children']).join();
                     if (!spanDrawn[identifier]) {
                         spanDrawn[identifier] = 1;
                         let childNum = fieldsInSpanList.getIn([0, 'children']).size;
-                        return <td className={(array.get(idx + 1) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : '')} key={idx} colSpan={childNum}>{fieldsInSpanList.getIn([0, 'title']).toJS()}</td>;
+                        let title = fieldsInSpanList.getIn([0, 'title']);
+                        if (title instanceof Map) {
+                            title = title.toJS();
+                        }
+
+                        return <td className={(array.get(idx + 1) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : '')} key={idx} colSpan={childNum}>{title}</td>;
                     }
                 } else {
                     return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;

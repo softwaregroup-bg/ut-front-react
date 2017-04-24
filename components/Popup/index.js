@@ -104,7 +104,7 @@ PopupInternal.propTypes = {
     closeOnEsc: PropTypes.bool,
     header: PropTypes.shape({
         className: PropTypes.string,
-        text: PropTypes.string,
+        text: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
         closeIcon: PropTypes.bool
     }),
     footer: PropTypes.shape({

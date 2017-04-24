@@ -1,3 +1,88 @@
+<a name="9.0.0"></a>
+# [9.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.14...v9.0.0) (2017-04-24)
+
+
+### Features
+
+* Bubble multiselect dropdown ([#245](https://github.com/softwaregroup-bg/ut-front-react/issues/245)) ([2d5a979](https://github.com/softwaregroup-bg/ut-front-react/commit/2d5a979))
+
+
+### BREAKING CHANGES
+
+* this changes the static assets path pattern
+
+
+
+<a name="8.19.14"></a>
+## [8.19.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.13...v8.19.14) (2017-04-23)
+
+
+
+<a name="8.19.13"></a>
+## [8.19.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.12...v8.19.13) (2017-04-21)
+
+
+### Bug Fixes
+
+* equalize styles ([344201c](https://github.com/softwaregroup-bg/ut-front-react/commit/344201c))
+
+
+
+<a name="8.19.12"></a>
+## [8.19.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.11...v8.19.12) (2017-04-19)
+
+
+### Bug Fixes
+
+* check if immutable ([78f674a](https://github.com/softwaregroup-bg/ut-front-react/commit/78f674a))
+
+
+
+<a name="8.19.11"></a>
+## [8.19.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.10...v8.19.11) (2017-04-14)
+
+
+### Bug Fixes
+
+* remove classnames ([#241](https://github.com/softwaregroup-bg/ut-front-react/issues/241)) ([59b88a5](https://github.com/softwaregroup-bg/ut-front-react/commit/59b88a5))
+
+
+
+<a name="8.19.10"></a>
+## [8.19.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.9...v8.19.10) (2017-04-13)
+
+
+
+<a name="8.19.9"></a>
+## [8.19.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.8...v8.19.9) (2017-04-13)
+
+
+### Bug Fixes
+
+* expose navigation logo to implementation styles ([#237](https://github.com/softwaregroup-bg/ut-front-react/issues/237)) ([b6fb2c8](https://github.com/softwaregroup-bg/ut-front-react/commit/b6fb2c8))
+
+
+
+<a name="8.19.8"></a>
+## [8.19.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.7...v8.19.8) (2017-04-12)
+
+
+
+<a name="8.19.7"></a>
+## [8.19.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.6...v8.19.7) (2017-04-12)
+
+
+
+<a name="8.19.6"></a>
+## [8.19.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.5...v8.19.6) (2017-04-11)
+
+
+
+<a name="8.19.5"></a>
+## [8.19.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.4...v8.19.5) (2017-04-10)
+
+
+
 <a name="8.19.4"></a>
 ## [8.19.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.3...v8.19.4) (2017-04-07)
 

@@ -314,12 +314,12 @@ class GridToolBox extends Component {
 
     renderAdvancedButton() {
         let tooltipContent = this.getTooltip();
-        let el = <span key={1} className={style.advancedSearchIconWrapper}>
-            <button className={classnames(style.toolbarElement, style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch} />
+        let el = <div key={Math.random()} className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
+            <button className={classnames(style.toolbarElement, style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch}>&nbsp;</button>
             {tooltipContent.length ? <div className={style.advancedSearchPopOver}>
                 {tooltipContent}
             </div> : null}
-        </span>;
+        </div>;
 
         return el;
     }
@@ -406,8 +406,8 @@ class GridToolBox extends Component {
                         }
                     })}
                     {this.renderAdvanced()}
-                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' className={style.toolbarElement} />}
-                    {this.state.hasActiveFilters && <div onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={classnames(style.toolbarElement, style.closeArrow)} />}
+                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}><StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' /></div>}
+                    {this.state.hasActiveFilters && <div className={classnames(style.toolbarElement, style.tableCell)}><div key='closeBtn' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} /></div>}
                     </div>
                 </div>
             </div>
@@ -668,6 +668,7 @@ GridToolBox.propTypes = {
                 actionButtonElementTypes.button,
                 actionButtonElementTypes.buttonWithConfirmPopUp,
                 actionButtonElementTypes.buttonWithPopUpsDependingOnProperty,
+                actionButtonElementTypes.buttonWithPopUpsDependingOnPropertyValue,
                 actionButtonElementTypes.buttonWithMultipleDialogs
             ]),
             // Common

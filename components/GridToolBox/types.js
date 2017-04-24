@@ -6,6 +6,7 @@ export const filterElementTypes = {
     clear: 'clear'
 };
 
+// Important: when adding new type -> add it respectively to GridToolbox PropTypes
 export const actionButtonElementTypes = {
     link: 'link',
     button: 'button',

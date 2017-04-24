@@ -70,16 +70,17 @@ class TextArea extends Component {
     }
 
     render() {
-        let { label } = this.props;
+        let { label, readonly } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let errorTextAreaStyle = !isValid ? style.error : '';
         let zeroHeightStyle = isValid ? style.hh : '';
         let editedInputStyle = this.state.isEdited ? style.editedInputStyle : '';
+        let disabledStyle = readonly ? style.readonlyInput : '';
 
         let textArea = <textArea
           rows='7'
           ref='input'
-          className={classnames(style.textarea, errorTextAreaStyle, editedInputStyle)}
+          className={classnames(style.textarea, errorTextAreaStyle, editedInputStyle, disabledStyle)}
           value={this.state.value || ''}
           onChange={this.handleChange}
           disabled={this.props.disabled}

@@ -34,13 +34,14 @@ export default class DatePicker extends Component {
         let zeroHeightStyle = isValid ? style.hh : '';
         let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
         let iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
+        let readonlyStyle = disabled ? style.readonlyInput : '';
 
         return (
             <div className={style.wrap}>
                 <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
-                      className={dpStyles}
+                      className={classnames(dpStyles, readonlyStyle)}
                       textFieldStyle={textFieldStyle}
                       DateTimeFormat={this.props.DateTimeFormat}
                       cancelLabel={this.props.cancelLabel}

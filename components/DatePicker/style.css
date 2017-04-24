@@ -167,3 +167,7 @@
     font-size: 14px;
     color: #595959;
 }
+.readonlyInput {
+    cursor: not-allowed;
+    border-color: #EBEBEB !important;
+}
