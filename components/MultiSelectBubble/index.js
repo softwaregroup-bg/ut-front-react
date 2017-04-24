@@ -18,10 +18,16 @@ class MultiSelectBubble extends Component {
         this.props.onChange(newValue);
     }
 
+    formatOptions(options) {
+      return options.map(option => ({ value: option.key, label: option.name }));
+    }
+
+    formatValue(value) {
+      return value.map(option => ({ value: option.key, label: option.name }));
+    }
+
     render() {
         let { name, value, options, label } = this.props;
-        options = options.map(option => ({ value: option.key, label: option.name }));
-        value = value.map(option => ({ value: option.key, label: option.name }));
         return (
             <div className={style.outerWrap}>
                 <div className={style.labelWrap}>
@@ -30,8 +36,8 @@ class MultiSelectBubble extends Component {
                 <div className={style.inputWrap}>
                     <Select
                       name={name}
-                      value={value}
-                      options={options}
+                      value={this.formatValue(value)}
+                      options={this.formatOptions(options)}
                       onChange={this.handleChange}
                       multi
                     />
