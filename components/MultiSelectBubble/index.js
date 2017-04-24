@@ -19,11 +19,11 @@ class MultiSelectBubble extends Component {
     }
 
     formatOptions(options) {
-      return options.map(option => ({ value: option.key, label: option.name }));
+        return options.map(option => ({ value: option.key, label: option.name }));
     }
 
     formatValue(value) {
-      return value.map(option => ({ value: option.key, label: option.name }));
+        return value.map(option => ({ value: option.key, label: option.name }));
     }
 
     render() {
