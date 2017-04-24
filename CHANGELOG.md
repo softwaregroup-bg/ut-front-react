@@ -1,3 +1,18 @@
+<a name="9.0.0"></a>
+# [9.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.14...v9.0.0) (2017-04-24)
+
+
+### Features
+
+* Bubble multiselect dropdown ([#245](https://github.com/softwaregroup-bg/ut-front-react/issues/245)) ([2d5a979](https://github.com/softwaregroup-bg/ut-front-react/commit/2d5a979))
+
+
+### BREAKING CHANGES
+
+* this changes the static assets path pattern
+
+
+
 <a name="8.19.14"></a>
 ## [8.19.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v8.19.13...v8.19.14) (2017-04-23)
 
