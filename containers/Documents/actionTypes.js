@@ -1,5 +1,7 @@
+export const INIT_DOCUMENTS_STATE = Symbol('INIT_DOCUMENTS_STATE');
 export const FETCH_DOCUMENTS = Symbol('FETCH_DOCUMENTS');
 export const SELECT_ATTACHMENT = Symbol('SELECT_ATTACHMENT');
 export const DELETE_DOCUMENT = Symbol('DELETE_DOCUMENT');
 export const UPDATE_PAGINATION = Symbol('UPDATE_PAGINATION');
 export const UPDATE_ORDER = Symbol('UPDATE_ORDER');
+export const FETCH_DOCUMENT_TYPES = Symbol('FETCH_DOCUMENT_TYPES');

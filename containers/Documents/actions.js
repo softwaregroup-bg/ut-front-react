@@ -1,10 +1,21 @@
 import {
+    INIT_DOCUMENTS_STATE,
     FETCH_DOCUMENTS,
     SELECT_ATTACHMENT,
     DELETE_DOCUMENT,
     UPDATE_PAGINATION,
-    UPDATE_ORDER
+    UPDATE_ORDER,
+    FETCH_DOCUMENT_TYPES
 } from './actionTypes';
+
+export function initState(identifier) {
+    return {
+        type: INIT_DOCUMENTS_STATE,
+        params: {
+            identifier
+        }
+    };
+}
 
 export const fetchDocuments = (actorId, filters, identifier) => {
     let paramsFilters = filters ? filters.toJS() : {};
@@ -68,6 +79,15 @@ export const updateOrder = (sortKey, sortDirection, identifier) => ({
     props: {
         sortKey,
         sortDirection,
+        identifier
+    }
+});
+
+export const fetchDocumentTypes = (identifier) => ({
+    type: FETCH_DOCUMENT_TYPES,
+    method: 'document.documentType.fetch',
+    params: {},
+    props: {
         identifier
     }
 });

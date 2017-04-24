@@ -259,7 +259,8 @@ export default class DocumentUpload extends Component {
                         let response = JSON.parse(request.responseText);
                         useFile({
                             filename: response.filename,
-                            dateCreated: new Date() // TODO: get this from the backend at some time
+                            dateCreated: new Date(), // TODO: get this from the backend at some time
+                            extension: 'png' // TODO: get this from the backend at some time
                         });
                     } catch (e) {
                         // TODO: handle error response

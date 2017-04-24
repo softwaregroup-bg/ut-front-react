@@ -1,5 +1,13 @@
 import Immutable from 'immutable';
-import { FETCH_DOCUMENTS, SELECT_ATTACHMENT, DELETE_DOCUMENT, UPDATE_PAGINATION, UPDATE_ORDER } from './actionTypes';
+import {
+    INIT_DOCUMENTS_STATE,
+    FETCH_DOCUMENTS,
+    SELECT_ATTACHMENT,
+    DELETE_DOCUMENT,
+    UPDATE_PAGINATION,
+    UPDATE_ORDER,
+    FETCH_DOCUMENT_TYPES
+} from './actionTypes';
 import { methodRequestState } from '../../constants';
 import { parseFetchDocumentsResult } from './helpers';
 
@@ -14,6 +22,11 @@ const getDaultAttachmentObject = function() {
                 pageSize: defaultPageSize,
                 pageNumber: 1
             }
+        },
+        documentTypes: {
+            requiresFetch: true,
+            isLoading: false,
+            data: []
         }
     };
 };
@@ -32,6 +45,8 @@ const documents = (state = defaultState, action) => {
     const { type, props } = action;
 
     switch (type) {
+        case INIT_DOCUMENTS_STATE:
+            return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject));
         case FETCH_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
@@ -43,6 +58,27 @@ const documents = (state = defaultState, action) => {
                     attachmentObject.requiresFetch = false;
 
                     state = state.set(props.identifier, Immutable.fromJS(attachmentObject));
+                }
+            }
+            return state;
+        case FETCH_DOCUMENT_TYPES:
+            if (action.methodRequestState === methodRequestState.REQUESTED) {
+                return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
+                            .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(true));
+            } else if (action.methodRequestState === methodRequestState.FINISHED) {
+                if (action.result && action.result.documentType) {
+                    let data = action.result.documentType.map((type) => {
+                        return {
+                            key: type.id,
+                            name: type.name
+                        };
+                    });
+                    return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
+                                .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false))
+                                .setIn([props.identifier, 'documentTypes', 'data'], Immutable.fromJS(data));
+                } else {
+                    return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
+                                .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false));
                 }
             }
             return state;
