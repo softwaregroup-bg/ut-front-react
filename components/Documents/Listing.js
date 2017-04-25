@@ -202,9 +202,9 @@ class Documents extends Component {
         let handlePaginationUpdate = (newPagination) => {
             updatePagination(newPagination, identifier);
         };
-        let handleSort = (col, val) => {
-            updateOrder(col, val, identifier);
-        };
+        // let handleSort = (col, val) => {
+        //     updateOrder(col, val, identifier);
+        // };
 
         let combinedAttachments = this.combineAttachments(activeAttachments, updatedAttachments);
 
