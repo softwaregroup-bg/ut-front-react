@@ -223,9 +223,9 @@ class Documents extends Component {
                           tdStyles={getListTdStyles()}
                         />
                     </div>
-                    {/* <div id={style.paginationWrap}>
-                        <AdvancedPagination pagination={fetchFilters.get('paging')} onUpdate={handlePaginationUpdate} />
-                    </div> */}
+                    <div id={style.paginationWrap}>
+                        <AdvancedPagination pagination={fetchFilters.get('paging') || {pageSize: 25, pageNumber: 1}} onUpdate={handlePaginationUpdate} />
+                    </div>
                 </div>
             );
         } else {
