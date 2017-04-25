@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import immutable from 'immutable';
 import { getListTableColumns, getListTdStyles } from './helpers';
 import { documentPrefix } from '../../constants';
 
@@ -27,6 +28,7 @@ class Documents extends Component {
 
         this.fetchDocs = this.fetchDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
+        this.combineAttachments = this.combineAttachments.bind(this);
     }
 
     componentWillMount() {
@@ -185,8 +187,15 @@ class Documents extends Component {
         return colData;
     }
 
+    combineAttachments(serverAttachments, updatedAttachments) {
+        let remote = serverAttachments || immutable.fromJS([]);
+        let local = updatedAttachments || immutable.fromJS([]);
+        let combined = local.concat(remote);
+        return combined;
+    }
+
     get content() {
-        let { identifier, activeAttachments, fetchFilters, onGridSelect, updatePagination, updateOrder } = this.props;
+        let { identifier, activeAttachments, fetchFilters, onGridSelect, updatePagination, updateOrder, updatedAttachments } = this.props;
         let handleSelectItem = (selectedItem, isSelected) => {
             onGridSelect(selectedItem, isSelected, identifier);
         };
@@ -197,24 +206,26 @@ class Documents extends Component {
             updateOrder(col, val, identifier);
         };
 
-        if (activeAttachments && activeAttachments.size > 0) {
+        let combinedAttachments = this.combineAttachments(activeAttachments, updatedAttachments);
+
+        if (combinedAttachments && combinedAttachments.size > 0) {
             return (
                 <div>
                     <div>
                         <Grid
                           columns={getListTableColumns()}
-                          rows={activeAttachments}
+                          rows={combinedAttachments}
                           canCheck={false}
                           mapColumn={this.mapColumn}
                           onSelect={handleSelectItem}
-                          sortableColumns={[true, true, true, true]}
-                          onSort={handleSort}
+                          sortableColumns={[false, false, false, false]}
+                          // onSort={handleSort}
                           tdStyles={getListTdStyles()}
                         />
                     </div>
-                    <div id={style.paginationWrap}>
+                    {/* <div id={style.paginationWrap}>
                         <AdvancedPagination pagination={fetchFilters.get('paging')} onUpdate={handlePaginationUpdate} />
-                    </div>
+                    </div> */}
                 </div>
             );
         } else {
@@ -317,6 +328,7 @@ Documents.propTypes = {
     ),
 
     uploadNewDocument: PropTypes.func,
+    updatedAttachments: PropTypes.object, // immutable list
 
     permissions: PropTypes.shape({
         add: PropTypes.bool,

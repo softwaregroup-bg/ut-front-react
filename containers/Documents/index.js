@@ -30,12 +30,9 @@ class DocumentsContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        // if (newProps.documentTypes.get('requiresFetch')) {
-        //     this.fetchDocumentTypes();
-        // }
-        // if (newProps.attachments !== undefined) {
-        //     this.props.initState();
-        // }
+        if (newProps.documentTypes.get('requiresFetch') && !newProps.documentTypes.get('isLoading')) {
+            this.fetchDocumentTypes();
+        }
     }
 
     fetchDocumentTypes() {
@@ -43,7 +40,7 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, uploadNewDocument } = this.props;
+        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, uploadNewDocument, updatedAttachments } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -55,6 +52,7 @@ class DocumentsContainer extends Component {
               actorId={actorId}
               activeAttachments={activeAttachments}
               selectedAttachment={selectedAttachment}
+              updatedAttachments={updatedAttachments}
               requiresFetch={requiresFetch}
               fetchFilters={fetchFilters}
               fetchDocuments={fetchDocuments}
@@ -88,6 +86,7 @@ DocumentsContainer.propTypes = {
         isLoading: PropTypes.bool,
         data: DocumentsListing.propTypes.documentTypes
     }),
+    updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
     uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument
 };
 

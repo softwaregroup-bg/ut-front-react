@@ -96,14 +96,15 @@ class DocumentUploadWithForm extends Component {
                 }
             }
             let statusId = 'New';
+            let description = this.state.description;
+            closeHandler();
             this.props.uploadNewDocument({
                 documentTypeId: type.key,
                 documentType: type.name,
                 statusId,
-                documentDescription: this.state.description,
+                documentDescription: description,
                 ...uploadedFile
             });
-            closeHandler();
         };
         return (
             <DocumentUpload
