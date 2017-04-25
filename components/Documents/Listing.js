@@ -50,7 +50,7 @@ class Documents extends Component {
     }
 
     get header() {
-        let { identifier, selectedAttachment, activeAttachments, deleteDocument } = this.props;
+        let { selectedAttachment, activeAttachments, deleteDocument } = this.props;
 
         let addNewDocumentHandler = () => {
             this.setState({
