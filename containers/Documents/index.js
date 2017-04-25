@@ -40,7 +40,7 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, uploadNewDocument, updatedAttachments } = this.props;
+        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, uploadNewDocument, updatedAttachments, deleteDocument, archiveDocument } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -63,6 +63,8 @@ class DocumentsContainer extends Component {
               permissions={permissions}
               documentTypes={docTypes}
               uploadNewDocument={uploadNewDocument}
+              deleteDocument={deleteDocument}
+              archiveDocument={archiveDocument}
             />
         );
     }
@@ -87,7 +89,10 @@ DocumentsContainer.propTypes = {
         data: DocumentsListing.propTypes.documentTypes
     }),
     updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
-    uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument
+    uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
+    deleteDocument: DocumentsListing.propTypes.deleteDocument,
+    archiveDocument: DocumentsListing.propTypes.archiveDocument
+
 };
 
 export default connect(

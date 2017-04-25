@@ -7,6 +7,7 @@ import { POPUP_MIN_OFFSETS, POPUP_HEADER_HEIGHT, POPUP_FOOTER_HEIGHT, POPUP_PADD
 import { DEFAULT_ASPECT_RATIO } from './config';
 import { getFileDimensions, getViewport } from '../../utils/image';
 import styles from './styles.css';
+import { getFileExtension } from './helpers';
 
 export default class DocumentUpload extends Component {
     constructor() {
@@ -259,9 +260,9 @@ export default class DocumentUpload extends Component {
                         let response = JSON.parse(request.responseText);
                         useFile({
                             filename: response.filename,
-                            createdDate: new Date().toISOString(), // TODO: get this from the backend at some time
-                            extension: 'png', // TODO: get this from the backend at some time
-                            contentType: 'image/png' // TODO: get this from the backend at some time
+                            createdDate: new Date().toISOString(),
+                            extension: getFileExtension(response.filename),
+                            contentType: response.headers['content-type']
                         });
                     } catch (e) {
                         // TODO: handle error response

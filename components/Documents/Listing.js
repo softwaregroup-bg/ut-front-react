@@ -50,7 +50,7 @@ class Documents extends Component {
     }
 
     get header() {
-        let { identifier, selectedAttachment, onDelete, activeAttachments } = this.props;
+        let { identifier, selectedAttachment, activeAttachments, deleteDocument } = this.props;
 
         let addNewDocumentHandler = () => {
             this.setState({
@@ -84,7 +84,7 @@ class Documents extends Component {
         };
         let handleDeleteDocument = () => {
             this.setState({ showDeleteConfirmationPopup: false }, () => {
-                onDelete(selectedAttachment.get('documentId'), identifier);
+                deleteDocument(selectedAttachment);
             });
         };
 
@@ -328,6 +328,8 @@ Documents.propTypes = {
     ),
 
     uploadNewDocument: PropTypes.func,
+    deleteDocument: PropTypes.func,
+    archiveDocument: PropTypes.func,
     updatedAttachments: PropTypes.object, // immutable list
 
     permissions: PropTypes.shape({
