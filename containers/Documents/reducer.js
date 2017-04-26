@@ -10,7 +10,7 @@ import {
     ADD_NEW_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
-import { methodRequestState } from '../../constants';
+import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
 import { parseFetchDocumentsResult } from './helpers';
 
 const defaultPageSize = 25;
@@ -119,7 +119,9 @@ const documents = (state = defaultState, action) => {
                     .setIn([action.props.identifier, 'requiresFetch'], true);
             }
         case ADD_NEW_DOCUMENT:
-            let docs = state.getIn([action.props.identifier, 'changedDocuments']).push(Immutable.fromJS(action.props.newDocumentObject));
+            let newDoc = action.props.newDocumentObject;
+            newDoc.url = documentTmpUploadPrefix + newDoc.filename;
+            let docs = state.getIn([action.props.identifier, 'changedDocuments']).push(Immutable.fromJS(newDoc));
             return state.setIn([action.props.identifier, 'changedDocuments'], docs);
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');

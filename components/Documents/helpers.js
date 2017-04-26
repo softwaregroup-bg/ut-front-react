@@ -35,7 +35,7 @@ export const mapContentTypeToExtension = (contentType) => {
         'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'pptx'
     };
 
-    return config[contentType] || 'unkown';
+    return config[contentType] || 'unknown';
 };
 
 export function getDocumentTypeValidators() {

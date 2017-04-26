@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import immutable from 'immutable';
 import { getListTableColumns, getListTdStyles } from './helpers';
-import { documentPrefix } from '../../constants';
 
 import { Vertical } from '../Layout';
 import ButtonsHeader from '../ButtonsHeader';
@@ -68,7 +67,7 @@ class Documents extends Component {
         // Download button
         let downloadButtonHandler = () => {
             let tempLink = document.createElement('a');
-            tempLink.href = `${documentPrefix}${selectedAttachment.get('filename')}`;
+            tempLink.href = selectedAttachment.get('url');
             tempLink.setAttribute('download', `${selectedAttachment.get('documentTypeId')}-${selectedAttachment.get('filename')}.${selectedAttachment.get('extension')}`);
             tempLink.setAttribute('target', '_blank');
             document.body.appendChild(tempLink);
@@ -245,7 +244,7 @@ class Documents extends Component {
                 this.setState({ showDetailsPopUp: false });
             };
             let file = {
-                content: documentPrefix + selectedAttachment.get('filename'),
+                content: selectedAttachment.get('url'),
                 details: {
                     type: selectedAttachment.get('contentType'),
                     size: selectedAttachment.get('attachmentSizeId'),
