@@ -5,7 +5,9 @@ import {
     DELETE_DOCUMENT,
     UPDATE_PAGINATION,
     UPDATE_ORDER,
-    FETCH_DOCUMENT_TYPES
+    FETCH_DOCUMENT_TYPES,
+    ADD_NEW_DOCUMENT,
+    CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
 
 export function initState(identifier) {
@@ -91,3 +93,24 @@ export const fetchDocumentTypes = (identifier) => ({
         identifier
     }
 });
+
+export function addDocument(identifier, newDocumentObject) {
+    return {
+        type: ADD_NEW_DOCUMENT,
+        props: {
+            newDocumentObject,
+            identifier
+        }
+    };
+}
+
+export function changeDocumentStatusDeleted(identifier, documentObject, newStatus) {
+    return {
+        type: CHANGE_DOCUMENT_STATUS_DELETED,
+        props: {
+            documentObject,
+            newStatus,
+            identifier
+        }
+    };
+}

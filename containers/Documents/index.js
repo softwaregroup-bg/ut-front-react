@@ -8,7 +8,9 @@ import {
     deleteAttachments,
     updatePagination,
     updateOrder,
-    fetchDocumentTypes
+    fetchDocumentTypes,
+    addDocument,
+    changeDocumentStatusDeleted
 } from './actions';
 
 import DocumentsListing from '../../components/Documents/Listing';
@@ -62,9 +64,15 @@ class DocumentsContainer extends Component {
               updateOrder={updateOrder}
               permissions={permissions}
               documentTypes={docTypes}
-              uploadNewDocument={uploadNewDocument}
-              deleteDocument={deleteDocument}
-              archiveDocument={archiveDocument}
+              uploadNewDocument={(newObject) => {
+                  this.props.addDocument(identifier, newObject);
+              }}
+              deleteDocument={(documentObject) => {
+                  this.props.changeDocumentStatusDeleted(identifier, documentObject, 'deleted');
+              }}
+              archiveDocument={(documentObject) => {
+                  this.props.changeDocumentStatusDeleted(identifier, documentObject, 'archieved');
+              }}
             />
         );
     }
@@ -91,16 +99,18 @@ DocumentsContainer.propTypes = {
     updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
     uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
     deleteDocument: DocumentsListing.propTypes.deleteDocument,
-    archiveDocument: DocumentsListing.propTypes.archiveDocument
-
+    archiveDocument: DocumentsListing.propTypes.archiveDocument,
+    changeDocumentStatusDeleted: PropTypes.func.isRequired,
+    addDocument: PropTypes.func.isRequired
 };
 
 export default connect(
     ({frontDocuments}, props) => {
         return {
             attachments: frontDocuments,
-            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({})
+            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
+            updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes }
+    { initState, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, changeDocumentStatusDeleted }
 )(DocumentsContainer);

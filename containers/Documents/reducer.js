@@ -6,7 +6,9 @@ import {
     DELETE_DOCUMENT,
     UPDATE_PAGINATION,
     UPDATE_ORDER,
-    FETCH_DOCUMENT_TYPES
+    FETCH_DOCUMENT_TYPES,
+    ADD_NEW_DOCUMENT,
+    CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
 import { methodRequestState } from '../../constants';
 import { parseFetchDocumentsResult } from './helpers';
@@ -15,6 +17,7 @@ const defaultPageSize = 25;
 const getDaultAttachmentObject = function() {
     return {
         attachments: [],
+        changedDocuments: [],
         selected: null,
         requiresFetch: true,
         filters: {
@@ -115,6 +118,33 @@ const documents = (state = defaultState, action) => {
                     .setIn([action.props.identifier, 'filters', 'orderBy'], newOrder)
                     .setIn([action.props.identifier, 'requiresFetch'], true);
             }
+        case ADD_NEW_DOCUMENT:
+            let docs = state.getIn([action.props.identifier, 'changedDocuments']).push(Immutable.fromJS(action.props.newDocumentObject));
+            return state.setIn([action.props.identifier, 'changedDocuments'], docs);
+        case CHANGE_DOCUMENT_STATUS_DELETED:
+            let statusId = action.props.documentObject.get('statusId');
+            if (statusId) {
+                switch (statusId) {
+                    case 'New':
+                        // remove the temp file from the list
+                        let docs = state.getIn([action.props.identifier, 'changedDocuments']);
+                        let fileIndex = -1;
+                        for (let i = 0; i < docs.size; i++) {
+                            if (docs.getIn([i, 'filename']) === action.props.documentObject.get('filename')) {
+                                fileIndex = i;
+                                break;
+                            }
+                        }
+                        return state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
+                                    .setIn([action.props.identifier, 'selected'], null);
+                    case 'Approved':
+                    case 'Archieved':
+                        let deletedDoc = action.props.documentObject.set('statusId', 'Deleted');
+                        docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
+                        return state.setIn([action.props.identifier, 'changedDocuments'], docs);
+                }
+            }
+            return state;
         default:
             return state;
     }
