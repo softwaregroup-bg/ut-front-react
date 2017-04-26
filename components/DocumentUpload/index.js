@@ -155,13 +155,14 @@ export default class DocumentUpload extends Component {
 
     get view() {
         const { mode, uploadMethod, fileDimensions, showCrop } = this.state;
-        const { scaleDimensions, additionalContent } = this.props;
+        const { scaleDimensions, additionalContent, allowedFileTypes } = this.props;
 
         if (mode === 'initial') {
             return (
                 <DocumentUploadMenu
                   className={styles.initialViewContainer}
                   onAddFile={this.onAddFile}
+                  allowedFileTypes={allowedFileTypes}
                   onFileLoaded={this.onUploadFile} />
             );
         }
@@ -316,6 +317,7 @@ export default class DocumentUpload extends Component {
 
 DocumentUpload.defaultProps = {
     useFile: () => ({}),
+    allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     additionalContent: '',
     additionalContentValidate: () => {},
     isAdditionalContentValid: true
@@ -332,6 +334,7 @@ DocumentUpload.propTypes = {
     }),
     useFile: PropTypes.func,
     closePopup: PropTypes.func,
+    allowedFileTypes: PropTypes.array,
     additionalContent: PropTypes.any,
     additionalContentValidate: PropTypes.func,
     isAdditionalContentValid: PropTypes.bool

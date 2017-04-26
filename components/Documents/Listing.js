@@ -116,7 +116,7 @@ class Documents extends Component {
             if (this.props.permissions.delete) {
                 headerButtonsConfig.left.push({
                     label: 'Delete',
-                    disabled: disabledButtonsState,
+                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'Deleted'),
                     onClick: openDeleteConfirmationDialog
                 });
             }
@@ -281,6 +281,7 @@ class Documents extends Component {
               closePopup={closeHandler}
               uploadNewDocument={this.props.uploadNewDocument}
               documentTypes={this.props.documentTypes}
+              allowedFileTypes={this.props.allowedFileTypes}
             />
         );
     }
@@ -330,6 +331,7 @@ Documents.propTypes = {
     deleteDocument: PropTypes.func,
     archiveDocument: PropTypes.func,
     updatedAttachments: PropTypes.object, // immutable list
+    allowedFileTypes: PropTypes.array,
 
     permissions: PropTypes.shape({
         add: PropTypes.bool,
@@ -349,6 +351,7 @@ Documents.defaultProps = {
     onDelete: () => {},
     updatePagination: () => {},
     updateOrder: () => {},
+    allowedFileTypes: ['.jpg', 'jpeg', 'png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };
 

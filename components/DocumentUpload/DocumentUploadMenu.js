@@ -7,14 +7,16 @@ import styles from './styles.css';
 const DocumentUploadMenu = ({
     className,
     onFileLoaded,
+    allowedFileTypes,
     onAddFile
 }) => {
+    let allowedTypes = allowedFileTypes.join(',');
     return (
         <div className={classnames(styles.menuContainer, className)}>
             <UploadFileButton
               icon={styles.galleryIcon}
               label='Upload photo'
-              acceptType='image/*, application/pdf'
+              acceptType={allowedTypes}
               onFileLoaded={onFileLoaded} />
             <AddFileButton
               label={'Take photo'}
@@ -27,6 +29,7 @@ const DocumentUploadMenu = ({
 DocumentUploadMenu.propTypes = {
     className: PropTypes.string,
     onFileLoaded: PropTypes.func,
+    allowedFileTypes: PropTypes.array,
     onAddFile: PropTypes.func
 };
 
