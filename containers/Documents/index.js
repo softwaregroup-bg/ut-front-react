@@ -42,7 +42,7 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, uploadNewDocument, updatedAttachments, deleteDocument, archiveDocument } = this.props;
+        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, updatedAttachments } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -71,7 +71,7 @@ class DocumentsContainer extends Component {
                   this.props.changeDocumentStatusDeleted(identifier, documentObject, 'deleted');
               }}
               archiveDocument={(documentObject) => {
-                  this.props.changeDocumentStatusDeleted(identifier, documentObject, 'archieved');
+                  // this.props.changeDocumentStatusDeleted(identifier, documentObject, 'archieved');
               }}
             />
         );
