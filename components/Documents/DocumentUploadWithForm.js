@@ -112,12 +112,13 @@ class DocumentUploadWithForm extends Component {
               header={this.props.header}
               closePopup={closeHandler}
               scaleDimensions={{width: 350, height: 350}}
-              additionalContent={renderUploadDocumentForm}
               additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
               isAdditionalContentValid={this.state.isValidForm}
               useFile={useFileHandler}
               allowedFileTypes={this.props.allowedFileTypes}
-            />
+            >
+                {renderUploadDocumentForm}
+            </DocumentUpload>
         );
     }
 }

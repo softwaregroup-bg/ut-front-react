@@ -155,7 +155,7 @@ export default class DocumentUpload extends Component {
 
     get view() {
         const { mode, uploadMethod, fileDimensions, showCrop } = this.state;
-        const { scaleDimensions, additionalContent, allowedFileTypes } = this.props;
+        const { scaleDimensions, allowedFileTypes } = this.props;
 
         if (mode === 'initial') {
             return (
@@ -189,7 +189,6 @@ export default class DocumentUpload extends Component {
                   uploadMethod={uploadMethod}
                   onFileLoaded={this.onUploadFile}
                   changeMode={this.changeMode}
-                  additionalContent={additionalContent}
                   crop={this.crop} />
             );
         }
@@ -308,8 +307,11 @@ export default class DocumentUpload extends Component {
               contentClassName={styles[mode + 'Container']}
               footer={{actionButtons: this.actionButtons}}
               closePopup={closePopup}>
-                { this.details }
-                { this.view }
+                <div>
+                    { this.props.children }
+                    { this.details }
+                    { this.view }
+                </div>
             </Popup>
         );
     }
@@ -318,7 +320,6 @@ export default class DocumentUpload extends Component {
 DocumentUpload.defaultProps = {
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
-    additionalContent: '',
     additionalContentValidate: () => {},
     isAdditionalContentValid: true
 };
@@ -335,7 +336,7 @@ DocumentUpload.propTypes = {
     useFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
-    additionalContent: PropTypes.any,
+    children: PropTypes.any,
     additionalContentValidate: PropTypes.func,
     isAdditionalContentValid: PropTypes.bool
 };

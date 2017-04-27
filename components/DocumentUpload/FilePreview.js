@@ -54,7 +54,6 @@ export default class FilePreview extends Component {
 
         return (
             <div className={classnames(styles.filePreviewContainer, className)}>
-                {this.props.additionalContent}
                 { showCrop ? <Cropper
                   ref='editPhoto'
                   file={file}
@@ -71,7 +70,6 @@ export default class FilePreview extends Component {
 };
 
 FilePreview.propTypes = {
-    additionalContent: PropTypes.any,
     className: PropTypes.string,
     file: PropTypes.string,
     showCrop: PropTypes.bool,
