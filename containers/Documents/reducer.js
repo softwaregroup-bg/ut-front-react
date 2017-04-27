@@ -49,18 +49,15 @@ const documents = (state = defaultState, action) => {
 
     switch (type) {
         case INIT_DOCUMENTS_STATE:
-            return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject));
+            return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject()));
         case FETCH_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
                     const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
-                    let attachmentObject = getDaultAttachmentObject();
-                    attachmentObject.attachments = fetchDocumentsResult;
-                    attachmentObject.filters.paging = action.result.pagination[0];
-                    attachmentObject.selected = null;
-                    attachmentObject.requiresFetch = false;
-
-                    state = state.set(props.identifier, Immutable.fromJS(attachmentObject));
+                    return state.setIn([props.identifier, 'attachments'], Immutable.fromJS(fetchDocumentsResult))
+                                .setIn([props.identifier, 'filters', 'paging'], Immutable.fromJS(action.result.pagination[0]))
+                                .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
+                                .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
                 }
             }
             return state;

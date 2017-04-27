@@ -22,8 +22,8 @@ class DocumentsContainer extends Component {
     }
 
     componentWillMount() {
-        if (this.props.attachments === undefined) {
-            this.props.initState();
+        if (this.props.attachments.get(this.props.identifier) === undefined) {
+            this.props.initState(this.props.identifier);
         }
     }
 
