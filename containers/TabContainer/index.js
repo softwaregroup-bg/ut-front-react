@@ -30,6 +30,14 @@ class TabContainer extends Component {
         this.props.onErrors({});
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.active !== this.props.active) {
+            this.setState({
+                active: nextProps.active
+            });
+        }
+    }
+
     hasPrev() {
         return this.state.active > 0;
     }
