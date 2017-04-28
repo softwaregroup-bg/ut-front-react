@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import style from './styles.css';
 
 const PreviewItem = ({
     file,
@@ -15,10 +16,18 @@ const PreviewItem = ({
                     <img width={previewBoxWidth} height={previewBoxHeight} src={file} />
                 </span>
             );
+        case 'doc':
+        case 'docx':
+        case 'pdf':
+            return (
+                <span className={style.PreviewItemThumbnail}>
+                    {fileExtension}
+                </span>
+            );
         default:
             return (
-                <span>
-                    <div>Unknown file format</div>
+                <span className={style.PreviewItemThumbnail}>
+                    <span>Unknown file format</span>
                 </span>
             );
     }

@@ -408,3 +408,16 @@
 .addFileBtn.disabled .verticalLine, .addFileBtn.disabled .horizontalLine {
     background-color: #CCC;
 }
+
+.PreviewItemThumbnail {
+    display: block;
+    width: 230px;
+    height: 230px;
+    line-height: 230px;
+    text-align: center;
+    color: #595959;
+    font-size: 28px;
+    text-transform: uppercase;
+    border: 1px solid #D7D6D6;
+    background: #F5F5F5;
+}
