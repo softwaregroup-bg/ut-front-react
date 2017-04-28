@@ -21,8 +21,8 @@ import style from './style.css';
 const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
 
-const defaultTimeFormat = { hour: '2-digit', minute: '2-digit', hour12: false };
-const defaultDateFormat = { day: 'numeric', month: 'numeric', year: 'numeric' };
+const defaultTimeFormat = 'HH:mm';
+const defaultDateFormat = 'YYYY-MM-DD';
 
 class GridToolBox extends Component {
     constructor(props) {
@@ -182,6 +182,8 @@ class GridToolBox extends Component {
                               defaultValue={filterValue}
                               timeFormat={filterElement.timeFormat || defaultTimeFormat}
                               dateFormat={filterElement.dateFormat || defaultDateFormat}
+                              transformDate={filterElement.transformDate}
+                              transformTime={filterElement.transformTime}
                               locale={filterElement.locale}
                               labelFrom={filterElement.labelFrom}
                               labelTo={filterElement.labelTo}
