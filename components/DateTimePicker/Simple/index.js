@@ -135,25 +135,25 @@ export default class DatePickerBetween extends Component {
                         <input value={date ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div>
+                    <DatePickerDialog
+                      cancelLabel={cancelLabel}
+                      okLabel={okLabel}
+                      container={container}
+                      initialDate={date || new Date()}
+                      mode={mode}
+                      onAccept={this.handleAccept('date')}
+                      firstDayOfWeek={firstDayOfWeek}
+                      ref='date' />
+                    <TimePickerDialog
+                      cancelLabel={cancelLabel}
+                      okLabel={okLabel}
+                      initialTime={date || new Date()}
+                      mode={mode}
+                      onAccept={this.handleAccept('time')}
+                      firstDayOfWeek={firstDayOfWeek}
+                      format={format}
+                      ref='time' />
                 </div>
-                <DatePickerDialog
-                  cancelLabel={cancelLabel}
-                  okLabel={okLabel}
-                  container={container}
-                  initialDate={date || new Date()}
-                  mode={mode}
-                  onAccept={this.handleAccept('date')}
-                  firstDayOfWeek={firstDayOfWeek}
-                  ref='date' />
-                <TimePickerDialog
-                  cancelLabel={cancelLabel}
-                  okLabel={okLabel}
-                  initialTime={date || new Date()}
-                  mode={mode}
-                  onAccept={this.handleAccept('time')}
-                  firstDayOfWeek={firstDayOfWeek}
-                  format={format}
-                  ref='time' />
             </div>
         );
     }

@@ -21,7 +21,7 @@ class DateTimePickerBetween extends Component {
             timeFormat
         } = this.props;
 
-        let layoutClassName = !withVerticalClass ? style.horizontalAlign : '';
+        let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
 
         return (
             <div className={layoutClassName}>
