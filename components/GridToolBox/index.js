@@ -96,16 +96,14 @@ class GridToolBox extends Component {
         let filterValue;
 
         if (filterElement.type === filterElementTypes.datePickerBetween || filterElement.type === filterElementTypes.dateTimePickerBetween) {
-            let filterStateEmpty = true;
-            Object.keys(filterElement.name).forEach(k => {
-                filterStateEmpty = filterStateEmpty && !filters.hasOwnProperty(filterElement.name[k]);
-            });
-            filterValue = filterStateEmpty
-                ? filterElement.defaultValue
-                : {
-                    from: filters[filterElement.name.from],
-                    to: filters[filterElement.name.to]
-                };
+            filterValue = {
+                from: filters.hasOwnProperty(filterElement.name.from)
+                    ? filters[filterElement.name.from]
+                    : filterElement.defaultValue['from'],
+                to: filters.hasOwnProperty(filterElement.name.to)
+                    ? filters[filterElement.name.to]
+                    : filterElement.defaultValue['to']
+            };
         } else {
             filterValue = (filters.hasOwnProperty(filterElement.name))
                 ? filters[filterElement.name]
