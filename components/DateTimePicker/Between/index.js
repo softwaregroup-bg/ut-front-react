@@ -18,7 +18,9 @@ class DateTimePickerBetween extends Component {
             defaultValue,
             withVerticalClass,
             dateFormat,
-            timeFormat
+            timeFormat,
+            transformDate,
+            transformTime
         } = this.props;
 
         let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
@@ -30,6 +32,8 @@ class DateTimePickerBetween extends Component {
                       defaultValue={defaultValue.from}
                       dateFormat={dateFormat}
                       timeFormat={timeFormat}
+                      transformDate={transformDate}
+                      transformTime={transformTime}
                       locale={locale}
                       label={labelFrom}
                       okLabel={okLabel}
@@ -43,6 +47,8 @@ class DateTimePickerBetween extends Component {
                       defaultValue={defaultValue.to}
                       dateFormat={dateFormat}
                       timeFormat={timeFormat}
+                      transformDate={transformDate}
+                      transformTime={transformTime}
                       locale={locale}
                       label={labelTo}
                       okLabel={okLabel}
@@ -59,8 +65,8 @@ class DateTimePickerBetween extends Component {
 DateTimePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
     locale: PropTypes.string,
-    timeFormat: PropTypes.object,
-    dateFormat: PropTypes.object,
+    timeFormat: PropTypes.string,
+    dateFormat: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     firstDayOfWeek: PropTypes.number,
@@ -68,7 +74,9 @@ DateTimePickerBetween.propTypes = {
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     onChange: PropTypes.func,
-    boldLabel: PropTypes.bool
+    boldLabel: PropTypes.bool,
+    transformDate: PropTypes.func,
+    transformTime: PropTypes.func
 };
 
 export default DateTimePickerBetween;

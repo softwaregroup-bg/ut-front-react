@@ -43,9 +43,10 @@ export default class DatePickerBetween extends Component {
             return '';
         }
 
-        let { locale, dateFormat } = this.props;
-        if (locale) {
-            return date.toLocaleDateString(locale, dateFormat);
+        let { locale, dateFormat, transformDate } = this.props;
+
+        if (transformDate) {
+            return transformDate(date, dateFormat, locale);
         }
 
         return formatIso(date);
@@ -55,13 +56,13 @@ export default class DatePickerBetween extends Component {
             return '';
         }
 
-        let { locale, timeFormat } = this.props;
-        if (locale) {
-            return time.toLocaleTimeString(locale, timeFormat);
-        }
-        let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
+        let { locale, timeFormat, transformTime } = this.props;
 
-        return formatTime(time, format);
+        if (transformTime) {
+            return transformTime(time, timeFormat, locale);
+        }
+
+        return formatTime(time);
     }
     handleAccept(ref) {
         return (d) => {
@@ -121,7 +122,7 @@ export default class DatePickerBetween extends Component {
         let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
-        let format = timeFormat.hour12 ? 'ampm' : '24hr';
+        let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
 
         return (
             <div className={outerWrapStyle}>
@@ -163,8 +164,8 @@ DatePickerBetween.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
-    timeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
-    dateFormat: { day: 'numeric', month: 'numeric', year: 'numeric' }
+    timeFormat: 'HH:mm',
+    dateFormat: 'YYYY-MM-DD'
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.object,
@@ -175,10 +176,12 @@ DatePickerBetween.propTypes = {
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    timeFormat: PropTypes.object,
-    dateFormat: PropTypes.object,
+    timeFormat: PropTypes.string,
+    dateFormat: PropTypes.string,
     onChange: PropTypes.func,
-    boldLabel: PropTypes.bool
+    boldLabel: PropTypes.bool,
+    transformDate: PropTypes.func,
+    transformTime: PropTypes.func
 };
 
 DatePickerBetween.contextTypes = {
