@@ -97,9 +97,9 @@ DocumentsContainer.propTypes = {
         data: DocumentsListing.propTypes.documentTypes
     }),
     updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
-    uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
-    deleteDocument: DocumentsListing.propTypes.deleteDocument,
-    archiveDocument: DocumentsListing.propTypes.archiveDocument,
+    // uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
+    // deleteDocument: DocumentsListing.propTypes.deleteDocument,
+    // archiveDocument: DocumentsListing.propTypes.archiveDocument,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired
 };

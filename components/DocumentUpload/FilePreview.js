@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import UploadFileButton from './UploadFileButton';
 import AddFileButton from './AddFileButton';
 import Cropper from './Cropper';
+import PreviewItem from './PreviewItem';
 import styles from './styles.css';
 
 // The component is a class because a ref is needed. Please do not change it.
@@ -46,6 +47,7 @@ export default class FilePreview extends Component {
         const {
             className,
             file,
+            fileExtension,
             fileDimensions,
             showCrop,
             onCrop,
@@ -59,7 +61,12 @@ export default class FilePreview extends Component {
                   file={file}
                   fileDimensions={fileDimensions}
                   cropDimensions={cropDimensions}
-                  onCrop={onCrop} /> : <img width={cropDimensions.width} height={cropDimensions.height} src={file} /> }
+                  onCrop={onCrop} /> : <PreviewItem
+                    file={file}
+                    fileExtension={fileExtension}
+                    previewBoxWidth={cropDimensions.width}
+                    previewBoxHeight={cropDimensions.height} />
+                }
                 <div className={classnames(styles.imageButtonsContainer)}>
                     { this.changeFileButton }
                     { this.cropButton }
@@ -71,7 +78,8 @@ export default class FilePreview extends Component {
 
 FilePreview.propTypes = {
     className: PropTypes.string,
-    file: PropTypes.string,
+    file: PreviewItem.propTypes.file,
+    fileExtension: PreviewItem.propTypes.fileExtension,
     showCrop: PropTypes.bool,
     fileDimensions: PropTypes.shape({
         width: PropTypes.number,

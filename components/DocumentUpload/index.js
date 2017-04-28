@@ -17,6 +17,7 @@ export default class DocumentUpload extends Component {
             mode: 'initial',
             uploadMethod: '',
             screenshot: null,
+            fileExtension: '',
             fileDimensions: {},
             showCrop: false,
             hasCropped: false,
@@ -75,8 +76,9 @@ export default class DocumentUpload extends Component {
         });
     }
 
-    onUploadFile(file) {
+    onUploadFile(file, fileObj) {
         const fileDimensions = this.getFileDimensions(file);
+        let extension = getFileExtension(fileObj.name);
 
         // This is done so the crop gets umnounteted (in cases where an image is loaded and then changed without cropping)
         this.setState({
@@ -84,10 +86,11 @@ export default class DocumentUpload extends Component {
         }, () => {
             this.setState({
                 screenshot: file,
+                fileExtension: extension,
                 uploadMethod: 'upload',
                 mode: 'preview',
                 fileDimensions,
-                showCrop: true
+                showCrop: !this.props.hideCrop && true
             });
         });
     }
@@ -102,7 +105,8 @@ export default class DocumentUpload extends Component {
             this.setState({
                 uploadMethod: 'take',
                 mode: 'preview',
-                showCrop: true,
+                showCrop: !this.props.hideCrop && true,
+                fileExtension: 'png',
                 screenshot
             });
         });
@@ -112,7 +116,7 @@ export default class DocumentUpload extends Component {
         const { screenshot, hasCropped } = this.state;
 
         // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
-        if (hasCropped) {
+        if (this.props.hideCrop || hasCropped) {
             this.uploadFile(screenshot);
         } else {
             this.crop();
@@ -154,8 +158,8 @@ export default class DocumentUpload extends Component {
     }
 
     get view() {
-        const { mode, uploadMethod, fileDimensions, showCrop } = this.state;
-        const { scaleDimensions, allowedFileTypes } = this.props;
+        const { mode, uploadMethod, fileDimensions } = this.state;
+        const { scaleDimensions, allowedFileTypes, hideCrop, uploadType } = this.props;
 
         if (mode === 'initial') {
             return (
@@ -163,7 +167,8 @@ export default class DocumentUpload extends Component {
                   className={styles.initialViewContainer}
                   onAddFile={this.onAddFile}
                   allowedFileTypes={allowedFileTypes}
-                  onFileLoaded={this.onUploadFile} />
+                  onFileLoaded={this.onUploadFile}
+                  uploadType={uploadType} />
             );
         }
 
@@ -181,12 +186,14 @@ export default class DocumentUpload extends Component {
                 <FilePreview
                   ref='filePreview'
                   file={this.state.screenshot}
-                  showCrop={showCrop}
+                  fileExtension={this.state.fileExtension}
+                  showCrop={!hideCrop || this.state.showCrop}
                   onCrop={this.onCrop}
                   fileDimensions={fileDimensions}
                   scaleDimensions={scaleDimensions}
                   cropDimensions={this.cropDimensions}
                   uploadMethod={uploadMethod}
+                  uploadType={uploadType}
                   onFileLoaded={this.onUploadFile}
                   changeMode={this.changeMode}
                   crop={this.crop} />
@@ -249,7 +256,8 @@ export default class DocumentUpload extends Component {
         let { useFile } = this.props;
         var data = new window.FormData();
         var img = this.dataURItoBlob(file);
-        data.append('file', img, 'photo.png');
+        let ext = this.state.fileExtension || 'unknown';
+        data.append('file', img, 'file.' + ext);
         var request = new window.XMLHttpRequest();
         request.open('POST', '/file-upload', true);
         request.onload = (e) => {
@@ -320,6 +328,7 @@ export default class DocumentUpload extends Component {
 DocumentUpload.defaultProps = {
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
+    hideCrop: false,
     additionalContentValidate: () => {},
     isAdditionalContentValid: true
 };
@@ -337,6 +346,8 @@ DocumentUpload.propTypes = {
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
     children: PropTypes.any,
+    hideCrop: PropTypes.bool,
+    uploadType: PropTypes.string,
     additionalContentValidate: PropTypes.func,
     isAdditionalContentValid: PropTypes.bool
 };
