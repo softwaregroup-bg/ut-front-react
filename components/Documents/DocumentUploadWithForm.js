@@ -13,6 +13,7 @@ class DocumentUploadWithForm extends Component {
         this.state = {
             fileType: '',
             description: '',
+            attachmentId: 0,
             isValidForm: false,
             errors: {}
         };
@@ -30,6 +31,21 @@ class DocumentUploadWithForm extends Component {
                 isValidForm: false,
                 errors: {}
             });
+            if (nextProps.type === 'replace') {
+                this.setState({
+                    fileType: nextProps.editValues.documentTypeId,
+                    description: nextProps.editValues.documentDescription,
+                    isValidForm: true,
+                    attachmentId: nextProps.editValues.attachmentId
+                });
+            } else if (nextProps.type === 'add') {
+                this.setState({
+                    fileType: '',
+                    description: '',
+                    isValidForm: false,
+                    attachmentId: 0
+                });
+            }
         }
     }
 
@@ -51,6 +67,10 @@ class DocumentUploadWithForm extends Component {
     };
 
     get renderUploadDocumentForm() {
+        let disabledField = false;
+        if (this.props.type === 'replace' && this.props.editValues) {
+            disabledField = true;
+        }
         return (
             <div className={style.formWrapper}>
                 <div className={style.formRow}>
@@ -68,6 +88,7 @@ class DocumentUploadWithForm extends Component {
                       }}
                       isValid={this.state.errors.fileType === undefined}
                       errorMessage={this.state.errors.fileType}
+                      disabled={disabledField}
                     />
                 </div>
                 <div className={style.formRow}>
@@ -83,6 +104,7 @@ class DocumentUploadWithForm extends Component {
                       }}
                       isValid={this.state.errors.description === undefined}
                       errorMessage={this.state.errors.description}
+                      readonly={disabledField}
                     />
                 </div>
             </div>
@@ -106,16 +128,23 @@ class DocumentUploadWithForm extends Component {
                 break;
             }
         }
-        let statusId = 'New';
         let description = this.state.description;
         this.closeHandler();
-        this.props.uploadNewDocument({
-            documentTypeId: type.key,
-            documentType: type.name,
-            statusId,
-            documentDescription: description,
-            ...uploadedFile
-        });
+        if (this.props.type === 'add') {
+            this.props.uploadNewDocument({
+                documentTypeId: type.key,
+                documentType: type.name,
+                statusId: 'New',
+                documentDescription: description,
+                ...uploadedFile
+            });
+        } else if (this.props.type === 'replace') {
+            this.props.replaceDocument({
+                attachmentId: this.state.attachmentId,
+                statusId: 'Updated',
+                ...uploadedFile
+            });
+        }
     };
 
     render() {
@@ -141,6 +170,8 @@ DocumentUploadWithForm.propTypes = {
     isOpen: PropTypes.bool,
     header: PropTypes.object,
     closePopup: PropTypes.func,
+    type: PropTypes.oneOf(['add', 'replace']),
+    editValues: PropTypes.object,
     documentTypes: PropTypes.arrayOf(
         PropTypes.shape({
             key: PropTypes.string,
@@ -148,12 +179,14 @@ DocumentUploadWithForm.propTypes = {
         })
     ),
     allowedFileTypes: PropTypes.array,
+    replaceDocument: PropTypes.func,
     uploadNewDocument: PropTypes.func
 };
 
 DocumentUploadWithForm.defaultProps = {
     documentTypes: [],
     uploadNewDocument: () => {},
+    replaceDocument: () => {},
     closePopup: () => {}
 };
 

@@ -7,6 +7,7 @@ import {
     UPDATE_ORDER,
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
+    REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
 
@@ -99,6 +100,16 @@ export function addDocument(identifier, newDocumentObject) {
         type: ADD_NEW_DOCUMENT,
         props: {
             newDocumentObject,
+            identifier
+        }
+    };
+}
+
+export function replaceDocument(identifier, documentObject) {
+    return {
+        type: REPLACE_DOCUMENT,
+        props: {
+            documentObject,
             identifier
         }
     };

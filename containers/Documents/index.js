@@ -10,6 +10,7 @@ import {
     updateOrder,
     fetchDocumentTypes,
     addDocument,
+    replaceDocument,
     changeDocumentStatusDeleted
 } from './actions';
 
@@ -67,6 +68,9 @@ class DocumentsContainer extends Component {
               uploadNewDocument={(newObject) => {
                   this.props.addDocument(identifier, newObject);
               }}
+              replaceDocument={(replaceObject) => {
+                  this.props.replaceDocument(identifier, replaceObject);
+              }}
               deleteDocument={(documentObject) => {
                   this.props.changeDocumentStatusDeleted(identifier, documentObject, 'deleted');
               }}
@@ -101,6 +105,7 @@ DocumentsContainer.propTypes = {
     // deleteDocument: DocumentsListing.propTypes.deleteDocument,
     // archiveDocument: DocumentsListing.propTypes.archiveDocument,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
+    replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired
 };
 
@@ -112,5 +117,5 @@ export default connect(
             updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, changeDocumentStatusDeleted }
+    { initState, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted }
 )(DocumentsContainer);

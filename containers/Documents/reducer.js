@@ -8,6 +8,7 @@ import {
     UPDATE_ORDER,
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
+    REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
@@ -118,7 +119,36 @@ const documents = (state = defaultState, action) => {
         case ADD_NEW_DOCUMENT:
             let newDoc = action.props.newDocumentObject;
             newDoc.url = documentTmpUploadPrefix + newDoc.filename;
-            let docs = state.getIn([action.props.identifier, 'changedDocuments']).push(Immutable.fromJS(newDoc));
+            let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(newDoc));
+            return state.setIn([action.props.identifier, 'changedDocuments'], docs);
+        case REPLACE_DOCUMENT:
+            let replacedDocument;
+            let newStatusId;
+            let attachments;
+            let doc = action.props.documentObject;
+            doc.url = documentTmpUploadPrefix + doc.filename;
+            if (doc.attachmentId) {
+                // update a document that is on the server
+                attachments = state.getIn([action.props.identifier, 'attachments']) || Immutable.fromJS([]);
+                newStatusId = doc.statusId;
+            } else {
+                // update a document that is temporary (New)
+                attachments = state.getIn([action.props.identifier, 'changedDocuments']) || Immutable.fromJS([]);
+                newStatusId = 'New';
+            }
+            for (let i = 0; i < attachments.size; i++) {
+                if (attachments.getIn([i, 'attachmentId']) === doc.attachmentId) {
+                    replacedDocument = attachments.get(i);
+                    break;
+                }
+            }
+            // replace the new values
+            replacedDocument = replacedDocument.set('filename', Immutable.fromJS(doc.filename))
+                                            .set('extension', Immutable.fromJS(doc.extension))
+                                            .set('url', Immutable.fromJS(doc.url))
+                                            .set('contentType', Immutable.fromJS(doc.contentType))
+                                            .set('statusId', Immutable.fromJS(newStatusId));
+            docs = state.getIn([action.props.identifier, 'changedDocuments']).push(replacedDocument);
             return state.setIn([action.props.identifier, 'changedDocuments'], docs);
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');
@@ -137,6 +167,7 @@ const documents = (state = defaultState, action) => {
                         return state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
                                     .setIn([action.props.identifier, 'selected'], null);
                     case 'Approved':
+                    case 'Active':
                     case 'Archieved':
                         let deletedDoc = action.props.documentObject.set('statusId', 'Deleted');
                         docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);

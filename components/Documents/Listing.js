@@ -22,6 +22,8 @@ class Documents extends Component {
         this.state = {
             isOpen: false,
             showDetailsPopUp: false,
+            popupTitle: '',
+            popupType: 'add', // 'add' or 'replace'
             showDeleteConfirmationPopup: false
         };
 
@@ -53,10 +55,18 @@ class Documents extends Component {
 
         let addNewDocumentHandler = () => {
             this.setState({
-                isOpen: true
+                isOpen: true,
+                popupType: 'add',
+                popupTitle: 'Add Document'
             });
         };
-        let button1Click5 = () => { /* console.log('Replace'); */ };
+        let replaceDocumentHandler = () => {
+            this.setState({
+                isOpen: true,
+                popupType: 'replace',
+                popupTitle: 'Replace Document'
+            });
+        };
 
         let disabledButtonsState = !selectedAttachment;
 
@@ -124,7 +134,7 @@ class Documents extends Component {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
                     disabled: disabledButtonsState,
-                    onClick: button1Click5
+                    onClick: replaceDocumentHandler
                 });
             }
         }
@@ -175,7 +185,11 @@ class Documents extends Component {
             return capitalizeFirstLetter(colData);
         }
         if (col.key === 'statusId') {
-            return capitalizeFirstLetter(colData);
+            let label = colData;
+            if (colData === 'Approved') {
+                label = 'active';
+            }
+            return capitalizeFirstLetter(label);
         }
         if (col.key === 'documentDescription') {
             return colData || '(no description)';
@@ -277,9 +291,12 @@ class Documents extends Component {
         return (
             <DocumentUploadWithForm
               isOpen={this.state.isOpen}
-              header={{text: 'Add Document'}}
+              header={{text: this.state.popupTitle}}
               closePopup={closeHandler}
+              type={this.state.popupType}
+              editValues={this.props.selectedAttachment && this.props.selectedAttachment.toJS()}
               uploadNewDocument={this.props.uploadNewDocument}
+              replaceDocument={this.props.replaceDocument}
               documentTypes={this.props.documentTypes}
               allowedFileTypes={this.props.allowedFileTypes}
             />
@@ -328,6 +345,7 @@ Documents.propTypes = {
     ),
 
     uploadNewDocument: PropTypes.func,
+    replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
     archiveDocument: PropTypes.func,
     updatedAttachments: PropTypes.object, // immutable list
