@@ -75,6 +75,7 @@ export default class DatePickerBetween extends Component {
                     } else {
                         newDate.setHours(date.getHours());
                         newDate.setMinutes(date.getMinutes());
+                        newDate.setSeconds(date.getSeconds());
                     }
                 }
             } else if (ref === 'time') {
@@ -124,23 +125,27 @@ export default class DatePickerBetween extends Component {
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
 
+        let dateVal = (date)
+            ? new Date(date)
+            : new Date();
+
         return (
             <div className={outerWrapStyle}>
                  {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={style.innerWrap}>
                     <div className={style.inputWrap}>
-                        <input value={date ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
+                        <input value={date ? this.formatDate(dateVal) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     <div className={style.inputWrap}>
-                        <input value={date ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <input value={date ? this.formatTime(dateVal) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div>
                     <DatePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
                       container={container}
-                      initialDate={date || new Date()}
+                      initialDate={dateVal}
                       mode={mode}
                       onAccept={this.handleAccept('date')}
                       firstDayOfWeek={firstDayOfWeek}
@@ -148,7 +153,7 @@ export default class DatePickerBetween extends Component {
                     <TimePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
-                      initialTime={date || new Date()}
+                      initialTime={dateVal}
                       mode={mode}
                       onAccept={this.handleAccept('time')}
                       firstDayOfWeek={firstDayOfWeek}
@@ -168,7 +173,7 @@ DatePickerBetween.defaultProps = {
     dateFormat: 'YYYY-MM-DD'
 };
 DatePickerBetween.propTypes = {
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
