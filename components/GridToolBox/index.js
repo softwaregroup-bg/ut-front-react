@@ -249,11 +249,14 @@ class GridToolBox extends Component {
                         let dateValue;
                         let timeValue;
 
-                        if (filter.locale) {
-                            dateValue = date.toLocaleDateString(filter.locale, dateFormat);
-                            timeValue = date.toLocaleTimeString(filter.locale, timeFormat);
+                        if (filter.transformDate) {
+                            dateValue = filter.transformDate(date, dateFormat, filter.locale);
                         } else {
                             dateValue = formatIso(date);
+                        }
+                        if (filter.transformTime) {
+                            timeValue = filter.transformTime(date, timeFormat, filter.locale);
+                        } else {
                             timeValue = formatTime(date);
                         }
 
