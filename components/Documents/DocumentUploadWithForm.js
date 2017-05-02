@@ -25,6 +25,12 @@ class DocumentUploadWithForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (this.props.isOpen === false && nextProps.isOpen === true) {
+            this.setState({
+                isValidForm: false,
+                errors: {}
+            });
+        }
     }
 
     handleValidation(fileType, description) {
