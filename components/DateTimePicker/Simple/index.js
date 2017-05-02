@@ -43,9 +43,10 @@ export default class DatePickerBetween extends Component {
             return '';
         }
 
-        let { locale, dateFormat } = this.props;
-        if (locale) {
-            return date.toLocaleDateString(locale, dateFormat);
+        let { locale, dateFormat, transformDate } = this.props;
+
+        if (transformDate) {
+            return transformDate(date, dateFormat, locale);
         }
 
         return formatIso(date);
@@ -55,13 +56,13 @@ export default class DatePickerBetween extends Component {
             return '';
         }
 
-        let { locale, timeFormat } = this.props;
-        if (locale) {
-            return time.toLocaleTimeString(locale, timeFormat);
-        }
-        let format = timeFormat && timeFormat.hour12 ? 'ampm' : '24hr';
+        let { locale, timeFormat, transformTime } = this.props;
 
-        return formatTime(time, format);
+        if (transformTime) {
+            return transformTime(time, timeFormat, locale);
+        }
+
+        return formatTime(time);
     }
     handleAccept(ref) {
         return (d) => {
@@ -74,6 +75,7 @@ export default class DatePickerBetween extends Component {
                     } else {
                         newDate.setHours(date.getHours());
                         newDate.setMinutes(date.getMinutes());
+                        newDate.setSeconds(date.getSeconds());
                     }
                 }
             } else if (ref === 'time') {
@@ -121,39 +123,42 @@ export default class DatePickerBetween extends Component {
         let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
-        let format = timeFormat.hour12 ? 'ampm' : '24hr';
+        let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
+
+        let dateVal = (date)
+            ? new Date(date)
+            : new Date();
 
         return (
             <div className={outerWrapStyle}>
                  {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={style.innerWrap}>
                     <div className={style.inputWrap}>
-                        <input value={date ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
+                        <input value={date ? this.formatDate(dateVal) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     <div className={style.inputWrap}>
-                        <input value={date ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <input value={date ? this.formatTime(dateVal) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div>
+                    <DatePickerDialog
+                      cancelLabel={cancelLabel}
+                      okLabel={okLabel}
+                      container={container}
+                      initialDate={dateVal}
+                      mode={mode}
+                      onAccept={this.handleAccept('date')}
+                      firstDayOfWeek={firstDayOfWeek}
+                      ref='date' />
+                    <TimePickerDialog
+                      cancelLabel={cancelLabel}
+                      okLabel={okLabel}
+                      initialTime={dateVal}
+                      mode={mode}
+                      onAccept={this.handleAccept('time')}
+                      format={format}
+                      ref='time' />
                 </div>
-                <DatePickerDialog
-                  cancelLabel={cancelLabel}
-                  okLabel={okLabel}
-                  container={container}
-                  initialDate={date || new Date()}
-                  mode={mode}
-                  onAccept={this.handleAccept('date')}
-                  firstDayOfWeek={firstDayOfWeek}
-                  ref='date' />
-                <TimePickerDialog
-                  cancelLabel={cancelLabel}
-                  okLabel={okLabel}
-                  initialTime={date || new Date()}
-                  mode={mode}
-                  onAccept={this.handleAccept('time')}
-                  firstDayOfWeek={firstDayOfWeek}
-                  format={format}
-                  ref='time' />
             </div>
         );
     }
@@ -163,11 +168,11 @@ DatePickerBetween.defaultProps = {
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
-    timeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
-    dateFormat: { day: 'numeric', month: 'numeric', year: 'numeric' }
+    timeFormat: 'HH:mm',
+    dateFormat: 'YYYY-MM-DD'
 };
 DatePickerBetween.propTypes = {
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -175,10 +180,12 @@ DatePickerBetween.propTypes = {
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    timeFormat: PropTypes.object,
-    dateFormat: PropTypes.object,
+    timeFormat: PropTypes.string,
+    dateFormat: PropTypes.string,
     onChange: PropTypes.func,
-    boldLabel: PropTypes.bool
+    boldLabel: PropTypes.bool,
+    transformDate: PropTypes.func,
+    transformTime: PropTypes.func
 };
 
 DatePickerBetween.contextTypes = {
