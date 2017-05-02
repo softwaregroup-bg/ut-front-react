@@ -39,12 +39,7 @@ class DateTimePickerBetween extends Component {
                       okLabel={okLabel}
                       cancelLabel={cancelLabel}
                       firstDayOfWeek={firstDayOfWeek}
-                      onChange={({value}) => {
-                          onChange({
-                              key: 'from',
-                              value: (new Date(value.getTime() - value.getTimezoneOffset() * 60 * 1000)).toISOString().replace('T', ' ').substr(0, 16) + ':00.000'
-                          });
-                      }}
+                      onChange={({value}) => { onChange({key: 'from', value: value}); }}
                       boldLabel={boldLabel} />
                 </div>
                 <div>
@@ -59,12 +54,7 @@ class DateTimePickerBetween extends Component {
                       okLabel={okLabel}
                       cancelLabel={cancelLabel}
                       firstDayOfWeek={firstDayOfWeek}
-                      onChange={({value}) => {
-                          onChange({
-                              key: 'to',
-                              value: (new Date(value.getTime() - value.getTimezoneOffset() * 60 * 1000)).toISOString().replace('T', ' ').substr(0, 16) + ':59.999'
-                          });
-                      }}
+                      onChange={({value}) => { onChange({key: 'to', value: value}); }}
                       boldLabel={boldLabel} />
                 </div>
             </div>
