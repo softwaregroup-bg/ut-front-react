@@ -17,6 +17,8 @@ class DocumentUploadWithForm extends Component {
             errors: {}
         };
         this.handleValidation = this.handleValidation.bind(this);
+        this.closeHandler = this.closeHandler.bind(this);
+        this.useFileHandler = this.useFileHandler.bind(this);
     }
 
     componentWillMount() {
@@ -42,8 +44,8 @@ class DocumentUploadWithForm extends Component {
         });
     };
 
-    render() {
-        let renderUploadDocumentForm = (
+    get renderUploadDocumentForm() {
+        return (
             <div className={style.formWrapper}>
                 <div className={style.formRow}>
                     <Dropdown
@@ -79,46 +81,51 @@ class DocumentUploadWithForm extends Component {
                 </div>
             </div>
         );
-        let closeHandler = () => {
-            this.setState({
-                fileType: '',
-                description: '',
-                isValidForm: false
-            });
-            this.props.closePopup();
-        };
-        let useFileHandler = (uploadedFile) => {
-            let type;
-            for (let i = 0; i < this.props.documentTypes.length; i++) {
-                if (this.props.documentTypes[i].key === this.state.fileType) {
-                    type = this.props.documentTypes[i];
-                    break;
-                }
+    };
+
+    closeHandler() {
+        this.setState({
+            fileType: '',
+            description: '',
+            isValidForm: false
+        });
+        this.props.closePopup();
+    };
+
+    useFileHandler(uploadedFile) {
+        let type;
+        for (let i = 0; i < this.props.documentTypes.length; i++) {
+            if (this.props.documentTypes[i].key === this.state.fileType) {
+                type = this.props.documentTypes[i];
+                break;
             }
-            let statusId = 'New';
-            let description = this.state.description;
-            closeHandler();
-            this.props.uploadNewDocument({
-                documentTypeId: type.key,
-                documentType: type.name,
-                statusId,
-                documentDescription: description,
-                ...uploadedFile
-            });
-        };
+        }
+        let statusId = 'New';
+        let description = this.state.description;
+        this.closeHandler();
+        this.props.uploadNewDocument({
+            documentTypeId: type.key,
+            documentType: type.name,
+            statusId,
+            documentDescription: description,
+            ...uploadedFile
+        });
+    };
+
+    render() {
         return (
             <DocumentUpload
               isOpen={this.props.isOpen}
               header={this.props.header}
-              closePopup={closeHandler}
+              closePopup={this.closeHandler}
               scaleDimensions={{width: 350, height: 350}}
               additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
               isAdditionalContentValid={this.state.isValidForm}
-              useFile={useFileHandler}
+              useFile={this.useFileHandler}
               hideCrop
               allowedFileTypes={this.props.allowedFileTypes}
             >
-                {renderUploadDocumentForm}
+                {this.renderUploadDocumentForm}
             </DocumentUpload>
         );
     }

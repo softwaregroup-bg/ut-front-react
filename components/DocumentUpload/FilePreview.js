@@ -64,8 +64,8 @@ export default class FilePreview extends Component {
                   onCrop={onCrop} /> : <PreviewItem
                     file={file}
                     fileExtension={fileExtension}
-                    previewBoxWidth={cropDimensions.width}
-                    previewBoxHeight={cropDimensions.height} />
+                    previewBoxWidth={fileDimensions.width}
+                    previewBoxHeight={fileDimensions.height} />
                 }
                 <div className={classnames(styles.imageButtonsContainer)}>
                     { this.changeFileButton }

@@ -8,7 +8,8 @@ const DocumentUploadMenu = ({
     className,
     onFileLoaded,
     allowedFileTypes,
-    onAddFile
+    onAddFile,
+    uploadType
 }) => {
     let allowedTypes = allowedFileTypes.join(',');
     return (
@@ -30,6 +31,7 @@ DocumentUploadMenu.propTypes = {
     className: PropTypes.string,
     onFileLoaded: PropTypes.func,
     allowedFileTypes: PropTypes.array,
+    uploadType: PropTypes.oneOf(['documents', 'photos', 'both']),
     onAddFile: PropTypes.func
 };
 

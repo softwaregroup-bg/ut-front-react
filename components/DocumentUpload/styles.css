@@ -95,7 +95,6 @@
 .initialContainer {
     display: flex;
     justify-content: center;
-    padding: 40px 130px;
 }
 
 /* UploadFileButton and AddFileButton styles */
