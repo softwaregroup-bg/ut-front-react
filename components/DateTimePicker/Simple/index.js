@@ -156,7 +156,6 @@ export default class DatePickerBetween extends Component {
                       initialTime={dateVal}
                       mode={mode}
                       onAccept={this.handleAccept('time')}
-                      firstDayOfWeek={firstDayOfWeek}
                       format={format}
                       ref='time' />
                 </div>
