@@ -1,3 +1,29 @@
+<a name="9.0.6"></a>
+## [9.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.5...v9.0.6) (2017-05-03)
+
+
+### Bug Fixes
+
+* date picker support in grid toolbox ([00545df](https://github.com/softwaregroup-bg/ut-front-react/commit/00545df))
+
+
+
+<a name="9.0.5"></a>
+## [9.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.4...v9.0.5) (2017-05-02)
+
+
+### Bug Fixes
+
+* date format in tooltip ([52d5d54](https://github.com/softwaregroup-bg/ut-front-react/commit/52d5d54))
+* display filter value correctly ([552318f](https://github.com/softwaregroup-bg/ut-front-react/commit/552318f))
+* external datetime transform functions && accept friendlier format ([eb1aa0d](https://github.com/softwaregroup-bg/ut-front-react/commit/eb1aa0d))
+* handle timezones ([b6c2934](https://github.com/softwaregroup-bg/ut-front-react/commit/b6c2934))
+* refactor component styles ([71f5d2f](https://github.com/softwaregroup-bg/ut-front-react/commit/71f5d2f))
+* remove redundant property ([1c25d0d](https://github.com/softwaregroup-bg/ut-front-react/commit/1c25d0d))
+* revert timezone handle ([cdf3320](https://github.com/softwaregroup-bg/ut-front-react/commit/cdf3320))
+
+
+
 <a name="9.0.4"></a>
 ## [9.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.3...v9.0.4) (2017-05-02)
 

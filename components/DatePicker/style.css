@@ -79,11 +79,14 @@
 
 /* Styles for Simple Date Picker */
 
+.datePickerLabeled {
+    width: 70% !important;
+}
+
 .datePicker {
     width: 100%;
     height: 30px;
     position: relative;
-    display: table-cell;
     vertical-align: middle;
 }
 
@@ -163,11 +166,30 @@
 
 .wrap {
     width: 100%;
-    display: table;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 14px;
     color: #595959;
 }
 .readonlyInput {
     cursor: not-allowed;
     border-color: #EBEBEB !important;
+}
+
+.labelWrapHorizontal, .labelWrap {
+    font-size: 14px;
+    text-align: left;
+}
+
+.labelWrapHorizontal {
+    width: 40%;
+}
+
+.labelWrap {
+    width: 30%;
+}
+
+.boldLabel {
+    font-weight: bold;
 }
