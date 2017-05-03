@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
+import DatePicker from './../DatePicker/Simple';
 import DatePickerBetween from './../DatePicker/Between';
 import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
@@ -153,6 +154,22 @@ class GridToolBox extends Component {
                               onChange(filterElement.name, e.target.value);
                           }} />
                     </div>);
+            case filterElementTypes.datePicker:
+                return (<div>
+                        <DatePicker
+                          onChange={filterAutoFetch && !renderInDialog
+                                ? filterElement.onChange
+                                : function(obj) {
+                                    onChange(filterElement.name, obj.value);
+                                }
+                            }
+                          withVerticalClass={renderInDialog}
+                          locale={filterElement.locale}
+                          defaultValue={filterValue}
+                          label={filterElement.label}
+                          boldLabel={renderInDialog} />
+                    </div>);
+
             case filterElementTypes.datePickerBetween:
                 return (<div>
                             <DatePickerBetween
@@ -639,6 +656,7 @@ GridToolBox.propTypes = {
             type: PropTypes.oneOf([
                 filterElementTypes.dropDown,
                 filterElementTypes.searchBox,
+                filterElementTypes.datePicker,
                 filterElementTypes.datePickerBetween,
                 filterElementTypes.dateTimePickerBetween,
                 filterElementTypes.clear
