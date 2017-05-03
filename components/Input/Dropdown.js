@@ -3,6 +3,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import classnames from 'classnames';
 import style from './style.css';
+import { textValidations } from '../../validator/constants';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -125,7 +126,7 @@ class Dropdown extends Component {
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
-                            {this.props.label}
+                            {this.props.label} {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                         </div>
                         <div className={classnames(ddstyles.inputWrap)}>
                             {this.renderDropDown()}
@@ -171,6 +172,13 @@ Dropdown.propTypes = {
     cssStyle: PropTypes.any, // css file to take styles [Should have the same classes/divs like in styles.css]
 
     // Validation
+    validators: PropTypes.arrayOf(
+        PropTypes.shape({
+            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+            values: PropTypes.any,
+            errorMessage: PropTypes.string
+        })
+    ),
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
 

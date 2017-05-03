@@ -60,7 +60,8 @@ const Header = React.createClass({
                                       styleType='secondaryDark'
                                       onClick={btn.onClick}
                                       disabled={btn.disabled === true}
-                                      label={btn.text} />
+                                      label={btn.text}
+                                      href={btn.href} />
                                 </div>
                             );
                         } else {

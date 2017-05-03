@@ -1,6 +1,11 @@
 .horizontalAlign {
     display: flex;
 }
-.horizontalAlign span {
-    width: auto;
+
+.horizontalAlign>div:last-child {
+    margin-left: 20px;
+}
+
+.verticalAlign>div:last-child {
+    margin-top: 5px;
 }

@@ -5,9 +5,6 @@
     display: flex;
 }
 
-.outerWrap, .outerWrapNoLabel {
-    margin-bottom: 5px;
-}
 .outerWrap {
     justify-content: space-between;
     color: #595959;
@@ -19,11 +16,9 @@
 
 .innerWrap {
     width: 70%;
-    justify-content: flex-end;
 }
 
 .labelWrap {
-    width: 30%;
     font-size: 14px;
     text-align: left;
     align-items: center;
