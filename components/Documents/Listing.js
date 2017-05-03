@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import immutable from 'immutable';
-import { getListTableColumns, getListTdStyles } from './helpers';
+import { getListTableColumns, getListTdStyles, combineAttachments } from './helpers';
 
 import { Vertical } from '../Layout';
 import ButtonsHeader from '../ButtonsHeader';
@@ -29,7 +28,6 @@ class Documents extends Component {
 
         this.fetchDocs = this.fetchDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
-        this.combineAttachments = this.combineAttachments.bind(this);
     }
 
     componentWillMount() {
@@ -200,13 +198,6 @@ class Documents extends Component {
         return colData;
     }
 
-    combineAttachments(serverAttachments, updatedAttachments) {
-        let remote = serverAttachments || immutable.fromJS([]);
-        let local = updatedAttachments || immutable.fromJS([]);
-        let combined = local.concat(remote);
-        return combined;
-    }
-
     get content() {
         let { identifier, activeAttachments, fetchFilters, onGridSelect, updatePagination, updateOrder, updatedAttachments } = this.props;
         let handleSelectItem = (selectedItem, isSelected) => {
@@ -219,7 +210,7 @@ class Documents extends Component {
             updateOrder(col, val, identifier);
         };
 
-        let combinedAttachments = this.combineAttachments(activeAttachments, updatedAttachments);
+        let combinedAttachments = combineAttachments(activeAttachments, updatedAttachments);
 
         if (combinedAttachments && combinedAttachments.size > 0) {
             return (

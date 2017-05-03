@@ -1,4 +1,5 @@
 import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants.js';
+import immutable from 'immutable';
 
 // Listing
 export const getListTableColumns = () => {
@@ -56,4 +57,39 @@ export function getDocumentDescriptionValidators() {
             {type: textValidations.length, maxVal: 200, errorMessage: 'Description cannot exceeds 200 characters.'}
         ]
     };
+}
+
+/*
+ * combineAttachments params:
+ * @remoteAttachments - the whole list of attachments that is fetched for editing
+ * @changedAttachments - all the documents that have the appropriate status
+ * @excludeIds - array of all the documents that must not be listed
+*/
+export function combineAttachments(remoteAttachments = immutable.List(), changedAttachments = immutable.List(), excludeIds = []) {
+    let result = immutable.List();
+    changedAttachments = changedAttachments.reverse();
+    changedAttachments.forEach((item) => {
+        if (item.get('statusId') !== 'New') {
+            if (remoteAttachments.size > 0) {
+                for (let i = 0; i < remoteAttachments.size; i++) {
+                    if (remoteAttachments.getIn([i, 'attachmentId']) === item.get('attachmentId')) {
+                        result = result.push(mergeAttachments(remoteAttachments.get(i), item));
+                        remoteAttachments = remoteAttachments.delete(i);
+                        break;
+                    }
+                }
+            }
+        } else {
+            result = result.push(item);
+        }
+    });
+    result = result.concat(remoteAttachments);
+    /*
+     * TODO: list all except the list with the excluded ids
+     */
+    return result;
+}
+
+function mergeAttachments(mainObj, overridesObj) {
+    return mainObj.merge(overridesObj);
 }
