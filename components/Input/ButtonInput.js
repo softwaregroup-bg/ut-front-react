@@ -11,6 +11,13 @@ class ButtonInput extends Component {
         };
         this.onChange = this.onChange.bind(this);
     }
+    componentWillReceiveProps(nextProps) {
+        if (this.state.value !== nextProps.value) {
+            this.setState({
+                value: nextProps.value
+            });
+        }
+    }
     getValue() {
         return this.refs.input.value;
     }
@@ -24,7 +31,7 @@ class ButtonInput extends Component {
         const { placeholder } = this.props;
         return (
             <div className={style.outerWrap}>
-                <div>
+                <div className={classNames(style.inputButtonStyle, {[style.boldLabel]: this.props.boldLabel})}>
                     {this.props.label}
                 </div>
                 <div className={style.inputWrap}>
@@ -51,6 +58,7 @@ class ButtonInput extends Component {
 ButtonInput.defaultProps = {
     label: '',
     value: '',
+    boldLabel: false,
     name: '',
     btnText: '',
     placeholder: '',
@@ -60,6 +68,7 @@ ButtonInput.defaultProps = {
 
 ButtonInput.propTypes = {
     label: PropTypes.string,
+    boldLabel: PropTypes.bool,
     readOnly: PropTypes.bool,
     value: PropTypes.string,
     type: PropTypes.string,
