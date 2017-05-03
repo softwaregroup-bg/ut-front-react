@@ -1,3 +1,13 @@
+<a name="9.0.6"></a>
+## [9.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.5...v9.0.6) (2017-05-03)
+
+
+### Bug Fixes
+
+* date picker support in grid toolbox ([00545df](https://github.com/softwaregroup-bg/ut-front-react/commit/00545df))
+
+
+
 <a name="9.0.5"></a>
 ## [9.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.4...v9.0.5) (2017-05-02)
 
