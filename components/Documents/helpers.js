@@ -69,7 +69,7 @@ export function combineAttachments(remoteAttachments = immutable.List(), changed
     let tmpList = immutable.List();
     changedAttachments = changedAttachments.reverse();
     changedAttachments.forEach((item) => {
-        if (item.get('statusId') !== 'New') {
+        if (item.get('statusId') !== 'new') {
             if (remoteAttachments.size > 0) {
                 for (let i = 0; i < remoteAttachments.size; i++) {
                     if (remoteAttachments.getIn([i, 'attachmentId']) === item.get('attachmentId')) {

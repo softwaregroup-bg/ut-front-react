@@ -134,7 +134,7 @@ const documents = (state = defaultState, action) => {
             } else {
                 // update a document that is temporary (New)
                 attachments = state.getIn([action.props.identifier, 'changedDocuments']) || Immutable.fromJS([]);
-                newStatusId = 'New';
+                newStatusId = 'new';
             }
             for (let i = 0; i < attachments.size; i++) {
                 if (attachments.getIn([i, 'attachmentId']) === doc.attachmentId) {
@@ -154,7 +154,7 @@ const documents = (state = defaultState, action) => {
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
                 switch (statusId) {
-                    case 'New':
+                    case 'new':
                         // remove the temp file from the list
                         let docs = state.getIn([action.props.identifier, 'changedDocuments']);
                         let fileIndex = -1;
@@ -166,12 +166,13 @@ const documents = (state = defaultState, action) => {
                         }
                         return state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
                                     .setIn([action.props.identifier, 'selected'], null);
-                    case 'Approved':
-                    case 'Active':
-                    case 'Archieved':
-                        let deletedDoc = action.props.documentObject.set('statusId', 'Deleted');
+                    case 'approved':
+                    case 'active':
+                    case 'archieved':
+                        let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
                         docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
-                        return state.setIn([action.props.identifier, 'changedDocuments'], docs);
+                        return state.setIn([action.props.identifier, 'changedDocuments'], docs)
+                                    .setIn([action.props.identifier, 'selected'], null);
                 }
             }
             return state;
