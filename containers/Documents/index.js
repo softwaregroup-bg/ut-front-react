@@ -43,7 +43,7 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, updatedAttachments } = this.props;
+        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, updatedAttachments, excludeAttachmentIds } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -65,6 +65,7 @@ class DocumentsContainer extends Component {
               updateOrder={updateOrder}
               permissions={permissions}
               documentTypes={docTypes}
+              excludeAttachmentIds={excludeAttachmentIds}
               uploadNewDocument={(newObject) => {
                   this.props.addDocument(identifier, newObject);
               }}
@@ -104,6 +105,7 @@ DocumentsContainer.propTypes = {
     // uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
     // deleteDocument: DocumentsListing.propTypes.deleteDocument,
     // archiveDocument: DocumentsListing.propTypes.archiveDocument,
+    excludeAttachmentIds: DocumentsListing.propTypes.excludeAttachmentIds,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired

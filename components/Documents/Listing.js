@@ -210,7 +210,7 @@ class Documents extends Component {
             updateOrder(col, val, identifier);
         };
 
-        let combinedAttachments = combineAttachments(activeAttachments, updatedAttachments);
+        let combinedAttachments = combineAttachments(activeAttachments, updatedAttachments, this.props.excludeAttachmentIds);
 
         if (combinedAttachments && combinedAttachments.size > 0) {
             return (
@@ -341,6 +341,7 @@ Documents.propTypes = {
     archiveDocument: PropTypes.func,
     updatedAttachments: PropTypes.object, // immutable list
     allowedFileTypes: PropTypes.array,
+    excludeAttachmentIds: PropTypes.array,
 
     permissions: PropTypes.shape({
         add: PropTypes.bool,
