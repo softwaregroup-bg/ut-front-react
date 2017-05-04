@@ -11,11 +11,13 @@ import {
     CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
 
-export function initState(identifier) {
+export function initState(identifier, excludeIdsList, pathname) {
     return {
         type: INIT_DOCUMENTS_STATE,
         params: {
-            identifier
+            identifier,
+            excludeIdsList,
+            pathname
         }
     };
 }

@@ -24,7 +24,7 @@ class DocumentsContainer extends Component {
 
     componentWillMount() {
         if (this.props.attachments.get(this.props.identifier) === undefined) {
-            this.props.initState(this.props.identifier);
+            this.props.initState(this.props.identifier, this.props.excludeAttachmentIds, this.props.pathname);
         }
     }
 
@@ -44,7 +44,7 @@ class DocumentsContainer extends Component {
 
     render() {
         let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, updatedAttachments, excludeAttachmentIds } = this.props;
-        let activeAttachments = attachments.getIn([identifier, 'attachments']);
+        let activeAttachments = attachments.getIn([identifier, 'attachmentsList']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
         let isLoading = attachments.getIn([identifier, 'isLoading']);
@@ -110,7 +110,8 @@ DocumentsContainer.propTypes = {
     excludeAttachmentIds: DocumentsListing.propTypes.excludeAttachmentIds,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
-    addDocument: PropTypes.func.isRequired
+    addDocument: PropTypes.func.isRequired,
+    pathname: PropTypes.string.isRequired
 };
 
 export default connect(

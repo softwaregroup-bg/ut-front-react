@@ -12,7 +12,7 @@ import {
     CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
-import { parseFetchDocumentsResult } from './helpers';
+import { parseFetchDocumentsResult, combineAttachments } from './helpers';
 
 const defaultPageSize = 25;
 const getDaultAttachmentObject = function() {
@@ -20,10 +20,13 @@ const getDaultAttachmentObject = function() {
         attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
         deletedList: [], // if you need all deleted attachments, subscribe to this object in mapstatetoprops
         attachments: [],
+        remoteAttachments: [],
         changedDocuments: [],
+        excludeIdsList: [],
         selected: null,
         requiresFetch: true,
         isLoading: false,
+        pathname: null,
         filters: {
             paging: {
                 pageSize: defaultPageSize,
@@ -53,7 +56,9 @@ const documents = (state = defaultState, action) => {
 
     switch (type) {
         case INIT_DOCUMENTS_STATE:
-            return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject()));
+            return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject()))
+                        .setIn([action.params.identifier, 'excludeIdsList'], Immutable.fromJS(action.params.excludeIdsList))
+                        .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
         case FETCH_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.requested) {
                 return state.setIn([props.identifier, 'isLoading'], Immutable.fromJS(true))
@@ -61,11 +66,13 @@ const documents = (state = defaultState, action) => {
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
                     const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
-                    return state.setIn([props.identifier, 'attachments'], Immutable.fromJS(fetchDocumentsResult))
+                    let newState = state.setIn([props.identifier, 'attachments'], Immutable.fromJS(fetchDocumentsResult))
                                 .setIn([props.identifier, 'filters', 'paging'], Immutable.fromJS(action.result.pagination[0]))
                                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
                                 .setIn([props.identifier, 'isLoading'], Immutable.fromJS(false))
                                 .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
+                    newState = combineAttachments(newState.get(props.identifier));
+                    return state.set(props.identifier, newState);
                 }
             }
             return state;
@@ -127,7 +134,9 @@ const documents = (state = defaultState, action) => {
             let newDoc = action.props.newDocumentObject;
             newDoc.url = documentTmpUploadPrefix + newDoc.filename;
             let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(newDoc));
-            return state.setIn([action.props.identifier, 'changedDocuments'], docs);
+            let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
+            newState = combineAttachments(newState.get(action.props.identifier));
+            return state.set(action.props.identifier, newState);
         case REPLACE_DOCUMENT:
             let replacedDocument;
             let newStatusId;
@@ -156,10 +165,13 @@ const documents = (state = defaultState, action) => {
                                             .set('contentType', Immutable.fromJS(doc.contentType))
                                             .set('statusId', Immutable.fromJS(newStatusId));
             docs = state.getIn([action.props.identifier, 'changedDocuments']).push(replacedDocument);
-            return state.setIn([action.props.identifier, 'changedDocuments'], docs);
+            newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
+            newState = combineAttachments(newState.get(action.props.identifier));
+            return state.set(action.props.identifier, newState);
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
+                let newState = state;
                 switch (statusId) {
                     case 'new':
                         // remove the temp file from the list
@@ -171,15 +183,19 @@ const documents = (state = defaultState, action) => {
                                 break;
                             }
                         }
-                        return state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
+                        newState = state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
                                     .setIn([action.props.identifier, 'selected'], null);
+                        newState = combineAttachments(newState.get(action.props.identifier));
+                        return state.set(action.props.identifier, newState);
                     case 'approved':
                     case 'active':
                     case 'archieved':
                         let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
                         docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
-                        return state.setIn([action.props.identifier, 'changedDocuments'], docs)
+                        newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
                                     .setIn([action.props.identifier, 'selected'], null);
+                        newState = combineAttachments(newState.get(action.props.identifier));
+                        return state.set(action.props.identifier, newState);
                 }
             }
             return state;

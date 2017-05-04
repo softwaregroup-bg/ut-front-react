@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { getListTableColumns, getListTdStyles, combineAttachments } from './helpers';
+import { getListTableColumns, getListTdStyles } from './helpers';
 
 import { Vertical } from '../Layout';
 import ButtonsHeader from '../ButtonsHeader';
@@ -122,14 +122,14 @@ class Documents extends Component {
             if (this.props.permissions.delete) {
                 headerButtonsConfig.left.push({
                     label: 'Delete',
-                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'Deleted'),
+                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'deleted'),
                     onClick: openDeleteConfirmationDialog
                 });
             }
             if (this.props.permissions.replace) {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
-                    disabled: disabledButtonsState,
+                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'new'),
                     onClick: replaceDocumentHandler
                 });
             }
@@ -197,7 +197,7 @@ class Documents extends Component {
     }
 
     get content() {
-        let { identifier, activeAttachments, fetchFilters, onGridSelect, updatePagination, updateOrder, updatedAttachments } = this.props;
+        let { identifier, activeAttachments, fetchFilters, onGridSelect, updatePagination, updateOrder } = this.props;
         let handleSelectItem = (selectedItem, isSelected) => {
             onGridSelect(selectedItem, isSelected, identifier);
         };
@@ -208,15 +208,13 @@ class Documents extends Component {
             updateOrder(col, val, identifier);
         };
 
-        let combinedAttachments = combineAttachments(activeAttachments, updatedAttachments, this.props.excludeAttachmentIds);
-
-        if (combinedAttachments && combinedAttachments.size > 0) {
+        if (activeAttachments && activeAttachments.size > 0) {
             return (
                 <div>
                     <div>
                         <Grid
                           columns={getListTableColumns()}
-                          rows={combinedAttachments}
+                          rows={activeAttachments}
                           canCheck={false}
                           mapColumn={this.mapColumn}
                           onSelect={handleSelectItem}
@@ -323,7 +321,7 @@ Documents.propTypes = {
     // funcs
     fetchDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
-    onDelete: PropTypes.func,
+    // onDelete: PropTypes.func,
     updatePagination: PropTypes.func,
     updateOrder: PropTypes.func,
 
@@ -337,10 +335,10 @@ Documents.propTypes = {
     uploadNewDocument: PropTypes.func,
     replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
-    archiveDocument: PropTypes.func,
-    updatedAttachments: PropTypes.object, // immutable list
+    // archiveDocument: PropTypes.func,
+    // updatedAttachments: PropTypes.object, // immutable list
     allowedFileTypes: PropTypes.array,
-    excludeAttachmentIds: PropTypes.array,
+    // excludeAttachmentIds: PropTypes.array,
 
     permissions: PropTypes.shape({
         add: PropTypes.bool,
@@ -357,7 +355,7 @@ Documents.propTypes = {
 Documents.defaultProps = {
     requiresFetch: false,
     onGridSelect: () => {},
-    onDelete: () => {},
+    // onDelete: () => {},
     updatePagination: () => {},
     updateOrder: () => {},
     allowedFileTypes: ['.jpg', 'jpeg', 'png', '.pdf', '.doc', '.docx'],
