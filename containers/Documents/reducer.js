@@ -17,10 +17,13 @@ import { parseFetchDocumentsResult } from './helpers';
 const defaultPageSize = 25;
 const getDaultAttachmentObject = function() {
     return {
+        attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
+        deletedList: [], // if you need all deleted attachments, subscribe to this object in mapstatetoprops
         attachments: [],
         changedDocuments: [],
         selected: null,
         requiresFetch: true,
+        isLoading: false,
         filters: {
             paging: {
                 pageSize: defaultPageSize,
@@ -52,12 +55,16 @@ const documents = (state = defaultState, action) => {
         case INIT_DOCUMENTS_STATE:
             return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject()));
         case FETCH_DOCUMENTS:
-            if (action.methodRequestState === methodRequestState.FINISHED) {
+            if (action.methodRequestState === methodRequestState.requested) {
+                return state.setIn([props.identifier, 'isLoading'], Immutable.fromJS(true))
+                            .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
+            } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
                     const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
                     return state.setIn([props.identifier, 'attachments'], Immutable.fromJS(fetchDocumentsResult))
                                 .setIn([props.identifier, 'filters', 'paging'], Immutable.fromJS(action.result.pagination[0]))
                                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
+                                .setIn([props.identifier, 'isLoading'], Immutable.fromJS(false))
                                 .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
                 }
             }

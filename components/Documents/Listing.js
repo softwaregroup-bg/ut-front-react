@@ -41,10 +41,8 @@ class Documents extends Component {
     }
 
     fetchDocs(actorId, fetchFilters) {
-        let { identifier, fetchDocuments } = this.props;
-
-        if (actorId) {
-            fetchDocuments(actorId, fetchFilters, identifier);
+        if (actorId && this.props.requiresFetch && !this.props.isLoading) {
+            this.props.fetchDocuments(actorId, fetchFilters, this.props.identifier);
         }
     }
 
@@ -319,6 +317,7 @@ Documents.propTypes = {
     activeAttachments: PropTypes.object, // immutable list
     selectedAttachment: PropTypes.object, // immutable object
     requiresFetch: PropTypes.bool,
+    isLoading: PropTypes.bool,
     fetchFilters: PropTypes.object, // immutable object
 
     // funcs

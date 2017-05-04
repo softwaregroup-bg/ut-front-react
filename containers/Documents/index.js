@@ -47,6 +47,7 @@ class DocumentsContainer extends Component {
         let activeAttachments = attachments.getIn([identifier, 'attachments']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
+        let isLoading = attachments.getIn([identifier, 'isLoading']);
         let fetchFilters = attachments.getIn([identifier, 'filters']) || attachments.getIn(['common', 'filters']);
         let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
         return (
@@ -57,6 +58,7 @@ class DocumentsContainer extends Component {
               selectedAttachment={selectedAttachment}
               updatedAttachments={updatedAttachments}
               requiresFetch={requiresFetch}
+              isLoading={isLoading}
               fetchFilters={fetchFilters}
               fetchDocuments={fetchDocuments}
               onGridSelect={selectAttachments}
