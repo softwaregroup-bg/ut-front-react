@@ -11,6 +11,7 @@ import {
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED
 } from './actionTypes';
+import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
 import { parseFetchDocumentsResult, combineAttachments } from './helpers';
 
@@ -59,6 +60,14 @@ const documents = (state = defaultState, action) => {
             return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject()))
                         .setIn([action.params.identifier, 'excludeIdsList'], Immutable.fromJS(action.params.excludeIdsList))
                         .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
+        case REMOVE_TAB:
+            let documentObjects = Object.keys(state.toJS());
+            for (let i = 0; i < documentObjects.length; i++) {
+                if (action.pathname === state.getIn([documentObjects[i], 'pathname'])) {
+                    return state.delete(documentObjects[i]);
+                }
+            }
+            return state;
         case FETCH_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.requested) {
                 return state.setIn([props.identifier, 'isLoading'], Immutable.fromJS(true))

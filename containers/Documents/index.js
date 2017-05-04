@@ -43,7 +43,7 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, updatedAttachments, excludeAttachmentIds } = this.props;
+        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, excludeAttachmentIds } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachmentsList']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -56,7 +56,7 @@ class DocumentsContainer extends Component {
               actorId={actorId}
               activeAttachments={activeAttachments}
               selectedAttachment={selectedAttachment}
-              updatedAttachments={updatedAttachments}
+              // updatedAttachments={this.props.updatedAttachments}
               requiresFetch={requiresFetch}
               isLoading={isLoading}
               fetchFilters={fetchFilters}
@@ -103,11 +103,11 @@ DocumentsContainer.propTypes = {
         isLoading: PropTypes.bool,
         data: DocumentsListing.propTypes.documentTypes
     }),
-    updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
+    // updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
     // uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
     // deleteDocument: DocumentsListing.propTypes.deleteDocument,
     // archiveDocument: DocumentsListing.propTypes.archiveDocument,
-    excludeAttachmentIds: DocumentsListing.propTypes.excludeAttachmentIds,
+    excludeAttachmentIds: PropTypes.array,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
@@ -118,8 +118,8 @@ export default connect(
     ({frontDocuments}, props) => {
         return {
             attachments: frontDocuments,
-            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
-            updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
+            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({})
+            // updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
     { initState, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted }
