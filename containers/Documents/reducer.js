@@ -9,7 +9,8 @@ import {
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
-    CHANGE_DOCUMENT_STATUS_DELETED
+    CHANGE_DOCUMENT_STATUS_DELETED,
+    RESET_DOCUMENTS_STATE
 } from './actionTypes';
 import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
@@ -208,6 +209,8 @@ const documents = (state = defaultState, action) => {
                 }
             }
             return state;
+        case RESET_DOCUMENTS_STATE:
+            return state.delete(action.props.identifier);
         default:
             return state;
     }

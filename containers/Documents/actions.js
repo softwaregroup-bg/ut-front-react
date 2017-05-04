@@ -8,7 +8,8 @@ import {
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
-    CHANGE_DOCUMENT_STATUS_DELETED
+    CHANGE_DOCUMENT_STATUS_DELETED,
+    RESET_DOCUMENTS_STATE
 } from './actionTypes';
 
 export function initState(identifier, excludeIdsList, pathname) {
@@ -123,6 +124,15 @@ export function changeDocumentStatusDeleted(identifier, documentObject, newStatu
         props: {
             documentObject,
             newStatus,
+            identifier
+        }
+    };
+}
+
+export function resetDocumentState(identifier) {
+    return {
+        type: RESET_DOCUMENTS_STATE,
+        props: {
             identifier
         }
     };
