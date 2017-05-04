@@ -1,5 +1,4 @@
 import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants.js';
-import immutable from 'immutable';
 
 // Listing
 export const getListTableColumns = () => {
@@ -58,4 +57,3 @@ export function getDocumentDescriptionValidators() {
         ]
     };
 }
-
