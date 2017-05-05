@@ -13,7 +13,7 @@ class ButtonInput extends Component {
         this.onChange = this.onChange.bind(this);
     }
     componentWillReceiveProps(nextProps) {
-        if (this.state.value !== nextProps.value || this.state.isEdited != nextProps.inputButtonStyle) {
+        if (this.state.value !== nextProps.value) {
             this.setState({
                 value: nextProps.value,
                 isEdited: nextProps.isEdited
@@ -30,7 +30,7 @@ class ButtonInput extends Component {
         this.props.onChange && this.props.onChange(e.target.value);
     }
     render() {
-        const { placeholder, readonly } = this.props;
+        const { placeholder, readOnly } = this.props;
         return (
             <div className={style.outerWrap}>
                 <div className={classNames(style.inputButtonLabel, {[style.boldLabel]: this.props.boldLabel})}>
@@ -44,7 +44,7 @@ class ButtonInput extends Component {
                       name={this.props.name}
                       className={classNames(style.input, style.buttonInput, {
                           [style.editedInputStyle]: this.props.isEdited,
-                          [style.readonlyInput]: readonly
+                          [style.readonlyInput]: readOnly
                       })}
                       label={this.props.label}
                       value={this.state.value}
