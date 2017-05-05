@@ -81,7 +81,7 @@ DatePicker.defaultProps = {
     withVerticalClass: false
 };
 DatePicker.propTypes = {
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]), // accepts new Date() object or empty object or null
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), // accepts new Date() object or empty object or null
     locale: PropTypes.string,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
