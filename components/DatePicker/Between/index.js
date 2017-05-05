@@ -9,16 +9,43 @@ const noop = () => {};
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
-        this.state = props.defaultValue;
+        this.getDateValues = this.getDateValues.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
+        this.state = {
+            date: {
+                from: undefined,
+                to: undefined
+            }
+        };
     }
+
+    componentWillMount() {
+        let dateRange = this.getDateValues(this.props);
+
+        dateRange && this.setState({date: dateRange});
+    }
+
     componentWillReceiveProps(newProps) {
-        this.setState(newProps.defaultValue);
+        let dateRange = this.getDateValues(newProps);
+        dateRange && this.setState({date: dateRange});
     }
+
+    getDateValues(props) {
+        let dateRange;
+        if (props.defaultValue) {
+            dateRange = {
+                from: props.defaultValue.from && new Date(props.defaultValue.from),
+                to: props.defaultValue.to && new Date(props.defaultValue.to)
+            };
+        }
+
+        return dateRange;
+    }
+
     handleOpen(ref) {
         return () => {
             this.refs[`${ref}DialogWindow`].show();
@@ -37,16 +64,17 @@ export default class DatePickerBetween extends Component {
         return formatIso(date);
     }
     handleAccept(ref) {
-        return (date) => {
-            if ((this.state && this.state[ref] && this.state[ref] === date) || (!date && (!this.state || !this.state[ref]))) {
+        let {date} = this.state;
+        return (value) => {
+            if ((date && date[ref] === value) || (!value && (!date || !date[ref]))) {
                 return;
             }
+            date[ref] = value;
             this.setState({
-                [ref]: date
+                date: date
             }, () => {
                 if (this.props.onChange) {
-                    let newDate = this.state[ref];
-
+                    let newDate = date[ref];
                     this.props.onChange({
                         key: ref,
                         value: (newDate && !isNaN(newDate.valueOf()))
@@ -94,7 +122,7 @@ export default class DatePickerBetween extends Component {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
 
-        let {from, to} = this.state;
+        let {from, to} = this.state.date;
 
         let fromDate = from
             ? new Date(from)
