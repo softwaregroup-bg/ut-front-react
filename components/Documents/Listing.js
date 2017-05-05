@@ -7,7 +7,7 @@ import Grid from '../Grid';
 import Text from '../Text';
 import DateComponent from '../Date';
 import Popup from '../Popup';
-import AdvancedPagination from '../AdvancedPagination';
+// import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 
@@ -182,7 +182,7 @@ class Documents extends Component {
         }
         if (col.key === 'statusId') {
             let label = colData;
-            if (colData === 'Approved') {
+            if (colData === 'approved') {
                 label = 'active';
             }
             return capitalizeFirstLetter(label);
@@ -197,13 +197,13 @@ class Documents extends Component {
     }
 
     get content() {
-        let { identifier, activeAttachments, fetchFilters, onGridSelect, updatePagination, updateOrder } = this.props;
+        let { identifier, activeAttachments, /* fetchFilters, */ onGridSelect, /* updatePagination, */ updateOrder } = this.props;
         let handleSelectItem = (selectedItem, isSelected) => {
             onGridSelect(selectedItem, isSelected, identifier);
         };
-        let handlePaginationUpdate = (newPagination) => {
-            updatePagination(newPagination, identifier);
-        };
+        // let handlePaginationUpdate = (newPagination) => {
+        //     updatePagination(newPagination, identifier);
+        // };
         let handleSort = (col, val) => {
             updateOrder(col, val, identifier);
         };
@@ -223,9 +223,9 @@ class Documents extends Component {
                           tdStyles={getListTdStyles()}
                         />
                     </div>
-                    <div id={style.paginationWrap}>
+                    {/* <div id={style.paginationWrap}>
                         <AdvancedPagination pagination={fetchFilters.get('paging') || {pageSize: 25, pageNumber: 1}} onUpdate={handlePaginationUpdate} />
-                    </div>
+                    </div> */}
                 </div>
             );
         } else {
@@ -322,7 +322,7 @@ Documents.propTypes = {
     fetchDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
     // onDelete: PropTypes.func,
-    updatePagination: PropTypes.func,
+    // updatePagination: PropTypes.func,
     updateOrder: PropTypes.func,
 
     documentTypes: PropTypes.arrayOf(

@@ -87,6 +87,7 @@ export default class DocumentUpload extends Component {
             this.setState({
                 screenshot: file,
                 fileExtension: extension,
+                originalFilename: fileObj.name,
                 uploadMethod: 'upload',
                 mode: 'preview',
                 fileDimensions,
@@ -187,6 +188,7 @@ export default class DocumentUpload extends Component {
                   ref='filePreview'
                   file={this.state.screenshot}
                   fileExtension={this.state.fileExtension}
+                  originalFilename={this.state.originalFilename}
                   showCrop={!hideCrop || this.state.showCrop}
                   onCrop={this.onCrop}
                   fileDimensions={fileDimensions}

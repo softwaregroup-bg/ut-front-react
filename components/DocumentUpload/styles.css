@@ -408,8 +408,8 @@
     background-color: #CCC;
 }
 
-.PreviewItemThumbnail {
-    display: block;
+.PreviewItemThumbnail .fileIcon {
+    /*display: block;
     width: 230px;
     height: 230px;
     line-height: 230px;
@@ -418,5 +418,18 @@
     font-size: 28px;
     text-transform: uppercase;
     border: 1px solid #D7D6D6;
-    background: #F5F5F5;
+    background: #F5F5F5;*/
+    background: inline('./images/file_popup.png');
+    background-size: 33px 39px;
+    background-repeat: no-repeat;
+    width: 33px;
+    height: 39px;
+    float: left;
+    margin-right: 10px;
+}
+
+.PreviewItemThumbnail .fileLabel {
+    line-height: 40px;
+    display: block;
+    float: left;
 }

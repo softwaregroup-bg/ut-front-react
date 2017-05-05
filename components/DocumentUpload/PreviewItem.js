@@ -4,6 +4,7 @@ import style from './styles.css';
 const PreviewItem = ({
     file,
     fileExtension,
+    originalFilename,
     previewBoxWidth,
     previewBoxHeight
 }) => {
@@ -21,7 +22,8 @@ const PreviewItem = ({
         case 'pdf':
             return (
                 <span className={style.PreviewItemThumbnail}>
-                    {fileExtension}
+                    <div className={style.fileIcon} />
+                    <div className={style.fileLabel}>{originalFilename}</div>
                 </span>
             );
         default:
@@ -36,6 +38,7 @@ const PreviewItem = ({
 PreviewItem.propTypes = {
     file: PropTypes.string, // BASE64 representation of a file
     fileExtension: PropTypes.string,
+    originalFilename: PropTypes.string,
     previewBoxWidth: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number

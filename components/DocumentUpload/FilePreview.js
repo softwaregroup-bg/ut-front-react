@@ -49,6 +49,7 @@ export default class FilePreview extends Component {
             file,
             fileExtension,
             fileDimensions,
+            originalFilename,
             showCrop,
             onCrop,
             cropDimensions
@@ -64,6 +65,7 @@ export default class FilePreview extends Component {
                   onCrop={onCrop} /> : <PreviewItem
                     file={file}
                     fileExtension={fileExtension}
+                    originalFilename={originalFilename}
                     previewBoxWidth={fileDimensions.width}
                     previewBoxHeight={fileDimensions.height} />
                 }
@@ -80,6 +82,7 @@ FilePreview.propTypes = {
     className: PropTypes.string,
     file: PreviewItem.propTypes.file,
     fileExtension: PreviewItem.propTypes.fileExtension,
+    originalFilename: PreviewItem.propTypes.fileExtension,
     showCrop: PropTypes.bool,
     fileDimensions: PropTypes.shape({
         width: PropTypes.number,
