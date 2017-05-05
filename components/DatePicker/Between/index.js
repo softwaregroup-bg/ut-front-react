@@ -154,7 +154,10 @@ DatePickerBetween.defaultProps = {
     dateFormat: 'YYYY-MM-DD'
 };
 DatePickerBetween.propTypes = {
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.shape({
+        from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+        to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
+    }),
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
