@@ -181,6 +181,7 @@ class GridToolBox extends Component {
                               withVerticalClass={renderInDialog}
                               defaultValue={filterValue}
                               dateFormat={filterElement.dateFormat || defaultDateFormat}
+                              transformDate={filterElement.transformDate}
                               locale={filterElement.locale}
                               masterLabel={filterElement.masterLabel}
                               labelFrom={filterElement.labelFrom}
