@@ -13,7 +13,8 @@ const noop = () => {};
 class DateTimePicker extends Component {
     constructor(props) {
         super(props);
-        this.state = props.defaultValue;
+
+        this.getDate = this.getDate.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -27,9 +28,7 @@ class DateTimePicker extends Component {
     }
 
     componentWillMount() {
-        let date = this.props.defaultValue
-            ? new Date(this.props.defaultValue)
-            : undefined;
+        let date = this.getDate(this.props);
 
         date && this.setState({
             date: date
@@ -37,11 +36,16 @@ class DateTimePicker extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({
-            date: newProps.defaultValue
-                ? new Date(newProps.defaultValue)
-                : undefined
+        let date = this.getDate(newProps);
+
+        date && this.setState({
+            date: date
         });
+    }
+    getDate(props) {
+        return props.defaultValue
+            ? new Date(props.defaultValue)
+            : undefined;
     }
     handleOpen(ref) {
         return () => {
@@ -185,7 +189,7 @@ DateTimePicker.defaultProps = {
     dateFormat: 'YYYY-MM-DD'
 };
 DateTimePicker.propTypes = {
-    defaultValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

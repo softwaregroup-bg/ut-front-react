@@ -95,7 +95,7 @@ class DateTimePickerBetween extends Component {
 }
 
 DateTimePickerBetween.propTypes = {
-    defaultValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
     locale: PropTypes.string,
     timeFormat: PropTypes.string,
     dateFormat: PropTypes.string,
