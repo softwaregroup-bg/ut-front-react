@@ -380,7 +380,7 @@ input:read-only{
 
 .multiCheckboxReadOnly {
     color: lightgrey;
-    cursor: not-allowed !important; /* it needs to be important to overwrite the cursor: pointer */ 
+    cursor: not-allowed !important; /* it needs to be important to overwrite the cursor: pointer */
     opacity: .5;
 }
 
@@ -396,7 +396,14 @@ input:read-only{
 }
 
 .lableWrap {
+    width: 30%;
     padding: 5px 0 0 0;
+}
+
+.inputButtonLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .boldLabel {

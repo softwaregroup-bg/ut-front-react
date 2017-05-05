@@ -18,7 +18,7 @@ export default class DatePicker extends Component {
         };
     }
     render() {
-        let {disabled, isValid, errorMessage} = this.props;
+        let {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass} = this.props;
 
         let textFieldStyle = {
             cursor: 'pointer',
@@ -35,10 +35,16 @@ export default class DatePicker extends Component {
         let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
         let iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
         let readonlyStyle = disabled ? style.readonlyInput : '';
+        let boldLabelStyle = boldLabel ? style.boldLabel : '';
+        let datePickerLabeled = label ? style.datePickerLabeled : '';
+        let labelStyle = withVerticalClass ? style.labelWrap : style.labelWrapHorizontal;
+
+        let dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
 
         return (
             <div className={style.wrap}>
-                <div className={classnames(style.datePicker)} style={this.props.wrapperStyles}>
+                {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
+                <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
                       className={classnames(dpStyles, readonlyStyle)}
@@ -47,7 +53,7 @@ export default class DatePicker extends Component {
                       cancelLabel={this.props.cancelLabel}
                       okLabel={this.props.okLabel}
                       container={this.props.container}
-                      value={this.props.defaultValue}
+                      value={dateVal}
                       mode={this.props.mode}
                       onChange={this.handleChange()}
                       firstDayOfWeek={this.props.firstDayOfWeek}
@@ -69,10 +75,13 @@ DatePicker.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     isValid: true,
-    hintText: ' '
+    hintText: ' ',
+    boldLabel: false,
+    label: '',
+    withVerticalClass: false
 };
 DatePicker.propTypes = {
-    defaultValue: PropTypes.object, // accepts new Date() object or empty object or null
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), // accepts new Date() object or string
     locale: PropTypes.string,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
@@ -80,7 +89,8 @@ DatePicker.propTypes = {
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     masterLabel: PropTypes.string,
-    labelFrom: PropTypes.string,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    boldLabel: PropTypes.bool,
     DateTimeFormat: PropTypes.func,
     onChange: PropTypes.func,
     wrapperStyles: PropTypes.object,
@@ -90,7 +100,8 @@ DatePicker.propTypes = {
     disabled: PropTypes.bool,
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
-    hintText: PropTypes.string
+    hintText: PropTypes.string,
+    withVerticalClass: PropTypes.bool
 };
 
 DatePicker.contextTypes = {

@@ -9,16 +9,43 @@ const noop = () => {};
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
-        this.state = props.defaultValue;
+        this.getDateValues = this.getDateValues.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
+        this.state = {
+            date: {
+                from: undefined,
+                to: undefined
+            }
+        };
     }
+
+    componentWillMount() {
+        let dateRange = this.getDateValues(this.props);
+
+        dateRange && this.setState({date: dateRange});
+    }
+
     componentWillReceiveProps(newProps) {
-        this.setState(newProps.defaultValue);
+        let dateRange = this.getDateValues(newProps);
+        dateRange && this.setState({date: dateRange});
     }
+
+    getDateValues(props) {
+        let dateRange;
+        if (props.defaultValue) {
+            dateRange = {
+                from: props.defaultValue.from && new Date(props.defaultValue.from),
+                to: props.defaultValue.to && new Date(props.defaultValue.to)
+            };
+        }
+
+        return dateRange;
+    }
+
     handleOpen(ref) {
         return () => {
             this.refs[`${ref}DialogWindow`].show();
@@ -29,24 +56,35 @@ export default class DatePickerBetween extends Component {
             return '';
         }
 
-        let { locale, dateFormat } = this.props;
-        if (locale) {
-            return date.toLocaleDateString(locale, dateFormat);
+        let { locale, dateFormat, transformDate } = this.props;
+        if (transformDate) {
+            return transformDate(date, dateFormat, locale);
         }
 
         return formatIso(date);
     }
     handleAccept(ref) {
-        return (date) => {
-            if ((this.state && this.state[ref] && this.state[ref] === date) || (!date && (!this.state || !this.state[ref]))) {
+        let {date} = this.state;
+        return (value) => {
+            if ((date && date[ref] === value) || (!value && (!date || !date[ref]))) {
                 return;
             }
+            date[ref] = value;
             this.setState({
-                [ref]: date
+                date: date
+            }, () => {
+                if (this.props.onChange) {
+                    let newDate = date[ref];
+                    this.props.onChange({
+                        key: ref,
+                        value: (newDate && !isNaN(newDate.valueOf()))
+                            ? (new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60 * 1000))
+                                .toISOString()
+                                .substr(0, 10)
+                            : null
+                    });
+                }
             });
-            if (this.props.onChange) {
-                this.props.onChange({key: ref, value: date});
-            }
         };
     }
     handleKeyPress(ref) {
@@ -83,6 +121,15 @@ export default class DatePickerBetween extends Component {
         if (this.props.withVerticalClass && this.getContextStyles('dpBoxGroupWrapVertical')) {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
+
+        let {from, to} = this.state.date;
+
+        let fromDate = from
+            ? new Date(from)
+            : new Date();
+        let toDate = to
+            ? new Date(to)
+            : new Date();
         return (
             <div className={classnames(style.dpBoxWrap, this.getContextStyles('dpBoxWrap'), verticalClass)}>
                 {this.props.masterLabel ? (<span className={classnames(style.masterLabel, this.getContextStyles('masteLabelStyle'))}>{this.props.masterLabel}</span>) : ''}
@@ -90,14 +137,14 @@ export default class DatePickerBetween extends Component {
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
                         {this.props.labelFrom ? (<span className={style.label}>{this.props.labelFrom}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
-                            <input value={this.state.from ? this.formatDate(this.state.from) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
+                            <input value={from ? this.formatDate(fromDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
                         {this.props.labelTo ? (<span className={style.label}>{this.props.labelTo}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
-                            <input value={this.state.to ? this.formatDate(this.state.to) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
+                            <input value={to ? this.formatDate(toDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
                             <button onClick={this.handleOpen('to')} />
                         </div>
                     </div>
@@ -106,7 +153,7 @@ export default class DatePickerBetween extends Component {
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
                   container={this.props.container}
-                  initialDate={this.state.from}
+                  initialDate={fromDate}
                   mode={this.props.mode}
                   onAccept={this.handleAccept('from')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
@@ -116,7 +163,7 @@ export default class DatePickerBetween extends Component {
                   cancelLabel={this.props.cancelLabel}
                   okLabel={this.props.okLabel}
                   container={this.props.container}
-                  initialDate={this.state.to}
+                  initialDate={toDate}
                   mode={this.props.mode}
                   onAccept={this.handleAccept('to')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
@@ -132,10 +179,13 @@ DatePickerBetween.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     withVerticalClass: false,
-    dateFormat: { day: 'numeric', month: 'numeric', year: 'numeric' }
+    dateFormat: 'YYYY-MM-DD'
 };
 DatePickerBetween.propTypes = {
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.shape({
+        from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+        to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
+    }),
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -146,7 +196,8 @@ DatePickerBetween.propTypes = {
     masterLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    dateFormat: PropTypes.object,
+    dateFormat: PropTypes.string,
+    transformDate: PropTypes.func,
     onChange: PropTypes.func
 };
 
