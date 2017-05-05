@@ -69,36 +69,50 @@ export default class HeaderProfileInfo extends Component {
         }, []);
     }
 
+    get initials() {
+        var { firstName, lastName } = this.props.personInfo.person;
+        if (!firstName || !lastName) {
+            // Fallback if a user does not have these field filled
+            return 'n/a';
+        }
+        var regex = /[a-zA-Z]?/;
+        firstName = firstName.match(regex)[0];
+        lastName = lastName.match(regex)[0];
+
+        return `${firstName}${lastName}`;
+    }
+
     render() {
         const { className } = this.props;
         const { menuToggled } = this.state;
-        const { firstName, lastName } = this.props.personInfo.person;
-        const fullName = `${firstName} ${lastName}`;
 
         return (
-            <span
-              className={className}
-              ref={(element) => { this.infoArrowNode = element; }} >
-                <div className={styles.profileInfoContainer}>
-                  <div
-                    className={styles.avatarContainer}
-                    onClick={this.onClick} />
-                  <div
-                    className={styles.avatarInfoArrow}
-                    onClick={this.onClick}
-                    ref={(element) => { this.anchorEl = element; }} />
-                </div>
-                <div className={styles.personalInfoName}>{fullName}</div>
-                <MenuNew
-                  open={menuToggled}
-                  fields={this.getMenuItems()}
-                  anchorEl={this.infoArrowNode}
-                  requestClose={this.requestCloseMenu}
-                  additionalOffsets={{right: 5, bottom: 9}}
-                  positioningDirections='right-bottom'
-                  className={styles.profileInfoPopoverMenu}
-                  separatorsOnIndex={[2]}
-                  closeOnSelect />
+            <span className={styles.profileInfo}>
+              <span
+                className={className}
+                ref={(element) => { this.infoArrowNode = element; }} >
+                  <div className={styles.profileInfoContainer}>
+                    <div
+                      className={styles.avatarContainer}
+                      onClick={this.onClick} >
+                      {this.initials}
+                    </div>
+                    <div
+                      className={styles.avatarInfoArrow}
+                      onClick={this.onClick}
+                      ref={(element) => { this.anchorEl = element; }} />
+                  </div>
+                  <MenuNew
+                    open={menuToggled}
+                    fields={this.getMenuItems()}
+                    anchorEl={this.infoArrowNode}
+                    requestClose={this.requestCloseMenu}
+                    additionalOffsets={{right: 5, bottom: 9}}
+                    positioningDirections='right-bottom'
+                    className={styles.profileInfoPopoverMenu}
+                    separatorsOnIndex={[2]}
+                    closeOnSelect />
+              </span>
             </span>
         );
     }
