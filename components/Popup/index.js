@@ -76,15 +76,6 @@ class PopupInternal extends Component {
         return style;
     }
 
-    get contentHeight() {
-        const { contentMaxHeight } = this.state;
-        var style = {};
-        if (this.props.fullHeight) {
-            style.minHeight = contentMaxHeight;
-        }
-        return style;
-    }
-
     render() {
         const {
             className,
@@ -102,7 +93,7 @@ class PopupInternal extends Component {
                 { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
                 <div style={this.contentWidth} className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
-                    <div style={this.contentHeight} className={classnames(styles.popupContent, contentClassName)}>
+                    <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
                     { footer && <Footer leftNode={footer.leftNode} className={footer.className} actionButtons={footer.actionButtons} /> }
@@ -135,14 +126,12 @@ PopupInternal.propTypes = {
         leftNode: PropTypes.node
     }),
     fullWidth: PropTypes.bool,
-    fullHeight: PropTypes.bool,
     children: PropTypes.any,
     closePopup: PropTypes.func
 };
 
 PopupInternal.defaultProps = {
     fullWidth: false,
-    fullHeight: false,
     hasOverlay: true,
     container: 'controls',
     closeOnOverlayClick: false
@@ -189,14 +178,12 @@ Popup.propTypes = {
         leftNode: PropTypes.node
     }),
     fullWidth: PropTypes.bool,
-    fullHeight: PropTypes.bool,
     children: PropTypes.any,
     closePopup: PropTypes.func
 };
 
 Popup.defaultProps = {
     fullWidth: false,
-    fullHeight: false,
     hasOverlay: true,
     container: 'controls',
     closeOnOverlayClick: false
