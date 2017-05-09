@@ -59,9 +59,10 @@ class DateTimePicker extends Component {
             if (newDate === defaultValue) {
                 return;
             }
+
             if (ref === 'date') {
                 if (defaultValue && !isNaN(defaultValue.valueOf())) {
-                    if (isNaN(newDate.valueOf())) {
+                    if (!newDate || isNaN(newDate.valueOf())) {
                         newDate = undefined;
                     } else {
                         newDate.setHours(defaultValue.getHours());
@@ -71,7 +72,7 @@ class DateTimePicker extends Component {
                 }
             } else if (ref === 'time') {
                 if (defaultValue && !isNaN(defaultValue.valueOf())) {
-                    if (isNaN(newDate.valueOf())) {
+                    if (!newDate || isNaN(newDate.valueOf())) {
                         newDate = defaultValue;
                         newDate.setHours(0);
                         newDate.setMinutes(0);
@@ -111,23 +112,27 @@ class DateTimePicker extends Component {
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
 
+        let date = defaultValue
+            ? new Date(defaultValue)
+            : new Date();
+
         return (
             <div className={outerWrapStyle}>
                  {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={style.innerWrap}>
                     <div className={style.inputWrap}>
-                        <input value={defaultValue ? this.formatDate(defaultValue) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
+                        <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     <div className={style.inputWrap}>
-                        <input value={defaultValue ? this.formatTime(defaultValue) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <input value={defaultValue ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div>
                     <DatePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
                       container={container}
-                      initialDate={defaultValue}
+                      initialDate={date}
                       mode={mode}
                       onAccept={this.handleAccept('date')}
                       firstDayOfWeek={firstDayOfWeek}
@@ -135,7 +140,7 @@ class DateTimePicker extends Component {
                     <TimePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
-                      initialTime={defaultValue}
+                      initialTime={date}
                       mode={mode}
                       onAccept={this.handleAccept('time')}
                       format={format}
