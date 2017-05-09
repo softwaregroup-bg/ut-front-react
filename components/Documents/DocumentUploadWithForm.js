@@ -75,10 +75,10 @@ class DocumentUploadWithForm extends Component {
             <div className={style.formWrapper}>
                 <div className={style.formRow}>
                     <Dropdown
-                      label='File type'
+                      label='Document type'
                       data={this.props.documentTypes}
                       canSelectPlaceholder={false}
-                      placeholder='Select type'
+                      placeholder='Select document type'
                       keyProp='fileType'
                       defaultSelected={this.state.fileType}
                       onSelect={(obj) => {
