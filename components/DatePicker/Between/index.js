@@ -35,8 +35,10 @@ export default class DatePickerBetween extends Component {
     }
     handleAccept(ref) {
         let {defaultValue} = this.props;
+
+        let currentDate = new Date(defaultValue);
         return (date) => {
-            if ((defaultValue && defaultValue[ref] === date) || (!date && (!defaultValue || !defaultValue[ref]))) {
+            if ((currentDate && currentDate[ref] === date) || (!date && (!currentDate || !currentDate[ref]))) {
                 return;
             }
 

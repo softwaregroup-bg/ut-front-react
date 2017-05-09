@@ -55,32 +55,34 @@ class DateTimePicker extends Component {
     }
     handleAccept(ref) {
         let {defaultValue} = this.props;
+
+        let currentDate = new Date(defaultValue);
         return (newDate) => {
-            if (newDate === defaultValue) {
+            if (newDate === currentDate) {
                 return;
             }
 
             if (ref === 'date') {
-                if (defaultValue && !isNaN(defaultValue.valueOf())) {
+                if (currentDate && !isNaN(currentDate.valueOf())) {
                     if (!newDate || isNaN(newDate.valueOf())) {
                         newDate = undefined;
                     } else {
-                        newDate.setHours(defaultValue.getHours());
-                        newDate.setMinutes(defaultValue.getMinutes());
-                        newDate.setSeconds(defaultValue.getSeconds());
+                        newDate.setHours(currentDate.getHours());
+                        newDate.setMinutes(currentDate.getMinutes());
+                        newDate.setSeconds(currentDate.getSeconds());
                     }
                 }
             } else if (ref === 'time') {
-                if (defaultValue && !isNaN(defaultValue.valueOf())) {
+                if (currentDate && !isNaN(currentDate.valueOf())) {
                     if (!newDate || isNaN(newDate.valueOf())) {
-                        newDate = defaultValue;
+                        newDate = currentDate;
                         newDate.setHours(0);
                         newDate.setMinutes(0);
                         newDate.setSeconds(0);
                     } else {
-                        newDate.setFullYear(defaultValue.getFullYear());
-                        newDate.setMonth(defaultValue.getMonth());
-                        newDate.setDate(defaultValue.getDate());
+                        newDate.setFullYear(currentDate.getFullYear());
+                        newDate.setMonth(currentDate.getMonth());
+                        newDate.setDate(currentDate.getDate());
                     }
                 }
             } else {
