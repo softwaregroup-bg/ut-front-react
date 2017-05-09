@@ -55,8 +55,10 @@ class DateTimePicker extends Component {
     }
     handleAccept(ref) {
         let {defaultValue} = this.props;
-        return (d) => {
-            let newDate = new Date(d);
+        return (newDate) => {
+            if (newDate === defaultValue) {
+                return;
+            }
             if (ref === 'date') {
                 if (defaultValue && !isNaN(defaultValue.valueOf())) {
                     if (isNaN(newDate.valueOf())) {
