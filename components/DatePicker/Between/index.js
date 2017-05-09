@@ -173,7 +173,7 @@ DatePickerBetween.propTypes = {
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     dateFormat: PropTypes.string,
     transformDate: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
 };
 
 DatePickerBetween.contextTypes = {
