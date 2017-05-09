@@ -162,7 +162,7 @@ DateTimePicker.propTypes = {
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     timeFormat: PropTypes.string,
     dateFormat: PropTypes.string,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     boldLabel: PropTypes.bool,
     transformDate: PropTypes.func,
     transformTime: PropTypes.func

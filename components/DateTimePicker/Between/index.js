@@ -101,7 +101,7 @@ DateTimePickerBetween.propTypes = {
     withVerticalClass: PropTypes.bool,
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     boldLabel: PropTypes.bool,
     transformDate: PropTypes.func,
     transformTime: PropTypes.func
