@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 import { getListTableColumns, getListTdStyles } from './helpers';
 
 import { Vertical } from '../Layout';
@@ -7,6 +8,7 @@ import Grid from '../Grid';
 import Text from '../Text';
 import DateComponent from '../Date';
 import Popup from '../Popup';
+import Dropdown from '../Input/Dropdown';
 // import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
@@ -27,22 +29,32 @@ class Documents extends Component {
         };
 
         this.fetchDocs = this.fetchDocs.bind(this);
+        this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
         this.mapColumn = this.mapColumn.bind(this);
     }
 
     componentWillMount() {
-        this.fetchDocs(this.props.actorId, this.props.fetchFilters);
+        this.fetchDocs(this.props.actorId, this.props.fetchFilters, this.props.requiresFetch, this.props.isLoading);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.actorId !== nextProps.actorId || nextProps.requiresFetch) {
-            this.fetchDocs(nextProps.actorId, nextProps.fetchFilters);
+            this.fetchDocs(nextProps.actorId, nextProps.fetchFilters, nextProps.requiresFetch, nextProps.isLoading);
+        }
+        if (nextProps.selectedFilter === 'archived' && nextProps.documentArchived.get('requiresFetch')) {
+            this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'));
         }
     }
 
-    fetchDocs(actorId, fetchFilters) {
-        if (actorId && this.props.requiresFetch && !this.props.isLoading) {
+    fetchDocs(actorId, fetchFilters, requiresFetch, isLoading) {
+        if (actorId && requiresFetch && !isLoading) {
             this.props.fetchDocuments(actorId, fetchFilters, this.props.identifier);
+        }
+    }
+
+    fetchArchivedDocs(actorId, requiresFetch, isLoading) {
+        if (actorId && requiresFetch && !isLoading) {
+            this.props.fetchArchivedDocuments(actorId, this.props.fetchFilters, this.props.identifier);
         }
     }
 
@@ -147,6 +159,29 @@ class Documents extends Component {
             onClick: closeDeleteConfirmationDialog
         }];
 
+        let documentsFilter;
+        if (this.props.permissions.viewArchive) {
+            let options = [{
+                key: 'all',
+                name: 'Active documents'
+            }, {
+                key: 'archived',
+                name: 'Archived documents'
+            }];
+            let selected = this.props.selectedFilter || 'all';
+            documentsFilter = (
+                <Dropdown
+                  data={options}
+                  defaultSelected={selected}
+                  canSelectPlaceholder={false}
+                  placeholder={'Filter'}
+                  keyProp={'documentFilter'}
+                  onSelect={(obj) => {
+                      this.props.changeDocumentFilter(obj.value);
+                  }}
+                />);
+        }
+
         return (
             <div className={style.header}>
                 {this.state.showDeleteConfirmationPopup &&
@@ -164,7 +199,14 @@ class Documents extends Component {
                         <Text>Are you sure you want to delete this document</Text>?
                     </Popup>
                 }
-                <ButtonsHeader config={headerButtonsConfig} />
+                <div className={style.toolbox}>
+                    <div className={style.toolboxItem}>
+                        <ButtonsHeader config={headerButtonsConfig} />
+                    </div>
+                    <div className={classnames(style.toolboxItem, style.filter)}>
+                        {documentsFilter}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -317,13 +359,17 @@ Documents.propTypes = {
     requiresFetch: PropTypes.bool,
     isLoading: PropTypes.bool,
     fetchFilters: PropTypes.object, // immutable object
+    selectedFilter: PropTypes.string,
+    documentArchived: PropTypes.object,
 
     // funcs
     fetchDocuments: PropTypes.func.isRequired,
+    fetchArchivedDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
     // onDelete: PropTypes.func,
     // updatePagination: PropTypes.func,
     updateOrder: PropTypes.func,
+    changeDocumentFilter: PropTypes.func.isRequired,
 
     documentTypes: PropTypes.arrayOf(
         PropTypes.shape({

@@ -1,6 +1,7 @@
 import {
     INIT_DOCUMENTS_STATE,
     FETCH_DOCUMENTS,
+    FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     DELETE_DOCUMENT,
     UPDATE_PAGINATION,
@@ -9,7 +10,8 @@ import {
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
-    RESET_DOCUMENTS_STATE
+    RESET_DOCUMENTS_STATE,
+    CHANGE_DOCUMENT_FILTER
 } from './actionTypes';
 
 export function initState(identifier, excludeIdsList, pathname) {
@@ -35,6 +37,28 @@ export const fetchDocuments = (actorId, filters, identifier) => {
 
     return {
         type: FETCH_DOCUMENTS,
+        method: 'document.document.fetch',
+        params: {
+            actorId,
+            ...paramsFilters
+        },
+        props: {
+            identifier
+        }
+    };
+};
+
+export const fetchArchivedDocuments = (actorId, filters, identifier) => {
+    let paramsFilters = filters ? filters.toJS() : {};
+    if (paramsFilters.paging) {
+        paramsFilters.paging = {
+            pageSize: paramsFilters.paging.pageSize,
+            pageNumber: paramsFilters.paging.pageNumber
+        };
+    }
+
+    return {
+        type: FETCH_ARCHIVED_DOCUMENTS,
         method: 'document.document.fetch',
         params: {
             actorId,
@@ -134,6 +158,16 @@ export function resetDocumentState(identifier) {
         type: RESET_DOCUMENTS_STATE,
         props: {
             identifier
+        }
+    };
+}
+
+export function changeDocumentFilter(identifier, filter) {
+    return {
+        type: CHANGE_DOCUMENT_FILTER,
+        props: {
+            identifier,
+            filter
         }
     };
 }

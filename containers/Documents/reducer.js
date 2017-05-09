@@ -2,6 +2,7 @@ import Immutable from 'immutable';
 import {
     INIT_DOCUMENTS_STATE,
     FETCH_DOCUMENTS,
+    FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     DELETE_DOCUMENT,
     UPDATE_PAGINATION,
@@ -10,7 +11,8 @@ import {
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
-    RESET_DOCUMENTS_STATE
+    RESET_DOCUMENTS_STATE,
+    CHANGE_DOCUMENT_FILTER
 } from './actionTypes';
 import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
@@ -34,6 +36,12 @@ const getDaultAttachmentObject = function() {
                 pageSize: defaultPageSize,
                 pageNumber: 1
             }
+        },
+        selectedFilter: 'all',
+        documentArchived: {
+            requiresFetch: false,
+            isLoading: false,
+            data: []
         },
         documentTypes: {
             requiresFetch: true,
@@ -70,7 +78,7 @@ const documents = (state = defaultState, action) => {
             }
             return state;
         case FETCH_DOCUMENTS:
-            if (action.methodRequestState === methodRequestState.requested) {
+            if (action.methodRequestState === methodRequestState.REQUESTED) {
                 return state.setIn([props.identifier, 'isLoading'], Immutable.fromJS(true))
                             .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
@@ -83,6 +91,20 @@ const documents = (state = defaultState, action) => {
                                 .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
                     newState = combineAttachments(newState.get(props.identifier));
                     return state.set(props.identifier, newState);
+                }
+            }
+            return state;
+        case FETCH_ARCHIVED_DOCUMENTS:
+            if (action.methodRequestState === methodRequestState.REQUESTED) {
+                return state.setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(true))
+                            .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
+            } else if (action.methodRequestState === methodRequestState.FINISHED) {
+                if (action.result && action.result.document) {
+                    const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
+                    return state.setIn([props.identifier, 'documentArchived', 'data'], Immutable.fromJS(fetchDocumentsResult))
+                                .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
+                                .setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
+                                .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
                 }
             }
             return state;
@@ -211,9 +233,21 @@ const documents = (state = defaultState, action) => {
             return state;
         case RESET_DOCUMENTS_STATE:
             return state.delete(action.props.identifier);
+        case CHANGE_DOCUMENT_FILTER:
+            if (action.props.filter === 'all') {
+                return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
+                            .setIn([action.props.identifier, 'requiresFetch'], Immutable.fromJS(true))
+                            .setIn([action.props.identifier, 'isLoading'], Immutable.fromJS(false));
+            } else if (action.props.filter === 'archived') {
+                return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
+                            .setIn([action.props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(true))
+                            .setIn([action.props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false));
+            }
+            break;
         default:
             return state;
     }
+    return state;
 };
 
 export default documents;

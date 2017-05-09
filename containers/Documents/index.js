@@ -4,6 +4,7 @@ import immutable from 'immutable';
 import {
     initState,
     fetchDocuments,
+    fetchArchivedDocuments,
     selectAttachments,
     deleteAttachments,
     updatePagination,
@@ -11,6 +12,7 @@ import {
     fetchDocumentTypes,
     addDocument,
     replaceDocument,
+    changeDocumentFilter,
     changeDocumentStatusDeleted
 } from './actions';
 
@@ -43,7 +45,22 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let { identifier, actorId, attachments, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, permissions, documentTypes, excludeAttachmentIds } = this.props;
+        let {
+            identifier,
+            actorId,
+            attachments,
+            fetchDocuments,
+            fetchArchivedDocuments,
+            selectAttachments,
+            deleteAttachments,
+            updatePagination,
+            updateOrder,
+            permissions,
+            documentTypes,
+            excludeAttachmentIds,
+            selectedFilter,
+            documentArchived
+        } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachmentsList']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
@@ -61,6 +78,7 @@ class DocumentsContainer extends Component {
               isLoading={isLoading}
               fetchFilters={fetchFilters}
               fetchDocuments={fetchDocuments}
+              fetchArchivedDocuments={fetchArchivedDocuments}
               onGridSelect={selectAttachments}
               onDelete={deleteAttachments}
               updatePagination={updatePagination}
@@ -80,6 +98,11 @@ class DocumentsContainer extends Component {
               archiveDocument={(documentObject) => {
                   // this.props.changeDocumentStatusDeleted(identifier, documentObject, 'archieved');
               }}
+              changeDocumentFilter={(newFilter) => {
+                  this.props.changeDocumentFilter(identifier, newFilter);
+              }}
+              selectedFilter={selectedFilter}
+              documentArchived={documentArchived}
             />
         );
     }
@@ -90,12 +113,16 @@ DocumentsContainer.propTypes = {
     actorId: DocumentsListing.propTypes.actorId,
     attachments: PropTypes.object, // immutable object
     fetchDocuments: DocumentsListing.propTypes.fetchDocuments,
+    fetchArchivedDocuments: DocumentsListing.propTypes.fetchDocuments,
     initState: PropTypes.func,
     selectAttachments: PropTypes.func,
     deleteAttachments: PropTypes.func,
     updatePagination: PropTypes.func,
     updateOrder: PropTypes.func,
     fetchDocumentTypes: PropTypes.func,
+    changeDocumentFilter: PropTypes.func,
+    selectedFilter: PropTypes.string,
+    documentArchived: PropTypes.object, // immutable object
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.shape({
@@ -118,9 +145,11 @@ export default connect(
     ({frontDocuments}, props) => {
         return {
             attachments: frontDocuments,
-            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({})
+            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
+            selectedFilter: frontDocuments.getIn([props.identifier, 'selectedFilter']),
+            documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})
             // updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted }
+    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentFilter }
 )(DocumentsContainer);
