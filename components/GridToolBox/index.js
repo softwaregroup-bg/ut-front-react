@@ -60,16 +60,22 @@ class GridToolBox extends Component {
             switch (filter.type) {
                 case filterElementTypes.datePickerBetween:
                 case filterElementTypes.dateTimePickerBetween:
-                    hasValue = !!(filter.defaultValue.from ||
-                        filter.defaultValue.to);
+                    if (filter.defaultValue) {
+                        if (!filter.initialValue) {
+                            hasValue = !!(filter.defaultValue.from || filter.defaultValue.to);
+                        } else {
+                            hasValue = (filter.defaultValue.from !== filter.initialValue.from) || (filter.defaultValue.to !== filter.initialValue.to);
+                        }
+                    }
                     break;
                 case filterElementTypes.dropDown:
                     hasValue = !!(filter.defaultValue &&
                         filter.defaultValue !== dropDrownAllOptionKey &&
-                        filter.defaultValue !== dropDrownPlaceholderOptionKey);
+                        filter.defaultValue !== dropDrownPlaceholderOptionKey &&
+                        filter.defaultValue !== filter.initialValue);
                     break;
                 default:
-                    hasValue = !!filter.defaultValue;
+                    hasValue = !!filter.defaultValue && filter.defaultValue !== filter.initialValue;
                     break;
             }
 
