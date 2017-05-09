@@ -23,6 +23,8 @@ class DateTimePickerBetween extends Component {
                 date.setSeconds(59);
                 date.setMilliseconds(999);
             }
+        } else {
+            date = undefined;
         }
 
         onChange({
