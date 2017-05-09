@@ -9,41 +9,11 @@ const noop = () => {};
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
-        this.getDateValues = this.getDateValues.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
-        this.state = {
-            date: {
-                from: undefined,
-                to: undefined
-            }
-        };
-    }
-
-    componentWillMount() {
-        let dateRange = this.getDateValues(this.props);
-
-        dateRange && this.setState({date: dateRange});
-    }
-
-    componentWillReceiveProps(newProps) {
-        let dateRange = this.getDateValues(newProps);
-        dateRange && this.setState({date: dateRange});
-    }
-
-    getDateValues(props) {
-        let dateRange;
-        if (props.defaultValue) {
-            dateRange = {
-                from: props.defaultValue.from && new Date(props.defaultValue.from),
-                to: props.defaultValue.to && new Date(props.defaultValue.to)
-            };
-        }
-
-        return dateRange;
     }
 
     handleOpen(ref) {
@@ -64,26 +34,30 @@ export default class DatePickerBetween extends Component {
         return formatIso(date);
     }
     handleAccept(ref) {
-        let {date} = this.state;
-        return (value) => {
-            if ((date && date[ref] === value) || (!value && (!date || !date[ref]))) {
+        let {defaultValue} = this.props;
+
+        let currentDate = new Date(defaultValue);
+        return (date) => {
+            if ((currentDate && currentDate[ref] === date) || (!date && (!currentDate || !currentDate[ref]))) {
                 return;
             }
-            date[ref] = value;
-            this.setState({
-                date: date
-            }, () => {
-                if (this.props.onChange) {
-                    let newDate = date[ref];
-                    this.props.onChange({
-                        key: ref,
-                        value: (newDate && !isNaN(newDate.valueOf()))
-                            ? (new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60 * 1000))
-                                .toISOString()
-                                .substr(0, 10)
-                            : null
-                    });
+
+            if (date && !isNaN(date.valueOf())) {
+                if (ref === 'from') {
+                    date.setHours(0);
+                    date.setMinutes(0);
+                    date.setSeconds(0);
+                    date.setMilliseconds(0);
+                } else if (ref === 'to') {
+                    date.setHours(23);
+                    date.setMinutes(59);
+                    date.setSeconds(59);
+                    date.setMilliseconds(999);
                 }
+            }
+            this.props.onChange({
+                key: ref,
+                value: date
             });
         };
     }
@@ -122,7 +96,7 @@ export default class DatePickerBetween extends Component {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
 
-        let {from, to} = this.state.date;
+        let {from, to} = this.props.defaultValue;
 
         let fromDate = from
             ? new Date(from)
@@ -130,6 +104,7 @@ export default class DatePickerBetween extends Component {
         let toDate = to
             ? new Date(to)
             : new Date();
+
         return (
             <div className={classnames(style.dpBoxWrap, this.getContextStyles('dpBoxWrap'), verticalClass)}>
                 {this.props.masterLabel ? (<span className={classnames(style.masterLabel, this.getContextStyles('masteLabelStyle'))}>{this.props.masterLabel}</span>) : ''}
@@ -198,7 +173,7 @@ DatePickerBetween.propTypes = {
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     dateFormat: PropTypes.string,
     transformDate: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
 };
 
 DatePickerBetween.contextTypes = {
