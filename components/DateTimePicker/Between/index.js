@@ -13,9 +13,7 @@ class DateTimePickerBetween extends Component {
 
     handleChange(ref, value) {
         let { onChange } = this.props;
-
         let date = new Date(value);
-        let result;
 
         if (date && !isNaN(date.valueOf())) {
             if (ref === 'from') {
@@ -25,16 +23,11 @@ class DateTimePickerBetween extends Component {
                 date.setSeconds(59);
                 date.setMilliseconds(999);
             }
-
-            result = (new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000))
-                .toISOString()
-                .replace('T', ' ')
-                .substr(0, 23);
         }
 
         onChange({
             key: ref,
-            value: result
+            value: date
         });
     }
 

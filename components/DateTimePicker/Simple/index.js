@@ -14,39 +14,14 @@ class DateTimePicker extends Component {
     constructor(props) {
         super(props);
 
-        this.getDate = this.getDate.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
-
-        this.state = {
-            date: undefined
-        };
     }
 
-    componentWillMount() {
-        let date = this.getDate(this.props);
-
-        date && this.setState({
-            date: date
-        });
-    }
-
-    componentWillReceiveProps(newProps) {
-        let date = this.getDate(newProps);
-
-        date && this.setState({
-            date: date
-        });
-    }
-    getDate(props) {
-        return props.defaultValue
-            ? new Date(props.defaultValue)
-            : undefined;
-    }
     handleOpen(ref) {
         return () => {
             this.refs[ref].show();
@@ -79,51 +54,39 @@ class DateTimePicker extends Component {
         return formatTime(time);
     }
     handleAccept(ref) {
-        let {date} = this.state;
+        let {defaultValue} = this.props;
         return (d) => {
             let newDate = new Date(d);
             if (ref === 'date') {
-                if (date && !isNaN(date.valueOf())) {
+                if (defaultValue && !isNaN(defaultValue.valueOf())) {
                     if (isNaN(newDate.valueOf())) {
                         newDate = undefined;
                     } else {
-                        newDate.setHours(date.getHours());
-                        newDate.setMinutes(date.getMinutes());
-                        newDate.setSeconds(date.getSeconds());
+                        newDate.setHours(defaultValue.getHours());
+                        newDate.setMinutes(defaultValue.getMinutes());
+                        newDate.setSeconds(defaultValue.getSeconds());
                     }
                 }
             } else if (ref === 'time') {
-                if (date && !isNaN(date.valueOf())) {
+                if (defaultValue && !isNaN(defaultValue.valueOf())) {
                     if (isNaN(newDate.valueOf())) {
-                        newDate = date;
+                        newDate = defaultValue;
                         newDate.setHours(0);
                         newDate.setMinutes(0);
                         newDate.setSeconds(0);
                     } else {
-                        newDate.setFullYear(date.getFullYear());
-                        newDate.setMonth(date.getMonth());
-                        newDate.setDate(date.getDate());
+                        newDate.setFullYear(defaultValue.getFullYear());
+                        newDate.setMonth(defaultValue.getMonth());
+                        newDate.setDate(defaultValue.getDate());
                     }
                 }
             } else {
                 return;
             }
-            this.setState({
-                date: newDate
+
+            this.props.onChange({
+                value: newDate
             });
-
-            if (this.props.onChange) {
-                newDate = (newDate && !isNaN(newDate.valueOf()))
-                ? (new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60 * 1000))
-                        .toISOString()
-                        .replace('T', ' ')
-                        .substr(0, 23)
-                : undefined;
-
-                this.props.onChange({
-                    value: newDate
-                });
-            }
         };
     }
     handleKeyPress(ref) {
@@ -139,7 +102,7 @@ class DateTimePicker extends Component {
     }
     render() {
         let { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container } = this.props;
-        let { date } = this.state;
+        let { defaultValue } = this.props;
 
         let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
@@ -151,18 +114,18 @@ class DateTimePicker extends Component {
                  {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={style.innerWrap}>
                     <div className={style.inputWrap}>
-                        <input value={date ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
+                        <input value={defaultValue ? this.formatDate(defaultValue) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     <div className={style.inputWrap}>
-                        <input value={date ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <input value={defaultValue ? this.formatTime(defaultValue) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div>
                     <DatePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
                       container={container}
-                      initialDate={date}
+                      initialDate={defaultValue}
                       mode={mode}
                       onAccept={this.handleAccept('date')}
                       firstDayOfWeek={firstDayOfWeek}
@@ -170,7 +133,7 @@ class DateTimePicker extends Component {
                     <TimePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
-                      initialTime={date}
+                      initialTime={defaultValue}
                       mode={mode}
                       onAccept={this.handleAccept('time')}
                       format={format}
