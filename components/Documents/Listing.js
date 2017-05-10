@@ -113,6 +113,7 @@ class Documents extends Component {
         if (this.props.permissions.add) {
             headerButtonsConfig.left.push({
                 label: '+ ' + 'Add Document',
+                disabled: this.props.selectedFilter === 'archived',
                 onClick: addNewDocumentHandler
             });
         }
@@ -135,14 +136,14 @@ class Documents extends Component {
             if (this.props.permissions.delete) {
                 headerButtonsConfig.left.push({
                     label: 'Delete',
-                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'deleted'),
+                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'deleted') || this.props.selectedFilter === 'archived',
                     onClick: openDeleteConfirmationDialog
                 });
             }
             if (this.props.permissions.replace) {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
-                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'new'),
+                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'new') || this.props.selectedFilter === 'archived',
                     onClick: replaceDocumentHandler
                 });
             }
