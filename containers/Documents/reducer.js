@@ -178,7 +178,7 @@ const documents = (state = defaultState, action) => {
             doc.url = documentTmpUploadPrefix + doc.filename;
             if (doc.attachmentId) {
                 // update a document that is on the server
-                attachments = state.getIn([action.props.identifier, 'remoteDocuments', 'remoteDocuments', 'data']) || Immutable.fromJS([]);
+                attachments = state.getIn([action.props.identifier, 'remoteDocuments', 'data']) || Immutable.fromJS([]);
                 newStatusId = doc.statusId;
             } else {
                 // update a document that is temporary (New)
