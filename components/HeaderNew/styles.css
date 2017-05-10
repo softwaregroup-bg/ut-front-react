@@ -15,16 +15,17 @@
 }
 
 .headerTitle {
-  padding-left: 10px;
+  padding-left: 8px;
   font-size: 15px;
   font-weight: 700;
+  line-height: 16px;
 }
 
 .headerLogoContainer {
   display: flex;
   align-items: center;
-  width: var(--ut-front-react-standardHeaderLogoContainerWidth);
-  min-width: 220px;
+  margin-right: 40px;
+  margin-left: 10px;
 }
 
 .headerLogoContainer a {
@@ -36,15 +37,15 @@
   display: inline-block;
   flex-shrink: 0;
   width: var(--ut-front-react-standardMainLogoWidth);
-  height: 58px;
+  height: 36px !important;
   background: inline('logo.png') no-repeat center center;
+  background-size: contain;
   cursor: pointer;
 }
 
 .tabsContainer {
   display: flex;
   align-items: center;
-  width: 75%;
 }
 
 .profileContainer {
@@ -53,34 +54,37 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 10%;
-  min-width: 150px;
+  flex: 1;
 }
 
-.personalInfoName {
-  margin-right: 10px;
-  width: 80px;
-  color: var(--ut-front-react-standardMainNavigationTextColor);
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+.profileInfo {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .profileInfoContainer {
   display: flex;
   align-items: center;
   margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
 .avatarContainer {
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-  background: inline('profile_picture.png') no-repeat center center;
-  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: var(--ut-front-react-standardAvatarBackgroundColor);
+  color: var(--ut-front-react-standardAvatarColor);
+  font-size: 17px;
+  letter-spacing: 1px;
+  font-weight: normal;
+  text-transform: uppercase;
   cursor: pointer;
 }
 

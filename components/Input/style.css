@@ -400,6 +400,12 @@ input:read-only{
     padding: 5px 0 0 0;
 }
 
+.inputButtonLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .boldLabel {
     font-weight: bold;
 }

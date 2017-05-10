@@ -1,3 +1,35 @@
+<a name="9.1.0"></a>
+# [9.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.10...v9.1.0) (2017-05-10)
+
+
+### Features
+
+* Add Integer and IntegerRange validator. ([e1ee6a4](https://github.com/softwaregroup-bg/ut-front-react/commit/e1ee6a4))
+
+
+
+<a name="9.0.10"></a>
+## [9.0.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.9...v9.0.10) (2017-05-09)
+
+
+### Bug Fixes
+
+* compare initial values when checking active filters ([#261](https://github.com/softwaregroup-bg/ut-front-react/issues/261)) ([c27c4fc](https://github.com/softwaregroup-bg/ut-front-react/commit/c27c4fc))
+* left align text ([#260](https://github.com/softwaregroup-bg/ut-front-react/issues/260)) ([1362385](https://github.com/softwaregroup-bg/ut-front-react/commit/1362385))
+* revert result stringification & remove inner state ([e036e8d](https://github.com/softwaregroup-bg/ut-front-react/commit/e036e8d))
+
+
+
+<a name="9.0.9"></a>
+## [9.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.8...v9.0.9) (2017-05-05)
+
+
+
+<a name="9.0.8"></a>
+## [9.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.7...v9.0.8) (2017-05-05)
+
+
+
 <a name="9.0.7"></a>
 ## [9.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.6...v9.0.7) (2017-05-04)
 
