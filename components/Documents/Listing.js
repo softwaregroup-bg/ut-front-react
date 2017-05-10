@@ -417,7 +417,7 @@ Documents.defaultProps = {
     // onDelete: () => {},
     updatePagination: () => {},
     updateOrder: () => {},
-    allowedFileTypes: ['.jpg', 'jpeg', 'png', '.pdf', '.doc', '.docx'],
+    allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };
 

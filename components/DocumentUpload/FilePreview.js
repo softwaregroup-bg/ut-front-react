@@ -9,7 +9,7 @@ import styles from './styles.css';
 // The component is a class because a ref is needed. Please do not change it.
 export default class FilePreview extends Component {
     get changeFileButton() {
-        const { uploadMethod, changeMode, onFileLoaded } = this.props;
+        const { uploadMethod, changeMode, onFileLoaded, allowedFileTypes } = this.props;
 
         if (uploadMethod === 'take') {
             return (
@@ -24,7 +24,7 @@ export default class FilePreview extends Component {
         return (
             <UploadFileButton
               className={styles.changeFileBtn}
-              acceptType='image/*, application/pdf'
+              acceptType={allowedFileTypes}
               label='Change'
               icon={styles.changeBtn}
               onFileLoaded={onFileLoaded} />
@@ -96,5 +96,6 @@ FilePreview.propTypes = {
     onFileLoaded: PropTypes.func,
     changeMode: PropTypes.func,
     crop: PropTypes.func,
+    allowedFileTypes: UploadFileButton.propTypes.acceptType,
     onCrop: PropTypes.func
 };

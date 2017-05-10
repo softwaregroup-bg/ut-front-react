@@ -198,6 +198,7 @@ export default class DocumentUpload extends Component {
                   uploadType={uploadType}
                   onFileLoaded={this.onUploadFile}
                   changeMode={this.changeMode}
+                  allowedFileTypes={allowedFileTypes.join(',')}
                   crop={this.crop} />
             );
         }
