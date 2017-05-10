@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { shrinkFilename } from './helpers';
 import style from './styles.css';
 
 const PreviewItem = ({
@@ -21,9 +22,9 @@ const PreviewItem = ({
         case 'docx':
         case 'pdf':
             return (
-                <span className={style.PreviewItemThumbnail}>
+                <span className={style.PreviewItemThumbnail} title={originalFilename}>
                     <div className={style.fileIcon} />
-                    <div className={style.fileLabel}>{originalFilename}</div>
+                    <div className={style.fileLabel}>{shrinkFilename(originalFilename)}</div>
                 </span>
             );
         default:
