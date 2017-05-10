@@ -1,3 +1,13 @@
+<a name="9.1.0"></a>
+# [9.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.10...v9.1.0) (2017-05-10)
+
+
+### Features
+
+* Add Integer and IntegerRange validator. ([e1ee6a4](https://github.com/softwaregroup-bg/ut-front-react/commit/e1ee6a4))
+
+
+
 <a name="9.0.10"></a>
 ## [9.0.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.9...v9.0.10) (2017-05-09)
 
