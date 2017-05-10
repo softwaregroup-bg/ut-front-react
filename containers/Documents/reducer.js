@@ -23,13 +23,14 @@ const getDaultAttachmentObject = function() {
     return {
         attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
         deletedList: [], // if you need all deleted attachments, subscribe to this object in mapstatetoprops
-        attachments: [],
-        remoteAttachments: [],
+        remoteDocuments: {
+            requiresFetch: true,
+            isLoading: false,
+            data: []
+        },
         changedDocuments: [],
         excludeIdsList: [],
         selected: null,
-        requiresFetch: true,
-        isLoading: false,
         pathname: null,
         filters: {
             paging: {
@@ -79,16 +80,16 @@ const documents = (state = defaultState, action) => {
             return state;
         case FETCH_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.REQUESTED) {
-                return state.setIn([props.identifier, 'isLoading'], Immutable.fromJS(true))
-                            .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
+                return state.setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(true))
+                            .setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(false));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
                     const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
-                    let newState = state.setIn([props.identifier, 'attachments'], Immutable.fromJS(fetchDocumentsResult))
+                    let newState = state.setIn([props.identifier, 'remoteDocuments', 'data'], Immutable.fromJS(fetchDocumentsResult))
                                 .setIn([props.identifier, 'filters', 'paging'], Immutable.fromJS(action.result.pagination[0]))
                                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
-                                .setIn([props.identifier, 'isLoading'], Immutable.fromJS(false))
-                                .setIn([props.identifier, 'requiresFetch'], Immutable.fromJS(false));
+                                .setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false))
+                                .setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(false));
                     newState = combineAttachments(newState.get(props.identifier));
                     return state.set(props.identifier, newState);
                 }
@@ -137,7 +138,7 @@ const documents = (state = defaultState, action) => {
             }
         case DELETE_DOCUMENT:
             if (action.methodRequestState === methodRequestState.FINISHED) {
-                return state.setIn([props.identifier, 'requiresFetch'], true);
+                return state.setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], true);
             }
             return state;
         case UPDATE_PAGINATION:
@@ -147,12 +148,12 @@ const documents = (state = defaultState, action) => {
             });
             return state
                 .setIn([action.props.identifier, 'filters', 'paging'], newPagination)
-                .setIn([action.props.identifier, 'requiresFetch'], true);
+                .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], true);
         case UPDATE_ORDER:
             if (props.sortDirection === 0) {
                 return state
                     .deleteIn([action.props.identifier, 'filters', 'orderBy'])
-                    .setIn([action.props.identifier, 'requiresFetch'], true);
+                    .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], true);
             } else {
                 let newOrder = Immutable.fromJS({
                     dir: props.sortDirection === 2 ? 'DESC' : 'ASC',
@@ -160,7 +161,7 @@ const documents = (state = defaultState, action) => {
                 });
                 return state
                     .setIn([action.props.identifier, 'filters', 'orderBy'], newOrder)
-                    .setIn([action.props.identifier, 'requiresFetch'], true);
+                    .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], true);
             }
         case ADD_NEW_DOCUMENT:
             let newDoc = action.props.newDocumentObject;
@@ -177,7 +178,7 @@ const documents = (state = defaultState, action) => {
             doc.url = documentTmpUploadPrefix + doc.filename;
             if (doc.attachmentId) {
                 // update a document that is on the server
-                attachments = state.getIn([action.props.identifier, 'attachments']) || Immutable.fromJS([]);
+                attachments = state.getIn([action.props.identifier, 'remoteDocuments', 'remoteDocuments', 'data']) || Immutable.fromJS([]);
                 newStatusId = doc.statusId;
             } else {
                 // update a document that is temporary (New)
@@ -236,8 +237,8 @@ const documents = (state = defaultState, action) => {
         case CHANGE_DOCUMENT_FILTER:
             if (action.props.filter === 'all') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
-                            .setIn([action.props.identifier, 'requiresFetch'], Immutable.fromJS(true))
-                            .setIn([action.props.identifier, 'isLoading'], Immutable.fromJS(false));
+                            .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(true))
+                            .setIn([action.props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false));
             } else if (action.props.filter === 'archived') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
                             .setIn([action.props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(true))

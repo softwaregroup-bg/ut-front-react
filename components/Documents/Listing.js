@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+import immutable from 'immutable';
 import { getListTableColumns, getListTdStyles } from './helpers';
 
 import { Vertical } from '../Layout';
@@ -239,7 +240,7 @@ class Documents extends Component {
     }
 
     get content() {
-        let { identifier, activeAttachments, /* fetchFilters, */ onGridSelect, /* updatePagination, */ updateOrder } = this.props;
+        let { identifier, activeAttachments, /* fetchFilters, */ onGridSelect, /* updatePagination, */ updateOrder, selectedFilter, documentArchived } = this.props;
         let handleSelectItem = (selectedItem, isSelected) => {
             onGridSelect(selectedItem, isSelected, identifier);
         };
@@ -249,14 +250,25 @@ class Documents extends Component {
         let handleSort = (col, val) => {
             updateOrder(col, val, identifier);
         };
+        let gridData = immutable.List();
+        switch (selectedFilter) {
+            case 'all':
+                gridData = activeAttachments;
+                break;
+            case 'archived':
+                gridData = documentArchived.get('data');
+                break;
+            default:
+                gridData = immutable.List();
+        }
 
-        if (activeAttachments && activeAttachments.size > 0) {
+        if (gridData && gridData.size > 0) {
             return (
                 <div>
                     <div>
                         <Grid
                           columns={getListTableColumns()}
-                          rows={activeAttachments}
+                          rows={gridData}
                           canCheck={false}
                           mapColumn={this.mapColumn}
                           onSelect={handleSelectItem}
@@ -360,7 +372,7 @@ Documents.propTypes = {
     isLoading: PropTypes.bool,
     fetchFilters: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
-    documentArchived: PropTypes.object,
+    documentArchived: PropTypes.object, // immutable object
 
     // funcs
     fetchDocuments: PropTypes.func.isRequired,

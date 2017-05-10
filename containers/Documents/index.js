@@ -63,8 +63,8 @@ class DocumentsContainer extends Component {
         } = this.props;
         let activeAttachments = attachments.getIn([identifier, 'attachmentsList']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
-        let requiresFetch = attachments.getIn([identifier, 'requiresFetch']);
-        let isLoading = attachments.getIn([identifier, 'isLoading']);
+        let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
+        let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
         let fetchFilters = attachments.getIn([identifier, 'filters']) || attachments.getIn(['common', 'filters']);
         let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
         return (

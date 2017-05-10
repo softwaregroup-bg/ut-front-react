@@ -1,6 +1,22 @@
 import { documentPrefix } from '../../constants';
 import immutable from 'immutable';
 
+/*
+ * createIdentifier - creates an unique identifier for instance of documents tab container
+ * params:
+ * @moduleName - the module in which the instance is located
+ * @sectionName - the logical module (e.g. users)
+ * @mode - 'create' or 'edit'
+ * @id - [optional] the id of the current item
+ */
+export function createIdentifier(moduleName, sectionName, mode, id) {
+    let result = moduleName + '_' + sectionName + '_' + 'documents' + '_' + mode;
+    if (id) {
+        result += '_' + id;
+    }
+    return result;
+};
+
 export const parseFetchDocumentsResult = (documents) => {
     return documents.map((doc) => {
         return {
@@ -17,7 +33,7 @@ export const parseFetchDocumentsResult = (documents) => {
  * @excludeIds - array of all the documents that must not be listed
 */
 export function combineAttachments(state) {
-    let remoteAttachments = state.get('attachments') || immutable.List();
+    let remoteAttachments = state.getIn(['remoteDocuments', 'data']) || immutable.List();
     let changedAttachments = state.get('changedDocuments') || immutable.List();
     let excludeIds = state.get('excludeIdsList').toJS();
     let tmpList = immutable.List();
