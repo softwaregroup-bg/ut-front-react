@@ -41,7 +41,7 @@ class DocumentsContainer extends Component {
     }
 
     fetchDocumentTypes() {
-        this.props.fetchDocumentTypes(this.props.identifier);
+        this.props.fetchDocumentTypes(this.props.identifier, this.props.documentTypeClass);
     }
 
     render() {
@@ -123,6 +123,7 @@ DocumentsContainer.propTypes = {
     changeDocumentFilter: PropTypes.func,
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
+    documentTypeClass: PropTypes.string.isRequired,
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.shape({

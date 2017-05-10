@@ -114,11 +114,11 @@ const documents = (state = defaultState, action) => {
                 return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
                             .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(true));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
-                if (action.result && action.result.documentType) {
-                    let data = action.result.documentType.map((type) => {
+                if (action.result && action.result.documentTypeClass) {
+                    let data = action.result.documentTypeClass.map((type) => {
                         return {
                             key: type.id,
-                            name: type.name
+                            name: type.description
                         };
                     });
                     return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))

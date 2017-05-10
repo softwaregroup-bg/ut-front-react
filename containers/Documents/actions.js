@@ -113,10 +113,12 @@ export const updateOrder = (sortKey, sortDirection, identifier) => ({
     }
 });
 
-export const fetchDocumentTypes = (identifier) => ({
+export const fetchDocumentTypes = (identifier, classParam) => ({
     type: FETCH_DOCUMENT_TYPES,
-    method: 'document.documentType.fetch',
-    params: {},
+    method: 'document.documentTypeClass.fetch',
+    params: {
+        class: classParam
+    },
     props: {
         identifier
     }
