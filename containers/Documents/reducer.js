@@ -9,6 +9,7 @@ import {
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
+    CHANGE_DOCUMENT_STATUS_ARCHIVED,
     RESET_DOCUMENTS_STATE,
     CHANGE_DOCUMENT_FILTER
 } from './actionTypes';
@@ -192,6 +193,13 @@ const documents = (state = defaultState, action) => {
                 }
             }
             return state;
+        case CHANGE_DOCUMENT_STATUS_ARCHIVED:
+            let archivedDoc = action.props.documentObject.set('statusId', 'archived');
+            docs = state.getIn([action.props.identifier, 'changedDocuments']).push(archivedDoc);
+            newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
+                                    .setIn([action.props.identifier, 'selected'], null);
+            newState = combineAttachments(newState.get(action.props.identifier));
+            return state.set(action.props.identifier, newState);
         case RESET_DOCUMENTS_STATE:
             return state.delete(action.props.identifier);
         case CHANGE_DOCUMENT_FILTER:

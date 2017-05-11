@@ -8,6 +8,7 @@ import {
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
+    CHANGE_DOCUMENT_STATUS_ARCHIVED,
     RESET_DOCUMENTS_STATE,
     CHANGE_DOCUMENT_FILTER
 } from './actionTypes';
@@ -106,12 +107,21 @@ export function replaceDocument(identifier, documentObject) {
     };
 }
 
-export function changeDocumentStatusDeleted(identifier, documentObject, newStatus) {
+export function changeDocumentStatusDeleted(identifier, documentObject) {
     return {
         type: CHANGE_DOCUMENT_STATUS_DELETED,
         props: {
             documentObject,
-            newStatus,
+            identifier
+        }
+    };
+}
+
+export function changeDocumentStatusArchived(identifier, documentObject) {
+    return {
+        type: CHANGE_DOCUMENT_STATUS_ARCHIVED,
+        props: {
+            documentObject,
             identifier
         }
     };

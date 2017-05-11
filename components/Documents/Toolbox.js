@@ -16,12 +16,13 @@ class Toolbox extends Component {
             showDetailsPopUp: false,
             popupTitle: '',
             popupType: 'add', // 'add' or 'replace'
+            showArchiveConfirmationPopup: false,
             showDeleteConfirmationPopup: false
         };
     }
 
     get header() {
-        let { selectedAttachment, deleteDocument, selectedFilter, activeAttachments, documentArchived } = this.props;
+        let { selectedAttachment, deleteDocument, selectedFilter, activeAttachments, documentArchived, archiveDocument } = this.props;
 
         let addNewDocumentHandler = () => {
             this.setState({
@@ -66,6 +67,18 @@ class Toolbox extends Component {
                 deleteDocument(selectedAttachment);
             });
         };
+        // Archive
+        let openArchiveConfirmationDialog = () => {
+            this.setState({ showArchiveConfirmationPopup: true });
+        };
+        let closeArchiveConfirmationDialog = () => {
+            this.setState({ showArchiveConfirmationPopup: false });
+        };
+        let handleArchiveDocument = () => {
+            this.setState({ showArchiveConfirmationPopup: false }, () => {
+                archiveDocument(selectedAttachment);
+            });
+        };
 
         let headerButtonsConfig = {
             left: []
@@ -102,15 +115,22 @@ class Toolbox extends Component {
             if (this.props.permissions.delete) {
                 headerButtonsConfig.left.push({
                     label: 'Delete',
-                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'deleted') || this.props.selectedFilter === 'archived',
+                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'deleted' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
                     onClick: openDeleteConfirmationDialog
                 });
             }
             if (this.props.permissions.replace) {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
-                    disabled: disabledButtonsState || (selectedAttachment && selectedAttachment.get('statusId') === 'new') || this.props.selectedFilter === 'archived',
+                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'new' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
                     onClick: replaceDocumentHandler
+                });
+            }
+            if (this.props.permissions.delete) {
+                headerButtonsConfig.left.push({
+                    label: 'Archive',
+                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'new' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    onClick: openArchiveConfirmationDialog
                 });
             }
         }
@@ -125,6 +145,18 @@ class Toolbox extends Component {
             styleType: 'secondaryDialog',
             label: 'No',
             onClick: closeDeleteConfirmationDialog
+        }];
+
+        let archivePopupActionButtons = [{
+            name: 'yes',
+            styleType: 'primaryDialog',
+            label: 'Yes',
+            onClick: handleArchiveDocument
+        }, {
+            name: 'no',
+            styleType: 'secondaryDialog',
+            label: 'No',
+            onClick: closeArchiveConfirmationDialog
         }];
 
         let documentsFilter;
@@ -160,11 +192,26 @@ class Toolbox extends Component {
                       closeOnEsc
                       closePopup={closeDeleteConfirmationDialog}
                       footer={{
-                          className: style.deleteDialogFooter,
+                          className: style.dialogFooter,
                           actionButtons: deletePopupActionButtons
                       }}
                     >
-                        <Text>Are you sure you want to delete this document</Text>?
+                        <Text>Are you sure you want to delete this document?</Text>
+                    </Popup>
+                }
+                {this.state.showArchiveConfirmationPopup &&
+                    <Popup
+                      isOpen
+                      header={{text: 'Archive document'}}
+                      closeOnOverlayClick
+                      closeOnEsc
+                      closePopup={closeArchiveConfirmationDialog}
+                      footer={{
+                          className: style.dialogFooter,
+                          actionButtons: archivePopupActionButtons
+                      }}
+                    >
+                        <Text>Are you sure you want to archive this document?</Text>
                     </Popup>
                 }
                 <div className={style.toolbox}>
@@ -244,8 +291,6 @@ class Toolbox extends Component {
 }
 
 Toolbox.propTypes = {
-//    identifier: PropTypes.string.isRequired,
-//    actorId: PropTypes.number,
     activeAttachments: PropTypes.object, // immutable list
     selectedAttachment: PropTypes.object, // immutable object
     documentArchived: PropTypes.object, // immutable object
@@ -261,9 +306,10 @@ Toolbox.propTypes = {
         })
     ),
 
-    uploadNewDocument: PropTypes.func,
-    replaceDocument: PropTypes.func,
-    deleteDocument: PropTypes.func,
+    uploadNewDocument: PropTypes.func.isRequired,
+    replaceDocument: PropTypes.func.isRequired,
+    deleteDocument: PropTypes.func.isRequired,
+    archiveDocument: PropTypes.func.isRequired,
     allowedFileTypes: PropTypes.array,
 
     permissions: PropTypes.shape({

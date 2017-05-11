@@ -11,7 +11,8 @@ import {
     addDocument,
     replaceDocument,
     changeDocumentFilter,
-    changeDocumentStatusDeleted
+    changeDocumentStatusDeleted,
+    changeDocumentStatusArchived
 } from './actions';
 
 import DocumentsListing from '../../components/Documents/Listing';
@@ -85,10 +86,10 @@ class DocumentsContainer extends Component {
                   this.props.replaceDocument(identifier, replaceObject);
               }}
               deleteDocument={(documentObject) => {
-                  this.props.changeDocumentStatusDeleted(identifier, documentObject, 'deleted');
+                  this.props.changeDocumentStatusDeleted(identifier, documentObject);
               }}
               archiveDocument={(documentObject) => {
-                  // this.props.changeDocumentStatusDeleted(identifier, documentObject, 'archieved');
+                  this.props.changeDocumentStatusArchived(identifier, documentObject);
               }}
               changeDocumentFilter={(newFilter) => {
                   this.props.changeDocumentFilter(identifier, newFilter);
@@ -127,6 +128,7 @@ DocumentsContainer.propTypes = {
     // archiveDocument: DocumentsListing.propTypes.archiveDocument,
     excludeAttachmentIds: PropTypes.array,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
+    changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
     pathname: PropTypes.string.isRequired
@@ -142,5 +144,5 @@ export default connect(
             // updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, deleteAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentFilter }
+    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, deleteAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
 )(DocumentsContainer);

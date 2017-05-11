@@ -48,6 +48,7 @@ class Documents extends Component {
               uploadNewDocument={this.props.uploadNewDocument}
               replaceDocument={this.props.replaceDocument}
               deleteDocument={this.props.deleteDocument}
+              archiveDocument={this.props.archiveDocument}
               allowedFileTypes={this.props.allowedFileTypes}
               permissions={this.props.permissions}
             />
@@ -103,7 +104,7 @@ Documents.propTypes = {
     uploadNewDocument: PropTypes.func,
     replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
-    // archiveDocument: PropTypes.func,
+    archiveDocument: PropTypes.func,
     // updatedAttachments: PropTypes.object, // immutable list
     allowedFileTypes: PropTypes.array,
     // excludeAttachmentIds: PropTypes.array,
