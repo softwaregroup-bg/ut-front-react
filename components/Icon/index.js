@@ -6,11 +6,11 @@ const Icon = ({ icon, iconURL, hover = false, className, ...props }) => {
     let sizeClass;
     let typeClass;
     switch (icon) {
-        case 'phoneIcon':
+        case 'phone':
             typeClass = style.iconPhone;
             sizeClass = style.iconSmall;
             break;
-        case 'phoneIconPink':
+        case 'phonePink':
             typeClass = style.iconPhonePink;
             sizeClass = style.iconSmall;
             break;
