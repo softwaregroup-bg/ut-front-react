@@ -7,8 +7,6 @@ import {
     fetchArchivedDocuments,
     selectAttachments,
     deleteAttachments,
-    updatePagination,
-    updateOrder,
     fetchDocumentTypes,
     addDocument,
     replaceDocument,
@@ -53,8 +51,6 @@ class DocumentsContainer extends Component {
             fetchArchivedDocuments,
             selectAttachments,
             deleteAttachments,
-            updatePagination,
-            updateOrder,
             permissions,
             documentTypes,
             excludeAttachmentIds,
@@ -65,7 +61,6 @@ class DocumentsContainer extends Component {
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
         let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
-        let fetchFilters = attachments.getIn([identifier, 'filters']) || attachments.getIn(['common', 'filters']);
         let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
         return (
             <DocumentsListing
@@ -76,13 +71,10 @@ class DocumentsContainer extends Component {
               // updatedAttachments={this.props.updatedAttachments}
               requiresFetch={requiresFetch}
               isLoading={isLoading}
-              fetchFilters={fetchFilters}
               fetchDocuments={fetchDocuments}
               fetchArchivedDocuments={fetchArchivedDocuments}
               onGridSelect={selectAttachments}
               onDelete={deleteAttachments}
-              updatePagination={updatePagination}
-              updateOrder={updateOrder}
               permissions={permissions}
               documentTypes={docTypes}
               excludeAttachmentIds={excludeAttachmentIds}
@@ -117,8 +109,6 @@ DocumentsContainer.propTypes = {
     initState: PropTypes.func,
     selectAttachments: PropTypes.func,
     deleteAttachments: PropTypes.func,
-    updatePagination: PropTypes.func,
-    updateOrder: PropTypes.func,
     fetchDocumentTypes: PropTypes.func,
     changeDocumentFilter: PropTypes.func,
     selectedFilter: PropTypes.string,
@@ -152,5 +142,5 @@ export default connect(
             // updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, deleteAttachments, updatePagination, updateOrder, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentFilter }
+    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, deleteAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentFilter }
 )(DocumentsContainer);

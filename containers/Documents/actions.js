@@ -4,8 +4,6 @@ import {
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     DELETE_DOCUMENT,
-    UPDATE_PAGINATION,
-    UPDATE_ORDER,
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
@@ -25,22 +23,12 @@ export function initState(identifier, excludeIdsList, pathname) {
     };
 }
 
-export const fetchDocuments = (actorId, filters, identifier) => {
-    let paramsFilters = filters ? filters.toJS() : {};
-    if (paramsFilters.paging) {
-        // we migh have some extra data such as totalPage, etc. (remove it)
-        paramsFilters.paging = {
-            pageSize: paramsFilters.paging.pageSize,
-            pageNumber: paramsFilters.paging.pageNumber
-        };
-    }
-
+export const fetchDocuments = (actorId, identifier) => {
     return {
         type: FETCH_DOCUMENTS,
         method: 'document.document.fetch',
         params: {
-            actorId,
-            ...paramsFilters
+            actorId
         },
         props: {
             identifier
@@ -48,21 +36,12 @@ export const fetchDocuments = (actorId, filters, identifier) => {
     };
 };
 
-export const fetchArchivedDocuments = (actorId, filters, identifier) => {
-    let paramsFilters = filters ? filters.toJS() : {};
-    if (paramsFilters.paging) {
-        paramsFilters.paging = {
-            pageSize: paramsFilters.paging.pageSize,
-            pageNumber: paramsFilters.paging.pageNumber
-        };
-    }
-
+export const fetchArchivedDocuments = (actorId, identifier) => {
     return {
         type: FETCH_ARCHIVED_DOCUMENTS,
         method: 'document.document.fetch',
         params: {
-            actorId,
-            ...paramsFilters
+            actorId
         },
         props: {
             identifier
@@ -95,23 +74,6 @@ export const deleteAttachments = (documentIds, identifier) => {
         }
     };
 };
-
-export const updatePagination = (pagination, identifier) => ({
-    type: UPDATE_PAGINATION,
-    props: {
-        pagination,
-        identifier
-    }
-});
-
-export const updateOrder = (sortKey, sortDirection, identifier) => ({
-    type: UPDATE_ORDER,
-    props: {
-        sortKey,
-        sortDirection,
-        identifier
-    }
-});
 
 export const fetchDocumentTypes = (identifier, classParam) => ({
     type: FETCH_DOCUMENT_TYPES,

@@ -5,8 +5,6 @@ import {
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     DELETE_DOCUMENT,
-    UPDATE_PAGINATION,
-    UPDATE_ORDER,
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
@@ -18,7 +16,6 @@ import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
 import { parseFetchDocumentsResult, combineAttachments } from './helpers';
 
-const defaultPageSize = 25;
 const getDaultAttachmentObject = function() {
     return {
         attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
@@ -32,12 +29,6 @@ const getDaultAttachmentObject = function() {
         excludeIdsList: [],
         selected: null,
         pathname: null,
-        filters: {
-            paging: {
-                pageSize: defaultPageSize,
-                pageNumber: 1
-            }
-        },
         selectedFilter: 'all',
         documentArchived: {
             requiresFetch: false,
@@ -53,14 +44,6 @@ const getDaultAttachmentObject = function() {
 };
 
 const defaultState = Immutable.fromJS({
-    // common: {
-    //     filters: {
-    //         paging: {
-    //             pageSize: defaultPageSize,
-    //             pageNumber: 1
-    //         }
-    //     }
-    // }
 });
 const documents = (state = defaultState, action) => {
     const { type, props } = action;
@@ -86,7 +69,6 @@ const documents = (state = defaultState, action) => {
                 if (action.result && action.result.document) {
                     const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
                     let newState = state.setIn([props.identifier, 'remoteDocuments', 'data'], Immutable.fromJS(fetchDocumentsResult))
-                                .setIn([props.identifier, 'filters', 'paging'], Immutable.fromJS(action.result.pagination[0]))
                                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
                                 .setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false))
                                 .setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(false));
@@ -141,28 +123,6 @@ const documents = (state = defaultState, action) => {
                 return state.setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], true);
             }
             return state;
-        case UPDATE_PAGINATION:
-            let newPagination = Immutable.fromJS({
-                pageSize: props.pagination.get('pageSize'),
-                pageNumber: props.pagination.get('pageNumber')
-            });
-            return state
-                .setIn([action.props.identifier, 'filters', 'paging'], newPagination)
-                .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], true);
-        case UPDATE_ORDER:
-            if (props.sortDirection === 0) {
-                return state
-                    .deleteIn([action.props.identifier, 'filters', 'orderBy'])
-                    .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], true);
-            } else {
-                let newOrder = Immutable.fromJS({
-                    dir: props.sortDirection === 2 ? 'DESC' : 'ASC',
-                    field: props.sortKey
-                });
-                return state
-                    .setIn([action.props.identifier, 'filters', 'orderBy'], newOrder)
-                    .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], true);
-            }
         case ADD_NEW_DOCUMENT:
             let newDoc = action.props.newDocumentObject;
             newDoc.url = documentTmpUploadPrefix + newDoc.filename;

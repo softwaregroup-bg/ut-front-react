@@ -10,7 +10,6 @@ import Text from '../Text';
 import DateComponent from '../Date';
 import Popup from '../Popup';
 import Dropdown from '../Input/Dropdown';
-// import AdvancedPagination from '../AdvancedPagination';
 import FileDetailsPopup from './FileDetailsPopup';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 
@@ -35,27 +34,27 @@ class Documents extends Component {
     }
 
     componentWillMount() {
-        this.fetchDocs(this.props.actorId, this.props.fetchFilters, this.props.requiresFetch, this.props.isLoading);
+        this.fetchDocs(this.props.actorId, this.props.requiresFetch, this.props.isLoading);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.actorId !== nextProps.actorId || nextProps.requiresFetch) {
-            this.fetchDocs(nextProps.actorId, nextProps.fetchFilters, nextProps.requiresFetch, nextProps.isLoading);
+            this.fetchDocs(nextProps.actorId, nextProps.requiresFetch, nextProps.isLoading);
         }
         if (nextProps.selectedFilter === 'archived' && nextProps.documentArchived.get('requiresFetch')) {
             this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'));
         }
     }
 
-    fetchDocs(actorId, fetchFilters, requiresFetch, isLoading) {
+    fetchDocs(actorId, requiresFetch, isLoading) {
         if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchDocuments(actorId, fetchFilters, this.props.identifier);
+            this.props.fetchDocuments(actorId, this.props.identifier);
         }
     }
 
     fetchArchivedDocs(actorId, requiresFetch, isLoading) {
         if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchArchivedDocuments(actorId, this.props.fetchFilters, this.props.identifier);
+            this.props.fetchArchivedDocuments(actorId, this.props.identifier);
         }
     }
 
@@ -241,15 +240,9 @@ class Documents extends Component {
     }
 
     get content() {
-        let { identifier, activeAttachments, /* fetchFilters, */ onGridSelect, /* updatePagination, */ updateOrder, selectedFilter, documentArchived } = this.props;
+        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived } = this.props;
         let handleSelectItem = (selectedItem, isSelected) => {
             onGridSelect(selectedItem, isSelected, identifier);
-        };
-        // let handlePaginationUpdate = (newPagination) => {
-        //     updatePagination(newPagination, identifier);
-        // };
-        let handleSort = (col, val) => {
-            updateOrder(col, val, identifier);
         };
         let gridData = immutable.List();
         switch (selectedFilter) {
@@ -274,13 +267,9 @@ class Documents extends Component {
                           mapColumn={this.mapColumn}
                           onSelect={handleSelectItem}
                           sortableColumns={[false, false, false, false, false]}
-                          onSort={handleSort}
                           tdStyles={getListTdStyles()}
                         />
                     </div>
-                    {/* <div id={style.paginationWrap}>
-                        <AdvancedPagination pagination={fetchFilters.get('paging') || {pageSize: 25, pageNumber: 1}} onUpdate={handlePaginationUpdate} />
-                    </div> */}
                 </div>
             );
         } else {
@@ -371,7 +360,6 @@ Documents.propTypes = {
     selectedAttachment: PropTypes.object, // immutable object
     requiresFetch: PropTypes.bool,
     isLoading: PropTypes.bool,
-    fetchFilters: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
 
@@ -380,8 +368,6 @@ Documents.propTypes = {
     fetchArchivedDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
     // onDelete: PropTypes.func,
-    // updatePagination: PropTypes.func,
-    updateOrder: PropTypes.func,
     changeDocumentFilter: PropTypes.func.isRequired,
 
     documentTypes: PropTypes.arrayOf(
