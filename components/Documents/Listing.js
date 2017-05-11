@@ -1,11 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import immutable from 'immutable';
-import { getListTableColumns, getListTdStyles } from './helpers';
 import { Vertical } from '../Layout';
-import Grid from '../Grid';
-import DateComponent from '../Date';
 import Toolbox from './Toolbox';
-import { capitalizeFirstLetter } from '../../utils/helpers';
+import DocumentsGrid from './DocumentsGrid';
 import style from './style.css';
 
 class Documents extends Component {
@@ -13,7 +9,6 @@ class Documents extends Component {
         super(props);
         this.fetchDocs = this.fetchDocs.bind(this);
         this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
-        this.mapColumn = this.mapColumn.bind(this);
     }
 
     componentWillMount() {
@@ -59,77 +54,19 @@ class Documents extends Component {
         );
     }
 
-    mapColumn(col, colData) {
-        if (col.key === 'documentType') {
-            return capitalizeFirstLetter(colData);
-        }
-        if (col.key === 'statusId') {
-            let label = colData;
-            if (colData === 'approved') {
-                label = 'active';
-            }
-            return capitalizeFirstLetter(label);
-        }
-        if (col.key === 'documentDescription') {
-            return colData || '(no description)';
-        }
-        if (col.key === 'createdDate') {
-            return <DateComponent>{colData}</DateComponent>;
-        }
-        return colData;
-    }
-
-    get content() {
-        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived } = this.props;
-        let handleSelectItem = (selectedItem, isSelected) => {
-            onGridSelect(selectedItem, isSelected, identifier);
-        };
-        let gridData = immutable.List();
-        switch (selectedFilter) {
-            case 'all':
-                gridData = activeAttachments;
-                break;
-            case 'archived':
-                gridData = documentArchived.get('data');
-                break;
-            default:
-                gridData = immutable.List();
-        }
-
-        if (gridData && gridData.size > 0) {
-            return (
-                <div>
-                    <div>
-                        <Grid
-                          columns={getListTableColumns()}
-                          rows={gridData}
-                          canCheck={false}
-                          mapColumn={this.mapColumn}
-                          onSelect={handleSelectItem}
-                          sortableColumns={[false, false, false, false, false]}
-                          tdStyles={getListTdStyles()}
-                        />
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div className={style.noUploadedDocumentsWrap}>
-                    {/* <Text>No uploaded documents yet</Text>. */}
-                </div>
-            );
-        }
-    }
-
     render() {
+        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived } = this.props;
         return (
             <div className={style.documentsWrap}>
-                {this.detailsVew}
-                <Vertical
-                  fixedComponent={this.header}
-                  children={this.content}
-                />
-                {this.renderDocumentUplodDialog}
+                <Vertical fixedComponent={this.header}>
+                    <DocumentsGrid
+                      identifier={identifier}
+                      activeAttachments={activeAttachments}
+                      selectedFilter={selectedFilter}
+                      documentArchived={documentArchived}
+                      onGridSelect={onGridSelect}
+                    />
+                </Vertical>
             </div>
         );
     }
@@ -176,7 +113,6 @@ Documents.propTypes = {
 
 Documents.defaultProps = {
     requiresFetch: false,
-    onGridSelect: () => {},
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };

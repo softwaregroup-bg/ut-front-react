@@ -8,7 +8,7 @@ import FileDetailsPopup from './FileDetailsPopup';
 import DocumentUploadWithForm from './DocumentUploadWithForm';
 import style from './style.css';
 
-class Documents extends Component {
+class Toolbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -243,7 +243,7 @@ class Documents extends Component {
     }
 }
 
-Documents.propTypes = {
+Toolbox.propTypes = {
 //    identifier: PropTypes.string.isRequired,
 //    actorId: PropTypes.number,
     activeAttachments: PropTypes.object, // immutable list
@@ -278,10 +278,10 @@ Documents.propTypes = {
     })
 };
 
-Documents.defaultProps = {
+Toolbox.defaultProps = {
     requiresFetch: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };
 
-export default Documents;
+export default Toolbox;
