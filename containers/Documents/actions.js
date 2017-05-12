@@ -3,7 +3,6 @@ import {
     FETCH_DOCUMENTS,
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
-    DELETE_DOCUMENT,
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
@@ -57,23 +56,6 @@ export const selectAttachments = (attachments, isSelected, identifier) => ({
         identifier
     }
 });
-
-export const deleteAttachments = (documentIds, identifier) => {
-    if (!Array.isArray(documentIds)) {
-        documentIds = [documentIds];
-    }
-
-    return {
-        type: DELETE_DOCUMENT,
-        method: 'document.document.delete',
-        params: {
-            documentList: documentIds
-        },
-        props: {
-            identifier
-        }
-    };
-};
 
 export const fetchDocumentTypes = (identifier, classParam) => ({
     type: FETCH_DOCUMENT_TYPES,

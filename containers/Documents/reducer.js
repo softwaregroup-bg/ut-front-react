@@ -4,7 +4,6 @@ import {
     FETCH_DOCUMENTS,
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
-    DELETE_DOCUMENT,
     FETCH_DOCUMENT_TYPES,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
@@ -118,11 +117,6 @@ const documents = (state = defaultState, action) => {
             } else {
                 return state.setIn([props.identifier, 'selected'], null);
             }
-        case DELETE_DOCUMENT:
-            if (action.methodRequestState === methodRequestState.FINISHED) {
-                return state.setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], true);
-            }
-            return state;
         case ADD_NEW_DOCUMENT:
             let newDoc = action.props.newDocumentObject;
             newDoc.url = documentTmpUploadPrefix + newDoc.filename;

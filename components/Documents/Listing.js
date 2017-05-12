@@ -91,7 +91,6 @@ Documents.propTypes = {
     fetchDocuments: PropTypes.func.isRequired,
     fetchArchivedDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
-    // onDelete: PropTypes.func,
     changeDocumentFilter: PropTypes.func.isRequired,
 
     documentTypes: PropTypes.arrayOf(

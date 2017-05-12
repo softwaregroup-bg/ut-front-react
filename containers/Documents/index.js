@@ -6,7 +6,6 @@ import {
     fetchDocuments,
     fetchArchivedDocuments,
     selectAttachments,
-    deleteAttachments,
     fetchDocumentTypes,
     addDocument,
     replaceDocument,
@@ -51,7 +50,6 @@ class DocumentsContainer extends Component {
             fetchDocuments,
             fetchArchivedDocuments,
             selectAttachments,
-            deleteAttachments,
             permissions,
             documentTypes,
             excludeAttachmentIds,
@@ -75,7 +73,6 @@ class DocumentsContainer extends Component {
               fetchDocuments={fetchDocuments}
               fetchArchivedDocuments={fetchArchivedDocuments}
               onGridSelect={selectAttachments}
-              onDelete={deleteAttachments}
               permissions={permissions}
               documentTypes={docTypes}
               excludeAttachmentIds={excludeAttachmentIds}
@@ -109,7 +106,6 @@ DocumentsContainer.propTypes = {
     fetchArchivedDocuments: DocumentsListing.propTypes.fetchDocuments,
     initState: PropTypes.func,
     selectAttachments: PropTypes.func,
-    deleteAttachments: PropTypes.func,
     fetchDocumentTypes: PropTypes.func,
     changeDocumentFilter: PropTypes.func,
     selectedFilter: PropTypes.string,
@@ -144,5 +140,5 @@ export default connect(
             // updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, deleteAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
+    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
 )(DocumentsContainer);
