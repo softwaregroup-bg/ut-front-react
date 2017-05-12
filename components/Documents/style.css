@@ -43,10 +43,6 @@
     margin-left:40px;
 }
 
-.filePreview {
-    cursor: pointer;
-}
-
 .fileDetailsNoText {
     font-style: italic;
 }
