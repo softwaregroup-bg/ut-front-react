@@ -10,7 +10,6 @@ import {
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
     CHANGE_DOCUMENT_STATUS_ARCHIVED,
-    RESET_DOCUMENTS_STATE,
     CHANGE_DOCUMENT_FILTER
 } from './actionTypes';
 import { REMOVE_TAB } from '../TabMenu/actionTypes';
@@ -200,8 +199,6 @@ const documents = (state = defaultState, action) => {
                                     .setIn([action.props.identifier, 'selected'], null);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState);
-        case RESET_DOCUMENTS_STATE:
-            return state.delete(action.props.identifier);
         case CHANGE_DOCUMENT_FILTER:
             if (action.props.filter === 'all') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))

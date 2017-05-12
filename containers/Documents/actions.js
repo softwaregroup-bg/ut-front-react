@@ -9,7 +9,6 @@ import {
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
     CHANGE_DOCUMENT_STATUS_ARCHIVED,
-    RESET_DOCUMENTS_STATE,
     CHANGE_DOCUMENT_FILTER
 } from './actionTypes';
 
@@ -122,15 +121,6 @@ export function changeDocumentStatusArchived(identifier, documentObject) {
         type: CHANGE_DOCUMENT_STATUS_ARCHIVED,
         props: {
             documentObject,
-            identifier
-        }
-    };
-}
-
-export function resetDocumentState(identifier) {
-    return {
-        type: RESET_DOCUMENTS_STATE,
-        props: {
             identifier
         }
     };
