@@ -106,10 +106,6 @@
     background-color: #FFF;
 }
 
-.uploadFileBtn, .changeFileBtn {
-    margin-right: 10px;
-}
-
 .changeFileBtn:hover {
     border: 1px solid #999;
 }
@@ -126,10 +122,14 @@
 
 /* Initial view styles */
 .menuContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 255px;
+    display: table;
     margin: 0 auto;
+}
+
+.menuContainer .menuButton {
+    display: table-cell;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .initialViewContainer .addFileBtn, .initialViewContainer .addFileBtn {
@@ -357,26 +357,34 @@
 /* icons */
 .uploadMenuIcon {
     width: 55px;
-    height: 39px;
+    height: 40px;
     margin-bottom: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .galleryIcon {
-    composes: uploadMenuIcon;
-    background: inline('./images/gallery.png');
-}
-
-.takePhotoIcon {
-    composes: uploadMenuIcon;
-    background: inline('./images/photo.png');
+    background-image: inline('./images/gallery.png');
 }
 
 .addFileBtn:hover .galleryIcon {
-    background: inline('./images/gallery_hover.png');
+    background-image: inline('./images/gallery_hover.png');
+}
+
+.takePhotoIcon {
+    background-image: inline('./images/photo.png');
 }
 
 .addFileBtn:hover .takePhotoIcon {
-    background: inline('./images/photo_hover.png');
+    background-image: inline('./images/photo_hover.png');
+}
+
+.uploadFileIcon {
+    background-image: inline('./images/upload_popup.png');
+}
+
+.addFileBtn:hover .uploadFileIcon {
+    background-image: inline('./images/upload_popup_hover.png');
 }
 
 .plusIcon {

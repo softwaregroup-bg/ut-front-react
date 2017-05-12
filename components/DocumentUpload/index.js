@@ -165,6 +165,7 @@ export default class DocumentUpload extends Component {
         if (mode === 'initial') {
             return (
                 <DocumentUploadMenu
+                  menuItems={['file', 'camera']}
                   className={styles.initialViewContainer}
                   onAddFile={this.onAddFile}
                   allowedFileTypes={allowedFileTypes}
