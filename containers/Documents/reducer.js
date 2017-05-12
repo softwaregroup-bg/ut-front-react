@@ -115,7 +115,7 @@ const documents = (state = defaultState, action) => {
             if (props.isSelected) {
                 return state.setIn([props.identifier, 'selected'], props.attachments);
             } else {
-                return state.setIn([props.identifier, 'selected'], null);
+                return state.setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
         case ADD_NEW_DOCUMENT:
             let newDoc = action.props.newDocumentObject;
@@ -123,7 +123,8 @@ const documents = (state = defaultState, action) => {
             let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(newDoc));
             let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
-            return state.set(action.props.identifier, newState);
+            return state.set(action.props.identifier, newState)
+                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case REPLACE_DOCUMENT:
             let replacedDocument;
             let newStatusId;
@@ -154,7 +155,8 @@ const documents = (state = defaultState, action) => {
             docs = state.getIn([action.props.identifier, 'changedDocuments']).push(replacedDocument);
             newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
-            return state.set(action.props.identifier, newState);
+            return state.set(action.props.identifier, newState)
+                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
@@ -197,11 +199,13 @@ const documents = (state = defaultState, action) => {
             if (action.props.filter === 'all') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
                             .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(true))
-                            .setIn([action.props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false));
+                            .setIn([action.props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false))
+                            .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             } else if (action.props.filter === 'archived') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
                             .setIn([action.props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(true))
-                            .setIn([action.props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false));
+                            .setIn([action.props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
+                            .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
             break;
         default:
