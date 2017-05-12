@@ -3,21 +3,11 @@ import { validationTypes, textValidations, dropdownValidations } from '../../val
 // Listing
 export const getListTableColumns = () => {
     return [
-        {name: 'Group Name', key: 'documentType'},
-        {name: 'Description of participation', key: 'documentDescription'},
-        {name: 'Type', key: 'extension'},
-        {name: 'Upload Date', key: 'createdDate'},
-        {name: 'Status', key: 'statusId'}
-    ];
-};
-
-export const getListTdStyles = () => {
-    return [
-        { width: '250px' },
-        { },
-        { width: '100px' },
-        { width: '150px' },
-        { width: '150px' }
+        {title: 'Group Name', name: 'documentType'},
+        {title: 'Document Description', name: 'documentDescription'},
+        {title: 'File Type', name: 'extension'},
+        {title: 'Upload Date', name: 'createdDate'},
+        {title: 'Status', name: 'statusId'}
     ];
 };
 

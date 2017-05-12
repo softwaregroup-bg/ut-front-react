@@ -56,7 +56,7 @@ class Documents extends Component {
     }
 
     render() {
-        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived } = this.props;
+        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>
@@ -66,6 +66,7 @@ class Documents extends Component {
                       selectedFilter={selectedFilter}
                       documentArchived={documentArchived}
                       onGridSelect={onGridSelect}
+                      selected={selectedAttachment}
                     />
                 </Vertical>
             </div>

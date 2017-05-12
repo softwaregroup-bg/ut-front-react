@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import immutable from 'immutable';
-import { getListTableColumns, getListTdStyles } from './helpers';
+import { getListTableColumns } from './helpers';
 import DateComponent from '../Date';
-import Grid from '../Grid';
+import { SimpleGrid } from '../SimpleGrid';
+import Text from '../Text';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 import style from './style.css';
 
@@ -12,30 +13,35 @@ class DocumentsGrid extends Component {
         this.mapColumn = this.mapColumn.bind(this);
     }
 
-    mapColumn(col, colData) {
-        if (col.key === 'documentType') {
-            return capitalizeFirstLetter(colData);
+    mapColumn(content, configObj, obj) {
+        switch (configObj.name) {
+            case 'documentType':
+                return capitalizeFirstLetter(content);
+            case 'documentDescription':
+                if (content) {
+                    return content;
+                } else {
+                    return <span className={style.fileDetailsNoText}><Text>(no description)</Text></span>;
+                }
+            case 'extension':
+                return content;
+            case 'createdDate':
+                return <DateComponent>{content}</DateComponent>;
+            case 'statusId':
+                let label = content;
+                if (content === 'approved') {
+                    label = 'active';
+                }
+                return capitalizeFirstLetter(label);
         }
-        if (col.key === 'statusId') {
-            let label = colData;
-            if (colData === 'approved') {
-                label = 'active';
-            }
-            return capitalizeFirstLetter(label);
-        }
-        if (col.key === 'documentDescription') {
-            return colData || '(no description)';
-        }
-        if (col.key === 'createdDate') {
-            return <DateComponent>{colData}</DateComponent>;
-        }
-        return colData;
+        return content;
     }
 
     get content() {
-        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived } = this.props;
-        let handleSelectItem = (selectedItem, isSelected) => {
-            onGridSelect(selectedItem, isSelected, identifier);
+        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
+        let handleSelectItem = (selectedItem) => {
+            let isSelected = selected ? selected.get('filename') === selectedItem.filename : false;
+            onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
         };
         let gridData = immutable.List();
         switch (selectedFilter) {
@@ -47,16 +53,18 @@ class DocumentsGrid extends Component {
                 break;
         }
         if (gridData && gridData.size > 0) {
+            let selectedItem = selected ? [selected] : [];
             return (
                 <div>
-                    <Grid
-                      columns={getListTableColumns()}
-                      rows={gridData}
-                      canCheck={false}
-                      mapColumn={this.mapColumn}
-                      onSelect={handleSelectItem}
-                      sortableColumns={[false, false, false, false, false]}
-                      tdStyles={getListTdStyles()}
+                    <SimpleGrid
+                      multiSelect={false}
+                      globalMenu={false}
+                      emptyRowsMsg={<Text>No results</Text>}
+                      fields={getListTableColumns()}
+                      data={gridData.toJS()}
+                      transformCellValue={this.mapColumn}
+                      handleRowClick={handleSelectItem}
+                      rowsChecked={selectedItem}
                     />
                 </div>
             );
@@ -88,6 +96,7 @@ DocumentsGrid.propTypes = {
     activeAttachments: PropTypes.object, // immutable list
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
+    selected: PropTypes.object, // immutable object
 
     // funcs
     onGridSelect: PropTypes.func
