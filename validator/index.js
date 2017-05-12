@@ -3,6 +3,8 @@
 import { defaultErrorMessage } from './constants';
 import immutable from 'immutable';
 
+const numbersOnlyRegex = /^[0-9]+$/;
+
 /* Text Validation */
 export const isRequiredRule = (prop, rule, result) => {
     checkPasedResultObject(result);
@@ -148,8 +150,7 @@ export const arrayWithTextisNumberOnlyRuleOptional = (array, textProp, shouldVal
             return;
         }
         let currentValue = item.getIn(textProp);
-        let regex = /^[0-9]+$/;
-        if (currentValue !== '' && !(regex.test(currentValue))) {
+        if (currentValue !== '' && !(numbersOnlyRegex.test(currentValue))) {
             result.isValid = false;
             rule.index = index;
             result.errors.push(getErrorObject(rule));
@@ -162,8 +163,7 @@ export const arrayWithTextisNumberOnlyRule = (array, textProp, rule, result) => 
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
-        let regex = /^[0-9]+$/;
-        if (currentValue !== '' && !(regex.test(currentValue))) {
+        if (currentValue !== '' && !(numbersOnlyRegex.test(currentValue))) {
             result.isValid = false;
             rule.index = index;
             result.errors.push(getErrorObject(rule));
@@ -229,14 +229,45 @@ export const defaultRoleRule = (props, roles, rule, result) => {
 export const isNumberOnlyRule = (props, rule, result) => {
     checkPasedResultObject(result);
 
-    let regex = /^[0-9]+$/;
-    if (props !== '' && !(regex.test(props))) {
+    if (props !== '' && !(numbersOnlyRegex.test(props))) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
     }
 };
 
 /* End isNumber validation */
+
+export const isIntegerOnlyRule = (props, rule, result) => {
+    checkPasedResultObject(result);
+
+    let regex = /^-?\d+$/;
+    if (props && !(regex.test(props))) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
+export const isIntegerRangeRule = (props, rule, result) => {
+    checkPasedResultObject(result);
+    isIntegerOnlyRule(props, rule, result);
+    if (result.isValid) {
+        let value = parseInt(props);
+        if (rule.minVal === null || rule.minVal === void 0) {
+            rule.minVal = null;
+        }
+        if (rule.maxVal === null || rule.maxVal === void 0) {
+            rule.maxValue = null;
+        }
+        if (rule.minVal !== null && value < rule.minVal) {
+            result.isValid = false;
+            result.errors.push(getErrorObject(rule));
+        }
+        if (result.isValid && rule.maxVal !== null && value > rule.maxVal) {
+            result.isValid = false;
+            result.errors.push(getErrorObject(rule));
+        }
+    }
+};
 
 /**
  * isDecimal validation
@@ -279,12 +310,11 @@ export const isValidEmailRule = (props, rule, result) => {
 /* isNumber array validation */
 
 export const isNumberOnlyRuleArray = (props, rule, result) => {
-    let regex = /^[0-9]+$/;
     checkPasedResultObject(result);
     let propsMutable = immutable.Iterable.isIterable(props) ? props.toJS() : props;
     propsMutable.forEach(prop => {
         let value = prop.value || prop.phoneNumber;
-        if (value !== '' && !regex.test(value)) {
+        if (value !== '' && !numbersOnlyRegex.test(value)) {
             result.isValid = false;
             result.errors.push(getErrorObject(rule));
         }

@@ -1,9 +1,11 @@
 :root {
-    --ut-front-react-standardMainLogoWidth: 58px;
+    --ut-front-react-standardMainLogoWidth: 36px;
     --ut-front-react-standardHeaderLogoContainerWidth: 15%;
     /* Colors*/
     --ut-front-react-standardMainNavigationLinkColor: #2881ec;
     --ut-front-react-standardMainNavigationTextColor: #373a3c;
     --ut-front-react-standardMainNavigationTextHoverColor: #595959;
     --ut-front-react-standardMainNavigationBackground: #fff;
+    --ut-front-react-standardAvatarBackgroundColor: #2881ec;
+    --ut-front-react-standardAvatarColor: #fff;
 }
