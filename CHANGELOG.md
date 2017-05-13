@@ -1,3 +1,13 @@
+<a name="9.2.0"></a>
+# [9.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.1.0...v9.2.0) (2017-05-13)
+
+
+### Features
+
+* Added phone icons. ([#263](https://github.com/softwaregroup-bg/ut-front-react/issues/263)) ([b70d4ca](https://github.com/softwaregroup-bg/ut-front-react/commit/b70d4ca))
+
+
+
 <a name="9.1.0"></a>
 # [9.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.10...v9.1.0) (2017-05-10)
 
