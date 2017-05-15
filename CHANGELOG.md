@@ -1,3 +1,13 @@
+<a name="9.2.1"></a>
+## [9.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.0...v9.2.1) (2017-05-15)
+
+
+### Bug Fixes
+
+* toolbox border ([d60f00e](https://github.com/softwaregroup-bg/ut-front-react/commit/d60f00e))
+
+
+
 <a name="9.2.0"></a>
 # [9.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.1.0...v9.2.0) (2017-05-13)
 
