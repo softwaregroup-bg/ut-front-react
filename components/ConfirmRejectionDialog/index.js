@@ -1,12 +1,9 @@
 import React, { PropTypes, Component } from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import { Container, Row, Col } from 'reactstrap';
-
 import TextArea from '../Input/TextArea';
 import Text from '../Text';
-
-import { getRejectReasonValidationRules, rejectReasonValidator, prepareErrors } from './helpers';
+import Popup from '../Popup';
+import { capitalizeEveryWord } from '../../utils/helpers';
+import {getRejectReasonValidationRules, rejectReasonValidator, prepareErrors} from './helpers';
 
 class ConfirmRejectionDialog extends Component {
     constructor(props, context) {
@@ -14,7 +11,6 @@ class ConfirmRejectionDialog extends Component {
         this.renderContainer = this.renderContainer.bind(this);
         this.onChange = this.onChange.bind(this);
     }
-
     onChange(e) {
         let rejectReasonValidators = getRejectReasonValidationRules();
         let canSubmit;
@@ -28,13 +24,12 @@ class ConfirmRejectionDialog extends Component {
         }
         this.props.changeConfirmDialogValue({value: e.value, canSubmit: canSubmit});
     }
-
     renderContainer() {
         let rejectReasonValidators = getRejectReasonValidationRules();
         let {errors} = this.props;
         if (this.props.showInput) {
             return (
-                <Col xs='12'>
+                <div>
                     <TextArea
                       type='text'
                       label='Reason:'
@@ -46,42 +41,36 @@ class ConfirmRejectionDialog extends Component {
                       isValid={!errors.get('rejectReason')}
                       errorMessage={errors.get('rejectReason')}
                     />
-                </Col>
+                </div>
             );
         } else {
-            return (<Col xs='12'><Text>{this.props.message}</Text></Col>);
+            return (<Text>{this.props.message}</Text>);
         }
     }
+    get actionButtons() {
+        const { buttons } = this.props;
+        return buttons.map((button) => {
+            return {
+                label: button.get('label'),
+                href: button.get('href') || '',
+                styleType: button.get('label').toLowerCase() !== 'cancel' ? 'primaryDialog' : 'secondaryDialog',
+                disabled: button.has('disabled') ? !this.props.canSubmit : false,
+                onClick: button.get('onClick')
+            };
+        }).toJS();
+    }
+    get title() {
+        return capitalizeEveryWord(this.props.title || 'Confirm action');
+    }
     render() {
-        let actions = this.props.buttons.map((btn, i) => {
-            let disabled = btn.has('disabled') ? !this.props.canSubmit : false;
-            return (
-                <FlatButton
-                  key={i}
-                  label={btn.get('label')}
-                  href={btn.get('href') || ''}
-                  primary
-                  disabled={disabled}
-                  keyboardFocused={btn.get('keyboardFocused')}
-                  onTouchTap={btn.get('onClick')}
-                />
-            );
-        }
-        );
         return (
-            <Dialog
-              title={this.props.title}
-              open={this.props.isOpen}
-              actions={actions}
-              contentStyle={this.props.contentStyle}
-              bodyStyle={{overflowY: 'auto'}} >
-                <Container>
-                    <Row>
-                        {this.props.children}
-                        {this.renderContainer()}
-                    </Row>
-                </Container>
-            </Dialog>
+            <Popup
+              isOpen={this.props.isOpen}
+              header={{ text: this.title, closeIcon: false }}
+              footer={{ actionButtons: this.actionButtons }} >
+                {this.props.children}
+                {this.renderContainer()}
+            </Popup>
         );
     }
 }
