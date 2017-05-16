@@ -9,7 +9,8 @@ import {
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
     CHANGE_DOCUMENT_STATUS_ARCHIVED,
-    CHANGE_DOCUMENT_FILTER
+    CHANGE_DOCUMENT_FILTER,
+    RESET_DOCUMENT_STATE
 } from './actionTypes';
 import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
@@ -60,6 +61,8 @@ const documents = (state = defaultState, action) => {
                 }
             }
             return state;
+        case RESET_DOCUMENT_STATE:
+            return state.delete(action.props.identifier);
         case FETCH_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.REQUESTED) {
                 return state.setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(true))

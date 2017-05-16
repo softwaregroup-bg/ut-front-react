@@ -8,7 +8,8 @@ import {
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
     CHANGE_DOCUMENT_STATUS_ARCHIVED,
-    CHANGE_DOCUMENT_FILTER
+    CHANGE_DOCUMENT_FILTER,
+    RESET_DOCUMENT_STATE
 } from './actionTypes';
 
 export function initState(identifier, excludeIdsList, pathname) {
@@ -18,6 +19,15 @@ export function initState(identifier, excludeIdsList, pathname) {
             identifier,
             excludeIdsList,
             pathname
+        }
+    };
+}
+
+export function resetDocumentState(identifier) {
+    return {
+        type: RESET_DOCUMENT_STATE,
+        props: {
+            identifier
         }
     };
 }
