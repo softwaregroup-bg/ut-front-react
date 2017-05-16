@@ -12,7 +12,7 @@ class Documents extends Component {
     }
 
     componentWillMount() {
-        this.fetchDocs(this.props.actorId, this.props.requiresFetch, this.props.isLoading);
+        this.fetchDocs(this.props.actorId, true, this.props.isLoading);
     }
 
     componentWillReceiveProps(nextProps) {

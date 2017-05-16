@@ -29,17 +29,17 @@ class DocumentsContainer extends Component {
     }
 
     componentDidMount() {
-        this.fetchDocumentTypes();
+        this.fetchDocumentTypes(this.props.documentTypes.get('requiresFetch'), this.props.documentTypes.get('isLoading'));
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.documentTypes.get('requiresFetch') && !newProps.documentTypes.get('isLoading')) {
-            this.fetchDocumentTypes();
-        }
+        this.fetchDocumentTypes(newProps.documentTypes.get('requiresFetch'), newProps.documentTypes.get('isLoading'));
     }
 
-    fetchDocumentTypes() {
-        this.props.fetchDocumentTypes(this.props.identifier, this.props.documentTypeClass);
+    fetchDocumentTypes(requiresFetch, isLoading) {
+        if (requiresFetch && !isLoading && this.props.identifier && this.props.documentTypeClass) {
+            this.props.fetchDocumentTypes(this.props.identifier, this.props.documentTypeClass);
+        }
     }
 
     render() {
@@ -113,11 +113,12 @@ DocumentsContainer.propTypes = {
     documentTypeClass: PropTypes.string.isRequired,
 
     permissions: DocumentsListing.propTypes.permissions,
-    documentTypes: PropTypes.shape({
-        requiresFetch: PropTypes.bool,
-        isLoading: PropTypes.bool,
-        data: DocumentsListing.propTypes.documentTypes
-    }),
+    documentTypes: PropTypes.object,
+    // documentTypes: PropTypes.shape({
+    //     requiresFetch: PropTypes.bool,
+    //     isLoading: PropTypes.bool,
+    //     data: DocumentsListing.propTypes.documentTypes
+    // }),
     // updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
     // uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
     // deleteDocument: DocumentsListing.propTypes.deleteDocument,

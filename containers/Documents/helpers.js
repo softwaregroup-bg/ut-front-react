@@ -56,9 +56,9 @@ export function combineAttachments(state) {
     tmpList = tmpList.concat(remoteAttachments);
     let result = immutable.List();
     let deletedIds = [];
-    if (excludeIds.length > 0) {
-        tmpList.forEach((item) => {
-            if (item.get('statusId') !== 'deleted') {
+    tmpList.forEach((item) => {
+        if (item.get('statusId') !== 'deleted') {
+            if (excludeIds.length > 0) {
                 let isInArray = excludeIds.find((excludeId) => {
                     return excludeId === item.get('attachmentId');
                 });
@@ -66,12 +66,13 @@ export function combineAttachments(state) {
                     result = result.push(item);
                 }
             } else {
-                deletedIds.push(item.get('attachmentId'));
-                // do nothing else because we don't want to display the deleted documents
+                result = result.push(item);
             }
-        });
-    }
-    // return result;
+        } else {
+            deletedIds.push(item.get('attachmentId'));
+            // do nothing else because we don't want to display the deleted documents
+        }
+    });
     return state.set('attachmentsList', immutable.fromJS(result))
                 .set('deletedList', immutable.fromJS(deletedIds));
 }
