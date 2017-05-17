@@ -1,3 +1,13 @@
+<a name="9.2.2"></a>
+## [9.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.1...v9.2.2) (2017-05-17)
+
+
+### Bug Fixes
+
+* ABT-1109 standartize the dialog ([7a1ca59](https://github.com/softwaregroup-bg/ut-front-react/commit/7a1ca59))
+
+
+
 <a name="9.2.1"></a>
 ## [9.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.0...v9.2.1) (2017-05-15)
 
