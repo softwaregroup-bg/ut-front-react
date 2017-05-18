@@ -1,3 +1,13 @@
+<a name="9.3.0"></a>
+# [9.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.2...v9.3.0) (2017-05-18)
+
+
+### Features
+
+* Add customSearch to filters ([e7228fe](https://github.com/softwaregroup-bg/ut-front-react/commit/e7228fe))
+
+
+
 <a name="9.2.2"></a>
 ## [9.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.1...v9.2.2) (2017-05-17)
 
