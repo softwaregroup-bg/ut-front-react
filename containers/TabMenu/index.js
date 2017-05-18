@@ -33,7 +33,7 @@ export default connect(
     }),
     (dispatch, ownProps) => ({
         onTabClose: (tab, next, prev) => {
-            dispatch(removeTab(tab.pathname));
+            dispatch(removeTab(tab.pathname, tab.pagename));
             ownProps.onTabClose && ownProps.onTabClose(tab, next, prev);
         }
     }),
@@ -43,10 +43,10 @@ export default connect(
 
 class AddTabWrapper extends Component {
     componentDidMount() {
-        this.props.addTab(this.props.pathname, <Text>{this.props.title}</Text>, this.props.pathname === this.context.mainUrl);
+        this.props.addTab(this.props.pathname, <Text>{this.props.title}</Text>, this.props.pathname === this.context.mainUrl, this.props.pagename);
     }
     componentDidUpdate() {
-        this.props.addTab(this.props.pathname, <Text>{this.props.title}</Text>, this.props.pathname === this.context.mainUrl);
+        this.props.addTab(this.props.pathname, <Text>{this.props.title}</Text>, this.props.pathname === this.context.mainUrl, this.props.pagename);
     }
     componentWillUnmount() {
         this.props.onUnmount && this.props.onUnmount();
@@ -64,7 +64,8 @@ AddTabWrapper.propTypes = {
     addTab: PropTypes.func,
     onUnmount: PropTypes.func,
     title: PropTypes.string.isRequired,
-    pathname: PropTypes.string.isRequired
+    pathname: PropTypes.string.isRequired,
+    pagename: PropTypes.string
 };
 
 export const AddTab = connect(null,
