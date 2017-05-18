@@ -20,10 +20,14 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { authenticated, shouldSubmit } = this.props;
+        let { authenticated, shouldSubmit, routerParams: {ssoOrigin} } = this.props;
 
         if (!authenticated && nextProps.authenticated) {
-            this.context.router.push(this.context.mainUrl);
+            if (ssoOrigin) {
+                this.context.router.push(`/sso/${ssoOrigin}`);
+            } else {
+                this.context.router.push(this.context.mainUrl);
+            }
         }
 
         if (!shouldSubmit && nextProps.shouldSubmit) {
@@ -111,6 +115,7 @@ export default connect(
 )(LoginForm);
 
 LoginForm.propTypes = {
+    routerParams: PropTypes.object,
     loginData: PropTypes.object,
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
