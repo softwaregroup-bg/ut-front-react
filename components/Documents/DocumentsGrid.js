@@ -32,6 +32,9 @@ class DocumentsGrid extends Component {
                 if (content === 'approved') {
                     label = 'active';
                 }
+                if (content === 'pending') {
+                    label = 'Updated';
+                }
                 return capitalizeFirstLetter(label);
         }
         return content;

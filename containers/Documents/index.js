@@ -19,13 +19,12 @@ import DocumentsListing from '../../components/Documents/Listing';
 class DocumentsContainer extends Component {
     constructor(props) {
         super(props);
+        this.initState = this.initState.bind(this);
         this.fetchDocumentTypes = this.fetchDocumentTypes.bind(this);
     }
 
     componentWillMount() {
-        if (this.props.attachments.get(this.props.identifier) === undefined) {
-            this.props.initState(this.props.identifier, this.props.excludeAttachmentIds, this.props.pathname);
-        }
+        this.initState(this.props.identifier, this.props.excludeAttachmentIds, this.props.pathname);
     }
 
     componentDidMount() {
@@ -33,7 +32,14 @@ class DocumentsContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
+        this.initState(newProps.identifier, newProps.excludeAttachmentIds, newProps.pathname);
         this.fetchDocumentTypes(newProps.documentTypes.get('requiresFetch'), newProps.documentTypes.get('isLoading'));
+    }
+
+    initState(identifier, excludeAttachmentIds, pathname) {
+        if (this.props.attachments.get(identifier) === undefined) {
+            this.props.initState(identifier, excludeAttachmentIds, pathname);
+        }
     }
 
     fetchDocumentTypes(requiresFetch, isLoading) {

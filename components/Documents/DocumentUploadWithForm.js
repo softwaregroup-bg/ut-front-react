@@ -141,7 +141,7 @@ class DocumentUploadWithForm extends Component {
         } else if (this.props.type === 'replace') {
             this.props.replaceDocument({
                 attachmentId: this.state.attachmentId,
-                statusId: 'Updated',
+                statusId: 'pending',
                 ...uploadedFile
             });
         }

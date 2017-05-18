@@ -164,33 +164,56 @@ const documents = (state = defaultState, action) => {
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
                 let newState = state;
-                switch (statusId) {
-                    case 'new':
-                        // remove the temp file from the list
-                        let docs = state.getIn([action.props.identifier, 'changedDocuments']);
-                        let fileIndex = -1;
-                        for (let i = 0; i < docs.size; i++) {
-                            if (docs.getIn([i, 'filename']) === action.props.documentObject.get('filename')) {
-                                fileIndex = i;
-                                break;
-                            }
+                if (statusId === 'new' && !action.props.documentObject.get('attachmentId')) {
+                    let docs = state.getIn([action.props.identifier, 'changedDocuments']);
+                    let fileIndex = -1;
+                    for (let i = 0; i < docs.size; i++) {
+                        if (docs.getIn([i, 'filename']) === action.props.documentObject.get('filename')) {
+                            fileIndex = i;
+                            break;
                         }
-                        newState = state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
-                                    .setIn([action.props.identifier, 'selected'], null);
-                        newState = combineAttachments(newState.get(action.props.identifier));
-                        return state.set(action.props.identifier, newState);
-                    case 'approved':
-                    case 'active':
-                    case 'archieved':
-                        let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
-                        docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
-                        newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
-                                    .setIn([action.props.identifier, 'selected'], null);
-                        newState = combineAttachments(newState.get(action.props.identifier));
-                        return state.set(action.props.identifier, newState);
+                    }
+                    newState = state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
+                                .setIn([action.props.identifier, 'selected'], null);
+                    newState = combineAttachments(newState.get(action.props.identifier));
+                    return state.set(action.props.identifier, newState);
+                } else {
+                    let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
+                    docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
+                    newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
+                                .setIn([action.props.identifier, 'selected'], null);
+                    newState = combineAttachments(newState.get(action.props.identifier));
+                    return state.set(action.props.identifier, newState);
                 }
+                // switch (statusId) {
+                //     case 'new':
+                //         // remove the temp file from the list
+                //         let docs = state.getIn([action.props.identifier, 'changedDocuments']);
+                //         let fileIndex = -1;
+                //         for (let i = 0; i < docs.size; i++) {
+                //             if (docs.getIn([i, 'filename']) === action.props.documentObject.get('filename')) {
+                //                 fileIndex = i;
+                //                 break;
+                //             }
+                //         }
+                //         newState = state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
+                //                     .setIn([action.props.identifier, 'selected'], null);
+                //         newState = combineAttachments(newState.get(action.props.identifier));
+                //         return state.set(action.props.identifier, newState);
+                //     case 'approved':
+                //     case 'active':
+                //     case 'pending':
+                //     case 'archieved':
+                //         let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
+                //         docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
+                //         newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
+                //                     .setIn([action.props.identifier, 'selected'], null);
+                //         newState = combineAttachments(newState.get(action.props.identifier));
+                //         return state.set(action.props.identifier, newState);
+                // }
             }
-            return state;
+            // return state;
+            break;
         case CHANGE_DOCUMENT_STATUS_ARCHIVED:
             let archivedDoc = action.props.documentObject.set('statusId', 'archived');
             docs = state.getIn([action.props.identifier, 'changedDocuments']).push(archivedDoc);

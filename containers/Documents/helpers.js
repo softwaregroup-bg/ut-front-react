@@ -17,6 +17,63 @@ export function createIdentifier(moduleName, sectionName, mode, id) {
     return result;
 };
 
+/*
+ * convertDocumentsForSave - transforms the attachmentsList array from the store to objects for create / edit
+ * params:
+ * @attachmentsList - array of attachment objects
+ */
+
+export function convertDocumentsForSave(attachmentsList, actorId) {
+    let allAttachemnts = attachmentsList.toJS();
+    let documents = [];
+    let attachments = [];
+    let actorDocument = [];
+    let generatedDocumentId = -10;
+    if (allAttachemnts.length > 0) {
+        allAttachemnts.forEach((item) => {
+            let docId;
+            if (item.documentId) {
+                docId = item.documentId;
+            } else {
+                docId = generatedDocumentId;
+                generatedDocumentId--;
+            }
+            documents.push({
+                actorId,
+                documentId: docId,
+                documentTypeId: item.documentTypeId,
+                // description: item.documentDescription,
+                statusId: item.statusId
+            });
+            attachments.push({
+                contentType: item.contentType,
+                documentId: docId,
+                attachmentSizeId: 'original',
+                extension: item.extension
+            });
+            if (item.documentDescription) {
+                documents[(documents.length - 1)].description = item.documentDescription;
+            }
+            if (item.attachmentId) {
+                attachments[(attachments.length - 1)].attachmentId = item.attachmentId;
+            }
+            if ((item.statusId === 'new' && !item.attachmentId) || item.statusId === 'pending') {
+                attachments[(attachments.length - 1)].filename = item.filename;
+            }
+            actorDocument.push({
+                actorId,
+                documentId: docId,
+                documentOrder: 255
+            });
+        });
+    }
+    return {
+        document: documents,
+        attachment: attachments,
+        actorDocument: actorDocument
+    };
+};
+
 export const parseFetchDocumentsResult = (documents) => {
     return documents.map((doc) => {
         return {

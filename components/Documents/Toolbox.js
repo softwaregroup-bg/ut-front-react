@@ -122,7 +122,7 @@ class Toolbox extends Component {
             if (this.props.permissions.replace) {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
-                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'new' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || ((selectedAttachment && ((selectedAttachment.get('statusId') === 'new' && !selectedAttachment.get('attachmentId')) || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
                     onClick: replaceDocumentHandler
                 });
             }
