@@ -1,3 +1,13 @@
+<a name="9.3.1"></a>
+## [9.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.0...v9.3.1) (2017-05-18)
+
+
+### Bug Fixes
+
+* add page name parameter to handle dynamic stores ([f48cc7d](https://github.com/softwaregroup-bg/ut-front-react/commit/f48cc7d))
+
+
+
 <a name="9.3.0"></a>
 # [9.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.2...v9.3.0) (2017-05-18)
 
