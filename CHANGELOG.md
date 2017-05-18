@@ -1,3 +1,13 @@
+<a name="9.3.2"></a>
+## [9.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.1...v9.3.2) (2017-05-18)
+
+
+### Bug Fixes
+
+* allow passing active order fields as props ([0f67e99](https://github.com/softwaregroup-bg/ut-front-react/commit/0f67e99))
+
+
+
 <a name="9.3.1"></a>
 ## [9.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.0...v9.3.1) (2017-05-18)
 
