@@ -1,3 +1,13 @@
+<a name="9.3.3"></a>
+## [9.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.2...v9.3.3) (2017-05-19)
+
+
+### Bug Fixes
+
+* ABT-1494 add btnDisabled prop to ButtonInput component ([057d3ba](https://github.com/softwaregroup-bg/ut-front-react/commit/057d3ba))
+
+
+
 <a name="9.3.2"></a>
 ## [9.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.1...v9.3.2) (2017-05-18)
 
