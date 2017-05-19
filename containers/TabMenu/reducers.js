@@ -4,6 +4,7 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
     if (action.type === actionTypes.ADD_TAB) {
         let tab = {
             pathname: action.pathname,
+            pagename: action.pagename,
             title: action.title,
             canClose: true,
             isMain: action.isMain

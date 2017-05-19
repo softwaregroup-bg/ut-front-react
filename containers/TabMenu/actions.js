@@ -1,18 +1,20 @@
 import * as actionTypes from './actionTypes';
 
-export function addTab(pathname, title, isMain) {
+export function addTab(pathname, title, isMain, pagename) {
     return {
         type: actionTypes.ADD_TAB,
         pathname: pathname,
+        pagename: pagename,
         isMain: isMain,
         title: title
     };
 }
 
-export function removeTab(pathname) {
+export function removeTab(pathname, pagename) {
     return {
         type: actionTypes.REMOVE_TAB,
-        pathname: pathname
+        pathname: pathname,
+        pagename: pagename
     };
 }
 

@@ -44,6 +44,14 @@
 
 /* Icon Type */
 
+.iconPhone {
+    background-image: url('./images/phoneIcon.png');
+}
+
+.iconPhonePink {
+    background-image: url('./images/phoneIconPink.png');
+}
+
 .iconClose {
     background-image: url('./images/close.png');
 }

@@ -6,6 +6,14 @@ const Icon = ({ icon, iconURL, hover = false, className, ...props }) => {
     let sizeClass;
     let typeClass;
     switch (icon) {
+        case 'phone':
+            typeClass = style.iconPhone;
+            sizeClass = style.iconSmall;
+            break;
+        case 'phonePink':
+            typeClass = style.iconPhonePink;
+            sizeClass = style.iconSmall;
+            break;
         case 'accountArrowDown':
             typeClass = style.iconAccountArrowDown;
             sizeClass = style.iconSmall;
@@ -241,6 +249,8 @@ const iconNames = [
     'lock',
     'logout',
     'padlock',
+    'phonePink',
+    'phone',
     'reject',
     'settingsTable',
     'status',

@@ -4,6 +4,7 @@ export const filterElementTypes = {
     datePicker: 'datePicker',
     datePickerBetween: 'datePickerBetween',
     dateTimePickerBetween: 'dateTimePickerBetween',
+    customSearch: 'customSearch',
     clear: 'clear'
 };
 
