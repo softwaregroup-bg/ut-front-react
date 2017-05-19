@@ -42,7 +42,7 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
                 actorId,
                 documentId: docId,
                 documentTypeId: item.documentTypeId,
-                // description: item.documentDescription,
+                description: item.documentDescription || null,
                 statusId: item.statusId
             });
             attachments.push({
@@ -51,9 +51,6 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
                 attachmentSizeId: 'original',
                 extension: item.extension
             });
-            if (item.documentDescription) {
-                documents[(documents.length - 1)].description = item.documentDescription;
-            }
             if (item.attachmentId) {
                 attachments[(attachments.length - 1)].attachmentId = item.attachmentId;
             }

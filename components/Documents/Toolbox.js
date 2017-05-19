@@ -126,10 +126,10 @@ class Toolbox extends Component {
                     onClick: replaceDocumentHandler
                 });
             }
-            if (this.props.permissions.delete) {
+            if (this.props.permissions.archive) {
                 headerButtonsConfig.left.push({
                     label: 'Archive',
-                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'new' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'new' || selectedAttachment.get('statusId') === 'archived' || selectedAttachment.get('statusId') === 'pending')) || this.props.selectedFilter === 'archived'),
                     onClick: openArchiveConfirmationDialog
                 });
             }
