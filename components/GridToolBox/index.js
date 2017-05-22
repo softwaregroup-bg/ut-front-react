@@ -228,7 +228,7 @@ class GridToolBox extends Component {
                           value={filterElement.value} />
                     </div>);
             default:
-                return <div />;
+                return null;
         }
     }
 
@@ -387,9 +387,10 @@ class GridToolBox extends Component {
           footer={{actionButtons: actionButtons}}
           className={style.advancedSearchDialog}>
             {this.props.filterElements.map((el, i) => {
-                return (
+                let filter = this.renderFilter(el, true);
+                return filter && (
                     <div key={i} className={style.advancedSearchInputWrapper}>
-                        {this.renderFilter(el, true)}
+                        {filter}
                     </div>
                 );
             })}
@@ -405,8 +406,6 @@ class GridToolBox extends Component {
 
             return [advancedSearchBtn, advancedDialog];
         }
-
-        return null;
     }
 
     renderFilters() {
@@ -431,24 +430,33 @@ class GridToolBox extends Component {
                 </div>
                 <div className={classnames(style.pullRight, style.tableCell)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
-                    {filterElements.map((el, i) => {
-                        let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
-                        filtersNumber += incrementNum;
-                        if (filtersNumber > this.props.maxVisibleInputs) {
-                            return null;
-                        } else {
-                            return (
-                                <div key={i} className={classnames(style.toolbarElement, style.tableCell)} style={el.styles}>
-                                    <div className={style.minWidthed}>
-                                        {this.renderFilter(el)}
+                        {filterElements.map((el, i) => {
+                            let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
+                            filtersNumber += incrementNum;
+                            if (filtersNumber <= this.props.maxVisibleInputs) {
+                                let filter = this.renderFilter(el);
+                                return filter && (
+                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell)} style={el.styles}>
+                                        <div className={style.minWidthed}>
+                                            {filter}
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        }
-                    })}
-                    {this.renderAdvanced()}
-                    {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 && <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}><StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' /></div>}
-                    {this.state.hasActiveFilters && <div className={classnames(style.toolbarElement, style.tableCell)}><div key='closeBtn' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} /></div>}
+                                );
+                            }
+                        })}
+                        {this.renderAdvanced().map((item, i) => {
+                            return item && (<div key={i} className={classnames(style.toolbarElement, style.tableCell)}>
+                                {item}
+                            </div>);
+                        })}
+                        {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 &&
+                            <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
+                                <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' />
+                            </div>}
+                        {this.state.hasActiveFilters &&
+                            <div className={classnames(style.toolbarElement, style.tableCell)}>
+                                <div key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                            </div>}
                     </div>
                 </div>
             </div>
