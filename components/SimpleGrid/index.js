@@ -32,6 +32,7 @@ export class SimpleGrid extends Component {
                   fields={this.props.fields}
                   toggleColumnVisibility={this.props.toggleColumnVisibility}
                   orderBy={this.props.orderBy}
+                  orderDirections={this.props.orderDirections}
                   multiSelect={this.props.multiSelect}
                   handleOrder={this.props.handleOrder}
                   isChecked={this.handleIsChecked()}
@@ -68,6 +69,7 @@ SimpleGrid.propTypes = {
     data: propTypeData,
     externalStyle: PropTypes.object,
     orderBy: PropTypes.array,
+    orderDirections: PropTypes.object,
     multiSelect: PropTypes.bool,
     hideHeader: PropTypes.bool,
     handleOrder: PropTypes.func,

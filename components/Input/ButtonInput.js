@@ -30,7 +30,7 @@ class ButtonInput extends Component {
         this.props.onChange && this.props.onChange(e.target.value);
     }
     render() {
-        const { placeholder, readOnly } = this.props;
+        const { placeholder, readOnly, btnDisabled } = this.props;
         return (
             <div className={style.outerWrap}>
                 <div className={classNames(style.inputButtonLabel, {[style.boldLabel]: this.props.boldLabel})}>
@@ -52,6 +52,7 @@ class ButtonInput extends Component {
                       onChange={this.onChange} />
                     <StandardButton
                       type='password'
+                      disabled={btnDisabled}
                       className='secondaryButton secondaryInputButton'
                       onClick={this.props.onClick}
                       label={this.props.btnText} />
@@ -77,6 +78,7 @@ ButtonInput.propTypes = {
     label: PropTypes.string,
     boldLabel: PropTypes.bool,
     readOnly: PropTypes.bool,
+    btnDisabled: PropTypes.bool,
     value: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,

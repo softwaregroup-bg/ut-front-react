@@ -17,7 +17,7 @@ class Layout extends Component {
         let header = (
             <Header
               currentLocation={this.props.location.pathname}
-              personInfo={result.toJS()}
+              personInfo={result && result.toJS()}
               logout={this.props.logout}
               replaceWithBrakes
               tabset={this.context.mainTabset}

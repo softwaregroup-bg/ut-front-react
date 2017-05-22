@@ -4,8 +4,6 @@
 .toolbarWrap {
     width: 100%;
     overflow: hidden;
-    background: #fff;
-    border-bottom: 1px solid #D7D6D6;
 }
 
 .fixedHeight {

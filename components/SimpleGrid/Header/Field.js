@@ -22,7 +22,7 @@ export default class Field extends Component {
         let {orderDirection} = this.props;
 
         if (orderDirection) {
-            styles.push(this.getStyle('girdOrderHeadingStyle' + orderDirection));
+            styles.push(this.getStyle('girdOrderHeadingStyle' + orderDirection.toUpperCase()));
         }
         return (
             <th className={this.getStyle('girdHeading')} onTouchTap={this.handleOrder}>

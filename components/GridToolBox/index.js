@@ -15,6 +15,7 @@ import StandardButton from '../StandardButton';
 import { Button } from 'reactstrap';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
+import ByCustomSearch from '../Filters/ByCustomSearch';
 
 import classnames from 'classnames';
 import style from './style.css';
@@ -73,6 +74,9 @@ class GridToolBox extends Component {
                         filter.defaultValue !== dropDrownAllOptionKey &&
                         filter.defaultValue !== dropDrownPlaceholderOptionKey &&
                         filter.defaultValue !== filter.initialValue);
+                    break;
+                case filterElementTypes.customSearch:
+                    hasValue = !!filter.value;
                     break;
                 default:
                     hasValue = !!filter.defaultValue && filter.defaultValue !== filter.initialValue;
@@ -213,6 +217,16 @@ class GridToolBox extends Component {
                               labelTo={filterElement.labelTo}
                               boldLabel={renderInDialog} />
                         </div>);
+            case filterElementTypes.customSearch:
+                return (<div>
+                        <ByCustomSearch
+                          fields={filterElement.fields}
+                          defaultField={filterElement.defaultField}
+                          setField={filterElement.setField}
+                          setValue={filterElement.setValue}
+                          field={filterElement.field}
+                          value={filterElement.value} />
+                    </div>);
             default:
                 return <div />;
         }
@@ -666,6 +680,7 @@ GridToolBox.propTypes = {
                 filterElementTypes.datePicker,
                 filterElementTypes.datePickerBetween,
                 filterElementTypes.dateTimePickerBetween,
+                filterElementTypes.customSearch,
                 filterElementTypes.clear
             ]).isRequired,
             // Common

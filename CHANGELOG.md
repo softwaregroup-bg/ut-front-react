@@ -1,3 +1,83 @@
+<a name="9.3.4"></a>
+## [9.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.3...v9.3.4) (2017-05-19)
+
+
+### Bug Fixes
+
+* UIS-2654: add condition in the login.result ([4b691df](https://github.com/softwaregroup-bg/ut-front-react/commit/4b691df))
+
+
+
+<a name="9.3.3"></a>
+## [9.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.2...v9.3.3) (2017-05-19)
+
+
+### Bug Fixes
+
+* ABT-1494 add btnDisabled prop to ButtonInput component ([057d3ba](https://github.com/softwaregroup-bg/ut-front-react/commit/057d3ba))
+
+
+
+<a name="9.3.2"></a>
+## [9.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.1...v9.3.2) (2017-05-18)
+
+
+### Bug Fixes
+
+* allow passing active order fields as props ([0f67e99](https://github.com/softwaregroup-bg/ut-front-react/commit/0f67e99))
+
+
+
+<a name="9.3.1"></a>
+## [9.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.0...v9.3.1) (2017-05-18)
+
+
+### Bug Fixes
+
+* add page name parameter to handle dynamic stores ([f48cc7d](https://github.com/softwaregroup-bg/ut-front-react/commit/f48cc7d))
+
+
+
+<a name="9.3.0"></a>
+# [9.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.2...v9.3.0) (2017-05-18)
+
+
+### Features
+
+* Add customSearch to filters ([e7228fe](https://github.com/softwaregroup-bg/ut-front-react/commit/e7228fe))
+
+
+
+<a name="9.2.2"></a>
+## [9.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.1...v9.2.2) (2017-05-17)
+
+
+### Bug Fixes
+
+* ABT-1109 standartize the dialog ([7a1ca59](https://github.com/softwaregroup-bg/ut-front-react/commit/7a1ca59))
+
+
+
+<a name="9.2.1"></a>
+## [9.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.2.0...v9.2.1) (2017-05-15)
+
+
+### Bug Fixes
+
+* toolbox border ([d60f00e](https://github.com/softwaregroup-bg/ut-front-react/commit/d60f00e))
+
+
+
+<a name="9.2.0"></a>
+# [9.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.1.0...v9.2.0) (2017-05-13)
+
+
+### Features
+
+* Added phone icons. ([#263](https://github.com/softwaregroup-bg/ut-front-react/issues/263)) ([b70d4ca](https://github.com/softwaregroup-bg/ut-front-react/commit/b70d4ca))
+
+
+
 <a name="9.1.0"></a>
 # [9.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.0.10...v9.1.0) (2017-05-10)
 

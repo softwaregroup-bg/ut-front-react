@@ -49,12 +49,12 @@ export class Header extends Component {
     handleOrder(fieldName) {
         // fat and easy to read, order change
         if (~this.props.orderBy.indexOf(fieldName)) {
-            let orderDirection = this.state.orderDirections[fieldName] || '';
+            let orderDirection = (this.props.orderDirections && this.props.orderDirections[fieldName]) || this.state.orderDirections[fieldName] || '';
             let orderDirectionOld = orderDirection;
 
             if (orderDirection === '') {
                 orderDirection = 'ASC';
-            } else if (orderDirection === 'ASC') {
+            } else if (orderDirection.toUpperCase() === 'ASC') {
                 orderDirection = 'DESC';
             } else {
                 orderDirection = '';
@@ -143,11 +143,28 @@ export class Header extends Component {
                 <tr className={this.getStyle('gridHeaderTr')}>
                     {fields.map((field, idx) => {
                         if (!field.get('internal')) {
-                            return <Field externalStyle={this.props.externalStyle} transformCellValue={this.props.transformCellValue} key={idx} field={field.toJS()} handleOrder={this.handleOrder} orderDirection={this.state.orderDirections[field.get('name')]} />;
+                            return <Field
+                              externalStyle={this.props.externalStyle}
+                              transformCellValue={this.props.transformCellValue}
+                              key={idx} field={field.toJS()}
+                              handleOrder={this.handleOrder}
+                              orderDirection={
+                                  (this.props.orderDirections && this.props.orderDirections[field.get('name')]) ||
+                                  this.state.orderDirections[field.get('name')]
+                              } />;
                         } else if (field.get('internal') === 'multiSelect') {
-                            return <MultiSelectField field={field.toJS()} key={idx} handleCheckboxSelect={this.props.handleHeaderCheckboxSelect} isChecked={this.props.isChecked} />;
+                            return <MultiSelectField
+                              field={field.toJS()}
+                              key={idx}
+                              handleCheckboxSelect={this.props.handleHeaderCheckboxSelect}
+                              isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'globalMenu') {
-                            return <GlobalMenu field={field.toJS()} key={idx} fields={this.getRawFields().toJS()} transformCellValue={this.props.transformCellValue} toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                            return <GlobalMenu
+                              field={field.toJS()}
+                              key={idx}
+                              fields={this.getRawFields().toJS()}
+                              transformCellValue={this.props.transformCellValue}
+                              toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         }
                     })}
                 </tr>
@@ -165,8 +182,9 @@ Header.propTypes = {
     })),
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
-    // if true will allow order by multiple columns
+    orderDirections: PropTypes.object,
     globalMenu: PropTypes.bool,
+    // if true will allow order by multiple columns
     multiOrder: PropTypes.bool,
     handleOrder: PropTypes.func,
     transformCellValue: PropTypes.func,
