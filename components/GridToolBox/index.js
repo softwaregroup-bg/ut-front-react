@@ -404,7 +404,12 @@ class GridToolBox extends Component {
             let advancedSearchBtn = this.renderAdvancedButton();
             let advancedDialog = this.renderAdvancedSearchDialog();
 
-            return [advancedSearchBtn, advancedDialog];
+            return (
+                <div className={classnames(style.toolbarElement, style.tableCell)}>
+                    {advancedSearchBtn}
+                    {advancedDialog}
+                </div>
+            );
         }
     }
 
@@ -444,13 +449,7 @@ class GridToolBox extends Component {
                                 );
                             }
                         })}
-                        {this.renderAdvanced()
-                            .map((item, i) => {
-                                return item &&
-                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell)}>
-                                        {item}
-                                    </div>;
-                            })}
+                        {this.renderAdvanced()}
                         {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 &&
                             <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
                                 <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' />
