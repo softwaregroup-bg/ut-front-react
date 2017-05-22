@@ -1,3 +1,15 @@
+<a name="9.4.0"></a>
+# [9.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.6...v9.4.0) (2017-05-22)
+
+
+### Bug Fixes
+
+* refactor ([0d08d89](https://github.com/softwaregroup-bg/ut-front-react/commit/0d08d89))
+* return as element instead of array ([7e506f6](https://github.com/softwaregroup-bg/ut-front-react/commit/7e506f6))
+* unindexed iteratees & dont render empty divisions ([0a62579](https://github.com/softwaregroup-bg/ut-front-react/commit/0a62579))
+
+
+
 <a name="9.3.6"></a>
 ## [9.3.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.5...v9.3.6) (2017-05-22)
 
