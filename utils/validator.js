@@ -1,3 +1,24 @@
+import {
+    isRequiredRule,
+    lengthRule,
+    isRequiredArrayRule,
+    isNumberOnlyRule,
+    isRequiredDropdownRule,
+    isValidEmailRuleArray,
+    isNumberOnlyRuleArray,
+    lengthRuleArray,
+    arrayWithTextLengthRule,
+    regexRule,
+    isUniqueValueRule,
+    arrayWithArrayIsRequiredRule
+} from '../validator';
+import {
+    validationTypes,
+    textValidations,
+    dropdownValidations,
+    arrayValidations
+} from '../validator/constants.js';
+
 const validators = {
     isRequired: (value) => {
         return !!value;
@@ -130,3 +151,77 @@ export class Validator {
         };
     }
 }
+
+/*
+ * @SourceMap is (immutable) object with the fields that need to be validated
+ * example:
+ * sourceMap: { name: 'some name', obj: {prop: ''} valuesInArray: [] }
+ * @Validations is an array with objects of the shape:
+ * validations: [{
+ *      key: ['obj', 'prop'],
+ *      type: '<type from the constants>',
+ *      rules: [{
+ *          key: 'prop',
+ *          type: '<type from the constants>',
+ *          errorMessage: 'Display this error in the UI',
+ *          ...specificRules
+ *      }]
+ * }]
+ * if there are more than one validation rule, the first is with highest priority
+ * as a result is an object containing boolean property 'isValid' and an array with error messages
+ */
+export const validateAll = (sourceMap, validations) => {
+    let result = { isValid: true, errors: [] };
+    if (validations) {
+        validations.forEach((validation) => {
+            let currentValue;
+            if (validation.key) {
+                currentValue = sourceMap.getIn(validation.key);
+            }
+            validation.rules.forEach((rule) => {
+                rule.key = validation.key;
+                if (validation.type === validationTypes.text && rule.type === textValidations.isRequired) {
+                    isRequiredRule(currentValue, rule, result);
+                }
+                if (validation.type === validationTypes.text && rule.type === textValidations.numberOnly) {
+                    isNumberOnlyRule(currentValue, rule, result);
+                }
+                if (validation.type === validationTypes.text && rule.type === textValidations.length) {
+                    lengthRule(currentValue, rule.minVal, rule.maxVal, rule, result);
+                }
+                if (validation.type === validationTypes.text && rule.type === textValidations.regex) {
+                    regexRule(currentValue, rule.value, rule, result);
+                }
+                if (validation.type === validationTypes.text && rule.type === textValidations.uniqueValue) {
+                    isUniqueValueRule(currentValue, rule.values, rule, result);
+                }
+                if (validation.type === validationTypes.array && rule.type === arrayValidations.isRequired) {
+                    isRequiredArrayRule(currentValue, rule, result);
+                }
+                if (validation.type === validationTypes.array && rule.type === arrayValidations.numberOnly) {
+                    isNumberOnlyRuleArray(currentValue, rule, result);
+                }
+                if (validation.type === validationTypes.array && rule.type === arrayValidations.email) {
+                    isValidEmailRuleArray(currentValue, rule, result);
+                }
+                if (validation.type === validationTypes.array && rule.type === textValidations.length) {
+                    lengthRuleArray(currentValue, rule.minVal, rule.maxVal, rule, result);
+                }
+                if (validation.type === validationTypes.arrayWithTextElements && rule.type === textValidations.length) {
+                    rule.keyArray = validation.keyArray;
+                    rule.keyText = validation.keyText;
+                    arrayWithTextLengthRule(sourceMap.getIn(validation.keyArray), validation.keyText, rule.minVal, rule.maxVal, rule, result);
+                }
+                if (validation.type === validationTypes.arrayWithArrayElements && rule.type === arrayValidations.isRequired) {
+                    rule.keyArray = validation.keyArray;
+                    rule.keyText = validation.keyText;
+                    arrayWithArrayIsRequiredRule(sourceMap.getIn(validation.keyArray), validation.keyText, rule, result);
+                }
+                if (validation.type === validationTypes.dropdown && rule.type === dropdownValidations.isRequired) {
+                    isRequiredDropdownRule(currentValue, rule, result);
+                }
+            });
+        });
+    }
+    return result;
+};

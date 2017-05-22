@@ -26,7 +26,7 @@ class FileView extends Component {
                 break;
             default:
                 let extension = mapContentTypeToExtension(file.details.type);
-                if (extension !== 'unkown') {
+                if (extension !== 'unknown') {
                     content = <div className={styles.noPictureDocument}>{mapContentTypeToExtension(file.details.type)}</div>;
                 } else {
                     content = <div className={styles.noPictureDocumentInvalidType}>{extension}</div>;

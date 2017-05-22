@@ -1,21 +1,13 @@
+import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants.js';
+
 // Listing
 export const getListTableColumns = () => {
     return [
-        {name: 'Group Name', key: 'documentType'},
-        {name: 'Description of participation', key: 'documentDescription'},
-        {name: 'Type', key: 'extension'},
-        {name: 'Upload Date', key: 'createdDate'},
-        {name: 'Status', key: 'statusId'}
-    ];
-};
-
-export const getListTdStyles = () => {
-    return [
-        { width: '250px' },
-        { },
-        { width: '100px' },
-        { width: '150px' },
-        { width: '150px' }
+        {title: 'Group Name', name: 'documentType'},
+        {title: 'Document Description', name: 'documentDescription'},
+        {title: 'File Type', name: 'extension'},
+        {title: 'Upload Date', name: 'createdDate'},
+        {title: 'Status', name: 'statusId'}
     ];
 };
 
@@ -33,5 +25,25 @@ export const mapContentTypeToExtension = (contentType) => {
         'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'pptx'
     };
 
-    return config[contentType] || 'unkown';
+    return config[contentType] || 'unknown';
 };
+
+export function getDocumentTypeValidators() {
+    return {
+        key: ['fileType'],
+        type: validationTypes.dropdown,
+        rules: [
+            {type: dropdownValidations.isRequired, errorMessage: 'Please select a file type.'}
+        ]
+    };
+}
+
+export function getDocumentDescriptionValidators() {
+    return {
+        key: ['description'],
+        type: validationTypes.text,
+        rules: [
+            {type: textValidations.length, maxVal: 200, errorMessage: 'Description cannot exceeds 200 characters.'}
+        ]
+    };
+}
