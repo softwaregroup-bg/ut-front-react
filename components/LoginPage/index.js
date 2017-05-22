@@ -9,12 +9,15 @@ class LoginPage extends Component {
         return (
             <div className={styles.loginContainer}>
                 <div className={classnames(this.context.implementationStyle.loginLogoHeader, getClass(styles, 'loginLogo loginPageHeader'))} />
-                    <LoginForm />
+                    <LoginForm routerParams={this.props.params} />
                 <div className={classnames(this.context.implementationStyle.loginLogoFooter, getClass(styles, 'loginLogo loginPageFooter'))} />
             </div>
         );
     }
 }
+LoginPage.propTypes = {
+    params: PropTypes.object
+};
 
 LoginPage.contextTypes = {
     implementationStyle: PropTypes.object
