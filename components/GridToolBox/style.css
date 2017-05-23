@@ -57,7 +57,7 @@
     margin-right: 0;
 }
 
-.toolbarWrap .closeArrow, .advancedSearchIcon {
+.toolbarWrap .closeArrow, .advancedSearchIcon, .searchIcon {
     width: 30px;
     height: 30px;
     border: 1px solid var(--ut-front-react-standardGridToolBoxBorderColor);
@@ -97,6 +97,13 @@
 
 .barWrap .bar:last-child {
     padding-bottom: 0;
+}
+
+.searchIcon {
+    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
+    background-image: url('./images/search.png');
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .toolbarWrap .closeArrow:hover {
