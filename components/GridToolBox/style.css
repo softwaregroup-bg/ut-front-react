@@ -92,11 +92,11 @@
 .barWrap .bar {
     border-top: 2px solid white;
     width: 100%;
-    padding-bottom: 3px;
+    margin-bottom: 3px;
 }
 
 .barWrap .bar:last-child {
-    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .searchIcon {
