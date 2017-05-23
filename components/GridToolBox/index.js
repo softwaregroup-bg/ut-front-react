@@ -356,7 +356,13 @@ class GridToolBox extends Component {
     renderAdvancedButton() {
         let tooltipContent = this.getTooltip();
         let el = <div key={Math.random()} className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
-            <button className={classnames(style.toolbarElement, style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch}>&nbsp;</button>
+            <div className={classnames(style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch}>
+                <div className={style.barWrap}>
+                    <div className={style.bar} />
+                    <div className={style.bar} />
+                    <div className={style.bar} />
+                </div>
+            </div>
             {tooltipContent.length ? <div className={style.advancedSearchPopOver}>
                 {tooltipContent}
             </div> : null}
