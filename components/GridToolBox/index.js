@@ -11,7 +11,6 @@ import DatePickerBetween from './../DatePicker/Between';
 import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
-import StandardButton from '../StandardButton';
 import { Button } from 'reactstrap';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
@@ -434,6 +433,8 @@ class GridToolBox extends Component {
             leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by';
         }
 
+        let showSearchBtn = (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
+
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
                 <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
@@ -456,9 +457,9 @@ class GridToolBox extends Component {
                             }
                         })}
                         {this.renderAdvanced()}
-                       {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 &&
+                        {showSearchBtn &&
                             <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
-                                <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' />
+                                <div onClick={this.applyFilters} className={style.searchIcon} />
                             </div>}
                         {this.state.hasActiveFilters &&
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
@@ -696,7 +697,8 @@ GridToolBox.propTypes = {
                 filterElementTypes.datePickerBetween,
                 filterElementTypes.dateTimePickerBetween,
                 filterElementTypes.customSearch,
-                filterElementTypes.clear
+                filterElementTypes.clear,
+                filterElementTypes.searchBtn
             ]).isRequired,
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
