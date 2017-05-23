@@ -1,3 +1,60 @@
+<a name="9.4.3"></a>
+## [9.4.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.2...v9.4.3) (2017-05-22)
+
+
+
+<a name="9.4.2"></a>
+## [9.4.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.1...v9.4.2) (2017-05-22)
+
+
+
+<a name="9.4.1"></a>
+## [9.4.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.0...v9.4.1) (2017-05-22)
+
+
+
+<a name="9.4.0"></a>
+# [9.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.6...v9.4.0) (2017-05-22)
+
+
+### Bug Fixes
+
+* refactor ([0d08d89](https://github.com/softwaregroup-bg/ut-front-react/commit/0d08d89))
+* return as element instead of array ([7e506f6](https://github.com/softwaregroup-bg/ut-front-react/commit/7e506f6))
+* unindexed iteratees & dont render empty divisions ([0a62579](https://github.com/softwaregroup-bg/ut-front-react/commit/0a62579))
+
+
+
+<a name="9.3.6"></a>
+## [9.3.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.5...v9.3.6) (2017-05-22)
+
+
+
+<a name="9.3.5"></a>
+## [9.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.4...v9.3.5) (2017-05-22)
+
+
+
+<a name="9.3.4"></a>
+## [9.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.3...v9.3.4) (2017-05-19)
+
+
+### Bug Fixes
+
+* UIS-2654: add condition in the login.result ([4b691df](https://github.com/softwaregroup-bg/ut-front-react/commit/4b691df))
+
+
+
+<a name="9.3.3"></a>
+## [9.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.2...v9.3.3) (2017-05-19)
+
+
+### Bug Fixes
+
+* ABT-1494 add btnDisabled prop to ButtonInput component ([057d3ba](https://github.com/softwaregroup-bg/ut-front-react/commit/057d3ba))
+
+
+
 <a name="9.3.2"></a>
 ## [9.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.3.1...v9.3.2) (2017-05-18)
 
