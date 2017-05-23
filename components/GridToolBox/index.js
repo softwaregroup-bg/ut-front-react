@@ -355,7 +355,7 @@ class GridToolBox extends Component {
 
     renderAdvancedButton() {
         let tooltipContent = this.getTooltip();
-        let el = <div key={Math.random()} className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
+        let el = <div key='toggleAdv' className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
             <div className={classnames(style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch}>
                 <div className={style.barWrap}>
                     <div className={style.bar} />
@@ -456,7 +456,7 @@ class GridToolBox extends Component {
                             }
                         })}
                         {this.renderAdvanced()}
-                        {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 &&
+                       {!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0 &&
                             <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
                                 <StandardButton onClick={this.applyFilters} styleType='secondaryDark' label='Apply Search' />
                             </div>}
