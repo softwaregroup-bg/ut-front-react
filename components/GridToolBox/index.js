@@ -433,7 +433,9 @@ class GridToolBox extends Component {
             leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by';
         }
 
-        let showSearchBtn = (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
+        let showSearchBtn = (this.props.filterElements.find(f => {
+            return f.type === filterElementTypes.searchBtn;
+        }) !== undefined) || (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
 
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
