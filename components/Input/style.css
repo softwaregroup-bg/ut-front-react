@@ -71,6 +71,7 @@
 .outerWrap .inputWrap {
     width: 70%;
     vertical-align: middle;
+    margin: auto 0;
 }
 
 .hiddenHeight {
