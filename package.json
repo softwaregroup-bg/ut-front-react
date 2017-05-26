@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "9.4.4-input-vertical-center.1",
+  "version": "9.4.4-input-vertical-center.2",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
