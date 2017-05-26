@@ -29,8 +29,9 @@ export default class Record extends Component {
         const { data } = this.props;
         let isChecked = this.handleIsRowChecked();
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
+        let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
 
-        return classnames(this.getStyle('gridBodyTr'), this.getStyle('customClass'), rowCheckedClass, {
+        return classnames(this.getStyle('gridBodyTr'), this.getStyle(customClass), rowCheckedClass, {
             [`${style.localRecord}`]: this.props.local,
             [style[`${data._gridStatus}LocalRecord`]]: this.props.local
         });
@@ -44,7 +45,6 @@ export default class Record extends Component {
 
         let isChecked = this.handleIsRowChecked();
         let totalFields = fields.size - 1;
-        let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
         return (
             <tr onTouchTap={this.handleClick} className={this.rowClasses}>
                 {fields.map((field, idx) => (
@@ -84,7 +84,8 @@ Record.propTypes = {
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
     handleClick: PropTypes.func,
-    rowStyleField: PropTypes.string
+    rowStyleField: PropTypes.string,
+    local: PropTypes.bool
 };
 
 Record.defaultProps = {
