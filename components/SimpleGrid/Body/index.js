@@ -9,10 +9,30 @@ export class Body extends Component {
     }
     render() {
         let body;
+        let localDataBody;
         let space = <span>&nbsp;</span>;
         let fields = this.props.fields.filter((f) => (!(f.visible === false)));
         let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.globalMenu ? 1 : 0);
 
+        if (this.props.localData.length) {
+            localDataBody = this.props.localData.map((data, idx) => (
+                <Record
+                  local
+                  key={idx}
+                  recordIndex={idx}
+                  data={data}
+                  multiSelect={this.props.multiSelect}
+                  globalMenu={this.props.globalMenu}
+                  fields={fields}
+                  externalStyle={this.props.externalStyle}
+                  transformCellValue={this.props.transformCellValue}
+                  handleCheckboxSelect={this.props.handleCheckboxSelect}
+                  handleClick={this.props.handleRowClick}
+                  rowsChecked={this.props.rowsChecked}
+                  handleCellClick={this.props.handleCellClick}
+                  rowStyleField={this.props.rowStyleField} />
+            ));
+        }
         if (this.props.data.length) {
             if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= this.props.data.length) {
                 body = this.props.data.map((data, idx) => (
@@ -39,7 +59,11 @@ export class Body extends Component {
             body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
         }
         return (
-            <tbody>{body}</tbody>
+            <tbody>
+              {localDataBody}
+              {localDataBody && localDataBody.length && <tr className={style.dataTypeSeparator} />}
+              {body}
+            </tbody>
         );
     }
 }
@@ -51,6 +75,7 @@ Body.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     transformCellValue: PropTypes.func,
     data: propTypeData,
+    localData: PropTypes.array,
     emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,
@@ -63,6 +88,7 @@ Body.propTypes = {
 
 Body.defaultProps = {
     fields: [],
+    localData: [],
     data: []
 };
 

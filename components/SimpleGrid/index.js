@@ -43,6 +43,7 @@ export class SimpleGrid extends Component {
                   externalStyle={this.props.externalStyle}
                   fields={this.props.fields}
                   data={this.props.data}
+                  localData={this.props.localData}
                   emptyRowsMsg={this.props.emptyRowsMsg}
                   rowsRenderLimit={this.props.rowsRenderLimit}
                   rowsRenderLimitExceedMsg={this.props.rowsRenderLimitExceedMsg}
@@ -67,6 +68,7 @@ SimpleGrid.propTypes = {
         children: PropTypes.arrayOf(PropTypes.node).isRequired
     })),
     data: propTypeData,
+    localData: PropTypes.array,
     externalStyle: PropTypes.object,
     orderBy: PropTypes.array,
     orderDirections: PropTypes.object,
@@ -93,6 +95,7 @@ SimpleGrid.propTypes = {
 
 SimpleGrid.defaultProps = {
     fields: [],
+    localData: [],
     spanFields: [],
     data: [],
     rowsChecked: [],

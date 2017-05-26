@@ -24,6 +24,18 @@ export default class Record extends Component {
         }
         return fromJS(this.props.rowsChecked).includes(fromJS(this.props.data));
     }
+
+    get rowClasses() {
+        const { data } = this.props;
+        let isChecked = this.handleIsRowChecked();
+        let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
+
+        return classnames(this.getStyle('gridBodyTr'), this.getStyle('customClass'), rowCheckedClass, {
+            [`${style.localRecord}`]: this.props.local,
+            [style[`${data._gridStatus}LocalRecord`]]: this.props.local
+        });
+    }
+
     render() {
         let fields = fromJS(this.props.fields);
         if (this.props.multiSelect) {
@@ -31,11 +43,10 @@ export default class Record extends Component {
         }
 
         let isChecked = this.handleIsRowChecked();
-        let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
         let totalFields = fields.size - 1;
         let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
         return (
-            <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
+            <tr onTouchTap={this.handleClick} className={this.rowClasses}>
                 {fields.map((field, idx) => (
                     !field.get('internal')
                     ? <Column
