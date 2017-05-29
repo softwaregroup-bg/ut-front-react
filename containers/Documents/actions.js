@@ -50,7 +50,8 @@ export const fetchArchivedDocuments = (actorId, identifier) => {
         type: FETCH_ARCHIVED_DOCUMENTS,
         method: 'document.document.fetch',
         params: {
-            actorId
+            actorId,
+            isArchived: true
         },
         props: {
             identifier
