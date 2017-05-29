@@ -11,28 +11,24 @@ class Documents extends Component {
         this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
     }
 
-    componentWillMount() {
-        this.fetchDocs(this.props.actorId, true, this.props.isLoading);
-    }
-
     componentWillReceiveProps(nextProps) {
         if (this.props.actorId !== nextProps.actorId || nextProps.requiresFetch) {
-            this.fetchDocs(nextProps.actorId, nextProps.requiresFetch, nextProps.isLoading);
+            this.fetchDocs(nextProps.actorId, true, nextProps.isLoading, nextProps.identifier);
         }
         if (nextProps.selectedFilter === 'archived' && nextProps.documentArchived.get('requiresFetch')) {
-            this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'));
+            this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'), nextProps.identifier);
         }
     }
 
-    fetchDocs(actorId, requiresFetch, isLoading) {
+    fetchDocs(actorId, requiresFetch, isLoading, identifier) {
         if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchDocuments(actorId, this.props.identifier);
+            this.props.fetchDocuments(actorId, identifier);
         }
     }
 
-    fetchArchivedDocs(actorId, requiresFetch, isLoading) {
+    fetchArchivedDocs(actorId, requiresFetch, isLoading, identifier) {
         if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchArchivedDocuments(actorId, this.props.identifier);
+            this.props.fetchArchivedDocuments(actorId, identifier);
         }
     }
 
@@ -114,6 +110,7 @@ Documents.propTypes = {
 
 Documents.defaultProps = {
     requiresFetch: false,
+    isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };
