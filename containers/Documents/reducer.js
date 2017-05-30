@@ -39,7 +39,8 @@ const getDaultAttachmentObject = function() {
             requiresFetch: true,
             isLoading: false,
             data: []
-        }
+        },
+        editedBy: null
     };
 };
 
@@ -71,6 +72,7 @@ const documents = (state = defaultState, action) => {
                 if (action.result && action.result.document) {
                     const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
                     let newState = state.setIn([props.identifier, 'remoteDocuments', 'data'], Immutable.fromJS(fetchDocumentsResult))
+                                .setIn([props.identifier, 'editedBy'], Immutable.fromJS(action.result.lastUpdatedBy.updatedBy))
                                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
                                 .setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false))
                                 .setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(false));

@@ -325,7 +325,6 @@ Toolbox.propTypes = {
 };
 
 Toolbox.defaultProps = {
-    requiresFetch: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };
