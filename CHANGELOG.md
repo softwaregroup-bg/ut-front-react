@@ -1,3 +1,18 @@
+<a name="9.4.4"></a>
+## [9.4.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.3...v9.4.4) (2017-05-30)
+
+
+### Bug Fixes
+
+* add search btn ([f5d05cc](https://github.com/softwaregroup-bg/ut-front-react/commit/f5d05cc))
+* change advanced search icon ([d02a99b](https://github.com/softwaregroup-bg/ut-front-react/commit/d02a99b))
+* paddings ([ac63b1e](https://github.com/softwaregroup-bg/ut-front-react/commit/ac63b1e))
+* remove random key ([2d6d147](https://github.com/softwaregroup-bg/ut-front-react/commit/2d6d147))
+* search btn style ([4f25c58](https://github.com/softwaregroup-bg/ut-front-react/commit/4f25c58))
+* use margin instead of padding ([62c094b](https://github.com/softwaregroup-bg/ut-front-react/commit/62c094b))
+
+
+
 <a name="9.4.3"></a>
 ## [9.4.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.2...v9.4.3) (2017-05-22)
 
