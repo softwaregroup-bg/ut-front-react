@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "9.4.5-date-time-picker.0",
+  "version": "9.4.6-date-time-picker.0",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {

@@ -306,7 +306,8 @@ class GridToolBox extends Component {
                         key = `label${key.charAt(0).toUpperCase() + key.slice(1)}`;
 
                         content.push(<div key={idx + key}>
-                            <span><span className={style.bold}>{filter[key]}: </span> {value}</span>
+                            <span className={style.bold}>{filter[key]}: </span>
+                            <span> {value} </span>
                         </div>);
                     });
                     break;
@@ -319,14 +320,16 @@ class GridToolBox extends Component {
                         });
 
                         content.push(<div key={idx}>
-                            <span><span className={style.bold}>{filter.label}: </span> {obj[0].name}</span>
+                            <span className={style.bold}>{filter.label}: </span>
+                            <span>{obj[0].name}</span>
                         </div>);
                     }
                     break;
                 default:
                     if (filter.defaultValue) {
                         content.push(<div key={idx}>
-                            <span><span className={style.bold}>{filter.label}: </span> {filter.defaultValue}</span>
+                            <span className={style.bold}>{filter.label}: </span>
+                            <span>{filter.defaultValue}</span>
                         </div>);
                     }
                     break;
