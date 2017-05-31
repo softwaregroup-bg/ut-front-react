@@ -123,6 +123,7 @@
     border: 1px solid var(--ut-front-react-standardGridToolBoxAdvancedSearchBorderColor);
     z-index: 1;
     padding: 5px;
+    text-align: left;
 }
 
 .advancedSearchIcon:hover ~ .advancedSearchPopOver{
