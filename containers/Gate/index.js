@@ -31,14 +31,14 @@ class Gate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { cookieChecked, authenticated, result, forceLogOut, logout, params: {ssoOrigin} } = this.props;
+        let { cookieChecked, authenticated, result, forceLogOut, logout, params: {ssoOrigin, appId} } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
         if (!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated) {
             if (ssoOrigin) {
-                this.context.router.push('/sso/' + ssoOrigin + '/login');
+                this.context.router.push(`/sso/${appId}/${ssoOrigin}/login`);
             } else {
                 this.context.router.push('/login');
             }

@@ -20,11 +20,11 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { authenticated, shouldSubmit, routerParams: {ssoOrigin} } = this.props;
+        let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId} } = this.props;
 
         if (!authenticated && nextProps.authenticated) {
             if (ssoOrigin) {
-                this.context.router.push(`/sso/${ssoOrigin}`);
+                this.context.router.push(`/sso/${appId}/${ssoOrigin}`);
             } else {
                 this.context.router.push(this.context.mainUrl);
             }
@@ -76,8 +76,10 @@ class LoginForm extends Component {
     }
 
     submit(loginType, loginData) {
-        let { bioScan, identityCheck } = this.props;
-
+        let { bioScan, identityCheck, routerParams: {appId} } = this.props;
+        if (appId) {
+            loginData = loginData.set('appId', appId);
+        }
         loginType === 'bio' ? bioScan() : identityCheck(loginData);
     }
 
