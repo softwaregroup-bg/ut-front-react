@@ -1,16 +1,38 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
+
 import Accordion from '../Accordion';
 import CompareGridItem from './CompareGridItem';
+import CustomCompareGridItem from './CustomCompareGridItem';
+
 import styles from './styles.css';
 
-const CompareGrid = ({isNew, isDeleted, rejectReason, data, staticStrings}) => {
-    let renderItems = () => data.map((item, index) => {
-        if (item.get('data').size) {
-            return <CompareGridItem key={index} data={item} single={!!isNew || !!isDeleted || false} />;
-        }
-    });
-    return (
-        <div className={styles.wrapper}>
+export const titleTypes = {
+    current: 'current',
+    unapproved: 'unapproved'
+};
+
+export const titleMapper = {
+    current: (boxTitle) => (`information ${boxTitle || ''}`),
+    unapproved: (boxTitle) => (`updated information ${boxTitle || ''}`)
+};
+
+class CompareGrid extends Component {
+    renderItems() {
+        const { isNew, isDeleted, data } = this.props;
+        return data.map((item, index) => {
+            if (item.has('data') && item.get('data').size) {
+                return <CompareGridItem key={index} data={item} single={!!isNew || !!isDeleted || false} />;
+            }
+            if (item.has('customComponent') && item.get('customComponent').size) {
+                return <CustomCompareGridItem key={index} data={item} single={!!isNew || !!isDeleted || false} />;
+            }
+        });
+    }
+
+    render() {
+        const {isNew, isDeleted, rejectReason, staticStrings} = this.props;
+        return (
+          <div className={styles.wrapper}>
             {isNew && !isDeleted && <h1 className={styles.newEntity}>{staticStrings.headingIsNew}</h1>}
             {isDeleted && <h1 className={styles.rejectTextField}>{staticStrings.headingWillBeDeleted}</h1>}
             {rejectReason &&
@@ -28,10 +50,11 @@ const CompareGrid = ({isNew, isDeleted, rejectReason, data, staticStrings}) => {
                         </div>
                     </div>
                 </Accordion>}
-            {renderItems()}
-        </div>
-    );
-};
+            {this.renderItems()}
+          </div>
+        );
+    }
+}
 
 CompareGrid.propTypes = {
     staticStrings: PropTypes.shape({

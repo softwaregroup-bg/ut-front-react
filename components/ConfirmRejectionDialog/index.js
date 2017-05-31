@@ -65,6 +65,7 @@ class ConfirmRejectionDialog extends Component {
     render() {
         return (
             <Popup
+              fullWidth={!!this.props.fullWidth}
               isOpen={this.props.isOpen}
               header={{ text: this.title, closeIcon: false }}
               footer={{ actionButtons: this.actionButtons }} >
@@ -88,7 +89,8 @@ ConfirmRejectionDialog.propTypes = {
     changeConfirmDialogValue: PropTypes.func,
     message: PropTypes.string,
     canSubmit: PropTypes.bool,
-    value: PropTypes.string
+    value: PropTypes.string,
+    fullWidth: PropTypes.bool
 };
 
 export default ConfirmRejectionDialog;
