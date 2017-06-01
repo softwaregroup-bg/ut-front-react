@@ -36,6 +36,7 @@ class Gate extends Component {
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
+
         if (!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated) {
             if (ssoOrigin) {
                 this.context.router.push(`/sso/${appId}/${ssoOrigin}/login`);
@@ -48,6 +49,8 @@ class Gate extends Component {
             this.context.router.push('/login');
         } else if (!forceLogOut && nextProps.forceLogOut) {
             logout();
+        } else if (!nextProps.authenticated) {
+            this.context.router.push('/login');
         }
     }
 
