@@ -281,7 +281,7 @@ class Toolbox extends Component {
 
     render() {
         return (
-            <div className={style.documentsWrap}>
+            <div className={style.headerWrap}>
                 {this.header}
                 {this.detailsView}
                 {this.renderDocumentUplodDialog}
