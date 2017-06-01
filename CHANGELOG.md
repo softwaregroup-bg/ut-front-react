@@ -1,3 +1,15 @@
+<a name="9.4.6"></a>
+## [9.4.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.4...v9.4.6) (2017-06-01)
+
+
+### Bug Fixes
+
+* add app id ([58cb10d](https://github.com/softwaregroup-bg/ut-front-react/commit/58cb10d))
+* refactor tooltip ([b8a7008](https://github.com/softwaregroup-bg/ut-front-react/commit/b8a7008))
+* version ([6f0f753](https://github.com/softwaregroup-bg/ut-front-react/commit/6f0f753))
+
+
+
 <a name="9.4.4"></a>
 ## [9.4.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.3...v9.4.4) (2017-05-30)
 
