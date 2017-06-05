@@ -1,3 +1,13 @@
+<a name="9.4.7"></a>
+## [9.4.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.6...v9.4.7) (2017-06-05)
+
+
+### Bug Fixes
+
+* horizontal styles ([#279](https://github.com/softwaregroup-bg/ut-front-react/issues/279)) ([50588fe](https://github.com/softwaregroup-bg/ut-front-react/commit/50588fe))
+
+
+
 <a name="9.4.6"></a>
 ## [9.4.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.4...v9.4.6) (2017-06-01)
 
