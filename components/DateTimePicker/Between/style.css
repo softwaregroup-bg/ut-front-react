@@ -1,9 +1,14 @@
 .horizontalAlign {
     display: flex;
+    width: 920px;
 }
 
 .horizontalAlign>div:last-child {
     margin-left: 20px;
+}
+
+.horizontalAlign>div>div {
+    min-width: 350px;
 }
 
 .verticalAlign>div:last-child {
