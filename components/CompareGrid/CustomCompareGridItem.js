@@ -25,7 +25,7 @@ class CustomCompareGridItem extends Component {
             <div>
               <Accordion
                 title={data.get('title')}
-                marginBottom={styles.accordionBody}
+                marginBottom
                 externalBodyClasses={styles.accordionBody}
                 externalTitleClasses={styles.accordionTitle}
                 className={styles.accordion}
