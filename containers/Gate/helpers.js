@@ -12,7 +12,7 @@ export const checkPermission = (actions) => {
         if (!permissionsCache[action]) {
             permissionsCache[action] = permissionsRegExp.test(action);
         }
-    })
+    });
 
     var foundPermissions = 0;
     for (var i = 0; i < actions.length; i += 1) {
