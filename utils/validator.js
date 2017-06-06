@@ -93,11 +93,15 @@ export class Validator {
                 error: ''
             };
         }
-        const { validations, validateOrder } = this.config[input];
+        const { validations, validateOrder, cascadeParent } = this.config[input];
         let error = '';
 
         validateOrder.every((validationRule) => {
             let isValid = validators[validationRule](value, validations[validationRule], inputs);
+
+            if (cascadeParent && !inputs.get(cascadeParent)) {
+                isValid = true;
+            }
             if (!isValid) {
                 error = this.errorMapping[validationRule]({...validations, input});
             }
@@ -118,7 +122,7 @@ export class Validator {
         let computedData = inputs.get('data').merge(inputs.get('edited'));
         let keys = computedData.keySeq().toArray();
         keys.forEach((key) => {
-            let validationResult = this.validateInput(key, computedData.get(key));
+            let validationResult = this.validateInput(key, computedData.get(key), computedData);
             if (!validationResult.isValid) {
                 errors.push({
                     field: key,
