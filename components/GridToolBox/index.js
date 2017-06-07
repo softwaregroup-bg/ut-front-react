@@ -347,6 +347,8 @@ class GridToolBox extends Component {
                 case filterElementTypes.datePickerBetween:
                 case filterElementTypes.dateTimePickerBetween:
                     return previousValue + 2;
+                case filterElementTypes.searchBtn:
+                    return previousValue;
                 default:
                     return previousValue + 1;
             }
