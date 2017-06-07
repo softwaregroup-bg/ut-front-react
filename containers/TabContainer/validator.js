@@ -19,7 +19,7 @@ import { validationTypes as validationTypesTabContainer } from './constants';
 import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
-export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
+export const validateTab = (sourceMap, validations, customValidationObj, tabIndex, result, errors) => {
     result = result || { isValid: true, errors: [] };
     if (validations) {
         validations.forEach((validation) => {
@@ -29,11 +29,11 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                 let hasRaisedError = errors.getIn(validation.key);
                 if (hasRaisedError) {
                     result.isValid = false;
-                    let errosObj = {
+                    let errorObj = {
                         type: validationTypesTabContainer.hasRaisedError,
                         errorMessage: hasRaisedError
                     };
-                    result.errors.push(errosObj);
+                    result.errors.push(errorObj);
                 }
             } else {
                 let currentValue;
@@ -95,7 +95,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                         hasKeysRule(currentValue, rule, result);
                     }
 
-                    // custom for password hash in user -> credentials tab
+                    // custom for password hash in user -> credentials tab. TODO: Validator should NOT KNOW about user specific details!
                     if (validation.type === validationTypes.custom + 'passwordHash') {
                         let hashes = sourceMap.getIn(validation.sourceMapKey);
                         let passwordHash = hashes.find((hash) => hash.get('type') === 'password');
@@ -123,6 +123,18 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
             }
         });
     }
+
+    if (customValidationObj && customValidationObj.validate) {
+        var customValidationResult = customValidationObj.function(sourceMap);
+        if (customValidationResult) {
+            result.isValid = false;
+            result.errors.push({
+                tabIndex: tabIndex,
+                errorMessage: customValidationResult.errorMessage,
+                key: customValidationResult.key
+            });
+        }
+    }
     return result;
 };
 
@@ -130,7 +142,7 @@ export const validateAll = (sourceMap, tabs, errors) => {
     let result = { isValid: true, errors: [] };
 
     tabs.forEach((tab, index) => {
-        validateTab(sourceMap, tab.validations, index, result, errors);
+        validateTab(sourceMap, tab.validations, tab.customValidation, index, result, errors);
     });
 
     return result;
