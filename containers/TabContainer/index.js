@@ -108,9 +108,9 @@ class TabContainer extends Component {
 
         if (!this.props.allowTabSwithIfNotValid) {
             let tab = this.props.tabs[this.state.active];
-            let currentTabIsValid = validateTab(this.props.sourceMap, tab.validations, index - 1, undefined, errors);
-            if (tab.customValidation) {
-                let customError = tab.customValidationFunction(this.props.sourceMap);
+            let currentTabIsValid = validateTab(this.props.sourceMap, tab.validations, undefined, index - 1, undefined, errors);
+            if (tab.customValidation && tab.customValidation.validate) {
+                let customError = tab.customValidation.function(this.props.sourceMap);
                 if (customError) {
                     currentTabIsValid.isValid = false;
                     currentTabIsValid.errors.push(customError);
@@ -136,8 +136,8 @@ class TabContainer extends Component {
                         if (validation.key) {
                             return validation.key[validation.key.length - 1] === errKey;
                         } else if (validation.keyText && validation.keyArray) { // Array with text case
-                            let concatedErrorKey = validation.keyArray[validation.keyArray.length - 1] + '-' + validation.keyText[validation.keyText.length - 1] + '-';
-                            return errKey.indexOf(concatedErrorKey) >= 0;
+                            let concatErrorKey = validation.keyArray[validation.keyArray.length - 1] + '-' + validation.keyText[validation.keyText.length - 1] + '-';
+                            return errKey.indexOf(concatErrorKey) >= 0;
                         } else {
                             return null;
                         }
@@ -147,8 +147,10 @@ class TabContainer extends Component {
                         tabErrors[tabIndex] += 1;
                     }
                 }
-                if (tab.customValidation && tab.customValidationKeys.indexOf(errKey) > -1) {
-                    tabErrors[tabIndex] += 1;
+                if (tab.customValidation && tab.customValidation.validate) {
+                    if (tab.customValidation.validationKeys && tab.customValidation.validationKeys[tab.customValidation.validationKeys.length - 1] === errKey) {
+                        tabErrors[tabIndex] += 1;
+                    }
                 }
             });
         });

@@ -7,7 +7,7 @@ const numbersOnlyRegex = /^[0-9]+$/;
 
 /* Text Validation */
 export const isRequiredRule = (prop, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0) {
@@ -17,7 +17,7 @@ export const isRequiredRule = (prop, rule, result) => {
 };
 
 export const lengthRule = (val, minVal, maxVal, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     let trimmedValue = val ? (val.trim ? val.trim() : val) : '';
     if (trimmedValue && (trimmedValue.length < minVal || trimmedValue.length > maxVal)) {
@@ -30,7 +30,7 @@ export const regexRule = (val, regex, rule, result) => {
     if (!val) {
         return true;
     }
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     var regexPattern = new RegExp(regex);
     var regexResult = regexPattern.test(val);
@@ -41,7 +41,7 @@ export const regexRule = (val, regex, rule, result) => {
 };
 
 export const isUniqueValueRule = (val, values, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     if (values.indexOf(val) > -1) {
         result.isValid = false;
@@ -57,7 +57,7 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
         return;
     }
 
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0 || prop === '__placeholder__') {
@@ -70,7 +70,7 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
 /* Array Validation */
 
 export const lengthRuleArray = (values, minVal, maxVal, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
     values.forEach(val => {
         let value = val.get('value') || val.get('phoneNumber');
         if (value && (value.length < minVal || value.length > maxVal)) {
@@ -81,7 +81,7 @@ export const lengthRuleArray = (values, minVal, maxVal, rule, result) => {
 };
 
 export const isRequiredArrayRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     if (!props || (props && props.size <= 0)) {
         result.isValid = false;
@@ -92,7 +92,7 @@ export const isRequiredArrayRule = (props, rule, result) => {
 
 /* Array with Text Validation */
 export const arrayWithTextLengthRule = (array, textProp, minVal, maxVal, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
@@ -105,7 +105,7 @@ export const arrayWithTextLengthRule = (array, textProp, minVal, maxVal, rule, r
 };
 
 export const arrayWithTextisRequiredRule = (array, textProp, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
@@ -119,7 +119,7 @@ export const arrayWithTextisRequiredRule = (array, textProp, rule, result) => {
 };
 
 export const arrayWithTextisRequiredRuleOptional = (array, textProp, shouldValidateProp, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let shouldValidate = item.getIn(shouldValidateProp);
@@ -142,7 +142,7 @@ export const arrayWithTextisRequiredRuleOptional = (array, textProp, shouldValid
 };
 
 export const arrayWithTextisNumberOnlyRuleOptional = (array, textProp, shouldValidateProp, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let shouldValidate = item.getIn(shouldValidateProp);
@@ -159,7 +159,7 @@ export const arrayWithTextisNumberOnlyRuleOptional = (array, textProp, shouldVal
 };
 
 export const arrayWithTextisNumberOnlyRule = (array, textProp, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
@@ -172,7 +172,7 @@ export const arrayWithTextisNumberOnlyRule = (array, textProp, rule, result) => 
 };
 
 export const arrayWithArrayIsRequiredRule = (array, textProp, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
@@ -185,7 +185,7 @@ export const arrayWithArrayIsRequiredRule = (array, textProp, rule, result) => {
 };
 
 export const arrayWithDropdownIsRequiredRule = (array, textProp, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     array.forEach((item, index) => {
         let currentValue = item.getIn(textProp);
@@ -201,7 +201,7 @@ export const arrayWithDropdownIsRequiredRule = (array, textProp, rule, result) =
 
 /* Dropdown Validation */
 export const isRequiredDropdownRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     if (!props) {
         result.isValid = false;
@@ -213,7 +213,7 @@ export const isRequiredDropdownRule = (props, rule, result) => {
 /* Default role validation */
 
 export const defaultRoleRule = (props, roles, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     let assignedRoles = roles.filter(role => (role.get('isAssigned')));
     if (!props && assignedRoles.size > 0) {
@@ -227,7 +227,7 @@ export const defaultRoleRule = (props, roles, rule, result) => {
 /* isNumber validation */
 
 export const isNumberOnlyRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     if (props !== '' && !(numbersOnlyRegex.test(props))) {
         result.isValid = false;
@@ -238,7 +238,7 @@ export const isNumberOnlyRule = (props, rule, result) => {
 /* End isNumber validation */
 
 export const isIntegerOnlyRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     let regex = /^-?\d+$/;
     if (props && !(regex.test(props))) {
@@ -248,7 +248,7 @@ export const isIntegerOnlyRule = (props, rule, result) => {
 };
 
 export const isIntegerRangeRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
     isIntegerOnlyRule(props, rule, result);
     if (result.isValid) {
         let value = parseInt(props);
@@ -279,7 +279,7 @@ export const isIntegerRangeRule = (props, rule, result) => {
  * @param {Number} scale - number of characters after the decimal point.
  */
 export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
     if (!value) {
         return true;
     }
@@ -297,7 +297,7 @@ export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
 /* Is valid email validation */
 
 export const isValidEmailRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     let regex = /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
     if (props !== '' && !(regex.test(props))) {
@@ -310,7 +310,7 @@ export const isValidEmailRule = (props, rule, result) => {
 /* isNumber array validation */
 
 export const isNumberOnlyRuleArray = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
     let propsMutable = immutable.Iterable.isIterable(props) ? props.toJS() : props;
     propsMutable.forEach(prop => {
         let value = prop.value || prop.phoneNumber;
@@ -327,7 +327,7 @@ export const isNumberOnlyRuleArray = (props, rule, result) => {
 
 export const isValidEmailRuleArray = (props, rule, result) => {
     let regex = /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
 
     props.forEach(prop => {
         if (prop.get('value') !== '' && !(regex.test(prop.get('value')))) {
@@ -342,7 +342,7 @@ export const isValidEmailRuleArray = (props, rule, result) => {
 /* Object validation */
 
 export const hasKeysRule = (props, rule, result) => {
-    checkPasedResultObject(result);
+    checkPassedResultObject(result);
     if (props.keySeq().size <= 0) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -351,7 +351,7 @@ export const hasKeysRule = (props, rule, result) => {
 
 /* End Object validation */
 
-function checkPasedResultObject(result) {
+function checkPassedResultObject(result) {
     result = result || {};
     result.errors = result.errors || [];
 }
