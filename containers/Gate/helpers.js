@@ -3,12 +3,24 @@ import dateFormat from 'date-fns/format';
 let permissionsCache = {};
 let permissionsRegExp = [];
 
-export const checkPermission = (action) => {
-    if (!permissionsCache[action]) {
-        permissionsCache[action] = permissionsRegExp.test(action);
+export const checkPermission = (actions) => {
+    if (!Array.isArray(actions)) {
+        actions = [actions];
     }
 
-    return permissionsCache[action];
+    actions.forEach((action) => {
+        if (!permissionsCache[action]) {
+            permissionsCache[action] = permissionsRegExp.test(action);
+        }
+    });
+
+    var foundPermissions = 0;
+    for (var i = 0; i < actions.length; i += 1) {
+        if (permissionsCache[actions[i]]) {
+            foundPermissions++;
+        }
+    }
+    return foundPermissions === actions.length;
 };
 
 export const setPermissions = (permissions) => {

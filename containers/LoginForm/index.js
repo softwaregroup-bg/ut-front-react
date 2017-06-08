@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck, bioScan } from './actions';
+import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -32,6 +32,16 @@ class LoginForm extends Component {
 
         if (!shouldSubmit && nextProps.shouldSubmit) {
             this.submit(nextProps.loginType, nextProps.loginData);
+        }
+    }
+
+    componentWillMount() {
+        const { loginData, clearLoginState } = this.props;
+
+        // if there is previusly stored loginData, reset login state
+        // this happens in cases when the user is logged in and navigates to /login again
+        if (loginData.get('username') || loginData.get('password')) {
+            clearLoginState();
         }
     }
 
@@ -113,7 +123,7 @@ export default connect(
             loginType: login.get('loginType')
         };
     },
-    { setInputValue, validateForm, identityCheck, bioScan }
+    { setInputValue, validateForm, identityCheck, bioScan, clearLoginState }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -130,7 +140,8 @@ LoginForm.propTypes = {
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,
-    bioScan: PropTypes.func
+    bioScan: PropTypes.func,
+    clearLoginState: PropTypes.func
 };
 
 LoginForm.contextTypes = {

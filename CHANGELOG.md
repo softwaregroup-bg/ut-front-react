@@ -1,3 +1,43 @@
+<a name="9.4.11"></a>
+## [9.4.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.10...v9.4.11) (2017-06-08)
+
+
+### Bug Fixes
+
+* send correct params on identity check ([3d72363](https://github.com/softwaregroup-bg/ut-front-react/commit/3d72363))
+
+
+
+<a name="9.4.10"></a>
+## [9.4.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.9...v9.4.10) (2017-06-08)
+
+
+### Bug Fixes
+
+* rm search button from filter count ([2898ac4](https://github.com/softwaregroup-bg/ut-front-react/commit/2898ac4))
+
+
+
+<a name="9.4.9"></a>
+## [9.4.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.8...v9.4.9) (2017-06-07)
+
+
+
+<a name="9.4.8"></a>
+## [9.4.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.7...v9.4.8) (2017-06-06)
+
+
+
+<a name="9.4.7"></a>
+## [9.4.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.6...v9.4.7) (2017-06-05)
+
+
+### Bug Fixes
+
+* horizontal styles ([#279](https://github.com/softwaregroup-bg/ut-front-react/issues/279)) ([50588fe](https://github.com/softwaregroup-bg/ut-front-react/commit/50588fe))
+
+
+
 <a name="9.4.6"></a>
 ## [9.4.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.4...v9.4.6) (2017-06-01)
 
