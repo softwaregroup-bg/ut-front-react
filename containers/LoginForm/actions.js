@@ -35,11 +35,11 @@ export const bioScan = () => ({
     suppressErrorWindow: true
 });
 
-export const cookieCheck = () => ({
+export const cookieCheck = (params) => ({
     type: COOKIE_CHECK,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: {channel: 'web'}
+    params: Object.assign({channel: 'web'}, (params || {}))
 });
 
 export const validateForm = () => ({
