@@ -25,9 +25,9 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        let { cookieCheck } = this.props;
+        let { cookieCheck, params: {appId} } = this.props;
 
-        cookieCheck();
+        cookieCheck({appId});
     }
 
     componentWillReceiveProps(nextProps) {
