@@ -1,3 +1,13 @@
+<a name="9.4.12"></a>
+## [9.4.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.11...v9.4.12) (2017-06-12)
+
+
+### Bug Fixes
+
+* version bump ([e5fdaba](https://github.com/softwaregroup-bg/ut-front-react/commit/e5fdaba))
+
+
+
 <a name="9.4.11"></a>
 ## [9.4.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.10...v9.4.11) (2017-06-08)
 
