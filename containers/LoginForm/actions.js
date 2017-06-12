@@ -1,4 +1,12 @@
-import { LOGIN, BIO_LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
+import {
+    LOGIN,
+    BIO_LOGIN,
+    COOKIE_CHECK,
+    VALIDATE_FORM,
+    LOGOUT,
+    SET_INPUT_VALUE,
+    CLEAR_LOGIN_STATE
+} from './actionTypes';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -27,11 +35,11 @@ export const bioScan = () => ({
     suppressErrorWindow: true
 });
 
-export const cookieCheck = () => ({
+export const cookieCheck = (params) => ({
     type: COOKIE_CHECK,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: {channel: 'web'}
+    params: Object.assign({channel: 'web'}, (params || {}))
 });
 
 export const validateForm = () => ({
@@ -42,5 +50,10 @@ export const logout = (params) => ({
     type: LOGOUT,
     method: 'identity.closeSession',
     suppressErrorWindow: true,
+    params: {}
+});
+
+export const clearLoginState = () => ({
+    type: CLEAR_LOGIN_STATE,
     params: {}
 });

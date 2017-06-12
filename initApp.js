@@ -9,9 +9,9 @@ const App = ({routes, extLayout, extMaster}) => {
     return (
         <Route>
             <Route path='/login' component={LoginPage} />
-            <Route path='/sso/:ssoOrigin/login' component={LoginPage} />
+            <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
             <Route component={Gate}>
-                <Route path='/sso/:ssoOrigin' component={SsoPage} />
+                <Route path='/sso/:appId/:ssoOrigin' component={SsoPage} />
                 <Route component={extMaster || Master}>
                     <Route component={extLayout || Layout}>
                         {routes}

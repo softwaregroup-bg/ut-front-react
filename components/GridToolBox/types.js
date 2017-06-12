@@ -5,7 +5,8 @@ export const filterElementTypes = {
     datePickerBetween: 'datePickerBetween',
     dateTimePickerBetween: 'dateTimePickerBetween',
     customSearch: 'customSearch',
-    clear: 'clear'
+    clear: 'clear',
+    searchBtn: 'searchBtn'
 };
 
 // Important: when adding new type -> add it respectively to GridToolbox PropTypes
