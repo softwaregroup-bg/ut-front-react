@@ -47,7 +47,8 @@ class DateTimePickerBetween extends Component {
             dateFormat,
             timeFormat,
             transformDate,
-            transformTime
+            transformTime,
+            innerWrapperClassName
         } = this.props;
 
         let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
@@ -61,6 +62,7 @@ class DateTimePickerBetween extends Component {
                       timeFormat={timeFormat}
                       transformDate={transformDate}
                       transformTime={transformTime}
+                      innerWrapperClassName={innerWrapperClassName}
                       locale={locale}
                       label={labelFrom}
                       okLabel={okLabel}
@@ -75,6 +77,7 @@ class DateTimePickerBetween extends Component {
                       dateFormat={dateFormat}
                       timeFormat={timeFormat}
                       transformDate={transformDate}
+                      innerWrapperClassName={innerWrapperClassName}
                       transformTime={transformTime}
                       locale={locale}
                       label={labelTo}
@@ -106,7 +109,8 @@ DateTimePickerBetween.propTypes = {
     onChange: PropTypes.func.isRequired,
     boldLabel: PropTypes.bool,
     transformDate: PropTypes.func,
-    transformTime: PropTypes.func
+    transformTime: PropTypes.func,
+    innerWrapperClassName: PropTypes.string
 };
 
 export default DateTimePickerBetween;
