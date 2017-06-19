@@ -24,7 +24,7 @@ class DocumentsContainer extends Component {
     }
 
     componentWillMount() {
-        this.initState(this.props.identifier, this.props.excludeAttachmentIds, this.props.pathname);
+        this.initState(this.props.identifier, this.props.pathname);
     }
 
     componentDidMount() {
@@ -32,13 +32,13 @@ class DocumentsContainer extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.initState(newProps.identifier, newProps.excludeAttachmentIds, newProps.pathname);
+        this.initState(newProps.identifier, newProps.pathname);
         this.fetchDocumentTypes(newProps.documentTypes.get('requiresFetch'), newProps.documentTypes.get('isLoading'));
     }
 
-    initState(identifier, excludeAttachmentIds, pathname) {
+    initState(identifier, pathname) {
         if (this.props.attachments.get(identifier) === undefined) {
-            this.props.initState(identifier, excludeAttachmentIds, pathname);
+            this.props.initState(identifier, pathname);
         }
     }
 
