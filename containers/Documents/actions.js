@@ -12,12 +12,11 @@ import {
     RESET_DOCUMENT_STATE
 } from './actionTypes';
 
-export function initState(identifier, excludeIdsList, pathname) {
+export function initState(identifier, pathname) {
     return {
         type: INIT_DOCUMENTS_STATE,
         params: {
             identifier,
-            excludeIdsList,
             pathname
         }
     };

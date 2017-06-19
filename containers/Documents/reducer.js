@@ -1,7 +1,6 @@
 import Immutable from 'immutable';
 import {
     INIT_DOCUMENTS_STATE,
-    FETCH_DOCUMENTS,
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     FETCH_DOCUMENT_TYPES,
@@ -16,15 +15,10 @@ import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
 import { parseFetchDocumentsResult, combineAttachments } from './helpers';
 
-const getDaultAttachmentObject = function() {
+const getDefaultAttachmentObject = function() {
     return {
         attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
         deletedList: [], // if you need all deleted attachments, subscribe to this object in mapstatetoprops
-        remoteDocuments: {
-            requiresFetch: true,
-            isLoading: false,
-            data: []
-        },
         changedDocuments: [],
         excludeIdsList: [],
         selected: null,
@@ -51,8 +45,7 @@ const documents = (state = defaultState, action) => {
 
     switch (type) {
         case INIT_DOCUMENTS_STATE:
-            return state.setIn([action.params.identifier], Immutable.fromJS(getDaultAttachmentObject()))
-                        .setIn([action.params.identifier, 'excludeIdsList'], Immutable.fromJS(action.params.excludeIdsList))
+            return state.setIn([action.params.identifier], Immutable.fromJS(getDefaultAttachmentObject()))
                         .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
         case REMOVE_TAB:
             let documentObjects = Object.keys(state.toJS());
@@ -64,23 +57,6 @@ const documents = (state = defaultState, action) => {
             return state;
         case RESET_DOCUMENT_STATE:
             return state.delete(action.props.identifier);
-        case FETCH_DOCUMENTS:
-            if (action.methodRequestState === methodRequestState.REQUESTED) {
-                return state.setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(true))
-                            .setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(false));
-            } else if (action.methodRequestState === methodRequestState.FINISHED) {
-                if (action.result && action.result.document) {
-                    const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
-                    let newState = state.setIn([props.identifier, 'remoteDocuments', 'data'], Immutable.fromJS(fetchDocumentsResult))
-                                .setIn([props.identifier, 'editedBy'], Immutable.fromJS(action.result.lastUpdatedBy.updatedBy))
-                                .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
-                                .setIn([props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false))
-                                .setIn([props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(false));
-                    newState = combineAttachments(newState.get(props.identifier));
-                    return state.set(props.identifier, newState);
-                }
-            }
-            return state;
         case FETCH_ARCHIVED_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.REQUESTED) {
                 return state.setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(true))
