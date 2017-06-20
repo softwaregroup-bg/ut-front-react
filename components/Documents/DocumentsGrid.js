@@ -25,7 +25,7 @@ class DocumentsGrid extends Component {
                 break;
             case 'documentDescription':
                 if (obj.description) {
-                    return capitalizeFirstLetter(obj.description);
+                    return obj.description;
                 } else {
                     return <span className={style.fileDetailsNoText}><Text>(no description)</Text></span>;
                 }
