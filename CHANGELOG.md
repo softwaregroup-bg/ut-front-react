@@ -1,3 +1,13 @@
+<a name="9.6.0"></a>
+# [9.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.5.0...v9.6.0) (2017-06-20)
+
+
+### Features
+
+* additional datepicker wrapper classNames ([3447452](https://github.com/softwaregroup-bg/ut-front-react/commit/3447452))
+
+
+
 <a name="9.5.0"></a>
 # [9.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.15...v9.5.0) (2017-06-20)
 
