@@ -42,7 +42,7 @@ export default class DatePicker extends Component {
         let dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
 
         return (
-            <div className={style.wrap}>
+            <div className={classnames(style.wrap, this.props.wrapperClassName)}>
                 {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
@@ -93,6 +93,7 @@ DatePicker.propTypes = {
     boldLabel: PropTypes.bool,
     DateTimeFormat: PropTypes.func,
     onChange: PropTypes.func,
+    wrapperClassName: PropTypes.string,
     wrapperStyles: PropTypes.object,
     iconStyles: PropTypes.object,
     minDate: PropTypes.object,
