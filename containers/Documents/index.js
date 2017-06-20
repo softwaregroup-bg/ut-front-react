@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import immutable from 'immutable';
+import { documentTmpUploadPrefix } from '../../constants';
 import {
     initState,
     fetchDocuments,
@@ -54,6 +55,7 @@ class DocumentsContainer extends Component {
             actorId,
             attachments,
             documents,
+            documentsChanged,
             fetchDocuments,
             fetchArchivedDocuments,
             selectAttachments,
@@ -72,6 +74,7 @@ class DocumentsContainer extends Component {
               identifier={identifier}
               actorId={actorId}
               documents={documents}
+              documentsChanged={documentsChanged.toJS()}
               selectedAttachment={selectedAttachment}
               // updatedAttachments={this.props.updatedAttachments}
               requiresFetch={requiresFetch}
@@ -83,7 +86,22 @@ class DocumentsContainer extends Component {
               documentTypes={docTypes}
               excludeAttachmentIds={excludeAttachmentIds}
               uploadNewDocument={(newObject) => {
-                  this.props.addDocument(identifier, newObject);
+                  let formatedObj = {
+                      createdDate: newObject.createdDate,
+                      description: newObject.documentDescription,
+                      documentType: newObject.documentType,
+                      documentTypeId: newObject.documentTypeId,
+                      statusId: newObject.statusId,
+                      attachments: [
+                          {
+                              filename: newObject.filename,
+                              extension: newObject.extension,
+                              contentType: newObject.contentType,
+                              url: documentTmpUploadPrefix + newObject.filename
+                          }
+                      ]
+                  };
+                  this.props.addDocument(identifier, formatedObj);
               }}
               replaceDocument={(replaceObject) => {
                   this.props.replaceDocument(identifier, replaceObject);
@@ -107,8 +125,9 @@ class DocumentsContainer extends Component {
 DocumentsContainer.propTypes = {
     identifier: DocumentsListing.propTypes.identifier,
     actorId: DocumentsListing.propTypes.actorId,
-    attachments: PropTypes.object, // immutable object
+    attachments: PropTypes.object, // immutable list
     documents: PropTypes.array,
+    documentsChanged: PropTypes.object, // immutable list
     fetchDocuments: DocumentsListing.propTypes.fetchDocuments,
     fetchArchivedDocuments: DocumentsListing.propTypes.fetchDocuments,
     initState: PropTypes.func,
@@ -133,6 +152,7 @@ export default connect(
     ({frontDocuments}, props) => {
         return {
             attachments: frontDocuments,
+            documentsChanged: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([]),
             documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
             selectedFilter: frontDocuments.getIn([props.identifier, 'selectedFilter']),
             documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})

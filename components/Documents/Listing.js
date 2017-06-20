@@ -51,14 +51,18 @@ class Documents extends Component {
         );
     }
 
+    get mergeDocuments() {
+        return this.props.documentsChanged.concat(this.props.documents);
+    }
+
     render() {
-        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        let { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>
                     <DocumentsGrid
                       identifier={identifier}
-                      documents={documents}
+                      documents={this.mergeDocuments}
                       selectedFilter={selectedFilter}
                       documentArchived={documentArchived}
                       onGridSelect={onGridSelect}
@@ -78,6 +82,7 @@ Documents.propTypes = {
     identifier: PropTypes.string.isRequired,
     actorId: PropTypes.number,
     documents: PropTypes.array,
+    documentsChanged: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     requiresFetch: PropTypes.bool,
     isLoading: PropTypes.bool,

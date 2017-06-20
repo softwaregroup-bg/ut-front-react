@@ -46,10 +46,10 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
                 statusId: item.statusId
             });
             attachments.push({
-                contentType: item.contentType,
+                contentType: item.attachments[0].contentType,
                 documentId: docId,
                 attachmentSizeId: 'original',
-                extension: item.extension
+                extension: item.attachments[0].extension
             });
             if (item.attachmentId) {
                 attachments[(attachments.length - 1)].attachmentId = item.attachmentId;
