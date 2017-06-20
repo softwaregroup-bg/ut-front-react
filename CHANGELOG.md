@@ -1,3 +1,13 @@
+<a name="9.4.15"></a>
+## [9.4.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.14...v9.4.15) (2017-06-20)
+
+
+### Bug Fixes
+
+* purify function ([336dca2](https://github.com/softwaregroup-bg/ut-front-react/commit/336dca2))
+
+
+
 <a name="9.4.14"></a>
 ## [9.4.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.13...v9.4.14) (2017-06-19)
 
