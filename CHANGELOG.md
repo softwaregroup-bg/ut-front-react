@@ -1,3 +1,13 @@
+<a name="9.5.0"></a>
+# [9.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.15...v9.5.0) (2017-06-20)
+
+
+### Features
+
+* add classes to control datetime picker input styles and add onchange event on search input UIS-2550 ([#289](https://github.com/softwaregroup-bg/ut-front-react/issues/289)) ([a4fc016](https://github.com/softwaregroup-bg/ut-front-react/commit/a4fc016))
+
+
+
 <a name="9.4.15"></a>
 ## [9.4.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.14...v9.4.15) (2017-06-20)
 

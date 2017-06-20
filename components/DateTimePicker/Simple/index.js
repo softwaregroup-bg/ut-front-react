@@ -55,7 +55,6 @@ class DateTimePicker extends Component {
     }
     handleAccept(ref) {
         let {defaultValue} = this.props;
-
         let currentDate = new Date(defaultValue);
         return (newDate) => {
             if (newDate === currentDate) {
@@ -106,7 +105,7 @@ class DateTimePicker extends Component {
         return null;
     }
     render() {
-        let { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container } = this.props;
+        let { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
         let { defaultValue } = this.props;
 
         let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
@@ -121,7 +120,7 @@ class DateTimePicker extends Component {
         return (
             <div className={outerWrapStyle}>
                  {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
-                <div className={style.innerWrap}>
+                <div className={classnames(style.innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
                         <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
@@ -174,7 +173,8 @@ DateTimePicker.propTypes = {
     onChange: PropTypes.func.isRequired,
     boldLabel: PropTypes.bool,
     transformDate: PropTypes.func,
-    transformTime: PropTypes.func
+    transformTime: PropTypes.func,
+    innerWrapperClassName: PropTypes.string
 };
 
 DateTimePicker.contextTypes = {
