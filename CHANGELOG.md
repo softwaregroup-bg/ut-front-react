@@ -1,3 +1,28 @@
+<a name="9.4.15"></a>
+## [9.4.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.14...v9.4.15) (2017-06-20)
+
+
+### Bug Fixes
+
+* purify function ([336dca2](https://github.com/softwaregroup-bg/ut-front-react/commit/336dca2))
+
+
+
+<a name="9.4.14"></a>
+## [9.4.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.13...v9.4.14) (2017-06-19)
+
+
+### Bug Fixes
+
+* added classes to every column for distinguish if given column is in span ([681b717](https://github.com/softwaregroup-bg/ut-front-react/commit/681b717))
+
+
+
+<a name="9.4.13"></a>
+## [9.4.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.12...v9.4.13) (2017-06-15)
+
+
+
 <a name="9.4.12"></a>
 ## [9.4.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.11...v9.4.12) (2017-06-12)
 
