@@ -82,8 +82,8 @@ export class SimpleGrid extends Component {
     }
     render() {
         var newSpanFields = this.props.spanFields.map((c) => {
-            c.shortName = c.children.join('-').toLowerCase();
-            return {shortName: c.shortName, title: c.title, children: c.children};
+            let shortName = c.children.join('-').toLowerCase();
+            return {shortName: shortName, title: c.title, children: c.children};
         });
         var iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         var fields = iFields.toJS();
