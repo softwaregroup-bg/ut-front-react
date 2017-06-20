@@ -22,7 +22,7 @@ class Toolbox extends Component {
     }
 
     get header() {
-        let { selectedAttachment, deleteDocument, selectedFilter, activeAttachments, documentArchived, archiveDocument } = this.props;
+        let { selectedAttachment, deleteDocument, selectedFilter, documents, documentArchived, archiveDocument } = this.props;
 
         let addNewDocumentHandler = () => {
             this.setState({
@@ -92,7 +92,7 @@ class Toolbox extends Component {
             });
         }
         let displayButtons = false;
-        if ((selectedFilter === 'all' && activeAttachments && activeAttachments.size > 0) ||
+        if ((selectedFilter === 'all' && documents && documents.length > 0) ||
             (selectedFilter === 'archived' && documentArchived && documentArchived.get('data') && documentArchived.get('data').size > 0)) {
             displayButtons = true;
         }
@@ -234,12 +234,12 @@ class Toolbox extends Component {
                 this.setState({ showDetailsPopUp: false });
             };
             let file = {
-                content: selectedAttachment.get('url'),
+                content: selectedAttachment.getIn(['attachments', 0, 'url']),
                 details: {
-                    type: selectedAttachment.get('contentType'),
-                    size: selectedAttachment.get('attachmentSizeId'),
+                    type: selectedAttachment.getIn(['attachments', 0, 'contentType']),
+                    size: selectedAttachment.getIn(['attachments', 0, 'attachmentSizeId']),
                     dateUploaded: selectedAttachment.get('createdDate'),
-                    description: selectedAttachment.get('documentDescription'),
+                    description: selectedAttachment.get('description'),
                     width: selectedAttachment.get('width'),
                     height: selectedAttachment.get('height')
                 }
@@ -291,7 +291,7 @@ class Toolbox extends Component {
 }
 
 Toolbox.propTypes = {
-    activeAttachments: PropTypes.object, // immutable list
+    documents: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     documentArchived: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
