@@ -46,6 +46,7 @@ export default class Record extends Component {
                       data={this.props.data}
                       handleClick={this.props.handleCellClick}
                       field={field.toJS()}
+                      externalStyle={this.props.externalStyle}
                     />
                     : <MultiSelectColumn
                       field={field.toJS()}
