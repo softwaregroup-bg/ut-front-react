@@ -36,7 +36,7 @@ class Documents extends Component {
         return (
             <Toolbox
               selectedAttachment={this.props.selectedAttachment}
-              activeAttachments={this.props.activeAttachments}
+              documents={this.props.documents}
               documentArchived={this.props.documentArchived}
               selectedFilter={this.props.selectedFilter}
               changeDocumentFilter={this.props.changeDocumentFilter}
@@ -52,13 +52,13 @@ class Documents extends Component {
     }
 
     render() {
-        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>
                     <DocumentsGrid
                       identifier={identifier}
-                      activeAttachments={activeAttachments}
+                      documents={documents}
                       selectedFilter={selectedFilter}
                       documentArchived={documentArchived}
                       onGridSelect={onGridSelect}
@@ -77,7 +77,7 @@ Documents.propTypes = {
      */
     identifier: PropTypes.string.isRequired,
     actorId: PropTypes.number,
-    activeAttachments: PropTypes.object, // immutable list
+    documents: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     requiresFetch: PropTypes.bool,
     isLoading: PropTypes.bool,

@@ -53,6 +53,7 @@ class DocumentsContainer extends Component {
             identifier,
             actorId,
             attachments,
+            documents,
             fetchDocuments,
             fetchArchivedDocuments,
             selectAttachments,
@@ -62,7 +63,6 @@ class DocumentsContainer extends Component {
             selectedFilter,
             documentArchived
         } = this.props;
-        let activeAttachments = attachments.getIn([identifier, 'attachmentsList']);
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
         let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
@@ -71,7 +71,7 @@ class DocumentsContainer extends Component {
             <DocumentsListing
               identifier={identifier}
               actorId={actorId}
-              activeAttachments={activeAttachments}
+              documents={documents}
               selectedAttachment={selectedAttachment}
               // updatedAttachments={this.props.updatedAttachments}
               requiresFetch={requiresFetch}
@@ -108,6 +108,7 @@ DocumentsContainer.propTypes = {
     identifier: DocumentsListing.propTypes.identifier,
     actorId: DocumentsListing.propTypes.actorId,
     attachments: PropTypes.object, // immutable object
+    documents: PropTypes.array,
     fetchDocuments: DocumentsListing.propTypes.fetchDocuments,
     fetchArchivedDocuments: DocumentsListing.propTypes.fetchDocuments,
     initState: PropTypes.func,
@@ -120,15 +121,6 @@ DocumentsContainer.propTypes = {
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,
-    // documentTypes: PropTypes.shape({
-    //     requiresFetch: PropTypes.bool,
-    //     isLoading: PropTypes.bool,
-    //     data: DocumentsListing.propTypes.documentTypes
-    // }),
-    // updatedAttachments: DocumentsListing.propTypes.updatedAttachments,
-    // uploadNewDocument: DocumentsListing.propTypes.uploadNewDocument,
-    // deleteDocument: DocumentsListing.propTypes.deleteDocument,
-    // archiveDocument: DocumentsListing.propTypes.archiveDocument,
     excludeAttachmentIds: PropTypes.array,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     changeDocumentStatusArchived: PropTypes.func.isRequired,
