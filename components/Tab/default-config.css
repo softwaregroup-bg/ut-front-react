@@ -1,6 +1,6 @@
 :root {
     --ut-front-react-standardMainNavigationLinkColor: #2881ec;
-    --ut-front-react-standardMainNavigationTextHoverColor: #595959;
+    --ut-front-react-standardMainNavigationTextHoverColor: #2881ec;
     --ut-front-react-standardMainNavigationTextColor: #373a3c;
     --ut-front-react-standardTabMenuTextColor: #373a3c;
 }
