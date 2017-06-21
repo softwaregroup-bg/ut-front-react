@@ -33,6 +33,7 @@ class SearchBox extends Component {
     }
 
     handleChange(e) {
+        this.props.onChange({value: e.target.value});
         this.setState({value: e.target.value});
     }
 
@@ -75,7 +76,8 @@ SearchBox.propTypes = {
     errorMessage: PropTypes.string,
     onSearch: PropTypes.func,
     clearOnSearch: PropTypes.bool,
-    useDefaultStyles: PropTypes.bool
+    useDefaultStyles: PropTypes.bool,
+    onChange: PropTypes.func
 };
 
 SearchBox.defaultProps = {
@@ -86,7 +88,8 @@ SearchBox.defaultProps = {
     isValid: true,
     externalStyle: {},
     clearOnSearch: false,
-    onSearch: function() {}
+    onSearch: function() {},
+    onChange: function() {}
 };
 
 SearchBox.contextTypes = {
