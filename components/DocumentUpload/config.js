@@ -1,8 +1,7 @@
 export const detailsMapping = {
     'type': 'File type:',
     'dateUploaded': 'Date uploaded:',
-    'description': 'Description:',
-    'size': 'File size:'
+    'description': 'Description:'
 };
 
 export const DEFAULT_ASPECT_RATIO = 4 / 3;
