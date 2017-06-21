@@ -1,3 +1,13 @@
+<a name="9.6.1"></a>
+## [9.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.0...v9.6.1) (2017-06-21)
+
+
+### Bug Fixes
+
+* UIS-2886 nav link hover should be blue ([0f373b4](https://github.com/softwaregroup-bg/ut-front-react/commit/0f373b4))
+
+
+
 <a name="9.6.0"></a>
 # [9.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.5.0...v9.6.0) (2017-06-20)
 
