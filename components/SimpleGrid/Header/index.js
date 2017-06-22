@@ -76,6 +76,12 @@ export class Header extends Component {
         if (this.props.globalMenu) {
             fields = fields.push(Map({internal: 'globalMenu'}));
         }
+        if (this.props.verticalFields && this.props.verticalFields.length > 0) {
+            fields = fields.unshift(Map({internal: 'verticalField'}));
+            if (this.props.verticalSpanFields && this.props.verticalSpanFields.length > 0) {
+                fields = fields.unshift(Map({internal: 'verticalSpanField'}));
+            }
+        }
         return fields;
     }
     getRawFields() {
@@ -165,6 +171,18 @@ export class Header extends Component {
                               fields={this.getRawFields().toJS()}
                               transformCellValue={this.props.transformCellValue}
                               toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                        } else if (field.get('internal') === 'verticalSpanField') {
+                            return <Field
+                              field={{name: 'verticalSpanField'}}
+                              externalStyle={this.props.externalStyle}
+                              key={idx}
+                            />;
+                        } else if (field.get('internal') === 'verticalField') {
+                            return <Field
+                              field={{name: 'verticalField'}}
+                              externalStyle={this.props.externalStyle}
+                              key={idx}
+                            />;
                         }
                     })}
                 </tr>
@@ -176,9 +194,15 @@ export class Header extends Component {
 Header.propTypes = {
     externalStyle: PropTypes.object,
     fields: propTypeFields,
+    verticalFields: PropTypes.array,
     spanFields: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.node.isRequired,
         children: PropTypes.arrayOf(PropTypes.node).isRequired
+    })),
+    verticalSpanFields: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.node.isRequired,
+        // row indexes !!!
+        children: PropTypes.array.isRequired
     })),
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,

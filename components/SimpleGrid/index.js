@@ -23,6 +23,7 @@ export class SimpleGrid extends Component {
         return rcl > 0 && rcl === dl;
     }
     render() {
+        // debugger;
         return (
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
@@ -38,6 +39,8 @@ export class SimpleGrid extends Component {
                   isChecked={this.handleIsChecked()}
                   globalMenu={this.props.globalMenu}
                   handleHeaderCheckboxSelect={this.handleHeaderCheckboxSelect}
+                  verticalFields={this.props.verticalFields}
+                  verticalSpanFields={this.props.verticalSpanFields}
                 />}
                 <Body
                   externalStyle={this.props.externalStyle}
@@ -54,6 +57,8 @@ export class SimpleGrid extends Component {
                   handleRowClick={this.props.handleRowClick}
                   rowsChecked={this.props.rowsChecked}
                   rowStyleField={this.props.rowStyleField}
+                  verticalFields={this.props.verticalFields}
+                  verticalSpanFields={this.props.verticalSpanFields}
                 />
             </table>
         );
@@ -62,9 +67,15 @@ export class SimpleGrid extends Component {
 
 SimpleGrid.propTypes = {
     fields: propTypeFields,
+    verticalFields: PropTypes.array,
     spanFields: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.node.isRequired,
         children: PropTypes.arrayOf(PropTypes.node).isRequired
+    })),
+    verticalSpanFields: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.node.isRequired,
+        // row indexes !!!
+        children: PropTypes.array.isRequired
     })),
     data: propTypeData,
     externalStyle: PropTypes.object,

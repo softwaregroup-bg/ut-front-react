@@ -1,0 +1,29 @@
+.gridHeaderTr {
+    background: #F9F9F9;
+    cursor: pointer;
+    border-bottom: 1px solid #D7D6D6;
+    -webkit-transition: background 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
+}
+.gridHeading {
+    background: #F9F9F9;
+    position: relative;
+    padding: .75rem;
+}
+.gridHeaderTrSpanColumnContentless, .gridHeaderTrSpanColumnNotLast, .gridHeaderTrSpanColumnNotLast.gridHeaderTrSpanColumnContentless{
+    max-width: 30px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    border-bottom: 1px solid #D7D6D6;
+    background: #eaeaea;
+}
+
+.gridHeaderTrSpanColumnContentless {
+    border: none;
+    text-decoration: none;
+}
+
+.gridHeadingInner {
+    display: flex;
+}

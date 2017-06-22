@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import {fromJS, Map} from 'immutable';
-import { propTypeFields } from '../common';
+import { propTypeFields, propTypeField } from '../common';
 import Column from './Column.js';
 import MultiSelectColumn from './SpecialColumns/MultiSelect';
+import VerticalHeaderColumn from './SpecialColumns/VerticalHeaderColumn';
+import VerticalSpanColumn from './SpecialColumns/VerticalSpanColumn';
 import style from './styles.css';
 import classnames from 'classnames';
 
@@ -29,6 +31,12 @@ export default class Record extends Component {
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
+        if (this.props.verticalField) {
+            fields = fields.unshift(Map({internal: 'verticalField'}));
+        }
+        if (this.props.verticalSpanField) {
+            fields = fields.unshift(Map({internal: 'verticalSpanField'}));
+        }
 
         let isChecked = this.handleIsRowChecked();
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
@@ -36,26 +44,56 @@ export default class Record extends Component {
         let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
         return (
             <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
-                {fields.map((field, idx) => (
-                    !field.get('internal')
-                    ? <Column
-                      key={idx}
-                      colspan={((this.props.globalMenu && totalFields === idx) ? 2 : 1)}
-                      recordIndex={this.props.recordIndex}
-                      transformValue={this.props.transformCellValue}
-                      data={this.props.data}
-                      handleClick={this.props.handleCellClick}
-                      field={field.toJS()}
-                    />
-                    : <MultiSelectColumn
-                      field={field.toJS()}
-                      data={this.props.data}
-                      key={idx}
-                      recordIndex={this.props.recordIndex}
-                      isChecked={isChecked}
-                      handleCheckboxSelect={this.props.handleCheckboxSelect}
-                    />
-                ))}
+                {fields.map((field, idx) => {
+                    if (!field.get('internal')) {
+                        return (<Column
+                          key={idx}
+                          colspan={((this.props.globalMenu && totalFields === idx) ? 2 : 1)}
+                          recordIndex={this.props.recordIndex}
+                          transformValue={this.props.transformCellValue}
+                          data={this.props.data}
+                          handleClick={this.props.handleCellClick}
+                          field={field.toJS()}
+                        />);
+                    } else {
+                        switch (field.get('internal')) {
+                            case 'multiSelect':
+                                return (<MultiSelectColumn
+                                  field={field.toJS()}
+                                  data={this.props.data}
+                                  key={idx}
+                                  recordIndex={this.props.recordIndex}
+                                  isChecked={isChecked}
+                                  handleCheckboxSelect={this.props.handleCheckboxSelect}
+                                />);
+                            case 'verticalField':
+                                // debugger;
+                                return (<VerticalHeaderColumn
+                                  key={idx}
+                                  field={field.toJS()}
+                                  value={this.props.verticalField}
+                                  externalStyle={this.props.externalStyle}
+                                />);
+                            case 'verticalSpanField':
+                                let verticalSpanField = {
+                                    title: this.props.verticalSpanField.title
+                                };
+                                Object.assign(verticalSpanField, {children: this.props.verticalSpanField.children.sort((a, b) => (a - b))});
+                                if (verticalSpanField.children[0] === this.props.verticalField.name) {
+                                    return (<VerticalSpanColumn
+                                      key={idx}
+                                      field={field.toJS()}
+                                      verticalField={this.props.verticalField}
+                                      value={this.props.verticalSpanField}
+                                      externalStyle={this.props.externalStyle}
+                                    />);
+                                }
+                                return null;
+                            default:
+                                return null;
+                        }
+                    }
+                })}
             </tr>
         );
     }
@@ -65,6 +103,8 @@ Record.propTypes = {
     externalStyle: PropTypes.object,
     fields: propTypeFields,
     data: PropTypes.object.isRequired,
+    verticalSpanField: PropTypes.object,
+    verticalField: propTypeField,
     handleCheckboxSelect: PropTypes.func,
     recordIndex: PropTypes.number.isRequired,
     multiSelect: PropTypes.bool,
