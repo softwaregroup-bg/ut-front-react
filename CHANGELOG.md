@@ -1,3 +1,58 @@
+<a name="9.6.1"></a>
+## [9.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.0...v9.6.1) (2017-06-21)
+
+
+### Bug Fixes
+
+* UIS-2886 nav link hover should be blue ([0f373b4](https://github.com/softwaregroup-bg/ut-front-react/commit/0f373b4))
+
+
+
+<a name="9.6.0"></a>
+# [9.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.5.0...v9.6.0) (2017-06-20)
+
+
+### Features
+
+* additional datepicker wrapper classNames ([3447452](https://github.com/softwaregroup-bg/ut-front-react/commit/3447452))
+
+
+
+<a name="9.5.0"></a>
+# [9.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.15...v9.5.0) (2017-06-20)
+
+
+### Features
+
+* add classes to control datetime picker input styles and add onchange event on search input UIS-2550 ([#289](https://github.com/softwaregroup-bg/ut-front-react/issues/289)) ([a4fc016](https://github.com/softwaregroup-bg/ut-front-react/commit/a4fc016))
+
+
+
+<a name="9.4.15"></a>
+## [9.4.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.14...v9.4.15) (2017-06-20)
+
+
+### Bug Fixes
+
+* purify function ([336dca2](https://github.com/softwaregroup-bg/ut-front-react/commit/336dca2))
+
+
+
+<a name="9.4.14"></a>
+## [9.4.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.13...v9.4.14) (2017-06-19)
+
+
+### Bug Fixes
+
+* added classes to every column for distinguish if given column is in span ([681b717](https://github.com/softwaregroup-bg/ut-front-react/commit/681b717))
+
+
+
+<a name="9.4.13"></a>
+## [9.4.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.12...v9.4.13) (2017-06-15)
+
+
+
 <a name="9.4.12"></a>
 ## [9.4.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.11...v9.4.12) (2017-06-12)
 

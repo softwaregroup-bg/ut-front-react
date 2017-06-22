@@ -54,6 +54,7 @@ export default class Record extends Component {
                           data={this.props.data}
                           handleClick={this.props.handleCellClick}
                           field={field.toJS()}
+                      externalStyle={this.props.externalStyle}
                         />);
                     } else {
                         switch (field.get('internal')) {

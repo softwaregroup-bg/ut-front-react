@@ -1,39 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import {fromJS, Map, List} from 'immutable';
+import {fromJS, Map} from 'immutable';
 import {propTypeFields} from '../common';
 import Field from './Field';
 import MultiSelectField from './SpecialFields/MultiSelect';
 import GlobalMenu from './SpecialFields/GlobalMenu';
 import style from './styles.css';
-
-function findField(haystack, needle) {
-    return haystack.findKey((piece) => {
-        return piece.get('name') === needle;
-    });
-}
-
-function reorderFields(fields, spanFields) {
-    if (spanFields.size > 0) {
-        let spanFieldChildren = spanFields.first().get('children');
-        spanFields = spanFields.shift();
-        fields = spanFieldChildren.reduce((accumulated, spanFieldChild) => {
-            let fieldIdx = findField(accumulated, spanFieldChild);
-            let field = accumulated.get(fieldIdx);
-            let before = List();
-            let after = List();
-            if (fieldIdx > 0) {
-                before = accumulated.slice(0, fieldIdx);
-            }
-            if (fieldIdx < accumulated.size) {
-                after = accumulated.slice(fieldIdx + 1);
-            }
-            accumulated = before.concat(after).push(field);
-            return accumulated;
-        }, fields);
-        return reorderFields(fields, spanFields);
-    }
-    return fields;
-}
 
 export class Header extends Component {
     constructor(props) {
@@ -69,7 +40,7 @@ export class Header extends Component {
         }
     }
     getFields() {
-        let fields = this.getRawFields();
+        let fields = fromJS(this.props.fields);
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
@@ -81,18 +52,6 @@ export class Header extends Component {
             if (this.props.verticalSpanFields && this.props.verticalSpanFields.length > 0) {
                 fields = fields.unshift(Map({internal: 'verticalSpanField'}));
             }
-        }
-        return fields;
-    }
-    getRawFields() {
-        let fields = fromJS(this.props.fields).map((v) => { // populate visible prop
-            if (v.get('visible') === undefined) {
-                return v.set('visible', true);
-            }
-            return v;
-        });
-        if (this.props.spanFields.length) {
-            fields = reorderFields(fields, fromJS(this.props.spanFields));
         }
         return fields;
     }
@@ -124,6 +83,7 @@ export class Header extends Component {
                 });
                 if (fieldsInSpanList.size > 0) {
                     let identifier = fieldsInSpanList.getIn([0, 'children']).join();
+                    let classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'children']).join('-').toLowerCase());
                     if (!spanDrawn[identifier]) {
                         spanDrawn[identifier] = 1;
                         let childNum = fieldsInSpanList.getIn([0, 'children']).size;
@@ -132,7 +92,7 @@ export class Header extends Component {
                             title = title.toJS();
                         }
 
-                        return <td className={(array.get(idx + 1) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : '')} key={idx} colSpan={childNum}>{title}</td>;
+                        return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), classSpanName].join(' ') : '')} key={idx} colSpan={childNum}>{title}</td>;
                     }
                 } else {
                     return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;
@@ -141,7 +101,7 @@ export class Header extends Component {
         </tr>);
     }
     render() {
-        let fields = this.getFields();
+        let fields = this.getFields(); // returns immutable
 
         return (
             <thead>
@@ -168,7 +128,7 @@ export class Header extends Component {
                             return <GlobalMenu
                               field={field.toJS()}
                               key={idx}
-                              fields={this.getRawFields().toJS()}
+                              fields={this.props.fields}
                               transformCellValue={this.props.transformCellValue}
                               toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         } else if (field.get('internal') === 'verticalSpanField') {

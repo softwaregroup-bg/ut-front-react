@@ -6,6 +6,9 @@ export default class Column extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+    getStyle(name) {
+        return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name];
+    }
     handleClick(value) {
         return () => {
             this.props.handleClick(this.props.data, this.props.field, value, this.props.recordIndex);
@@ -20,9 +23,16 @@ export default class Column extends Component {
         if (typeof (this.props.field.dataReMap) !== 'undefined') {
             value = this.props.field.dataReMap[reMapKey];
         }
+        var fieldClasses = [];
+        if (this.props.field.className) {
+            fieldClasses.push(this.props.field.className);
+        }
+        if (this.props.field.inSpanStyle) {
+            fieldClasses.push(this.getStyle(this.props.field.inSpanStyle));
+        }
 
         return (
-            <td onTouchTap={this.handleClick(value)} style={this.props.field.style} className={this.props.field.className} colSpan={this.props.colspan}>
+            <td onTouchTap={this.handleClick(value)} style={this.props.field.style} className={fieldClasses.join(' ')} colSpan={this.props.colspan}>
                 {this.props.transformValue(value, this.props.field, this.props.data)}
             </td>
         );
@@ -30,6 +40,7 @@ export default class Column extends Component {
 }
 
 Column.propTypes = {
+    externalStyle: PropTypes.object,
     field: propTypeField,
     data: PropTypes.object,
     recordIndex: PropTypes.number,
