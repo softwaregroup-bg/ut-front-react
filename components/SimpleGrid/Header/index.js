@@ -47,9 +47,9 @@ export class Header extends Component {
         if (this.props.globalMenu) {
             fields = fields.push(Map({internal: 'globalMenu'}));
         }
-        if (this.props.verticalFields && this.props.verticalFields.length > 0) {
+        if (this.props.verticalFields) {
             fields = fields.unshift(Map({internal: 'verticalField'}));
-            if (this.props.verticalSpanFields && this.props.verticalSpanFields.length > 0) {
+            if (this.props.verticalSpanFields) {
                 fields = fields.unshift(Map({internal: 'verticalSpanField'}));
             }
         }
@@ -154,16 +154,12 @@ export class Header extends Component {
 Header.propTypes = {
     externalStyle: PropTypes.object,
     fields: propTypeFields,
-    verticalFields: PropTypes.array,
+    verticalFields: PropTypes.bool,
     spanFields: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.node.isRequired,
         children: PropTypes.arrayOf(PropTypes.node).isRequired
     })),
-    verticalSpanFields: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.node.isRequired,
-        // row indexes !!!
-        children: PropTypes.array.isRequired
-    })),
+    verticalSpanFields: PropTypes.bool,
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
     orderDirections: PropTypes.object,

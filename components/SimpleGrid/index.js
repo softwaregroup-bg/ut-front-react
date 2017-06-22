@@ -34,6 +34,33 @@ function reorderFields(fields, spanFields) {
     return fields;
 }
 
+function checkVerticalFields(verticalFields, verticalSpanFields) {
+    let allChildren = [];
+    let freeChildren = [];
+    verticalSpanFields.forEach((verticalSpanField) => {
+        allChildren = allChildren.concat(verticalSpanField.children);
+    });
+    freeChildren = verticalFields.filter((verticalField) => {
+        return !allChildren.includes(verticalField.name);
+    }).map((freeChild) => {
+        return freeChild.name;
+    }).sort((a, b) => {
+        return b - a;
+    });
+    freeChildren.forEach((freeChild) => {
+        verticalSpanFields.unshift({
+            title: '',
+            children: [
+                freeChild
+            ]
+        });
+    });
+    return {
+        verticalFields: reorderFields(fromJS(verticalFields), fromJS(verticalSpanFields)).toJS(),
+        verticalSpanFields: verticalSpanFields
+    };
+}
+
 export class SimpleGrid extends Component {
     constructor(props) {
         super(props);
@@ -87,7 +114,7 @@ export class SimpleGrid extends Component {
         });
         var iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         var fields = iFields.toJS();
-
+        let {verticalFields, verticalSpanFields} = checkVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
         return (
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
@@ -103,8 +130,8 @@ export class SimpleGrid extends Component {
                   isChecked={this.handleIsChecked()}
                   globalMenu={this.props.globalMenu}
                   handleHeaderCheckboxSelect={this.handleHeaderCheckboxSelect}
-                  verticalFields={this.props.verticalFields}
-                  verticalSpanFields={this.props.verticalSpanFields}
+                  verticalFields={verticalFields && verticalFields.length > 0}
+                  verticalSpanFields={verticalSpanFields && verticalSpanFields.length > 0}
                 />}
                 <Body
                   externalStyle={this.props.externalStyle}
@@ -121,8 +148,8 @@ export class SimpleGrid extends Component {
                   handleRowClick={this.props.handleRowClick}
                   rowsChecked={this.props.rowsChecked}
                   rowStyleField={this.props.rowStyleField}
-                  verticalFields={this.props.verticalFields}
-                  verticalSpanFields={this.props.verticalSpanFields}
+                  verticalFields={verticalFields}
+                  verticalSpanFields={verticalSpanFields}
                 />
             </table>
         );
