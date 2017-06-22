@@ -1,3 +1,13 @@
+<a name="9.6.2"></a>
+## [9.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.1...v9.6.2) (2017-06-22)
+
+
+### Bug Fixes
+
+* some colors missing from GlyphIcon's PropTypes ([#286](https://github.com/softwaregroup-bg/ut-front-react/issues/286)) ([f95f3b0](https://github.com/softwaregroup-bg/ut-front-react/commit/f95f3b0))
+
+
+
 <a name="9.6.1"></a>
 ## [9.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.0...v9.6.1) (2017-06-21)
 
