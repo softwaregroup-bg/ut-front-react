@@ -237,7 +237,7 @@ class Toolbox extends Component {
                 content: selectedAttachment.getIn(['attachments', 0, 'url']),
                 details: {
                     type: selectedAttachment.getIn(['attachments', 0, 'contentType']),
-                    size: selectedAttachment.getIn(['attachments', 0, 'attachmentSizeId']),
+                    extension: selectedAttachment.getIn(['attachments', 0, 'extension']),
                     dateUploaded: selectedAttachment.get('createdDate'),
                     description: selectedAttachment.get('description'),
                     width: selectedAttachment.get('width'),
