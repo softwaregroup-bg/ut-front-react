@@ -1,3 +1,43 @@
+<a name="9.6.2"></a>
+## [9.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.1...v9.6.2) (2017-06-22)
+
+
+### Bug Fixes
+
+* some colors missing from GlyphIcon's PropTypes ([#286](https://github.com/softwaregroup-bg/ut-front-react/issues/286)) ([f95f3b0](https://github.com/softwaregroup-bg/ut-front-react/commit/f95f3b0))
+
+
+
+<a name="9.6.1"></a>
+## [9.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.0...v9.6.1) (2017-06-21)
+
+
+### Bug Fixes
+
+* UIS-2886 nav link hover should be blue ([0f373b4](https://github.com/softwaregroup-bg/ut-front-react/commit/0f373b4))
+
+
+
+<a name="9.6.0"></a>
+# [9.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.5.0...v9.6.0) (2017-06-20)
+
+
+### Features
+
+* additional datepicker wrapper classNames ([3447452](https://github.com/softwaregroup-bg/ut-front-react/commit/3447452))
+
+
+
+<a name="9.5.0"></a>
+# [9.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.15...v9.5.0) (2017-06-20)
+
+
+### Features
+
+* add classes to control datetime picker input styles and add onchange event on search input UIS-2550 ([#289](https://github.com/softwaregroup-bg/ut-front-react/issues/289)) ([a4fc016](https://github.com/softwaregroup-bg/ut-front-react/commit/a4fc016))
+
+
+
 <a name="9.4.15"></a>
 ## [9.4.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.14...v9.4.15) (2017-06-20)
 
