@@ -48,8 +48,8 @@ class Toolbox extends Component {
         // Download button
         let downloadButtonHandler = () => {
             let tempLink = document.createElement('a');
-            tempLink.href = selectedAttachment.get('url');
-            tempLink.setAttribute('download', `${selectedAttachment.get('documentTypeId')}-${selectedAttachment.get('filename')}.${selectedAttachment.get('extension')}`);
+            tempLink.href = selectedAttachment.getIn(['attachments', 0, 'url']);
+            tempLink.setAttribute('download', selectedAttachment.getIn(['attachments', 0, 'filename']));
             tempLink.setAttribute('target', '_blank');
             document.body.appendChild(tempLink);
             tempLink.click();
