@@ -2,21 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { propTypeField } from '../../common';
 import style from './styles.css';
 
-export default class VerticalHeaderColumn extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this);
-    // }
+export default class VerticalHeader extends Component {
     getStyle(name) {
-        return this.props.externalStyle[name] || style[name]; // this.context.implementationStyle[name] ||
+        return this.props.externalStyle[name] || style[name];
     }
     renderTitle(title) {
-        return (<span style={{
-            display: 'block',
-            transform: 'rotate(-90deg)',
-            whiteSpace: 'nowrap',
-            marginTop: '25px'
-        }}>
+        return (<span className={this.getStyle('verticalHeaderSpan')}>
             {title}
         </span>);
     }
@@ -29,7 +20,7 @@ export default class VerticalHeaderColumn extends Component {
     }
 }
 
-VerticalHeaderColumn.propTypes = {
+VerticalHeader.propTypes = {
     value: PropTypes.object,
     recordIndex: PropTypes.number,
     field: PropTypes.object,
@@ -37,5 +28,5 @@ VerticalHeaderColumn.propTypes = {
     externalStyle: PropTypes.object
 };
 
-VerticalHeaderColumn.defaultProps = {
+VerticalHeader.defaultProps = {
 };

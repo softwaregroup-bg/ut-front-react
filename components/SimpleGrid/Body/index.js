@@ -13,13 +13,11 @@ export class Body extends Component {
         let fields = this.props.fields.filter((f) => (!(f.visible === false)));
         let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.globalMenu ? 1 : 0);
         let data = this.props.data;
-        if (data.length < (this.props.verticalFields && this.props.verticalFields.length)) {
+        if (data.length < (this.props.verticalFields && this.props.verticalFields.length) && this.props.verticalFieldsRenderComplete) {
             data = data.concat((new Array(this.props.verticalFields.length - data.length)).fill(undefined));
         }
         if (data.length) {
             if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= data.length) {
-                // TODO: add vertical fields (if any !!!)
-                // TODO: add vertical span fields (if any !!!)
                 let verticalField;
                 let verticalSpanField;
                 body = data.map((data, idx) => {
@@ -36,6 +34,7 @@ export class Body extends Component {
                       data={data}
                       verticalField={verticalField}
                       verticalSpanField={verticalSpanField}
+                      verticalFieldsVisible={this.props.verticalFieldsVisible}
                       multiSelect={this.props.multiSelect}
                       globalMenu={this.props.globalMenu}
                       fields={fields}
@@ -73,6 +72,8 @@ Body.propTypes = {
         // row indexes !!!
         children: PropTypes.array.isRequired
     })),
+    verticalFieldsRenderComplete: PropTypes.bool,
+    verticalFieldsVisible: PropTypes.bool,
     emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,

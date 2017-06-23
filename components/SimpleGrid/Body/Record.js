@@ -4,7 +4,7 @@ import { propTypeFields, propTypeField } from '../common';
 import Column from './Column.js';
 import MultiSelectColumn from './SpecialColumns/MultiSelect';
 import VerticalHeaderColumn from './SpecialColumns/VerticalHeaderColumn';
-import VerticalSpanColumn from './SpecialColumns/VerticalSpanColumn';
+import VerticalHeader from './SpecialColumns/VerticalHeader';
 import style from './styles.css';
 import classnames from 'classnames';
 
@@ -31,7 +31,7 @@ export default class Record extends Component {
         if (this.props.multiSelect) {
             fields = fields.unshift(Map({internal: 'multiSelect'}));
         }
-        if (this.props.verticalField) {
+        if (this.props.verticalField && this.props.verticalFieldsVisible) {
             fields = fields.unshift(Map({internal: 'verticalField'}));
         }
         if (this.props.verticalSpanField) {
@@ -42,6 +42,7 @@ export default class Record extends Component {
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
         let totalFields = fields.size - 1;
         let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
+        // TODO: move this out
         return (
             <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
                 {fields.map((field, idx) => {
@@ -68,7 +69,6 @@ export default class Record extends Component {
                                   handleCheckboxSelect={this.props.handleCheckboxSelect}
                                 />);
                             case 'verticalField':
-                                // debugger;
                                 return (<VerticalHeaderColumn
                                   key={idx}
                                   field={field.toJS()}
@@ -81,7 +81,7 @@ export default class Record extends Component {
                                 };
                                 Object.assign(verticalSpanField, {children: this.props.verticalSpanField.children.sort((a, b) => (a - b))});
                                 if (verticalSpanField.children[0] === this.props.verticalField.name) {
-                                    return (<VerticalSpanColumn
+                                    return (<VerticalHeader
                                       key={idx}
                                       field={field.toJS()}
                                       verticalField={this.props.verticalField}
@@ -106,6 +106,7 @@ Record.propTypes = {
     data: PropTypes.object.isRequired,
     verticalSpanField: PropTypes.object,
     verticalField: propTypeField,
+    verticalFieldsVisible: PropTypes.bool,
     handleCheckboxSelect: PropTypes.func,
     recordIndex: PropTypes.number.isRequired,
     multiSelect: PropTypes.bool,

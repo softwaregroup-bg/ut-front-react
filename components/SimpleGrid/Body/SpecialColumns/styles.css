@@ -27,3 +27,10 @@
 .gridHeadingInner {
     display: flex;
 }
+
+.verticalHeaderSpan {
+    display: block;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    margin-top: 25px;
+}

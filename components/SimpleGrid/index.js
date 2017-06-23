@@ -34,24 +34,20 @@ function reorderFields(fields, spanFields) {
     return fields;
 }
 
-function checkVerticalFields(verticalFields, verticalSpanFields) {
+function reorderVerticalFields(verticalFields, verticalSpanFields) {
     let allChildren = [];
-    let freeChildren = [];
-    verticalSpanFields.forEach((verticalSpanField) => {
-        allChildren = allChildren.concat(verticalSpanField.children);
-    });
-    freeChildren = verticalFields.filter((verticalField) => {
+    allChildren = verticalSpanFields.reduce((acc, verticalSpanField) => {
+        return acc.concat(verticalSpanField.children);
+    }, allChildren);
+    verticalFields.filter((verticalField) => {
         return !allChildren.includes(verticalField.name);
-    }).map((freeChild) => {
-        return freeChild.name;
-    }).sort((a, b) => {
-        return b - a;
-    });
-    freeChildren.forEach((freeChild) => {
+    })
+    .reverse()
+    .forEach((freeChild) => {
         verticalSpanFields.unshift({
             title: '',
             children: [
-                freeChild
+                freeChild.name
             ]
         });
     });
@@ -114,7 +110,7 @@ export class SimpleGrid extends Component {
         });
         var iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         var fields = iFields.toJS();
-        let {verticalFields, verticalSpanFields} = checkVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
+        let {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
         return (
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
@@ -132,6 +128,7 @@ export class SimpleGrid extends Component {
                   handleHeaderCheckboxSelect={this.handleHeaderCheckboxSelect}
                   verticalFields={verticalFields && verticalFields.length > 0}
                   verticalSpanFields={verticalSpanFields && verticalSpanFields.length > 0}
+                  verticalFieldsVisible={this.props.verticalFieldsVisible}
                 />}
                 <Body
                   externalStyle={this.props.externalStyle}
@@ -150,6 +147,8 @@ export class SimpleGrid extends Component {
                   rowStyleField={this.props.rowStyleField}
                   verticalFields={verticalFields}
                   verticalSpanFields={verticalSpanFields}
+                  verticalFieldsRenderComplete={this.props.verticalFieldsRenderComplete}
+                  verticalFieldsVisible={this.props.verticalFieldsVisible}
                 />
             </table>
         );
@@ -168,6 +167,8 @@ SimpleGrid.propTypes = {
         // row indexes !!!
         children: PropTypes.array.isRequired
     })),
+    verticalFieldsRenderComplete: PropTypes.bool,
+    verticalFieldsVisible: PropTypes.bool,
     data: propTypeData,
     externalStyle: PropTypes.object,
     orderBy: PropTypes.array,
@@ -195,7 +196,11 @@ SimpleGrid.propTypes = {
 
 SimpleGrid.defaultProps = {
     fields: [],
+    verticalFields: [],
     spanFields: [],
+    verticalSpanFields: [],
+    verticalFieldsRenderComplete: true,
+    verticalFieldsVisible: true,
     data: [],
     rowsChecked: [],
     orderBy: [],
