@@ -45,8 +45,11 @@ const documents = (state = defaultState, action) => {
 
     switch (type) {
         case INIT_DOCUMENTS_STATE:
-            return state.setIn([action.params.identifier], Immutable.fromJS(getDefaultAttachmentObject()))
-                        .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
+            if (!state.get(action.params.identifier)) {
+                return state.setIn([action.params.identifier], Immutable.fromJS(getDefaultAttachmentObject()))
+                            .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
+            }
+            break;
         case REMOVE_TAB:
             let documentObjects = Object.keys(state.toJS());
             for (let i = 0; i < documentObjects.length; i++) {
