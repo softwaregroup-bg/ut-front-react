@@ -77,7 +77,7 @@ export class Header extends Component {
                 });
                 if (fieldsInSpanList.size > 0) {
                     let identifier = fieldsInSpanList.getIn([0, 'children']).join();
-                    let classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'children']).join('-').toLowerCase());
+                    let classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'shortName']).toLowerCase());
                     if (!spanDrawn[identifier]) {
                         spanDrawn[identifier] = 1;
                         let childNum = fieldsInSpanList.getIn([0, 'children']).size;
