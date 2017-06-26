@@ -104,7 +104,7 @@ class DocumentsContainer extends Component {
                   this.props.addDocument(identifier, formatedObj);
               }}
               replaceDocument={(replaceObject) => {
-                  this.props.replaceDocument(identifier, replaceObject);
+                  this.props.replaceDocument(identifier, selectedAttachment.toJS(), replaceObject);
               }}
               deleteDocument={(documentObject) => {
                   this.props.changeDocumentStatusDeleted(identifier, documentObject);

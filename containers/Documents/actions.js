@@ -88,11 +88,12 @@ export function addDocument(identifier, newDocumentObject) {
     };
 }
 
-export function replaceDocument(identifier, documentObject) {
+export function replaceDocument(identifier, oldDocumentObject, newDocumentObject) {
     return {
         type: REPLACE_DOCUMENT,
         props: {
-            documentObject,
+            oldDocumentObject,
+            newDocumentObject,
             identifier
         }
     };

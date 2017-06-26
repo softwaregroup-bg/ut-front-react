@@ -108,37 +108,16 @@ const documents = (state = defaultState, action) => {
             return state.set(action.props.identifier, newState)
                         .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case REPLACE_DOCUMENT:
-            let replacedDocument;
-            let newStatusId;
-            let attachments;
-            let doc = action.props.documentObject;
+            let doc = action.props.newDocumentObject;
             doc.url = documentTmpUploadPrefix + doc.filename;
-            if (doc.attachmentId) {
-                // update a document that is on the server
-                attachments = state.getIn([action.props.identifier, 'remoteDocuments', 'data']) || Immutable.fromJS([]);
-                newStatusId = doc.statusId;
-            } else {
-                // update a document that is temporary (New)
-                attachments = state.getIn([action.props.identifier, 'changedDocuments']) || Immutable.fromJS([]);
-                newStatusId = 'new';
-            }
-            for (let i = 0; i < attachments.size; i++) {
-                if (attachments.getIn([i, 'attachmentId']) === doc.attachmentId) {
-                    replacedDocument = attachments.get(i);
-                    break;
-                }
-            }
-            // replace the new values
-            replacedDocument = replacedDocument.set('filename', Immutable.fromJS(doc.filename))
-                                            .set('extension', Immutable.fromJS(doc.extension))
-                                            .set('url', Immutable.fromJS(doc.url))
-                                            .set('contentType', Immutable.fromJS(doc.contentType))
-                                            .set('statusId', Immutable.fromJS(newStatusId));
-            docs = state.getIn([action.props.identifier, 'changedDocuments']).push(replacedDocument);
-            newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
-            newState = combineAttachments(newState.get(action.props.identifier));
-            return state.set(action.props.identifier, newState)
-                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
+            let newObject = action.props.oldDocumentObject;
+            newObject.attachments[0].filename = doc.filename;
+            newObject.attachments[0].extension = doc.extension;
+            newObject.attachments[0].isNew = true;
+            newObject.statusId = 'replaced';
+            let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
+            changedDocuments.push(newObject);
+            return state.setIn([props.identifier, 'changedDocuments'], Immutable.fromJS(changedDocuments));
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
@@ -203,8 +182,6 @@ const documents = (state = defaultState, action) => {
         case CHANGE_DOCUMENT_FILTER:
             if (action.props.filter === 'all') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
-                            .setIn([action.props.identifier, 'remoteDocuments', 'requiresFetch'], Immutable.fromJS(true))
-                            .setIn([action.props.identifier, 'remoteDocuments', 'isLoading'], Immutable.fromJS(false))
                             .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             } else if (action.props.filter === 'archived') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
