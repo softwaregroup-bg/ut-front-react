@@ -55,16 +55,18 @@ class Documents extends Component {
         let mergedDocuments = [];
         let changedDocuments = JSON.parse(JSON.stringify(this.props.documentsChanged)); // NOTE: shouldn't mutate the props object
         let documents = JSON.parse(JSON.stringify(this.props.documents)); // NOTE: shouldn't mutate the props object
-        // debugger;
         changedDocuments.forEach((changedDoc) => {
-            if (changedDoc.statusId === 'deleted') {
-                // find and delete this in the documents array
-                for (let i = 0; i < documents.length; i++) {
-                    if (documents[i].documentId === changedDoc.documentId) {
-                        documents.splice(i, 1);
-                        break;
+            switch (changedDoc.statusId) {
+                case 'deleted':
+                case 'replaced':
+                case 'archived':
+                    for (let i = 0; i < documents.length; i++) {
+                        if (documents[i].documentId === changedDoc.documentId) {
+                            documents.splice(i, 1);
+                            break;
+                        }
                     }
-                }
+                    break;
             }
         });
 
