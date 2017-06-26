@@ -47,6 +47,14 @@ export class Header extends Component {
         if (this.props.globalMenu) {
             fields = fields.push(Map({internal: 'globalMenu'}));
         }
+        if (this.props.verticalFields) {
+            if (this.props.verticalFieldsVisible) {
+                fields = fields.unshift(Map({internal: 'verticalField'}));
+            }
+            if (this.props.verticalSpanFields) {
+                fields = fields.unshift(Map({internal: 'verticalSpanField'}));
+            }
+        }
         return fields;
     }
     getSpanFields(fields) {
@@ -125,6 +133,18 @@ export class Header extends Component {
                               fields={this.props.fields}
                               transformCellValue={this.props.transformCellValue}
                               toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                        } else if (field.get('internal') === 'verticalSpanField') {
+                            return <Field
+                              field={{name: 'verticalSpanField'}}
+                              externalStyle={this.props.externalStyle}
+                              key={idx}
+                            />;
+                        } else if (field.get('internal') === 'verticalField') {
+                            return <Field
+                              field={{name: 'verticalField'}}
+                              externalStyle={this.props.externalStyle}
+                              key={idx}
+                            />;
                         }
                     })}
                 </tr>
@@ -136,10 +156,13 @@ export class Header extends Component {
 Header.propTypes = {
     externalStyle: PropTypes.object,
     fields: propTypeFields,
+    verticalFields: PropTypes.bool,
     spanFields: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.node.isRequired,
         children: PropTypes.arrayOf(PropTypes.node).isRequired
     })),
+    verticalSpanFields: PropTypes.bool,
+    verticalFieldsVisible: PropTypes.bool,
     // fields for which order is enabled e.g. ['a', 'b', 'x']
     orderBy: PropTypes.array,
     orderDirections: PropTypes.object,
