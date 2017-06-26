@@ -37,6 +37,8 @@ class DocumentsGrid extends Component {
                 let label = obj.statusId;
                 if (obj.statusId === 'approved') {
                     label = 'active';
+                } else {
+                    label = 'pending';
                 }
                 return capitalizeFirstLetter(label);
         }
