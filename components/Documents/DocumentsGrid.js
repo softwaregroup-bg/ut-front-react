@@ -48,7 +48,7 @@ class DocumentsGrid extends Component {
     get content() {
         let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
         let handleSelectItem = (selectedItem) => {
-            let isSelected = selected ? selected.get('filename') === selectedItem.filename : false;
+            let isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
             onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
         };
         let gridData = [];
