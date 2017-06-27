@@ -18,7 +18,7 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
         arrowDirection = {
             collapsed: 'arrowDown',
             expanded: 'arrowUp'
-        }
+        };
     }
 
     let accordeonDirection = collapsed ? arrowDirection.collapsed : arrowDirection.expanded;
@@ -60,7 +60,8 @@ Box.propTypes = {
     className: PropTypes.string,
     externalTitleClasses: PropTypes.string,
     externalBodyClasses: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
+    arrowDirection: PropTypes.object
 };
 
 export default Box;
