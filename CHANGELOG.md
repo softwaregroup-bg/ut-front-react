@@ -1,3 +1,13 @@
+<a name="9.6.3"></a>
+## [9.6.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.2...v9.6.3) (2017-06-26)
+
+
+### Bug Fixes
+
+* use pre-filtered value for classname ([7b6f428](https://github.com/softwaregroup-bg/ut-front-react/commit/7b6f428))
+
+
+
 <a name="9.6.2"></a>
 ## [9.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.1...v9.6.2) (2017-06-22)
 
