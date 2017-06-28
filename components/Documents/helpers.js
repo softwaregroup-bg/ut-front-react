@@ -47,3 +47,23 @@ export function getDocumentDescriptionValidators() {
         ]
     };
 }
+
+export function mergeDocumentsWithChanged(remoteDocuments, documentsChanged) {
+    let changedDocuments = JSON.parse(JSON.stringify(documentsChanged)); // NOTE: shouldn't mutate the object
+    let documents = JSON.parse(JSON.stringify(remoteDocuments)); // NOTE: shouldn't mutate the object
+    changedDocuments.forEach((changedDoc) => {
+        switch (changedDoc.statusId) {
+            case 'deleted':
+            case 'replaced':
+            case 'archived':
+                for (let i = 0; i < documents.length; i++) {
+                    if (documents[i].documentId === changedDoc.documentId) {
+                        documents.splice(i, 1);
+                        break;
+                    }
+                }
+                break;
+        }
+    });
+    return changedDocuments.concat(documents);
+}
