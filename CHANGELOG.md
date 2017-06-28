@@ -1,3 +1,50 @@
+<a name="9.7.0"></a>
+# [9.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.3...v9.7.0) (2017-06-27)
+
+
+### Bug Fixes
+
+* ABT-1823: fix linting errors ([06f0e4d](https://github.com/softwaregroup-bg/ut-front-react/commit/06f0e4d))
+
+
+### Features
+
+* ABT-1634: add custom function validation in TabContainer PropTypes ([69fd380](https://github.com/softwaregroup-bg/ut-front-react/commit/69fd380))
+* ABT-1634: add tab custom function validation ([edae5a6](https://github.com/softwaregroup-bg/ut-front-react/commit/edae5a6))
+* ABT-1634: allow custom components in compare grids for maker checker, refactor compare grid to use classes ([ce90c8c](https://github.com/softwaregroup-bg/ut-front-react/commit/ce90c8c))
+
+
+
+<a name="9.6.3"></a>
+## [9.6.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.2...v9.6.3) (2017-06-26)
+
+
+### Bug Fixes
+
+* use pre-filtered value for classname ([7b6f428](https://github.com/softwaregroup-bg/ut-front-react/commit/7b6f428))
+
+
+
+<a name="9.6.2"></a>
+## [9.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.1...v9.6.2) (2017-06-22)
+
+
+### Bug Fixes
+
+* some colors missing from GlyphIcon's PropTypes ([#286](https://github.com/softwaregroup-bg/ut-front-react/issues/286)) ([f95f3b0](https://github.com/softwaregroup-bg/ut-front-react/commit/f95f3b0))
+
+
+
+<a name="9.6.1"></a>
+## [9.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.0...v9.6.1) (2017-06-21)
+
+
+### Bug Fixes
+
+* UIS-2886 nav link hover should be blue ([0f373b4](https://github.com/softwaregroup-bg/ut-front-react/commit/0f373b4))
+
+
+
 <a name="9.6.0"></a>
 # [9.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.5.0...v9.6.0) (2017-06-20)
 

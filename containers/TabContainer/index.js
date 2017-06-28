@@ -4,7 +4,7 @@ import Tabs from '../../components/Tabs';
 import StatusDialog from '../../components/StatusDialog';
 import Header from '../../components/PageLayout/Header';
 
-import { validationTypes, textValidations, dropdownValidations, objectValidations } from '../../validator/constants';
+import { validationTypes, textValidations, dropdownValidations, objectValidations, customValidations } from '../../validator/constants';
 import { validateTab, validateAll } from './validator';
 import { prepareErrors } from './helper';
 import {validationTypes as customValidationTypes} from './constants';
@@ -240,11 +240,32 @@ TabContainer.propTypes = {
             component: PropTypes.element.isRequired,
             validations: PropTypes.arrayOf(
                 PropTypes.shape({
-                    key: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-                    type: PropTypes.oneOf([validationTypes.text, validationTypes.array, validationTypes.arrayWithTextElements, validationTypes.dropdown, validationTypes.defaultRole, validationTypes.arrayWithArrayElements, validationTypes.radio, customValidationTypes.hasRaisedError, validationTypes.object]),
+                    key: PropTypes.oneOfType([
+                        PropTypes.string,
+                        PropTypes.arrayOf(PropTypes.string)]),
+                    type: PropTypes.oneOf([
+                        validationTypes.text,
+                        validationTypes.array,
+                        validationTypes.arrayWithTextElements,
+                        validationTypes.dropdown,
+                        validationTypes.defaultRole,
+                        validationTypes.arrayWithArrayElements,
+                        validationTypes.radio,
+                        customValidationTypes.hasRaisedError,
+                        validationTypes.object]),
                     rules: PropTypes.arrayOf(
                          PropTypes.shape({
-                             type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequiredOnCondition, objectValidations.hasKeys]),
+                             type: PropTypes.oneOf([
+                                 textValidations.isRequired,
+                                 textValidations.length,
+                                 textValidations.numberOnly,
+                                 textValidations.decimalOnly,
+                                 textValidations.email,
+                                 textValidations.uniqueValue,
+                                 textValidations.regex,
+                                 dropdownValidations.isRequiredOnCondition,
+                                 objectValidations.hasKeys,
+                                 customValidations.function]),
                              errorMessage: PropTypes.string
                          })
                     )
