@@ -69,12 +69,18 @@ class DocumentsContainer extends Component {
         let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
         let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
         let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
+        let docs = documents;
+        let docsChanged = documentsChanged.toJS();
+        if (selectedFilter && selectedFilter === 'archived') {
+            docs = documentArchived.get('data').toJS();
+            docsChanged = [];
+        }
         return (
             <DocumentsListing
               identifier={identifier}
               actorId={actorId}
-              documents={documents}
-              documentsChanged={documentsChanged.toJS()}
+              documents={docs}
+              documentsChanged={docsChanged}
               selectedAttachment={selectedAttachment}
               // updatedAttachments={this.props.updatedAttachments}
               requiresFetch={requiresFetch}
