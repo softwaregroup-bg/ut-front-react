@@ -37,7 +37,7 @@ class Documents extends Component {
         return (
             <Toolbox
               selectedAttachment={this.props.selectedAttachment}
-              documents={this.props.documents}
+              documents={this.mergeDocuments}
               documentArchived={this.props.documentArchived}
               selectedFilter={this.props.selectedFilter}
               changeDocumentFilter={this.props.changeDocumentFilter}

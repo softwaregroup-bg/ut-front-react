@@ -48,9 +48,7 @@ export function getDocumentDescriptionValidators() {
     };
 }
 
-export function mergeDocumentsWithChanged(remoteDocuments, documentsChanged) {
-    let changedDocuments = JSON.parse(JSON.stringify(documentsChanged)); // NOTE: shouldn't mutate the object
-    let documents = JSON.parse(JSON.stringify(remoteDocuments)); // NOTE: shouldn't mutate the object
+export function mergeDocumentsWithChanged(documents, changedDocuments) {
     changedDocuments.forEach((changedDoc) => {
         switch (changedDoc.statusId) {
             case 'deleted':
