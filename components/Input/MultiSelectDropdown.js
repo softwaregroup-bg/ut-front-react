@@ -56,7 +56,7 @@ class MultiSelectDropdown extends Dropdown {
             values.push(item);
         }
 
-        this.setState({open: false, values: values, valid: {isValid: true, errorMessage: ''}});
+        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {});
         onSelect({key: keyProp, value: values});
     }
 
