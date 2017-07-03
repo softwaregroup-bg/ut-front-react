@@ -56,8 +56,9 @@ class MultiSelectDropdown extends Dropdown {
             values.push(item);
         }
 
-        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {});
-        onSelect({key: keyProp, value: values});
+        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {
+            onSelect({key: keyProp, value: values});
+        });
     }
 
     toggleAllChecks() {
@@ -69,8 +70,9 @@ class MultiSelectDropdown extends Dropdown {
         } else {
             values = data;
         }
-        this.setState({values: values, valid: {isValid: true, errorMessage: ''}});
-        onSelect({key: keyProp, value: values});
+        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {
+            onSelect({key: keyProp, value: values});
+        });
     }
 
     getMenuItems() {
