@@ -1,3 +1,14 @@
+<a name="9.7.1"></a>
+## [9.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.0...v9.7.1) (2017-07-03)
+
+
+### Bug Fixes
+
+* multiselect dropdown closing on item select, UIS-2911 ([21ff742](https://github.com/softwaregroup-bg/ut-front-react/commit/21ff742))
+* slight refactor ([bf0d698](https://github.com/softwaregroup-bg/ut-front-react/commit/bf0d698))
+
+
+
 <a name="9.7.0"></a>
 # [9.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.3...v9.7.0) (2017-06-27)
 
