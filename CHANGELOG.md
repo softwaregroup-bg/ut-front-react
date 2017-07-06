@@ -1,3 +1,14 @@
+<a name="9.8.1"></a>
+## [9.8.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.0...v9.8.1) (2017-07-06)
+
+
+### Bug Fixes
+
+* UIS-1224: add conditional for updating the state ([b6f8186](https://github.com/softwaregroup-bg/ut-front-react/commit/b6f8186))
+* UIS-1224: change Accordion's component state when new props are received ([313da1a](https://github.com/softwaregroup-bg/ut-front-react/commit/313da1a))
+
+
+
 <a name="9.8.0"></a>
 # [9.8.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.2...v9.8.0) (2017-07-06)
 
