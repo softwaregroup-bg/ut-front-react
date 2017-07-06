@@ -17,7 +17,9 @@ const Accordion = React.createClass({
         this.setState({ collapsed: !this.state.collapsed });
     },
     componentWillReceiveProps: function(nextProps) {
-        this.setState({ collapsed: nextProps.collapsed });
+        if (this.state.collapsed !== nextProps.collapsed) {
+            this.setState({ collapsed: nextProps.collapsed });
+        }
     },
     render() {
         return (
