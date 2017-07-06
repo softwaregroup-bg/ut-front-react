@@ -1,5 +1,5 @@
-import { documentPrefix } from '../../constants';
 import immutable from 'immutable';
+import { documentPrefix, documentTmpUploadPrefix } from '../../constants';
 
 /*
  * createIdentifier - creates an unique identifier for instance of documents tab container
