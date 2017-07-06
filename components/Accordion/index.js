@@ -16,6 +16,9 @@ const Accordion = React.createClass({
     handleToggle: function() {
         this.setState({ collapsed: !this.state.collapsed });
     },
+    componentWillReceiveProps: function(nextProps) {
+        this.setState({ collapsed: nextProps.collapsed });
+    },
     render() {
         return (
           <Box title={this.props.title} arrowDirection={this.props.arrowDirection} showAccordeon {...this.props} collapsed={this.state.collapsed} onToggle={this.handleToggle}>
