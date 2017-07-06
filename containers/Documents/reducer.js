@@ -13,7 +13,7 @@ import {
 } from './actionTypes';
 import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
-import { parseFetchDocumentsResult, combineAttachments } from './helpers';
+import { parseFetchDocumentsResult, combineAttachments, mergeDocumentsAndAttachments } from './helpers';
 
 const getDefaultAttachmentObject = function() {
     return {
@@ -66,8 +66,9 @@ const documents = (state = defaultState, action) => {
                             .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
-                    const fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
-                    return state.setIn([props.identifier, 'documentArchived', 'data'], Immutable.fromJS(fetchDocumentsResult))
+                    let fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
+                    fetchDocumentsResult = mergeDocumentsAndAttachments(fetchDocumentsResult, action.result.attachment);
+                    return state.setIn([props.identifier, 'documentArchived', 'data'], Immutable.fromJS(fetchDocumentsResult.localData.viewer))
                                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
                                 .setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
                                 .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));

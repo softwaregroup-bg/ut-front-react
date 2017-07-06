@@ -134,3 +134,48 @@ export function combineAttachments(state) {
 function mergeAttachments(mainObj, overridesObj) {
     return mainObj.merge(overridesObj);
 }
+
+export function mergeDocumentsAndAttachments(documents = [], attachments = [], documentsUnapproved = [], attachemntsUnapproved = []) {
+    let sameMaker = [];
+    let viewer = [];
+    let unapproved = [];
+    if (documents.length > 0 && attachments.length > 0) {
+        let matchType = documents[0].documentUnapprovedId ? 'unapproved' : 'approved';
+        if (matchType === 'unapproved') {
+            // Documents are in pending status (unapproved)
+            viewer = insertAttachmentsInDocuments(documents, attachments, 'documentUnapprovedId');
+        } else {
+            // Documents are active (approved)
+            viewer = insertAttachmentsInDocuments(documents, attachments, 'documentId');
+        }
+    }
+    if (documentsUnapproved.length > 0 && attachemntsUnapproved.length > 0) {
+        unapproved = insertAttachmentsInDocuments(documentsUnapproved, attachemntsUnapproved, 'documentUnapprovedId');
+    }
+    return {
+        remoteData: {
+            documents,
+            attachments,
+            documentsUnapproved,
+            attachemntsUnapproved
+        },
+        localData: {
+            sameMaker,
+            viewer,
+            unapproved
+        }
+    };
+}
+
+function insertAttachmentsInDocuments(documents = [], attachments = [], factor) {
+    return documents.map((document) => {
+        document.attachments = [];
+        attachments.forEach((attachment) => {
+            if (attachment[factor] === document[factor]) {
+                attachment.url = attachment.isNew ? documentTmpUploadPrefix + attachment.filename : documentPrefix + attachment.filename;
+                document.attachments.push(attachment);
+            }
+        });
+        return document;
+    });
+}
