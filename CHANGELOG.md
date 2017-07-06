@@ -1,3 +1,13 @@
+<a name="9.8.0"></a>
+# [9.8.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.2...v9.8.0) (2017-07-06)
+
+
+### Features
+
+* prefix, narrowing search in translation dictionary ([18bae20](https://github.com/softwaregroup-bg/ut-front-react/commit/18bae20))
+
+
+
 <a name="9.7.2"></a>
 ## [9.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.1...v9.7.2) (2017-07-06)
 
