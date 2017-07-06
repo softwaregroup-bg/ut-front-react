@@ -2,7 +2,8 @@ import React from 'react';
 
 Text.propTypes = {
     children: React.PropTypes.string,
-    params: React.PropTypes.object
+    params: React.PropTypes.object,
+    prefix: React.PropTypes.string // prefix, narrowing search in translation dictionary
 };
 
 Text.contextTypes = {
@@ -11,13 +12,16 @@ Text.contextTypes = {
 };
 
 export default function Text(props, context) {
-    let {children, params} = props;
+    let {children, params, prefix} = props;
     let template = children;
     if (typeof context.translate === 'function') {
+        var text = (prefix ? [prefix, children] : [children]).join('>');
         // Translate the template
-        template = context.translate(children, context.language);
+        template = context.translate(text, context.language);
+        if (template === text) {
+            template = children;
+        }
     }
-
     // In either case - apply the params to the template
     children = applyTemplate(template, params);
     return (
