@@ -1,3 +1,13 @@
+<a name="9.7.2"></a>
+## [9.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.1...v9.7.2) (2017-07-06)
+
+
+### Bug Fixes
+
+* wfrong logic in span fields order algo ([40e3601](https://github.com/softwaregroup-bg/ut-front-react/commit/40e3601))
+
+
+
 <a name="9.7.1"></a>
 ## [9.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.0...v9.7.1) (2017-07-03)
 
