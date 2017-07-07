@@ -33,7 +33,7 @@ class Grid extends Component {
         let gridRowsCount = nextProps.rows.size;
         if (gridRowsCount === checkedRowsCount && gridRowsCount !== 0 && !this.isAllChecked()) {
             this.setState({all: true});
-        } else if (gridRowsCount !== checkedRowsCount && this.state.all) {
+        } else if (gridRowsCount !== checkedRowsCount && this.isAllChecked()) {
             this.setState({all: false});
         }
     }
