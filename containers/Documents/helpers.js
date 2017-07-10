@@ -24,13 +24,13 @@ export function createIdentifier(moduleName, sectionName, mode, id) {
  */
 
 export function convertDocumentsForSave(attachmentsList, actorId) {
-    let allAttachemnts = attachmentsList.toJS();
+    let allAttachments = attachmentsList.toJS();
     let documents = [];
     let attachments = [];
     let actorDocument = [];
     let generatedDocumentId = -10;
-    if (allAttachemnts.length > 0) {
-        allAttachemnts.forEach((item) => {
+    if (allAttachments.length > 0) {
+        allAttachments.forEach((item) => {
             let docId;
             if (item.documentId) {
                 docId = item.documentId;
@@ -135,7 +135,7 @@ function mergeAttachments(mainObj, overridesObj) {
     return mainObj.merge(overridesObj);
 }
 
-export function mergeDocumentsAndAttachments(documents = [], attachments = [], documentsUnapproved = [], attachemntsUnapproved = []) {
+export function mergeDocumentsAndAttachments(documents = [], attachments = [], documentsUnapproved = [], attachmentsUnapproved = []) {
     let sameMaker = [];
     let viewer = [];
     let unapproved = [];
@@ -149,15 +149,15 @@ export function mergeDocumentsAndAttachments(documents = [], attachments = [], d
             viewer = insertAttachmentsInDocuments(documents, attachments, 'documentId');
         }
     }
-    if (documentsUnapproved.length > 0 && attachemntsUnapproved.length > 0) {
-        unapproved = insertAttachmentsInDocuments(documentsUnapproved, attachemntsUnapproved, 'documentUnapprovedId');
+    if (documentsUnapproved.length > 0 && attachmentsUnapproved.length > 0) {
+        unapproved = insertAttachmentsInDocuments(documentsUnapproved, attachmentsUnapproved, 'documentUnapprovedId');
     }
     return {
         remoteData: {
             documents,
             attachments,
             documentsUnapproved,
-            attachemntsUnapproved
+            attachmentsUnapproved
         },
         localData: {
             sameMaker,
