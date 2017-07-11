@@ -94,7 +94,7 @@ class DocumentsContainer extends Component {
               uploadNewDocument={(newObject) => {
                   let formatedObj = {
                       createdDate: newObject.createdDate,
-                      description: newObject.documentDescription,
+                      description: newObject.description,
                       documentType: newObject.documentType,
                       documentTypeId: newObject.documentTypeId,
                       statusId: newObject.statusId,

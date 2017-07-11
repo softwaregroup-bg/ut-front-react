@@ -34,7 +34,7 @@ class DocumentUploadWithForm extends Component {
             if (nextProps.type === 'replace') {
                 this.setState({
                     fileType: nextProps.editValues.documentTypeId,
-                    description: nextProps.editValues.documentDescription,
+                    description: nextProps.editValues.description,
                     isValidForm: true,
                     attachmentId: nextProps.editValues.attachmentId
                 });
@@ -135,7 +135,7 @@ class DocumentUploadWithForm extends Component {
                 documentTypeId: type.key,
                 documentType: type.name,
                 statusId: 'new',
-                documentDescription: description,
+                description: description,
                 ...uploadedFile
             });
         } else if (this.props.type === 'replace') {
