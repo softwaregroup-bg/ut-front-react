@@ -118,7 +118,19 @@ const documents = (state = defaultState, action) => {
             newObject.attachments[0].isNew = true;
             newObject.statusId = 'replaced';
             let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
-            changedDocuments.push(newObject);
+            let alreadyReplacedOnce = changedDocuments.findIndex((docObj) => {
+                if (docObj.attachments[0].attachmentId && docObj.attachments[0].attachmentId === newObject.attachments[0].attachmentId) {
+                    return true;
+                } else if (docObj.attachments[0].attachmentUnapprovedId && docObj.attachments[0].attachmentUnapprovedId === newObject.attachments[0].attachmentUnapprovedId) {
+                    return true;
+                }
+                return false;
+            });
+            if (alreadyReplacedOnce > -1) {
+                changedDocuments[alreadyReplacedOnce] = newObject;
+            } else {
+                changedDocuments.push(newObject);
+            }
             return state.setIn([props.identifier, 'changedDocuments'], Immutable.fromJS(changedDocuments))
                         .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case CHANGE_DOCUMENT_STATUS_DELETED:
