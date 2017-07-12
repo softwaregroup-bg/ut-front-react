@@ -110,15 +110,17 @@ const documents = (state = defaultState, action) => {
                         .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case REPLACE_DOCUMENT:
             let doc = action.props.newDocumentObject;
-            doc.url = documentTmpUploadPrefix + doc.filename;
             let newObject = action.props.oldDocumentObject;
             newObject.attachments[0].filename = doc.filename;
             newObject.attachments[0].extension = doc.extension;
+            newObject.attachments[0].contentType = doc.contentType;
+            newObject.attachments[0].url = documentTmpUploadPrefix + doc.filename;
             newObject.attachments[0].isNew = true;
             newObject.statusId = 'replaced';
             let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
             changedDocuments.push(newObject);
-            return state.setIn([props.identifier, 'changedDocuments'], Immutable.fromJS(changedDocuments));
+            return state.setIn([props.identifier, 'changedDocuments'], Immutable.fromJS(changedDocuments))
+                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
