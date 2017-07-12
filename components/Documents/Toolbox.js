@@ -115,14 +115,14 @@ class Toolbox extends Component {
             if (this.props.permissions.delete) {
                 headerButtonsConfig.left.push({
                     label: 'Delete',
-                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'deleted' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'deleted' || selectedAttachment.get('statusId') === 'archived') || selectedAttachment.get('statusId') === 'pending') || this.props.selectedFilter === 'archived'),
                     onClick: openDeleteConfirmationDialog
                 });
             }
             if (this.props.permissions.replace) {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
-                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'deleted' || (selectedAttachment.get('statusId') === 'new' && !selectedAttachment.get('attachmentId')) || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'deleted' || (selectedAttachment.get('statusId') === 'new' && !selectedAttachment.get('attachmentId')) || selectedAttachment.get('statusId') === 'archived' || selectedAttachment.get('statusId') === 'pending')) || this.props.selectedFilter === 'archived'),
                     onClick: replaceDocumentHandler
                 });
             }
