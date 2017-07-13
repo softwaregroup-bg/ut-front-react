@@ -1,6 +1,9 @@
 import {actions} from './actions';
 import immutable from 'immutable';
 
+import { actionList } from '../Login/actions';
+import { LOGIN } from '../../containers/LoginForm/actionTypes';
+
 const defaultPreloadWindowState = immutable.fromJS({
     open: false,
     requests: 0,
@@ -57,20 +60,23 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
             return state
                 .set('open', false)
                 .delete('title')
-                .set('message', '');
+                .set('message', '')
+                .delete('type');
         }
         if (action.type === actions.ERROR_WINDOW_TOGGLE) {
             let message = (mapErrorMessage(action.message) || mapErrorMessage(state.get('message')));
             return state
                 .set('open', !state.get('open'))
                 .delete('title')
-                .set('message', message);
+                .set('message', message)
+                .delete('type');
         }
         if (action.error) {
             let msg = (mapErrorMessage(action.error) || mapErrorMessage(state.get('message')));
             let statusMessage = action.error.statusMessage;
             let statusCode = action.error.statusCode;
             let title = `Error`;
+            let type = action.error.type;
             if (statusMessage) {
                 title = `${statusMessage}`;
                 if (statusCode) {
@@ -81,8 +87,17 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
             return state
                 .set('open', true)
                 .set('title', title)
-                .set('message', msg);
+                .set('message', msg)
+                .set('type', type);
         }
+    }
+
+    if ((action.type === actionList.LOGIN || action.type === LOGIN) && action.methodRequestState === 'finished' && action.result) {
+        return state
+            .set('open', false)
+            .delete('title')
+            .set('message', '')
+            .delete('type');
     }
     return state;
 };
