@@ -7,7 +7,7 @@ import classnames from 'classnames';
 
 const ErrorWindow = ({open, message, close, title, type}) => {
     let closePopUpHandler = close;
-    let header = {text: title}
+    let header = {text: title};
     let actionButtons = [
         {
             label: 'Close',
@@ -40,7 +40,7 @@ const ErrorWindow = ({open, message, close, title, type}) => {
             {message}
           </div>
       </Popup>
-  );
+    );
 };
 
 ErrorWindow.propTypes = {
