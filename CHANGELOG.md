@@ -1,3 +1,44 @@
+<a name="9.8.3"></a>
+## [9.8.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.2...v9.8.3) (2017-07-13)
+
+
+
+<a name="9.8.2"></a>
+## [9.8.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.1...v9.8.2) (2017-07-07)
+
+
+
+<a name="9.8.1"></a>
+## [9.8.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.0...v9.8.1) (2017-07-06)
+
+
+### Bug Fixes
+
+* UIS-1224: add conditional for updating the state ([b6f8186](https://github.com/softwaregroup-bg/ut-front-react/commit/b6f8186))
+* UIS-1224: change Accordion's component state when new props are received ([313da1a](https://github.com/softwaregroup-bg/ut-front-react/commit/313da1a))
+
+
+
+<a name="9.8.0"></a>
+# [9.8.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.2...v9.8.0) (2017-07-06)
+
+
+### Features
+
+* prefix, narrowing search in translation dictionary ([18bae20](https://github.com/softwaregroup-bg/ut-front-react/commit/18bae20))
+
+
+
+<a name="9.7.2"></a>
+## [9.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.1...v9.7.2) (2017-07-06)
+
+
+### Bug Fixes
+
+* wfrong logic in span fields order algo ([40e3601](https://github.com/softwaregroup-bg/ut-front-react/commit/40e3601))
+
+
+
 <a name="9.7.1"></a>
 ## [9.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.0...v9.7.1) (2017-07-03)
 
