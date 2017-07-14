@@ -42,6 +42,7 @@ export default class DatePicker extends Component {
         let dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
 
         return (
+            <div>
             <div className={style.wrap}>
                 {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles}>
@@ -63,8 +64,11 @@ export default class DatePicker extends Component {
                       hintText={this.props.hintText}
                       hintStyle={hintStyle}
                     />
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                    
                 </div>
+               
+            </div>
+             <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
             </div>
         );
     }

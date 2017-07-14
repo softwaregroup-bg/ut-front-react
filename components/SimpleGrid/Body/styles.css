@@ -43,10 +43,11 @@ tr.localRecord {
 }
 
 tr.newLocalRecord{
-    background-color: green !important;
+    /*background-color: green !important;*/
+    color: black;
 }
 
 tr.editedLocalRecord{
     color: black;
-    background-color: yellow !important;
+    /*background-color: yellow !important;*/
 }
