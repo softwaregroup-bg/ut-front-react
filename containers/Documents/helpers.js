@@ -1,6 +1,6 @@
 import immutable from 'immutable';
 import { documentPrefix, documentTmpUploadPrefix } from '../../constants';
-
+import { mergeDocumentsWithChanged } from '../../components/Documents/helpers';
 /*
  * createIdentifier - creates an unique identifier for instance of documents tab container
  * params:
@@ -178,4 +178,97 @@ function insertAttachmentsInDocuments(documents = [], attachments = [], factor) 
         });
         return document;
     });
+}
+
+export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprovedDocuments = {unapprovedDocuments: [], unapprovedAttachments: []}) {
+    let resultDocuments = [];
+    let resultAttachments = [];
+    let resultActorDocuments = [];
+    let tmpDocId = -10;
+    let tmpAttId = -10;
+    let allDocuments = [];
+    if (documents.documentsChanged.size > 0) {
+        allDocuments = mergeDocumentsWithChanged(documents.documents.toJS(), documents.documentsChanged.toJS());
+    } else {
+        allDocuments = documents.documents.toJS();
+    }
+    allDocuments.forEach((doc) => {
+        if (actorId) {
+            actorId = parseInt(actorId);
+        }
+        switch (doc.statusId) {
+            case 'new':
+                tmpDocId--;
+                tmpAttId--;
+                let docObj = {
+                    documentId: tmpDocId,
+                    documentTypeId: doc.documentTypeId,
+                    description: doc.description || null
+                };
+                let attObj = {
+                    attachmentId: tmpAttId,
+                    filename: doc.attachments[0].filename,
+                    extension: doc.attachments[0].extension,
+                    contentType: doc.attachments[0].contentType,
+                    documentId: tmpDocId,
+                    attachmentSizeId: 'original'
+                };
+                let actorDoc = {
+                    actorId: actorId,
+                    documentId: tmpDocId,
+                    documentOrder: 255
+                };
+                resultDocuments.push(docObj);
+                resultAttachments.push(attObj);
+                resultActorDocuments.push(actorDoc);
+                break;
+            case 'approved':
+            case 'archived':
+            case 'deleted':
+            case 'replaced':
+            case 'pending':
+                let documentId = null;
+                if (doc.documentId) {
+                    documentId = parseInt(doc.documentId);
+                }
+                let statusId = doc.statusId;
+                if (statusId === 'approved' || statusId === 'replaced') {
+                    statusId = 'pending';
+                }
+                docObj = {
+                    documentId: documentId,
+                    documentTypeId: doc.documentTypeId,
+                    statusId: statusId,
+                    description: doc.description || null
+                };
+                attObj = {
+                    attachmentId: doc.attachments[0].attachmentId,
+                    filename: doc.attachments[0].filename,
+                    extension: doc.attachments[0].extension,
+                    contentType: doc.attachments[0].contentType,
+                    documentId: documentId,
+                    attachmentSizeId: 'original'
+                };
+                actorDoc = {
+                    actorId: actorId,
+                    documentId: documentId,
+                    documentOrder: 255
+                };
+                if (doc.documentUnapprovedId && doc.attachments[0].attachmentUnapprovedId) {
+                    docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = parseInt(doc.documentUnapprovedId);
+                    attObj.attachmentUnapprovedId = parseInt(doc.attachments[0].attachmentUnapprovedId);
+                    attObj.documentUnapprovedId = docObj.documentUnapprovedId;
+                }
+                resultDocuments.push(docObj);
+                resultAttachments.push(attObj);
+                resultActorDocuments.push(actorDoc);
+                break;
+        }
+    });
+
+    return {
+        documents: resultDocuments,
+        attachments: resultAttachments,
+        actorDocument: resultActorDocuments
+    };
 }
