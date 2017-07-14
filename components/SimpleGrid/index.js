@@ -12,11 +12,14 @@ function findField(haystack, needle) {
 }
 
 function reorderFields(fields, spanFields) {
-    if (spanFields.size > 0) {
+    if (spanFields.size > 0 && fields.size > 0) {
         let spanFieldChildren = spanFields.first().get('children');
         spanFields = spanFields.shift();
         fields = spanFieldChildren.reduce((accumulated, spanFieldChild) => {
             let fieldIdx = findField(accumulated, spanFieldChild);
+            if (fieldIdx === undefined) {
+                return accumulated;
+            }
             let field = accumulated.get(fieldIdx);
             let before = List();
             let after = List();
