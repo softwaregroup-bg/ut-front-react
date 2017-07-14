@@ -64,9 +64,7 @@ export default class DatePicker extends Component {
                       hintText={this.props.hintText}
                       hintStyle={hintStyle}
                     />
-                    
                 </div>
-               
             </div>
              <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
             </div>
