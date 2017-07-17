@@ -7,7 +7,8 @@ const Accordion = React.createClass({
         title: PropTypes.node,
         collapsed: PropTypes.bool,
         className: PropTypes.string,
-        fullWidth: PropTypes.bool
+        fullWidth: PropTypes.bool,
+        arrowDirection: PropTypes.object
     },
     getInitialState: function() {
         return { collapsed: this.props.collapsed || false };
@@ -15,9 +16,14 @@ const Accordion = React.createClass({
     handleToggle: function() {
         this.setState({ collapsed: !this.state.collapsed });
     },
+    componentWillReceiveProps: function(nextProps) {
+        if (this.state.collapsed !== nextProps.collapsed) {
+            this.setState({ collapsed: nextProps.collapsed });
+        }
+    },
     render() {
         return (
-          <Box title={this.props.title} showAccordeon {...this.props} collapsed={this.state.collapsed} onToggle={this.handleToggle}>
+          <Box title={this.props.title} arrowDirection={this.props.arrowDirection} showAccordeon {...this.props} collapsed={this.state.collapsed} onToggle={this.handleToggle}>
             {this.props.children}
           </Box>
         );

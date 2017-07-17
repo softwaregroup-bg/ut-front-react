@@ -13,16 +13,22 @@ export default class DialogExampleModal extends Component {
             open: true,
             message: msg || this.props.message
         });
-        this.close = () => this.setState({
-            open: false,
-            message: this.props.message // Reset
-        });
+        this.close = () => {
+            this.handleClose();
+        };
         this.submit = () => {
             this.props.onSubmit();
             this.close();
         };
     }
 
+    handleClose() {
+        this.props.onClose();
+        this.setState({
+            open: false,
+            message: this.props.message // Reset
+        });
+    }
     componentWillReceiveProps({message}) {
         if (this.props.message !== message) {
             this.setState({message});
@@ -51,6 +57,7 @@ DialogExampleModal.propTypes = {
     title: PropTypes.string,
     message: PropTypes.string,
     onSubmit: PropTypes.func,
+    onClose: PropTypes.func,
     submitLabel: PropTypes.string,
     cancelLabel: PropTypes.string
 };
@@ -59,5 +66,6 @@ DialogExampleModal.defaultProps = {
     submitLabel: 'Submit',
     cancelLabel: 'Cancel',
     onSubmit: () => {},
+    onClose: () => {},
     message: ''
 };

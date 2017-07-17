@@ -47,43 +47,42 @@ class DateTimePickerBetween extends Component {
             dateFormat,
             timeFormat,
             transformDate,
-            transformTime
+            transformTime,
+            innerWrapperClassName
         } = this.props;
 
         let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
 
         return (
             <div className={layoutClassName}>
-                <div>
-                    <DateTimePicker
-                      defaultValue={defaultValue.from}
-                      dateFormat={dateFormat}
-                      timeFormat={timeFormat}
-                      transformDate={transformDate}
-                      transformTime={transformTime}
-                      locale={locale}
-                      label={labelFrom}
-                      okLabel={okLabel}
-                      cancelLabel={cancelLabel}
-                      firstDayOfWeek={firstDayOfWeek}
-                      onChange={({value}) => { this.handleChange('from', value); }}
-                      boldLabel={boldLabel} />
-                </div>
-                <div>
-                    <DateTimePicker
-                      defaultValue={defaultValue.to}
-                      dateFormat={dateFormat}
-                      timeFormat={timeFormat}
-                      transformDate={transformDate}
-                      transformTime={transformTime}
-                      locale={locale}
-                      label={labelTo}
-                      okLabel={okLabel}
-                      cancelLabel={cancelLabel}
-                      firstDayOfWeek={firstDayOfWeek}
-                      onChange={({value}) => { this.handleChange('to', value); }}
-                      boldLabel={boldLabel} />
-                </div>
+                <DateTimePicker
+                  defaultValue={defaultValue.from}
+                  dateFormat={dateFormat}
+                  timeFormat={timeFormat}
+                  transformDate={transformDate}
+                  innerWrapperClassName={innerWrapperClassName}
+                  transformTime={transformTime}
+                  locale={locale}
+                  label={labelFrom}
+                  okLabel={okLabel}
+                  cancelLabel={cancelLabel}
+                  firstDayOfWeek={firstDayOfWeek}
+                  onChange={({value}) => { this.handleChange('from', value); }}
+                  boldLabel={boldLabel} />
+                <DateTimePicker
+                  defaultValue={defaultValue.to}
+                  dateFormat={dateFormat}
+                  timeFormat={timeFormat}
+                  transformDate={transformDate}
+                  innerWrapperClassName={innerWrapperClassName}
+                  transformTime={transformTime}
+                  locale={locale}
+                  label={labelTo}
+                  okLabel={okLabel}
+                  cancelLabel={cancelLabel}
+                  firstDayOfWeek={firstDayOfWeek}
+                  onChange={({value}) => { this.handleChange('to', value); }}
+                  boldLabel={boldLabel} />
             </div>
         );
     }
@@ -106,7 +105,8 @@ DateTimePickerBetween.propTypes = {
     onChange: PropTypes.func.isRequired,
     boldLabel: PropTypes.bool,
     transformDate: PropTypes.func,
-    transformTime: PropTypes.func
+    transformTime: PropTypes.func,
+    innerWrapperClassName: PropTypes.string
 };
 
 export default DateTimePickerBetween;

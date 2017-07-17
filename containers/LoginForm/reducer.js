@@ -1,5 +1,13 @@
 import Immutable from 'immutable';
-import { LOGIN, BIO_LOGIN, SET_INPUT_VALUE, VALIDATE_FORM, COOKIE_CHECK, LOGOUT } from './actionTypes';
+import {
+    LOGIN,
+    BIO_LOGIN,
+    SET_INPUT_VALUE,
+    VALIDATE_FORM,
+    COOKIE_CHECK,
+    LOGOUT,
+    CLEAR_LOGIN_STATE
+} from './actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
 
@@ -54,9 +62,10 @@ const getLoginData = (state) => {
 
 export const login = (state = defaultLoginState, action) => {
     let validationResult;
+
     switch (action.type) {
         case LOGOUT:
-            return state;
+            return defaultLoginState;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
@@ -108,6 +117,8 @@ export const login = (state = defaultLoginState, action) => {
                 }
             }
             return state;
+        case CLEAR_LOGIN_STATE:
+            return defaultLoginState;
         default:
             return state;
     }

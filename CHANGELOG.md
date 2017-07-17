@@ -1,3 +1,224 @@
+<a name="9.8.3"></a>
+## [9.8.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.2...v9.8.3) (2017-07-13)
+
+
+
+<a name="9.8.2"></a>
+## [9.8.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.1...v9.8.2) (2017-07-07)
+
+
+
+<a name="9.8.1"></a>
+## [9.8.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.0...v9.8.1) (2017-07-06)
+
+
+### Bug Fixes
+
+* UIS-1224: add conditional for updating the state ([b6f8186](https://github.com/softwaregroup-bg/ut-front-react/commit/b6f8186))
+* UIS-1224: change Accordion's component state when new props are received ([313da1a](https://github.com/softwaregroup-bg/ut-front-react/commit/313da1a))
+
+
+
+<a name="9.8.0"></a>
+# [9.8.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.2...v9.8.0) (2017-07-06)
+
+
+### Features
+
+* prefix, narrowing search in translation dictionary ([18bae20](https://github.com/softwaregroup-bg/ut-front-react/commit/18bae20))
+
+
+
+<a name="9.7.2"></a>
+## [9.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.1...v9.7.2) (2017-07-06)
+
+
+### Bug Fixes
+
+* wfrong logic in span fields order algo ([40e3601](https://github.com/softwaregroup-bg/ut-front-react/commit/40e3601))
+
+
+
+<a name="9.7.1"></a>
+## [9.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.7.0...v9.7.1) (2017-07-03)
+
+
+### Bug Fixes
+
+* multiselect dropdown closing on item select, UIS-2911 ([21ff742](https://github.com/softwaregroup-bg/ut-front-react/commit/21ff742))
+* slight refactor ([bf0d698](https://github.com/softwaregroup-bg/ut-front-react/commit/bf0d698))
+
+
+
+<a name="9.7.0"></a>
+# [9.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.3...v9.7.0) (2017-06-27)
+
+
+### Bug Fixes
+
+* ABT-1823: fix linting errors ([06f0e4d](https://github.com/softwaregroup-bg/ut-front-react/commit/06f0e4d))
+
+
+### Features
+
+* ABT-1634: add custom function validation in TabContainer PropTypes ([69fd380](https://github.com/softwaregroup-bg/ut-front-react/commit/69fd380))
+* ABT-1634: add tab custom function validation ([edae5a6](https://github.com/softwaregroup-bg/ut-front-react/commit/edae5a6))
+* ABT-1634: allow custom components in compare grids for maker checker, refactor compare grid to use classes ([ce90c8c](https://github.com/softwaregroup-bg/ut-front-react/commit/ce90c8c))
+
+
+
+<a name="9.6.3"></a>
+## [9.6.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.2...v9.6.3) (2017-06-26)
+
+
+### Bug Fixes
+
+* use pre-filtered value for classname ([7b6f428](https://github.com/softwaregroup-bg/ut-front-react/commit/7b6f428))
+
+
+
+<a name="9.6.2"></a>
+## [9.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.1...v9.6.2) (2017-06-22)
+
+
+### Bug Fixes
+
+* some colors missing from GlyphIcon's PropTypes ([#286](https://github.com/softwaregroup-bg/ut-front-react/issues/286)) ([f95f3b0](https://github.com/softwaregroup-bg/ut-front-react/commit/f95f3b0))
+
+
+
+<a name="9.6.1"></a>
+## [9.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.6.0...v9.6.1) (2017-06-21)
+
+
+### Bug Fixes
+
+* UIS-2886 nav link hover should be blue ([0f373b4](https://github.com/softwaregroup-bg/ut-front-react/commit/0f373b4))
+
+
+
+<a name="9.6.0"></a>
+# [9.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.5.0...v9.6.0) (2017-06-20)
+
+
+### Features
+
+* additional datepicker wrapper classNames ([3447452](https://github.com/softwaregroup-bg/ut-front-react/commit/3447452))
+
+
+
+<a name="9.5.0"></a>
+# [9.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.15...v9.5.0) (2017-06-20)
+
+
+### Features
+
+* add classes to control datetime picker input styles and add onchange event on search input UIS-2550 ([#289](https://github.com/softwaregroup-bg/ut-front-react/issues/289)) ([a4fc016](https://github.com/softwaregroup-bg/ut-front-react/commit/a4fc016))
+
+
+
+<a name="9.4.15"></a>
+## [9.4.15](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.14...v9.4.15) (2017-06-20)
+
+
+### Bug Fixes
+
+* purify function ([336dca2](https://github.com/softwaregroup-bg/ut-front-react/commit/336dca2))
+
+
+
+<a name="9.4.14"></a>
+## [9.4.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.13...v9.4.14) (2017-06-19)
+
+
+### Bug Fixes
+
+* added classes to every column for distinguish if given column is in span ([681b717](https://github.com/softwaregroup-bg/ut-front-react/commit/681b717))
+
+
+
+<a name="9.4.13"></a>
+## [9.4.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.12...v9.4.13) (2017-06-15)
+
+
+
+<a name="9.4.12"></a>
+## [9.4.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.11...v9.4.12) (2017-06-12)
+
+
+### Bug Fixes
+
+* version bump ([e5fdaba](https://github.com/softwaregroup-bg/ut-front-react/commit/e5fdaba))
+
+
+
+<a name="9.4.11"></a>
+## [9.4.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.10...v9.4.11) (2017-06-08)
+
+
+### Bug Fixes
+
+* send correct params on identity check ([3d72363](https://github.com/softwaregroup-bg/ut-front-react/commit/3d72363))
+
+
+
+<a name="9.4.10"></a>
+## [9.4.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.9...v9.4.10) (2017-06-08)
+
+
+### Bug Fixes
+
+* rm search button from filter count ([2898ac4](https://github.com/softwaregroup-bg/ut-front-react/commit/2898ac4))
+
+
+
+<a name="9.4.9"></a>
+## [9.4.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.8...v9.4.9) (2017-06-07)
+
+
+
+<a name="9.4.8"></a>
+## [9.4.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.7...v9.4.8) (2017-06-06)
+
+
+
+<a name="9.4.7"></a>
+## [9.4.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.6...v9.4.7) (2017-06-05)
+
+
+### Bug Fixes
+
+* horizontal styles ([#279](https://github.com/softwaregroup-bg/ut-front-react/issues/279)) ([50588fe](https://github.com/softwaregroup-bg/ut-front-react/commit/50588fe))
+
+
+
+<a name="9.4.6"></a>
+## [9.4.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.4...v9.4.6) (2017-06-01)
+
+
+### Bug Fixes
+
+* add app id ([58cb10d](https://github.com/softwaregroup-bg/ut-front-react/commit/58cb10d))
+* refactor tooltip ([b8a7008](https://github.com/softwaregroup-bg/ut-front-react/commit/b8a7008))
+* version ([6f0f753](https://github.com/softwaregroup-bg/ut-front-react/commit/6f0f753))
+
+
+
+<a name="9.4.4"></a>
+## [9.4.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.3...v9.4.4) (2017-05-30)
+
+
+### Bug Fixes
+
+* add search btn ([f5d05cc](https://github.com/softwaregroup-bg/ut-front-react/commit/f5d05cc))
+* change advanced search icon ([d02a99b](https://github.com/softwaregroup-bg/ut-front-react/commit/d02a99b))
+* paddings ([ac63b1e](https://github.com/softwaregroup-bg/ut-front-react/commit/ac63b1e))
+* remove random key ([2d6d147](https://github.com/softwaregroup-bg/ut-front-react/commit/2d6d147))
+* search btn style ([4f25c58](https://github.com/softwaregroup-bg/ut-front-react/commit/4f25c58))
+* use margin instead of padding ([62c094b](https://github.com/softwaregroup-bg/ut-front-react/commit/62c094b))
+
+
+
 <a name="9.4.3"></a>
 ## [9.4.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.4.2...v9.4.3) (2017-05-22)
 

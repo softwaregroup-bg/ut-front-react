@@ -231,7 +231,9 @@ export const iconNames = [
 const colors = [
     'white',
     'pink',
-    'green'
+    'green',
+    'red',
+    'gray'
 ];
 
 Glyphicon.propTypes = {
