@@ -1,3 +1,13 @@
+<a name="9.10.1"></a>
+## [9.10.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.0...v9.10.1) (2017-07-18)
+
+
+### Bug Fixes
+
+* UIS-2937: fix behavior when selecting the parent BU in BU tree ([8d058a8](https://github.com/softwaregroup-bg/ut-front-react/commit/8d058a8))
+
+
+
 <a name="9.10.0"></a>
 # [9.10.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.9.4...v9.10.0) (2017-07-18)
 
