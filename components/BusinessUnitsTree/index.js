@@ -9,7 +9,7 @@ class TreeNavigation extends React.Component {
         this.state = {
             // Keeping openElements in state instead calling action each time user clicks something. When unmount event called the store is updated.
             openElements: props.openElements,
-            active: {id: this.props.active.id, breadcrumbs: this.props.active.breadcrumbs.toJS() || ''}
+            active: {id: this.props.active.id, breadcrumbs: this.props.active.breadcrumbs.toJS() || []}
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -71,7 +71,7 @@ class TreeNavigation extends React.Component {
                 }
             }
 
-            let handleSelect = () => this.setState({active: {id: node.id}}) || this.props.onSelect(node, breadcrumbArr);
+            let handleSelect = () => this.setState({active: {id: node.id, breadcrumbs: breadcrumbArr}}) || this.props.onSelect(node, breadcrumbArr);
             if (!node.children) {
                 return <div onClick={handleSelect} key={node.id} className={classnames(activeClass, style.rowBox)} data-breadcrumb={breadcrumbString}>{node.title}</div>;
             } else {
