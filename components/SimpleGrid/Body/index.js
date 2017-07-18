@@ -4,57 +4,102 @@ import Record from './Record.js';
 import style from './styles.css';
 
 export class Body extends Component {
+    constructor() {
+        super();
+
+        this.renderBody = this.renderBody.bind(this);
+    }
+
     getStyle(name) {
         return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name] || style[name];
     }
-    render() {
-        let body;
-        let space = <span>&nbsp;</span>;
-        let fields = this.props.fields.filter((f) => (!(f.visible === false)));
-        let fieldsLen = fields.length + (this.props.multiSelect ? 1 : 0) + (this.props.globalMenu ? 1 : 0);
-        let data = this.props.data;
-        if (data.length < (this.props.verticalFields && this.props.verticalFields.length) && this.props.verticalFieldsRenderComplete) {
-            data = data.concat((new Array(this.props.verticalFields.length - data.length)).fill(undefined));
+
+    renderBody(data) {
+        const {
+            multiSelect,
+            globalMenu,
+            externalStyle,
+            transformCellValue,
+            handleRowClick,
+            handleCheckboxSelect,
+            rowsChecked,
+            handleCellClick,
+            rowStyleField,
+            verticalFields,
+            verticalFieldsRenderComplete,
+            rowsRenderLimit,
+            verticalSpanFields,
+            verticalFieldsVisible,
+            rowsRenderLimitExceedMsg
+    } = this.props;
+
+        if (data.length < (verticalFields && verticalFields.length) && verticalFieldsRenderComplete) {
+            data = data.concat((new Array(verticalFields.length - data.length)).fill(undefined));
         }
+
         if (data.length) {
-            if (!this.props.rowsRenderLimit || this.props.rowsRenderLimit >= data.length) {
+            if (!rowsRenderLimit || rowsRenderLimit >= data.length) {
                 let verticalField;
                 let verticalSpanField;
-                body = data.map((data, idx) => {
-                    verticalField = this.props.verticalFields && this.props.verticalFields[idx];
+
+                return data.map((record, idx) => {
+                    const { local } = record;
+
+                    verticalField = verticalFields && verticalFields[idx];
                     if (verticalField) {
-                        verticalSpanField = this.props.verticalSpanFields && this.props.verticalSpanFields.filter((verticalSpanField) => {
+                        verticalSpanField = verticalSpanFields && verticalSpanFields.filter((verticalSpanField) => {
                             return verticalSpanField.children.includes(verticalField.name);
                         });
                         verticalSpanField = verticalSpanField && verticalSpanField.pop();
                     }
-                    return (<Record
-                      key={idx}
-                      recordIndex={idx}
-                      data={data}
-                      verticalField={verticalField}
-                      verticalSpanField={verticalSpanField}
-                      verticalFieldsVisible={this.props.verticalFieldsVisible}
-                      multiSelect={this.props.multiSelect}
-                      globalMenu={this.props.globalMenu}
-                      fields={fields}
-                      externalStyle={this.props.externalStyle}
-                      transformCellValue={this.props.transformCellValue}
-                      handleCheckboxSelect={this.props.handleCheckboxSelect}
-                      handleClick={this.props.handleRowClick}
-                      rowsChecked={this.props.rowsChecked}
-                      handleCellClick={this.props.handleCellClick}
-                      rowStyleField={this.props.rowStyleField}
-                    />);
+
+                    return (
+                        <Record
+                          key={idx}
+                          local={local}
+                          recordIndex={idx}
+                          data={record}
+                          verticalField={verticalField}
+                          verticalSpanField={verticalSpanField}
+                          verticalFieldsVisible={verticalFieldsVisible}
+                          multiSelect={multiSelect}
+                          globalMenu={globalMenu}
+                          fields={this.filteredFields}
+                          externalStyle={externalStyle}
+                          transformCellValue={transformCellValue}
+                          handleCheckboxSelect={handleCheckboxSelect}
+                          handleClick={handleRowClick}
+                          rowsChecked={rowsChecked}
+                          handleCellClick={handleCellClick}
+                          rowStyleField={rowStyleField} />
+                    );
                 });
-            } else {
-                body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.rowsRenderLimitExceedMsg || space}</td></tr>);
             }
-        } else {
-            body = (<tr><td colSpan={fieldsLen} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg || space}</td></tr>);
+
+            return (<tr><td colSpan={this.filteredFieldsLength} className={this.getStyle('noResultRow')}>{rowsRenderLimitExceedMsg}</td></tr>);
         }
+    }
+
+    get filteredFields() {
+        const { fields } = this.props;
+
+        return fields.filter((f) => (!(f.visible === false)));
+    }
+
+    get filteredFieldsLength() {
+        const { multiSelect, globalMenu } = this.props;
+
+        return this.filteredFields.length + (multiSelect ? 1 : 0) + (globalMenu ? 1 : 0);
+    }
+
+    render() {
+        const { data, localData } = this.props;
+
         return (
-            <tbody>{body}</tbody>
+            <tbody>
+                { !!localData.length && this.renderBody(localData) }
+                { (!!data.length && this.renderBody(data)) || <tr><td colSpan={this.filteredFieldsLength} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg}</td></tr> }
+            </tbody>
         );
     }
 }
@@ -67,6 +112,7 @@ Body.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     transformCellValue: PropTypes.func,
     data: propTypeData,
+    localData: PropTypes.array,
     verticalSpanFields: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.node.isRequired,
         // row indexes !!!
@@ -86,7 +132,9 @@ Body.propTypes = {
 
 Body.defaultProps = {
     fields: [],
-    data: []
+    localData: [],
+    data: [],
+    rowsRenderLimitExceedMsg: ''
 };
 
 Body.contextTypes = {

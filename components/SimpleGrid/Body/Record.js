@@ -26,6 +26,7 @@ export default class Record extends Component {
         }
         return fromJS(this.props.rowsChecked).includes(fromJS(this.props.data));
     }
+
     renderField(field, idx, totalFields, isChecked) {
         if (!field.get('internal')) {
             return (<Column
@@ -95,6 +96,7 @@ export default class Record extends Component {
         }
 
         let isChecked = this.handleIsRowChecked();
+
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
         let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
         return (
@@ -120,7 +122,8 @@ Record.propTypes = {
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
     handleClick: PropTypes.func,
-    rowStyleField: PropTypes.string
+    rowStyleField: PropTypes.string,
+    local: PropTypes.bool
 };
 
 Record.defaultProps = {
