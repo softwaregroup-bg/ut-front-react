@@ -1,3 +1,20 @@
+<a name="9.9.3"></a>
+## [9.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.9.2...v9.9.3) (2017-07-18)
+
+
+
+<a name="9.9.2"></a>
+## [9.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.3...v9.9.2) (2017-07-17)
+
+
+### Bug Fixes
+
+* comments ([91832ec](https://github.com/softwaregroup-bg/ut-front-react/commit/91832ec))
+* ConfirmDialog onClose event added ([45bd6d3](https://github.com/softwaregroup-bg/ut-front-react/commit/45bd6d3))
+* module version ([f503bee](https://github.com/softwaregroup-bg/ut-front-react/commit/f503bee))
+
+
+
 <a name="9.8.3"></a>
 ## [9.8.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.2...v9.8.3) (2017-07-13)
 
