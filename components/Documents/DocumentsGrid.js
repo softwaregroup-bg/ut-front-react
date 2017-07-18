@@ -98,7 +98,6 @@ DocumentsGrid.defaultProps = {
 };
 
 DocumentsGrid.propTypes = {
-    // identifier: PropTypes.string.isRequired,
     identifier: PropTypes.string,
     documents: PropTypes.array,
     selectedFilter: PropTypes.string,
