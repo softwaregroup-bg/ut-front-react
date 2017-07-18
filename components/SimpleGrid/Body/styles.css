@@ -33,21 +33,3 @@ tr.gridBodyTr.checked:nth-child(2n) {
 .noResultRow {
     text-align: center;
 }
-
-tr.dataTypeSeparator {
-    height: 20px;
-}
-
-tr.localRecord {
-    color: white;
-}
-
-tr.newLocalRecord{
-    /*background-color: green !important;*/
-    color: black;
-}
-
-tr.editedLocalRecord{
-    color: black;
-    /*background-color: yellow !important;*/
-}
