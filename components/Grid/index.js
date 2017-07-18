@@ -87,6 +87,7 @@ class Grid extends Component {
 
                     return (<Row
                       key={i}
+                      rowIndex={i}
                       data={rowData}
                       checked={checked}
                       linkableColumns={linkableColumns}
