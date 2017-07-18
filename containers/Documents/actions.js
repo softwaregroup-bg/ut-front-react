@@ -1,6 +1,5 @@
 import {
     INIT_DOCUMENTS_STATE,
-    FETCH_DOCUMENTS,
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     FETCH_DOCUMENT_TYPES,
@@ -30,19 +29,6 @@ export function resetDocumentState(identifier) {
         }
     };
 }
-
-export const fetchDocuments = (actorId, identifier) => {
-    return {
-        type: FETCH_DOCUMENTS,
-        method: 'document.document.fetch',
-        params: {
-            actorId
-        },
-        props: {
-            identifier
-        }
-    };
-};
 
 export const fetchArchivedDocuments = (actorId, identifier) => {
     return {

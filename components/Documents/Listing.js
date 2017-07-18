@@ -8,22 +8,12 @@ import style from './style.css';
 class Documents extends Component {
     constructor(props) {
         super(props);
-        this.fetchDocs = this.fetchDocs.bind(this);
         this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.actorId !== nextProps.actorId || nextProps.requiresFetch) {
-            this.fetchDocs(nextProps.actorId, true, nextProps.isLoading, nextProps.identifier);
-        }
         if (nextProps.selectedFilter === 'archived' && nextProps.documentArchived.get('requiresFetch')) {
             this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'), nextProps.identifier);
-        }
-    }
-
-    fetchDocs(actorId, requiresFetch, isLoading, identifier) {
-        if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchDocuments(actorId, identifier);
         }
     }
 
@@ -91,7 +81,6 @@ Documents.propTypes = {
     documentArchived: PropTypes.object, // immutable object
 
     // funcs
-    fetchDocuments: PropTypes.func.isRequired,
     fetchArchivedDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
     changeDocumentFilter: PropTypes.func.isRequired,
@@ -107,9 +96,7 @@ Documents.propTypes = {
     replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
     archiveDocument: PropTypes.func,
-    // updatedAttachments: PropTypes.object, // immutable list
     allowedFileTypes: PropTypes.array,
-    // excludeAttachmentIds: PropTypes.array,
 
     permissions: Toolbox.propTypes.permissions
 };

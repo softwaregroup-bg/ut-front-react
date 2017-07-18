@@ -4,7 +4,6 @@ import immutable from 'immutable';
 import { documentTmpUploadPrefix } from '../../constants';
 import {
     initState,
-    fetchDocuments,
     fetchArchivedDocuments,
     selectAttachments,
     fetchDocumentTypes,
@@ -56,12 +55,10 @@ class DocumentsContainer extends Component {
             attachments,
             documents,
             documentsChanged,
-            fetchDocuments,
             fetchArchivedDocuments,
             selectAttachments,
             permissions,
             documentTypes,
-            excludeAttachmentIds,
             selectedFilter,
             documentArchived
         } = this.props;
@@ -82,15 +79,12 @@ class DocumentsContainer extends Component {
               documents={docs}
               documentsChanged={docsChanged}
               selectedAttachment={selectedAttachment}
-              // updatedAttachments={this.props.updatedAttachments}
               requiresFetch={requiresFetch}
               isLoading={isLoading}
-              fetchDocuments={fetchDocuments}
               fetchArchivedDocuments={fetchArchivedDocuments}
               onGridSelect={selectAttachments}
               permissions={permissions}
               documentTypes={docTypes}
-              excludeAttachmentIds={excludeAttachmentIds}
               uploadNewDocument={(newObject) => {
                   let formatedObj = {
                       createdDate: newObject.createdDate,
@@ -134,8 +128,7 @@ DocumentsContainer.propTypes = {
     attachments: PropTypes.object, // immutable list
     documents: PropTypes.array,
     documentsChanged: PropTypes.object, // immutable list
-    fetchDocuments: DocumentsListing.propTypes.fetchDocuments,
-    fetchArchivedDocuments: DocumentsListing.propTypes.fetchDocuments,
+    fetchArchivedDocuments: DocumentsListing.propTypes.fetchArchivedDocuments,
     initState: PropTypes.func,
     selectAttachments: PropTypes.func,
     fetchDocumentTypes: PropTypes.func,
@@ -146,7 +139,6 @@ DocumentsContainer.propTypes = {
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,
-    excludeAttachmentIds: PropTypes.array,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
@@ -162,8 +154,7 @@ export default connect(
             documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
             selectedFilter: frontDocuments.getIn([props.identifier, 'selectedFilter']),
             documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})
-            // updatedAttachments: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([])
         };
     },
-    { initState, fetchDocuments, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
+    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
 )(DocumentsContainer);
