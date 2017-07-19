@@ -28,6 +28,16 @@ class Grid extends Component {
         this.subscribeUnselect = (handler) => (this.subscription = handler);
     }
 
+    componentWillReceiveProps(nextProps) {
+        let checkedRowsCount = nextProps.checkedItems.size;
+        let gridRowsCount = nextProps.rows.size;
+        if (gridRowsCount === checkedRowsCount && gridRowsCount !== 0 && !this.isAllChecked()) {
+            this.setState({all: true});
+        } else if (gridRowsCount !== checkedRowsCount && this.isAllChecked()) {
+            this.setState({all: false});
+        }
+    }
+
     handleSelect(index) {
         return (rowData, isSelected) => {
             isSelected && this.lastSelected !== null && this.lastSelected !== rowData && this.subscription();
