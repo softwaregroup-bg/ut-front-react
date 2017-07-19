@@ -1,6 +1,5 @@
 import {
     INIT_DOCUMENTS_STATE,
-    FETCH_DOCUMENTS,
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     FETCH_DOCUMENT_TYPES,
@@ -12,12 +11,11 @@ import {
     RESET_DOCUMENT_STATE
 } from './actionTypes';
 
-export function initState(identifier, excludeIdsList, pathname) {
+export function initState(identifier, pathname) {
     return {
         type: INIT_DOCUMENTS_STATE,
         params: {
             identifier,
-            excludeIdsList,
             pathname
         }
     };
@@ -32,23 +30,10 @@ export function resetDocumentState(identifier) {
     };
 }
 
-export const fetchDocuments = (actorId, identifier) => {
-    return {
-        type: FETCH_DOCUMENTS,
-        method: 'document.document.fetch',
-        params: {
-            actorId
-        },
-        props: {
-            identifier
-        }
-    };
-};
-
 export const fetchArchivedDocuments = (actorId, identifier) => {
     return {
         type: FETCH_ARCHIVED_DOCUMENTS,
-        method: 'document.document.fetch',
+        method: 'document.archivedDocument.get',
         params: {
             actorId
         },
@@ -88,11 +73,12 @@ export function addDocument(identifier, newDocumentObject) {
     };
 }
 
-export function replaceDocument(identifier, documentObject) {
+export function replaceDocument(identifier, oldDocumentObject, newDocumentObject) {
     return {
         type: REPLACE_DOCUMENT,
         props: {
-            documentObject,
+            oldDocumentObject,
+            newDocumentObject,
             identifier
         }
     };

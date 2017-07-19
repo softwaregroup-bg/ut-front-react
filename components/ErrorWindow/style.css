@@ -1,0 +1,14 @@
+.errorIconWrap {
+    display: block;
+    width: 40px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.errorMessageWrap {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #E84949;
+}

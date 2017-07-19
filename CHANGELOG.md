@@ -1,3 +1,72 @@
+<a name="9.10.1"></a>
+## [9.10.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.0...v9.10.1) (2017-07-18)
+
+
+### Bug Fixes
+
+* UIS-2937: fix behavior when selecting the parent BU in BU tree ([8d058a8](https://github.com/softwaregroup-bg/ut-front-react/commit/8d058a8))
+
+
+
+<a name="9.10.0"></a>
+# [9.10.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.9.4...v9.10.0) (2017-07-18)
+
+
+### Bug Fixes
+
+* ABT-1501 disable action buttons for pending documents ([0fe291a](https://github.com/softwaregroup-bg/ut-front-react/commit/0fe291a))
+* ABT-1501 display the extension in the preview instead of the mime type ([c86700b](https://github.com/softwaregroup-bg/ut-front-react/commit/c86700b))
+* ABT-1501 fix description property name ([15fbe36](https://github.com/softwaregroup-bg/ut-front-react/commit/15fbe36))
+* ABT-1501 fix downloading functionality ([6fb223c](https://github.com/softwaregroup-bg/ut-front-react/commit/6fb223c))
+* ABT-1501 fix params and when to refetch the documents ([8e0df7e](https://github.com/softwaregroup-bg/ut-front-react/commit/8e0df7e))
+* ABT-1501 fix replacing documents ([d7bd07f](https://github.com/softwaregroup-bg/ut-front-react/commit/d7bd07f))
+* ABT-1501 fix selecting the grid's row handler ([686a3db](https://github.com/softwaregroup-bg/ut-front-react/commit/686a3db))
+* ABT-1501 fix toolbox's passed data ([fe6e87b](https://github.com/softwaregroup-bg/ut-front-react/commit/fe6e87b))
+* ABT-1501 init store's state only if it doesn't exist ([2b7c8d3](https://github.com/softwaregroup-bg/ut-front-react/commit/2b7c8d3))
+* UIS-2710 hide file size from the preview popup ([4f23b88](https://github.com/softwaregroup-bg/ut-front-react/commit/4f23b88))
+
+
+### Features
+
+* ABT-1501 add editedBy in the store ([87e64c3](https://github.com/softwaregroup-bg/ut-front-react/commit/87e64c3))
+* ABT-1501 add functionality to make many replacements of one document ([1672f7d](https://github.com/softwaregroup-bg/ut-front-react/commit/1672f7d))
+* ABT-1501 add some error handling when uploading a document ([7d31981](https://github.com/softwaregroup-bg/ut-front-react/commit/7d31981))
+* ABT-1501 add the new procedure for archived ([ec9a842](https://github.com/softwaregroup-bg/ut-front-react/commit/ec9a842))
+* ABT-1501 format data for archived documents ([64e4746](https://github.com/softwaregroup-bg/ut-front-react/commit/64e4746))
+* ABT-1501 format data for the documents ([acb75e5](https://github.com/softwaregroup-bg/ut-front-react/commit/acb75e5))
+* ABT-1501 implement simple logic for merging active and deleted documents ([9f71c55](https://github.com/softwaregroup-bg/ut-front-react/commit/9f71c55))
+* ABT-1501 improve styles when there are many documents ([946d5dc](https://github.com/softwaregroup-bg/ut-front-react/commit/946d5dc))
+* ABT-1501 merge unapprove documents ([c32bdd0](https://github.com/softwaregroup-bg/ut-front-react/commit/c32bdd0))
+
+
+
+<a name="9.9.4"></a>
+## [9.9.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.9.3...v9.9.4) (2017-07-18)
+
+
+
+<a name="9.9.3"></a>
+## [9.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.9.2...v9.9.3) (2017-07-18)
+
+
+
+<a name="9.9.2"></a>
+## [9.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.3...v9.9.2) (2017-07-17)
+
+
+### Bug Fixes
+
+* comments ([91832ec](https://github.com/softwaregroup-bg/ut-front-react/commit/91832ec))
+* ConfirmDialog onClose event added ([45bd6d3](https://github.com/softwaregroup-bg/ut-front-react/commit/45bd6d3))
+* module version ([f503bee](https://github.com/softwaregroup-bg/ut-front-react/commit/f503bee))
+
+
+
+<a name="9.8.3"></a>
+## [9.8.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.2...v9.8.3) (2017-07-13)
+
+
+
 <a name="9.8.2"></a>
 ## [9.8.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.8.1...v9.8.2) (2017-07-07)
 

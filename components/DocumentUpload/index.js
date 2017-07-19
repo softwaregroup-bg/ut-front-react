@@ -21,7 +21,9 @@ export default class DocumentUpload extends Component {
             fileDimensions: {},
             showCrop: false,
             hasCropped: false,
-            shouldUse: false
+            shouldUse: false,
+            isUploading: false,
+            errorUpload: null
         };
 
         this.state = this.initialState;
@@ -45,6 +47,8 @@ export default class DocumentUpload extends Component {
         this.onCrop = this.onCrop.bind(this);
 
         this.uploadFile = this.uploadFile.bind(this);
+
+        this.setError = this.setError.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextState) {
@@ -229,6 +233,7 @@ export default class DocumentUpload extends Component {
             actionButtons.unshift({
                 name: 'use',
                 label: 'Use',
+                disabled: this.state.isUploading,
                 styleType: 'secondaryLight',
                 onClick: handler
             });
@@ -264,7 +269,13 @@ export default class DocumentUpload extends Component {
         data.append('file', img, 'file.' + ext);
         var request = new window.XMLHttpRequest();
         request.open('POST', '/file-upload', true);
+        this.setState({
+            isUploading: true
+        });
         request.onload = (e) => {
+            this.setState({
+                isUploading: false
+            });
             if (request.status >= 200 && request.status < 300 && request.responseText) {
                 let reader = new window.FileReader();
                 reader.onload = (data) => {
@@ -277,12 +288,19 @@ export default class DocumentUpload extends Component {
                             contentType: response.headers['content-type']
                         });
                     } catch (e) {
-                        // TODO: handle error response
+                        this.setError(e);
                     }
                 };
                 reader.readAsDataURL(img);
+            } else {
+                this.setError(request.statusText);
             }
-            // TODO: some error in else
+        };
+        request.onerror = (e) => {
+            this.setError(request.statusText);
+        };
+        request.ontimeout = (e) => {
+            this.setError(request.statusText);
         };
         request.send(data);
     }
@@ -307,6 +325,24 @@ export default class DocumentUpload extends Component {
         return new window.Blob([ia], {type: mimeString});
     }
 
+    setError(errMsg) {
+        this.setState({
+            errorUpload: errMsg
+        });
+    }
+
+    get displayError() {
+        if (this.state.errorUpload) {
+            return (
+                <div className={styles.errorBox}>
+                    {this.state.errorUpload}
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
     render() {
         const { isOpen, header, closePopup } = this.props;
         const { mode } = this.state;
@@ -320,6 +356,7 @@ export default class DocumentUpload extends Component {
               footer={{actionButtons: this.actionButtons}}
               closePopup={closePopup}>
                 <div>
+                    { this.displayError }
                     { this.props.children }
                     { this.details }
                     { this.view }

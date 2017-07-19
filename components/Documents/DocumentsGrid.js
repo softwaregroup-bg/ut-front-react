@@ -14,48 +14,51 @@ class DocumentsGrid extends Component {
     }
 
     mapColumn(content, configObj, obj) {
+        if (!obj) {
+            return capitalizeFirstLetter(content);
+        }
         switch (configObj.name) {
             case 'documentType':
-                return capitalizeFirstLetter(content);
+                if (obj.documentTypeName) {
+                    return capitalizeFirstLetter(obj.documentTypeName);
+                };
+                break;
             case 'documentDescription':
-                if (content) {
-                    return content;
+                if (obj.description) {
+                    return obj.description;
                 } else {
                     return <span className={style.fileDetailsNoText}><Text>(no description)</Text></span>;
                 }
             case 'extension':
-                return content;
+                return obj.attachments[0].extension;
             case 'createdDate':
-                return <DateComponent>{content}</DateComponent>;
+                return <DateComponent>{obj.createdDate}</DateComponent>;
             case 'statusId':
-                let label = content;
-                if (content === 'approved') {
+                let label = obj.statusId;
+                if (obj.statusId === 'approved') {
                     label = 'active';
-                }
-                if (content === 'pending') {
-                    label = 'Updated';
                 }
                 return capitalizeFirstLetter(label);
         }
-        return content;
+        return capitalizeFirstLetter(content);
     }
 
     get content() {
-        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
+        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
         let handleSelectItem = (selectedItem) => {
-            let isSelected = selected ? selected.get('filename') === selectedItem.filename : false;
+            let isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
             onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
         };
-        let gridData = immutable.List();
+        let gridData = [];
         switch (selectedFilter) {
             case 'all':
-                gridData = activeAttachments;
+                gridData = documents;
                 break;
             case 'archived':
-                gridData = documentArchived.get('data');
+                gridData = documentArchived.get('data').toJS();
                 break;
         }
-        if (gridData && gridData.size > 0) {
+        if (gridData.length > 0) {
             let selectedItem = selected ? [selected] : [];
             return (
                 <div>
@@ -64,7 +67,7 @@ class DocumentsGrid extends Component {
                       globalMenu={false}
                       emptyRowsMsg={<Text>No results</Text>}
                       fields={getListTableColumns()}
-                      data={gridData.toJS()}
+                      data={gridData}
                       transformCellValue={this.mapColumn}
                       handleRowClick={handleSelectItem}
                       rowsChecked={selectedItem}
@@ -90,13 +93,13 @@ class DocumentsGrid extends Component {
 }
 
 DocumentsGrid.defaultProps = {
-    onGridSelect: () => {}
+    onGridSelect: () => {},
+    selectedFilter: 'all'
 };
 
 DocumentsGrid.propTypes = {
-    // identifier: PropTypes.string.isRequired,
     identifier: PropTypes.string,
-    activeAttachments: PropTypes.object, // immutable list
+    documents: PropTypes.array,
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
     selected: PropTypes.object, // immutable object

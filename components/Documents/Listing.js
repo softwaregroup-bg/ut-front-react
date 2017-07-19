@@ -2,37 +2,24 @@ import React, { Component, PropTypes } from 'react';
 import { Vertical } from '../Layout';
 import Toolbox from './Toolbox';
 import DocumentsGrid from './DocumentsGrid';
+import { mergeDocumentsWithChanged } from './helpers';
 import style from './style.css';
 
 class Documents extends Component {
     constructor(props) {
         super(props);
-        this.fetchDocs = this.fetchDocs.bind(this);
         this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
     }
 
-    componentWillMount() {
-        this.fetchDocs(this.props.actorId, true, this.props.isLoading);
-    }
-
     componentWillReceiveProps(nextProps) {
-        if (this.props.actorId !== nextProps.actorId || nextProps.requiresFetch) {
-            this.fetchDocs(nextProps.actorId, nextProps.requiresFetch, nextProps.isLoading);
-        }
         if (nextProps.selectedFilter === 'archived' && nextProps.documentArchived.get('requiresFetch')) {
-            this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'));
+            this.fetchArchivedDocs(nextProps.actorId, nextProps.documentArchived.get('requiresFetch'), nextProps.documentArchived.get('isLoading'), nextProps.identifier);
         }
     }
 
-    fetchDocs(actorId, requiresFetch, isLoading) {
+    fetchArchivedDocs(actorId, requiresFetch, isLoading, identifier) {
         if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchDocuments(actorId, this.props.identifier);
-        }
-    }
-
-    fetchArchivedDocs(actorId, requiresFetch, isLoading) {
-        if (actorId && requiresFetch && !isLoading) {
-            this.props.fetchArchivedDocuments(actorId, this.props.identifier);
+            this.props.fetchArchivedDocuments(actorId, identifier);
         }
     }
 
@@ -40,7 +27,7 @@ class Documents extends Component {
         return (
             <Toolbox
               selectedAttachment={this.props.selectedAttachment}
-              activeAttachments={this.props.activeAttachments}
+              documents={this.mergeDocuments}
               documentArchived={this.props.documentArchived}
               selectedFilter={this.props.selectedFilter}
               changeDocumentFilter={this.props.changeDocumentFilter}
@@ -55,14 +42,18 @@ class Documents extends Component {
         );
     }
 
+    get mergeDocuments() {
+        return mergeDocumentsWithChanged(this.props.documents, this.props.documentsChanged);
+    }
+
     render() {
-        let { identifier, activeAttachments, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        let { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>
                     <DocumentsGrid
                       identifier={identifier}
-                      activeAttachments={activeAttachments}
+                      documents={this.mergeDocuments}
                       selectedFilter={selectedFilter}
                       documentArchived={documentArchived}
                       onGridSelect={onGridSelect}
@@ -81,7 +72,8 @@ Documents.propTypes = {
      */
     identifier: PropTypes.string.isRequired,
     actorId: PropTypes.number,
-    activeAttachments: PropTypes.object, // immutable list
+    documents: PropTypes.array,
+    documentsChanged: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     requiresFetch: PropTypes.bool,
     isLoading: PropTypes.bool,
@@ -89,7 +81,6 @@ Documents.propTypes = {
     documentArchived: PropTypes.object, // immutable object
 
     // funcs
-    fetchDocuments: PropTypes.func.isRequired,
     fetchArchivedDocuments: PropTypes.func.isRequired,
     onGridSelect: PropTypes.func,
     changeDocumentFilter: PropTypes.func.isRequired,
@@ -105,15 +96,14 @@ Documents.propTypes = {
     replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
     archiveDocument: PropTypes.func,
-    // updatedAttachments: PropTypes.object, // immutable list
     allowedFileTypes: PropTypes.array,
-    // excludeAttachmentIds: PropTypes.array,
 
     permissions: Toolbox.propTypes.permissions
 };
 
 Documents.defaultProps = {
     requiresFetch: false,
+    isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };

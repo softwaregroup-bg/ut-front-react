@@ -22,7 +22,7 @@ class Toolbox extends Component {
     }
 
     get header() {
-        let { selectedAttachment, deleteDocument, selectedFilter, activeAttachments, documentArchived, archiveDocument } = this.props;
+        let { selectedAttachment, deleteDocument, selectedFilter, documents, documentArchived, archiveDocument } = this.props;
 
         let addNewDocumentHandler = () => {
             this.setState({
@@ -48,8 +48,8 @@ class Toolbox extends Component {
         // Download button
         let downloadButtonHandler = () => {
             let tempLink = document.createElement('a');
-            tempLink.href = selectedAttachment.get('url');
-            tempLink.setAttribute('download', `${selectedAttachment.get('documentTypeId')}-${selectedAttachment.get('filename')}.${selectedAttachment.get('extension')}`);
+            tempLink.href = selectedAttachment.getIn(['attachments', 0, 'url']);
+            tempLink.setAttribute('download', selectedAttachment.getIn(['attachments', 0, 'filename']));
             tempLink.setAttribute('target', '_blank');
             document.body.appendChild(tempLink);
             tempLink.click();
@@ -92,7 +92,7 @@ class Toolbox extends Component {
             });
         }
         let displayButtons = false;
-        if ((selectedFilter === 'all' && activeAttachments && activeAttachments.size > 0) ||
+        if ((selectedFilter === 'all' && documents && documents.length > 0) ||
             (selectedFilter === 'archived' && documentArchived && documentArchived.get('data') && documentArchived.get('data').size > 0)) {
             displayButtons = true;
         }
@@ -115,21 +115,40 @@ class Toolbox extends Component {
             if (this.props.permissions.delete) {
                 headerButtonsConfig.left.push({
                     label: 'Delete',
-                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'deleted' || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || (
+                        (selectedAttachment &&
+                            (selectedAttachment.get('statusId') === 'deleted' ||
+                            selectedAttachment.get('statusId') === 'archived' ||
+                            selectedAttachment.get('statusId') === 'pending')
+                            ) ||
+                            this.props.selectedFilter === 'archived'),
                     onClick: openDeleteConfirmationDialog
                 });
             }
             if (this.props.permissions.replace) {
                 headerButtonsConfig.left.push({
                     label: 'Replace',
-                    disabled: disabledButtonsState || ((selectedAttachment && ((selectedAttachment.get('statusId') === 'new' && !selectedAttachment.get('attachmentId')) || selectedAttachment.get('statusId') === 'archived')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || (
+                        (selectedAttachment &&
+                            (selectedAttachment.get('statusId') === 'deleted' ||
+                            (selectedAttachment.get('statusId') === 'new' && !selectedAttachment.get('attachmentId')) ||
+                            selectedAttachment.get('statusId') === 'archived' ||
+                            selectedAttachment.get('statusId') === 'pending')) ||
+                            this.props.selectedFilter === 'archived'),
                     onClick: replaceDocumentHandler
                 });
             }
             if (this.props.permissions.archive) {
                 headerButtonsConfig.left.push({
                     label: 'Archive',
-                    disabled: disabledButtonsState || ((selectedAttachment && (selectedAttachment.get('statusId') === 'new' || selectedAttachment.get('statusId') === 'archived' || selectedAttachment.get('statusId') === 'pending')) || this.props.selectedFilter === 'archived'),
+                    disabled: disabledButtonsState || (
+                        (selectedAttachment &&
+                            (selectedAttachment.get('statusId') === 'deleted' ||
+                            selectedAttachment.get('statusId') === 'new' ||
+                            selectedAttachment.get('statusId') === 'archived' ||
+                            selectedAttachment.get('statusId') === 'pending' ||
+                            this.props.selectedFilter === 'archived')
+                        )),
                     onClick: openArchiveConfirmationDialog
                 });
             }
@@ -234,12 +253,12 @@ class Toolbox extends Component {
                 this.setState({ showDetailsPopUp: false });
             };
             let file = {
-                content: selectedAttachment.get('url'),
+                content: selectedAttachment.getIn(['attachments', 0, 'url']),
                 details: {
-                    type: selectedAttachment.get('contentType'),
-                    size: selectedAttachment.get('attachmentSizeId'),
+                    type: selectedAttachment.getIn(['attachments', 0, 'contentType']),
+                    extension: selectedAttachment.getIn(['attachments', 0, 'extension']),
                     dateUploaded: selectedAttachment.get('createdDate'),
-                    description: selectedAttachment.get('documentDescription'),
+                    description: selectedAttachment.get('description'),
                     width: selectedAttachment.get('width'),
                     height: selectedAttachment.get('height')
                 }
@@ -281,7 +300,7 @@ class Toolbox extends Component {
 
     render() {
         return (
-            <div className={style.documentsWrap}>
+            <div className={style.headerWrap}>
                 {this.header}
                 {this.detailsView}
                 {this.renderDocumentUplodDialog}
@@ -291,7 +310,7 @@ class Toolbox extends Component {
 }
 
 Toolbox.propTypes = {
-    activeAttachments: PropTypes.object, // immutable list
+    documents: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     documentArchived: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
@@ -325,7 +344,6 @@ Toolbox.propTypes = {
 };
 
 Toolbox.defaultProps = {
-    requiresFetch: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };

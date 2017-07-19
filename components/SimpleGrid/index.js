@@ -137,6 +137,7 @@ export class SimpleGrid extends Component {
                   externalStyle={this.props.externalStyle}
                   fields={fields}
                   data={this.props.data}
+                  localData={this.props.localData}
                   emptyRowsMsg={this.props.emptyRowsMsg}
                   rowsRenderLimit={this.props.rowsRenderLimit}
                   rowsRenderLimitExceedMsg={this.props.rowsRenderLimitExceedMsg}
@@ -173,6 +174,7 @@ SimpleGrid.propTypes = {
     verticalFieldsRenderComplete: PropTypes.bool,
     verticalFieldsVisible: PropTypes.bool,
     data: propTypeData,
+    localData: PropTypes.array,
     externalStyle: PropTypes.object,
     orderBy: PropTypes.array,
     orderDirections: PropTypes.object,
@@ -199,6 +201,7 @@ SimpleGrid.propTypes = {
 
 SimpleGrid.defaultProps = {
     fields: [],
+    localData: [],
     verticalFields: [],
     spanFields: [],
     verticalSpanFields: [],

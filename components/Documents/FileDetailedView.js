@@ -16,7 +16,7 @@ export default class FileDetailedView extends Component {
         const { file } = this.props;
 
         return Object.keys(file.details).map((key, index) => {
-            if (key === 'width' || key === 'height') {
+            if (key === 'width' || key === 'height' || key === 'type') {
                 return;
             }
 

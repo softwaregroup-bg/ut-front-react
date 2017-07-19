@@ -1,6 +1,6 @@
-import { documentPrefix } from '../../constants';
 import immutable from 'immutable';
-
+import { documentPrefix, documentTmpUploadPrefix } from '../../constants';
+import { mergeDocumentsWithChanged } from '../../components/Documents/helpers';
 /*
  * createIdentifier - creates an unique identifier for instance of documents tab container
  * params:
@@ -24,13 +24,13 @@ export function createIdentifier(moduleName, sectionName, mode, id) {
  */
 
 export function convertDocumentsForSave(attachmentsList, actorId) {
-    let allAttachemnts = attachmentsList.toJS();
+    let allAttachments = attachmentsList.toJS();
     let documents = [];
     let attachments = [];
     let actorDocument = [];
     let generatedDocumentId = -10;
-    if (allAttachemnts.length > 0) {
-        allAttachemnts.forEach((item) => {
+    if (allAttachments.length > 0) {
+        allAttachments.forEach((item) => {
             let docId;
             if (item.documentId) {
                 docId = item.documentId;
@@ -46,10 +46,10 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
                 statusId: item.statusId
             });
             attachments.push({
-                contentType: item.contentType,
+                contentType: item.attachments[0].contentType,
                 documentId: docId,
                 attachmentSizeId: 'original',
-                extension: item.extension
+                extension: item.attachments[0].extension
             });
             if (item.attachmentId) {
                 attachments[(attachments.length - 1)].attachmentId = item.attachmentId;
@@ -133,4 +133,142 @@ export function combineAttachments(state) {
 
 function mergeAttachments(mainObj, overridesObj) {
     return mainObj.merge(overridesObj);
+}
+
+export function mergeDocumentsAndAttachments(documents = [], attachments = [], documentsUnapproved = [], attachmentsUnapproved = []) {
+    let sameMaker = [];
+    let viewer = [];
+    let unapproved = [];
+    if (documents.length > 0 && attachments.length > 0) {
+        let matchType = documents[0].documentUnapprovedId ? 'unapproved' : 'approved';
+        if (matchType === 'unapproved') {
+            // Documents are in pending status (unapproved)
+            viewer = insertAttachmentsInDocuments(documents, attachments, 'documentUnapprovedId');
+        } else {
+            // Documents are active (approved)
+            viewer = insertAttachmentsInDocuments(documents, attachments, 'documentId');
+        }
+    }
+    if (documentsUnapproved.length > 0 && attachmentsUnapproved.length > 0) {
+        unapproved = insertAttachmentsInDocuments(documentsUnapproved, attachmentsUnapproved, 'documentUnapprovedId');
+    }
+    return {
+        remoteData: {
+            documents,
+            attachments,
+            documentsUnapproved,
+            attachmentsUnapproved
+        },
+        localData: {
+            sameMaker,
+            viewer,
+            unapproved
+        }
+    };
+}
+
+function insertAttachmentsInDocuments(documents = [], attachments = [], factor) {
+    return documents.map((document) => {
+        document.attachments = [];
+        attachments.forEach((attachment) => {
+            if (attachment[factor] === document[factor]) {
+                attachment.url = attachment.isNew ? documentTmpUploadPrefix + attachment.filename : documentPrefix + attachment.filename;
+                document.attachments.push(attachment);
+            }
+        });
+        return document;
+    });
+}
+
+export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprovedDocuments = {unapprovedDocuments: [], unapprovedAttachments: []}) {
+    let resultDocuments = [];
+    let resultAttachments = [];
+    let resultActorDocuments = [];
+    let tmpDocId = -10;
+    let tmpAttId = -10;
+    let allDocuments = [];
+    if (documents.documentsChanged.size > 0) {
+        allDocuments = mergeDocumentsWithChanged(documents.documents.toJS(), documents.documentsChanged.toJS());
+    } else {
+        allDocuments = documents.documents.toJS();
+    }
+    allDocuments.forEach((doc) => {
+        if (actorId) {
+            actorId = parseInt(actorId);
+        }
+        switch (doc.statusId) {
+            case 'new':
+                tmpDocId--;
+                tmpAttId--;
+                let docObj = {
+                    documentId: tmpDocId,
+                    documentTypeId: doc.documentTypeId,
+                    description: doc.description || null
+                };
+                let attObj = {
+                    attachmentId: tmpAttId,
+                    filename: doc.attachments[0].filename,
+                    extension: doc.attachments[0].extension,
+                    contentType: doc.attachments[0].contentType,
+                    documentId: tmpDocId,
+                    attachmentSizeId: 'original'
+                };
+                let actorDoc = {
+                    actorId: actorId,
+                    documentId: tmpDocId,
+                    documentOrder: 255
+                };
+                resultDocuments.push(docObj);
+                resultAttachments.push(attObj);
+                resultActorDocuments.push(actorDoc);
+                break;
+            case 'approved':
+            case 'archived':
+            case 'deleted':
+            case 'replaced':
+            case 'pending':
+                let documentId = null;
+                if (doc.documentId) {
+                    documentId = parseInt(doc.documentId);
+                }
+                let statusId = doc.statusId;
+                if (statusId === 'approved' || statusId === 'replaced') {
+                    statusId = 'pending';
+                }
+                docObj = {
+                    documentId: documentId,
+                    documentTypeId: doc.documentTypeId,
+                    statusId: statusId,
+                    description: doc.description || null
+                };
+                attObj = {
+                    attachmentId: doc.attachments[0].attachmentId,
+                    filename: doc.attachments[0].filename,
+                    extension: doc.attachments[0].extension,
+                    contentType: doc.attachments[0].contentType,
+                    documentId: documentId,
+                    attachmentSizeId: 'original'
+                };
+                actorDoc = {
+                    actorId: actorId,
+                    documentId: documentId,
+                    documentOrder: 255
+                };
+                if (doc.documentUnapprovedId && doc.attachments[0].attachmentUnapprovedId) {
+                    docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = parseInt(doc.documentUnapprovedId);
+                    attObj.attachmentUnapprovedId = parseInt(doc.attachments[0].attachmentUnapprovedId);
+                    attObj.documentUnapprovedId = docObj.documentUnapprovedId;
+                }
+                resultDocuments.push(docObj);
+                resultAttachments.push(attObj);
+                resultActorDocuments.push(actorDoc);
+                break;
+        }
+    });
+
+    return {
+        documents: resultDocuments,
+        attachments: resultAttachments,
+        actorDocument: resultActorDocuments
+    };
 }
