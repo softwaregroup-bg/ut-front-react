@@ -6,7 +6,7 @@ import immutable from 'immutable';
  * @param next - callback function (optional)
  * @return immutable map: {isOpen: bool, current: [{}...], unapproved: [{}...]}
  */
-export function compareValuesWithDifferentLength(arr1, arr2, next) {
+export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options = {}) => {
     // helper functions
     let checkIfExist = (arr, el) => arr.find((e) => e.get('key') === el.get('key'));
     let isBold = (el) => el.get('value') === 'Primary' ? 'bold' : '';
@@ -33,6 +33,9 @@ export function compareValuesWithDifferentLength(arr1, arr2, next) {
     boxData.current = arr1.map((el) => {
         // if the value passed is primary it should be bold
         let bold = isBold(el);
+        if (options.isDeleted) {
+            el = applyClass(el, 'changedCurrentValue');
+        }
 
         // check if current value exist in the array of new values
         if (checkIfExist(arr2, el)) {
@@ -103,4 +106,4 @@ export const compare = (title) => (currentValues, newValues, options) => compare
     currentValues,
     newValues,
     shouldBeOpen(options)
-).set('title', title);
+)(options).set('title', title);
