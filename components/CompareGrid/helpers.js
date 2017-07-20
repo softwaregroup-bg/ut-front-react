@@ -19,16 +19,16 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
     let applyClass = (el, className) => {
         let bold = isBold(el);
         return el
-                .set('keyClass', className)
-                .set('valueClass', className + bold)
-                .set('wrapperClass', className);
+            .set('keyClass', className)
+            .set('valueClass', className + bold)
+            .set('wrapperClass', className);
     };
     let boxData = {};
     let result = {
-        // this is used to indicate if the accordion should be open or not
-        isOpen: false,
+        isOpen: false, // this is used to indicate if the accordion should be open or not
         data: []
     };
+
     // current values
     boxData.current = arr1.map((el) => {
         // if the value passed is primary it should be bold
@@ -62,6 +62,7 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
             return applyClass(el, 'changedCurrentValue');
         }
     });
+
     // similar logic is used for new values too
     boxData.unapproved = arr2.map((el) => {
         let bold = isBold(el);
@@ -83,6 +84,7 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
             return applyClass(el, 'changedNewValue');
         }
     });
+
     if (boxData.current.size || boxData.unapproved.size) {
         result.data.push(boxData);
     }
@@ -92,7 +94,7 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
     }
 
     return immutable.fromJS(result);
-}
+};
 
 export const shouldBeOpen = (options) => (compared) => {
     if (options.isNew || options.isDeleted) {
