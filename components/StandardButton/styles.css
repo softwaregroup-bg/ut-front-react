@@ -210,7 +210,7 @@
 }
 
 .primaryLight:focus, .primaryDark:visited {
-    border: var(--ut-front-react-primaryBorderColorFocus);
+    border: 1px solid var(--ut-front-react-primaryBorderColorFocus);
     background-color: var(--ut-front-react-primaryBgColorFocus);
 }
 

@@ -48,6 +48,7 @@ const Header = React.createClass({
                         );
                     })}
                     {buttons.map((btn, i) => {
+                        let styleType = btn.styleType || 'secondaryDark';
                         if (btn.permissions && !this.context.checkPermission(btn.permissions)) {
                             return <div />;
                         }
@@ -57,7 +58,7 @@ const Header = React.createClass({
                                 <div key={i} className={style.buttonWrap}>
                                     {(i > 0) && <span className='w20' />}
                                     <StandardButton
-                                      styleType='secondaryDark'
+                                      styleType={styleType}
                                       onClick={btn.onClick}
                                       disabled={btn.disabled === true}
                                       label={btn.text}
@@ -69,7 +70,7 @@ const Header = React.createClass({
                                 <Link key={i} to={btn.href} className={style.buttonWrap}>
                                     {(i > 0) && <span className='w20' />}
                                     <StandardButton
-                                      styleType='secondaryDark'
+                                      styleType={styleType}
                                       disabled={btn.disabled === true}
                                       label={btn.text} />
                                 </Link>
