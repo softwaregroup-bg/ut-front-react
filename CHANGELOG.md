@@ -1,3 +1,13 @@
+<a name="9.10.4"></a>
+## [9.10.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.3...v9.10.4) (2017-07-24)
+
+
+### Bug Fixes
+
+* hardcoded button styles in PageLayout header component ([e14ac83](https://github.com/softwaregroup-bg/ut-front-react/commit/e14ac83))
+
+
+
 <a name="9.10.3"></a>
 ## [9.10.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.2...v9.10.3) (2017-07-24)
 
