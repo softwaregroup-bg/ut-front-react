@@ -64,7 +64,7 @@ class Grid extends Component {
     }
 
     render() {
-        let {columns, checkedItems, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck} = this.props;
+        let {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck} = this.props;
         let rowColumns = columns;
 
         // Add empty column
@@ -93,7 +93,7 @@ class Grid extends Component {
                     />
                 }
                 <tbody>{rows.map((rowData, i) => {
-                    let checked = this.state.all || checkedItems.find((i) => rowData.get('actorId') === i.get('actorId')) !== undefined;
+                    let checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
 
                     return (<Row
                       key={i}
@@ -122,6 +122,7 @@ Grid.propTypes = {
     columns: PropTypes.array.isRequired,
     rows: PropTypes.object.isRequired, // immutable object (array)
     checkedItems: PropTypes.object, // immutable list
+    rowIdentifier: PropTypes.string,
 
     sortableColumns: PropTypes.array,
     activeSort: PropTypes.shape({
@@ -145,6 +146,7 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
     checkedItems: immutable.List([]),
+    rowIdentifier: 'actorId',
     canCheck: true,
     showTableHead: true,
     mapColumn: (col, colData) => colData,
