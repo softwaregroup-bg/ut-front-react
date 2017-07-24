@@ -1,3 +1,17 @@
+<a name="9.10.3"></a>
+## [9.10.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.2...v9.10.3) (2017-07-24)
+
+
+### Bug Fixes
+
+* remove hardcoded conditions for checking rows in grid ([c2b927f](https://github.com/softwaregroup-bg/ut-front-react/commit/c2b927f))
+* UIS-1380: apply red class when displaying maker/checker values in CompareGrid ([84601c5](https://github.com/softwaregroup-bg/ut-front-react/commit/84601c5))
+* UIS-1380: fix linting, add some new lines ([96c769b](https://github.com/softwaregroup-bg/ut-front-react/commit/96c769b))
+* UIS-2688: fix line-breaking in buttons that have spaces in their label (e.g. Discard Changes) ([c101812](https://github.com/softwaregroup-bg/ut-front-react/commit/c101812))
+* UIS-2688: fix maker/checker buttons displacement when header title is too long ([9c9bf45](https://github.com/softwaregroup-bg/ut-front-react/commit/9c9bf45))
+
+
+
 <a name="9.10.2"></a>
 ## [9.10.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.1...v9.10.2) (2017-07-19)
 
