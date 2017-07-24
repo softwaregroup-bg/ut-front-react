@@ -26,10 +26,20 @@
 
 .buttonsWrap {
     overflow: hidden;
+    margin-left: 20px; /* Margin between buttons and the heading */
 }
-
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
 .buttonWrap {
     float: left;
+    margin-right: 20px;
+    white-space: nowrap;
+}
+.buttonWrap:last-child {
+    margin-right: 0;
 }
 
 .headerWrapper {

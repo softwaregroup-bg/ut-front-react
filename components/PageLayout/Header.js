@@ -42,40 +42,40 @@ const Header = React.createClass({
                     {text}
                 </h1>
                 <div className={classnames('pull-xs-right', style.buttonsWrap)}>
-                    {buttonsRaw.map((btn, i) => {
-                        return (
-                            <div key={i} className={style.buttonWrap}>{btn}</div>
-                        );
-                    })}
-                    {buttons.map((btn, i) => {
-                        if (btn.permissions && !this.context.checkPermission(btn.permissions)) {
-                            return <div />;
-                        }
+                    <div className={style.buttonsContainer}>
+                        {buttonsRaw.map((btn, i) => {
+                            return (
+                                <div key={i} className={style.buttonWrap}>{btn}</div>
+                            );
+                        })}
+                        {buttons.map((btn, i) => {
+                            if (btn.permissions && !this.context.checkPermission(btn.permissions)) {
+                                return <div />;
+                            }
 
-                        if (btn.onClick) {
-                            return (
-                                <div key={i} className={style.buttonWrap}>
-                                    {(i > 0) && <span className='w20' />}
-                                    <StandardButton
-                                      styleType='secondaryDark'
-                                      onClick={btn.onClick}
-                                      disabled={btn.disabled === true}
-                                      label={btn.text}
-                                      href={btn.href} />
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <Link key={i} to={btn.href} className={style.buttonWrap}>
-                                    {(i > 0) && <span className='w20' />}
-                                    <StandardButton
-                                      styleType='secondaryDark'
-                                      disabled={btn.disabled === true}
-                                      label={btn.text} />
-                                </Link>
-                            );
-                        }
-                    })}
+                            if (btn.onClick) {
+                                return (
+                                    <div key={i} className={style.buttonWrap}>
+                                        <StandardButton
+                                          styleType='secondaryDark'
+                                          onClick={btn.onClick}
+                                          disabled={btn.disabled === true}
+                                          label={btn.text}
+                                          href={btn.href} />
+                                    </div>
+                                );
+                            } else {
+                                return (
+                                    <Link key={i} to={btn.href} className={style.buttonWrap}>
+                                        <StandardButton
+                                          styleType='secondaryDark'
+                                          disabled={btn.disabled === true}
+                                          label={btn.text} />
+                                    </Link>
+                                );
+                            }
+                        })}
+                    </div>
                 </div>
             </div>
         );
