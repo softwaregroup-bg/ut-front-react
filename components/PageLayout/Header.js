@@ -3,7 +3,6 @@ import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router';
 import { getBreadcrumbsStringFromPathString } from './helpers';
 
-import classnames from 'classnames';
 import style from './style.css';
 
 const Header = React.createClass({
@@ -36,12 +35,12 @@ const Header = React.createClass({
         if (location) breadcrumbsString = getBreadcrumbsStringFromPathString(location.pathname, breadcrumbsRemoveSlashes);
 
         return (
-            <div className={classnames('table', 'clearfix', style.headerWrapper)} style={{padding: '20px 16px', height: '71px'}}>
-                <h1 className={classnames(style.heading, 'tableCell', 'vaMiddle')}>
+            <div className={style.headerWrapper} style={{padding: '20px 16px', height: '71px'}}>
+                <h1 className={style.heading}>
                     <div className={style.breadcrumbsWrap}>{breadcrumbsString}</div>
-                    {text}
+                    <div className={style.headingTextWrap}>{text}</div>
                 </h1>
-                <div className={classnames('pull-xs-right', style.buttonsWrap)}>
+                <div className={style.buttonsWrap}>
                     <div className={style.buttonsContainer}>
                         {buttonsRaw.map((btn, i) => {
                             return (
