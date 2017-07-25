@@ -1,3 +1,15 @@
+<a name="9.10.5"></a>
+## [9.10.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.4...v9.10.5) (2017-07-25)
+
+
+### Bug Fixes
+
+* UIS-1380: fix button margins, make large text overflow with ellipsis ([4cab3a0](https://github.com/softwaregroup-bg/ut-front-react/commit/4cab3a0))
+* UIS-1380: remove unneeded inline styles ([e2cf7e7](https://github.com/softwaregroup-bg/ut-front-react/commit/e2cf7e7))
+* UIS-1380: remove unused breadcrumbs ([86ab983](https://github.com/softwaregroup-bg/ut-front-react/commit/86ab983))
+
+
+
 <a name="9.10.4"></a>
 ## [9.10.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.3...v9.10.4) (2017-07-24)
 
