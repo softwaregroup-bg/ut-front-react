@@ -25,8 +25,7 @@
 }
 
 .buttonsWrap {
-    overflow: hidden;
-    margin-left: 20px; /* Margin between buttons and the heading */
+    margin-left: 60px; /* Margin between buttons and the heading */
 }
 .buttonsContainer {
     display: flex;
@@ -35,7 +34,7 @@
 }
 .buttonWrap {
     float: left;
-    margin-right: 20px;
+    margin-right: 10px;
     white-space: nowrap;
 }
 .buttonWrap:last-child {
@@ -44,21 +43,26 @@
 
 .headerWrapper {
     background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 16px;
+    height: 71px;
 }
 
 .heading {
-    position: relative;
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;     
 }
 
-.heading .breadcrumbsWrap {
-    font-size: 12px;
-    position: absolute;
-    top: -15px;
-    left: 0;
-    display: none;
-    font-weight: normal;
-    color: #595959;
-}
+.headingTextWrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+} 
 
 .h100pr {
     height: 100%;
