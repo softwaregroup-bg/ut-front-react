@@ -35,7 +35,7 @@ const Header = React.createClass({
         if (location) breadcrumbsString = getBreadcrumbsStringFromPathString(location.pathname, breadcrumbsRemoveSlashes);
 
         return (
-            <div className={style.headerWrapper} style={{padding: '20px 16px', height: '71px'}}>
+            <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
                     <div className={style.breadcrumbsWrap}>{breadcrumbsString}</div>
                     <div className={style.headingTextWrap}>{text}</div>
