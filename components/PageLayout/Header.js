@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router';
-import { getBreadcrumbsStringFromPathString } from './helpers';
 
 import style from './style.css';
 
@@ -30,14 +29,11 @@ const Header = React.createClass({
         checkPermission: PropTypes.func
     },
     render() {
-        let { text, buttons, buttonsRaw, location, breadcrumbsRemoveSlashes } = this.props;
-        let breadcrumbsString = '';
-        if (location) breadcrumbsString = getBreadcrumbsStringFromPathString(location.pathname, breadcrumbsRemoveSlashes);
+        let { text, buttons, buttonsRaw } = this.props;
 
         return (
             <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
-                    <div className={style.breadcrumbsWrap}>{breadcrumbsString}</div>
                     <div className={style.headingTextWrap}>{text}</div>
                 </h1>
                 <div className={style.buttonsWrap}>

@@ -64,16 +64,6 @@
     display: inline-block;
 } 
 
-.heading .breadcrumbsWrap {
-    font-size: 12px;
-    position: absolute;
-    top: -15px;
-    left: 0;
-    display: none;
-    font-weight: normal;
-    color: #595959;
-}
-
 .h100pr {
     height: 100%;
 }
