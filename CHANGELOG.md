@@ -1,3 +1,15 @@
+<a name="9.10.6"></a>
+## [9.10.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.5...v9.10.6) (2017-07-27)
+
+
+### Bug Fixes
+
+* groupDropdown styles and render inheritance ([920d4b0](https://github.com/softwaregroup-bg/ut-front-react/commit/920d4b0))
+* standard button variables ([cb8e9fc](https://github.com/softwaregroup-bg/ut-front-react/commit/cb8e9fc))
+* typo error in standard button and remove duplicated variable ([a072e5e](https://github.com/softwaregroup-bg/ut-front-react/commit/a072e5e))
+
+
+
 <a name="9.10.5"></a>
 ## [9.10.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.4...v9.10.5) (2017-07-25)
 
