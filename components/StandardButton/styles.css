@@ -294,7 +294,7 @@
 .secondaryDialog {
     margin-left: 10px;
     color: var(--ut-front-react-secondaryDialogColor);
-    border: 1px solid var(--ut-front-react-secondaryDialogBgColor);
+    border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
     background-color: var(--ut-front-react-secondaryDialogBgColor);
 }
 
