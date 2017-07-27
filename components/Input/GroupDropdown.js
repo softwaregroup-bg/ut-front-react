@@ -59,7 +59,7 @@ class GroupDropdown extends Dropdown {
                     {/* the material ui api allows manipulation of  */}
                     <MenuItem
                       key={group}
-                      className={classnames(style.groupMenuItem, style.defaultCursor)}
+                      className={style.groupDropdownMenuItem}
                       disabled
                       primaryText={group}
                     />
@@ -68,7 +68,7 @@ class GroupDropdown extends Dropdown {
                         groups[group].map((item, i) => (
                             <MenuItem
                               key={item.key + '-' + i}
-                              className={style.groupMenuItem}
+                              className={style.groupDropdownMenuItem}
                               disabled={item.disabled}
                               value={item.key}
                               onTouchTap={() => { this.handleChange(item); }}
@@ -81,7 +81,7 @@ class GroupDropdown extends Dropdown {
         });
     }
 
-    render() {
+    renderDropDown() {
         let menuItems = this.getMenuItems();
         let { cssStyle, mergeStyles } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
@@ -97,7 +97,7 @@ class GroupDropdown extends Dropdown {
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, cursorStyle)} onClick={!this.props.disabled && this.toggleOpen}>
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
-                        <div className={ddstyles.multiSelectDropdownPlaceholder}>
+                        <div className={ddstyles.groupDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
                                 {this.dropdownPlaceholder}
                             </div>
@@ -119,7 +119,7 @@ class GroupDropdown extends Dropdown {
                       value={this.state.value}
                       maxHeight={300}
                       style={{width: rootElementWidth}}
-                      className={ddstyles.multiSelectDropdownMenu}>
+                      className={ddstyles.groupDropdownMenu}>
                         {menuItems}
                     </Menu>
                 </Popover>
