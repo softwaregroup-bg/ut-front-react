@@ -19,7 +19,7 @@ class HeaderCell extends Component {
         }
 
         return (
-            <th onClick={this.props.onSort} style={{width: 'auto', ...this.props.styles}}>
+             <th onClick={this.props.canSort ? this.props.onSort : null} style={{width: 'auto', ...this.props.styles}}>
                 {this.props.name}
                 {this.props.canSort && <span className={sortStyle} />}
             </th>
