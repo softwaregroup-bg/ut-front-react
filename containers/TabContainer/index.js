@@ -292,6 +292,7 @@ TabContainer.propTypes = {
     sourceMap: PropTypes.object,
     errors: PropTypes.object,
     allowTabSwithIfNotValid: PropTypes.bool,
+    allowSave: PropTypes.bool,
     onErrors: PropTypes.func
 };
 
