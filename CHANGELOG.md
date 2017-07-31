@@ -1,3 +1,13 @@
+<a name="9.10.8"></a>
+## [9.10.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.7...v9.10.8) (2017-07-31)
+
+
+### Bug Fixes
+
+* UIS-2503 add allowSave prop on tabContainer controlling the action buttons ([377ee97](https://github.com/softwaregroup-bg/ut-front-react/commit/377ee97))
+
+
+
 <a name="9.10.7"></a>
 ## [9.10.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.6...v9.10.7) (2017-07-28)
 
