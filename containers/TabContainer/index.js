@@ -167,7 +167,7 @@ class TabContainer extends Component {
     }
 
     render() {
-        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location } = this.props;
+        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave } = this.props;
 
         let activeTab = tabs[this.state.active];
         let handleTabClick = ({id}) => {
@@ -178,6 +178,9 @@ class TabContainer extends Component {
             if (ableToGoToNextTab) this.setState({active: id});
         };
 
+        if (actionButtons.length && !allowSave) {
+            actionButtons = [actionButtons[actionButtons.length - 1]];
+        }
         actionButtons.length && this.props.actionButtons.forEach((button, index) => {
             if (typeof button.onNext === 'undefined') {
                 button.onNext = button.onClick;
@@ -295,6 +298,7 @@ TabContainer.propTypes = {
 TabContainer.defaultProps = {
     headerTitle: '',
     actionButtons: [],
+    allowSave: true,
     errors: immutable.Map({}),
     allowTabSwithIfNotValid: false,
     onErrors: () => {}
