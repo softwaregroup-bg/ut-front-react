@@ -1,3 +1,13 @@
+<a name="9.10.9"></a>
+## [9.10.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.8...v9.10.9) (2017-08-01)
+
+
+### Bug Fixes
+
+* UIS-2746 display the correct property for document type ([e03173f](https://github.com/softwaregroup-bg/ut-front-react/commit/e03173f))
+
+
+
 <a name="9.10.8"></a>
 ## [9.10.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.7...v9.10.8) (2017-07-31)
 
