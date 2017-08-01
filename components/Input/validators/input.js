@@ -14,6 +14,7 @@ export default (valueToValidate, validators) => {
         if (validator.type === textValidations.decimalOnly) isDecimalOnlyRule(valueToValidate, validator.precision, validator.scale, validator, result);
         if (validator.type === textValidations.email) isValidEmailRule(valueToValidate, validator, result);
         if (validator.type === textValidations.uniqueValue) isUniqueValueRule(valueToValidate, validator.values, validator, result);
+        if (validator.type === textValidations.uniqueValueCaseInsensitive) isUniqueValueRule(valueToValidate.toLowerCase(), validator.values, validator, result);
     });
 
     return result;

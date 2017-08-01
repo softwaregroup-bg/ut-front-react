@@ -23,6 +23,7 @@ export const textValidations = {
     integerRange: 'integerRange', // minVal?, maxVal?
     decimalOnly: 'decimalOnly', // precision, scale
     uniqueValue: 'uniqueValue',
+    uniqueValueCaseInsensitive: 'uniqueValueCaseInsensitive',
     length: 'length', // minVal, maxVal
     regex: 'regex'  // value
 };
