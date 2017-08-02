@@ -130,6 +130,23 @@ export class Validator {
                 });
             }
         });
+        // If input has orConditions array of keys -> ['someKey'] this means that is even one of these keys has a set value this error should be ignored
+        let errorsToRemove = [];
+        errors.forEach((error) => {
+            // Get OR conditions for input
+            let orConditions = this.config[error.field].orConditions || [];
+            orConditions.forEach((condition) => {
+                // condition is string with input's key
+                // Check if there is an isRequired error for this key
+                let hasErrorForCondition = errors.find((err) => err.field === condition && err.error === 'Field required');
+                if (!hasErrorForCondition) {
+                    // If there is not isRequired error for this key this means that it has value and OR condition is fulfilled and this error should be removed
+                    errorsToRemove.push(error.field);
+                }
+            });
+        });
+        // Remove all isRequired errors that are fulfilled by OR conditions
+        errors = errors.filter((error) => !(errorsToRemove.indexOf(error.field) > -1 && error.error === 'Field required'));
 
         return errors;
     }
