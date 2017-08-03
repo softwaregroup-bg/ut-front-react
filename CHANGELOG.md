@@ -1,3 +1,8 @@
+<a name="9.10.12"></a>
+## [9.10.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.11...v9.10.12) (2017-08-03)
+
+
+
 <a name="9.10.11"></a>
 ## [9.10.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.10...v9.10.11) (2017-08-03)
 
