@@ -63,6 +63,9 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     if (validation.type === validationTypes.text && rule.type === textValidations.uniqueValue) {
                         isUniqueValueRule(currentValue, rule.values, rule, result);
                     }
+                    if (validation.type === validationTypes.text && rule.type === textValidations.uniqueValueCaseInsensitive) {
+                        isUniqueValueRule(currentValue.toLowerCase(), rule.values, rule, result);
+                    }
                     if (validation.type === validationTypes.array && rule.type === arrayValidations.isRequired) {
                         isRequiredArrayRule(currentValue, rule, result);
                     }
