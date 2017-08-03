@@ -56,7 +56,7 @@
     "ut-tools": "*"
   },
   "peerDependencies": {
-    "ut-front": "^7.1.0-wp3.2"
+    "ut-front": "^7.1.0-wp3.3"
   },
   "repository": {
     "type": "git",
