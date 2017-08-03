@@ -1,3 +1,14 @@
+<a name="9.10.10"></a>
+## [9.10.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.9...v9.10.10) (2017-08-03)
+
+
+### Bug Fixes
+
+* UIS-2920: add support for case-insensitive unique validation ([8b5af81](https://github.com/softwaregroup-bg/ut-front-react/commit/8b5af81))
+* UIS-3078: add removeTableHeaderItem icon (for Permissions grid) ([4ab84f3](https://github.com/softwaregroup-bg/ut-front-react/commit/4ab84f3))
+
+
+
 <a name="9.10.9"></a>
 ## [9.10.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.8...v9.10.9) (2017-08-01)
 
