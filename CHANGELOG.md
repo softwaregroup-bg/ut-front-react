@@ -1,3 +1,13 @@
+<a name="9.11.0"></a>
+# [9.11.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.12...v9.11.0) (2017-08-04)
+
+
+### Features
+
+* webpack upgrade ([2713e0d](https://github.com/softwaregroup-bg/ut-front-react/commit/2713e0d))
+
+
+
 <a name="9.10.12"></a>
 ## [9.10.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.11...v9.10.12) (2017-08-03)
 
