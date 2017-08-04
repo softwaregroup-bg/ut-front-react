@@ -114,6 +114,10 @@ const Icon = ({ icon, iconURL, hover = false, className, ...props }) => {
             typeClass = style.iconClientFileStatus;
             sizeClass = style.iconNormal;
             break;
+        case 'removeTableHeaderItem':
+            typeClass = style.removeTableHeaderItem;
+            sizeClass = style.iconSmall;
+            break;
         case 'reject':
             typeClass = style.iconReject;
             sizeClass = style.iconSmall;
@@ -251,6 +255,7 @@ const iconNames = [
     'padlock',
     'phonePink',
     'phone',
+    'removeTableHeaderItem',
     'reject',
     'settingsTable',
     'status',

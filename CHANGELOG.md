@@ -1,3 +1,61 @@
+<a name="9.10.12"></a>
+## [9.10.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.11...v9.10.12) (2017-08-03)
+
+
+
+<a name="9.10.11"></a>
+## [9.10.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.10...v9.10.11) (2017-08-03)
+
+
+
+<a name="9.10.10"></a>
+## [9.10.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.9...v9.10.10) (2017-08-03)
+
+
+### Bug Fixes
+
+* UIS-2920: add support for case-insensitive unique validation ([8b5af81](https://github.com/softwaregroup-bg/ut-front-react/commit/8b5af81))
+* UIS-3078: add removeTableHeaderItem icon (for Permissions grid) ([4ab84f3](https://github.com/softwaregroup-bg/ut-front-react/commit/4ab84f3))
+
+
+
+<a name="9.10.9"></a>
+## [9.10.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.8...v9.10.9) (2017-08-01)
+
+
+### Bug Fixes
+
+* UIS-2746 display the correct property for document type ([e03173f](https://github.com/softwaregroup-bg/ut-front-react/commit/e03173f))
+
+
+
+<a name="9.10.8"></a>
+## [9.10.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.7...v9.10.8) (2017-07-31)
+
+
+### Bug Fixes
+
+* UIS-2503 add allowSave prop on tabContainer controlling the action buttons ([377ee97](https://github.com/softwaregroup-bg/ut-front-react/commit/377ee97))
+
+
+
+<a name="9.10.7"></a>
+## [9.10.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.6...v9.10.7) (2017-07-28)
+
+
+
+<a name="9.10.6"></a>
+## [9.10.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.5...v9.10.6) (2017-07-27)
+
+
+### Bug Fixes
+
+* groupDropdown styles and render inheritance ([920d4b0](https://github.com/softwaregroup-bg/ut-front-react/commit/920d4b0))
+* standard button variables ([cb8e9fc](https://github.com/softwaregroup-bg/ut-front-react/commit/cb8e9fc))
+* typo error in standard button and remove duplicated variable ([a072e5e](https://github.com/softwaregroup-bg/ut-front-react/commit/a072e5e))
+
+
+
 <a name="9.10.5"></a>
 ## [9.10.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.10.4...v9.10.5) (2017-07-25)
 

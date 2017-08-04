@@ -439,30 +439,30 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     background: inline('./images/dropdownArrow.png') no-repeat center;
 }
 
-.multiSelectDropdownMenu {
+.multiSelectDropdownMenu, .groupDropdownMenu {
     display: block !important;
 }
 
-.multiSelectDropdownMenu div {
+.multiSelectDropdownMenu div, .groupDropdownMenu div {
     font-size: 15px;
     line-height: 32px;
 }
 
-.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem {
+.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem {
     display: flex !important;
 }
 
-.multiSelectDropdownMenuItemWrap {
+.multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem {
     align-items: center;
     min-height: 32px !important;
 }
 
-.multiSelectDropdownPlaceholder {
+.multiSelectDropdownPlaceholder, .groupDropdownPlaceholder {
     font-size: 15px;
     margin-top: 3px;
 }
 
-.multiSelectDropdownPlaceholder div {
+.multiSelectDropdownPlaceholder div, groupDropdownPlaceholder div {
     width: 90%;
     overflow:hidden;
     white-space:nowrap;
@@ -471,11 +471,4 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .buttonInput {
     padding-right: 100px;
-}
-
-.groupMenuItem {
-    padding-top: 8px !important;
-}
-.defaultCursor {
-    cursor: default !important;
 }

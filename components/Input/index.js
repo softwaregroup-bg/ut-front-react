@@ -3,7 +3,7 @@ import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
 import classnames from 'classnames';
-import style from './style.css';
+import defaultStyle from './style.css';
 
 const notifyForChangeInterval = 300;
 
@@ -21,6 +21,7 @@ class TextField extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.notifyForChange = this.notifyForChange.bind(this);
+        this.style = props.customStyle || defaultStyle;
     }
 
     componentWillReceiveProps({value, isValid, errorMessage, isEdited}) {
@@ -71,39 +72,39 @@ class TextField extends Component {
     get inputClassName() {
         const { valid, isEdited } = this.state;
         const { readonly } = this.props;
-        return classnames(style.input, {
-            [style.editedInputStyle]: isEdited,
-            [style.error]: !valid.isValid,
-            [style.readonlyInput]: readonly
+        return classnames(this.style.input, {
+            [this.style.editedInputStyle]: isEdited,
+            [this.style.error]: !valid.isValid,
+            [this.style.readonlyInput]: readonly
         });
     }
 
     render() {
         let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
         let { isValid, errorMessage } = this.state.valid;
-        let zeroHeightStyle = isValid ? style.hh : '';
+        let zeroHeightStyle = isValid ? this.style.hh : '';
 
         let input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
-        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
+        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (
-                <div className={classnames(style.outerWrap, wrapperClassName)}>
-                    <div className={classnames(style.lableWrap, labelClassName, {[style.boldLabel]: this.props.boldLabel})}>
+                <div className={classnames(this.style.outerWrap, wrapperClassName)}>
+                    <div className={classnames(this.style.lableWrap, labelClassName, {[this.style.boldLabel]: this.props.boldLabel})}>
                         {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
-                    <div className={classnames(style.inputWrap, inputWrapClassName)}>
+                    <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                         {input}
                         {tooltip}
-                        <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
                     </div>
                 </div>
             );
         } else {
             return (
-                <div className={classnames(style.inputWrap, inputWrapClassName)}>
+                <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                     {input}
                     {tooltip}
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
             );
         }
@@ -125,6 +126,7 @@ TextField.propTypes = {
     onChange: PropTypes.func,
     readonly: PropTypes.bool,
     boldLabel: PropTypes.bool,
+    customStyle: PropTypes.object,
     onClick: PropTypes.func,
     onBlur: PropTypes.func,
     inputWrapClassName: PropTypes.string,
