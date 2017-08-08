@@ -1,3 +1,13 @@
+<a name="9.11.2"></a>
+## [9.11.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.1...v9.11.2) (2017-08-08)
+
+
+### Bug Fixes
+
+* ut-front vb ([b65e92b](https://github.com/softwaregroup-bg/ut-front-react/commit/b65e92b))
+
+
+
 <a name="9.11.1"></a>
 ## [9.11.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.0...v9.11.1) (2017-08-04)
 
