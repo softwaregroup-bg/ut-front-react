@@ -56,7 +56,7 @@
     "ut-tools": "*"
   },
   "peerDependencies": {
-    "ut-front": "^7.1.1"
+    "ut-front": "^7.1.2"
   },
   "repository": {
     "type": "git",
