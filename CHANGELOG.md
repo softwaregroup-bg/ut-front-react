@@ -1,3 +1,13 @@
+<a name="9.11.4"></a>
+## [9.11.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.3...v9.11.4) (2017-08-10)
+
+
+### Bug Fixes
+
+* UIS-3102 Role Management- attached documents are missing ([5c560c5](https://github.com/softwaregroup-bg/ut-front-react/commit/5c560c5))
+
+
+
 <a name="9.11.3"></a>
 ## [9.11.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.2...v9.11.3) (2017-08-08)
 
