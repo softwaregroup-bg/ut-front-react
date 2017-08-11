@@ -311,6 +311,9 @@ class AdvancedPagination extends Component {
     }
 
     renderPageSizeBox() {
+        if (!this.props.itemsPerPageData.length) {
+            return false;
+        }
         let handlePageSizeDropDrown = (obj) => {
             this.handleChange(1, obj.value);
         };
@@ -360,7 +363,7 @@ AdvancedPagination.propTypes = {
      * pagesTotal - not required
     */
     pagination: PropTypes.object.isRequired, // immutable object,
-    itemsPerPageData: PropTypes.arrayOf(PropTypes.number),
+    itemsPerPageData: PropTypes.arrayOf(PropTypes.number), // empty array would prevent dropdown render
     dropdownIconStyles: PropTypes.object,
     onUpdate: PropTypes.func
 };
