@@ -311,6 +311,9 @@ class AdvancedPagination extends Component {
     }
 
     renderPageSizeBox() {
+        if (!this.props.itemsPerPageData.length) {
+            return false;
+        }
         let handlePageSizeDropDrown = (obj) => {
             this.handleChange(1, obj.value);
         };
