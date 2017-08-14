@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "9.12.0-simpleGrid.0",
+  "version": "9.12.0",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
