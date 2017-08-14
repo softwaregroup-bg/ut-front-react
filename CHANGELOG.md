@@ -1,3 +1,14 @@
+<a name="9.12.1"></a>
+## [9.12.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.4...v9.12.1) (2017-08-14)
+
+
+### Bug Fixes
+
+* empty (undefined) row handled ([0447f15](https://github.com/softwaregroup-bg/ut-front-react/commit/0447f15))
+* module version ([4356198](https://github.com/softwaregroup-bg/ut-front-react/commit/4356198))
+
+
+
 <a name="9.11.4"></a>
 ## [9.11.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.3...v9.11.4) (2017-08-10)
 
