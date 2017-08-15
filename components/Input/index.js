@@ -38,6 +38,9 @@ class TextField extends Component {
 
     handleChange(e) {
         let newValue = e.target.value;
+        if (this.props.capitalize) {
+            newValue = newValue.toUpperCase();
+        }
         this.setState({value: newValue});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
@@ -123,6 +126,7 @@ TextField.propTypes = {
     wrapperClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     dependancyDisabledInputTooltipText: PropTypes.string,
+    capitalize: PropTypes.bool,
     onChange: PropTypes.func,
     readonly: PropTypes.bool,
     boldLabel: PropTypes.bool,
@@ -151,6 +155,7 @@ TextField.defaultProps = {
     type: 'text',
     tooltipText: '',
     keyProp: '___no_key___',
+    capitalize: false,
     validators: [],
     readonly: false,
     boldLabel: false,
