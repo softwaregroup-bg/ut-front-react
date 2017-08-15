@@ -22,7 +22,7 @@ const RadioInput = ({ label, boldLabel, onChange, defaultValue, options, disable
 );
 
 RadioInput.propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     boldLabel: PropTypes.bool,
     optionClassName: PropTypes.string,
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
