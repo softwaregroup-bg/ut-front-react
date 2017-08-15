@@ -1,3 +1,14 @@
+<a name="9.12.3"></a>
+## [9.12.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.1...v9.12.3) (2017-08-15)
+
+
+### Bug Fixes
+
+* allow node prop ([1f320fc](https://github.com/softwaregroup-bg/ut-front-react/commit/1f320fc))
+* module version ([99287fb](https://github.com/softwaregroup-bg/ut-front-react/commit/99287fb))
+
+
+
 <a name="9.12.1"></a>
 ## [9.12.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.11.4...v9.12.1) (2017-08-14)
 
