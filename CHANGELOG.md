@@ -1,3 +1,14 @@
+<a name="9.12.4"></a>
+## [9.12.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.3...v9.12.4) (2017-08-16)
+
+
+### Bug Fixes
+
+* add capitalizing for input component ([0f80e71](https://github.com/softwaregroup-bg/ut-front-react/commit/0f80e71))
+* remove nested CSS classes to allow overwriting ([7b3ac55](https://github.com/softwaregroup-bg/ut-front-react/commit/7b3ac55))
+
+
+
 <a name="9.12.3"></a>
 ## [9.12.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.1...v9.12.3) (2017-08-15)
 
