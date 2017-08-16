@@ -1,12 +1,13 @@
 import * as actionTypes from './actionTypes';
 
-export function addTab(pathname, title, isMain, pagename) {
+export function addTab(pathname, title, isMain, pagename, onTabClose) {
     return {
         type: actionTypes.ADD_TAB,
         pathname: pathname,
         pagename: pagename,
         isMain: isMain,
-        title: title
+        title: title,
+        onTabClose: onTabClose
     };
 }
 

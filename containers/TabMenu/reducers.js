@@ -7,7 +7,8 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
             pagename: action.pagename,
             title: action.title,
             canClose: true,
-            isMain: action.isMain
+            isMain: action.isMain,
+            onTabClose: action.onTabClose
         };
 
         if (!state.usedPaths[action.pathname]) {
