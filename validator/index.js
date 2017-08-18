@@ -337,6 +337,66 @@ export const isValidEmailRuleArray = (props, rule, result) => {
     });
 };
 
+const uniformCivilNumberLength = 10;
+const uniformCivilNumbersWights = [2, 4, 8, 5, 10, 9, 7, 3, 6];
+
+function isDateValid(month, day, year) {
+    if (year < 1000 || year > 3000 || month <= 0 || month > 12) {
+        return false;
+    }
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
+        monthLength[1] = 29;
+    }
+
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+}
+
+export const isValidUniformCivilNumberRule = (props, rule, result) => {
+    checkPasedResultObject(result);
+    let isValid = true;
+    let valueToCheck = props.toString();
+    if (valueToCheck.length !== uniformCivilNumberLength || !numbersOnlyRegex.test(props)) {
+        isValid = false;
+    } else {
+        let year = Number(valueToCheck.substring(0, 2));
+        let month = Number(valueToCheck.substring(2, 4));
+        let day = Number(valueToCheck.substring(4, 6));
+        if (month > 40) {
+            if (!isDateValid(month - 40, day, year + 2000)) {
+                isValid = false;
+            }
+        } else if (month > 20) {
+            if (!isDateValid(month - 20, day, year + 1800)) {
+                isValid = false;
+            }
+        } else {
+            if (!isDateValid(month, day, year + 1900)) {
+                isValid = false;
+            }
+        }
+        let checkSum = Number(valueToCheck[9]);
+        let uniformCivilNumberSum = 0;
+        for (var i = 0; i < uniformCivilNumberLength - 1; i++) {
+            uniformCivilNumberSum += Number(valueToCheck[i]) * uniformCivilNumbersWights[i];
+        }
+        let validCheckSum = uniformCivilNumberSum % 11;
+        if (validCheckSum === 10) {
+            validCheckSum = 0;
+        }
+        if (checkSum !== validCheckSum) {
+            isValid = false;
+        }
+    }
+    if (!isValid) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
 /* End is valid email array validation */
 
 /* Object validation */
