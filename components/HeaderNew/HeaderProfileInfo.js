@@ -47,7 +47,7 @@ export default class HeaderProfileInfo extends Component {
 
     getMenuItems() {
         let items = [
-          {text: 'Help', onClick: this.openHelp},
+          {text: 'Help', onClick: this.openHelp, routeName: '/'},
           {text: 'Settings', routeName: 'ut-user:userProfile'},
           {text: 'Log out', onClick: this.onLogOutClick}
         ];
