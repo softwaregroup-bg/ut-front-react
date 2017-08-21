@@ -2,6 +2,7 @@
 
 import { defaultErrorMessage } from './constants';
 import immutable from 'immutable';
+import BigNumber from 'bignumber.js';
 
 const numbersOnlyRegex = /^[0-9]+$/;
 
@@ -65,6 +66,63 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
         result.errors.push(getErrorObject(rule));
     }
 };
+
+/**
+ * An IBAN is validated by converting it into an integer and performing a basic mod-97 operation (as described in ISO 7064) on it.
+ * If the IBAN is valid, the remainder equals 1.[Note 1] The algorithm of IBAN validation is as follows:
+ * Check that the total IBAN length is correct as per the country. If not, the IBAN is invalid.
+ * Move the four initial characters to the end of the string.
+ * Replace each letter in the string with two digits, thereby expanding the string, where A = 10, B = 11, ..., Z = 35.
+ * Interpret the string as a decimal integer and compute the remainder of that number on division by 97.
+ * @param {String} value
+ * @param {Object} rule
+ * @param {Object} result
+ */
+export const isValidIBANRule = (value, rule, result) => {
+    checkPasedResultObject(result);
+    let length = value && value.length;
+    if (!length) {
+        return;
+    }
+    if (length < 15 || length > 30) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+        return;
+    }
+
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const letterMap = new Map();
+    var letterValue = 10;
+    letters.forEach(letter => {
+        letterMap.set(letter, String(letterValue));
+        letterValue++;
+    });
+
+    let firstFourChars = value.substring(0, 4);
+    let restOfIban = value.substring(value.length - (value.length - 4));
+    let rearrangedIban = `${restOfIban}${firstFourChars}`;
+    var ibanCharValues = [];
+
+    for (let i = 0; i < rearrangedIban.length; i++) {
+        let char = rearrangedIban[i];
+        if (!isNaN(char)) {
+            char = Number(char);
+        }
+        if (typeof char === 'string') {
+            ibanCharValues.push(letterMap.get(char));
+        } else {
+            ibanCharValues.push(String(char));
+        }
+    }
+
+    let ibanToValidate = new BigNumber(ibanCharValues.join(''));
+    let mod = ibanToValidate.modulo(97);
+    if (!mod.equals(1)) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
 /* End text validation */
 
 /* Array Validation */

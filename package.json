@@ -4,6 +4,7 @@
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
+    "bignumber.js": "^4.0.2",
     "bootstrap": "4.0.0-alpha.2",
     "classnames": "2.2.5",
     "croppie": "2.4.0",
