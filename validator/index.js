@@ -2,6 +2,7 @@
 
 import { defaultErrorMessage } from './constants';
 import immutable from 'immutable';
+import BigNumber from 'bignumber.js';
 
 const numbersOnlyRegex = /^[0-9]+$/;
 
@@ -65,6 +66,63 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
         result.errors.push(getErrorObject(rule));
     }
 };
+
+/**
+ * An IBAN is validated by converting it into an integer and performing a basic mod-97 operation (as described in ISO 7064) on it.
+ * If the IBAN is valid, the remainder equals 1.[Note 1] The algorithm of IBAN validation is as follows:
+ * Check that the total IBAN length is correct as per the country. If not, the IBAN is invalid.
+ * Move the four initial characters to the end of the string.
+ * Replace each letter in the string with two digits, thereby expanding the string, where A = 10, B = 11, ..., Z = 35.
+ * Interpret the string as a decimal integer and compute the remainder of that number on division by 97.
+ * @param {String} value
+ * @param {Object} rule
+ * @param {Object} result
+ */
+export const isValidIBANRule = (value, rule, result) => {
+    checkPasedResultObject(result);
+    let length = value && value.length;
+    if (!length) {
+        return;
+    }
+    if (length < 15 || length > 30) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+        return;
+    }
+
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    const letterMap = new Map();
+    var letterValue = 10;
+    letters.forEach(letter => {
+        letterMap.set(letter, String(letterValue));
+        letterValue++;
+    });
+
+    let firstFourChars = value.substring(0, 4);
+    let restOfIban = value.substring(value.length - (value.length - 4));
+    let rearrangedIban = `${restOfIban}${firstFourChars}`;
+    var ibanCharValues = [];
+
+    for (let i = 0; i < rearrangedIban.length; i++) {
+        let char = rearrangedIban[i];
+        if (!isNaN(char)) {
+            char = Number(char);
+        }
+        if (typeof char === 'string') {
+            ibanCharValues.push(letterMap.get(char));
+        } else {
+            ibanCharValues.push(String(char));
+        }
+    }
+
+    let ibanToValidate = new BigNumber(ibanCharValues.join(''));
+    let mod = ibanToValidate.modulo(97);
+    if (!mod.equals(1)) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
 /* End text validation */
 
 /* Array Validation */
@@ -335,6 +393,66 @@ export const isValidEmailRuleArray = (props, rule, result) => {
             result.errors.push(getErrorObject(rule));
         }
     });
+};
+
+const uniformCivilNumberLength = 10;
+const uniformCivilNumbersWights = [2, 4, 8, 5, 10, 9, 7, 3, 6];
+
+function isDateValid(month, day, year) {
+    if (year < 1000 || year > 3000 || month <= 0 || month > 12) {
+        return false;
+    }
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
+        monthLength[1] = 29;
+    }
+
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+}
+
+export const isValidUniformCivilNumberRule = (props, rule, result) => {
+    checkPasedResultObject(result);
+    let isValid = true;
+    let valueToCheck = props.toString();
+    if (valueToCheck.length !== uniformCivilNumberLength || !numbersOnlyRegex.test(props)) {
+        isValid = false;
+    } else {
+        let year = Number(valueToCheck.substring(0, 2));
+        let month = Number(valueToCheck.substring(2, 4));
+        let day = Number(valueToCheck.substring(4, 6));
+        if (month > 40) {
+            if (!isDateValid(month - 40, day, year + 2000)) {
+                isValid = false;
+            }
+        } else if (month > 20) {
+            if (!isDateValid(month - 20, day, year + 1800)) {
+                isValid = false;
+            }
+        } else {
+            if (!isDateValid(month, day, year + 1900)) {
+                isValid = false;
+            }
+        }
+        let checkSum = Number(valueToCheck[9]);
+        let uniformCivilNumberSum = 0;
+        for (var i = 0; i < uniformCivilNumberLength - 1; i++) {
+            uniformCivilNumberSum += Number(valueToCheck[i]) * uniformCivilNumbersWights[i];
+        }
+        let validCheckSum = uniformCivilNumberSum % 11;
+        if (validCheckSum === 10) {
+            validCheckSum = 0;
+        }
+        if (checkSum !== validCheckSum) {
+            isValid = false;
+        }
+    }
+    if (!isValid) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
 };
 
 /* End is valid email array validation */

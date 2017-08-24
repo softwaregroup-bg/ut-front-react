@@ -6,10 +6,12 @@ import {
     isRequiredDropdownRule,
     isValidEmailRuleArray,
     isNumberOnlyRuleArray,
+    isValidIBANRule,
     lengthRuleArray,
     arrayWithTextLengthRule,
     regexRule,
     isUniqueValueRule,
+    isValidUniformCivilNumberRule,
     arrayWithArrayIsRequiredRule
 } from '../validator';
 import {
@@ -215,6 +217,12 @@ export const validateAll = (sourceMap, validations) => {
                 }
                 if (validation.type === validationTypes.text && rule.type === textValidations.uniqueValue) {
                     isUniqueValueRule(currentValue, rule.values, rule, result);
+                }
+                if (validation.type === validationTypes.text && rule.type === textValidations.uniformCivilNumber) {
+                    isValidUniformCivilNumberRule(currentValue, rule.values, rule, result);
+                }
+                if (validation.type === validationTypes.text && rule.type === textValidations.iban) {
+                    isValidIBANRule(currentValue, rule, result);
                 }
                 if (validation.type === validationTypes.array && rule.type === arrayValidations.isRequired) {
                     isRequiredArrayRule(currentValue, rule, result);
