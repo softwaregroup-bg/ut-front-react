@@ -1,0 +1,8 @@
+:root {
+    /* colors */
+    --ut-front-react-statusBubbleNeutralColor: #a9a9a9;
+    --ut-front-react-statusBubbleGreenColor: #00a651;
+    --ut-front-react-statusBubbleOrangeColor: #feac42;;
+    --ut-front-react-statusBubbleRedColor: #e85151;
+    --ut-front-react-statusBubbleBlueColor: #546684;
+}
