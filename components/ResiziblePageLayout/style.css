@@ -11,7 +11,11 @@
     position: relative; /* for resizor absolute position */
     height: 100%;
     vertical-align: top;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+.col div:first-child {
+    overflow-x: unset !important;
 }
 
 #mainContentWrap .col .innerCol {
