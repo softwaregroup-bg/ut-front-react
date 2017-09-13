@@ -12,8 +12,7 @@ class TextArea extends Component {
         super(props);
         this.state = {
             value: props.value,
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage},
-            isEdited: props.isEdited
+            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
 
         this.onChangQueue = [];
@@ -23,14 +22,13 @@ class TextArea extends Component {
         this.notifyForChange = this.notifyForChange.bind(this);
     }
 
-    componentWillReceiveProps({value, isValid, errorMessage, isEdited}) {
+    componentWillReceiveProps({value, isValid, errorMessage}) {
         this.initialValue = value;
 
-        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.isEdited !== isEdited) {
+        if (this.state.value !== value || this.state.valid.isValid !== isValid) {
             this.setState({
                 value: value,
-                valid: {isValid: isValid, errorMessage: errorMessage},
-                isEdited: isEdited
+                valid: {isValid: isValid, errorMessage: errorMessage}
             });
         }
     }
@@ -74,13 +72,12 @@ class TextArea extends Component {
         let { isValid, errorMessage } = this.state.valid;
         let errorTextAreaStyle = !isValid ? style.error : '';
         let zeroHeightStyle = isValid ? style.hh : '';
-        let editedInputStyle = this.state.isEdited ? style.editedInputStyle : '';
         let disabledStyle = readonly ? style.readonlyInput : '';
 
         let textArea = <textArea
           rows='7'
           ref='input'
-          className={classnames(style.textarea, errorTextAreaStyle, editedInputStyle, disabledStyle)}
+          className={classnames(style.textarea, errorTextAreaStyle, disabledStyle)}
           value={this.state.value || ''}
           onChange={this.handleChange}
           disabled={this.props.disabled}
@@ -127,9 +124,6 @@ TextArea.propTypes = {
     ),
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
-
-    // Edited
-    isEdited: PropTypes.bool
 };
 
 TextArea.defaultProps = {
@@ -138,7 +132,6 @@ TextArea.defaultProps = {
     validators: [],
     isValid: true,
     errorMessage: '',
-    isEdited: false,
     disabled: false,
     readonly: false,
     onChange: () => {}

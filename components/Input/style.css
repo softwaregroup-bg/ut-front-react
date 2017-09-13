@@ -77,10 +77,6 @@
     height: 0 !important;
 }
 
-.editedInputStyle {
-    background: #fff4a3 !important;
-}
-
 .readonlyInput, .readonlyInput div {
     cursor: not-allowed;
     border-color: #EBEBEB !important;

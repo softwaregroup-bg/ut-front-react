@@ -78,7 +78,6 @@ class Dropdown extends Component {
         let { cssStyle, mergeStyles } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
-        let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
         let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
         let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
 
@@ -97,7 +96,7 @@ class Dropdown extends Component {
         }
 
         return (
-            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, inputDisabled)}>
+            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)}>
                 <div className={classnames(arrowIconDisabled, ddstyles.arrowIcon)} />
                 <div className={ddstyles.hideTextWrap} />
                 <DropDownMenu
@@ -182,8 +181,6 @@ Dropdown.propTypes = {
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
 
-    // Edited
-    isEdited: PropTypes.bool
 };
 
 Dropdown.defaultProps = {
@@ -196,7 +193,6 @@ Dropdown.defaultProps = {
     onSelect: () => {},
     isValid: true,
     errorMessage: '',
-    isEdited: false,
     menuAutoWidth: false
 };
 
