@@ -35,7 +35,7 @@ class CompareGrid extends Component {
                 collapsed={!data.get('isOpen')}>
                     <div className={styles.container}>
                         <div className={columnStyle}>
-                            {this.renderDataGrid(data, titleTypes.current)}
+                            {this.renderDataGrid(data, single ? titleTypes.unapproved : titleTypes.current)}
                         </div>
                         {!single &&
                         <div className={columnStyle}>
