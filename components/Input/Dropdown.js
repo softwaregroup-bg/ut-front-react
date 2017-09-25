@@ -9,7 +9,7 @@ class Dropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.defaultSelected || '__placeholder__',
+            value: props.defaultSelected || this.props.placeholderValue,
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
 
@@ -21,7 +21,7 @@ class Dropdown extends Component {
     componentWillReceiveProps({defaultSelected, data, isValid, errorMessage}) {
         // when item is saved defaultSelected should be restored to placeholder
         if (!defaultSelected) {
-            this.setState({value: '__placeholder__'});
+            this.setState({value: this.props.placeholderValue});
         }
 
         if (defaultSelected !== this.props.defaultSelected || this.props.data !== data) {
@@ -54,7 +54,7 @@ class Dropdown extends Component {
             <MenuItem
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
-              value={'__placeholder__'}
+              value={this.props.placeholderValue}
               primaryText={placeholder}
             />
         );
@@ -157,6 +157,7 @@ Dropdown.propTypes = {
     boldLabel: PropTypes.bool,
     containerClassName: PropTypes.string,
     placeholder: PropTypes.any,
+    placeholderValue: PropTypes.any,
     keyProp: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array
@@ -187,6 +188,7 @@ Dropdown.defaultProps = {
     label: undefined,
     boldLabel: false,
     placeholder: 'Select',
+    placeholderValue: '__placeholder__',
     canSelectPlaceholder: false,
     disabled: false,
     keyProp: '__no_source_prop_key__',
