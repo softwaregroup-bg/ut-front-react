@@ -81,7 +81,7 @@ ButtonInput.propTypes = {
     placeholder: PropTypes.string,
     btnText: PropTypes.string,
     onClick: PropTypes.func,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func
 };
 
 export default ButtonInput;

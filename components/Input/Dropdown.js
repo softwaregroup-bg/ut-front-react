@@ -179,7 +179,7 @@ Dropdown.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.string
 
 };
 

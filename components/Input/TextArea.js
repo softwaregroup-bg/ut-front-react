@@ -110,7 +110,6 @@ TextArea.propTypes = {
     value: PropTypes.string,
     keyProp: PropTypes.string,
     label: PropTypes.node,
-    placeholder: PropTypes.string,
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
     readonly: PropTypes.bool,
@@ -123,7 +122,7 @@ TextArea.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
+    errorMessage: PropTypes.string
 };
 
 TextArea.defaultProps = {
