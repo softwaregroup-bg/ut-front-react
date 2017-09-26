@@ -42,10 +42,12 @@ class GridToolBox extends Component {
     }
 
     componentWillReceiveProps({ selected, checked, filterElements }) {
-        if (selected.size === 0 && checked.size === 0) {
-            this.setState({ showFilters: true });
-        } else {
-            this.setState({ showFilters: false });
+        if (this.props.selected.size !== selected.size || this.props.checked.size !== checked.size) {
+            if (selected.size === 0 && checked.size === 0) {
+                this.setState({ showFilters: true });
+            } else {
+                this.setState({ showFilters: false });
+            }
         }
         this.checkActiveFilters(filterElements);
     }
@@ -298,7 +300,10 @@ class GridToolBox extends Component {
     }
     renderFilters() {
         let labelClass = this.haveSelectedOrChecked() ? style.link : '';
-        let toggle = () => this.haveSelectedOrChecked() && this.setState({showFilters: false});
+        let toggle = () => this.haveSelectedOrChecked() && (() => {
+            this.props.onFiltersToggle(false);
+            this.setState({showFilters: false});
+        })();
         let filtersNumber = 0;
         let leftSide;
         if (this.props.filterElements.length === 1 && this.props.filterElements[0]['type'] === filterElementTypes.searchBox) {
@@ -498,7 +503,11 @@ class GridToolBox extends Component {
     }
 
     renderActionButtons() {
-        let toggle = () => this.setState({showFilters: true});
+        let toggle = () => {
+            this.setState({showFilters: true}, () => {
+                this.props.onFiltersToggle(true);
+            });
+        };
 
         return (
             <div className={style.toolbarWrap}>
@@ -614,6 +623,7 @@ GridToolBox.propTypes = {
     clearFilters: PropTypes.func,
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
+    onFiltersToggle: PropTypes.func,
     batchChange: PropTypes.func
 };
 
