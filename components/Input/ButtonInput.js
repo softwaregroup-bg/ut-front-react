@@ -7,16 +7,14 @@ class ButtonInput extends Component {
     constructor(props) {
         super();
         this.state = {
-            value: props.value,
-            isEdited: props.isEdited
+            value: props.value
         };
         this.onChange = this.onChange.bind(this);
     }
     componentWillReceiveProps(nextProps) {
         if (this.state.value !== nextProps.value) {
             this.setState({
-                value: nextProps.value,
-                isEdited: nextProps.isEdited
+                value: nextProps.value
             });
         }
     }
@@ -43,7 +41,6 @@ class ButtonInput extends Component {
                       ref='input'
                       name={this.props.name}
                       className={classNames(style.input, style.buttonInput, {
-                          [style.editedInputStyle]: this.props.isEdited,
                           [style.readonlyInput]: readOnly
                       })}
                       label={this.props.label}
@@ -70,7 +67,6 @@ ButtonInput.defaultProps = {
     btnText: '',
     placeholder: '',
     type: 'text',
-    isEdited: false,
     readOnly: false
 };
 
@@ -85,9 +81,7 @@ ButtonInput.propTypes = {
     placeholder: PropTypes.string,
     btnText: PropTypes.string,
     onClick: PropTypes.func,
-    onChange: PropTypes.func,
-    // Edited
-    isEdited: PropTypes.bool
+    onChange: PropTypes.func
 };
 
 export default ButtonInput;
