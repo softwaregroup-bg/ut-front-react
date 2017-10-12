@@ -55,8 +55,7 @@ class Dropdown extends Component {
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={this.props.placeholderValue}
-              primaryText={placeholder}
-            />
+              primaryText={placeholder} />
         );
 
         data.forEach((item, i) => {
@@ -66,7 +65,8 @@ class Dropdown extends Component {
                   disabled={item.disabled}
                   value={item.key}
                   primaryText={item.name}
-                />
+                  leftIcon={item.leftIcon && <img src={item.leftIcon} />}
+                  rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
             );
         });
 
@@ -150,7 +150,9 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-        name: PropTypes.any.isRequired
+        name: PropTypes.any.isRequired,
+        leftIcon: PropTypes.string,
+        rightIcon: PropTypes.string
     })).isRequired,
     defaultSelected: PropTypes.any,
     label: PropTypes.node,
@@ -181,7 +183,6 @@ Dropdown.propTypes = {
     ),
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string
-
 };
 
 Dropdown.defaultProps = {
