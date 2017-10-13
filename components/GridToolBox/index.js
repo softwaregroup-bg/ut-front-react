@@ -116,7 +116,7 @@ class GridToolBox extends Component {
             case filterElementTypes.datePickerBetween:
                 return (
                     <div>
-                        <DatePickerBetween onChange={filterElement.onChange} defaultValue={filterElement.defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
+                        <DatePickerBetween onChange={filterElement.onChange} placeholderFrom={filterElement.placeholderFrom} placeholderTo={filterElement.placeholderTo} defaultValue={filterElement.defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
                     </div>
                 );
             case filterElementTypes.customElement:
