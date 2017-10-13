@@ -119,6 +119,14 @@ class GridToolBox extends Component {
                         <DatePickerBetween onChange={filterElement.onChange} defaultValue={filterElement.defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
                     </div>
                 );
+            case filterElementTypes.customElement:
+                let content = filterElement.content || '';
+
+                return (
+                    <div style={filterElement.wrapperStyle}>
+                        {content}
+                    </div>
+                );
             default:
                 return <div />;
         }
@@ -320,12 +328,13 @@ class GridToolBox extends Component {
                 <div className={style.pullRight}>
                     {this.props.filterElements.map((el, i) => {
                         let incrementNum = el.type === filterElementTypes.datePickerBetween ? 2 : 1; // datePicker has two input fields
+                        let skipMinWidth = el.type === filterElementTypes.customElement;
                         filtersNumber += incrementNum;
                         if (filtersNumber > this.props.maxVisibleInputs) {
                             return null;
                         } else {
                             return (
-                                <div key={i} className={classnames(style.toolbarElement, style.minWidthed)} style={el.styles}>
+                                <div key={i} className={classnames(style.toolbarElement, skipMinWidth ? null : style.minWidthed)} style={el.styles}>
                                     {this.renderFilter(el)}
                                 </div>
                             );
@@ -545,7 +554,13 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween, filterElementTypes.multiDropDown]).isRequired,
+            type: PropTypes.oneOf([
+                filterElementTypes.dropDown,
+                filterElementTypes.searchBox,
+                filterElementTypes.datePickerBetween,
+                filterElementTypes.multiDropDown,
+                filterElementTypes.customElement
+            ]).isRequired,
             // Common
             placeholder: PropTypes.string,
             defaultValue: PropTypes.any,
