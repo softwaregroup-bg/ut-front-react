@@ -1,6 +1,8 @@
 :root {
     --ut-front-react-standardMainLogoWidth: 36px;
+    --ut-front-react-standardMainLogoHeight: 36px;
     --ut-front-react-standardHeaderLogoContainerWidth: 15%;
+    --ut-front-react-standardHeaderLogoContainerMargin: 0 40px 0 10px;
     /* Colors*/
     --ut-front-react-standardMainNavigationLinkColor: #2881ec;
     --ut-front-react-standardMainNavigationTextColor: #373a3c;
