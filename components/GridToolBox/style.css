@@ -11,7 +11,12 @@
 }
 
 .table {
-    display: table;
+    display: flex;
+    align-items: center; 
+}
+
+.tableButtonsShowed {
+    justify-content: space-between;
 }
 
 .toolbarWrap>div,
@@ -148,6 +153,6 @@
     padding-right: 10px;
 }
 
-.space:last-child {
+.spacer:last-child {
     padding-right: 0px;
 }

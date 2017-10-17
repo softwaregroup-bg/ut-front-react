@@ -8,7 +8,7 @@ export class ClearFilter extends Component {
             return null;
         }
         return (
-            <div onClick={this.props.onClick} className={classnames(style.clearBtn, this.props.className)} />
+            <div title='Clear Filters' onClick={this.props.onClick} className={classnames(style.clearBtn, this.props.className)} />
         );
     }
 }
