@@ -1,3 +1,18 @@
+<a name="9.12.6"></a>
+## [9.12.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.5...v9.12.6) (2017-09-07)
+
+
+### Bug Fixes
+
+* header logo styles to params ([fb80f0b](https://github.com/softwaregroup-bg/ut-front-react/commit/fb80f0b))
+
+
+
+<a name="9.12.5"></a>
+## [9.12.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.4...v9.12.5) (2017-08-21)
+
+
+
 <a name="9.12.4"></a>
 ## [9.12.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.3...v9.12.4) (2017-08-16)
 
