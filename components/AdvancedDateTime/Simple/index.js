@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
-import Dropdown from 'ut-front-react/components/Input/Dropdown';
+import Dropdown from './../../Input/Dropdown';
 import style from './style.css';
 import { defaultTimeValues } from './defaultValues';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
