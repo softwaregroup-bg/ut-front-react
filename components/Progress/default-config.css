@@ -1,0 +1,5 @@
+:root {
+  /* PREDEFINED STYLES BY STYLE GUIDELINE */
+  /* Primary button */
+  --ut-front-react-progress-gradient-background: linear-gradient(to right, #0098ff, #475bea);
+}

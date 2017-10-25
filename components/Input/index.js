@@ -12,8 +12,7 @@ class TextField extends Component {
         super(props);
         this.state = {
             value: props.value,
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage},
-            isEdited: this.props.isEdited
+            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
 
         this.onChangQueue = [];
@@ -24,14 +23,13 @@ class TextField extends Component {
         this.style = props.customStyle || defaultStyle;
     }
 
-    componentWillReceiveProps({value, isValid, errorMessage, isEdited}) {
+    componentWillReceiveProps({value, isValid, errorMessage}) {
         this.initialValue = value;
 
-        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.isEdited !== isEdited || this.state.valid.errorMessage !== errorMessage) {
+        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
                 value: value,
-                valid: {isValid: isValid, errorMessage: errorMessage},
-                isEdited: isEdited
+                valid: {isValid: isValid, errorMessage: errorMessage}
             });
         }
     }
@@ -73,10 +71,9 @@ class TextField extends Component {
     }
 
     get inputClassName() {
-        const { valid, isEdited } = this.state;
+        const { valid } = this.state;
         const { readonly } = this.props;
         return classnames(this.style.input, {
-            [this.style.editedInputStyle]: isEdited,
             [this.style.error]: !valid.isValid,
             [this.style.readonlyInput]: readonly
         });
@@ -144,10 +141,7 @@ TextField.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
-
-    // Edited
-    isEdited: PropTypes.bool
+    errorMessage: PropTypes.string
 };
 
 TextField.defaultProps = {
@@ -161,7 +155,6 @@ TextField.defaultProps = {
     boldLabel: false,
     isValid: true,
     errorMessage: '',
-    isEdited: false,
     onChange: () => {},
     onBlur: () => {},
     onClick: () => {}

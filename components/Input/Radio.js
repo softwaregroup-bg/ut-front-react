@@ -4,9 +4,9 @@ import classnames from 'classnames';
 
 const RadioInput = ({ label, boldLabel, onChange, defaultValue, options, disabled, optionClassName }) => (
     <div className={style.outerWrap}>
-        <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
+        {label && <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
             {label}
-        </div>
+        </div>}
         <div className={style.inputWrap}>
             {options.map(({id, name, label, value}) => {
                 let handleChange = () => onChange({id, key: name, label, value});

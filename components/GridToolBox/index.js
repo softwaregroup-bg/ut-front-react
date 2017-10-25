@@ -433,9 +433,9 @@ class GridToolBox extends Component {
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0]['type'] === filterElementTypes.searchBox) {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : '';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by:';
         } else {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by:';
         }
 
         let showSearchBtn = (this.props.filterElements.find(f => {
@@ -470,7 +470,7 @@ class GridToolBox extends Component {
                             </div>}
                         {this.state.hasActiveFilters &&
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
-                                <div key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                                <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
                             </div>}
                     </div>
                 </div>
@@ -661,7 +661,7 @@ class GridToolBox extends Component {
         let toggle = () => this.setState({showFilters: true});
 
         return (
-            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
+            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
                 <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
                     Show filters
                 </div>

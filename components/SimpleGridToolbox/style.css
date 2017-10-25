@@ -7,12 +7,13 @@
 .simpleToolbox.opened {
     display: flex;
     height: 100%;
+    align-items: center;
+}
+.buttonsOpened {
+    justify-content: space-between;
 }
 .simpleToolbox .label, .simpleToolbox .link {
-    margin: auto auto auto 20px;
-    min-width: 10%;
-    flex-basis: auto;
-    text-align: left;
+    margin-right: 20px;
 }
 .simpleToolbox .link {
     cursor: pointer;
@@ -22,7 +23,5 @@
     text-decoration: underline;
 }
 .simpleToolbox .content {
-    margin: auto 0 auto auto;
-    width: 89%;
-    flex-basis: auto;
+   
 }

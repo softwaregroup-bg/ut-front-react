@@ -75,7 +75,7 @@ table.dataGridTable thead tr th .sortArrow {
     margin-left: 3px;
     cursor: pointer;
     display: inline-block;
-    background-image: url('./images/arrow_black.png');
+    background-image: url('./images/arrow.png');
     background-size: 8px 5px;
     background-repeat: no-repeat;
     background-position: center center;

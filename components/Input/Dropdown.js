@@ -9,7 +9,7 @@ class Dropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: props.defaultSelected || '__placeholder__',
+            value: props.defaultSelected || this.props.placeholderValue,
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
 
@@ -21,7 +21,7 @@ class Dropdown extends Component {
     componentWillReceiveProps({defaultSelected, data, isValid, errorMessage}) {
         // when item is saved defaultSelected should be restored to placeholder
         if (!defaultSelected) {
-            this.setState({value: '__placeholder__'});
+            this.setState({value: this.props.placeholderValue});
         }
 
         if (defaultSelected !== this.props.defaultSelected || this.props.data !== data) {
@@ -54,9 +54,8 @@ class Dropdown extends Component {
             <MenuItem
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
-              value={'__placeholder__'}
-              primaryText={placeholder}
-            />
+              value={this.props.placeholderValue}
+              primaryText={placeholder} />
         );
 
         data.forEach((item, i) => {
@@ -66,7 +65,8 @@ class Dropdown extends Component {
                   disabled={item.disabled}
                   value={item.key}
                   primaryText={item.name}
-                />
+                  leftIcon={item.leftIcon && <img src={item.leftIcon} />}
+                  rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
             );
         });
 
@@ -78,7 +78,6 @@ class Dropdown extends Component {
         let { cssStyle, mergeStyles } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
-        let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
         let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
         let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
 
@@ -97,7 +96,7 @@ class Dropdown extends Component {
         }
 
         return (
-            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, inputDisabled)}>
+            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)}>
                 <div className={classnames(arrowIconDisabled, ddstyles.arrowIcon)} />
                 <div className={ddstyles.hideTextWrap} />
                 <DropDownMenu
@@ -151,13 +150,16 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-        name: PropTypes.any.isRequired
+        name: PropTypes.any.isRequired,
+        leftIcon: PropTypes.string,
+        rightIcon: PropTypes.string
     })).isRequired,
     defaultSelected: PropTypes.any,
     label: PropTypes.node,
     boldLabel: PropTypes.bool,
     containerClassName: PropTypes.string,
     placeholder: PropTypes.any,
+    placeholderValue: PropTypes.any,
     keyProp: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array
@@ -180,23 +182,20 @@ Dropdown.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
-
-    // Edited
-    isEdited: PropTypes.bool
+    errorMessage: PropTypes.string
 };
 
 Dropdown.defaultProps = {
     label: undefined,
     boldLabel: false,
     placeholder: 'Select',
+    placeholderValue: '__placeholder__',
     canSelectPlaceholder: false,
     disabled: false,
     keyProp: '__no_source_prop_key__',
     onSelect: () => {},
     isValid: true,
     errorMessage: '',
-    isEdited: false,
     menuAutoWidth: false
 };
 
