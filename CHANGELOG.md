@@ -1,3 +1,13 @@
+<a name="9.14.0"></a>
+# [9.14.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.13.0...v9.14.0) (2017-10-27)
+
+
+### Bug Fixes
+
+* pagination overflowing ([b20130f](https://github.com/softwaregroup-bg/ut-front-react/commit/b20130f))
+
+
+
 <a name="9.13.0"></a>
 # [9.13.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.6...v9.13.0) (2017-10-25)
 
