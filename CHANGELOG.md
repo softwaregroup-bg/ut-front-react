@@ -1,3 +1,30 @@
+<a name="9.13.0"></a>
+# [9.13.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.6...v9.13.0) (2017-10-25)
+
+
+### Bug Fixes
+
+* allow placeholder value overwrite ([b71ca68](https://github.com/softwaregroup-bg/ut-front-react/commit/b71ca68))
+* lint ([bdaf96b](https://github.com/softwaregroup-bg/ut-front-react/commit/bdaf96b))
+* pagination floating as shouldn't be ([942249e](https://github.com/softwaregroup-bg/ut-front-react/commit/942249e))
+* PRCR1-195 on mouse over of the info button in the business unit tree ([840384c](https://github.com/softwaregroup-bg/ut-front-react/commit/840384c))
+* PRCR1-197 add tick to tab dropdow ([7bc510e](https://github.com/softwaregroup-bg/ut-front-react/commit/7bc510e))
+* small changes to the ui where needed ([13d2181](https://github.com/softwaregroup-bg/ut-front-react/commit/13d2181))
+* support item icons ([2103630](https://github.com/softwaregroup-bg/ut-front-react/commit/2103630))
+* UIS-3616: fix maker-checker logic when displaying single dataset ([b9b5601](https://github.com/softwaregroup-bg/ut-front-react/commit/b9b5601))
+
+
+### Features
+
+* add conditional when displaying radio button labels ([5389954](https://github.com/softwaregroup-bg/ut-front-react/commit/5389954))
+* add master routes ([dde894f](https://github.com/softwaregroup-bg/ut-front-react/commit/dde894f))
+* add Progress component ([6d4fad7](https://github.com/softwaregroup-bg/ut-front-react/commit/6d4fad7))
+* add status bubble component, ucfirst function ([6b96618](https://github.com/softwaregroup-bg/ut-front-react/commit/6b96618))
+* iban validation ([402ea3a](https://github.com/softwaregroup-bg/ut-front-react/commit/402ea3a))
+* PRCR1-192 remove yellow coloring from inputs ([03c29ec](https://github.com/softwaregroup-bg/ut-front-react/commit/03c29ec))
+
+
+
 <a name="9.12.6"></a>
 ## [9.12.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v9.12.5...v9.12.6) (2017-09-07)
 
