@@ -22,6 +22,7 @@
     font-size: 14px;
     text-align: left;
     align-items: center;
+    margin-right: 10px;
 }
 
 .boldLabel {
@@ -66,4 +67,7 @@
 
 .inputWrap button.timeButton {
     background-image: url('./images/clock.png');
+}
+.ddframe {
+    width: 35%;
 }
