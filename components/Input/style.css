@@ -453,6 +453,10 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     min-height: 32px !important;
 }
 
+.groupDropdownMenuSelectedItem {
+    color: var(--ut-front-react-standardDropdownSelectedColor) !important;
+}
+
 .multiSelectDropdownPlaceholder, .groupDropdownPlaceholder {
     font-size: 15px;
     margin-top: 3px;
