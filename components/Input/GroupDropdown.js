@@ -53,7 +53,7 @@ class GroupDropdown extends Dropdown {
             });
             return acc;
         }, {});
-        return Object.keys(groups).map(group => {
+        const menuItems = Object.keys(groups).map(group => {
             return (
                 <div key={group}>
                     {/* the material ui api allows manipulation of  */}
@@ -65,20 +65,36 @@ class GroupDropdown extends Dropdown {
                     />
                     <Divider />
                     {
-                        groups[group].map((item, i) => (
-                            <MenuItem
-                              key={item.key + '-' + i}
-                              className={style.groupDropdownMenuItem}
-                              disabled={item.disabled}
-                              value={item.key}
-                              onTouchTap={() => { this.handleChange(item); }}
-                              primaryText={item.name}
-                            />
-                        ))
+                        groups[group].map((item, i) => {
+                            let isSelected = this.state.value === item.key;
+                            let className = isSelected
+                                ? classnames(style.groupDropdownMenuItem, style.groupDropdownMenuSelectedItem)
+                                : style.groupDropdownMenuItem;
+                            return (
+                                <MenuItem
+                                  key={item.key + '-' + i}
+                                  className={className}
+                                  disabled={item.disabled}
+                                  value={item.key}
+                                  onTouchTap={() => { this.handleChange(item); }}
+                                  primaryText={item.name}
+                                />
+                            );
+                        })
                     }
                 </div>
             );
         });
+        menuItems.unshift(
+            <MenuItem
+              disabled={false}
+              className={style.groupDropdownMenuItem}
+              key={Math.random() + '-ddfg'}
+              value={this.props.placeholderValue}
+              onTouchTap={() => { this.handleChange({ key: '__placeholder__' }); }}
+              primaryText={this.props.placeholder} />
+        );
+        return menuItems;
     }
 
     renderDropDown() {
