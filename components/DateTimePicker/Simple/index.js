@@ -56,7 +56,7 @@ class DateTimePicker extends Component {
         return formatTime(time);
     }
     handleAccept(ref) {
-        let {defaultValue, type} = this.props;
+        let {defaultValue, timeType} = this.props;
         let currentDate = new Date(defaultValue);
         return (newDate) => {
             if (newDate === currentDate) {
@@ -72,7 +72,7 @@ class DateTimePicker extends Component {
                         newDate.setSeconds(currentDate.getSeconds());
                     }
                 }
-            } else if (ref === 'time' && type === 'timePicker') {
+            } else if (ref === 'time' && timeType === 'timePicker') {
                 if (currentDate && !isNaN(currentDate.valueOf())) {
                     if (!newDate || isNaN(newDate.valueOf())) {
                         newDate = currentDate;
@@ -85,7 +85,7 @@ class DateTimePicker extends Component {
                         newDate.setDate(currentDate.getDate());
                     }
                 }
-            } else if (ref === 'time' && type === 'dropdown') {
+            } else if (ref === 'time' && timeType === 'timeDropdown') {
                 var timeSet = function() {
                     var time = newDate ? newDate.value.split(':') : [];
                     newDate = new Date();
@@ -126,7 +126,7 @@ class DateTimePicker extends Component {
     }
     render() {
         let { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
-        let { defaultValue, type } = this.props;
+        let { defaultValue, timeType } = this.props;
 
         let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
@@ -145,10 +145,10 @@ class DateTimePicker extends Component {
                         <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
-                    {type === 'timePicker' ? <div className={style.inputWrap}>
+                    {timeType === 'timePicker' ? <div className={style.inputWrap}>
                         <input value={defaultValue ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
-                    </div> : type === 'dropdown'
+                    </div> : timeType === 'dropdown'
                     ? <div className={style.ddframe}>
                         <Dropdown
                           data={this.props.data}
@@ -165,7 +165,7 @@ class DateTimePicker extends Component {
                        onAccept={this.handleAccept('date')}
                        firstDayOfWeek={firstDayOfWeek}
                        ref='date' />
-                    {type === 'timePicker' ? <TimePickerDialog
+                    {timeType === 'timePicker' ? <TimePickerDialog
                       cancelLabel={cancelLabel}
                       okLabel={okLabel}
                       initialTime={date}
@@ -180,7 +180,7 @@ class DateTimePicker extends Component {
 }
 
 DateTimePicker.defaultProps = {
-    type: 'timePicker',
+    timeType: 'timePicker',
     firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
@@ -203,7 +203,7 @@ DateTimePicker.propTypes = {
     boldLabel: PropTypes.bool,
     transformDate: PropTypes.func,
     transformTime: PropTypes.func,
-    type: PropTypes.oneOf(['dropdown', 'timePicker']),
+    timeType: PropTypes.oneOf(['timeDropdown', 'timePicker']),
     innerWrapperClassName: PropTypes.string,
     data: PropTypes.array
 };

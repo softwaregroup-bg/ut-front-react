@@ -49,7 +49,7 @@ class DateTimePickerBetween extends Component {
             transformDate,
             transformTime,
             innerWrapperClassName,
-            type
+            timeType
         } = this.props;
 
         let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
@@ -68,7 +68,7 @@ class DateTimePickerBetween extends Component {
                   okLabel={okLabel}
                   cancelLabel={cancelLabel}
                   firstDayOfWeek={firstDayOfWeek}
-                  type={type}
+                  timeType={timeType}
                   onChange={({value}) => { this.handleChange('from', value); }}
                   boldLabel={boldLabel} />
                 <DateTimePicker
@@ -83,7 +83,7 @@ class DateTimePickerBetween extends Component {
                   okLabel={okLabel}
                   cancelLabel={cancelLabel}
                   firstDayOfWeek={firstDayOfWeek}
-                  type={type}
+                  timeType={timeType}
                   onChange={({value}) => { this.handleChange('to', value); }}
                   boldLabel={boldLabel} />
             </div>
@@ -110,7 +110,7 @@ DateTimePickerBetween.propTypes = {
     transformDate: PropTypes.func,
     transformTime: PropTypes.func,
     innerWrapperClassName: PropTypes.string,
-    type: PropTypes.string
+    timeType: PropTypes.string
 };
 
 export default DateTimePickerBetween;
