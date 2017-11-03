@@ -148,7 +148,7 @@ class DateTimePicker extends Component {
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>
                         <input value={defaultValue ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
-                    </div> : timeType === 'dropdown'
+                    </div> : timeType === 'timeDropdown'
                     ? <div className={style.ddframe}>
                         <Dropdown
                           data={this.props.data}
