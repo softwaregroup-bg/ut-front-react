@@ -42,7 +42,6 @@ class Dropdown extends Component {
         }
     }
     toggleOpen(event) {
-        debugger;
         return this.setState({open: true, anchorEl: event.currentTarget});
     }
 
@@ -70,6 +69,7 @@ class Dropdown extends Component {
 
         menuItems.push(
             <MenuItem
+              className={style.DropdownMenuItemWrap}
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={this.props.placeholderValue}
@@ -79,6 +79,7 @@ class Dropdown extends Component {
         data.forEach((item, i) => {
             menuItems.push(
                 <MenuItem
+                  className={style.DropdownMenuItemWrap}
                   key={item.key + '-' + i}
                   disabled={item.disabled}
                   value={item.key}
@@ -102,28 +103,14 @@ class Dropdown extends Component {
         let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
-        let iconStyles = {
-            fill: '#FFF',
-            right: '0px',
-            top: '1px',
-            width: '26px',
-            height: '26px'
-        };
-        if (this.props.iconStyles) {
-            iconStyles = Object.assign(iconStyles, this.props.iconStyles);
-        }
-        if (this.props.disabled) {
-            iconStyles.background = '#d7d6d6';
-        }
-
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
-            <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
-            <div className={ddstyles.groupDropdownPlaceholder}>
-            <div style={{maxWidth: labelMaxWidth}}>
-            {this.dropdownPlaceholder}
-                            </div>
-                        </div>
+<div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
+                    <div className={ddstyles.groupDropdownPlaceholder}>
+                    <div style={{maxWidth: labelMaxWidth}}>
+                        {this.dropdownPlaceholder}
+                    </div>
+                </div>
                 <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
                 <div className={ddstyles.hideTextWrap} />
                 </div>
@@ -140,8 +127,7 @@ class Dropdown extends Component {
                   onChange={this.handleChange}
                   autoWidth={this.props.menuAutoWidth}
                   disabled={this.props.disabled}
-                  className={classnames(ddstyles.multiSelectDropdownMenu)}
-                  iconStyle={iconStyles}
+                  className={classnames(ddstyles.DropdownMenu)}
                   style={{width: rootElementWidth}}
                   maxHeight={300}
                 >
@@ -207,8 +193,6 @@ Dropdown.propTypes = {
     disabled: PropTypes.bool,
     menuAutoWidth: PropTypes.bool,
     mergeStyles: PropTypes.object,
-    iconStyles: PropTypes.object,
-    // if you want to style the width of the dropdown, add a wrapper element that has min-width and max-width properties
     cssStyle: PropTypes.any, // css file to take styles [Should have the same classes/divs like in styles.css]
 
     // Validation
