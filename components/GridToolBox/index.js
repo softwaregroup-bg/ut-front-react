@@ -424,7 +424,7 @@ class GridToolBox extends Component {
     }
 
     renderFilters() {
-        let { filterElements } = this.props;
+        let { filterElements, filterActionElements } = this.props;
 
         let hasSelectedOrChecked = this.hasSelectedOrChecked();
 
@@ -472,6 +472,7 @@ class GridToolBox extends Component {
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
                                 <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
                             </div>}
+                        { filterActionElements }
                     </div>
                 </div>
             </div>
@@ -728,6 +729,7 @@ GridToolBox.propTypes = {
             styles: PropTypes.object
         })
     ),
+    filterActionElements: PropTypes.node,
     actionButtonElements: PropTypes.arrayOf(
         PropTypes.shape({
             type: PropTypes.oneOf([
