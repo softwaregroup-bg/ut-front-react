@@ -126,14 +126,14 @@ class Dropdown extends Component {
                   animation={PopoverAnimationVertical}
                 >
                     <Menu
-                        value={this.state.value}
-                        onChange={this.handleChange}
-                        autoWidth={this.props.menuAutoWidth}
-                        disabled={this.props.disabled}
-                        className={classnames(ddstyles.dropdownMenu)}
-                        style={{width: rootElementWidth}}
-                        maxHeight={300}>
-                          {menuItems}
+                      value={this.state.value}
+                      onChange={this.handleChange}
+                      autoWidth={this.props.menuAutoWidth}
+                      disabled={this.props.disabled}
+                      className={classnames(ddstyles.dropdownMenu)}
+                      style={{width: rootElementWidth}}
+                      maxHeight={300}>
+                        {menuItems}
                     </Menu>
                 </Popover>
             </div>
