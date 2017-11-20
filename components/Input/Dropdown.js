@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react';
-import DropDownMenu from 'material-ui/Menu';
+import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
+import SvgDropdownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -69,7 +70,7 @@ class Dropdown extends Component {
 
         menuItems.push(
             <MenuItem
-              className={style.DropdownMenuItemWrap}
+              className={style.dropdownMenuItemWrap}
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={this.props.placeholderValue}
@@ -79,7 +80,7 @@ class Dropdown extends Component {
         data.forEach((item, i) => {
             menuItems.push(
                 <MenuItem
-                  className={style.DropdownMenuItemWrap}
+                  className={style.dropdownMenuItemWrap}
                   key={item.key + '-' + i}
                   disabled={item.disabled}
                   value={item.key}
@@ -105,14 +106,16 @@ class Dropdown extends Component {
 
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
-<div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
-                    <div className={ddstyles.groupDropdownPlaceholder}>
-                    <div style={{maxWidth: labelMaxWidth}}>
-                        {this.dropdownPlaceholder}
+                <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
+                    <div className={ddstyles.dropdownPlaceholder}>
+                        <div style={{maxWidth: labelMaxWidth}}>
+                            {this.dropdownPlaceholder}
+                        </div>
                     </div>
-                </div>
-                <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
-                <div className={ddstyles.hideTextWrap} />
+                    <div className={ddstyles.dropdownIconWrap}>
+                        <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
+                    </div>
+                    <div className={ddstyles.hideTextWrap} />
                 </div>
                 <Popover
                   open={this.state.open}
@@ -122,17 +125,16 @@ class Dropdown extends Component {
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
                   animation={PopoverAnimationVertical}
                 >
-                <DropDownMenu
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  autoWidth={this.props.menuAutoWidth}
-                  disabled={this.props.disabled}
-                  className={classnames(ddstyles.DropdownMenu)}
-                  style={{width: rootElementWidth}}
-                  maxHeight={300}
-                >
-                    {menuItems}
-                </DropDownMenu>
+                    <Menu
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    autoWidth={this.props.menuAutoWidth}
+                    disabled={this.props.disabled}
+                    className={classnames(ddstyles.dropdownMenu)}
+                    style={{width: rootElementWidth}}
+                    maxHeight={300}>
+                        {menuItems}
+                    </Menu>
                 </Popover>
             </div>
         );
