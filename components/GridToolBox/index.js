@@ -472,9 +472,9 @@ class GridToolBox extends Component {
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
                                 <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
                             </div>}
-                        { filterActionElements }
                     </div>
                 </div>
+                { filterActionElements && <div className={style.filterActionWrap}> {filterActionElements} </div>}
             </div>
         );
     }
