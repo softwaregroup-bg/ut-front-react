@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "9.15.0-rc-acapulco.4",
+  "version": "9.15.0-rc-acapulco.5",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
