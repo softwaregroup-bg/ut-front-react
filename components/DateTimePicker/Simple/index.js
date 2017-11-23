@@ -87,7 +87,21 @@ class DateTimePicker extends Component {
                 }
             } else if (ref === 'time' && timeType === 'timeDropdown') {
                 var timeSet = function() {
-                    var time = newDate ? newDate.value.split(':') : [];
+                    var time;
+                    if (newDate.value.indexOf('am') > -1 ) {
+                            var amTime = newDate ? newDate.value.split(' ') : [];
+                             time = amTime.length ? amTime[0].split(':') : [];
+                             time[0] = time[0] < 12 ? time[0] : parseInt(time[0]) - 12;
+                             time[1] = time[1] ? time[1] : '0';
+                        } else if (newDate.value.indexOf('pm') > -1) {
+                            var pmTime = newDate ? newDate.value.split(' ') : [];
+                            time = pmTime.length ? pmTime[0].split(':') : [];
+                            time[0] = time[0] < 12 ? parseInt(time[0]) + 12 : time[0];
+                            time[1] = time[1] ? time[1] : '0';
+                        }
+                        else {
+                             time = newDate ? newDate.value.split(':') : [];
+                        }
                     newDate = new Date();
                     newDate.setHours(time[0]);
                     newDate.setMinutes(time[1]);

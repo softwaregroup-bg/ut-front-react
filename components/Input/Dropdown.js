@@ -65,12 +65,13 @@ class Dropdown extends Component {
         return (selected && selected.name) || placeholder;
     }
     getMenuItems() {
-        let { data, placeholder, canSelectPlaceholder } = this.props;
+        let { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
+        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let menuItems = [];
 
         menuItems.push(
             <MenuItem
-              className={style.dropdownMenuItemWrap}
+              className={ddstyles.dropdownMenuItemWrap}
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={this.props.placeholderValue}
@@ -80,7 +81,7 @@ class Dropdown extends Component {
         data.forEach((item, i) => {
             menuItems.push(
                 <MenuItem
-                  className={style.dropdownMenuItemWrap}
+                  className={ddstyles.dropdownMenuItemWrap}
                   key={item.key + '-' + i}
                   disabled={item.disabled}
                   value={item.key}

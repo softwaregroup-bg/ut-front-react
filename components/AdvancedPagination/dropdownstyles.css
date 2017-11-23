@@ -41,3 +41,8 @@
     top: 1px !important;
     right: 1px !important;
 }
+.dropdownIconWrap svg{
+    height: 19px !important;
+    width: 19px !important;
+    position: absolute;
+}
