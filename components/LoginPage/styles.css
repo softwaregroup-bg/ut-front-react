@@ -18,10 +18,10 @@
 
 .loginPageHeader {
     margin-bottom: 55px;
-    background: inline('topLogo.png') no-repeat center;
+    background: inline('./images/topLogo.png') no-repeat center;
 }
 
 .loginPageFooter {
     margin-top: 55px;
-    background: inline('bottomLogo.png') no-repeat center;
+    background: inline('./images/bottomLogo.png') no-repeat center;
 }
