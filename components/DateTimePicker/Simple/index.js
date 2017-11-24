@@ -88,23 +88,16 @@ class DateTimePicker extends Component {
             } else if (ref === 'time' && timeType === 'timeDropdown') {
                 var timeSet = function() {
                     var time;
-                    if (newDate.value.indexOf('am') > -1 ) {
-                            var amTime = newDate ? newDate.value.split(' ') : [];
-                             time = amTime.length ? amTime[0].split(':') : [];
-                             time[0] = time[0] < 12 ? time[0] : parseInt(time[0]) - 12;
-                             time[1] = time[1] ? time[1] : '0';
-                        } else if (newDate.value.indexOf('pm') > -1) {
-                            var pmTime = newDate ? newDate.value.split(' ') : [];
-                            time = pmTime.length ? pmTime[0].split(':') : [];
-                            time[0] = time[0] < 12 ? parseInt(time[0]) + 12 : time[0];
-                            time[1] = time[1] ? time[1] : '0';
-                        }
-                        else {
-                             time = newDate ? newDate.value.split(':') : [];
-                        }
+                    if (newDate.value.indexOf('am') > -1 || newDate.value.indexOf('pm') > -1) {
+                        var newTime = newDate ? newDate.value.split(' ') : [];
+                        time = newTime.length ? newTime[0].split(':') : [];
+                        time[0] = newTime[1] === 'am' ? time[0] < 12 ? time[0] : parseInt(time[0]) - 12 : newTime[1] === 'pm' ? time[0] < 12 ? parseInt(time[0]) + 12 : time[0] : '';
+                    } else {
+                        time = newDate ? newDate.value.split(':') : [];
+                    }
                     newDate = new Date();
                     newDate.setHours(time[0]);
-                    newDate.setMinutes(time[1]);
+                    newDate.setMinutes(time[1] || 0);
                     return newDate;
                 };
                 if (currentDate && !isNaN(currentDate.valueOf())) {
@@ -146,10 +139,11 @@ class DateTimePicker extends Component {
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
+        var defaultDate = new Date().setHours(0,0,0,0);
 
         let date = defaultValue
             ? new Date(defaultValue)
-            : new Date();
+            : new Date(defaultDate);
 
         return (
             <div className={outerWrapStyle}>
