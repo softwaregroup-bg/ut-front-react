@@ -139,7 +139,7 @@ class DateTimePicker extends Component {
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
-        var defaultDate = new Date().setHours(0,0,0,0);
+        var defaultDate = new Date().setHours(0, 0, 0, 0);
 
         let date = defaultValue
             ? new Date(defaultValue)
