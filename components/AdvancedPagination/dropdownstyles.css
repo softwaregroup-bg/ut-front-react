@@ -46,3 +46,15 @@
     width: 19px !important;
     position: absolute;
 }
+.dropdownMenu {
+    display: block !important;
+}
+.dropdownMenu div {
+    font-size: 15px;
+    line-height: 32px;
+}
+.dropdownMenuItemWrap {
+    display: flex !important;
+    align-items: center;
+    min-height: 32px !important;
+}
