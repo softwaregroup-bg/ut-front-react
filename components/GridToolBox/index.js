@@ -424,7 +424,7 @@ class GridToolBox extends Component {
     }
 
     renderFilters() {
-        let { filterElements } = this.props;
+        let { filterElements, filterActionElements } = this.props;
 
         let hasSelectedOrChecked = this.hasSelectedOrChecked();
 
@@ -474,6 +474,7 @@ class GridToolBox extends Component {
                             </div>}
                     </div>
                 </div>
+                { filterActionElements && <div className={style.filterActionWrap}> {filterActionElements} </div>}
             </div>
         );
     }
@@ -728,6 +729,7 @@ GridToolBox.propTypes = {
             styles: PropTypes.object
         })
     ),
+    filterActionElements: PropTypes.node,
     actionButtonElements: PropTypes.arrayOf(
         PropTypes.shape({
             type: PropTypes.oneOf([

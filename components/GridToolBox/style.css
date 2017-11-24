@@ -156,3 +156,12 @@
 .spacer:last-child {
     padding-right: 0px;
 }
+
+.filterActionWrap {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.filterActionWrap button {
+    float: right;
+}
