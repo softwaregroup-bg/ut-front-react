@@ -88,7 +88,7 @@ class MultiSelectDropdown extends Dropdown {
               key={'1-ddfg'}>
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
                     <Checkbox
-                      checked={values.length === data.length} />
+                      checked={(data && data.length) && (values.length === data.length)} />
                     <span>{placeholder}</span>
                 </div>
             </MenuItem>,
