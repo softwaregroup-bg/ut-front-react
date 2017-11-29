@@ -36,9 +36,15 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        const { loginData, clearLoginState } = this.props;
+        const { authenticated, loginData, clearLoginState } = this.props;
 
-        // if there is previusly stored loginData, reset login state
+        // If user tries manually to go to /login page
+        // whilte he/she is logged it, redirects to /
+        if (authenticated) {
+            this.context.router.push('/');
+        }
+
+        // if there is previously stored loginData, reset login state
         // this happens in cases when the user is logged in and navigates to /login again
         if (loginData.get('username') || loginData.get('password')) {
             clearLoginState();
