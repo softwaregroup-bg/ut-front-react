@@ -8,10 +8,10 @@ class HeaderCell extends Component {
 
         switch (this.props.sortState) {
             case 1:
-                sortStyle = style.arrowSort;
+                sortStyle = style.sortArrow;
                 break;
             case 2:
-                sortStyle = classnames(style.arrowSort, style.arrowDesc);
+                sortStyle = classnames(style.sortArrow, style.descArrow);
                 break;
             default:
                 sortStyle = '';
