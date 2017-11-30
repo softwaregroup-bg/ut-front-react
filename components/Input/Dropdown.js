@@ -129,7 +129,7 @@ class Dropdown extends Component {
                     <Menu
                       value={this.state.value}
                       onChange={this.handleChange}
-                      autoWidth={this.props.menuAutoWidth}
+                      autoWidth={false}
                       disabled={this.props.disabled}
                       className={classnames(ddstyles.dropdownMenu)}
                       style={{width: rootElementWidth}}

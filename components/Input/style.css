@@ -462,7 +462,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     margin-top: 3px;
 }
 
-.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div, .dropdownPlaceholder div {
+.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div {
     width: 90%;
     overflow: hidden;
     white-space: nowrap;
