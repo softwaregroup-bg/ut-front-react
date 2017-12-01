@@ -48,11 +48,11 @@ class LoginForm extends Component {
             cookieCheck({appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page
-            // whilte he/she is logged in, redirects to / 
+            // while he/she is logged in, redirects to / 
             this.context.router.push('/');
         }
 
-        // if there is previusly stored loginData, reset login state
+        // if there is previously stored loginData, reset login state
         // this happens in cases when the user is logged in and navigates to /login again
         // if (loginData.get('username') || loginData.get('password')) {
         //     clearLoginState();

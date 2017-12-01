@@ -119,7 +119,8 @@ class Toolbox extends Component {
                         (selectedAttachment &&
                             (selectedAttachment.get('statusId') === 'deleted' ||
                             selectedAttachment.get('statusId') === 'archived' ||
-                            selectedAttachment.get('statusId') === 'pending')
+                            selectedAttachment.get('statusId') === 'pending' ||
+                            selectedAttachment.get('statusId') === 'replaced')
                             ) ||
                             this.props.selectedFilter === 'archived'),
                     onClick: openDeleteConfirmationDialog
