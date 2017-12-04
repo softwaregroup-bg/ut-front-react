@@ -20,6 +20,7 @@ class Dropdown extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleOpen = this.toggleOpen.bind(this);
         this.toggleClose = this.toggleClose.bind(this);
+        this.getTitle = this.getTitle.bind(this);
         this.renderDropDown = this.renderDropDown.bind(this);
     }
 
@@ -64,6 +65,10 @@ class Dropdown extends Component {
         const selected = data.find(item => item.key === defaultSelected);
         return (selected && selected.name) || placeholder;
     }
+    getTitle(name) {
+        var title = name && typeof name === 'object' ? name.props.children : name;
+        return title;
+    }
     getMenuItems() {
         let { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
@@ -75,7 +80,7 @@ class Dropdown extends Component {
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={this.props.placeholderValue}
-              primaryText={placeholder} />
+              primaryText={<div title={this.getTitle(placeholder)}>{placeholder}</div>} />
         );
 
         data.forEach((item, i) => {
@@ -85,7 +90,7 @@ class Dropdown extends Component {
                   key={item.key + '-' + i}
                   disabled={item.disabled}
                   value={item.key}
-                  primaryText={item.name}
+                  primaryText={<div title={this.getTitle(item.name)}>{item.name}</div>}
                   leftIcon={item.leftIcon && <img src={item.leftIcon} />}
                   rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
             );
@@ -103,15 +108,15 @@ class Dropdown extends Component {
         let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
         let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
         let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
-        let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
+        // let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
                 <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                     <div className={ddstyles.dropdownPlaceholder}>
-                        <div style={{maxWidth: labelMaxWidth}}>
+                        <p title={this.getTitle(this.dropdownPlaceholder)}>
                             {this.dropdownPlaceholder}
-                        </div>
+                        </p>
                     </div>
                     <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
                         <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
