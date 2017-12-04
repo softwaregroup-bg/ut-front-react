@@ -121,7 +121,6 @@ export const login = (state = defaultLoginState, action) => {
             }
             return state;
         case CLEAR_LOGIN_STATE:
-            debugger;
             return defaultLoginState;
         case SET_GATE_LOAD:
             return state.set('gateLoaded', action.params.value);

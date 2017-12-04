@@ -21,7 +21,6 @@ const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
         closePopUpHandler = undefined;
         header.closeIcon = false; // remove close icon
         let goToLoginHandler = () => {
-            debugger;
             clearLoginState();
             this.context.router.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
         };

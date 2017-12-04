@@ -55,7 +55,6 @@ export const logout = (params) => ({
 });
 
 export const clearLoginState = () => {
-    debugger;
     return {
         type: CLEAR_LOGIN_STATE,
         params: {}
