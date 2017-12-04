@@ -6,7 +6,8 @@ import {
     VALIDATE_FORM,
     COOKIE_CHECK,
     LOGOUT,
-    CLEAR_LOGIN_STATE
+    CLEAR_LOGIN_STATE,
+    SET_GATE_LOAD
 } from './actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
@@ -76,7 +77,8 @@ export const login = (state = defaultLoginState, action) => {
 
                     return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message);
                 } else if (action.result) {
-                    return state.set('authenticated', true)
+                    return state.set('result', Immutable.fromJS(action.result))
+                                .set('authenticated', true)
                                 .set('cookieChecked', true)
                                 .set('formError', '');
                 }
@@ -113,13 +115,16 @@ export const login = (state = defaultLoginState, action) => {
                 } else if (action.result) {
                     return state.set('result', Immutable.fromJS(action.result))
                                 .set('cookieChecked', true)
-                                .set('authenticated', true);
+                                .set('authenticated', true)
+                                .set('fromGate', action.fromGate);
                 }
             }
             return state;
         case CLEAR_LOGIN_STATE:
             debugger;
             return defaultLoginState;
+        case SET_GATE_LOAD:
+            return state.set('gateLoaded', action.params.value);
         default:
             return state;
     }
