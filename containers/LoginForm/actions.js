@@ -5,7 +5,8 @@ import {
     VALIDATE_FORM,
     LOGOUT,
     SET_INPUT_VALUE,
-    CLEAR_LOGIN_STATE
+    CLEAR_LOGIN_STATE,
+    SET_GATE_LOAD
 } from './actionTypes';
 
 const getTimezone = () => {
@@ -56,4 +57,9 @@ export const logout = (params) => ({
 export const clearLoginState = () => ({
     type: CLEAR_LOGIN_STATE,
     params: {}
+});
+
+export const setLoadGate = (value) => ({
+    type: SET_GATE_LOAD,
+    params: {value}
 });
