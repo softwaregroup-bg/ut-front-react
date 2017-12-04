@@ -1,3 +1,5 @@
+/** eslint-disable react/no-unused-prop-types */
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
@@ -47,8 +49,7 @@ class LoginForm extends Component {
             }
             cookieCheck({appId});
         } else if (authenticated) {
-            // If user tries manually to go to /login page
-            // while he/she is logged in, redirects to / 
+            // If user tries manually to go to /login page while he/she is logged in, redirects to
             this.context.router.push('/');
         }
 

@@ -1,3 +1,5 @@
+/** eslint-disable react/no-unused-prop-types */
+
 import React, { Component, PropTypes } from 'react';
 import { Map } from 'immutable';
 import { connect } from 'react-redux';

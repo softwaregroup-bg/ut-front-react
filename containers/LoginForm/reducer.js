@@ -123,7 +123,7 @@ export const login = (state = defaultLoginState, action) => {
         case CLEAR_LOGIN_STATE:
             return defaultLoginState;
         case SET_GATE_LOAD:
-            return state.set('gateLoaded', action.params.value)
+            return state.set('gateLoaded', action.params.value);
         default:
             return state;
     }
