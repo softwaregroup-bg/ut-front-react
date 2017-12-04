@@ -54,10 +54,12 @@ export const logout = (params) => ({
     params: {}
 });
 
-export const clearLoginState = () => ({
-    type: CLEAR_LOGIN_STATE,
-    params: {}
-});
+export const clearLoginState = () => {
+    return {
+        type: CLEAR_LOGIN_STATE,
+        params: {}
+    };
+};
 
 export const setLoadGate = (value) => ({
     type: SET_GATE_LOAD,
