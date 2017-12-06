@@ -435,36 +435,50 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     background: inline('./images/dropdownArrow.png') no-repeat center;
 }
 
-.multiSelectDropdownMenu, .groupDropdownMenu {
+.multiSelectDropdownMenu, .groupDropdownMenu, .dropdownMenu {
     display: block !important;
 }
 
-.multiSelectDropdownMenu div, .groupDropdownMenu div {
+.multiSelectDropdownMenu div, .groupDropdownMenu div, .dropdownMenu div {
     font-size: 15px;
     line-height: 32px;
 }
 
-.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem {
+.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem, .dropdownMenuItemWrap {
     display: flex !important;
 }
 
-.multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem {
+.multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem, .dropdownMenuItemWrap {
     align-items: center;
     min-height: 32px !important;
 }
 
-.multiSelectDropdownPlaceholder, .groupDropdownPlaceholder {
+.groupDropdownMenuSelectedItem {
+    color: var(--ut-front-react-standardDropdownSelectedColor) !important;
+}
+
+.multiSelectDropdownPlaceholder, .groupDropdownPlaceholder, .dropdownPlaceholder {
     font-size: 15px;
     margin-top: 3px;
 }
-
-.multiSelectDropdownPlaceholder div, groupDropdownPlaceholder div {
+.dropdownPlaceholder p, .dropdownPlaceholder {
     width: 90%;
-    overflow:hidden;
-    white-space:nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div {
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
 .buttonInput {
     padding-right: 100px;
+}
+.dropdownMenu div {
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
 }
