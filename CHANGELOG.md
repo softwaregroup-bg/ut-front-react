@@ -1,3 +1,13 @@
+<a name="10.0.1"></a>
+## [10.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.0.0...v10.0.1) (2017-12-07)
+
+
+### Bug Fixes
+
+* PRP-1188 fix sticky toolbox ([c8f96cf](https://github.com/softwaregroup-bg/ut-front-react/commit/c8f96cf))
+
+
+
 <a name="10.0.0"></a>
 # [10.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.0.0-ut6.8...v10.0.0) (2017-12-06)
 
