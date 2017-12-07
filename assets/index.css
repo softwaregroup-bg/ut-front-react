@@ -256,6 +256,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    padding-top: 60px;
 }
  .actionBarWrap {
      width: 100%;
@@ -268,7 +269,8 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
      -webkit-box-sizing: border-box;
      text-align: center;
      z-index: 1;
-     position: relative;
+     position: absolute;
+     top: 0px;
  }
 .contentTableWrap .actionBarWrap .textWrap {
     color: #566591;
