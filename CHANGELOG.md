@@ -1,3 +1,13 @@
+<a name="10.0.3"></a>
+## [10.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.0.2...v10.0.3) (2017-12-08)
+
+
+### Bug Fixes
+
+* return reactstrap transitive deps ([2f2b9f4](https://github.com/softwaregroup-bg/ut-front-react/commit/2f2b9f4))
+
+
+
 <a name="10.0.2"></a>
 ## [10.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.0.1...v10.0.2) (2017-12-08)
 
