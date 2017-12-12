@@ -141,7 +141,7 @@ export const lengthRuleArray = (values, minVal, maxVal, rule, result) => {
 export const isRequiredArrayRule = (props, rule, result) => {
     checkPasedResultObject(result);
 
-    if (!props || (props && props.size <= 0)) {
+    if (!props || (props && props.length <= 0) || (props && props.size <= 0)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
     }
