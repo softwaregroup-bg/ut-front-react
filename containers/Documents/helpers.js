@@ -229,7 +229,10 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
             case 'pending':
                 let documentId = null;
                 if (doc.documentId) {
-                    documentId = parseInt(doc.documentId);
+                    documentId = doc.documentId.replace(/\*/g, '');
+                    if (!documentId) {
+                        documentId = null;
+                    }
                 }
                 let statusId = doc.statusId;
                 if (statusId === 'approved' || statusId === 'replaced') {
@@ -255,9 +258,15 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     documentOrder: 255
                 };
                 if (doc.documentUnapprovedId && doc.attachments[0].attachmentUnapprovedId) {
-                    docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = parseInt(doc.documentUnapprovedId);
-                    attObj.attachmentUnapprovedId = parseInt(doc.attachments[0].attachmentUnapprovedId);
+                    docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = doc.documentUnapprovedId.replace(/\*/g, '');
+                    attObj.attachmentUnapprovedId = typeof doc.attachments[0].attachmentUnapprovedId === 'string' && doc.attachments[0].attachmentUnapprovedId.replace(/\*/g, '');
                     attObj.documentUnapprovedId = docObj.documentUnapprovedId;
+                    if (docObj.documentUnapprovedId === '') {
+                        docObj.documentUnapprovedId = null;
+                    }
+                    if (!attObj.attachmentUnapprovedI) {
+                        attObj.attachmentUnapprovedId = null;
+                    }
                 }
                 resultDocuments.push(docObj);
                 resultAttachments.push(attObj);
