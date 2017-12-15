@@ -12,7 +12,7 @@ class Range extends Component {
         let errorMessageFrom = this.props.errorMessageFrom;
         let errorMessageTo = this.props.errorMessageTo;
         let errorMessageGeneral = this.props.errorMessageGeneral;
-        let {labelClassName, inputWrapClassName, value, keyProp, boldLabel} = this.props
+        let {labelClassName, inputWrapClassName, value, keyProp, boldLabel, inputWrapper} = this.props;
         if (isValidFrom && isValidTo && value.from !== '' && value.to !== '') {
             if (this.props.isValidGeneral) {
                 errorMessageFrom = '';
@@ -29,7 +29,7 @@ class Range extends Component {
         return (
             <div className={style.rangeWrap}>
                 <div className={style.wrapper}>
-                    <div className={style.seperator}>
+                    <div className={classnames(style.seperator, inputWrapper)}>
                         <Input
                           value={value.from}
                           onChange={this.props.onChangeFrom}
@@ -46,7 +46,7 @@ class Range extends Component {
                           boldLabel={boldLabel}
                         />
                     </div>
-                    <div className={classnames(style.seperator, style.spaceWrap)}>
+                    <div className={classnames(style.seperator, style.spaceWrap, inputWrapper)}>
                         <Input
                           value={value.to}
                           onChange={this.props.onChangeTo}
@@ -101,11 +101,12 @@ Range.propTypes = {
     labelTo: PropTypes.node,
     readonlyTo: PropTypes.bool,
     errorMessageTo: PropTypes.string,
-    onClickFrom: PropTypes.func,
-    onBlurFrom: PropTypes.func,
+    onClickTo: PropTypes.func,
+    onBlurTo: PropTypes.func,
     boldLabel: PropTypes.bool,
-    inputWrapClassName:PropTypes.string,
+    inputWrapClassName: PropTypes.string,
     labelClassName: PropTypes.string,
+    inputWrapper: PropTypes.string,
     placeholderTo: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array
