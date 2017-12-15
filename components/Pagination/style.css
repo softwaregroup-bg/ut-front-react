@@ -1,7 +1,9 @@
 .pagination {
     display: inline-block;
 }
-
+.paginationWrap {
+    height: 30px;
+}
 .pagination .summary {
     margin-right: 20px;
 }

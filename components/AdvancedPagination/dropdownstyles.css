@@ -15,6 +15,11 @@
     width: 100%;
     position: relative;
     border: 1px solid #D6D6D6;
+    height: 20px;
+}
+
+.dropDownRoot > div :first-child {
+    flex-grow: 10;
 }
 
 .dropdownWrap div {
@@ -34,10 +39,15 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding-left: 10px !important;
+    display: flex;
+}
+.dropDownRoot > div:first-child {
+    flex-grow: 10;
 }
 
 .dropdownIconBackground svg { /* pass over material ui styling limitations */
     background-color: var(--ut-front-react-standardPaginationBackgroundActiveColor);
     top: 1px !important;
     right: 1px !important;
+    height: 20px !important;
 }

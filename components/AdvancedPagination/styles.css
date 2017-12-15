@@ -4,10 +4,6 @@
 .bold {
     font-weight: bold;
 }
-.leftFloat {
-    float: left;
-}
-
 .lighColor {
     color: var(--ut-front-react-standardPaginationLightColor);
 }
@@ -15,34 +11,34 @@
 .paginationWrap {
     width: 100%;
     position: relative;
+    height: 30px;
+    display: flex;
+    padding: 5px 0 3px 0;
+}
+
+.paginationWrap > div {
+    height: 24px;
 }
 
 .pageSwitherWrap {
-    position: absolute; /* otherwise pageBoxesWrap will be on top of it */
     z-index: 10;
-    top: 0;
-    left: 0;
-    margin-top: 2px;
     overflow: hidden;
     clear: both;
+    flex-grow: 1;
 }
 
 .pageBoxesWrap {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
     text-align: center;
     z-index: 2;
+    flex-grow: 10;
 }
 
 .pageSizeBoxWrap {
-    position: absolute; /* otherwise pageBoxesWrap will be on top of it */
     z-index: 10;
-    margin-top: 1px;
-    top: 0;
-    right: 0;
     overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Specific  */
@@ -66,7 +62,6 @@
 }
 .pageSwitherWrap .rightWrap {
     float: left;
-    margin-top: 1px;
 }
 
 .pageBoxesWrap .pageBoxesWrapInnerWrap{
@@ -74,7 +69,7 @@
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox {
     min-width: 34px;
-    padding: 1px 9px;
+    padding: 0px 9px;
     border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
     border-left: none;
     display: inline-block;
@@ -161,17 +156,9 @@
 }
 
 .pageSizeBoxWrap .totalItemsWrap {
-    float: left;
-    margin-top: 1px;
     margin-right: 10px;
 }
 .pageSizeBoxWrap .itemPerPageDDWrap {
     width: 100px;
-    display: block;
     margin-right: 5px;
-    float: left;
-}
-.pageSizeBoxWrap .perPageWrap {
-    float: left;
-    margin-top: 1px;
 }
