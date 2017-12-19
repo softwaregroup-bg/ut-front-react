@@ -461,8 +461,14 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     font-size: 15px;
     margin-top: 3px;
 }
+.dropdownPlaceholder p, .dropdownPlaceholder {
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
-.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div, .dropdownPlaceholder div {
+.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div {
     width: 90%;
     overflow: hidden;
     white-space: nowrap;
@@ -471,4 +477,8 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .buttonInput {
     padding-right: 100px;
+}
+.dropdownMenu div {
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
 }
