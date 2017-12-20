@@ -67,7 +67,14 @@ class TabContainer extends Component {
                     button.onNext();
                 } else {
                     let tabErrorsCount = {};
+                    let sameErrorKey = [];
                     valid.errors.forEach((err) => {
+                        if (err.key) {
+                            if (sameErrorKey.indexOf(err.key.toString()) > -1) {
+                                return;
+                            }
+                            sameErrorKey.push(err.key.toString());
+                        }
                         if (tabErrorsCount[tabs[err.tabIndex].title]) {
                             tabErrorsCount[tabs[err.tabIndex].title] += 1;
                         } else {
