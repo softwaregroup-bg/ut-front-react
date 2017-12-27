@@ -14,6 +14,10 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
             // Create new tab if this path is not already presented
             state.tabs.push(tab);
             state.usedPaths[action.pathname] = true;
+        } else if (action.shouldUpdate) {
+            // For already presented tabs with updated info (ex. tab title)
+            let tabIndex = state.tabs.findIndex(tab => tab.pathname === action.pathname);
+            state.tabs.splice(tabIndex, 1, tab);
         }
 
         return {
