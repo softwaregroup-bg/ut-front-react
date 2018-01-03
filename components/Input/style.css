@@ -482,19 +482,3 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     overflow-x: hidden !important;
     text-overflow: ellipsis;
 }
-.rangeWrap {
-    width: 100%;
-}
-.wrapper {
-    display: flex;
-}
-.seperator {
-    width: 50%;
-}
-.labelWrapper {
-    margin-right: 20px;
-}
-.toLabelWrapper {
-    text-align: center;
-    position: relative; 
-}
