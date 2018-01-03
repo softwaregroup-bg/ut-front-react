@@ -27,7 +27,7 @@ class Range extends Component {
             errorMessageGeneral = '';
         }
         return (
-            <div className={this.props.inputType === 'ipRange'? style.rangeWrap : style.textRangeWrap}>
+            <div className={this.props.inputType === 'ipRange' ? style.rangeWrap : style.textRangeWrap}>
                 {this.props.inputType === 'ipRange' ? <div>
                     <div className={style.wrapper}>
                         <IPInput
@@ -52,8 +52,8 @@ class Range extends Component {
                           placeholder={this.props.placeholderTo}
                         />
                     </div>
-                </div> : this.props.inputType === 'textRange' ?
-                <div className={style.textWrapper}>
+                </div> : this.props.inputType === 'textRange'
+                ? <div className={style.textWrapper}>
                     <div className={classnames(style.textRangeSeperator, this.props.inputWrapper)}>
                         <Input
                           value={this.props.value.from}
@@ -135,7 +135,7 @@ Range.propTypes = {
             errorMessage: PropTypes.string
         })
     ),
-    boldLabel: PropTypes.bool,
+    boldLabel: PropTypes.bool
 };
 
 Range.defaultProps = {
