@@ -96,7 +96,7 @@ class PopupInternal extends Component {
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
-                    { footer && <Footer leftNode={footer.leftNode} className={footer.className} actionButtons={footer.actionButtons} /> }
+                    { footer && <Footer leftNode={footer.leftNode} rightNode={footer.rightNode} className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
             </div>
         );
