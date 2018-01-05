@@ -78,6 +78,7 @@
 }
 
 .closeBtn:hover {
+    cursor: pointer;
     background: url('./images/closeTabHover.png') center no-repeat;
 }
 
