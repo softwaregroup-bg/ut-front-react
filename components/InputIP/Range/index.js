@@ -13,6 +13,7 @@ class Range extends Component {
         let errorMessageFrom = this.props.errorMessageFrom;
         let errorMessageTo = this.props.errorMessageTo;
         let errorMessageGeneral = this.props.errorMessageGeneral;
+        let { inputWrapper, inputWrapClassName, keyProp, value, validators, labelClassName, boldLabel, inputType } = this.props;
         if (isValidFrom && isValidTo && this.props.valueFrom !== '...' && this.props.valueTo !== '...') {
             if (this.props.isValidGeneral) {
                 errorMessageFrom = '';
@@ -27,8 +28,8 @@ class Range extends Component {
             errorMessageGeneral = '';
         }
         return (
-            <div className={this.props.inputType === 'ipRange' ? style.rangeWrap : style.textRangeWrap}>
-                {this.props.inputType === 'ipRange' ? <div>
+            <div className={inputType === 'ipRange' ? style.rangeWrap : style.textRangeWrap}>
+                {inputType === 'ipRange' ? <div>
                     <div className={style.wrapper}>
                         <IPInput
                           value={this.props.valueFrom}
@@ -52,38 +53,38 @@ class Range extends Component {
                           placeholder={this.props.placeholderTo}
                         />
                     </div>
-                </div> : this.props.inputType === 'textRange'
+                </div> : inputType === 'textRange'
                 ? <div className={style.textWrapper}>
-                    <div className={classnames(style.textRangeSeperator, this.props.inputWrapper)}>
+                    <div className={classnames(style.textRangeSeperator, inputWrapper)}>
                         <Input
-                          value={this.props.value.from}
+                          value={value.from}
                           onChange={this.props.onChangeFrom}
                           isValid={isValidFrom}
                           readonly={this.props.readonlyFrom}
                           errorMessage={errorMessageFrom}
                           placeholder={this.props.placeholderFrom}
-                          keyProp={this.props.keyProp.from}
-                          validators={this.props.validators}
+                          keyProp={keyProp.from}
+                          validators={validators}
                           label={this.props.labelFrom}
-                          labelClassName={this.props.labelClassName || style.labelWrapper}
-                          inputWrapClassName={this.props.inputWrapClassName}
-                          boldLabel={this.props.boldLabel}
+                          labelClassName={labelClassName || style.labelWrapper}
+                          inputWrapClassName={inputWrapClassName}
+                          boldLabel={boldLabel}
                         />
                     </div>
-                    <div className={classnames(style.textRangeSeperator, style.spaceWrap, this.props.inputWrapper)}>
+                    <div className={classnames(style.textRangeSeperator, style.spaceWrap, inputWrapper)}>
                         <Input
-                          value={this.props.value.to}
+                          value={value.to}
                           onChange={this.props.onChangeTo}
                           isValid={isValidTo}
                           readonly={this.props.readonlyTo}
                           errorMessage={errorMessageTo}
                           placeholder={this.props.placeholderTo}
-                          keyProp={this.props.keyProp.to}
-                          validators={this.props.validators}
+                          keyProp={keyProp.to}
+                          validators={validators}
                           label={this.props.labelTo}
-                          labelClassName={this.props.labelClassName || style.toLabelWrapper}
-                          inputWrapClassName={this.props.inputWrapClassName}
-                          boldLabel={this.props.boldLabel}
+                          labelClassName={labelClassName || style.toLabelWrapper}
+                          inputWrapClassName={inputWrapClassName}
+                          boldLabel={boldLabel}
                         />
                     </div>
                 </div> : ''}
@@ -94,11 +95,11 @@ class Range extends Component {
 }
 
 Range.propTypes = {
-    inputType: PropTypes.string,
     keyProp: PropTypes.shape({
         from: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         to: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
     }),
+    inputType: PropTypes.string,
     valueFrom: PropTypes.string,
     onChangeFrom: PropTypes.func,
     isValidFrom: PropTypes.bool,
