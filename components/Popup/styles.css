@@ -89,3 +89,8 @@
     cursor: default;
     user-select: none;
 }
+
+.staticContentTop,
+.staticContentBottom {
+    padding: 10px;
+}
