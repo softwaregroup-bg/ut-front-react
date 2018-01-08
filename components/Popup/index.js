@@ -92,6 +92,8 @@ class PopupInternal extends Component {
             hasOverlay,
             closeOnOverlayClick,
             header,
+            staticContentTop,
+            staticContentBottom,
             footer,
             children,
             closePopup
@@ -102,9 +104,15 @@ class PopupInternal extends Component {
                 { hasOverlay && <div className={styles.modalOverlay} style={{zIndex: this.zIndexOverlay}} onClick={closeOnOverlayClick ? closePopup : null} /> }
                 <div style={{...this.contentWidth, ...{zIndex: this.zIndexDialog}}} className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
+                    { staticContentTop && <div className={classnames(styles.staticContentTop, staticContentTop.className)}>
+                        {staticContentTop.content}
+                    </div> }
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
+                    { staticContentBottom && <div className={classnames(styles.staticContentBottom, staticContentBottom.className)}>
+                        {staticContentBottom.content}
+                    </div> }
                     { footer && <Footer leftNode={footer.leftNode} rightNode={footer.rightNode} className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
             </div>
@@ -124,6 +132,14 @@ PopupInternal.propTypes = {
         className: PropTypes.string,
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
         closeIcon: PropTypes.bool
+    }),
+    staticContentTop: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
+    }),
+    staticContentBottom: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,
@@ -176,6 +192,14 @@ Popup.propTypes = {
     header: PropTypes.shape({
         className: PropTypes.string,
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object])
+    }),
+    staticContentTop: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
+    }),
+    staticContentBottom: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,
