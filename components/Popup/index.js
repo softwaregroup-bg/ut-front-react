@@ -13,6 +13,9 @@ import {
 
 import styles from './styles.css';
 
+let zIndexDialog = 22;
+let zIndexOverlay = 21;
+
 class PopupInternal extends Component {
     constructor() {
         super();
@@ -27,6 +30,9 @@ class PopupInternal extends Component {
 
     componentWillMount() {
         window.addEventListener('resize', this.handleWindowResize);
+
+        this.zIndexDialog = zIndexDialog++;
+        this.zIndexOverlay = zIndexOverlay++;
     }
 
     componentDidMount() {
@@ -41,6 +47,9 @@ class PopupInternal extends Component {
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleEsc);
         window.removeEventListener('resize', this.handleWindowResize);
+
+        zIndexDialog--;
+        zIndexOverlay--;
     }
 
     handleWindowResize() {
@@ -90,8 +99,8 @@ class PopupInternal extends Component {
 
         return (
             <div className={styles.modalContainer}>
-                { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
-                <div style={this.contentWidth} className={classnames(styles.popupContainer, className)}>
+                { hasOverlay && <div className={styles.modalOverlay} style={{zIndex: this.zIndexOverlay}} onClick={closeOnOverlayClick ? closePopup : null} /> }
+                <div style={{...this.contentWidth, ...{zIndex: this.zIndexDialog}}} className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
