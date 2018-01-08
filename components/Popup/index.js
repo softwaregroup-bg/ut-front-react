@@ -57,8 +57,16 @@ class PopupInternal extends Component {
     }
 
     updateContentDimensions() {
-        const contentMaxHeight = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT;
+        let contentMaxHeight = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT;
         const contentMaxWidth = window.innerWidth - POPUP_MIN_SIDE_OFFSETS;
+
+        if (this.props.staticContentTop) {
+            contentMaxHeight -= this.staticTop.clientHeight;
+        }
+
+        if (this.props.staticContentBottom) {
+            contentMaxHeight -= this.staticBottom.clientHeight;
+        }
 
         this.setState({
             contentMaxWidth: `${contentMaxWidth}px`,
@@ -104,13 +112,13 @@ class PopupInternal extends Component {
                 { hasOverlay && <div className={styles.modalOverlay} style={{zIndex: this.zIndexOverlay}} onClick={closeOnOverlayClick ? closePopup : null} /> }
                 <div style={{...this.contentWidth, ...{zIndex: this.zIndexDialog}}} className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
-                    { staticContentTop && <div className={classnames(styles.staticContentTop, staticContentTop.className)}>
+                    { staticContentTop && <div ref={(staticTop) => { this.staticTop = staticTop; }} className={classnames(styles.staticContentTop, staticContentTop.className)}>
                         {staticContentTop.content}
                     </div> }
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
-                    { staticContentBottom && <div className={classnames(styles.staticContentBottom, staticContentBottom.className)}>
+                    { staticContentBottom && <div ref={(staticBottom) => { this.staticBottom = staticBottom; }} className={classnames(styles.staticContentBottom, staticContentBottom.className)}>
                         {staticContentBottom.content}
                     </div> }
                     { footer && <Footer leftNode={footer.leftNode} rightNode={footer.rightNode} className={footer.className} actionButtons={footer.actionButtons} /> }

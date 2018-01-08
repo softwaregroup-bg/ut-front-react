@@ -93,4 +93,5 @@
 .staticContentTop,
 .staticContentBottom {
     padding: 10px;
+    max-height: 240px;
 }
