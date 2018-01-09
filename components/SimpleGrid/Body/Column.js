@@ -18,7 +18,7 @@ export default class Column extends Component {
         if (this.props.field.visible === false) {
             return false;
         }
-        var reMapKey = this.props.data[this.props.field.name] || '';
+        var reMapKey = (this.props.data[this.props.field.name] === undefined) ? '' : this.props.data[this.props.field.name];
         var value = reMapKey;
         if (typeof (this.props.field.dataReMap) !== 'undefined') {
             value = this.props.field.dataReMap[reMapKey];
