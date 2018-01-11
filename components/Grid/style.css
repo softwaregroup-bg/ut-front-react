@@ -141,3 +141,65 @@ table.dataGridTable tr th .refreshDataButton {
 .tdCheckbox {
     width: 40px;
 }
+
+/* settings menu styles */
+.columnWrap {
+    display: block;
+    /* max-height: calc(100% - 50px);
+    overflow-y: auto; */
+}
+
+.headerGlobalMenuFieldControl, .headerGlobalMenuFieldControlContainer {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-size: 15px;
+    line-height: 38px;
+}
+.headerGlobalMenuField {
+    width: .1%;
+    text-align: right;
+}
+
+.headerGlobalMenuPopoverWrap {
+   max-height: 50% !important;
+}
+
+.headerGlobalMenuItemWrap {
+    padding: 0 !important;
+}
+.headerGlobalMenuItemWrap>div>span, .menuItem >div>span {
+    display: flex !important;
+    align-items: center;
+    min-height: 38px !important;
+}
+
+.refreshIcon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('./images/refresh.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0 11px 0 0;
+}
+.reloadContainer {
+    padding: 4px 0 0 0;
+}
+.refreshContainer {
+    border-bottom: 1px solid var(--ut-front-react-standardGridTableBorderColor);
+    height: 42px;
+    overflow: hidden;
+}
+.refreshLabel {
+    width: 80%;
+}
+.menuLabel {
+    opacity: 0.7;
+    padding: 2px 7px;
+    margin-left: 15px;
+}
+.settings {
+    opacity: 0.7;
+}

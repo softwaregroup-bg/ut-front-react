@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import HeaderCell from './HeaderCell';
-
+import Menu from './Menu';
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -33,7 +33,7 @@ class GridHeader extends Component {
     }
 
     render() {
-        let { columns, sortable, onCheck, canCheck, onRefresh, isChecked, trStyles, thStyles } = this.props;
+        let { columns, sortable, onCheck, canCheck, onRefresh, isChecked, trStyles, thStyles, onToggleColumn, canColCustomize } = this.props;
         let haveSortable = sortable.length > 0;
 
         let headCols = columns.map((col, index) => {
@@ -44,7 +44,7 @@ class GridHeader extends Component {
             };
             let sortState = this.state.sortBy === col.key ? this.state.sortOrder : 0;
 
-            return (
+            return col.visible !== false ? (
                 <HeaderCell
                   key={col.key}
                   name={col.name}
@@ -53,7 +53,7 @@ class GridHeader extends Component {
                   sortState={sortState}
                   styles={currentThStyle}
                 />
-            );
+            ) : null;
         });
 
         if (canCheck) {
@@ -64,7 +64,11 @@ class GridHeader extends Component {
             );
         }
 
-        if (onRefresh) {
+        if (canColCustomize) {
+            headCols.push(
+                <Menu key={'settingsMenu'} columns={columns} onToggleColumn={onToggleColumn} onRefresh={onRefresh} />
+            );
+        } else if (onRefresh) {
             headCols.push(
                 <th key='refreshData' onClick={onRefresh} className={style.refreshTh}>
                     <div className={style.refreshDataButton} />
@@ -83,10 +87,12 @@ class GridHeader extends Component {
 GridHeader.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        visible: PropTypes.bool
     })).isRequired,
     isChecked: PropTypes.bool,
     canCheck: PropTypes.bool,
+    canColCustomize: PropTypes.bool,
     sortable: PropTypes.array,
     activeSort: PropTypes.shape({
         sortBy: PropTypes.string,
@@ -96,7 +102,8 @@ GridHeader.propTypes = {
     thStyles: PropTypes.array,
     onSort: PropTypes.func,
     onCheck: PropTypes.func,
-    onRefresh: PropTypes.func
+    onRefresh: PropTypes.func,
+    onToggleColumn: PropTypes.func
 };
 
 GridHeader.defaultProps = {
