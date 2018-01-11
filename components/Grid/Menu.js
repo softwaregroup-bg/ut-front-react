@@ -3,7 +3,7 @@ import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import Checkbox from 'ut-front-react/components/Input/Checkbox';
+import Checkbox from '../Input/Checkbox';
 import classnames from 'classnames';
 import style from './style.css';
 
