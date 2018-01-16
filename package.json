@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.1",
-    "ut-tools": "5.30.0"
+    "ut-tools": "5.32.1"
   },
   "peerDependencies": {
     "react": "^15.6.1",

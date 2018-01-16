@@ -66,6 +66,10 @@ export const login = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
+            if (action.methodRequestState === 'finished') {
+                return defaultLoginState
+                        .set('cookieChecked', true);
+            }
             return defaultLoginState;
         case LOGIN:
             if (action.methodRequestState === 'finished') {
