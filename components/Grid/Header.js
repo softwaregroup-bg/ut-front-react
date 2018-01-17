@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import HeaderCell from './HeaderCell';
-import Menu from './Menu';
+import Menu from '../GridMenu';
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -65,8 +65,18 @@ class GridHeader extends Component {
         }
 
         if (canColCustomize) {
+            var gmfields = columns.slice().map((f) => {
+                if (!f.title) {
+                    return {
+                        name: f.key,
+                        key: f.key,
+                        title: f.name,
+                        visible: f.visible
+                    };
+                } else return f;
+            });
             headCols.push(
-                <Menu key={'settingsMenu'} columns={columns} onToggleColumn={onToggleColumn} onRefresh={onRefresh} />
+                <Menu key={'settingsMenu'} fields={gmfields} toggleColumnVisibility={onToggleColumn} onRefresh={onRefresh} />
             );
         } else if (onRefresh) {
             headCols.push(

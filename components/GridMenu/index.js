@@ -3,10 +3,11 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
-import Checkbox from '../../../Input/Checkbox';
-import style from './GlobalMenu.css';
+import classnames from 'classnames';
+import Checkbox from '../Input/Checkbox';
+import style from './style.css';
 
-import { closest } from '../../../../utils/dom';
+import { closest } from '../../utils/dom';
 
 const menuFieldControl = 'menuFieldControl';
 
@@ -15,6 +16,7 @@ export default class GlobalMenu extends Component {
         super(props);
         this.handleMenuOpen = this.handleMenuOpen.bind(this);
         this.handleMenuClose = this.handleMenuClose.bind(this);
+        this.onRefresh = this.onRefresh.bind(this);
         this.toggleColumnVisibility = this.toggleColumnVisibility.bind(this);
         this.state = {menuOpened: false};
     }
@@ -38,7 +40,10 @@ export default class GlobalMenu extends Component {
             }
         }
     }
-
+    onRefresh() {
+        let {onRefresh} = this.props;
+        onRefresh && onRefresh();
+    }
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
@@ -90,10 +95,20 @@ export default class GlobalMenu extends Component {
               onRequestClose={this.handleMenuClose}
               animation={PopoverAnimationVertical}
               className={this.getStyle('headerGlobalMenuPopoverWrap')}>
-                <Menu
-                  className={this.getStyle('headerGlobalMenuItemWrap')}
-                  disableAutoFocus>
-                    { this.getItems() }
+                <Menu disableAutoFocus className={this.getStyle('headerGlobalMenuItemWrap')} >
+                    {this.props.onRefresh && (<div className={style.refreshContainer}>
+                        <MenuItem onTouchTap={this.props.onRefresh} style={{minHeight: 'auto'}}
+                          children={
+                            <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
+                                <div className={classnames(style.icon, style.refreshIcon)} />
+                                <div className={style.iconLabel}> Reload Grid </div>
+                            </div>}
+                            />
+                    </ div>)}
+                    <div className={style.columnWrap}>
+                        <label className={style.menuLabel}> Manage Columns </label>
+                        { this.getItems() }
+                    </div>
                 </Menu>
             </Popover>
         );
@@ -107,10 +122,15 @@ export default class GlobalMenu extends Component {
 }
 
 GlobalMenu.propTypes = {
-    fields: PropTypes.array,
+    fields: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.any,
+        name: PropTypes.any,
+        visible: PropTypes.bool
+    })).isRequired,
     handleCheckboxSelect: PropTypes.func,
     externalStyle: PropTypes.object,
     isChecked: PropTypes.bool,
+    onRefresh: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,
     transformCellValue: PropTypes.func
 };
