@@ -28,7 +28,7 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    margin: 0 11px 0 0;
+    margin: 0 12px 0 4px;
 }
 .refreshIcon {
     background-image: url('./images/refresh.png');
