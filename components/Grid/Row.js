@@ -64,7 +64,7 @@ class GridRow extends Component {
     renderColumns() {
         let {columns, data, canCheck, linkableColumns, tdStyles} = this.props;
         let rowIndex = this.props.rowIndex;
-        let columnElements = columns.map(({key}, i) => {
+        let columnElements = columns.map(({key, visible}, i) => {
             let transformedData = this.props.mapColumn(columns[i], data.get(key), rowIndex, data);
             let isLink = linkableColumns && linkableColumns[i];
             let currenctStyles = tdStyles[i];
@@ -75,7 +75,7 @@ class GridRow extends Component {
                 currenctStyles.width = 'auto';
             }
 
-            if (isLink) {
+            if (isLink && visible !== false) {
                 return (
                     <td key={key || i} style={currenctStyles}>
                         <Link to={data.get('url')} className={style.link}>
@@ -83,13 +83,13 @@ class GridRow extends Component {
                         </Link>
                     </td>
                 );
-            } else {
+            } else if (visible !== false) {
                 return (
                     <td key={key || i} style={currenctStyles}>
                         {transformedData || false}
                     </td>
                 );
-            }
+            } else return null;
         });
         if (canCheck) {
             columnElements.unshift(
