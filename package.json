@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.1.0-rc-bahur.6",
+  "version": "10.1.0-rc-bahur.7",
   "description": "Frontend module",
   "main": "index.js",
   "dependencies": {
