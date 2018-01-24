@@ -6,7 +6,7 @@ import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
 import Dropdown from './../../Input/Dropdown';
-import { defaultTimeValues } from './defaultValues';
+import { timeValues24HrFormat } from './defaultValues';
 
 import style from './style.css';
 
@@ -55,7 +55,7 @@ class DateTimePicker extends Component {
 
         return formatTime(time);
     }
-    handleAccept(ref) {
+    handleAccept(label, ref) {
         let {defaultValue, timeType} = this.props;
         let currentDate = new Date(defaultValue);
         return (newDate) => {
@@ -71,6 +71,8 @@ class DateTimePicker extends Component {
                         newDate.setMinutes(currentDate.getMinutes());
                         newDate.setSeconds(currentDate.getSeconds());
                     }
+                } else if (label === 'To' && newDate) {
+                    newDate.setHours(23, 59, 0, 0);
                 }
             } else if (ref === 'time' && timeType === 'timePicker') {
                 if (currentDate && !isNaN(currentDate.valueOf())) {
@@ -161,7 +163,7 @@ class DateTimePicker extends Component {
                         <Dropdown
                           data={this.props.data}
                           keyProp='time'
-                          onSelect={this.handleAccept('time')}
+                          onSelect={this.handleAccept(label, 'time')}
                           defaultSelected={defaultValue ? this.formatTime(date) : ''} />
                         </div> : ''}
                      <DatePickerDialog
@@ -170,7 +172,7 @@ class DateTimePicker extends Component {
                        container={container}
                        initialDate={date}
                        mode={mode}
-                       onAccept={this.handleAccept('date')}
+                       onAccept={this.handleAccept(label, 'date')}
                        firstDayOfWeek={firstDayOfWeek}
                        ref='date' />
                     {timeType === 'timePicker' ? <TimePickerDialog
@@ -178,7 +180,7 @@ class DateTimePicker extends Component {
                       okLabel={okLabel}
                       initialTime={date}
                       mode={mode}
-                      onAccept={this.handleAccept('time')}
+                      onAccept={this.handleAccept(label, 'time')}
                       format={format}
                       ref='time' /> : ''}
                 </div>
@@ -194,7 +196,7 @@ DateTimePicker.defaultProps = {
     container: 'dialog',
     timeFormat: 'HH:mm',
     dateFormat: 'YYYY-MM-DD',
-    data: defaultTimeValues
+    data: timeValues24HrFormat
 };
 DateTimePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
