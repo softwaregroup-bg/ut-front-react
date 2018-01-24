@@ -50,8 +50,7 @@ class DateTimePickerBetween extends Component {
             transformTime,
             innerWrapperClassName,
             timeType,
-            timeDropDownData,
-            useDefault
+            timeDropDownData
         } = this.props;
 
         let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
@@ -72,7 +71,6 @@ class DateTimePickerBetween extends Component {
                   firstDayOfWeek={firstDayOfWeek}
                   timeType={timeType}
                   data={timeDropDownData}
-                  useDefault={useDefault}
                   onChange={({value}) => { this.handleChange('from', value); }}
                   boldLabel={boldLabel} />
                 <DateTimePicker
@@ -89,7 +87,6 @@ class DateTimePickerBetween extends Component {
                   firstDayOfWeek={firstDayOfWeek}
                   timeType={timeType}
                   data={timeDropDownData}
-                  useDefault={useDefault}
                   onChange={({value}) => { this.handleChange('to', value); }}
                   boldLabel={boldLabel} />
             </div>
@@ -117,8 +114,7 @@ DateTimePickerBetween.propTypes = {
     transformTime: PropTypes.func,
     innerWrapperClassName: PropTypes.string,
     timeType: PropTypes.string,
-    timeDropDownData: PropTypes.array,
-    useDefault: PropTypes.bool
+    timeDropDownData: PropTypes.array
 };
 
 export default DateTimePickerBetween;

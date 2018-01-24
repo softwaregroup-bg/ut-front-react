@@ -142,7 +142,7 @@ class DateTimePicker extends Component {
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
         var defaultDate = new Date().setHours(0, 0, 0, 0);
-        var dropdownData = this.props.useDefault ? format === '24hr' ? timeValues24HrFormat : format === 'ampm' ? timeValuesampmFormat : this.props.data : this.props.data;
+        var dropdownData = format === '24hr' ? timeValues24HrFormat : format === 'ampm' ? timeValuesampmFormat : '';
 
         let date = defaultValue
             ? new Date(defaultValue)
@@ -197,8 +197,7 @@ DateTimePicker.defaultProps = {
     container: 'dialog',
     timeFormat: 'HH:mm',
     dateFormat: 'YYYY-MM-DD',
-    data: timeValues24HrFormat,
-    useDefault: true
+    data: timeValues24HrFormat
 };
 DateTimePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
@@ -217,8 +216,7 @@ DateTimePicker.propTypes = {
     transformTime: PropTypes.func,
     timeType: PropTypes.oneOf(['timeDropdown', 'timePicker']),
     innerWrapperClassName: PropTypes.string,
-    data: PropTypes.array,
-    useDefault: PropTypes.bool
+    data: PropTypes.array
 };
 
 DateTimePicker.contextTypes = {
