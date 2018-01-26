@@ -2,6 +2,12 @@
   "name": "ut-front-react",
   "version": "10.1.0-rc-bahur.9",
   "description": "Frontend module",
+  "pkg": {
+    "assets": [
+      "components/MultiSelectBubble/assets/*.*"
+    ]
+  },
+  "bin": "index.js",
   "main": "index.js",
   "dependencies": {
     "bignumber.js": "^4.0.2",
