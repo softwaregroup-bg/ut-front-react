@@ -57,7 +57,7 @@ Button.propTypes = {
     type: PropTypes.string,
     styleType: PropTypes.oneOf(['primaryLight', 'primaryDark', 'secondaryLight', 'secondaryDark', 'primaryDialog', 'secondaryDialog']),
     className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     icon: PropTypes.string,
     disabled: PropTypes.bool,
     disabledClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),

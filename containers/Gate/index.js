@@ -27,10 +27,15 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        let { cookieChecked, cookieCheck, params: {appId} } = this.props;
+        let { cookieChecked, isLogout, authenticated, cookieCheck, params: {appId} } = this.props;
 
-        if (!cookieChecked) {
+        if (!cookieChecked && !isLogout) {
             cookieCheck({appId});
+        } else if (authenticated) {
+            // If user tries manually to go to /login page while he/she is logged in, redirects to
+            this.context.router.push('/');
+        } else {
+            this.context.router.push('/login');
         }
     }
 
@@ -82,6 +87,7 @@ class Gate extends Component {
 export default connect(
     ({ login, gate }) => ({
         cookieChecked: login.get('cookieChecked'),
+        isLogout: login.get('isLogout'),
         authenticated: login.get('authenticated'),
         gateLoaded: login.get('gateLoaded'),
         result: login.get('result'),
@@ -96,6 +102,7 @@ Gate.propTypes = {
     params: PropTypes.object,
     children: PropTypes.object,
     cookieChecked: PropTypes.bool,
+    isLogout: PropTypes.bool,
     authenticated: PropTypes.bool,
     gateLoaded: PropTypes.bool,
     result: PropTypes.object,

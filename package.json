@@ -1,7 +1,13 @@
 {
   "name": "ut-front-react",
-  "version": "10.0.4",
+  "version": "10.1.0-rc-bahur.10",
   "description": "Frontend module",
+  "pkg": {
+    "assets": [
+      "components/MultiSelectBubble/assets/*.*"
+    ]
+  },
+  "bin": "index.js",
   "main": "index.js",
   "dependencies": {
     "bignumber.js": "^4.0.2",
@@ -45,7 +51,7 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.1",
-    "ut-tools": "5.30.0"
+    "ut-tools": "5.32.1"
   },
   "peerDependencies": {
     "react": "^15.6.1",

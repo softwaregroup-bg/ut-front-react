@@ -147,7 +147,7 @@ class Dropdown extends Component {
     }
 
     render() {
-        let { label, cssStyle, mergeStyles, containerClassName } = this.props;
+        let { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let { isValid, errorMessage } = this.state.valid;
         let invalidStyle = isValid ? ddstyles.hiddenHeight : '';
@@ -156,10 +156,10 @@ class Dropdown extends Component {
             return (
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
-                        <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
+                        <div className={classnames(ddstyles.lableWrap, labelWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
                             {this.props.label} {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                         </div>
-                        <div className={classnames(ddstyles.inputWrap)}>
+                        <div className={classnames(ddstyles.inputWrap, inputWrap)}>
                             {this.renderDropDown()}
                             <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
                         </div>
@@ -192,6 +192,8 @@ Dropdown.propTypes = {
     containerClassName: PropTypes.string,
     placeholder: PropTypes.any,
     placeholderValue: PropTypes.any,
+    labelWrap: PropTypes.string,
+    inputWrap: PropTypes.string,
     keyProp: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array
