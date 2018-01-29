@@ -41,6 +41,7 @@ const updateLoginStep = (state, step) => {
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
+    isLogout: false,
     loginForm: loginSteps['initial'],
     loginType: '',
     formError: '',
@@ -66,11 +67,8 @@ export const login = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
-            if (action.methodRequestState === 'finished') {
-                return defaultLoginState
-                        .set('cookieChecked', true);
-            }
-            return defaultLoginState;
+            return defaultLoginState
+                 .set('isLogout', true);
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
