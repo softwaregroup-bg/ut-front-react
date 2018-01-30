@@ -13,11 +13,15 @@
     position: relative;
     height: 30px;
     display: flex;
-    padding: 5px 0 3px 0;
+    padding: 4px 0 3px 0;
 }
 
 .paginationWrap > div {
-    height: 24px;
+    height: 23px;
+}
+
+.paginationWrap > div > div {
+    line-height: 21px;
 }
 
 .pageSwitherWrap {
@@ -53,7 +57,7 @@
     width: 90%;
     padding: 1% 5%;
     border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
-    height: 20px;
+    height: 21px;
 }
 .pageSwitherWrap .numberInputWrap .numberInput::-webkit-inner-spin-button, 
 .pageSwitherWrap .numberInputWrap .numberInput::-webkit-outer-spin-button { 
@@ -70,6 +74,7 @@
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox {
     min-width: 34px;
     padding: 0px 9px;
+    line-height: 20px;
     border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
     border-left: none;
     display: inline-block;

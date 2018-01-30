@@ -15,7 +15,6 @@
     width: 100%;
     position: relative;
     border: 1px solid #D6D6D6;
-    height: 20px;
 }
 
 .dropDownRoot > div :first-child {
@@ -31,7 +30,7 @@
     text-align: left !important;
 }
 .dropdownWrap, .dropdownWrap .dropDownRoot {
-    height: 23px!important;
+    height: 21px!important;
 }
 .dropdownWrap .dropDownRoot {
     width: 100% !important;
