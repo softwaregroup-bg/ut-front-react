@@ -142,7 +142,7 @@ class DateTimePicker extends Component {
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
         var defaultDate = new Date().setHours(0, 0, 0, 0);
-        var dropdownData = format === '24hr' ? timeValues24HrFormat : format === 'ampm' ? timeValuesampmFormat : '';
+        var dropdownData = format === '24hr' ? label === 'To' ? timeValues24HrFormat : timeValues24HrFormat.filter(item => item.key !== '00:00') : format === 'ampm' ? label === 'To' ? timeValuesampmFormat : timeValues24HrFormat.filter(item => item.key !== '12 am') : '';
 
         let date = defaultValue
             ? new Date(defaultValue)
@@ -162,6 +162,7 @@ class DateTimePicker extends Component {
                     </div> : timeType === 'timeDropdown'
                     ? <div className={style.ddframe}>
                         <Dropdown
+                          canSelectPlaceholder={label === 'To' ? false : true}
                           data={dropdownData}
                           keyProp='time'
                           onSelect={this.handleAccept(label, 'time')}

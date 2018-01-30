@@ -1,6 +1,5 @@
 .horizontalAlign {
     display: flex;
-    width: 920px;
 }
 
 .horizontalAlign>div:last-child {
