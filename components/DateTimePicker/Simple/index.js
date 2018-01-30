@@ -94,6 +94,8 @@ class DateTimePicker extends Component {
                         var newTime = newDate ? newDate.value.split(' ') : [];
                         time = newTime.length ? newTime[0].split(':') : [];
                         time[0] = newTime[1] === 'am' ? time[0] < 12 ? time[0] : parseInt(time[0]) - 12 : newTime[1] === 'pm' ? time[0] < 12 ? parseInt(time[0]) + 12 : time[0] : '';
+                    } else if (newDate.value === '__placeholder__') {
+                        time = label === 'To' ? [23, 59] : [0, 0];
                     } else {
                         time = newDate ? newDate.value.split(':') : [];
                     }
@@ -142,11 +144,9 @@ class DateTimePicker extends Component {
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
         var defaultDate = new Date().setHours(0, 0, 0, 0);
-        var dropdownData = format === '24hr' ? label === 'To' ? timeValues24HrFormat : timeValues24HrFormat.filter(item => item.key !== '00:00') : format === 'ampm' ? label === 'To' ? timeValuesampmFormat : timeValues24HrFormat.filter(item => item.key !== '12 am') : '';
+        var dropdownData = format === '24hr' ? label === 'To' ? timeValues24HrFormat : timeValues24HrFormat.filter(item => item.key !== '00:00') : format === 'ampm' ? label === 'To' ? timeValuesampmFormat : timeValuesampmFormat.filter(item => item.key !== '12 am') : '';
 
-        let date = defaultValue
-            ? new Date(defaultValue)
-            : new Date(defaultDate);
+        let date = defaultValue ? new Date(defaultValue) : new Date(defaultDate);
 
         return (
             <div className={outerWrapStyle}>
@@ -162,7 +162,7 @@ class DateTimePicker extends Component {
                     </div> : timeType === 'timeDropdown'
                     ? <div className={style.ddframe}>
                         <Dropdown
-                          canSelectPlaceholder={label === 'To' ? false : true}
+                          canSelectPlaceholder
                           data={dropdownData}
                           keyProp='time'
                           onSelect={this.handleAccept(label, 'time')}
