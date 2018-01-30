@@ -64,7 +64,7 @@ class Grid extends Component {
     }
 
     render() {
-        let {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck} = this.props;
+        let {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
         let rowColumns = columns;
 
         // Add empty column
@@ -85,6 +85,8 @@ class Grid extends Component {
                       onRefresh={onRefresh}
                       onCheck={this.onAllCheck}
                       canCheck={canCheck}
+                      canColCustomize={canColCustomize}
+                      onToggleColumn={onToggleColumn}
                       activeSort={activeSort}
                       isChecked={this.state.all}
                       onSort={onSort}
@@ -139,9 +141,11 @@ Grid.propTypes = {
 
     onSelect: PropTypes.func,
     canSelect: PropTypes.bool,
+    canColCustomize: PropTypes.bool,
     onCheck: PropTypes.func,
     onRefresh: PropTypes.func,
-    onSort: PropTypes.func
+    onSort: PropTypes.func,
+    onToggleColumn: PropTypes.func
 };
 
 Grid.defaultProps = {

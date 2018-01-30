@@ -1,8 +1,10 @@
+/** eslint-disable react/no-unused-prop-types */
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -22,7 +24,9 @@ class LoginForm extends Component {
     componentWillReceiveProps(nextProps) {
         let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId} } = this.props;
 
-        if (!authenticated && nextProps.authenticated) {
+        if (nextProps.cookieChecked && nextProps.authenticated) {
+            this.context.router.push('/');
+        } else if (!authenticated && nextProps.authenticated) {
             if (ssoOrigin) {
                 this.context.router.push(`/sso/${appId}/${ssoOrigin}`);
             } else {
@@ -36,13 +40,24 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        const { loginData, clearLoginState } = this.props;
+        const { params, cookieChecked, isLogout, authenticated, cookieCheck } = this.props;
 
-        // if there is previusly stored loginData, reset login state
-        // this happens in cases when the user is logged in and navigates to /login again
-        if (loginData.get('username') || loginData.get('password')) {
-            clearLoginState();
+        if (!cookieChecked && !isLogout) {
+            let appId;
+            if (params) {
+                appId = params.appId;
+            }
+            cookieCheck({appId});
+        } else if (authenticated) {
+            // If user tries manually to go to /login page while he/she is logged in, redirects to
+            this.context.router.push('/');
         }
+
+        // if there is previously stored loginData, reset login state
+        // this happens in cases when the user is logged in and navigates to /login again
+        // if (loginData.get('username') || loginData.get('password')) {
+        //     clearLoginState();
+        // }
     }
 
     onChange(e) {
@@ -94,9 +109,9 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { inputs, error, title, buttonLabel } = this.props;
+        let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
 
-        return (
+        return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
               ref='loginForm'
               className='loginForm'
@@ -114,6 +129,8 @@ export default connect(
     ({ login }) => {
         return {
             loginData: login.get('loginData'),
+            cookieChecked: login.get('cookieChecked'),
+            isLogout: login.get('isLogout'),
             authenticated: login.get('authenticated'),
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
@@ -123,12 +140,15 @@ export default connect(
             loginType: login.get('loginType')
         };
     },
-    { setInputValue, validateForm, identityCheck, bioScan, clearLoginState }
+    { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState }
 )(LoginForm);
 
 LoginForm.propTypes = {
+    params: PropTypes.object,
     routerParams: PropTypes.object,
     loginData: PropTypes.object,
+    cookieChecked: PropTypes.bool,
+    isLogout: PropTypes.bool,
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
     title: PropTypes.string,
@@ -137,6 +157,7 @@ LoginForm.propTypes = {
     loginType: PropTypes.any,
     shouldSubmit: PropTypes.bool,
     invalidField: PropTypes.string,
+    cookieCheck: PropTypes.func.isRequired,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,

@@ -78,6 +78,7 @@
 }
 
 .closeBtn:hover {
+    cursor: pointer;
     background: url('./images/closeTabHover.png') center no-repeat;
 }
 
@@ -87,4 +88,10 @@
     color: #595959;
     cursor: default;
     user-select: none;
+}
+
+.staticContentTop,
+.staticContentBottom {
+    padding: 10px;
+    max-height: 240px;
 }

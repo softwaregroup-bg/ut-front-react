@@ -1,8 +1,10 @@
+/** eslint-disable react/no-unused-prop-types */
+
 import React, { Component, PropTypes } from 'react';
 import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
-import { cookieCheck, logout } from '../LoginForm/actions.js';
+import { cookieCheck, setLoadGate, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 import style from './style.css';
@@ -25,24 +27,32 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        let { cookieCheck, params: {appId} } = this.props;
+        let { cookieChecked, isLogout, authenticated, cookieCheck, params: {appId} } = this.props;
 
-        cookieCheck({appId});
+        if (!cookieChecked && !isLogout) {
+            cookieCheck({appId});
+        } else if (authenticated) {
+            // If user tries manually to go to /login page while he/she is logged in, redirects to
+            this.context.router.push('/');
+        } else {
+            this.context.router.push('/login');
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        let { cookieChecked, authenticated, result, forceLogOut, logout, params: {ssoOrigin, appId} } = this.props;
+        let { cookieChecked, authenticated, forceLogOut, logout, params: {ssoOrigin, appId} } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
-        if (!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated) {
+        let isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
+        if (!isAuthenticated && this.context.router.location.pathname !== '/login') {
             if (ssoOrigin) {
                 this.context.router.push(`/sso/${appId}/${ssoOrigin}/login`);
             } else {
                 this.context.router.push('/login');
             }
-        } else if (nextProps.authenticated && !result && nextProps.result) {
+        } else if (nextProps.authenticated && !nextProps.gateLoaded && nextProps.result) {
             this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result.getIn(['language', 'languageId']));
         } else if (!nextProps.result && authenticated && !nextProps.authenticated) {
             this.context.router.push('/login');
@@ -52,7 +62,7 @@ class Gate extends Component {
     }
 
     loadGate(permissions, languageId) {
-        let { fetchTranslations } = this.props;
+        let { setLoadGate, fetchTranslations } = this.props;
 
         setPermissions(permissions);
 
@@ -60,6 +70,7 @@ class Gate extends Component {
             languageId,
             dictName: ['text', 'actionConfirmation']
         });
+        setLoadGate(true);
     }
 
     render() {
@@ -76,29 +87,35 @@ class Gate extends Component {
 export default connect(
     ({ login, gate }) => ({
         cookieChecked: login.get('cookieChecked'),
+        isLogout: login.get('isLogout'),
         authenticated: login.get('authenticated'),
+        gateLoaded: login.get('gateLoaded'),
         result: login.get('result'),
         gate: gate,
         forceLogOut: gate.get('forceLogOut'),
         loaded: gate.get('loaded')
     }),
-    { cookieCheck, fetchTranslations, logout }
+    { cookieCheck, fetchTranslations, setLoadGate, logout }
 )(Gate);
 
 Gate.propTypes = {
     params: PropTypes.object,
     children: PropTypes.object,
     cookieChecked: PropTypes.bool,
+    isLogout: PropTypes.bool,
     authenticated: PropTypes.bool,
+    gateLoaded: PropTypes.bool,
     result: PropTypes.object,
     forceLogOut: PropTypes.bool,
     loaded: PropTypes.bool,
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
+    setLoadGate: PropTypes.func,
     logout: PropTypes.func
 };
 
 Gate.defaultProps = {
+    gateLoaded: false,
     gate: Map(),
     login: Map()
 };

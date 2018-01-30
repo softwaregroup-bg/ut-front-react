@@ -27,3 +27,20 @@
     color: #ff3333;
     margin: 5px 0 0;
 }
+
+.textRangeWrap {
+    width: 100%;
+}
+.textWrapper {
+    display: flex;
+}
+.textRangeSeperator {
+    width: 50%;
+}
+.labelWrapper {
+    margin-right: 20px;
+}
+.toLabelWrapper {
+    text-align: center;
+    position: relative; 
+}

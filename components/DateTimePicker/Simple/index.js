@@ -87,10 +87,17 @@ class DateTimePicker extends Component {
                 }
             } else if (ref === 'time' && timeType === 'timeDropdown') {
                 var timeSet = function() {
-                    var time = newDate ? newDate.value.split(':') : [];
+                    var time;
+                    if (newDate.value.indexOf('am') > -1 || newDate.value.indexOf('pm') > -1) {
+                        var newTime = newDate ? newDate.value.split(' ') : [];
+                        time = newTime.length ? newTime[0].split(':') : [];
+                        time[0] = newTime[1] === 'am' ? time[0] < 12 ? time[0] : parseInt(time[0]) - 12 : newTime[1] === 'pm' ? time[0] < 12 ? parseInt(time[0]) + 12 : time[0] : '';
+                    } else {
+                        time = newDate ? newDate.value.split(':') : [];
+                    }
                     newDate = new Date();
                     newDate.setHours(time[0]);
-                    newDate.setMinutes(time[1]);
+                    newDate.setMinutes(time[1] || 0);
                     return newDate;
                 };
                 if (currentDate && !isNaN(currentDate.valueOf())) {
@@ -132,10 +139,11 @@ class DateTimePicker extends Component {
         let boldLabelStyle = boldLabel ? style.boldLabel : '';
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
+        var defaultDate = new Date().setHours(0, 0, 0, 0);
 
         let date = defaultValue
             ? new Date(defaultValue)
-            : new Date();
+            : new Date(defaultDate);
 
         return (
             <div className={outerWrapStyle}>
