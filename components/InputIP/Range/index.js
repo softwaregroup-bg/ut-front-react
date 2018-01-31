@@ -13,7 +13,7 @@ class Range extends Component {
         let errorMessageFrom = this.props.errorMessageFrom;
         let errorMessageTo = this.props.errorMessageTo;
         let errorMessageGeneral = this.props.errorMessageGeneral;
-        let { inputWrapper, inputWrapClassName, keyProp, value, validators, labelClassName, boldLabel, inputType } = this.props;
+        let { inputWrapper, inputWrapClassName, keyProp, value, validators, labelClassName, boldLabel, inputType, errorMessageWrap } = this.props;
         if (isValidFrom && isValidTo && this.props.valueFrom !== '...' && this.props.valueTo !== '...') {
             if (this.props.isValidGeneral) {
                 errorMessageFrom = '';
@@ -88,7 +88,7 @@ class Range extends Component {
                         />
                     </div>
                 </div> : ''}
-                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValidGeneral && <div className={style.errorMessage}>{errorMessageGeneral}</div>}</div>
+                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValidGeneral && <div className={classnames(style.errorMessage, errorMessageWrap)}>{errorMessageGeneral}</div>}</div>
             </div>
         );
     }
@@ -125,6 +125,7 @@ Range.propTypes = {
     inputWrapClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     inputWrapper: PropTypes.string,
+    errorMessageWrap: PropTypes.string,
     value: PropTypes.shape({
         from: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         to: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
