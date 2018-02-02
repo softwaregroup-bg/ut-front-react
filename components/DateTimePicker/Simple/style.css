@@ -70,4 +70,5 @@
 }
 .ddframe {
     width: 50%;
+    min-width: 80px;
 }
