@@ -5,6 +5,7 @@
 
 .collapsableContentContainer .heading {
     position: relative;
+    z-index: 3;
     padding: 3px 0 3px 0px;
     border-bottom: 1px solid #D7D6D6;
     color: #7B7B7B;

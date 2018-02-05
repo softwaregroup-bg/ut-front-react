@@ -4,8 +4,9 @@ import style from './style.css';
 export class Filters extends Component {
     render() {
         var classes = [style.simpleToolbox];
-        this.props.opened && classes.push(style.opened);
-        this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
+        if (this.props.opened) {
+            classes.push(style.opened);
+        }
         return (
             <div className={classes.join(' ')}>
                 <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>

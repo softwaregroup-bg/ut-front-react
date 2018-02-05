@@ -77,6 +77,10 @@
     height: 0 !important;
 }
 
+.editedInputStyle {
+    background: #fff4a3 !important;
+}
+
 .readonlyInput, .readonlyInput div {
     cursor: not-allowed;
     border-color: #EBEBEB !important;
@@ -346,7 +350,7 @@ input:read-only{
 }
 
 .multiCheckboxWrapper {
-    display: flex;
+    position: relative;
     width: 100%;
     height: 100%;
 }
@@ -435,50 +439,36 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     background: inline('./images/dropdownArrow.png') no-repeat center;
 }
 
-.multiSelectDropdownMenu, .groupDropdownMenu, .dropdownMenu {
+.multiSelectDropdownMenu, .groupDropdownMenu {
     display: block !important;
 }
 
-.multiSelectDropdownMenu div, .groupDropdownMenu div, .dropdownMenu div {
+.multiSelectDropdownMenu div, .groupDropdownMenu div {
     font-size: 15px;
     line-height: 32px;
 }
 
-.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem, .dropdownMenuItemWrap {
+.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem {
     display: flex !important;
 }
 
-.multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem, .dropdownMenuItemWrap {
+.multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem {
     align-items: center;
     min-height: 32px !important;
 }
 
-.groupDropdownMenuSelectedItem {
-    color: var(--ut-front-react-standardDropdownSelectedColor) !important;
-}
-
-.multiSelectDropdownPlaceholder, .groupDropdownPlaceholder, .dropdownPlaceholder {
+.multiSelectDropdownPlaceholder, .groupDropdownPlaceholder {
     font-size: 15px;
     margin-top: 3px;
 }
-.dropdownPlaceholder p, .dropdownPlaceholder {
-    width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 
-.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div {
+.multiSelectDropdownPlaceholder div, groupDropdownPlaceholder div {
     width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow:hidden;
+    white-space:nowrap;
     text-overflow: ellipsis;
 }
 
 .buttonInput {
     padding-right: 100px;
-}
-.dropdownMenu div {
-    overflow-x: hidden !important;
-    text-overflow: ellipsis;
 }

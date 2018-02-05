@@ -95,6 +95,7 @@ class TimePicker extends Component {
                           defaultSelected={valueHour}
                           placeholder='Hour'
                           onSelect={handleHoursChange}
+                          isEdited={this.props.isEdited}
                           disabled={this.props.disabled}
                         />
                     </div>
@@ -104,6 +105,7 @@ class TimePicker extends Component {
                           defaultSelected={valueMin}
                           placeholder='Min'
                           onSelect={handleMinutesChange}
+                          isEdited={this.props.isEdited}
                           disabled={this.props.disabled}
                         />
                     </div>
@@ -142,12 +144,16 @@ TimePicker.propTypes = {
     value: PropTypes.any,
     keyProp: PropTypes.string,
     onChange: PropTypes.func,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+
+    // Edited
+    isEdited: PropTypes.bool
 };
 
 TimePicker.defaultProps = {
     onChange: () => {},
-    disabled: false
+    disabled: false,
+    isEdited: false
 };
 
 export default TimePicker;

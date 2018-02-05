@@ -12,7 +12,7 @@ import {
     RESET_DOCUMENT_STATE
 } from './actionTypes';
 import { REMOVE_TAB } from '../TabMenu/actionTypes';
-import { methodRequestState, documentTmpUploadPrefix, documentPrefix } from '../../constants';
+import { methodRequestState, documentTmpUploadPrefix } from '../../constants';
 import { parseFetchDocumentsResult, combineAttachments, mergeDocumentsAndAttachments } from './helpers';
 
 const getDefaultAttachmentObject = function() {
@@ -114,7 +114,7 @@ const documents = (state = defaultState, action) => {
             newObject.attachments[0].filename = doc.filename;
             newObject.attachments[0].extension = doc.extension;
             newObject.attachments[0].contentType = doc.contentType;
-            newObject.attachments[0].url = doc.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + doc.filename : documentPrefix + doc.filename;
+            newObject.attachments[0].url = documentTmpUploadPrefix + doc.filename;
             newObject.attachments[0].isNew = true;
             newObject.statusId = 'replaced';
             let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();

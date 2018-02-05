@@ -5,7 +5,7 @@ import Gate from './containers/Gate';
 import LoginPage from './components/LoginPage';
 import SsoPage from './components/SsoPage';
 
-const App = ({routes, masterRoutes, extLayout, extMaster}) => {
+const App = ({routes, extLayout, extMaster}) => {
     return (
         <Route>
             <Route path='/login' component={LoginPage} />
@@ -16,7 +16,6 @@ const App = ({routes, masterRoutes, extLayout, extMaster}) => {
                     <Route component={extLayout || Layout}>
                         {routes}
                     </Route>
-                    {masterRoutes}
                 </Route>
             </Route>
         </Route>
@@ -24,7 +23,6 @@ const App = ({routes, masterRoutes, extLayout, extMaster}) => {
 };
 
 App.propTypes = {
-    masterRoutes: PropTypes.node,
     routes: PropTypes.node,
     extLayout: PropTypes.node,
     extMaster: PropTypes.node,

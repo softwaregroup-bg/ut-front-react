@@ -123,6 +123,7 @@ class MultiSelectDropdown extends Dropdown {
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
+        let editedInputStyle = this.props.isEdited ? ddstyles.editedInputStyle : '';
         let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
         let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
@@ -132,7 +133,7 @@ class MultiSelectDropdown extends Dropdown {
         let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
 
         return (
-            <div className={classnames(ddstyles.pointer, ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
+            <div className={classnames(ddstyles.pointer, ddstyles.dropdownWrap, errorDropDownStyle, editedInputStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
@@ -169,7 +170,8 @@ class MultiSelectDropdown extends Dropdown {
 
 MultiSelectDropdown.defaultProps = {
     isValid: true,
-    errorMessage: ''
+    errorMessage: '',
+    isEdited: false
 };
 
 export default MultiSelectDropdown;

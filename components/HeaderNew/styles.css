@@ -24,7 +24,8 @@
 .headerLogoContainer {
   display: flex;
   align-items: center;
-  margin: var(--ut-front-react-standardHeaderLogoContainerMargin);
+  margin-right: 40px;
+  margin-left: 10px;
 }
 
 .headerLogoContainer a {
@@ -36,8 +37,8 @@
   display: inline-block;
   flex-shrink: 0;
   width: var(--ut-front-react-standardMainLogoWidth);
-  height: var(--ut-front-react-standardMainLogoHeight) !important;
-  background: inline('./images/logo.png') no-repeat center center;
+  height: 36px !important;
+  background: inline('logo.png') no-repeat center center;
   background-size: contain;
   cursor: pointer;
 }
@@ -92,7 +93,7 @@
   width: 14px;
   height: 14px;
   margin: 0 10px 0 5px;
-  background: inline('./images/arrow_black_base.png') no-repeat center center;
+  background: inline('arrow_black_base.png') no-repeat center center;
   cursor: pointer;
 }
 

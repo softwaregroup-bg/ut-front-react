@@ -43,7 +43,7 @@ export class Body extends Component {
                 let verticalSpanField;
 
                 return data.map((record, idx) => {
-                    const { local } = record || {};
+                    const { local } = record;
 
                     verticalField = verticalFields && verticalFields[idx];
                     if (verticalField) {

@@ -11,12 +11,7 @@
 }
 
 .table {
-    display: flex;
-    align-items: center; 
-}
-
-.tableButtonsShowed {
-    justify-content: space-between;
+    display: table;
 }
 
 .toolbarWrap>div,
@@ -153,15 +148,6 @@
     padding-right: 10px;
 }
 
-.spacer:last-child {
+.space:last-child {
     padding-right: 0px;
-}
-
-.filterActionWrap {
-    flex-grow: 1;
-    margin-left: 20px;
-}
-
-.filterActionWrap button {
-    float: right;
 }

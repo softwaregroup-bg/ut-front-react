@@ -4,8 +4,6 @@ import style from './style.css';
 import { Link } from 'react-router';
 import enhanceWithClickOutside from 'react-click-outside';
 
-import checkImage from './images/check.png';
-
 class TabDropDown extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +28,6 @@ class TabDropDown extends React.Component {
     render() {
         let list = this.props.data.map((tab, i) => {
             let activeClassName;
-            let isLinkActive = tab && tab.pathname && this.context.router.isActive(tab.pathname, true);
             let handleClick = () => {
                 this.setState({
                     open: false
@@ -50,7 +47,7 @@ class TabDropDown extends React.Component {
                       to={(tab && tab.pathname) ? tab.pathname : '#/'}
                       title={tab.title && tab.title.props && tab.title.props.children}
                       onClick={handleClick}
-                    >{ isLinkActive && <img src={checkImage} className={style.img} />}{tab.title}</Link>
+                    >{tab.title}</Link>
                 </li>
             );
         });

@@ -424,7 +424,7 @@ class GridToolBox extends Component {
     }
 
     renderFilters() {
-        let { filterElements, filterActionElements } = this.props;
+        let { filterElements } = this.props;
 
         let hasSelectedOrChecked = this.hasSelectedOrChecked();
 
@@ -433,9 +433,9 @@ class GridToolBox extends Component {
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0]['type'] === filterElementTypes.searchBox) {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by:';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : '';
         } else {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by:';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by';
         }
 
         let showSearchBtn = (this.props.filterElements.find(f => {
@@ -470,11 +470,10 @@ class GridToolBox extends Component {
                             </div>}
                         {this.state.hasActiveFilters &&
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
-                                <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                                <div key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
                             </div>}
                     </div>
                 </div>
-                { filterActionElements && <div className={style.filterActionWrap}> {filterActionElements} </div>}
             </div>
         );
     }
@@ -662,7 +661,7 @@ class GridToolBox extends Component {
         let toggle = () => this.setState({showFilters: true});
 
         return (
-            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
+            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
                 <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
                     Show filters
                 </div>
@@ -729,7 +728,6 @@ GridToolBox.propTypes = {
             styles: PropTypes.object
         })
     ),
-    filterActionElements: PropTypes.node,
     actionButtonElements: PropTypes.arrayOf(
         PropTypes.shape({
             type: PropTypes.oneOf([

@@ -5,8 +5,7 @@ import {
     VALIDATE_FORM,
     LOGOUT,
     SET_INPUT_VALUE,
-    CLEAR_LOGIN_STATE,
-    SET_GATE_LOAD
+    CLEAR_LOGIN_STATE
 } from './actionTypes';
 
 const getTimezone = () => {
@@ -23,12 +22,17 @@ export const setInputValue = ({ input, value }) => ({
     value
 });
 
-export const identityCheck = (params) => ({
-    type: LOGIN,
-    method: 'identity.check',
-    suppressErrorWindow: true,
-    params: Object.assign(params.toJS(), {uri: '/login', timezone: getTimezone(), channel: 'web'})
-});
+export const identityCheck = (params) => (dispatch, getStore) => {
+    const store = getStore();
+    const channel = (store.channelConfig && store.channelConfig.channel) || 'web';
+
+    return dispatch({
+        type: LOGIN,
+        method: 'identity.check',
+        suppressErrorWindow: true,
+        params: Object.assign(params.toJS(), {uri: '/login', timezone: getTimezone(), channel: channel})
+    });
+};
 
 export const bioScan = () => ({
     type: BIO_LOGIN,
@@ -36,12 +40,17 @@ export const bioScan = () => ({
     suppressErrorWindow: true
 });
 
-export const cookieCheck = (params) => ({
-    type: COOKIE_CHECK,
-    method: 'identity.check',
-    suppressErrorWindow: true,
-    params: Object.assign({channel: 'web'}, (params || {}))
-});
+export const cookieCheck = (params) => (dispatch, getStore) => {
+    const store = getStore();
+    const channel = (store.channelConfig && store.channelConfig.channel) || 'web';
+
+    dispatch({
+        type: COOKIE_CHECK,
+        method: 'identity.check',
+        suppressErrorWindow: true,
+        params: Object.assign({channel: channel}, (params || {}))
+    });
+};
 
 export const validateForm = () => ({
     type: VALIDATE_FORM
@@ -54,14 +63,7 @@ export const logout = (params) => ({
     params: {}
 });
 
-export const clearLoginState = () => {
-    return {
-        type: CLEAR_LOGIN_STATE,
-        params: {}
-    };
-};
-
-export const setLoadGate = (value) => ({
-    type: SET_GATE_LOAD,
-    params: {value}
+export const clearLoginState = () => ({
+    type: CLEAR_LOGIN_STATE,
+    params: {}
 });

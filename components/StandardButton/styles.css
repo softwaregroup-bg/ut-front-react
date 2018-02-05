@@ -269,9 +269,6 @@
 }
 
 .primaryDialog {
-    height: 30px;
-    padding: 0 20px;
-    border-radius: 3px;
     margin-left: 10px;
     color: var(--ut-front-react-primaryColor);
     border: 1px solid var(--ut-front-react-primaryBorderColor);
@@ -295,9 +292,6 @@
 }
 
 .secondaryDialog {
-    height: 30px;
-    padding: 0 20px;
-    border-radius: 3px;
     margin-left: 10px;
     color: var(--ut-front-react-secondaryDialogColor);
     border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);

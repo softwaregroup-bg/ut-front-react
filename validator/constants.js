@@ -24,10 +24,8 @@ export const textValidations = {
     decimalOnly: 'decimalOnly', // precision, scale
     uniqueValue: 'uniqueValue',
     uniqueValueCaseInsensitive: 'uniqueValueCaseInsensitive',
-    uniformCivilNumber: 'uniformCivilNumber',
     length: 'length', // minVal, maxVal
-    regex: 'regex',  // value,
-    iban: 'iban'
+    regex: 'regex'  // value
 };
 
 export const arrayValidations = {

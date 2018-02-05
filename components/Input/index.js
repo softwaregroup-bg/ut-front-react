@@ -12,7 +12,8 @@ class TextField extends Component {
         super(props);
         this.state = {
             value: props.value,
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
+            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage},
+            isEdited: this.props.isEdited
         };
 
         this.onChangQueue = [];
@@ -23,22 +24,20 @@ class TextField extends Component {
         this.style = props.customStyle || defaultStyle;
     }
 
-    componentWillReceiveProps({value, isValid, errorMessage}) {
+    componentWillReceiveProps({value, isValid, errorMessage, isEdited}) {
         this.initialValue = value;
 
-        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.valid.errorMessage !== errorMessage) {
+        if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.isEdited !== isEdited || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
                 value: value,
-                valid: {isValid: isValid, errorMessage: errorMessage}
+                valid: {isValid: isValid, errorMessage: errorMessage},
+                isEdited: isEdited
             });
         }
     }
 
     handleChange(e) {
         let newValue = e.target.value;
-        if (this.props.capitalize) {
-            newValue = newValue.toUpperCase();
-        }
         this.setState({value: newValue});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
@@ -71,9 +70,10 @@ class TextField extends Component {
     }
 
     get inputClassName() {
-        const { valid } = this.state;
+        const { valid, isEdited } = this.state;
         const { readonly } = this.props;
         return classnames(this.style.input, {
+            [this.style.editedInputStyle]: isEdited,
             [this.style.error]: !valid.isValid,
             [this.style.readonlyInput]: readonly
         });
@@ -83,8 +83,9 @@ class TextField extends Component {
         let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let zeroHeightStyle = isValid ? this.style.hh : '';
+        const value = (!this.state.value && this.state.value !== 0) ? '' : this.state.value;
 
-        let input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        let input = <input ref='textInput' type={type} className={this.inputClassName} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (
@@ -123,7 +124,6 @@ TextField.propTypes = {
     wrapperClassName: PropTypes.string,
     labelClassName: PropTypes.string,
     dependancyDisabledInputTooltipText: PropTypes.string,
-    capitalize: PropTypes.bool,
     onChange: PropTypes.func,
     readonly: PropTypes.bool,
     boldLabel: PropTypes.bool,
@@ -141,7 +141,10 @@ TextField.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+
+    // Edited
+    isEdited: PropTypes.bool
 };
 
 TextField.defaultProps = {
@@ -149,12 +152,12 @@ TextField.defaultProps = {
     type: 'text',
     tooltipText: '',
     keyProp: '___no_key___',
-    capitalize: false,
     validators: [],
     readonly: false,
     boldLabel: false,
     isValid: true,
     errorMessage: '',
+    isEdited: false,
     onChange: () => {},
     onBlur: () => {},
     onClick: () => {}

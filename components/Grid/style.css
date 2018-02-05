@@ -69,16 +69,18 @@ table.dataGridTable thead tr td {
     font-weight: bold;
 }
 
-table.dataGridTable thead tr th .arrowSort {
-    width: 8px;
+table.dataGridTable thead tr th .sortArrow {
+    width: 12px;
     height: 8px;
     margin-left: 3px;
     cursor: pointer;
     display: inline-block;
-    background-image: url('./images/arrow.png');
+    background-image: url('./images/arrow_black.png');
+    background-size: 8px 5px;
     background-repeat: no-repeat;
+    background-position: center center;
 }
-table.dataGridTable thead tr th .arrowDesc {
+table.dataGridTable thead tr th .descArrow {
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);

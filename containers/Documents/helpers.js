@@ -172,7 +172,7 @@ function insertAttachmentsInDocuments(documents = [], attachments = [], factor) 
         document.attachments = [];
         attachments.forEach((attachment) => {
             if (attachment[factor] === document[factor]) {
-                attachment.url = attachment.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + attachment.filename : documentPrefix + attachment.filename;
+                attachment.url = attachment.isNew ? documentTmpUploadPrefix + attachment.filename : documentPrefix + attachment.filename;
                 document.attachments.push(attachment);
             }
         });
@@ -229,10 +229,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
             case 'pending':
                 let documentId = null;
                 if (doc.documentId) {
-                    documentId = doc.documentId.replace(/\*/g, '');
-                    if (!documentId) {
-                        documentId = null;
-                    }
+                    documentId = parseInt(doc.documentId);
                 }
                 let statusId = doc.statusId;
                 if (statusId === 'approved' || statusId === 'replaced') {
@@ -258,15 +255,9 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     documentOrder: 255
                 };
                 if (doc.documentUnapprovedId && doc.attachments[0].attachmentUnapprovedId) {
-                    docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = doc.documentUnapprovedId.replace(/\*/g, '');
-                    attObj.attachmentUnapprovedId = typeof doc.attachments[0].attachmentUnapprovedId === 'string' && doc.attachments[0].attachmentUnapprovedId.replace(/\*/g, '');
+                    docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = parseInt(doc.documentUnapprovedId);
+                    attObj.attachmentUnapprovedId = parseInt(doc.attachments[0].attachmentUnapprovedId);
                     attObj.documentUnapprovedId = docObj.documentUnapprovedId;
-                    if (docObj.documentUnapprovedId === '') {
-                        docObj.documentUnapprovedId = null;
-                    }
-                    if (!attObj.attachmentUnapprovedI) {
-                        attObj.attachmentUnapprovedId = null;
-                    }
                 }
                 resultDocuments.push(docObj);
                 resultAttachments.push(attObj);

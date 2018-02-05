@@ -172,7 +172,7 @@ a.tabMenuWrap:hover.tabMenuWrapSelected,
     text-overflow: ellipsis;
     width: 100%;
     height: 100%;
-    padding: 10px 10px 10px 35px;
+    padding: 10px 10px 10px 30px;
     background-color: #FFFFFF;
 }
 
@@ -207,13 +207,4 @@ a.tabMenuWrap:hover.tabMenuWrapSelected,
     width: 100%;
     float: left;
     white-space: nowrap;
-}
-
-.selected {
-    color: var(--ut-front-react-standardTabMenuColor);
-    padding: 10px 10px 10px 10px;
-}
-
-.img {
-    padding-right: 10px;
 }

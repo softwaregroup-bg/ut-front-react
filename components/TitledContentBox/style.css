@@ -10,16 +10,16 @@
     -webkit-box-sizing: border-box;
 }
 
-.headerWrap {
+.titledContentWrap .headerWrap {
     width: 100%;
-    padding: 13px 20px;
+    padding: 13px 3%;
     display: block;
     border-bottom: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
     background: var(--ut-front-react-standardTitledContentBoxHeaderBackgroundColor);
     overflow: hidden;
 }
 
-.title {
+.titledContentWrap .headerWrap .title {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
@@ -27,7 +27,7 @@
     float: left;
 }
 
-.titleCentered {
+.titledContentWrap .headerWrap .titleCentered {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
@@ -35,11 +35,11 @@
     text-align: center;
 }
 
-.rightWrap {
+.titledContentWrap .headerWrap .rightWrap {
     float: right;
 }
 
-.contentWrap {
-    padding: 0 20px;
+.titledContentWrap .contentWrap {
+    padding: 0 3%;
     background: var(--ut-front-react-standardTitledContentBoxBackgroundColor);
 }
