@@ -15,7 +15,7 @@
 }
 
 .innerWrap {
-    width: 70%;
+    width: auto;
 }
 
 .labelWrap {
@@ -69,5 +69,6 @@
     background-image: url('./images/clock.png');
 }
 .ddframe {
-    width: 35%;
+    width: 50%;
+    min-width: 80px;
 }
