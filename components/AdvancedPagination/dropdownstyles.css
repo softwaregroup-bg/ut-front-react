@@ -17,6 +17,10 @@
     border: 1px solid #D6D6D6;
 }
 
+.dropDownRoot > div :first-child {
+    flex-grow: 10;
+}
+
 .dropdownWrap div {
     padding: 0 !important;
     margin: 0 !important;
@@ -26,7 +30,7 @@
     text-align: left !important;
 }
 .dropdownWrap, .dropdownWrap .dropDownRoot {
-    height: 23px!important;
+    height: 21px!important;
 }
 .dropdownWrap .dropDownRoot {
     width: 100% !important;
@@ -34,12 +38,34 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding-left: 10px !important;
+    display: flex;
+}
+.dropDownRoot > div:first-child {
+    flex-grow: 10;
 }
 
 .dropdownIconBackground svg { /* pass over material ui styling limitations */
     background-color: var(--ut-front-react-standardPaginationBackgroundActiveColor);
     top: 1px !important;
     right: 1px !important;
+    height: 20px !important;
+}
+.dropdownIconWrap svg{
+    height: 19px !important;
+    width: 19px !important;
+    position: absolute;
+}
+.dropdownMenu {
+    display: block !important;
+}
+.dropdownMenu div {
+    font-size: 15px;
+    line-height: 32px;
+}
+.dropdownMenuItemWrap {
+    display: flex !important;
+    align-items: center;
+    min-height: 32px !important;
 }
 .dropdownIconWrap svg{
     height: 19px !important;
