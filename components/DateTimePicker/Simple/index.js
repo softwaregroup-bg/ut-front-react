@@ -142,7 +142,7 @@ class DateTimePicker extends Component {
         var defaultDate = new Date().setHours(0, 0, 0, 0);
         var dropdownData = format === '24hr'
             ? timeValues24HrFormat
-            : format === 'ampm' ? timeValuesampmFormat : '';
+            : format === 'ampm' ? timeValues12HrFormat : '';
 
         let date = defaultValue
             ? new Date(defaultValue)
