@@ -47,10 +47,12 @@ class GridRow extends Component {
     toggleCheck(e) {
         e.stopPropagation();
         let isChecked = !this.state.checked;
-        this.setState(
-            {checked: isChecked},
-            () => this.props.onCheck(immutable.List([this.props.data]), isChecked)
-        );
+        if (!this.props.onlyDisplayChecked) {
+            this.setState(
+                {checked: isChecked},
+                () => this.props.onCheck(immutable.List([this.props.data]), isChecked)
+            );
+        }
     }
 
     clearSelected() {
@@ -143,7 +145,8 @@ GridRow.propTypes = {
     onCheck: PropTypes.func,
     onSelect: PropTypes.func,
     canSelect: PropTypes.bool,
-    subscribeUnselect: PropTypes.func
+    subscribeUnselect: PropTypes.func,
+    onlyDisplayChecked: PropTypes.bool
 };
 
 GridRow.defaultProps = {

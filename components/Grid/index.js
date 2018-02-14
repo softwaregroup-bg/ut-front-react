@@ -10,7 +10,7 @@ class Grid extends Component {
     constructor(props) {
         super(props);
         this.state = {all: false};
-        this.onAllCheck = () => this.setState(
+        this.onAllCheck = () => !props.onlyDisplayChecked && this.setState(
             {all: !this.state.all},
             () => props.onCheck(this.props.rows, this.state.all)
         );
@@ -64,7 +64,7 @@ class Grid extends Component {
     }
 
     render() {
-        let {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck} = this.props;
+        let {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, onlyDisplayChecked} = this.props;
         let rowColumns = columns;
 
         // Add empty column
@@ -111,6 +111,7 @@ class Grid extends Component {
                       ref={i}
                       tdStyles={tdStyles}
                       trStyles={trStyles}
+                      onlyDisplayChecked={onlyDisplayChecked}
                     />);
                 })}</tbody>
             </table>
@@ -141,7 +142,8 @@ Grid.propTypes = {
     canSelect: PropTypes.bool,
     onCheck: PropTypes.func,
     onRefresh: PropTypes.func,
-    onSort: PropTypes.func
+    onSort: PropTypes.func,
+    onlyDisplayChecked: PropTypes.bool
 };
 
 Grid.defaultProps = {
