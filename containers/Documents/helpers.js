@@ -181,6 +181,19 @@ function insertAttachmentsInDocuments(documents = [], attachments = [], factor) 
 }
 
 export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprovedDocuments = {unapprovedDocuments: [], unapprovedAttachments: []}) {
+    if (unapprovedDocuments.unapprovedDocuments.length) {
+        return {
+            documents: unapprovedDocuments.unapprovedDocuments,
+            attachments: unapprovedDocuments.unapprovedAttachments,
+            actorDocument: unapprovedDocuments.unapprovedDocuments.map((doc) => {
+                return {
+                    documentUnapprovedId: doc.documentUnapprovedId,
+                    actorId
+                };
+            })
+        };
+    }
+
     let resultDocuments = [];
     let resultAttachments = [];
     let resultActorDocuments = [];
