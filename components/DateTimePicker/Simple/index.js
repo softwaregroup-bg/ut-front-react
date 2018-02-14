@@ -6,7 +6,7 @@ import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
 import Dropdown from './../../Input/Dropdown';
-import { defaultTimeValues } from './defaultValues';
+import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
 
 import style from './style.css';
 
@@ -140,6 +140,9 @@ class DateTimePicker extends Component {
 
         let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
         var defaultDate = new Date().setHours(0, 0, 0, 0);
+        var dropdownData = format === '24hr'
+            ? timeValues24HrFormat
+            : format === 'ampm' ? timeValues12HrFormat : '';
 
         let date = defaultValue
             ? new Date(defaultValue)
@@ -159,7 +162,7 @@ class DateTimePicker extends Component {
                     </div> : timeType === 'timeDropdown'
                     ? <div className={style.ddframe}>
                         <Dropdown
-                          data={this.props.data}
+                          data={dropdownData}
                           keyProp='time'
                           onSelect={this.handleAccept('time')}
                           defaultSelected={defaultValue ? this.formatTime(date) : ''} />
@@ -194,7 +197,7 @@ DateTimePicker.defaultProps = {
     container: 'dialog',
     timeFormat: 'HH:mm',
     dateFormat: 'YYYY-MM-DD',
-    data: defaultTimeValues
+    data: timeValues24HrFormat
 };
 DateTimePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),

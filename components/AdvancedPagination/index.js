@@ -343,7 +343,7 @@ class AdvancedPagination extends Component {
 
     render() {
         return (
-            <div className={styles.paginationWrap}>
+            <div className={classnames(styles.paginationWrap, this.props.cssClass)}>
                 {this.renderPageSwitcher()}
                 {this.renderPageBoxes()}
                 {this.renderPageSizeBox()}
@@ -362,6 +362,7 @@ AdvancedPagination.propTypes = {
     pagination: PropTypes.object.isRequired, // immutable object,
     itemsPerPageData: PropTypes.arrayOf(PropTypes.number),
     dropdownIconStyles: PropTypes.object,
+    cssClass: PropTypes.string,
     onUpdate: PropTypes.func
 };
 

@@ -1,27 +1,19 @@
 {
   "name": "ut-front-react",
-  "version": "10.1.0-rc-bahur.5",
+  "version": "10.1.0-rc-bahur.16",
   "description": "Frontend module",
+  "pkg": {
+    "assets": [
+      "components/MultiSelectBubble/assets/*.*"
+    ]
+  },
+  "bin": "index.js",
   "main": "index.js",
   "dependencies": {
-    "bignumber.js": "^4.0.2",
-    "bootstrap": "4.0.0-alpha.2",
-    "classnames": "2.2.5",
-    "croppie": "2.4.0",
-    "date-fns": "1.21.1",
-    "immutable": "3.8.1",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
     "lodash.map": "4.6.0",
-    "lodash.merge": "4.6.0",
-    "material-ui": "0.16.5",
-    "react-addons-css-transition-group": "15.6.0",
-    "react-addons-transition-group": "15.6.0",
-    "react-click-outside": "2.3.1",
-    "react-select": "^1.0.0-rc.3",
-    "react-tap-event-plugin": "2.0.1",
-    "reactstrap": "3.9.5",
-    "redux-form": "6.3.2"
+    "lodash.merge": "4.6.0"
   },
   "scripts": {
     "lint": "ut-lint .",
@@ -45,14 +37,28 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.1",
-    "ut-tools": "5.31.1"
+    "ut-tools": "^5.32.1"
   },
   "peerDependencies": {
+    "bignumber.js": "^4.0.2",
+    "bootstrap": "^4.0.0-alpha.2",
+    "classnames": "^2.2.5",
+    "croppie": "^2.4.0",
+    "date-fns": "^1.21.1",
+    "immutable": "^3.8.1",
+    "material-ui": "^0.16.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router": "^3.0.0",
+    "react-addons-css-transition-group": "^15.6.0",
+    "react-addons-transition-group": "^15.6.0",
+    "react-click-outside": "^2.3.1",
+    "react-select": "^1.0.0-rc.3",
+    "react-tap-event-plugin": "^2.0.1",
+    "reactstrap": "^3.9.5",
     "redux": "^3.7.2",
+    "redux-form": "^6.3.2",
     "ut-front": "^8.0.0"
   },
   "repository": {

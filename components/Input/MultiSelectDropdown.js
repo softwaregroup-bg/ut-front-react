@@ -83,36 +83,49 @@ class MultiSelectDropdown extends Dropdown {
 
         let menuItems = [
             <MenuItem
+              disabled
               className={ddstyles.multiSelectDropdownMenuItemWrap}
-              onTouchTap={this.toggleAllChecks}
-              key={'1-ddfg'}>
+              key={'ddhdr'}>
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
-                    <Checkbox
-                      checked={values.length === data.length} />
                     <span>{placeholder}</span>
                 </div>
-            </MenuItem>,
-            <Divider
-              key={'2-ddfg'} />
+            </MenuItem>
         ];
-        data.forEach((item) => {
-            let isChecked = values.findIndex((i) => {
-                return item.key === i.key;
-            }) > -1;
-            menuItems.push(
+
+        if (data.length) {
+            menuItems = [
                 <MenuItem
                   className={ddstyles.multiSelectDropdownMenuItemWrap}
-                  onTouchTap={() => { this.handleChange(item); }}
-                  key={item.key}>
+                  onTouchTap={this.toggleAllChecks}
+                  key={'1-ddfg'}>
                     <div className={ddstyles.multiSelectDropdownMenuItem}>
                         <Checkbox
-                          checked={isChecked}
-                          disabled={item.disabled} />
-                        <span>{item.name}</span>
+                          checked={values.length === data.length} />
+                        <span>{placeholder}</span>
                     </div>
-                </MenuItem>
-            );
-        });
+                </MenuItem>,
+                <Divider
+                  key={'2-ddfg'} />
+            ];
+            data.forEach((item) => {
+                let isChecked = values.findIndex((i) => {
+                    return item.key === i.key;
+                }) > -1;
+                menuItems.push(
+                    <MenuItem
+                      className={ddstyles.multiSelectDropdownMenuItemWrap}
+                      onTouchTap={() => { this.handleChange(item); }}
+                      key={item.key}>
+                        <div className={ddstyles.multiSelectDropdownMenuItem}>
+                            <Checkbox
+                              checked={isChecked}
+                              disabled={item.disabled} />
+                            <span>{item.name}</span>
+                        </div>
+                    </MenuItem>
+                );
+            });
+        }
 
         return menuItems;
     }

@@ -14,9 +14,9 @@
     justify-content: flex-end;
 }
 
-/* .innerWrap {
-    width: 70%;
-} */
+.innerWrap {
+    width: auto;
+}
 
 .labelWrap {
     font-size: 14px;
@@ -69,5 +69,6 @@
     background-image: url('./images/clock.png');
 }
 .ddframe {
-    width: 35%;
+    width: 50%;
+    min-width: 80px;
 }

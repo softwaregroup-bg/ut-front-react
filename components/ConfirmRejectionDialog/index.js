@@ -60,7 +60,7 @@ class ConfirmRejectionDialog extends Component {
         }).toJS();
     }
     get title() {
-        return capitalizeEveryWord(this.props.title || 'Confirm action');
+        return capitalizeEveryWord(this.props.title || 'Confirm Approval');
     }
     render() {
         return (

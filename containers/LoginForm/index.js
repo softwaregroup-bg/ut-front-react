@@ -40,9 +40,9 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        const { params, cookieChecked, authenticated, cookieCheck } = this.props;
+        const { params, cookieChecked, isLogout, authenticated, cookieCheck } = this.props;
 
-        if (!cookieChecked) {
+        if (!cookieChecked && !isLogout) {
             let appId;
             if (params) {
                 appId = params.appId;
@@ -109,9 +109,9 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { cookieChecked, authenticated, inputs, error, title, buttonLabel } = this.props;
+        let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
 
-        return (cookieChecked && !authenticated &&
+        return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
               ref='loginForm'
               className='loginForm'
@@ -130,6 +130,7 @@ export default connect(
         return {
             loginData: login.get('loginData'),
             cookieChecked: login.get('cookieChecked'),
+            isLogout: login.get('isLogout'),
             authenticated: login.get('authenticated'),
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
@@ -147,6 +148,7 @@ LoginForm.propTypes = {
     routerParams: PropTypes.object,
     loginData: PropTypes.object,
     cookieChecked: PropTypes.bool,
+    isLogout: PropTypes.bool,
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
     title: PropTypes.string,
