@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.1.0-rc-bahur.17",
+  "version": "10.1.0-rc-bahur.18",
   "description": "Frontend module",
   "pkg": {
     "assets": [
@@ -12,6 +12,7 @@
   "dependencies": {
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
+    "bootstrap": "^4.0.0-alpha.2",
     "lodash.map": "4.6.0",
     "lodash.merge": "4.6.0"
   },
@@ -41,7 +42,6 @@
   },
   "peerDependencies": {
     "bignumber.js": "^4.0.2",
-    "bootstrap": "^4.0.0-alpha.2",
     "classnames": "^2.2.5",
     "croppie": "^2.4.0",
     "date-fns": "^1.29.0",
