@@ -44,7 +44,7 @@
     "bootstrap": "^4.0.0-alpha.2",
     "classnames": "^2.2.5",
     "croppie": "^2.4.0",
-    "date-fns": "^1.21.1",
+    "date-fns": "^1.29.0",
     "immutable": "^3.8.1",
     "material-ui": "^0.16.5",
     "react": "^15.6.1",
