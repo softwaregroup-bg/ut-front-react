@@ -8,8 +8,10 @@ import { textValidations } from '../../validator/constants';
 class Dropdown extends Component {
     constructor(props) {
         super(props);
+
+        const value = (props.data || []).find(x => x.key === props.defaultSelected);
         this.state = {
-            value: props.defaultSelected || '__placeholder__',
+            value: value ? value.key : '__placeholder__',
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
 
@@ -30,7 +32,11 @@ class Dropdown extends Component {
                     return item.key === defaultSelected;
                 }
             );
-            if (value) this.setState({value: value.key});
+            if (value) {
+                this.setState({value: value.key});
+            } else {
+                this.setState({value: '__placeholder__'});
+            }
         }
 
         if (this.state.valid.isValid !== isValid) {
