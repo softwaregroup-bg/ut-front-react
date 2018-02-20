@@ -95,6 +95,7 @@ const Login = React.createClass({
                     <Row>
                         <Col xs={{size: 6, push: 3}}>
                             <Row className={this.getStyle('loginPageLogo')} />
+                            <div>ASDASHJKEWRHLKJFHSLDKJFHLKSJDHFLKSJDFH</div>
                             <Row>
                                 <Box>
                                     <Row className='row-reset'>
