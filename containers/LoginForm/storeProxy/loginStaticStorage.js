@@ -5,7 +5,7 @@ import { inputs as possibleInputs } from '../config';
 // This is a temporary solution that removes credentials from the redux store.
 
 const inputs = Object.keys(possibleInputs).reduce((prev, curr) => {
-    return Object.assign(prev, { [curr]: { value: '' }});
+    return Object.assign(prev, { [curr]: { value: '' } });
 }, {});
 
 const loginData = Object.keys(possibleInputs).reduce((prev, curr) => {
@@ -30,4 +30,3 @@ export const getLoginStaticStorage = () => loginForm;
 export const setLoginStaticStorage = newLoginForm => {
     loginForm = newLoginForm;
 };
-

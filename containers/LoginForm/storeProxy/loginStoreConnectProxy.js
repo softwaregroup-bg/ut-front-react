@@ -1,7 +1,7 @@
 import immutable from 'immutable';
 import { connect } from 'react-redux';
 import { getLoginStaticStorage } from './loginStaticStorage';
-import { actionIsForLogin, loginFormPaths, loginDataPaths } from './helpers';
+import { loginFormPaths, loginDataPaths } from './helpers';
 
 export const loginStoreConnectProxy = (mapStateToProps, mapDispatchToProps) => {
     const proxyMapStateToProps = state => {
@@ -9,7 +9,7 @@ export const loginStoreConnectProxy = (mapStateToProps, mapDispatchToProps) => {
         if (state && state.login) {
             let newLogin = immutable.fromJS(state.login.toJS());
             loginFormPaths.forEach(path => {
-                if (staticStorage.getIn(path) && newLogin.hasIn(path.slice(0,-1))) {
+                if (staticStorage.getIn(path) && newLogin.hasIn(path.slice(0, -1))) {
                     newLogin = newLogin.setIn(path, staticStorage.getIn(path));
                 }
             });
