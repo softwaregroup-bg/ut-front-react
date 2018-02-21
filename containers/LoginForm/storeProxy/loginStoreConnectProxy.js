@@ -9,7 +9,7 @@ export const loginStoreConnectProxy = (mapStateToProps, mapDispatchToProps) => {
         if (state && state.login) {
             let newLogin = immutable.fromJS(state.login.toJS());
             paths.forEach(path => {
-                if (staticStorage.getIn(path)) {
+                if (staticStorage.getIn(path) && newLogin.hasIn(path.slice(0,-1))) {
                     newLogin = newLogin.setIn(path, staticStorage.getIn(path));
                 }
             });

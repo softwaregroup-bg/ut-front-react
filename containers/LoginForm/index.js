@@ -106,7 +106,6 @@ class LoginForm extends Component {
 
     render() {
         let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
-        console.log('inputs', inputs);
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
               ref='loginForm'
@@ -123,7 +122,6 @@ class LoginForm extends Component {
 
 export default connect(
     ({ login }) => {
-        console.log('login form connect', login.toJS());
         return {
             loginData: login.get('loginData'),
             cookieChecked: login.get('cookieChecked'),
