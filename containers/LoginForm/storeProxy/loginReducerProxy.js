@@ -5,7 +5,7 @@ import { LOGIN, LOGOUT, CLEAR_LOGIN_STATE } from '../actionTypes';
 // Before login reducer
 
 export const prePopulate = (state, action) => {
-    if (!actionIsForLogin()) {
+    if (!actionIsForLogin(action.type)) {
         return state;
     }
     let loginStaticStorage = getLoginStaticStorage();
@@ -30,7 +30,7 @@ export const prePopulate = (state, action) => {
 // After login reducer
 
 export const loginReducerProxy = (state, action) => {
-    if (!actionIsForLogin()) {
+    if (!actionIsForLogin(action.type)) {
         return state;
     }
     if (action.type === LOGOUT ||
