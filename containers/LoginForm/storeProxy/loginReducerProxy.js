@@ -1,25 +1,60 @@
 import { login } from '../reducer';
-import { getLoginStaticStorage, setLoginStaticStorage } from './loginStaticStorage';
-import { paths } from './helpers';
+import { getLoginStaticStorage, setLoginStaticStorage, resetLoginStaticStorage } from './loginStaticStorage';
+import { actionIsForLogin, loginFormPaths, loginDataPaths } from './helpers';
+import { LOGIN, LOGOUT, CLEAR_LOGIN_STATE } from '../actionTypes';
+
+// Before login reducer
 
 export const prePopulate = (state, action) => {
+    if (!actionIsForLogin()) {
+        return state;
+    }
     let loginStaticStorage = getLoginStaticStorage();
-    paths.forEach(path => {
+
+    // pre-populates loginForm state
+    loginFormPaths.forEach(path => {
         if (state && loginStaticStorage.getIn(path) && state.hasIn(path.slice(0,-1))) {
             state = state.setIn(path, loginStaticStorage.getIn(path));
         }
-    })
+    });
+
+    // pre-populates loginData state
+    loginDataPaths.forEach(path => {
+        if (state && loginStaticStorage.getIn(path) && state.hasIn(path)) {
+            state = state.setIn(path, loginStaticStorage.getIn(path));
+        }
+    });
+
     return state;
 };
 
+// After login reducer
+
 export const loginReducerProxy = (state, action) => {
+    if (!actionIsForLogin()) {
+        return state;
+    }
+    if (action.type === LOGOUT
+        || action.type === CLEAR_LOGIN_STATE
+        || (action.type === LOGIN && state && state.get('authenticated') && state.get('cookieChecked'))) {
+        resetLoginStaticStorage();
+    }
     let loginStaticStorage = getLoginStaticStorage();
-    paths.forEach(path => {
+
+    loginFormPaths.forEach(path => {
+        if (state.getIn(path)) {
+            loginStaticStorage = loginStaticStorage.setIn(path, state.getIn(path));
+        }
+        state = state.deleteIn(path);
+    });
+    loginDataPaths.forEach(path => {
         if (state.getIn(path)) {
             loginStaticStorage = loginStaticStorage.setIn(path, state.getIn(path));
         }
         state = state.deleteIn(path);
     })
+    
     setLoginStaticStorage(loginStaticStorage);
+    
     return state;
 };
