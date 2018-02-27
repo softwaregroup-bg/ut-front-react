@@ -167,7 +167,7 @@ class TabContainer extends Component {
     }
 
     render() {
-        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave } = this.props;
+        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, hideHeader } = this.props;
 
         let activeTab = tabs[this.state.active];
         let handleTabClick = ({id}) => {
@@ -206,26 +206,29 @@ class TabContainer extends Component {
         return (
             <div className={style.tabContainerWrap}>
                 <Vertical fixedComponent={
-                    <Header
+                    !hideHeader
+                    ? <Header
                       text={headerTitle}
                       location={location}
                       breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
-                      buttons={actionButtons} />}
+                      buttons={actionButtons} />
+                    : undefined
+                  }
                 >
                 {this.renderStatusDialog()}
-                    <Vertical fixedComponent={
-                        <div className={style.bottomBorderderWrap}>
-                            <Tabs
-                              tabs={allowedTabs}
-                              activeTab={this.state.active}
-                              onClick={handleTabClick}
-                            />
-                        </div>}
-                    >
-                        <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
-                            {activeTab.component}
-                        </div>
-                    </Vertical>
+                  <Vertical fixedComponent={
+                      <div className={style.bottomBorderderWrap}>
+                          <Tabs
+                            tabs={allowedTabs}
+                            activeTab={this.state.active}
+                            onClick={handleTabClick}
+                          />
+                      </div>}
+                  >
+                      <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
+                          {activeTab.component}
+                      </div>
+                  </Vertical>
                 </Vertical>
             </div>
         );
@@ -236,6 +239,7 @@ TabContainer.propTypes = {
     location: PropTypes.object,
     headerTitle: PropTypes.string,
     headerBreadcrumbsRemoveSlashes: PropTypes.number,
+    hideHeader: PropTypes.bool,
     tabs: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string.isRequired,
