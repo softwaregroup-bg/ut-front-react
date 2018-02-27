@@ -424,7 +424,7 @@ class GridToolBox extends Component {
     }
 
     renderFilters() {
-        let { filterElements } = this.props;
+        let { filterElements, hideToggle } = this.props;
 
         let hasSelectedOrChecked = this.hasSelectedOrChecked();
 
@@ -444,9 +444,9 @@ class GridToolBox extends Component {
 
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
-                <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
+                {!hideToggle && <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
                     {leftSide}
-                </div>
+                </div>}
                 <div className={classnames(style.pullRight, style.tableCell)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
                         {filterElements.map((el, i) => {
@@ -786,7 +786,8 @@ GridToolBox.propTypes = {
     clearFilters: PropTypes.func,
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
-    batchChange: PropTypes.func
+    batchChange: PropTypes.func,
+    hideToggle: PropTypes.bool
 };
 
 GridToolBox.defaultProps = {
