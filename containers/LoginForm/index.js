@@ -1,23 +1,19 @@
 /** eslint-disable react/no-unused-prop-types */
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
+
 import Form from '../../components/Form';
 import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
-
         this.onChange = this.onChange.bind(this);
-
         this.handleChange = debounce(this.handleChange, 100);
-
         this.validateForm = this.validateForm.bind(this);
-
         this.syncInputsValuesWithStore = this.syncInputsValuesWithStore.bind(this);
-
         this.submit = this.submit.bind(this);
     }
 
@@ -110,7 +106,6 @@ class LoginForm extends Component {
 
     render() {
         let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
-
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
               ref='loginForm'
