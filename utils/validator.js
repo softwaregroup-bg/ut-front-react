@@ -24,10 +24,10 @@ const validators = {
         return !!value;
     },
     minLength: (value, minLength) => {
-        return value.length >= minLength;
+        return !minLength || value.length >= minLength;
     },
     maxLength: (value, maxLength) => {
-        return value.length <= maxLength;
+        return !maxLength || value.length <= maxLength;
     },
     shouldMatchField: (value, shouldMatch, inputs) => {
         if (inputs && inputs.getIn([shouldMatch, 'value']) !== '') {

@@ -9,7 +9,7 @@ export const inputs = {
         validations: {
             isRequired: true,
             minLength: 2,
-            maxLength: 30
+            maxLength: 200
         }
     },
     'password': {
@@ -21,8 +21,7 @@ export const inputs = {
         validateOrder: ['isRequired', 'minLength', 'maxLength'],
         validations: {
             isRequired: true,
-            minLength: 3,
-            maxLength: 30
+            minLength: 3
         }
     },
     'hiddenPassword': {
@@ -46,7 +45,6 @@ export const inputs = {
         validations: {
             isRequired: true,
             minLength: 2,
-            maxLength: 30,
             shouldMatchField: 'confirmPassword'
         }
     },
@@ -60,7 +58,6 @@ export const inputs = {
         validations: {
             isRequired: true,
             minLength: 2,
-            maxLength: 30,
             shouldMatchField: 'newPassword'
         },
         skipSubmit: true
