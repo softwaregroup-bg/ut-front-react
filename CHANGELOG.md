@@ -1,3 +1,13 @@
+<a name="10.1.1"></a>
+## [10.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.1.0...v10.1.1) (2018-03-02)
+
+
+### Bug Fixes
+
+* kk lookup ([8c7e43f](https://github.com/softwaregroup-bg/ut-front-react/commit/8c7e43f))
+
+
+
 <a name="10.1.0"></a>
 # [10.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.1.0-rc-bahur.23...v10.1.0) (2018-03-02)
 
