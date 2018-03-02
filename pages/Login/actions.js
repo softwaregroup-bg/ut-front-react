@@ -16,7 +16,7 @@ export const identityCheck = (params) => ({
     type: actionList.LOGIN,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: Object.assign(params, {uri: '/login', timezone: getTimezone()})
+    params: Object.assign(params, {$http: {uri: '/login'}, timezone: getTimezone()})
 });
 
 export const logout = (params) => ({

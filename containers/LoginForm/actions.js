@@ -27,7 +27,7 @@ export const identityCheck = (params) => ({
     type: LOGIN,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: Object.assign(params.toJS(), {uri: '/login', timezone: getTimezone(), channel: 'web'})
+    params: Object.assign(params.toJS(), {$http: {uri: '/login'}, timezone: getTimezone(), channel: 'web'})
 });
 
 export const bioScan = () => ({
