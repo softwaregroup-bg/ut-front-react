@@ -1,3 +1,8 @@
+<a name="10.1.0"></a>
+# [10.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.1.0-rc-bahur.23...v10.1.0) (2018-03-02)
+
+
+
 <a name="10.0.4"></a>
 ## [10.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.0.4-rc-acapulco.1...v10.0.4) (2017-12-13)
 
