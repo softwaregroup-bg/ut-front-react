@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import classnames from 'classnames';
+
 import style from './style.css';
 
 export class Filters extends Component {
@@ -9,7 +11,7 @@ export class Filters extends Component {
         return (
             <div className={classes.join(' ')}>
                 <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>
-                <div className={style.content}>
+                <div className={classnames(style.content, this.props.contentWrapClassName)}>
                     {this.props.children}
                 </div>
             </div>
@@ -19,6 +21,7 @@ export class Filters extends Component {
 Filters.propTypes = {
     toggle: PropTypes.func,
     children: PropTypes.any.isRequired,
+    contentWrapClassName: PropTypes.string,
     opened: PropTypes.bool.isRequired,
     title: PropTypes.any.isRequired,
     isTitleLink: PropTypes.bool.isRequired

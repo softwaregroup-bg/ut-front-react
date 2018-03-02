@@ -11,6 +11,7 @@ import {
 } from './actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
+import { loginReducerProxy, prePopulate } from './storeProxy/loginReducerProxy';
 
 const validator = new Validator(inputsConfig);
 
@@ -41,6 +42,7 @@ const updateLoginStep = (state, step) => {
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
+    isLogout: false,
     loginForm: loginSteps['initial'],
     loginType: '',
     formError: '',
@@ -48,25 +50,13 @@ const defaultLoginState = Immutable.fromJS({
     loginData: {}
 });
 
-const getLoginData = (state) => {
-    let inputs = state.getIn(['loginForm', 'inputs']);
-    let currentLoginData = state.get('loginData');
-
-    inputs.toSeq().forEach(input => {
-        if (!input.get('skipSubmit')) {
-            currentLoginData = currentLoginData.set(input.get('name'), input.get('value'));
-        }
-    });
-
-    return currentLoginData;
-};
-
-export const login = (state = defaultLoginState, action) => {
+const loginReducer = (state = defaultLoginState, action) => {
     let validationResult;
 
     switch (action.type) {
         case LOGOUT:
-            return defaultLoginState;
+            return defaultLoginState
+                 .set('isLogout', true);
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
@@ -91,6 +81,17 @@ export const login = (state = defaultLoginState, action) => {
         case VALIDATE_FORM:
             validationResult = validator.validateAll(state.getIn(['loginForm', 'inputs']));
 
+            const getLoginData = () => {
+                let inputs = state.getIn(['loginForm', 'inputs']);
+                let currentLoginData = state.get('loginData');
+                inputs.toSeq().forEach(input => {
+                    if (!input.get('skipSubmit')) {
+                        currentLoginData = currentLoginData.set(input.get('name'), input.get('value'));
+                    }
+                });
+                return currentLoginData;
+            };
+
             if (validationResult.isValid) {
                 let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
 
@@ -98,7 +99,7 @@ export const login = (state = defaultLoginState, action) => {
                     state = state.setIn(['loginForm', 'inputs', prevInvalidField.get('name'), 'error'], '');
                 }
 
-                state = state.set('loginData', getLoginData(state));
+                state = state.set('loginData', getLoginData());
             } else {
                 state = state.setIn(['loginForm', 'inputs', validationResult.invalidField, 'error'], validationResult.error)
                               .set('formError', '');
@@ -127,4 +128,10 @@ export const login = (state = defaultLoginState, action) => {
         default:
             return state;
     }
+};
+
+export const login = (state, action) => {
+    const prePopulatedState = prePopulate(state, action);
+    const newState = loginReducer(prePopulatedState, action);
+    return loginReducerProxy(newState, action);
 };

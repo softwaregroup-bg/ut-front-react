@@ -3,7 +3,7 @@ import {fromJS, Map} from 'immutable';
 import {propTypeFields} from '../common';
 import Field from './Field';
 import MultiSelectField from './SpecialFields/MultiSelect';
-import GlobalMenu from './SpecialFields/GlobalMenu';
+import GlobalMenu from '../../GridMenu';
 import style from './styles.css';
 
 export class Header extends Component {

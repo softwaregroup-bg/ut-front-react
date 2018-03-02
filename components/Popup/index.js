@@ -13,6 +13,9 @@ import {
 
 import styles from './styles.css';
 
+let zIndexDialog = 22;
+let zIndexOverlay = 21;
+
 class PopupInternal extends Component {
     constructor() {
         super();
@@ -27,6 +30,9 @@ class PopupInternal extends Component {
 
     componentWillMount() {
         window.addEventListener('resize', this.handleWindowResize);
+
+        this.zIndexDialog = zIndexDialog++;
+        this.zIndexOverlay = zIndexOverlay++;
     }
 
     componentDidMount() {
@@ -41,6 +47,9 @@ class PopupInternal extends Component {
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleEsc);
         window.removeEventListener('resize', this.handleWindowResize);
+
+        zIndexDialog--;
+        zIndexOverlay--;
     }
 
     handleWindowResize() {
@@ -48,8 +57,16 @@ class PopupInternal extends Component {
     }
 
     updateContentDimensions() {
-        const contentMaxHeight = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT;
+        let contentMaxHeight = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT;
         const contentMaxWidth = window.innerWidth - POPUP_MIN_SIDE_OFFSETS;
+
+        if (this.props.staticContentTop) {
+            contentMaxHeight -= this.staticTop.clientHeight;
+        }
+
+        if (this.props.staticContentBottom) {
+            contentMaxHeight -= this.staticBottom.clientHeight;
+        }
 
         this.setState({
             contentMaxWidth: `${contentMaxWidth}px`,
@@ -83,6 +100,8 @@ class PopupInternal extends Component {
             hasOverlay,
             closeOnOverlayClick,
             header,
+            staticContentTop,
+            staticContentBottom,
             footer,
             children,
             closePopup
@@ -90,13 +109,19 @@ class PopupInternal extends Component {
 
         return (
             <div className={styles.modalContainer}>
-                { hasOverlay && <div className={styles.modalOverlay} onClick={closeOnOverlayClick ? closePopup : null} /> }
-                <div style={this.contentWidth} className={classnames(styles.popupContainer, className)}>
+                { hasOverlay && <div className={styles.modalOverlay} style={{zIndex: this.zIndexOverlay}} onClick={closeOnOverlayClick ? closePopup : null} /> }
+                <div style={{...this.contentWidth, ...{zIndex: this.zIndexDialog}}} className={classnames(styles.popupContainer, className)}>
                     { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
+                    { staticContentTop && <div ref={(staticTop) => { this.staticTop = staticTop; }} className={classnames(styles.staticContentTop, staticContentTop.className)}>
+                        {staticContentTop.content}
+                    </div> }
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
                         { children }
                     </div>
-                    { footer && <Footer leftNode={footer.leftNode} className={footer.className} actionButtons={footer.actionButtons} /> }
+                    { staticContentBottom && <div ref={(staticBottom) => { this.staticBottom = staticBottom; }} className={classnames(styles.staticContentBottom, staticContentBottom.className)}>
+                        {staticContentBottom.content}
+                    </div> }
+                    { footer && <Footer leftNode={footer.leftNode} rightNode={footer.rightNode} className={footer.className} actionButtons={footer.actionButtons} /> }
                 </div>
             </div>
         );
@@ -115,6 +140,14 @@ PopupInternal.propTypes = {
         className: PropTypes.string,
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
         closeIcon: PropTypes.bool
+    }),
+    staticContentTop: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
+    }),
+    staticContentBottom: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,
@@ -167,6 +200,14 @@ Popup.propTypes = {
     header: PropTypes.shape({
         className: PropTypes.string,
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object])
+    }),
+    staticContentTop: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
+    }),
+    staticContentBottom: PropTypes.shape({
+        className: PropTypes.string,
+        content: PropTypes.node
     }),
     footer: PropTypes.shape({
         className: PropTypes.string,

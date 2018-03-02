@@ -33,7 +33,7 @@ export class ByCustomSearch extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (!nextProps.value) {
+        if (!nextProps.value || nextProps.field !== this.props.field) {
             return true;
         }
         return false;

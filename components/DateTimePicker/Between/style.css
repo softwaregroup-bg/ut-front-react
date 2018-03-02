@@ -4,10 +4,7 @@
 
 .horizontalAlign>div:last-child {
     margin-left: 20px;
-}
-
-.horizontalAlign>div>div {
-    min-width: 350px;
+    margin-right: 10px;
 }
 
 .verticalAlign>div:last-child {
