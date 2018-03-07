@@ -449,3 +449,14 @@
     border: 1px solid red;
     margin-bottom: 15px;
 }
+
+.errorMsg {
+    text-align: center;
+    color: red;
+}
+
+.hidden {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
