@@ -16,7 +16,7 @@
 
 import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations, objectValidations, customValidations } from '../../validator/constants';
 import { validationTypes as validationTypesTabContainer } from './constants';
-import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule, customFunctionRule } from '../../validator';
+import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule, customFunctionRule, isIntegerOnlyRule, isIntegerRangeRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
 export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
@@ -96,6 +96,12 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     }
                     if (validation.type === validationTypes.object && rule.type === objectValidations.hasKeys) {
                         hasKeysRule(currentValue, rule, result);
+                    }
+                    if (validation.type === validationTypes.text && rule.type === textValidations.integerOnly) {
+                        isIntegerOnlyRule(currentValue, rule, result);
+                    }
+                    if (validation.type === validationTypes.text  && rule.type === textValidations.integerRange) {
+                        isIntegerRangeRule(currentValue, rule, result);
                     }
                     if (rule.type === customValidations.function) {
                         customFunctionRule({ sourceMap, currentValue }, rule, result);

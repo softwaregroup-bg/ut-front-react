@@ -307,8 +307,7 @@ export const isIntegerOnlyRule = (props, rule, result) => {
 
 export const isIntegerRangeRule = (props, rule, result) => {
     checkPasedResultObject(result);
-    isIntegerOnlyRule(props, rule, result);
-    if (result.isValid) {
+    if (props && /^-?\d+$/.test(props)) {
         let value = parseInt(props);
         if (rule.minVal === null || rule.minVal === void 0) {
             rule.minVal = null;
@@ -320,7 +319,7 @@ export const isIntegerRangeRule = (props, rule, result) => {
             result.isValid = false;
             result.errors.push(getErrorObject(rule));
         }
-        if (result.isValid && rule.maxVal !== null && value > rule.maxVal) {
+        if (rule.maxVal !== null && value > rule.maxVal) {
             result.isValid = false;
             result.errors.push(getErrorObject(rule));
         }

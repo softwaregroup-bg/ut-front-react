@@ -61,6 +61,7 @@ class TabContainer extends Component {
                     this.props.onErrors(prepareErrors(valid.errors));
                 }
             } else if (button.performFullValidation) {
+                debugger;
                 let valid = validateAll(this.props.sourceMap, this.props.tabs, errors);
                 if (valid.isValid) {
                     this.props.onErrors({});
@@ -273,6 +274,8 @@ TabContainer.propTypes = {
                                  textValidations.decimalOnly,
                                  textValidations.email,
                                  textValidations.uniqueValue,
+                                 textValidations.integerOnly,
+                                 textValidations.integerRange,
                                  textValidations.regex,
                                  dropdownValidations.isRequiredOnCondition,
                                  objectValidations.hasKeys,
