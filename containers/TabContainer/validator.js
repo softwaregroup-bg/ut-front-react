@@ -100,7 +100,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     if (validation.type === validationTypes.text && rule.type === textValidations.integerOnly) {
                         isIntegerOnlyRule(currentValue, rule, result);
                     }
-                    if (validation.type === validationTypes.text  && rule.type === textValidations.integerRange) {
+                    if (validation.type === validationTypes.text && rule.type === textValidations.integerRange) {
                         isIntegerRangeRule(currentValue, rule, result);
                     }
                     if (rule.type === customValidations.function) {
