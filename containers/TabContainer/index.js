@@ -273,6 +273,8 @@ TabContainer.propTypes = {
                                  textValidations.decimalOnly,
                                  textValidations.email,
                                  textValidations.uniqueValue,
+                                 textValidations.integerOnly,
+                                 textValidations.integerRange,
                                  textValidations.regex,
                                  dropdownValidations.isRequiredOnCondition,
                                  objectValidations.hasKeys,
