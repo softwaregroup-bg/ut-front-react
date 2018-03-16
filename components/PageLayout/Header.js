@@ -15,7 +15,8 @@ const Header = React.createClass({
         })),
         location: PropTypes.object,
         buttonsRaw: PropTypes.node,
-        breadcrumbsRemoveSlashes: PropTypes.number
+        breadcrumbsRemoveSlashes: PropTypes.number,
+        extraElements: PropTypes.any
     },
     getDefaultProps() {
         return {
@@ -29,13 +30,14 @@ const Header = React.createClass({
         checkPermission: PropTypes.func
     },
     render() {
-        let { text, buttons, buttonsRaw } = this.props;
+        let { text, buttons, buttonsRaw, extraElements } = this.props;
 
         return (
             <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
                     <div className={style.headingTextWrap}>{text}</div>
                 </h1>
+                {extraElements && <div>{extraElements}</div>}
                 <div className={style.buttonsWrap}>
                     <div className={style.buttonsContainer}>
                         {buttonsRaw.map((btn, i) => {

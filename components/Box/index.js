@@ -4,7 +4,7 @@ import Glyphicon from '../Glyphicon';
 import style from './style.css';
 import classnames from 'classnames';
 
-const Box = ({ children, className, title, externalTitleClasses, externalBodyClasses, titleType, showClose, fullWidth, minHeight, transparent, marginBottom = true, onClose, showAccordeon = false, collapsed = false, onToggle, arrowDirection, ...props }) => {
+const Box = ({ children, className, title, externalTitleClasses, externalBodyClasses, titleType, showClose, fullWidth, minHeight, transparent, marginBottom = true, onClose, showAccordeon = false, collapsed = false, onToggle, arrowDirection, noCollapse, ...props }) => {
     let titleTypeClass;
     switch (titleType) {
         case 'small':
@@ -23,7 +23,7 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
 
     let accordeonDirection = collapsed ? arrowDirection.collapsed : arrowDirection.expanded;
 
-    let accordeon = showAccordeon ? <div className='pull-xs-right clearfix'><Glyphicon glyphicon={accordeonDirection} style={{ color: '#B1B5B6' }} /></div> : null;
+    let accordeon = showAccordeon && !noCollapse ? <div className='pull-xs-right clearfix'><Glyphicon glyphicon={accordeonDirection} style={{ color: '#B1B5B6' }} /></div> : null;
     let fullWidthClass = fullWidth ? style.boxFull : style.boxInnerPadding;
     let transparentClass = transparent ? style.boxTransparent : null;
     let marginBottomClass = marginBottom ? null : style.boxMarginBottom;
@@ -33,7 +33,7 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
     let titleSectionClasses = classnames('f-upper', style.boxTitle, titleTypeClass, ballancerClass, externalTitleClasses);
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
     let rightSection = showAccordeon ? accordeon : closeSection;
-    let titleSection = title ? <div className={titleSectionClasses} onClick={onToggle}>{title}{rightSection}</div> : null;
+    let titleSection = title ? <div className={titleSectionClasses} onClick={!noCollapse ? onToggle : () => {}}>{title}{rightSection}</div> : null;
     let minHeightStyle = minHeight ? { minHeight: minHeight } : null;
     let body = !collapsed ? <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>{children}</div> : null;
     return (

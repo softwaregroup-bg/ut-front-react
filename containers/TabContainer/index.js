@@ -167,7 +167,7 @@ class TabContainer extends Component {
     }
 
     render() {
-        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, hideHeader } = this.props;
+        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, hideHeader, extraElements } = this.props;
 
         let activeTab = tabs[this.state.active];
         let handleTabClick = ({id}) => {
@@ -208,6 +208,7 @@ class TabContainer extends Component {
                 <Vertical fixedComponent={
                     !hideHeader
                     ? <Header
+                      extraElements={extraElements}
                       text={headerTitle}
                       location={location}
                       breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
@@ -297,7 +298,8 @@ TabContainer.propTypes = {
     errors: PropTypes.object,
     allowTabSwithIfNotValid: PropTypes.bool,
     allowSave: PropTypes.bool,
-    onErrors: PropTypes.func
+    onErrors: PropTypes.func,
+    extraElements: PropTypes.any
 };
 
 TabContainer.defaultProps = {
