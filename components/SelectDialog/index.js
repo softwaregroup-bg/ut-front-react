@@ -33,12 +33,14 @@ export default class SelectDialog extends Component {
             {
                 label: this.props.confirmButtonLabel,
                 className: 'primaryDialog',
+                styleType: 'primaryLight',
                 disabled: !selectedUnitIds.size,
                 onClick: this.selectUnit
             },
             {
                 label: this.props.cancelButtonLabel,
                 className: 'secondaryDialog',
+                styleType: 'secondaryDark',
                 onClick: this.closeDialog
             }
         ];
