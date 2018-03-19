@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
+
 import Form from '../../components/Form';
 import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
 
 class LoginForm extends Component {
     constructor(props) {
