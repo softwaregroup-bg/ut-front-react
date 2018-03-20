@@ -17,7 +17,7 @@ const ErrorWindow = ({open, message, close, title, type}) => {
         }
     ];
 
-    if (type === 'identity.invalidCredentials') {
+    if (type === 'identity.invalidCredentials' || type === 'user.invalidSession') {
         closePopUpHandler = undefined;
         header.closeIcon = false; // remove close icon
         actionButtons = [
