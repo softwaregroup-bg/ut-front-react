@@ -83,6 +83,15 @@ class TabContainer extends Component {
                         if (tabErrorsCount.hasOwnProperty(key)) {
                             let currentErrorString = tabErrorsCount[key] > 1 ? 'errors' : 'error';
                             statusErrorMessage += `<li>${key}: ${tabErrorsCount[key]} ${currentErrorString}</li>`;
+                            const errors = valid.errors.filter(x => tabs[x.tabIndex].title === key);
+                            if (errors.length) {
+                                statusErrorMessage += '<ul>';
+                                for (const err of errors) {
+                                    const errProp = Array.isArray(err.key) ? err.key.pop() : err.key;
+                                    statusErrorMessage += `<li>${errProp}: ${err.errorMessage}</li>`;
+                                }
+                                statusErrorMessage += '</ul>';
+                            }
                         }
                     }
                     statusErrorMessage += '</ul>';
