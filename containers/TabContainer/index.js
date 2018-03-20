@@ -171,7 +171,7 @@ class TabContainer extends Component {
         };
 
         return (
-            <StatusDialog status={this.state.statusObj} onClose={handleDialogClose} />
+            <StatusDialog autoScrollBodyContent status={this.state.statusObj} onClose={handleDialogClose} />
         );
     }
 

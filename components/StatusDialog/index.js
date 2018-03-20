@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-const StatusDialog = ({ status, onClose }) => {
+const StatusDialog = ({ status, onClose, autoScrollBodyContent }) => {
     var actions = [];
 
     let isOpen = status.size > 0;
@@ -23,7 +23,7 @@ const StatusDialog = ({ status, onClose }) => {
 
     return (
         <div>
-            <Dialog actions={actions} modal open={isOpen}>
+            <Dialog actions={actions} modal open={isOpen} autoScrollBodyContent={autoScrollBodyContent}>
                 <div dangerouslySetInnerHTML={{__html: displayMsg.join(' - ')}} />
             </Dialog>
         </div>
@@ -32,7 +32,8 @@ const StatusDialog = ({ status, onClose }) => {
 
 StatusDialog.propTypes = {
     status: PropTypes.object.isRequired, // immutalbe object,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    autoScrollBodyContent: PropTypes.any
 };
 
 export default StatusDialog;
