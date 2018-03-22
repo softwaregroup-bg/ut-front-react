@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import Popup from '../Popup';
 
 import styles from './style.css';
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
 import classnames from 'classnames';
+import { logout } from '../../containers/LoginForm/actions';
 
-const ErrorWindow = ({open, message, close, title, type}) => {
+const ErrorWindow = ({open, message, close, title, type, login, logout}) => {
     let closePopUpHandler = close;
     let header = {text: title};
     let actionButtons = [
@@ -24,7 +27,8 @@ const ErrorWindow = ({open, message, close, title, type}) => {
             {
                 label: 'Go to login',
                 styleType: 'primaryDialog', // secondaryDialog
-                href: '/login' // migh be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the accroding login page
+                // href: '/login' // migh be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the accroding login page
+                onClick: logout
             }
         ];
     };
@@ -48,7 +52,8 @@ ErrorWindow.propTypes = {
     close: PropTypes.func,
     message: PropTypes.node,
     title: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    logout: PropTypes.func
 };
 
 ErrorWindow.defaultProps = {
@@ -57,4 +62,12 @@ ErrorWindow.defaultProps = {
     type: ''
 };
 
-export default ErrorWindow;
+export default connect(
+    store => {
+        return {
+            login: store.login.toJS()
+        };
+    }, {
+        logout
+    }
+)(ErrorWindow);
