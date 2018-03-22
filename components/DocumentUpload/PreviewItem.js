@@ -9,7 +9,7 @@ const PreviewItem = ({
     previewBoxWidth,
     previewBoxHeight
 }) => {
-    switch (fileExtension) {
+    switch (fileExtension && fileExtension.toLowerCase()) {
         case 'jpg':
         case 'jpeg':
         case 'png':

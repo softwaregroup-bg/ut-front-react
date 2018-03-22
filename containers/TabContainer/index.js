@@ -174,15 +174,16 @@ class TabContainer extends Component {
     }
 
     render() {
-        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave } = this.props;
+        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, onTabClick } = this.props;
 
         let activeTab = tabs[this.state.active];
-        let handleTabClick = ({id}) => {
+        let handleTabClick = (tab) => {
             let ableToGoToNextTab = true;
-            if (id > this.state.active) {
+            if (tab.id > this.state.active) {
                 ableToGoToNextTab = this.checkIfSwithToNextTabIsAble(this.state.active + 1);
             }
-            if (ableToGoToNextTab) this.setState({active: id});
+            if (ableToGoToNextTab) this.setState({active: tab.id});
+            onTabClick && onTabClick({...tab, ableToGoToNextTab});
         };
 
         if (actionButtons.length && !allowSave) {
@@ -206,8 +207,8 @@ class TabContainer extends Component {
                 });
 
                 return hasPermission;
-            }).map(({title}, id) => ({
-                title, id, errorsCount: tabErrrors[id]
+            }).map((tab, id) => ({
+                title: tab.title, id, errorsCount: tab.errorsCount || tabErrrors[id]
             }));
 
         return (
@@ -272,6 +273,8 @@ TabContainer.propTypes = {
                                  textValidations.decimalOnly,
                                  textValidations.email,
                                  textValidations.uniqueValue,
+                                 textValidations.integerOnly,
+                                 textValidations.integerRange,
                                  textValidations.regex,
                                  dropdownValidations.isRequiredOnCondition,
                                  objectValidations.hasKeys,
@@ -281,7 +284,8 @@ TabContainer.propTypes = {
                     )
                 })
             ),
-            styleContentWrapper: PropTypes.object
+            styleContentWrapper: PropTypes.object,
+            errorsCount: PropTypes.number // expose tab property
         })
     ).isRequired,
     active: PropTypes.number,
@@ -300,7 +304,8 @@ TabContainer.propTypes = {
     errors: PropTypes.object,
     allowTabSwithIfNotValid: PropTypes.bool,
     allowSave: PropTypes.bool,
-    onErrors: PropTypes.func
+    onErrors: PropTypes.func,
+    onTabClick: PropTypes.func
 };
 
 TabContainer.defaultProps = {
