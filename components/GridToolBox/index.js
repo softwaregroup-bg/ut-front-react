@@ -610,6 +610,10 @@ class GridToolBox extends Component {
                 );
             case actionButtonElementTypes.buttonWithMultipleDialogs:
                 let dialogs = actionButtonElement.dialogs.map((dialog, i) => {
+                    if (dialog.render) {
+                        return dialog.render(i);
+                    }
+
                     return (
                         <ConfirmDialog key={i}
                           ref={'dialog-' + dialog.identifier}
