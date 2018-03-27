@@ -87,7 +87,7 @@ export class EventDetails extends Component {
                         <div>
                             {'GeoLocation'}
                         </div>
-                        <div className={classnames(inputStyle.inputWrap, inputWrapClassName)}>
+                        <div className={classnames(inputStyle.inputWrap)}>
                           <input
                             readOnly
                             className={classnames(inputStyle.input, style.inputInnerWrapper)}

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Immutable from 'immutable';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { fetchHistories, changeSortFilter, checkHistories, reset, selectHistory, getEventDetails } from './actions';
+import { fetchHistories, changeSortFilter, checkHistories, selectHistory, getEventDetails } from './actions';
 import Grid from '../../components/Grid';
 import mainStyle from '../../assets/index.css';
 import { getLink } from 'ut-front/react/routerHelper';
@@ -158,8 +158,7 @@ HistoryGrid.propTypes = {
     toggleColumn: PropTypes.func,
     objectId: PropTypes.string.isRequired,
     objectName: PropTypes.string.isRequired,
-    selectHistory: PropTypes.func,
-    reset: PropTypes.func
+    selectHistory: PropTypes.func
 };
 
 HistoryGrid.defaultProps = {
@@ -191,5 +190,5 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(
     mapStateToProps,
-    {fetchHistories, changeSortFilter, checkHistories, reset, selectHistory, getEventDetails}
+    {fetchHistories, changeSortFilter, checkHistories, selectHistory, getEventDetails}
 )(HistoryGrid);

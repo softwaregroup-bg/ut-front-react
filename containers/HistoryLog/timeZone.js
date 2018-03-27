@@ -104,7 +104,7 @@ module.exports = {
     formatDate: function(date) {
         if (date instanceof Date) {
             var isoString = date.toISOString();
-            return [isoString.substr(0, 10), isoString.substr(11, 12)].join(', ');    
+            return [isoString.substr(0, 10), isoString.substr(11, 12)].join(', ');
         }
         return null;
     },
