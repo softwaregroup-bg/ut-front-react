@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Map} from 'immutable';
-import Button from 'ut-front-react/components/StandardButton';
+import Button from '../../components/StandardButton';
 import style from './style.css';
 import { getLink } from 'ut-front/react/routerHelper';
-import { addTab } from 'ut-front-react/containers/TabMenu/actions';
-import Text from 'ut-front-react/components/Text';
+import { addTab } from '../../containers/TabMenu/actions';
+import Text from '../../components/Text';
 
 class ToolBox extends Component {
     constructor(props) {

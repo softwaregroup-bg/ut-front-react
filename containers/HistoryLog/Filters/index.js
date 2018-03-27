@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {ClearFilter} from 'ut-front-react/components/ClearFilter';
+import {ClearFilter} from '../../../components/ClearFilter';
 import Between from './Between';
 import {clearFilters} from '../actions';
 import {isFilterApplied} from '../../../helpers';

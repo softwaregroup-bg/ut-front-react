@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import Input from 'ut-front-react/components/Input';
+import Input from '../../components/Input';
 import classnames from 'classnames';
-import TextArea from 'ut-front-react/components/Input/TextArea';
+import TextArea from '../../components/Input/TextArea';
 import style from './style.css';
 import {convertDate, getTimeZone, getTimeZoneByOffset, formatISODate, convertUTCtoLocale} from './timeZone';
 import inputStyle from '../../components/Input/style.css';

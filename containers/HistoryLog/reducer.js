@@ -1,6 +1,6 @@
 
 import * as actionTypes from './actionTypes';
-import { REMOVE_TAB } from 'ut-front-react/containers/TabMenu/actionTypes';
+import { REMOVE_TAB } from '../../containers/TabMenu/actionTypes';
 import * as reducerHelper from './reducerHelper';
 import { defaultState } from './defaultState';
 import { fromJS } from 'immutable';

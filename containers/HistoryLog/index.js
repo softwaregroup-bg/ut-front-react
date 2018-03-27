@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import GridToolbox from 'ut-front-react/components/SimpleGridToolbox';
-import Popup from 'ut-front-react/components/Popup';
+import GridToolbox from '../../components/SimpleGridToolbox';
+import Popup from '../../components/Popup';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import mainStyle from 'ut-front-react/assets/index.css';
+import mainStyle from '../../assets/index.css';
 import Grid from './Grid';
 import Filters from './Filters';
 import EventDetails from './EventDetails';
 import Toolbox from './Toolbox';
-import AdvancedPagination from 'ut-front-react/components/AdvancedPagination';
+import AdvancedPagination from '../../components/AdvancedPagination';
 import {toggleFilter, changeHistoryProfile, updateGridPagination} from './actions';
 import style from './style.css';
 
