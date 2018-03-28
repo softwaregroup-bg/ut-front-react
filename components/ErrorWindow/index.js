@@ -5,7 +5,7 @@ import styles from './style.css';
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
 import classnames from 'classnames';
 
-const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
+const ErrorWindow = ({open, message, close, title, type, logout}) => {
     let closePopUpHandler = close;
     let header = {text: title};
     let actionButtons = [
@@ -21,8 +21,7 @@ const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
         closePopUpHandler = undefined;
         header.closeIcon = false; // remove close icon
         let goToLoginHandler = () => {
-            clearLoginState();
-            this.context.router.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
+            logout();
         };
         actionButtons = [
             {
@@ -58,14 +57,14 @@ ErrorWindow.propTypes = {
     title: PropTypes.string,
     type: PropTypes.string,
     close: PropTypes.func,
-    clearLoginState: PropTypes.func
+    logout: PropTypes.func
 };
 
 ErrorWindow.defaultProps = {
     open: true,
     title: 'ERROR',
     type: '',
-    clearLoginState: () => {}
+    logout: () => {}
 };
 
 export default ErrorWindow;

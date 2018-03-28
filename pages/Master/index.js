@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import ErrorWindow from '../../components/ErrorWindow';
 import Loader from '../../components/Loader';
 import { close } from './actions';
-import { clearLoginState } from '../../containers/LoginForm/actions';
+import { logout } from '../../containers/LoginForm/actions';
 import style from './style.css';
 
 const ErrorWindowContainer = connect(
     (state) => {
         return (state.errorWindow && state.errorWindow.toJS()) || {};
     },
-    {close, clearLoginState}
+    {close, logout}
 )(ErrorWindow);
 
 const Main = ({
