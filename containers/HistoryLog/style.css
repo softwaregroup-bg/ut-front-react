@@ -1,0 +1,135 @@
+@import './default-config.css';
+@import 'config.css';
+
+.horizontalWrap {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+}
+.horizontalFilterSeparated {
+    margin-top: 10px;
+}
+.actionSeparated {
+    float: left;
+    margin-right: 20px;
+}
+.filterSeparated, .filterDateTimebetween {
+    min-width: 200px;
+    margin-right: 20px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: auto;
+    /*min-width: 190px;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.filterDateTimebetween:last-child, .filterSeparated:first-child, .actionSeparated:last-child {
+    margin-right: 0px !important;
+}
+.filterDateTimebetween .horizontalAlign {
+    width: auto !important;
+}
+.filterWrap {
+    display: flex;
+    width: auto;
+    justify-content: flex-start;
+}
+.buttonWrap, .actionWrap {
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+}
+.clearFilterWrap {
+    margin-left: 10px;
+    position: relative;
+}
+.actionBarWrap {
+    position: relative !important;
+}
+.actionBarWrap > div{
+    display: flex;
+}
+.actionBarWrap > div > span + div {
+    flex: 1;
+}
+.hidden {
+    display: none;
+    width: 0;
+    height: 0; 
+}
+.pagination {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+.row {
+  display: flex;
+}
+.row:not(:first-child), .rowWrapper:not(:first-child) {
+  margin-top: 10px;
+}
+.row:last-child, .rowWrapper:not(:first-child) {
+  margin-bottom: 10px;
+}
+.inputInnerWrapper {
+    width: 75%;
+}
+.inputInnerActionWrapper {
+    display: inline-block;
+    margin-left: 5px;
+}
+.detailsWrap {
+    max-height: 450px;
+    min-width: 550px;
+    margin: 0 auto;
+}
+.activeLink {
+    color: var(--ut-front-react-standardActiveLinkTextColor);
+    text-decoration: none;
+    cursor: pointer;
+}
+.activeLink:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.notify {
+    text-align: center;
+    padding: 10px;
+}
+.contentTableWrap {
+    height: calc(100% - 36px) !important; /* subtract pagination height */
+    overflow-y: auto;
+    padding: 10px 20px 1px 20px;
+}
+.gridWrap {
+    position: absolute;
+    width: 100%;
+    overflow-y: auto;
+    max-height: calc(100% - 55px - 36px); /* filter action bar - pagination*/
+}
+.tabGridWrap {
+    max-height: calc(100% - 55px) !important; /* filter action bar - pagination*/
+}
+.tableWrap {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    bottom: 0 !important;
+}
+.tabMainWrap {
+    top: -20px !important;
+}
+.pageMainWrap, .tabMainWrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.popupContentWrap {
+    height: 50px;
+    min-width: 540px;
+}
+.popupContent {
+    height: 220px;
+    display: flex;
+    align-items: center;
+}
