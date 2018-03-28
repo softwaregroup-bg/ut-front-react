@@ -25,9 +25,11 @@ class ConfirmRejectionDialog extends Component {
         this.props.changeConfirmDialogValue({value: e.value, canSubmit: canSubmit});
     }
     renderContainer() {
-        let rejectReasonValidators = getRejectReasonValidationRules();
-        let {errors} = this.props;
-        if (this.props.showInput) {
+        if (this.props.render) {
+            return this.props.render();
+        } else if (this.props.showInput) {
+            const rejectReasonValidators = getRejectReasonValidationRules();
+            const { errors } = this.props;
             return (
                 <div>
                     <TextArea
@@ -90,7 +92,8 @@ ConfirmRejectionDialog.propTypes = {
     message: PropTypes.string,
     canSubmit: PropTypes.bool,
     value: PropTypes.string,
-    fullWidth: PropTypes.bool
+    fullWidth: PropTypes.bool,
+    render: PropTypes.func
 };
 
 export default ConfirmRejectionDialog;
