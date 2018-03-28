@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {ClearFilter} from '../../../components/ClearFilter';
 import Between from './Between';
 import {clearFilters} from '../actions';
-import {isFilterApplied} from '../../../helpers';
+import {isFilterApplied} from '../helpers';
 import style from '../style.css';
 const actualFilters = ['fromDate', 'toDate'];
 class Filters extends Component {

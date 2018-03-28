@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { dateValidations } from '../../helpers';
+import { dateValidations } from './helpers';
 
 export function checkHistories(histories, checked) {
     return {

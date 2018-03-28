@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { defaultHistoryState, defaultState } from './defaultState';
-import {intersectChecked, removeChecked} from '../../helpers';
+import {intersectChecked, removeChecked} from './helpers';
 const FINISHED = 'finished';
 
 function getPathVariable(pathname) {
