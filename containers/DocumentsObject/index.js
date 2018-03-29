@@ -61,7 +61,8 @@ class DocumentsContainer extends Component {
             permissions,
             documentTypes,
             selectedFilter,
-            documentArchived
+            documentArchived,
+            hasMakerChecker
         } = this.props;
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
@@ -87,6 +88,7 @@ class DocumentsContainer extends Component {
               onGridSelect={selectAttachments}
               permissions={permissions}
               documentTypes={docTypes}
+              hasMakerChecker={hasMakerChecker}
               uploadNewDocument={(newObject) => {
                   let formatedObj = {
                       createdDate: newObject.createdDate,
@@ -146,7 +148,8 @@ DocumentsContainer.propTypes = {
     changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
-    pathname: PropTypes.string.isRequired
+    pathname: PropTypes.string.isRequired,
+    hasMakerChecker: PropTypes.bool
 };
 
 export default connect(

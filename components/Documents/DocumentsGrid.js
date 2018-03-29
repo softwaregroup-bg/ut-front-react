@@ -44,7 +44,7 @@ class DocumentsGrid extends Component {
     }
 
     get content() {
-        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
+        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected, hasMakerChecker } = this.props;
         let handleSelectItem = (selectedItem) => {
             let isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
             onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
@@ -66,7 +66,7 @@ class DocumentsGrid extends Component {
                       multiSelect={false}
                       globalMenu={false}
                       emptyRowsMsg={<Text>No results</Text>}
-                      fields={getListTableColumns()}
+                      fields={getListTableColumns(hasMakerChecker !== false)}
                       data={gridData}
                       transformCellValue={this.mapColumn}
                       handleRowClick={handleSelectItem}
@@ -103,9 +103,8 @@ DocumentsGrid.propTypes = {
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
     selected: PropTypes.object, // immutable object
-
-    // funcs
-    onGridSelect: PropTypes.func
+    onGridSelect: PropTypes.func,
+    hasMakerChecker: PropTypes.bool
 };
 
 export default DocumentsGrid;

@@ -47,7 +47,7 @@ class Documents extends Component {
     }
 
     render() {
-        let { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        let { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, hasMakerChecker } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>
@@ -58,6 +58,7 @@ class Documents extends Component {
                       documentArchived={documentArchived}
                       onGridSelect={onGridSelect}
                       selected={selectedAttachment}
+                      hasMakerChecker={hasMakerChecker}
                     />
                 </Vertical>
             </div>
@@ -99,7 +100,8 @@ Documents.propTypes = {
     archiveDocument: PropTypes.func,
     allowedFileTypes: PropTypes.array,
 
-    permissions: Toolbox.propTypes.permissions
+    permissions: Toolbox.propTypes.permissions,
+    hasMakerChecker: PropTypes.bool
 };
 
 Documents.defaultProps = {

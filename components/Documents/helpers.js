@@ -1,14 +1,19 @@
 import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants.js';
 
 // Listing
-export const getListTableColumns = () => {
-    return [
+export const getListTableColumns = (hasMakerChecker = true) => {
+    const columns = [
         {title: 'Group Name', name: 'documentType'},
         {title: 'Document Description', name: 'documentDescription'},
         {title: 'File Type', name: 'extension'},
-        {title: 'Upload Date', name: 'createdDate'},
-        {title: 'Status', name: 'statusId'}
+        {title: 'Upload Date', name: 'createdDate'}
     ];
+
+    if (hasMakerChecker) {
+        columns.push({title: 'Status', name: 'statusId'});
+    }
+
+    return columns;
 };
 
 export const mapContentTypeToExtension = (contentType) => {
