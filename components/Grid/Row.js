@@ -67,7 +67,7 @@ class GridRow extends Component {
         let {columns, data, canCheck, linkableColumns, tdStyles} = this.props;
         let rowIndex = this.props.rowIndex;
         let columnElements = columns.map(({key}, i) => {
-            let transformedData = this.props.mapColumn(columns[i], data.get(key), rowIndex);
+            let transformedData = this.props.mapColumn(columns[i], data.get(key), rowIndex, data);
             let isLink = linkableColumns && linkableColumns[i];
             let currenctStyles = tdStyles[i];
             if (!currenctStyles) {
