@@ -27,7 +27,7 @@ class MultiSelectBubble extends Component {
     }
 
     render() {
-        let { name, value, options, label } = this.props;
+        let { name, value, options, label, disabled } = this.props;
         return (
             <div className={style.outerWrap}>
                 <div className={style.labelWrap}>
@@ -35,6 +35,7 @@ class MultiSelectBubble extends Component {
                 </div>
                 <div className={style.inputWrap}>
                     <Select
+                      disabled={disabled}
                       name={name}
                       value={this.formatValue(value)}
                       options={this.formatOptions(options)}
@@ -49,6 +50,7 @@ class MultiSelectBubble extends Component {
 
 MultiSelectBubble.propTypes = {
     name: PropTypes.string,
+    disabled: PropTypes.bool,
     value: PropTypes.arrayOf(PropTypes.object),
     options: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.string,
