@@ -27,7 +27,9 @@ export default class Camera extends Component {
     }
 
     componentWillUnmount() {
-        this.stream.getTracks().forEach(stream => stream.stop());
+        if (this.stream) {
+            this.stream.getTracks().forEach(stream => stream.stop());
+        }
     }
 
     requestUserMedia() {
