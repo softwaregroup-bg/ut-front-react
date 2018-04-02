@@ -33,7 +33,7 @@ export function resetDocumentState(identifier) {
 export const fetchArchivedDocuments = (objectId, objectType, identifier) => {
     return {
         type: FETCH_ARCHIVED_DOCUMENTS,
-        method: 'document.archivedDocument.get',
+        method: 'document.archivedDocument.objectGet',
         params: {
             objectId,
             objectType
