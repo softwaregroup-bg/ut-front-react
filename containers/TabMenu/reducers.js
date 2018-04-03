@@ -64,6 +64,13 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
         }
         return state;
     }
+    if (action.type === actionTypes.CLOSE_ALL_TABS) {
+        return {
+            active: state.active,
+            tabs: [],
+            usedPaths: {}
+        };
+    }
     return state;
 };
 

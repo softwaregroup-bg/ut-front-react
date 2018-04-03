@@ -26,3 +26,9 @@ export function updateTabTitle(pathname, newTitle) {
         newTitle: newTitle
     };
 }
+
+export function closeAllTabs() {
+    return {
+        type: actionTypes.CLOSE_ALL_TABS
+    };
+}
