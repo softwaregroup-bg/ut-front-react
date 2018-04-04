@@ -13,23 +13,50 @@ class DateTimePickerBetween extends Component {
 
     handleChange(ref, value) {
         let { onChange } = this.props;
-        let date = new Date(value);
-
-        if (date && !isNaN(date.valueOf())) {
+        let newDate = new Date(value);
+        if (ref === 'to' || (newDate.getHours() === 23 && newDate.getMinutes() === 59)) {
+            newDate.setSeconds(59);
+            newDate.setMilliseconds(999);
+        } else {
+            newDate.setSeconds(0);
+            newDate.setMilliseconds(0);
+        }
+        if (newDate && !isNaN(newDate.valueOf())) {
             if (ref === 'from') {
-                date.setSeconds(0);
-                date.setMilliseconds(0);
+                if (!this.props.defaultValue.to) {
+                    let defaultToDate = new Date(value);
+                    defaultToDate.setHours(23);
+                    defaultToDate.setMinutes(59);
+                    defaultToDate.setSeconds(59);
+                    defaultToDate.setMilliseconds(999);
+                    onChange({
+                        key: 'to',
+                        value: defaultToDate
+                    });
+                }
             } else if (ref === 'to') {
-                date.setSeconds(59);
-                date.setMilliseconds(999);
+                if (!this.props.defaultValue.from) {
+                    let defaultFromDate = new Date(value);
+                    defaultFromDate.setHours(0);
+                    defaultFromDate.setMinutes(0);
+                    defaultFromDate.setSeconds(0);
+                    defaultFromDate.setMilliseconds(0);
+                    onChange({
+                        key: 'from',
+                        value: defaultFromDate
+                    });
+                }
+                if (!this.props.defaultValue.to && newDate.getHours() === 0) {
+                    newDate.setHours(23);
+                    newDate.setMinutes(59);
+                }
             }
         } else {
-            date = undefined;
+            newDate = undefined;
         }
-
         onChange({
             key: ref,
-            value: date
+            value: newDate
         });
     }
 
@@ -52,7 +79,6 @@ class DateTimePickerBetween extends Component {
             timeType,
             timeDropDownData
         } = this.props;
-
         let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
 
         return (
