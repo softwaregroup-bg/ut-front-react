@@ -18,6 +18,7 @@ import {
     dropdownValidations,
     arrayValidations
 } from '../validator/constants.js';
+import { fromJS } from 'immutable';
 
 const validators = {
     isRequired: (value) => {
@@ -48,6 +49,9 @@ const validators = {
             return /^\d+$/.test(value);
         }
         return true;
+    },
+    custom: (value, customFunc, inputs) => {
+        return customFunc(value, inputs || fromJS({}));
     }
 };
 
@@ -72,6 +76,9 @@ const defaultErrorMessagingMapping = {
     },
     regex: ({ input }) => {
         return `Invalid field.`;
+    },
+    custom: ({ errorMessage }) => {
+        return errorMessage || 'No error message';
     }
 };
 
@@ -98,12 +105,17 @@ export class Validator {
 
         validateOrder.every((validationRule) => {
             let isValid = validators[validationRule](value, validations[validationRule], inputs);
+            let errorMessage = null;
+            if (typeof isValid === 'object' && !isValid.isValid) {
+                errorMessage = isValid.errorMessage;
+                isValid = false;
+            }
 
             if (cascadeParent && !inputs.get(cascadeParent)) {
                 isValid = true;
             }
             if (!isValid) {
-                error = this.errorMapping[validationRule]({...validations, input});
+                error = this.errorMapping[validationRule]({...validations, input, errorMessage});
             }
 
             return isValid;
