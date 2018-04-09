@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Creatable } from 'react-select';
+import classnames from 'classnames';
 import style from './style.css';
 
 /**
@@ -19,12 +20,12 @@ class MultiSelectBubbleCustom extends Component {
     }
 
     render() {
-        let { name, value, options, label } = this.props;
+        let { name, value, options, label, boldLabel } = this.props;
         options = options.map(option => ({ value: option.key, label: option.name }));
         value = value.map(option => ({ value: option.key, label: option.name }));
         return (
             <div className={style.outerWrap}>
-                <div className={style.labelWrap}>
+                <div className={classnames(style.labelWrap, {[style.boldLabel]: boldLabel})}>
                     {label}
                 </div>
                 <div className={style.inputWrap}>
@@ -49,13 +50,15 @@ MultiSelectBubbleCustom.propTypes = {
         label: PropTypes.string
     })).isRequired,
     onChange: PropTypes.func,
-    label: PropTypes.string
+    label: PropTypes.string,
+    boldLabel: PropTypes.bool
 };
 
 MultiSelectBubbleCustom.defaultProps = {
     name: 'react-select-dropdown',
     errorMessage: '',
-    isEdited: false
+    isEdited: false,
+    boldLabel: true
 };
 
 export default MultiSelectBubbleCustom;

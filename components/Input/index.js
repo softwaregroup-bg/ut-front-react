@@ -152,7 +152,7 @@ TextField.defaultProps = {
     capitalize: false,
     validators: [],
     readonly: false,
-    boldLabel: false,
+    boldLabel: true,
     isValid: true,
     errorMessage: '',
     onChange: () => {},
