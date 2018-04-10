@@ -18,9 +18,14 @@ class SearchBox extends Component {
             this.setState({value: defaultValue || ''});
         }
     }
+    prepareFilterParams(filters) {
+        var newFilters;
+        newFilters = filters.trim();
+        return newFilters;
+    }
 
     handleSearch() {
-        this.props.onSearch(this.state.value);
+        this.props.onSearch(this.prepareFilterParams(this.state.value));
         if (this.props.clearOnSearch) {
             this.setState({value: ''});
         }
@@ -43,7 +48,7 @@ class SearchBox extends Component {
         }
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
-
+   
     render() {
         let boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
         if (!this.props.label) {
