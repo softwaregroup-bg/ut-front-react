@@ -1,15 +1,16 @@
 import React, { PropTypes } from 'react';
 import DatePicker from 'material-ui/DatePicker';
+import classnames from 'classnames';
 import style from './style.css';
 
 const DateInput = (props) => {
-    let { placeholder, label } = props;
+    let { placeholder, label, boldLabel } = props;
 
     if (label) {
         return (
             <div>
                 <div className={style.outerWrap}>
-                    <div className={style.lableWrap}>
+                    <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
                         {label}
                     </div>
                     <div className={style.inputWrap}>
@@ -25,7 +26,12 @@ const DateInput = (props) => {
 
 DateInput.propTypes = {
     label: PropTypes.string,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    boldLabel: PropTypes.bool
+};
+
+DateInput.defaultProps = {
+    boldLabel: true
 };
 
 export default DateInput;

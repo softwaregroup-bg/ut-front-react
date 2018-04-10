@@ -35,7 +35,6 @@ export default class DatePicker extends Component {
         let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
         let iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
         let readonlyStyle = disabled ? style.readonlyInput : '';
-        let boldLabelStyle = boldLabel ? style.boldLabel : '';
         let datePickerLabeled = label ? style.datePickerLabeled : '';
         let labelStyle = withVerticalClass ? style.labelWrap : style.labelWrapHorizontal;
 
@@ -43,7 +42,7 @@ export default class DatePicker extends Component {
 
         return (
             <div className={classnames(style.wrap, this.props.wrapperClassName)}>
-                {label ? (<span className={classnames(labelStyle, labelWrap, boldLabelStyle)}>{label}</span>) : ''}
+                {label ? (<span className={classnames(labelStyle, labelWrap, {[style.boldLabel]: boldLabel})}>{label}</span>) : ''}
                 <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
@@ -76,7 +75,7 @@ DatePicker.defaultProps = {
     container: 'dialog',
     isValid: true,
     hintText: ' ',
-    boldLabel: false,
+    boldLabel: true,
     label: '',
     withVerticalClass: false
 };

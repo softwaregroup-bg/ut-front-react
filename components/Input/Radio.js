@@ -33,7 +33,7 @@ RadioInput.propTypes = {
 
 RadioInput.defaultProps = {
     onChange: function() {},
-    boldLabel: false
+    boldLabel: true
 };
 
 export default RadioInput;
