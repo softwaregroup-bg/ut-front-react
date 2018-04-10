@@ -18,14 +18,10 @@ class SearchBox extends Component {
             this.setState({value: defaultValue || ''});
         }
     }
-    prepareFilterParams(filters) {
-        var newFilters;
-        newFilters = filters.trim();
-        return newFilters;
-    }
 
     handleSearch() {
-        this.props.onSearch(this.prepareFilterParams(this.state.value));
+        let value = this.state.value && this.state.value.trim();
+        this.props.onSearch(value);
         if (this.props.clearOnSearch) {
             this.setState({value: ''});
         }
