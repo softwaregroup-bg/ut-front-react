@@ -44,7 +44,7 @@ class SearchBox extends Component {
         }
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
-   
+
     render() {
         let boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
         if (!this.props.label) {
