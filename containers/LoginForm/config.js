@@ -67,7 +67,7 @@ export const inputs = {
     },
     'otp': {
         name: 'otp',
-        type: 'text',
+        type: 'password',
         label: 'Otp code',
         value: '',
         error: '',
