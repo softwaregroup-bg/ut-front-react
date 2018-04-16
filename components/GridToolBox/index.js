@@ -77,6 +77,9 @@ class GridToolBox extends Component {
                 case filterElementTypes.customSearch:
                     hasValue = !!filter.value;
                     break;
+                case filterElementTypes.custom:
+                    hasValue = !!filter.value;
+                    break;
                 default:
                     hasValue = !!filter.defaultValue && filter.defaultValue !== filter.initialValue;
                     break;
@@ -146,6 +149,8 @@ class GridToolBox extends Component {
                         }}
                       canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
+            case filterElementTypes.custom:
+                return filterElement.render();
             case filterElementTypes.searchBox:
                 return (filterAutoFetch && !renderInDialog)
                     ? (<div>
@@ -707,6 +712,7 @@ GridToolBox.propTypes = {
                 filterElementTypes.datePicker,
                 filterElementTypes.datePickerBetween,
                 filterElementTypes.dateTimePickerBetween,
+                filterElementTypes.custom,
                 filterElementTypes.customSearch,
                 filterElementTypes.clear,
                 filterElementTypes.searchBtn
