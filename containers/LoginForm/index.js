@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 
 import Form from '../../components/Form';
 import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { closeAllTabs } from '../TabMenu/actions';
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
 
 class LoginForm extends Component {
@@ -18,9 +19,10 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId} } = this.props;
+        let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs } = this.props;
 
         if (nextProps.cookieChecked && nextProps.authenticated) {
+            closeAllTabs();
             this.context.router.push('/');
         } else if (!authenticated && nextProps.authenticated) {
             if (ssoOrigin) {
@@ -135,7 +137,7 @@ export default connect(
             loginType: login.get('loginType')
         };
     },
-    { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState }
+    { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState, closeAllTabs }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -157,7 +159,8 @@ LoginForm.propTypes = {
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,
     bioScan: PropTypes.func,
-    clearLoginState: PropTypes.func
+    clearLoginState: PropTypes.func,
+    closeAllTabs: PropTypes.func
 };
 
 LoginForm.contextTypes = {

@@ -20,7 +20,8 @@ class SearchBox extends Component {
     }
 
     handleSearch() {
-        this.props.onSearch(this.state.value);
+        let value = this.state.value && this.state.value.trim();
+        this.props.onSearch(value);
         if (this.props.clearOnSearch) {
             this.setState({value: ''});
         }

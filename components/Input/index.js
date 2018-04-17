@@ -135,7 +135,7 @@ TextField.propTypes = {
     // Validation
     validators: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+            type: PropTypes.oneOf([textValidations.integerOnly, textValidations.integerRange, textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
             values: PropTypes.any,
             errorMessage: PropTypes.string
         })
@@ -152,7 +152,7 @@ TextField.defaultProps = {
     capitalize: false,
     validators: [],
     readonly: false,
-    boldLabel: false,
+    boldLabel: true,
     isValid: true,
     errorMessage: '',
     onChange: () => {},

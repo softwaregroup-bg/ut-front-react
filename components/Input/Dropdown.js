@@ -219,7 +219,7 @@ Dropdown.propTypes = {
 
 Dropdown.defaultProps = {
     label: undefined,
-    boldLabel: false,
+    boldLabel: true,
     placeholder: 'Select',
     placeholderValue: '__placeholder__',
     canSelectPlaceholder: false,

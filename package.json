@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.1.1",
+  "version": "10.2.0-rc-cubalibre.8",
   "description": "Frontend module",
   "pkg": {
     "assets": [
@@ -26,6 +26,7 @@
     "postpublish": "ut-postpublish",
     "postversion": "ut-postversion",
     "precommit": "ut-precommit",
+    "precover": "ut-precover",
     "prepublish": "ut-prepublish",
     "prepush": "ut-prepush",
     "pretest": "ut-pretest",

@@ -87,7 +87,7 @@ class TextArea extends Component {
             return (
                 <div className={style.outerWrap}>
                     <div className={style.textareaLabelWrap}>
-                        {label} {this.props.validators.length > 0 && '*'}
+                        {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={style.textareaWrap}>
                         {textArea}

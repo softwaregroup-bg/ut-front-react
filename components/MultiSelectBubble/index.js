@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Select from 'react-select';
+import classnames from 'classnames';
 import style from './style.css';
 
 /**
@@ -27,14 +28,15 @@ class MultiSelectBubble extends Component {
     }
 
     render() {
-        let { name, value, options, label } = this.props;
+        let { name, value, options, label, disabled, boldLabel } = this.props;
         return (
             <div className={style.outerWrap}>
-                <div className={style.labelWrap}>
-                    {label}
+                <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
+                        {label}
                 </div>
                 <div className={style.inputWrap}>
                     <Select
+                      disabled={disabled}
                       name={name}
                       value={this.formatValue(value)}
                       options={this.formatOptions(options)}
@@ -49,19 +51,22 @@ class MultiSelectBubble extends Component {
 
 MultiSelectBubble.propTypes = {
     name: PropTypes.string,
+    disabled: PropTypes.bool,
     value: PropTypes.arrayOf(PropTypes.object),
     options: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.string,
         label: PropTypes.string
     })).isRequired,
     onChange: PropTypes.func,
-    label: PropTypes.string
+    label: PropTypes.string,
+    boldLabel: PropTypes.bool
 };
 
 MultiSelectBubble.defaultProps = {
     name: 'react-select-dropdown',
     errorMessage: '',
-    isEdited: false
+    isEdited: false,
+    boldLabel: true
 };
 
 export default MultiSelectBubble;
