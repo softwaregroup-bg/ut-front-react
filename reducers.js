@@ -5,5 +5,6 @@ import gate from './containers/Gate/reducer';
 import master from './pages/Master/reducer';
 import { reducer as form } from 'redux-form/immutable';
 import frontDocuments from './containers/Documents/reducer';
+import {utCommon} from './common/reducer';
 
-export default {login, /* loginData, */ gate, form, ...master, frontDocuments};
+export default {login, /* loginData, */ gate, form, ...master, frontDocuments, utCommon};
