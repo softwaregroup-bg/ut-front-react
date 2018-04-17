@@ -1,3 +1,8 @@
+<a name="10.2.0"></a>
+# [10.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.2.0-rc-cubalibre.8...v10.2.0) (2018-04-17)
+
+
+
 <a name="10.1.1"></a>
 ## [10.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.1.0...v10.1.1) (2018-03-02)
 

@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.2.0-rc-cubalibre.8",
+  "version": "10.2.0",
   "description": "Frontend module",
   "pkg": {
     "assets": [
