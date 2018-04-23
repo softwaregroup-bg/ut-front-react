@@ -37,13 +37,8 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        const { loginData, clearLoginState } = this.props;
-
-        // if there is previusly stored loginData, reset login state
-        // this happens in cases when the user is logged in and navigates to /login again
-        if (loginData.get('username') || loginData.get('password')) {
-            clearLoginState();
-        }
+        const { clearLoginState } = this.props;
+        clearLoginState();
     }
 
     onChange(e) {
