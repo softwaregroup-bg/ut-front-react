@@ -132,6 +132,8 @@ export default class DatePickerBetween extends Component {
                   mode={this.props.mode}
                   onAccept={this.handleAccept('from')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
+                  maxDate={this.props.maxDate.from}
+                  minDate={this.props.minDate.from}
                   ref='fromDialogWindow'
                 />
                 <DatePickerDialog
@@ -142,6 +144,8 @@ export default class DatePickerBetween extends Component {
                   mode={this.props.mode}
                   onAccept={this.handleAccept('to')}
                   firstDayOfWeek={this.props.firstDayOfWeek}
+                  maxDate={this.props.maxDate.to}
+                  minDate={this.props.minDate.to}
                   ref='toDialogWindow'
                 />
             </div>
@@ -154,10 +158,20 @@ DatePickerBetween.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     withVerticalClass: false,
-    dateFormat: 'YYYY-MM-DD'
+    dateFormat: 'YYYY-MM-DD',
+    maxDate: {},
+    minDate: {}
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.shape({
+        from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+        to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
+    }),
+    maxDate: PropTypes.shape({
+        from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+        to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
+    }),
+    minDate: PropTypes.shape({
         from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
         to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
     }),

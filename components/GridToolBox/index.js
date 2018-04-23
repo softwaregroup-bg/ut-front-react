@@ -200,6 +200,8 @@ class GridToolBox extends Component {
                               masterLabel={filterElement.masterLabel}
                               labelFrom={filterElement.labelFrom}
                               labelTo={filterElement.labelTo}
+                              maxDate={filterElement.maxDate}
+                              minDate={filterElement.minDate}
                               boldLabel={renderInDialog} />
                         </div>);
             case filterElementTypes.dateTimePickerBetween:
