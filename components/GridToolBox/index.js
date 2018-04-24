@@ -15,6 +15,7 @@ import { Button } from 'reactstrap';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
 import ByCustomSearch from '../Filters/ByCustomSearch';
+import MultiSelectDropdown from '../Input/MultiSelectDropdown';
 
 import classnames from 'classnames';
 import style from './style.css';
@@ -79,6 +80,9 @@ class GridToolBox extends Component {
                     break;
                 case filterElementTypes.custom:
                     hasValue = !!filter.value;
+                    break;
+                case filterElementTypes.multiselect:
+                    hasValue = !!filter.defaultValue && !!filter.defaultValue.length;
                     break;
                 default:
                     hasValue = !!filter.defaultValue && filter.defaultValue !== filter.initialValue;
@@ -233,6 +237,24 @@ class GridToolBox extends Component {
                           field={filterElement.field}
                           value={filterElement.value} />
                     </div>);
+            case filterElementTypes.multiselect:
+                return (
+                  <div>
+                      <MultiSelectDropdown
+                        defaultSelected={filterValue || []}
+                        label={filterElement.label}
+                        data={filterElement.data}
+                        keyProp={filterElement.keyProp}
+                        placeholder={filterElement.placeholder}
+                        onSelect={filterAutoFetch && !renderInDialog
+                          ? filterElement.onSelect
+                          : function(obj) {
+                              onChange(filterElement.name, obj.value);
+                          }}
+                        type='dropdownMultiSelect'
+                    />
+                  </div>
+                );
             default:
                 return null;
         }
@@ -331,6 +353,8 @@ class GridToolBox extends Component {
                             <span>{obj[0].name}</span>
                         </div>);
                     }
+                    break;
+                case filterElementTypes.multiselect:
                     break;
                 default:
                     if (filter.defaultValue) {
@@ -717,7 +741,8 @@ GridToolBox.propTypes = {
                 filterElementTypes.custom,
                 filterElementTypes.customSearch,
                 filterElementTypes.clear,
-                filterElementTypes.searchBtn
+                filterElementTypes.searchBtn,
+                filterElementTypes.multiselect
             ]).isRequired,
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
