@@ -1,7 +1,13 @@
 @import './default-config.css';
 @import 'config.css';
 
-.outerWrap, .outerWrapNoLabel, .innerWrap, .inputWrap, .labelWrap {
+.outerWrap,
+.outerWrapNoLabel,
+.innerWrap,
+.innerWrapTP,
+.inputWrap,
+.labelWrap,
+.labelWrapTP {
     display: flex;
 }
 
@@ -18,11 +24,21 @@
     width: auto;
 }
 
-.labelWrap {
+.innerWrapTP {
+    width: 70%;
+}
+
+.labelWrap,
+.labelWrapTP {
     font-size: 14px;
     text-align: left;
     align-items: center;
     margin-right: 10px;
+}
+
+.labelWrapTP {
+    width: 30%;
+    margin-right: 0;
 }
 
 .boldLabel {
