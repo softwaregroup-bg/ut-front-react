@@ -148,10 +148,18 @@ class DateTimePicker extends Component {
             ? new Date(defaultValue)
             : new Date(defaultDate);
 
+        let innerWrap = style.innerWrap
+        let labelWrap = style.labelWrap;
+        
+        if (timeType === 'timePicker') {
+            innerWrap = style.innerWrapTP;
+            labelWrap = style.labelWrapTP;
+        }
+
         return (
             <div className={outerWrapStyle}>
-                 {label ? (<span className={classnames(style.labelWrap, boldLabelStyle)}>{label}</span>) : ''}
-                <div className={classnames(style.innerWrap, innerWrapperClassName)}>
+                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}>{label}</span>) : ''}
+                <div className={classnames(innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
                         <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
