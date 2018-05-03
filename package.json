@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.3.0-rc-diesel.1",
+  "version": "10.3.0-rc-diesel.2",
   "description": "Frontend module",
   "pkg": {
     "assets": [
