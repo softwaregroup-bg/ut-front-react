@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
+import AdvancedSearchButton from '../AdvancedSearchButton';
 import DatePicker from './../DatePicker/Simple';
 import DatePickerBetween from './../DatePicker/Between';
 import DateTimePickerBetween from '../DateTimePicker/Between';
@@ -360,13 +361,7 @@ class GridToolBox extends Component {
     renderAdvancedButton() {
         let tooltipContent = this.getTooltip();
         let el = <div key='toggleAdv' className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
-            <div className={classnames(style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch}>
-                <div className={style.barWrap}>
-                    <div className={style.bar} />
-                    <div className={style.bar} />
-                    <div className={style.bar} />
-                </div>
-            </div>
+            <AdvancedSearchButton onClick={this.toggleAdvancedSearch} />
             {tooltipContent.length ? <div className={style.advancedSearchPopOver}>
                 {tooltipContent}
             </div> : null}
