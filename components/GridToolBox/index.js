@@ -185,7 +185,9 @@ class GridToolBox extends Component {
                           locale={filterElement.locale}
                           defaultValue={filterValue}
                           label={filterElement.label}
-                          boldLabel={renderInDialog} />
+                          boldLabel={renderInDialog}
+                          minDate={filterElement.minDate}
+                          maxDate={filterElement.maxDate} />
                     </div>);
 
             case filterElementTypes.datePickerBetween:
