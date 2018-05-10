@@ -39,26 +39,29 @@ class Container extends Component {
         this.setPosition = this.setPosition.bind(this);
         this.setSpecificWidth = this.setSpecificWidth.bind(this);
         this.updateFirstAndSecondColDom = this.updateFirstAndSecondColDom.bind(this);
+        this.updateResizableObjects = this.updateResizableObjects.bind(this);
     }
-
+    componentWillReceiveProps(nextProps) {
+        let isUpdateResizeObjsNeeded = false;
+        nextProps.cols && nextProps.cols.length && nextProps.cols.forEach(obj => {
+            if (!this.resizeObjects.find(ro => ro.domId === obj.domId)) isUpdateResizeObjsNeeded = true;
+        });
+        isUpdateResizeObjsNeeded && this.updateResizableObjects(nextProps.cols);
+    }
     componentDidMount() {
         window.addEventListener('resize', this.resize);
-
+        this.props.cols && this.props.cols.length && this.updateResizableObjects(this.props.cols);
         // Resizible logic
         this.setResizorsHeight();
-        let initObjects = this.props.cols.map((col) => {
-            return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
-        });
-        this.initResize(initObjects);
+        this.initResize();
         document.onmouseup = this.updateOnMouseUp;
         document.onmousemove = this.setNewPosition;
     }
-
-    /*
-        Resizible logic
-    */
-    initResize() {
-        let args = Array.prototype.slice.call(arguments[0]);
+    updateResizableObjects(cols = []) {
+        this.resizeObjects = [];
+        let args = this.props.cols.map((col) => {
+            return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
+        });
         args.forEach((el) => {
             let currentElement = document.getElementById(el.domId);
             let currentWidth = currentElement.clientWidth;
@@ -75,6 +78,11 @@ class Container extends Component {
             };
             this.resizeObjects.push(resizeObject);
         });
+    }
+    /*
+        Resizible logic
+    */
+    initResize() {
         this.resizedInit = true;
     }
     setResizorsHeight() {
