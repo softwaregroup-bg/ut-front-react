@@ -109,7 +109,9 @@ AutoFetcher.propTypes = {
 const fetchData = (method, params) => ({
     type,
     method,
-    params
+    params,
+    suppressPreloadWindow: true,
+    suppressErrorWindow: true
 });
 
 export default connect(() => ({}), { fetchData })(AutoFetcher);
