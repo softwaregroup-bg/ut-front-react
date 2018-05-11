@@ -65,12 +65,12 @@ class AutoFetcher extends Component {
                   className={style.autoCompletePopup}
                   dataSource={this.props.dataSource || this.state.dataSource}
                   dataSourceConfig={this.props.dataSourceConfig}
-                  filter={AutoComplete.caseInsensitiveFilter}
                   openOnFocus={this.props.openOnFocus !== false}
                   ref={this.props.refval}
                   maxSearchResults={this.props.maxSearchResults || 5}
                   animated={false}
                   style={dpStyles}
+                  filter={this.props.filter || (() => true)}
                   fullWidth={this.props.fullWidth !== false}
                   onUpdateInput={this.onChange}
                   onNewRequest={this.props.onSelect}
@@ -103,7 +103,8 @@ AutoFetcher.propTypes = {
     dataSourceConfig: PropTypes.object,
     onSelect: PropTypes.func,
     searchText: PropTypes.string,
-    fetchData: PropTypes.func
+    fetchData: PropTypes.func,
+    filter: PropTypes.any
 };
 
 const fetchData = (method, params) => ({
