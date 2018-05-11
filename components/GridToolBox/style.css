@@ -80,7 +80,7 @@
 }
 
 .advancedSearchIconWrapper {
-    width: 30px;
+    width: auto;
     height: 30px;
 }
 
@@ -89,7 +89,7 @@
     display: flex;
 }
 
-.barWrap {
+/* .barWrap {
     width: 60%;
     margin: auto;
 }
@@ -102,7 +102,7 @@
 
 .barWrap .bar:last-child {
     margin-bottom: 0;
-}
+} */
 
 .searchIcon {
     background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
