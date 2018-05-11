@@ -46,18 +46,18 @@ class Container extends Component {
         nextProps.cols && nextProps.cols.length && nextProps.cols.forEach(obj => {
             if (!this.resizeObjects.find(ro => ro.domId === obj.domId)) isUpdateResizeObjsNeeded = true;
         });
-        isUpdateResizeObjsNeeded && this.updateResizableObjects(nextProps.cols);
+        isUpdateResizeObjsNeeded && this.updateResizableObjects();
     }
     componentDidMount() {
         window.addEventListener('resize', this.resize);
-        this.props.cols && this.props.cols.length && this.updateResizableObjects(this.props.cols);
+        this.props.cols && this.props.cols.length && this.updateResizableObjects();
         // Resizible logic
         this.setResizorsHeight();
         this.initResize();
         document.onmouseup = this.updateOnMouseUp;
         document.onmousemove = this.setNewPosition;
     }
-    updateResizableObjects(cols = []) {
+    updateResizableObjects() {
         this.resizeObjects = [];
         let args = this.props.cols.map((col) => {
             return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
