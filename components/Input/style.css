@@ -394,7 +394,7 @@ input:read-only{
 .disabledCheckPlusBox {
     width: 20px;
     height: 20px;
-    background: inline('./images/disabled_checkbox.png') no-repeat center center;
+    background: inline('./images/enrollment_checked_disabled.png') no-repeat center center !important;
 }
 
 .lableWrap {
