@@ -68,7 +68,7 @@ class TextArea extends Component {
     }
 
     render() {
-        let { label, readonly } = this.props;
+        let { label, readonly, cssClass } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let errorTextAreaStyle = !isValid ? style.error : '';
         let zeroHeightStyle = isValid ? style.hh : '';
@@ -77,7 +77,7 @@ class TextArea extends Component {
         let textArea = <textArea
           rows='7'
           ref='input'
-          className={classnames(style.textarea, errorTextAreaStyle, disabledStyle)}
+          className={classnames(style.textarea, errorTextAreaStyle, disabledStyle, cssClass)}
           value={this.state.value || ''}
           onChange={this.handleChange}
           disabled={this.props.disabled}
@@ -113,6 +113,7 @@ TextArea.propTypes = {
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
     readonly: PropTypes.bool,
+    cssClass: PropTypes.string,
 
     // Validation
     validators: PropTypes.arrayOf(
