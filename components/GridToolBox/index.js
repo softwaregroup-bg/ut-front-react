@@ -248,6 +248,9 @@ class GridToolBox extends Component {
                         data={filterElement.data}
                         keyProp={filterElement.keyProp}
                         placeholder={filterElement.placeholder}
+                        mergeStyles={filterElement.mergeStyles || {
+                            multiSelectDropdownPlaceholder: style.multiselectDropdownPlaceholder
+                        }}
                         onSelect={filterAutoFetch && !renderInDialog
                           ? filterElement.onSelect
                           : function(obj) {

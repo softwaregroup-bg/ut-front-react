@@ -151,3 +151,13 @@
 .space:last-child {
     padding-right: 0px;
 }
+
+.multiselectDropdownPlaceholder {
+  max-width: 240px;
+  width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  margin-top: 3px;
+}
