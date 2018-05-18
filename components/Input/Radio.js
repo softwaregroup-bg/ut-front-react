@@ -3,7 +3,6 @@ import style from './style.css';
 import classnames from 'classnames';
 
 const RadioInput = ({ label, boldLabel, errorMessage, isValid, onChange, defaultValue, options, disabled, optionClassName }) => {
-    let zeroHeightStyle = isValid ? style.hh : '';
     return (
         <div className={style.outerWrap}>
             {label && <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
@@ -19,7 +18,7 @@ const RadioInput = ({ label, boldLabel, errorMessage, isValid, onChange, default
                         </span>
                     );
                 })}
-                {errorMessage && <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>}
+                {errorMessage && <div className={classnames(style.errorWrap)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>}
             </div>
         </div>
     );
