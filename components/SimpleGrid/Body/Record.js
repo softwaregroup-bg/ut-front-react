@@ -12,6 +12,7 @@ export default class Record extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleDoubleClick = this.handleDoubleClick.bind(this);
         this.handleIsRowChecked = this.handleIsRowChecked.bind(this);
     }
     getStyle(name) {
@@ -19,6 +20,9 @@ export default class Record extends Component {
     }
     handleClick() {
         this.props.handleClick(this.props.data, this.props.recordIndex);
+    }
+    handleDoubleClick() {
+        this.props.handleDoubleClick(this.props.data, this.props.recordIndex)
     }
     handleIsRowChecked() {
         if (!this.props.rowsChecked.length) {
@@ -100,7 +104,7 @@ export default class Record extends Component {
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
         let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
         return (
-            <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
+            <tr onTouchTap={this.handleClick} onDoubleClick={this.handleDoubleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
                 {this.renderRow(fields, isChecked)}
             </tr>
         );
@@ -121,6 +125,7 @@ Record.propTypes = {
     transformCellValue: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
+    handleDoubleClick: PropTypes.func,
     handleClick: PropTypes.func,
     rowStyleField: PropTypes.string,
     local: PropTypes.bool
@@ -129,7 +134,8 @@ Record.propTypes = {
 Record.defaultProps = {
     fields: [],
     data: {},
-    handleClick: (record) => {}
+    handleClick: (record) => {},
+    handleDoubleClick: (record) => {}
 };
 
 Record.contextTypes = {
