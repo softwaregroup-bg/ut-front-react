@@ -21,6 +21,7 @@ export class Body extends Component {
             externalStyle,
             transformCellValue,
             handleRowClick,
+            handleRowDoubleClick,
             handleCheckboxSelect,
             rowsChecked,
             handleCellClick,
@@ -69,6 +70,7 @@ export class Body extends Component {
                           transformCellValue={transformCellValue}
                           handleCheckboxSelect={handleCheckboxSelect}
                           handleClick={handleRowClick}
+                          handleDoubleClick={handleRowDoubleClick}
                           rowsChecked={rowsChecked}
                           handleCellClick={handleCellClick}
                           rowStyleField={rowStyleField} />
@@ -125,6 +127,7 @@ Body.propTypes = {
     rowsRenderLimit: PropTypes.number,
     globalMenu: PropTypes.bool,
     handleRowClick: PropTypes.func,
+    handleRowDoubleClick: PropTypes.func,
     rowsChecked: PropTypes.array,
     handleCellClick: PropTypes.func,
     rowStyleField: PropTypes.string
