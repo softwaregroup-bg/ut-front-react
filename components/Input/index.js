@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { textValidations } from '../../validator/constants';
+import { textValidations, customValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
 import classnames from 'classnames';
@@ -135,7 +135,7 @@ TextField.propTypes = {
     // Validation
     validators: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([textValidations.integerOnly, textValidations.integerRange, textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+            type: PropTypes.oneOf([textValidations.integerOnly, textValidations.integerRange, textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, customValidations.function]).isRequired,
             values: PropTypes.any,
             errorMessage: PropTypes.string
         })
