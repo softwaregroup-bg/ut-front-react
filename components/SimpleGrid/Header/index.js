@@ -128,6 +128,7 @@ export class Header extends Component {
                               isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'globalMenu') {
                             return <GlobalMenu
+                              externalStyle={this.props.externalStyle}
                               field={field.toJS()}
                               key={idx}
                               fields={this.props.fields}
