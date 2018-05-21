@@ -114,7 +114,7 @@ export default class GlobalMenu extends Component {
         );
     }
     render() {
-        return (<th id={menuFieldControl} className={style.headerGlobalMenuField}>
+        return (<th id={menuFieldControl} className={this.getStyle('headerGlobalMenuField')}>
             <div onTouchTap={this.handleMenuOpen} className={this.getStyle('headerGlobalMenuFieldControl')}><SettingsIcon /></div>
             {this.getMenu()}
         </th>);
