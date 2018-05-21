@@ -22,7 +22,7 @@ export default class Record extends Component {
         this.props.handleClick(this.props.data, this.props.recordIndex);
     }
     handleDoubleClick() {
-        this.props.handleDoubleClick(this.props.data, this.props.recordIndex)
+        this.props.handleDoubleClick(this.props.data, this.props.recordIndex);
     }
     handleIsRowChecked() {
         if (!this.props.rowsChecked.length) {
