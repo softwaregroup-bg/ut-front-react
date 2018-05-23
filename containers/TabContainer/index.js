@@ -145,6 +145,8 @@ class TabContainer extends Component {
                         } else if (validation.keyText && validation.keyArray) { // Array with text case
                             let concatedErrorKey = validation.keyArray[validation.keyArray.length - 1] + '-' + validation.keyText[validation.keyText.length - 1] + '-';
                             return errKey.indexOf(concatedErrorKey) >= 0;
+                        } else if (validation.keyArray) {
+                            return validation.keyArray.join(',') === errKey;
                         } else {
                             return null;
                         }
@@ -263,6 +265,7 @@ TabContainer.propTypes = {
                         validationTypes.arrayWithArrayElements,
                         validationTypes.radio,
                         customValidationTypes.hasRaisedError,
+                        customValidations.function,
                         validationTypes.object]),
                     rules: PropTypes.arrayOf(
                          PropTypes.shape({
