@@ -23,7 +23,7 @@ import {
 
 const validators = {
     isRequired: (value) => {
-        return !!value;
+        return !!value && !!value.trim();
     },
     minLength: (value, minLength) => {
         return value.length >= minLength;
@@ -118,6 +118,7 @@ export class Validator {
     }
 
     validateAllFlat(inputs) {
+        debugger;
         // if input values ARE NOT objects with key value
         // inputs - immutable Map with 'data' and 'edited' key filled flat with the data
         let errors = [];
