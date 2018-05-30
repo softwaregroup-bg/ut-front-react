@@ -23,7 +23,7 @@ import {
 
 const validators = {
     isRequired: (value) => {
-        return !!value;
+        return !!value && !!String(value).trim();
     },
     minLength: (value, minLength) => {
         return value.length >= minLength;
