@@ -339,6 +339,19 @@ export const isValidEmailRuleArray = (props, rule, result) => {
 
 /* End is valid email array validation */
 
+export const isRequiredEmailRuleArray = (currentValue, rule, result) => {
+    let toCheck = currentValue.toJS ? currentValue.toJS() : currentValue;
+
+    if (Array.isArray(toCheck)) {
+        toCheck.forEach(element => {
+            if (element.value !== undefined && !element.value) {
+                result.isValid = false;
+                result.errors.push(getErrorObject(rule));
+            }
+        });
+    }
+};
+
 /* Object validation */
 
 export const hasKeysRule = (props, rule, result) => {

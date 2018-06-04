@@ -16,7 +16,7 @@
 
 import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations, objectValidations, customValidations } from '../../validator/constants';
 import { validationTypes as validationTypesTabContainer } from './constants';
-import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule, customFunctionRule } from '../../validator';
+import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule, customFunctionRule, isRequiredEmailRuleArray } from '../../validator';
 import { getAssignedRoles } from './helper';
 
 export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
@@ -74,6 +74,9 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     }
                     if (validation.type === validationTypes.array && rule.type === arrayValidations.email) {
                         isValidEmailRuleArray(currentValue, rule, result);
+                    }
+                    if (validation.type === validationTypes.array && rule.type === textValidations.isRequired) {
+                        isRequiredEmailRuleArray(currentValue, rule, result);
                     }
                     if (validation.type === validationTypes.array && rule.type === textValidations.length) {
                         lengthRuleArray(currentValue, rule.minVal, rule.maxVal, rule, result);
