@@ -1,3 +1,8 @@
+<a name="10.3.0"></a>
+# [10.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.3.0-rc-diesel.10...v10.3.0) (2018-06-07)
+
+
+
 <a name="10.2.0"></a>
 # [10.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.2.0-rc-cubalibre.8...v10.2.0) (2018-04-17)
 
