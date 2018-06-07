@@ -11,16 +11,16 @@ const Checkbox = (props) => {
 
     let label = '';
     if (props.label) {
-        label = <p>{props.label}</p>;
+        label = <p onTouchTap={isDisabled ? noop : props.onClick}>{props.label}</p>;
     }
     let isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
 
     return (
-        <span className={classnames(style.checkBoxWrapper, isDisabledClass)} onTouchTap={isDisabled ? noop : props.onClick}>
+        <span className={classnames(style.checkBoxWrapper, isDisabledClass)} >
             <input {...propsLeft} type='checkbox' onChange={noop} className={classnames(style.checkBox, isDisabledClass)} />
             <div className={style.innerWrap}>
-                <label className={style.checkBoxWrap}><span className={classnames(style.checkBoxSpanWrapper, isDisabledClass)} /></label>
-                {label && <div className={style.lableWrap}>{label}</div>}
+                <label className={style.checkBoxWrap} onTouchTap={isDisabled ? noop : props.onClick}><span className={classnames(style.checkBoxSpanWrapper, isDisabledClass)} /></label>
+                {label && <div className={style.lableWrap} >{label}</div>}
             </div>
         </span>
     );

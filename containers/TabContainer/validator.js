@@ -104,6 +104,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                         isIntegerRangeRule(currentValue, rule, result);
                     }
                     if (rule.type === customValidations.function) {
+                        rule.keyArray = validation.keyArray;
                         customFunctionRule({ sourceMap, currentValue }, rule, result);
                     }
 

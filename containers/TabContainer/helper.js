@@ -10,6 +10,8 @@ export function prepareErrors(errors, currentErrors) {
         } else if (error.keyArray && error.keyText) {
             let errorKey = error.keyArray[error.keyArray.length - 1] + '-' + error.keyText[error.keyText.length - 1] + '-' + error.index;
             result[errorKey] = error.errorMessage;
+        } else if (error.keyArray) {
+            result[error.keyArray.join(',')] = error.errorMessage; // full key with sep = ',', becuase last key may have chance to duplicate
         }
     });
 

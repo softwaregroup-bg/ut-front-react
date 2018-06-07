@@ -147,6 +147,7 @@ export class SimpleGrid extends Component {
                   handleCheckboxSelect={this.props.handleCheckboxSelect}
                   handleCellClick={this.props.handleCellClick}
                   handleRowClick={this.props.handleRowClick}
+                  handleRowDoubleClick={this.props.handleRowDoubleClick}
                   rowsChecked={this.props.rowsChecked}
                   rowStyleField={this.props.rowStyleField}
                   verticalFields={verticalFields}
@@ -196,6 +197,7 @@ SimpleGrid.propTypes = {
     }),
     handleCellClick: PropTypes.func,
     handleRowClick: PropTypes.func,
+    handleRowDoubleClick: PropTypes.func,
     rowStyleField: PropTypes.string
 };
 
