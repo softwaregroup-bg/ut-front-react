@@ -75,7 +75,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     if (validation.type === validationTypes.array && rule.type === arrayValidations.email) {
                         isValidEmailRuleArray(currentValue, rule, result);
                     }
-                    if (validation.type === validationTypes.array && rule.type === textValidations.isRequired) {
+                    if (validation.type === validationTypes.array && rule.type === textValidations.isRequiredEmail) {
                         isRequiredEmailRuleArray(currentValue, rule, result);
                     }
                     if (validation.type === validationTypes.array && rule.type === textValidations.length) {

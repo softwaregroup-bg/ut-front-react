@@ -17,6 +17,7 @@ export const validationTypes = {
 export const textValidations = {
     isRequired: 'isRequired',
     isRequiredOnCondition: 'isRequiredOnCondition',
+    isRequiredEmail: 'isRequiredEmail',
     email: 'email',
     numberOnly: 'numberOnly',
     integerOnly: 'integerOnly',
