@@ -321,6 +321,18 @@ export const hasKeysRule = (props, rule, result) => {
 
 /* End Object validation */
 
+/* Custom function validation */
+
+export const customFunctionRule = ({ sourceMap, currentValue }, rule, result) => {
+    let validator = rule.validator;
+    if (!validator({ sourceMap, currentValue })) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
+/* End custom function validation */
+
 function checkPasedResultObject(result) {
     result = result || {};
     result.errors = result.errors || [];

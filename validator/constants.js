@@ -44,3 +44,7 @@ export const defaultRoleValidations = {
 export const objectValidations = {
     hasKeys: 'hasKeys'
 };
+
+export const customValidations = {
+    function: 'function'
+};
