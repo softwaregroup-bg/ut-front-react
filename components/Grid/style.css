@@ -28,7 +28,7 @@ table.dataGridTable tr {
     transition: background 0.2s ease-in-out;
 }
 
-table.dataGridTable thead {
+table.dataGridTable thead .thTitle{
     cursor: pointer;
 }
 
