@@ -154,7 +154,11 @@ class GridToolBox extends Component {
                       canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
             case filterElementTypes.custom:
-                return filterElement.render();
+                const customChangeHandler = (value) => {
+                    onChange(filterElement.name, value);
+                };
+
+                return filterElement.render(customChangeHandler);
             case filterElementTypes.searchBox:
                 return (filterAutoFetch && !renderInDialog)
                     ? (<div>
