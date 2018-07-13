@@ -16,7 +16,7 @@ const AttributesSection = (props) => {
 
     let getCheckedItemsText = () => {
         let multipleItemNamesString = multipleItemNames !== '' ? multipleItemNames : singleItemName + 's';
-        let itemPlurizationName = checked.length === 1 ? singleItemName : multipleItemNamesString;
+        let itemPlurizationName = checked.size === 1 ? singleItemName : multipleItemNamesString;
 
         let itemNamesAsString = '';
         if (checked.size < 10) {
