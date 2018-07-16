@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.4.0-rc-einstein.1",
+  "version": "10.4.0-rc-einstein.2",
   "description": "Frontend module",
   "pkg": {
     "assets": [
