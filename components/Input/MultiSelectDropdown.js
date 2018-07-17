@@ -15,9 +15,9 @@ class MultiSelectDropdown extends Dropdown {
 
         this.toggleAllChecks = this.toggleAllChecks.bind(this);
     }
-    
+
     handleChange(menuItem) {
-        let { onSelect, keyProp, data, defaultSelected } = this.props;
+        let { onSelect, keyProp, defaultSelected } = this.props;
         let itemIndex = defaultSelected.findIndex((value) => {
             return value.key === menuItem.key;
         });
