@@ -1,3 +1,8 @@
+<a name="10.4.0"></a>
+# [10.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.4.0-rc-einstein.4...v10.4.0) (2018-08-02)
+
+
+
 <a name="10.3.0"></a>
 # [10.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.3.0-rc-diesel.10...v10.3.0) (2018-06-07)
 
