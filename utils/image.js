@@ -10,7 +10,7 @@ export const resizeImage = (file, scaleDimensions) => {
 
 export const getFileDimensions = (file) => {
     const img = document.createElement('img');
-    img.src = file;
+    file && (img.src = file);
 
     return {
         width: img.width,

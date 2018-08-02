@@ -13,72 +13,36 @@ class MultiSelectDropdown extends Dropdown {
     constructor(props) {
         super(props);
 
-        this.state = {
-            open: false,
-            values: props.defaultSelected || [],
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
-        };
-
-        this.toggleOpen = this.toggleOpen.bind(this);
-        this.toggleClose = this.toggleClose.bind(this);
         this.toggleAllChecks = this.toggleAllChecks.bind(this);
     }
 
-    componentWillReceiveProps({defaultSelected, isValid, errorMessage}) {
-        if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
-        }
-        if (this.state.values !== defaultSelected) {
-            this.setState({values: defaultSelected});
-        }
-    }
-
-    toggleOpen(event) {
-        return this.setState({open: true, anchorEl: event.currentTarget});
-    }
-
-    toggleClose() {
-        return this.setState({open: false});
-    }
-
     handleChange(menuItem) {
-        let { onSelect, keyProp, data } = this.props;
-        let { values } = this.state;
-        let itemIndex = values.findIndex((value) => {
+        let { onSelect, keyProp, defaultSelected } = this.props;
+        let itemIndex = defaultSelected.findIndex((value) => {
             return value.key === menuItem.key;
         });
+        let values = defaultSelected.slice();
         if (itemIndex > -1) {
             values.splice(itemIndex, 1);
         } else {
-            let item = data.find((value) => {
-                return value.key === menuItem.key;
-            });
-            values.push(item);
+            values.push(menuItem);
         }
 
-        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {
-            onSelect({key: keyProp, value: values});
-        });
+        onSelect({key: keyProp, value: values});
     }
 
     toggleAllChecks() {
-        let { onSelect, keyProp, data } = this.props;
-        let { values } = this.state;
+        let { onSelect, keyProp, data, defaultSelected } = this.props;
 
-        if (values.length === data.length) {
-            values = [];
-        } else {
+        let values = [];
+        if (defaultSelected.length !== data.length) {
             values = data;
         }
-        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {
-            onSelect({key: keyProp, value: values});
-        });
+        onSelect({key: keyProp, value: values});
     }
 
     getMenuItems() {
-        let {data, placeholder, cssStyle, mergeStyles} = this.props;
-        let {values} = this.state;
-
+        let {data, placeholder, cssStyle, mergeStyles, defaultSelected} = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
 
         let menuItems = [
@@ -100,7 +64,7 @@ class MultiSelectDropdown extends Dropdown {
                   key={'1-ddfg'}>
                     <div className={ddstyles.multiSelectDropdownMenuItem}>
                         <Checkbox
-                          checked={values.length === data.length} />
+                          checked={defaultSelected.length === data.length} />
                         <span>{placeholder}</span>
                     </div>
                 </MenuItem>,
@@ -108,9 +72,7 @@ class MultiSelectDropdown extends Dropdown {
                   key={'2-ddfg'} />
             ];
             data.forEach((item) => {
-                let isChecked = values.findIndex((i) => {
-                    return item.key === i.key;
-                }) > -1;
+                let isChecked = (data.length === defaultSelected.length || defaultSelected.findIndex(d => d.key === item.key) > -1);
                 menuItems.push(
                     <MenuItem
                       className={ddstyles.multiSelectDropdownMenuItemWrap}
@@ -131,18 +93,17 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     renderDropDown() {
-        let menuItems = this.getMenuItems();
-        let { cssStyle, mergeStyles } = this.props;
+        let { cssStyle, mergeStyles, defaultSelected, isValid } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
-        let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
+        let errorDropDownStyle = !isValid ? ddstyles.error : '';
         let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
         let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
         // 30 px for dropdown icon
         let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
-        let selectedItems = this.state.values.map((value) => (value.name)).join(', ');
+        let selectedItems = defaultSelected.map((value) => (value.name)).join(', ');
 
         return (
             <div className={classnames(ddstyles.pointer, ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
@@ -162,17 +123,14 @@ class MultiSelectDropdown extends Dropdown {
                   anchorEl={this.state.anchorEl}
                   anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                   targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  animation={PopoverAnimationVertical}
-                >
+                  animation={PopoverAnimationVertical}>
                     <Menu
                       autoWidth={false}
                       disableAutoFocus
-                      multiple
-                      value={this.state.values.map((value) => (value.key))}
                       maxHeight={300}
                       style={{width: rootElementWidth}}
                       className={ddstyles.multiSelectDropdownMenu}>
-                        {menuItems}
+                        {this.state.open && this.getMenuItems()}
                     </Menu>
                 </Popover>
             </div>
@@ -182,7 +140,8 @@ class MultiSelectDropdown extends Dropdown {
 
 MultiSelectDropdown.defaultProps = {
     isValid: true,
-    errorMessage: ''
+    errorMessage: '',
+    defaultSelected: []
 };
 
 export default MultiSelectDropdown;

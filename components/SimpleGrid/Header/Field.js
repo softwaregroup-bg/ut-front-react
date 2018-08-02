@@ -31,8 +31,8 @@ export default class Field extends Component {
 
         let thStyle = ['verticalSpanField', 'verticalField'].includes(this.props.field.name) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : undefined;
         return (
-            <th className={thStyle || girdHeadingStyle.join(' ')} onTouchTap={this.handleOrder}>
-                <span className={this.getStyle('gridHeadingInner')}>
+            <th className={thStyle || girdHeadingStyle.join(' ')}>
+                <span className={classnames(style.thTitle, this.getStyle('gridHeadingInner'))} onTouchTap={this.handleOrder}>
                     {this.props.transformCellValue(this.props.field.title || '', this.props.field, undefined, true)}
                     <span className={classnames.apply(undefined, styles)} />
                 </span>
