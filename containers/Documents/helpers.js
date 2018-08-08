@@ -128,7 +128,7 @@ export function combineAttachments(state) {
         }
     });
     return state.set('attachmentsList', immutable.fromJS(result))
-                .set('deletedList', immutable.fromJS(deletedIds));
+        .set('deletedList', immutable.fromJS(deletedIds));
 }
 
 function mergeAttachments(mainObj, overridesObj) {
@@ -210,6 +210,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
         if (actorId) {
             actorId = parseInt(actorId);
         }
+        let att = doc.attachments ? doc.attachments[0] : {};
         switch (doc.statusId) {
             case 'new':
                 tmpDocId--;
@@ -221,9 +222,9 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                 };
                 let attObj = {
                     attachmentId: tmpAttId,
-                    filename: doc.attachments[0].filename,
-                    extension: doc.attachments[0].extension,
-                    contentType: doc.attachments[0].contentType,
+                    filename: att.filename,
+                    extension: att.extension,
+                    contentType: att.contentType,
                     documentId: tmpDocId,
                     attachmentSizeId: 'original'
                 };
@@ -259,10 +260,10 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     description: doc.description || null
                 };
                 attObj = {
-                    attachmentId: doc.attachments[0].attachmentId,
-                    filename: doc.attachments[0].filename,
-                    extension: doc.attachments[0].extension,
-                    contentType: doc.attachments[0].contentType,
+                    attachmentId: att.attachmentId,
+                    filename: att.filename,
+                    extension: att.extension,
+                    contentType: att.contentType,
                     documentId: documentId,
                     attachmentSizeId: 'original'
                 };
@@ -271,14 +272,14 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     documentId: documentId,
                     documentOrder: 255
                 };
-                if (doc.documentUnapprovedId && doc.attachments[0].attachmentUnapprovedId) {
+                if (doc.documentUnapprovedId && att.attachmentUnapprovedId) {
                     docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = doc.documentUnapprovedId.replace(/\*/g, '');
-                    attObj.attachmentUnapprovedId = typeof doc.attachments[0].attachmentUnapprovedId === 'string' && doc.attachments[0].attachmentUnapprovedId.replace(/\*/g, '');
+                    attObj.attachmentUnapprovedId = typeof att.attachmentUnapprovedId === 'string' && att.attachmentUnapprovedId.replace(/\*/g, '');
                     attObj.documentUnapprovedId = docObj.documentUnapprovedId;
                     if (docObj.documentUnapprovedId === '') {
                         docObj.documentUnapprovedId = null;
                     }
-                    if (!attObj.attachmentUnapprovedI) {
+                    if (!attObj.attachmentUnapprovedId) {
                         attObj.attachmentUnapprovedId = null;
                     }
                 }
