@@ -30,7 +30,7 @@ class DocumentsGrid extends Component {
                     return <span className={style.fileDetailsNoText}><Text>(no description)</Text></span>;
                 }
             case 'extension':
-                return obj.attachments[0].extension;
+                return obj.attachments && obj.attachments[0] ? obj.attachments[0].extension : '';
             case 'createdDate':
                 return <DateComponent>{obj.createdDate}</DateComponent>;
             case 'statusId':
