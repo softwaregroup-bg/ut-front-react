@@ -228,6 +228,9 @@ span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
     background-size: 18px 18px;
     border: none;
 }
+.checkBoxWrapperInherit input.checkBox:checked + .innerWrap label span {
+    background-image: url('./images/checkbox-inherit.png') !important;
+}
 span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label span {
     background: url('./images/disabled_checkbox.png');
     background-position: center center;
