@@ -1,41 +1,41 @@
 .girdOrderHeadingStyle {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 .girdOrderHeadingStyleASC {
-    background: url('./images/arrow.png') no-repeat top right;
+  background: url('./images/arrow.png') no-repeat bottom right;
 }
 .girdOrderHeadingStyleDESC {
-    background: url('./images/arrow.png') no-repeat bottom right;
+  background: url('./images/arrow.png') no-repeat top right;
 }
 
 .gridHeaderTr {
-    background: #F9F9F9;
-    cursor: pointer;
-    border-bottom: 1px solid #D7D6D6;
-    -webkit-transition: background 0.2s ease-in-out;
-    transition: background 0.2s ease-in-out;
+  background: #F9F9F9;
+  cursor: pointer;
+  border-bottom: 1px solid #D7D6D6;
+  -webkit-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
 }
 .girdHeading {
-    background: #F9F9F9;
+  background: #F9F9F9;
 }
 .girdHeading {
-    position: relative;
-    padding: .75rem;
+  position: relative;
+  padding: .75rem;
 }
 .gridHeaderTrSpanColumnContentless, .gridHeaderTrSpanColumnNotLast, .gridHeaderTrSpanColumnNotLast.gridHeaderTrSpanColumnContentless{
-    font-weight: bold;
-    text-align: center;
-    border-right: 1px solid #D7D6D6;
-    background: #eaeaea;
+  font-weight: bold;
+  text-align: center;
+  border-right: 1px solid #D7D6D6;
+  background: #eaeaea;
 }
 .gridHeaderTrSpanColumnContentless, .gridHeaderTrSpanColumnNotLast{
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .gridHeaderTrSpanColumnContentless {
-    border: none;
-    text-decoration: none;
+  border: none;
+  text-decoration: none;
 }
 
 .gridHeadingInner {
-    display: flex;
+  display: flex;
 }
