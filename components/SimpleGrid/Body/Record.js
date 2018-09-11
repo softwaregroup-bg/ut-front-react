@@ -98,7 +98,7 @@ export default class Record extends Component {
         let isChecked = this.handleIsRowChecked();
 
         let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
-        let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
+        let customClass = this.props.data.customClass || (this.props.rowStyleField && this.props.data[this.props.rowStyleField] ? this.props.data[this.props.rowStyleField] : '');
         return (
             <tr onTouchTap={this.handleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
                 {this.renderRow(fields, isChecked)}

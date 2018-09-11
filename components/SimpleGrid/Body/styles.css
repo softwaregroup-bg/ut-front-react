@@ -30,6 +30,22 @@ tr.gridBodyTr.checked:nth-child(2n) {
     background: #fafbd6;
 }
 
+tr.success {
+    background: #ccffcc !important;
+}
+
+tr.success:hover {
+    background: #b3ffb3 !important;
+}
+
+tr.error {
+    background: #ffcccc !important;
+}
+
+tr.error:hover {
+    background: #ffb3b3 !important;
+}
+
 .noResultRow {
     text-align: center;
 }
