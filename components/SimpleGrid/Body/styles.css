@@ -32,6 +32,7 @@ tr.gridBodyTr.checked:nth-child(2n) {
 
 tr.success {
     background: #ccffcc !important;
+    border-bottom: 1px solid #c1c0c0 !important;
 }
 
 tr.success:hover {
@@ -40,6 +41,7 @@ tr.success:hover {
 
 tr.error {
     background: #ffcccc !important;
+    border-bottom: 1px solid #c1c0c0 !important;
 }
 
 tr.error:hover {
