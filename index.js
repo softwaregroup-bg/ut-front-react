@@ -5,7 +5,7 @@ module.exports = {
         return this && this.registerRequestHandler && this.registerRequestHandler([{
             method: 'GET',
             path: '/static/assets/bootstrap/{p*}',
-            config: {auth: false},
+            options: {auth: false},
             handler: {
                 directory: {
                     path: path.resolve(require.resolve('bootstrap'), '../..'),
@@ -18,7 +18,7 @@ module.exports = {
         {
             method: 'GET',
             path: '/static/assets/react-select/{p*}',
-            config: {auth: false},
+            options: {auth: false},
             handler: {
                 directory: {
                     path: path.join(__dirname, 'components/MultiSelectBubble/assets'),
