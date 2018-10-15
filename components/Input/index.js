@@ -84,8 +84,19 @@ class TextField extends Component {
         let { isValid, errorMessage } = this.state.valid;
         let zeroHeightStyle = isValid ? this.style.hh : '';
         const value = (!this.state.value && this.state.value !== 0) ? '' : this.state.value;
-
-        let input = <input ref='textInput' type={type} className={this.inputClassName} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        const eventName = isIE11 ? 'onInput' : 'onChange';
+        const inputProps = {
+            type,
+            className: this.inputClassName,
+            value,
+            onClick,
+            onBlur,
+            [eventName]: this.handleChange,
+            readOnly: this.props.readonly,
+            placeholder
+        };
+        let input = <input ref='textInput' {...inputProps} />;
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (

@@ -77,15 +77,19 @@ class TextArea extends Component {
         let editedInputStyle = this.state.isEdited ? style.editedInputStyle : '';
         let disabledStyle = readonly ? style.readonlyInput : '';
 
-        let textArea = <textArea
-          rows='7'
-          ref='input'
-          className={classnames(style.textarea, errorTextAreaStyle, editedInputStyle, disabledStyle)}
-          value={this.state.value || ''}
-          onChange={this.handleChange}
-          disabled={this.props.disabled}
-          readOnly={this.props.readonly}
-        />;
+        const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        const eventName = isIE11 ? 'onInput' : 'onChange';
+        const inputProps = {
+            rows: '7',
+            ref: 'input',
+            className: classnames(style.textarea, errorTextAreaStyle, editedInputStyle, disabledStyle),
+            value: this.state.value || '',
+            [eventName]: this.handleChange,
+            readOnly: this.props.readonly,
+            disabled: this.props.disabled
+        };
+
+        let textArea = <textArea {...inputProps} />;
         if (label) {
             return (
                 <div className={style.outerWrap}>
