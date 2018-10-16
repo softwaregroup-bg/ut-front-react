@@ -283,9 +283,7 @@ export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
     if (!value) {
         return true;
     }
-    let digitsLeftOfDecimalPoint = precision - scale;
-    let regex = new RegExp('^(\\d{0,' + digitsLeftOfDecimalPoint + '}\\.?\\d{0,' + scale + '}|\\.\\d{1,' + scale + '})$');
-
+    let regex = new RegExp(createDecimalRegex(precision, scale));
     if (value !== '' && !(regex.test(value))) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -390,4 +388,23 @@ function getErrorObject(rule) {
 
 function getErrorMessage(message) {
     return message || defaultErrorMessage;
+}
+
+function createDecimalRegex(precision, scale) {
+    var exp = '';
+    for (var i = 0; i < scale; ++i) {
+        exp += '^(\\d{';
+
+        if (i === 0) exp += '1,';
+
+        exp += precision - scale + i;
+
+        if (scale - i === 1) exp += '}(\\.\\d{1';
+        else {
+            exp += `}(\\.\\d{1,${scale - i}`;
+        }
+        exp += '})?)$|';
+    }
+    exp += `^(\\d{${precision}})$`;
+    return exp;
 }
