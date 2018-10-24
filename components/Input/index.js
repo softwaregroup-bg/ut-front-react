@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import Cleave from 'cleave.js/react';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
@@ -16,7 +17,7 @@ class TextField extends Component {
             isEdited: this.props.isEdited
         };
 
-        this.onChangQueue = [];
+        this.onChangeQueue = [];
         this.initialValue = props.value;
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,13 +38,25 @@ class TextField extends Component {
     }
 
     handleChange(e) {
-        let newValue = e.target.value;
-        this.setState({value: newValue});
+        let newValue = this.props.options
+            ? e.target.rawValue
+            : e.target.value;
+
+        if (typeof this.props.parse === 'function') {
+            // ex. 10,000.537 => 10000.537
+            newValue = this.props.parse(newValue);
+        }
+
+        if (typeof this.props.normalize === 'function') {
+            // ex. 10000.537 => 10000.54
+            newValue = this.props.normalize(newValue);
+        }
+        this.setState({value: newValue, cleaveFormattedValue: e.target.value});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
-        var oldQueue = this.onChangQueue.shift();
+        var oldQueue = this.onChangeQueue.shift();
         clearTimeout(oldQueue);
-        this.onChangQueue.push(setTimeout(() => {
+        this.onChangeQueue.push(setTimeout(() => {
             this.notifyForChange(newValue);
         }, notifyForChangeInterval));
     }
@@ -96,7 +109,35 @@ class TextField extends Component {
             readOnly: this.props.readonly,
             placeholder
         };
-        let input = <input ref='textInput' {...inputProps} />;
+
+        let renderValue = this.props.options
+            ? this.state.cleaveFormattedValue
+            : value;
+        if (renderValue && renderValue.toString && typeof this.props.format === 'function') {
+            // ex. 10000.54 => 10,000.54
+            renderValue = this.props.format(renderValue);
+        }
+
+        // If cleave options are passed => use the cleave field
+        let input = this.props.options
+            ? <Cleave ref='textInput'
+                className={this.inputClassName}
+                value={renderValue}
+                onClick={onClick}
+                onBlur={onBlur}
+                onChange={this.handleChange}
+                readOnly={this.props.readonly}
+                placeholder={placeholder}
+                options={this.props.options} />
+            : <input ref='textInput'
+                type={type} className={this.inputClassName}
+                value={renderValue}
+                onClick={onClick}
+                onBlur={onBlur}
+                onChange={this.handleChange}
+                readOnly={this.props.readonly}
+                placeholder={placeholder} />;
+
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (
@@ -155,7 +196,15 @@ TextField.propTypes = {
     errorMessage: PropTypes.string,
 
     // Edited
-    isEdited: PropTypes.bool
+    isEdited: PropTypes.bool,
+
+    // Value lifecycle
+    format: PropTypes.func,
+    parse: PropTypes.func,
+    normalize: PropTypes.func,
+
+    // Cleave.js
+    options: PropTypes.object
 };
 
 TextField.defaultProps = {
