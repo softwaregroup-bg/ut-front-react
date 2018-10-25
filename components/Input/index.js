@@ -80,7 +80,7 @@ class TextField extends Component {
     }
 
     render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName, keyProp } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let zeroHeightStyle = isValid ? this.style.hh : '';
         const value = (!this.state.value && this.state.value !== 0) ? '' : this.state.value;
@@ -96,7 +96,7 @@ class TextField extends Component {
             readOnly: this.props.readonly,
             placeholder
         };
-        let input = <input ref='textInput' {...inputProps} />;
+        let input = <input ref='textInput' {...inputProps} data-test={keyProp} />;
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (

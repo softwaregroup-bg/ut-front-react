@@ -33,7 +33,8 @@ TitleSection.propTypes = {
             isDisabled: PropTypes.bool,
             onClick: PropTypes.func,
             performTablValidation: PropTypes.bool,
-            performFullValidation: PropTypes.bool
+            performFullValidation: PropTypes.bool,
+            keyProp: PropTypes.string
         })
     )
 };

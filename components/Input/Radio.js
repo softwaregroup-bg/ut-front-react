@@ -12,7 +12,7 @@ const RadioInput = ({ label, boldLabel, onChange, defaultValue, options, disable
                 let handleChange = () => onChange({id, key: name, label, value});
                 return (
                     <span className={classnames(style.radio, optionClassName)} key={id}>
-                        <input disabled={disabled} onChange={handleChange} checked={defaultValue === value} id={id} type='radio' name={name} />
+                        <input disabled={disabled} onChange={handleChange} checked={defaultValue === value} id={id} type='radio' name={name} data-test={id} />
                         <label htmlFor={id}>{label}</label>
                     </span>
                 );
