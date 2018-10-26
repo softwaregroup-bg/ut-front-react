@@ -32,26 +32,26 @@ class CompareGrid extends Component {
     render() {
         const {isNew, isDeleted, rejectReason, staticStrings} = this.props;
         return (
-          <div className={styles.wrapper}>
-            {isNew && !isDeleted && <h1 className={styles.newEntity}>{staticStrings.headingIsNew}</h1>}
-            {isDeleted && <h1 className={styles.rejectTextField}>{staticStrings.headingWillBeDeleted}</h1>}
-            {rejectReason &&
+            <div className={styles.wrapper}>
+                {isNew && !isDeleted && <h1 className={styles.newEntity}>{staticStrings.headingIsNew}</h1>}
+                {isDeleted && <h1 className={styles.rejectTextField}>{staticStrings.headingWillBeDeleted}</h1>}
+                {rejectReason &&
                 <Accordion
-                  title='Changes Rejected'
-                  marginBottom={false}
-                  fullWidth
-                  externalBodyClasses={styles.accordionBody}
-                  externalTitleClasses={styles.accordionTitle}
-                  className={styles.accordion}
-                  collapsed={false}>
+                    title='Changes Rejected'
+                    marginBottom={false}
+                    fullWidth
+                    externalBodyClasses={styles.accordionBody}
+                    externalTitleClasses={styles.accordionTitle}
+                    className={styles.accordion}
+                    collapsed={false}>
                     <div className={styles.container}>
                         <div className={styles.whole}>
                             <p className={styles.rejectTextField}>{rejectReason}</p>
                         </div>
                     </div>
                 </Accordion>}
-            {this.renderItems()}
-          </div>
+                {this.renderItems()}
+            </div>
         );
     }
 }

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 const Image = ({className = '', ...props}) => {
     let classes = classNames('img-responsive', className);
     return (
-      <img className={classes} {...props} />
+        <img className={classes} {...props} />
     );
 };
 

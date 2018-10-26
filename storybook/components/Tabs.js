@@ -5,11 +5,11 @@ import Tabs from '../../components/Tabs';
 // import customCss from './../../components/TabMenu/style.css';
 
 storiesOf('Tabs', module)
-.add('Default usage', () => (
-    <div>
-        <Tabs tabs={customTabLinks} activeTab={2} onClick={function(node) { action(node); }} onTabClose={function(node) { action(node); }} />
-    </div>
-));
+    .add('Default usage', () => (
+        <div>
+            <Tabs tabs={customTabLinks} activeTab={2} onClick={action} onTabClose={action} />
+        </div>
+    ));
 
 const customTabLinks = [{
     id: 1,

@@ -25,11 +25,11 @@ const data = [{
 }];
 
 storiesOf('SimpleGrid', module)
-.add('SimpleGrid default', () => (
-    <ContextWrapper>
-        <div>
-            <SimpleGrid fields={fields} data={data} />
-            <p style={{color: 'cornflowerblue'}}>styles comes from context</p>
-        </div>
-    </ContextWrapper>
-));
+    .add('SimpleGrid default', () => (
+        <ContextWrapper>
+            <div>
+                <SimpleGrid fields={fields} data={data} />
+                <p style={{color: 'cornflowerblue'}}>styles comes from context</p>
+            </div>
+        </ContextWrapper>
+    ));

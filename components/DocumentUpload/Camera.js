@@ -74,9 +74,9 @@ export default class Camera extends Component {
         return (
             <div style={{ height: height, width: width }} className={classnames(styles.cameraContainer, className)}>
                 <video
-                  ref='video'
-                  className={styles.videoElement}
-                  autoPlay={autoPlay} />
+                    ref='video'
+                    className={styles.videoElement}
+                    autoPlay={autoPlay} />
             </div>
         );
     }

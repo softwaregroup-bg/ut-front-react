@@ -87,23 +87,23 @@ export default class TimePickerRange extends Component {
                 <div className='clearfix'>
                     <div className={style.flLeft}>
                         <TimePicker
-                          keyProp='From'
-                          data={dataFrom}
-                          defaultSelected={this.props.defaultSelectedFrom}
-                          disabled={this.props.disabled}
-                          defaultLabel={this.props.defaultLabelFrom}
-                          onChange={handleChangeFrom}
+                            keyProp='From'
+                            data={dataFrom}
+                            defaultSelected={this.props.defaultSelectedFrom}
+                            disabled={this.props.disabled}
+                            defaultLabel={this.props.defaultLabelFrom}
+                            onChange={handleChangeFrom}
                         />
                     </div>
                     <div className={classnames(style.flLeft, style.separator)}>-</div>
                     <div className={style.flLeft}>
                         <TimePicker
-                          keyProp='To'
-                          data={dataTo}
-                          defaultSelected={this.props.defaultSelectedTo}
-                          disabled={this.props.disabled}
-                          defaultLabel={this.props.defaultLabelTo}
-                          onChange={handleChangeTo}
+                            keyProp='To'
+                            data={dataTo}
+                            defaultSelected={this.props.defaultSelectedTo}
+                            disabled={this.props.disabled}
+                            defaultLabel={this.props.defaultLabelTo}
+                            onChange={handleChangeTo}
                         />
                     </div>
                 </div>

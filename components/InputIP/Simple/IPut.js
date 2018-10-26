@@ -69,7 +69,7 @@ class IPut extends Component {
             value: Array.isArray(this.props.value) ? this.props.value : this.props.value.split('.')
         });
     }
-/**
+    /**
  * Change Event
  */
     handleChange(e, i) {
@@ -83,7 +83,7 @@ class IPut extends Component {
 
         if (!isNaN(val) && String(val).length === 3 && i < 3) { this[`_input-${i + 1}`].focus(); }
     }
-/**
+    /**
  * Keydown Event
  */
     handleKeyDown(e, i) {
@@ -94,7 +94,7 @@ class IPut extends Component {
         if ((e.keyCode === 190 || e.keyCode === 110) && getRange(e.target).end > 0 && i < 3) { domId = i + 1; }
         this[`_input-${domId}`].focus();
     }
-/**
+    /**
  * Paste Event
  */
     handlePaste(e, i) {
@@ -108,7 +108,7 @@ class IPut extends Component {
             return e.preventDefault();
         }
     }
-/**
+    /**
  * call change props
  */
     onPropsChange() {
@@ -127,19 +127,19 @@ class IPut extends Component {
         return (
             <div className={className}>
                 {this.state.value.map((val, i) =>
-                <div className={style.ipInputItem} key={i}>
-                    <input
-                      ref={(el) => (this[`_input-${i}`] = el)}
-                      type='text'
-                      value={isNaN(val) ? '' : val}
-                      placeholder={isNaN(placeholders[i]) ? '' : placeholders[i]}
-                      onChange={(e) => this.handleChange(e, i)}
-                      onKeyDown={(e) => this.handleKeyDown(e, i)}
-                      onPaste={(e) => this.handlePaste(e, i)}
-                      readOnly={this.props.readonly}
-                    />
-                    {i !== 3 ? <i>.</i> : false}
-                </div>
+                    <div className={style.ipInputItem} key={i}>
+                        <input
+                            ref={(el) => (this[`_input-${i}`] = el)}
+                            type='text'
+                            value={isNaN(val) ? '' : val}
+                            placeholder={isNaN(placeholders[i]) ? '' : placeholders[i]}
+                            onChange={(e) => this.handleChange(e, i)}
+                            onKeyDown={(e) => this.handleKeyDown(e, i)}
+                            onPaste={(e) => this.handlePaste(e, i)}
+                            readOnly={this.props.readonly}
+                        />
+                        {i !== 3 ? <i>.</i> : false}
+                    </div>
                 )}
             </div>
         );

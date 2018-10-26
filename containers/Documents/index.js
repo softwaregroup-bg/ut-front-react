@@ -74,49 +74,49 @@ class DocumentsContainer extends Component {
         }
         return (
             <DocumentsListing
-              identifier={identifier}
-              actorId={actorId}
-              documents={docs}
-              documentsChanged={docsChanged}
-              selectedAttachment={selectedAttachment}
-              requiresFetch={requiresFetch}
-              isLoading={isLoading}
-              fetchArchivedDocuments={fetchArchivedDocuments}
-              onGridSelect={selectAttachments}
-              permissions={permissions}
-              documentTypes={docTypes}
-              uploadNewDocument={(newObject) => {
-                  let formatedObj = {
-                      createdDate: newObject.createdDate,
-                      description: newObject.description,
-                      documentType: newObject.documentType,
-                      documentTypeId: newObject.documentTypeId,
-                      statusId: newObject.statusId,
-                      attachments: [
-                          {
-                              filename: newObject.filename,
-                              extension: newObject.extension,
-                              contentType: newObject.contentType,
-                              url: documentTmpUploadPrefix + newObject.filename
-                          }
-                      ]
-                  };
-                  this.props.addDocument(identifier, formatedObj);
-              }}
-              replaceDocument={(replaceObject) => {
-                  this.props.replaceDocument(identifier, selectedAttachment.toJS(), replaceObject);
-              }}
-              deleteDocument={(documentObject) => {
-                  this.props.changeDocumentStatusDeleted(identifier, documentObject);
-              }}
-              archiveDocument={(documentObject) => {
-                  this.props.changeDocumentStatusArchived(identifier, documentObject);
-              }}
-              changeDocumentFilter={(newFilter) => {
-                  this.props.changeDocumentFilter(identifier, newFilter);
-              }}
-              selectedFilter={selectedFilter}
-              documentArchived={documentArchived}
+                identifier={identifier}
+                actorId={actorId}
+                documents={docs}
+                documentsChanged={docsChanged}
+                selectedAttachment={selectedAttachment}
+                requiresFetch={requiresFetch}
+                isLoading={isLoading}
+                fetchArchivedDocuments={fetchArchivedDocuments}
+                onGridSelect={selectAttachments}
+                permissions={permissions}
+                documentTypes={docTypes}
+                uploadNewDocument={(newObject) => {
+                    let formatedObj = {
+                        createdDate: newObject.createdDate,
+                        description: newObject.description,
+                        documentType: newObject.documentType,
+                        documentTypeId: newObject.documentTypeId,
+                        statusId: newObject.statusId,
+                        attachments: [
+                            {
+                                filename: newObject.filename,
+                                extension: newObject.extension,
+                                contentType: newObject.contentType,
+                                url: documentTmpUploadPrefix + newObject.filename
+                            }
+                        ]
+                    };
+                    this.props.addDocument(identifier, formatedObj);
+                }}
+                replaceDocument={(replaceObject) => {
+                    this.props.replaceDocument(identifier, selectedAttachment.toJS(), replaceObject);
+                }}
+                deleteDocument={(documentObject) => {
+                    this.props.changeDocumentStatusDeleted(identifier, documentObject);
+                }}
+                archiveDocument={(documentObject) => {
+                    this.props.changeDocumentStatusArchived(identifier, documentObject);
+                }}
+                changeDocumentFilter={(newFilter) => {
+                    this.props.changeDocumentFilter(identifier, newFilter);
+                }}
+                selectedFilter={selectedFilter}
+                documentArchived={documentArchived}
             />
         );
     }

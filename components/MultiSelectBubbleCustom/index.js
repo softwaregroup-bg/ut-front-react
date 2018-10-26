@@ -30,11 +30,11 @@ class MultiSelectBubbleCustom extends Component {
                 </div>
                 <div className={style.inputWrap}>
                     <Creatable
-                      name={name}
-                      value={value}
-                      options={options}
-                      onChange={this.handleChange}
-                      multi
+                        name={name}
+                        value={value}
+                        options={options}
+                        onChange={this.handleChange}
+                        multi
                     />
                 </div>
             </div>

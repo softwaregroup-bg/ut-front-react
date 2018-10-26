@@ -34,32 +34,32 @@ export default class Record extends Component {
     renderField(field, idx, totalFields, isChecked) {
         if (!field.get('internal')) {
             return (<Column
-              key={idx}
-              colspan={((this.props.globalMenu && totalFields === idx) ? 2 : 1)}
-              recordIndex={this.props.recordIndex}
-              transformValue={this.props.transformCellValue}
-              data={this.props.data}
-              handleClick={this.props.handleCellClick}
-              field={field.toJS()}
-              externalStyle={this.props.externalStyle}
+                key={idx}
+                colspan={((this.props.globalMenu && totalFields === idx) ? 2 : 1)}
+                recordIndex={this.props.recordIndex}
+                transformValue={this.props.transformCellValue}
+                data={this.props.data}
+                handleClick={this.props.handleCellClick}
+                field={field.toJS()}
+                externalStyle={this.props.externalStyle}
             />);
         } else {
             switch (field.get('internal')) {
                 case 'multiSelect':
                     return (<MultiSelectColumn
-                      field={field.toJS()}
-                      data={this.props.data}
-                      key={idx}
-                      recordIndex={this.props.recordIndex}
-                      isChecked={isChecked}
-                      handleCheckboxSelect={this.props.handleCheckboxSelect}
+                        field={field.toJS()}
+                        data={this.props.data}
+                        key={idx}
+                        recordIndex={this.props.recordIndex}
+                        isChecked={isChecked}
+                        handleCheckboxSelect={this.props.handleCheckboxSelect}
                     />);
                 case 'verticalField':
                     return (<VerticalHeaderColumn
-                      key={idx}
-                      field={field.toJS()}
-                      value={this.props.verticalField}
-                      externalStyle={this.props.externalStyle}
+                        key={idx}
+                        field={field.toJS()}
+                        value={this.props.verticalField}
+                        externalStyle={this.props.externalStyle}
                     />);
                 case 'verticalSpanField':
                     let verticalSpanField = {
@@ -68,11 +68,11 @@ export default class Record extends Component {
                     Object.assign(verticalSpanField, {children: this.props.verticalSpanField.children.sort((a, b) => (a - b))});
                     if (verticalSpanField.children[0] === this.props.verticalField.name) {
                         return (<VerticalHeader
-                          key={idx}
-                          field={field.toJS()}
-                          verticalField={this.props.verticalField}
-                          value={this.props.verticalSpanField}
-                          externalStyle={this.props.externalStyle}
+                            key={idx}
+                            field={field.toJS()}
+                            verticalField={this.props.verticalField}
+                            value={this.props.verticalSpanField}
+                            externalStyle={this.props.externalStyle}
                         />);
                     }
                     return null;

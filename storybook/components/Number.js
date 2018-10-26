@@ -4,12 +4,12 @@ import Number from '../../components/Number';
 import dateFormat from 'date-fns/format';
 
 storiesOf('Number to localize', module)
-.add('Default', () => (
-    <Wrap>
-        <div>localise number '1000':</div>
-        <Number>1000</Number>
-    </Wrap>
-));
+    .add('Default', () => (
+        <Wrap>
+            <div>localise number '1000':</div>
+            <Number>1000</Number>
+        </Wrap>
+    ));
 
 class Wrap extends React.Component {
     getChildContext() {

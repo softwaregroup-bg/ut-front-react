@@ -25,11 +25,11 @@ class Container extends Component {
             borderTop: this.props.bordered ? '' : 'none'
         };
         return (
-                <div id={style.mainContentWrap} style={styles}>
-                    <div className='w100pr h100pr'>
-                        {this.props.children}
-                    </div>
+            <div id={style.mainContentWrap} style={styles}>
+                <div className='w100pr h100pr'>
+                    {this.props.children}
                 </div>
+            </div>
         );
     }
 }

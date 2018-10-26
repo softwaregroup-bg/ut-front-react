@@ -47,9 +47,9 @@ export default class FileDetailsPopup extends Component {
         if (mode === 'details') {
             return (
                 <FileDetailedView
-                  file={file}
-                  scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
-                  onClick={this.onImageClick}
+                    file={file}
+                    scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
+                    onClick={this.onImageClick}
                 />
             );
         }
@@ -58,8 +58,8 @@ export default class FileDetailsPopup extends Component {
             return (
                 <div className={styles.originalFilePreview}>
                     <FileView
-                      file={file}
-                      showOriginalFileButton
+                        file={file}
+                        showOriginalFileButton
                     />
                 </div>
             );
@@ -71,12 +71,12 @@ export default class FileDetailsPopup extends Component {
 
         return (
             <Popup
-              isOpen={isOpen}
-              header={header}
-              closeOnOverlayClick={closeOnOverlayClick}
-              closeOnEsc={closeOnEsc}
-              closePopup={closePopup}
-              footer={{actionButtons: this.actionButtons}}>
+                isOpen={isOpen}
+                header={header}
+                closeOnOverlayClick={closeOnOverlayClick}
+                closeOnEsc={closeOnEsc}
+                closePopup={closePopup}
+                footer={{actionButtons: this.actionButtons}}>
                 {this.view}
             </Popup>
         );

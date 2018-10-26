@@ -217,18 +217,18 @@ class TabContainer extends Component {
             <div className={style.tabContainerWrap}>
                 <Vertical fixedComponent={
                     <Header
-                      text={headerTitle}
-                      location={location}
-                      breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
-                      buttons={actionButtons} />}
+                        text={headerTitle}
+                        location={location}
+                        breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
+                        buttons={actionButtons} />}
                 >
-                {this.renderStatusDialog()}
+                    {this.renderStatusDialog()}
                     <Vertical fixedComponent={
                         <div className={style.bottomBorderderWrap}>
                             <Tabs
-                              tabs={allowedTabs}
-                              activeTab={this.state.active}
-                              onClick={handleTabClick}
+                                tabs={allowedTabs}
+                                activeTab={this.state.active}
+                                onClick={handleTabClick}
                             />
                         </div>}
                     >
@@ -268,22 +268,22 @@ TabContainer.propTypes = {
                         customValidations.function,
                         validationTypes.object]),
                     rules: PropTypes.arrayOf(
-                         PropTypes.shape({
-                             type: PropTypes.oneOf([
-                                 textValidations.isRequired,
-                                 textValidations.length,
-                                 textValidations.numberOnly,
-                                 textValidations.decimalOnly,
-                                 textValidations.email,
-                                 textValidations.uniqueValue,
-                                 textValidations.integerOnly,
-                                 textValidations.integerRange,
-                                 textValidations.regex,
-                                 dropdownValidations.isRequiredOnCondition,
-                                 objectValidations.hasKeys,
-                                 customValidations.function]),
-                             errorMessage: PropTypes.string
-                         })
+                        PropTypes.shape({
+                            type: PropTypes.oneOf([
+                                textValidations.isRequired,
+                                textValidations.length,
+                                textValidations.numberOnly,
+                                textValidations.decimalOnly,
+                                textValidations.email,
+                                textValidations.uniqueValue,
+                                textValidations.integerOnly,
+                                textValidations.integerRange,
+                                textValidations.regex,
+                                dropdownValidations.isRequiredOnCondition,
+                                objectValidations.hasKeys,
+                                customValidations.function]),
+                            errorMessage: PropTypes.string
+                        })
                     )
                 })
             ),

@@ -80,39 +80,39 @@ class Grid extends Component {
             <table className={style.dataGridTable}>
                 {this.props.showTableHead &&
                     <Header
-                      columns={columns}
-                      sortable={sortableColumns}
-                      onRefresh={onRefresh}
-                      onCheck={this.onAllCheck}
-                      canCheck={canCheck}
-                      canColCustomize={canColCustomize}
-                      onToggleColumn={onToggleColumn}
-                      activeSort={activeSort}
-                      isChecked={this.state.all}
-                      onSort={onSort}
-                      tdStyles={tdStyles}
-                      thStyles={thStyles}
+                        columns={columns}
+                        sortable={sortableColumns}
+                        onRefresh={onRefresh}
+                        onCheck={this.onAllCheck}
+                        canCheck={canCheck}
+                        canColCustomize={canColCustomize}
+                        onToggleColumn={onToggleColumn}
+                        activeSort={activeSort}
+                        isChecked={this.state.all}
+                        onSort={onSort}
+                        tdStyles={tdStyles}
+                        thStyles={thStyles}
                     />
                 }
                 <tbody>{rows.map((rowData, i) => {
                     let checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
 
                     return (<Row
-                      key={i}
-                      rowIndex={i}
-                      data={rowData}
-                      checked={checked}
-                      linkableColumns={linkableColumns}
-                      columns={rowColumns}
-                      onSelect={this.handleSelect(i)}
-                      canSelect={this.props.canSelect}
-                      onCheck={this.onCheck}
-                      canCheck={canCheck}
-                      mapColumn={this.props.mapColumn}
-                      subscribeUnselect={this.subscribeUnselect}
-                      ref={i}
-                      tdStyles={tdStyles}
-                      trStyles={trStyles}
+                        key={i}
+                        rowIndex={i}
+                        data={rowData}
+                        checked={checked}
+                        linkableColumns={linkableColumns}
+                        columns={rowColumns}
+                        onSelect={this.handleSelect(i)}
+                        canSelect={this.props.canSelect}
+                        onCheck={this.onCheck}
+                        canCheck={canCheck}
+                        mapColumn={this.props.mapColumn}
+                        subscribeUnselect={this.subscribeUnselect}
+                        ref={i}
+                        tdStyles={tdStyles}
+                        trStyles={trStyles}
                     />);
                 })}</tbody>
             </table>

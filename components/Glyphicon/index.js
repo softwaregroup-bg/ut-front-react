@@ -187,7 +187,7 @@ const Glyphicon = ({ glyphicon, size, color, className, style, ...props }) => {
     let glyphiconSize = (size || defaultSize) + 'px';
     let inlineStyles = {fontSize: glyphiconSize, color: glyphiconColor, ...style};
     return (
-      <span {...props} className={classes} style={inlineStyles} />
+        <span {...props} className={classes} style={inlineStyles} />
     );
 };
 

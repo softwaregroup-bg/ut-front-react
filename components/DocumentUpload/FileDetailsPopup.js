@@ -62,10 +62,10 @@ export default class FileDetailsPopup extends Component {
         if (mode === 'details') {
             return (
                 <FileDetailedView
-                  file={file}
-                  className={previewType}
-                  scaleDimensions={scaleDimensions}
-                  onClick={this.onImageClick} />
+                    file={file}
+                    className={previewType}
+                    scaleDimensions={scaleDimensions}
+                    onClick={this.onImageClick} />
             );
         }
 
@@ -85,12 +85,12 @@ export default class FileDetailsPopup extends Component {
 
         return (
             <Popup
-              isOpen={isOpen}
-              header={header}
-              closeOnOverlayClick={closeOnOverlayClick}
-              closeOnEsc={closeOnEsc}
-              closePopup={closePopup}
-              footer={{actionButtons: this.actionButtons}}>
+                isOpen={isOpen}
+                header={header}
+                closeOnOverlayClick={closeOnOverlayClick}
+                closeOnEsc={closeOnEsc}
+                closePopup={closePopup}
+                footer={{actionButtons: this.actionButtons}}>
                 {this.view}
             </Popup>
         );

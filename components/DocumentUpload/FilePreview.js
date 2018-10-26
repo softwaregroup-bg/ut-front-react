@@ -14,20 +14,20 @@ export default class FilePreview extends Component {
         if (uploadMethod === 'take') {
             return (
                 <AddFileButton
-                  className={styles.changeFileBtn}
-                  label='Retake'
-                  icon={styles.changeBtn}
-                  onClick={() => { changeMode('takePhoto'); }} />
+                    className={styles.changeFileBtn}
+                    label='Retake'
+                    icon={styles.changeBtn}
+                    onClick={() => { changeMode('takePhoto'); }} />
             );
         }
 
         return (
             <UploadFileButton
-              className={styles.changeFileBtn}
-              acceptType={allowedFileTypes}
-              label='Change'
-              icon={styles.changeBtn}
-              onFileLoaded={onFileLoaded} />
+                className={styles.changeFileBtn}
+                acceptType={allowedFileTypes}
+                label='Change'
+                icon={styles.changeBtn}
+                onFileLoaded={onFileLoaded} />
         );
     }
 
@@ -36,10 +36,10 @@ export default class FilePreview extends Component {
 
         return (
             showCrop && <AddFileButton
-              className={styles.cropButton}
-              icon={styles.cropIcon}
-              label='Crop'
-              onClick={crop} />
+                className={styles.cropButton}
+                icon={styles.cropIcon}
+                label='Crop'
+                onClick={crop} />
         );
     }
 
@@ -53,21 +53,21 @@ export default class FilePreview extends Component {
             showCrop,
             onCrop,
             cropDimensions
-         } = this.props;
+        } = this.props;
 
         return (
             <div className={classnames(styles.filePreviewContainer, className)}>
                 { showCrop ? <Cropper
-                  ref='editPhoto'
-                  file={file}
-                  fileDimensions={fileDimensions}
-                  cropDimensions={cropDimensions}
-                  onCrop={onCrop} /> : <PreviewItem
+                    ref='editPhoto'
                     file={file}
-                    fileExtension={fileExtension}
-                    originalFilename={originalFilename}
-                    previewBoxWidth={fileDimensions.width}
-                    previewBoxHeight={fileDimensions.height} />
+                    fileDimensions={fileDimensions}
+                    cropDimensions={cropDimensions}
+                    onCrop={onCrop} /> : <PreviewItem
+                        file={file}
+                        fileExtension={fileExtension}
+                        originalFilename={originalFilename}
+                        previewBoxWidth={fileDimensions.width}
+                        previewBoxHeight={fileDimensions.height} />
                 }
                 <div className={classnames(styles.imageButtonsContainer)}>
                     { this.changeFileButton }

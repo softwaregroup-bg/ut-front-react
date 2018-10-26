@@ -21,13 +21,13 @@ const Password = React.createClass({
                 <CardText>
                     <h3 className={style.heading}>PASSWORD</h3>
                     <TextField
-                      type='password'
-                      name='password'
-                      onKeyDown={this.props.submit}
-                      ref='f'
-                      style={textFieldStyle}
-                      inputStyle={textFieldInputStyle}
-                      underlineShow={false}
+                        type='password'
+                        name='password'
+                        onKeyDown={this.props.submit}
+                        ref='f'
+                        style={textFieldStyle}
+                        inputStyle={textFieldInputStyle}
+                        underlineShow={false}
                     />
                     <button className={style.nextButton} onClick={this.props.submit}>Next</button>
                 </CardText>

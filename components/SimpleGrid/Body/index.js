@@ -32,7 +32,7 @@ export class Body extends Component {
             verticalSpanFields,
             verticalFieldsVisible,
             rowsRenderLimitExceedMsg
-    } = this.props;
+        } = this.props;
 
         if (data.length < (verticalFields && verticalFields.length) && verticalFieldsRenderComplete) {
             data = data.concat((new Array(verticalFields.length - data.length)).fill(undefined));
@@ -56,24 +56,24 @@ export class Body extends Component {
 
                     return (
                         <Record
-                          key={idx}
-                          local={local}
-                          recordIndex={idx}
-                          data={record}
-                          verticalField={verticalField}
-                          verticalSpanField={verticalSpanField}
-                          verticalFieldsVisible={verticalFieldsVisible}
-                          multiSelect={multiSelect}
-                          globalMenu={globalMenu}
-                          fields={this.filteredFields}
-                          externalStyle={externalStyle}
-                          transformCellValue={transformCellValue}
-                          handleCheckboxSelect={handleCheckboxSelect}
-                          handleClick={handleRowClick}
-                          handleDoubleClick={handleRowDoubleClick}
-                          rowsChecked={rowsChecked}
-                          handleCellClick={handleCellClick}
-                          rowStyleField={rowStyleField} />
+                            key={idx}
+                            local={local}
+                            recordIndex={idx}
+                            data={record}
+                            verticalField={verticalField}
+                            verticalSpanField={verticalSpanField}
+                            verticalFieldsVisible={verticalFieldsVisible}
+                            multiSelect={multiSelect}
+                            globalMenu={globalMenu}
+                            fields={this.filteredFields}
+                            externalStyle={externalStyle}
+                            transformCellValue={transformCellValue}
+                            handleCheckboxSelect={handleCheckboxSelect}
+                            handleClick={handleRowClick}
+                            handleDoubleClick={handleRowDoubleClick}
+                            rowsChecked={rowsChecked}
+                            handleCellClick={handleCellClick}
+                            rowStyleField={rowStyleField} />
                     );
                 });
             }

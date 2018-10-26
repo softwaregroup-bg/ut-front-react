@@ -43,8 +43,8 @@ function applyTemplate(template, params) {
                     typeof params[key] !== 'object' &&
                     typeof params[key] !== 'function' &&
                     typeof params[key] !== 'undefined')
-                    ? params[key]
-                    : wholeMatch;
+                ? params[key]
+                : wholeMatch;
         });
     } else {
         // We cannot do any processing - just return the original

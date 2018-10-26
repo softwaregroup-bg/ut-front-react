@@ -84,37 +84,37 @@ class DateTimePickerBetween extends Component {
         return (
             <div className={layoutClassName}>
                 <DateTimePicker
-                  defaultValue={defaultValue.from}
-                  dateFormat={dateFormat}
-                  timeFormat={timeFormat}
-                  transformDate={transformDate}
-                  innerWrapperClassName={innerWrapperClassName}
-                  transformTime={transformTime}
-                  locale={locale}
-                  label={labelFrom}
-                  okLabel={okLabel}
-                  cancelLabel={cancelLabel}
-                  firstDayOfWeek={firstDayOfWeek}
-                  timeType={timeType}
-                  data={timeDropDownData}
-                  onChange={({value}) => { this.handleChange('from', value); }}
-                  boldLabel={boldLabel} />
+                    defaultValue={defaultValue.from}
+                    dateFormat={dateFormat}
+                    timeFormat={timeFormat}
+                    transformDate={transformDate}
+                    innerWrapperClassName={innerWrapperClassName}
+                    transformTime={transformTime}
+                    locale={locale}
+                    label={labelFrom}
+                    okLabel={okLabel}
+                    cancelLabel={cancelLabel}
+                    firstDayOfWeek={firstDayOfWeek}
+                    timeType={timeType}
+                    data={timeDropDownData}
+                    onChange={({value}) => { this.handleChange('from', value); }}
+                    boldLabel={boldLabel} />
                 <DateTimePicker
-                  defaultValue={defaultValue.to}
-                  dateFormat={dateFormat}
-                  timeFormat={timeFormat}
-                  transformDate={transformDate}
-                  innerWrapperClassName={innerWrapperClassName}
-                  transformTime={transformTime}
-                  locale={locale}
-                  label={labelTo}
-                  okLabel={okLabel}
-                  cancelLabel={cancelLabel}
-                  firstDayOfWeek={firstDayOfWeek}
-                  timeType={timeType}
-                  data={timeDropDownData}
-                  onChange={({value}) => { this.handleChange('to', value); }}
-                  boldLabel={boldLabel} />
+                    defaultValue={defaultValue.to}
+                    dateFormat={dateFormat}
+                    timeFormat={timeFormat}
+                    transformDate={transformDate}
+                    innerWrapperClassName={innerWrapperClassName}
+                    transformTime={transformTime}
+                    locale={locale}
+                    label={labelTo}
+                    okLabel={okLabel}
+                    cancelLabel={cancelLabel}
+                    firstDayOfWeek={firstDayOfWeek}
+                    timeType={timeType}
+                    data={timeDropDownData}
+                    onChange={({value}) => { this.handleChange('to', value); }}
+                    boldLabel={boldLabel} />
             </div>
         );
     }

@@ -31,14 +31,14 @@ const Box = ({children, className, title, externalTitleClasses, externalBodyClas
     let minHeightStyle = minHeight && {minHeight};
 
     return (
-      <div style={props.style} className={classes}>
-        {title && <TitleSection title={title} className={titleSectionClasses} rightSection={rightSection} buttons={props.buttons} onClick={onToggle} />}
-        {!collapsed &&
-        <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>
-            {children}
+        <div style={props.style} className={classes}>
+            {title && <TitleSection title={title} className={titleSectionClasses} rightSection={rightSection} buttons={props.buttons} onClick={onToggle} />}
+            {!collapsed &&
+            <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>
+                {children}
+            </div>
+            }
         </div>
-        }
-      </div>
     );
 };
 

@@ -76,23 +76,23 @@ class Dropdown extends Component {
 
         menuItems.push(
             <MenuItem
-              className={ddstyles.dropdownMenuItemWrap}
-              key={Math.random() + '-ddfg'}
-              disabled={!canSelectPlaceholder}
-              value={this.props.placeholderValue}
-              primaryText={<div title={this.getTitle(placeholder)}>{placeholder}</div>} />
+                className={ddstyles.dropdownMenuItemWrap}
+                key={Math.random() + '-ddfg'}
+                disabled={!canSelectPlaceholder}
+                value={this.props.placeholderValue}
+                primaryText={<div title={this.getTitle(placeholder)}>{placeholder}</div>} />
         );
 
         data.forEach((item, i) => {
             menuItems.push(
                 <MenuItem
-                  className={ddstyles.dropdownMenuItemWrap}
-                  key={item.key + '-' + i}
-                  disabled={item.disabled}
-                  value={item.key}
-                  primaryText={<div title={this.getTitle(item.name)}>{item.name}</div>}
-                  leftIcon={item.leftIcon && <img src={item.leftIcon} />}
-                  rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
+                    className={ddstyles.dropdownMenuItemWrap}
+                    key={item.key + '-' + i}
+                    disabled={item.disabled}
+                    value={item.key}
+                    primaryText={<div title={this.getTitle(item.name)}>{item.name}</div>}
+                    leftIcon={item.leftIcon && <img src={item.leftIcon} />}
+                    rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
             );
         });
 
@@ -124,21 +124,21 @@ class Dropdown extends Component {
                     <div className={ddstyles.hideTextWrap} />
                 </div>
                 <Popover
-                  open={this.state.open}
-                  onRequestClose={this.toggleClose}
-                  anchorEl={this.state.anchorEl}
-                  anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                  targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  animation={PopoverAnimationVertical}
+                    open={this.state.open}
+                    onRequestClose={this.toggleClose}
+                    anchorEl={this.state.anchorEl}
+                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    animation={PopoverAnimationVertical}
                 >
                     <Menu
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                      autoWidth={false}
-                      disabled={this.props.disabled}
-                      className={classnames(ddstyles.dropdownMenu)}
-                      style={{width: rootElementWidth}}
-                      maxHeight={300}>
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        autoWidth={false}
+                        disabled={this.props.disabled}
+                        className={classnames(ddstyles.dropdownMenu)}
+                        style={{width: rootElementWidth}}
+                        maxHeight={300}>
                         {menuItems}
                     </Menu>
                 </Popover>

@@ -283,12 +283,12 @@ class Container extends Component {
 
                 return (
                     <CollapsableContent
-                      heading={col.heading}
-                      info={col.info}
-                      orientation={col.right ? 'right' : 'left'}
-                      visibleStyles={{height: this.state.height, ...collapsableContenetStyles}}
-                      isCollapsed={isCollapsed}
-                      onCollapse={onCollapseHanlder}
+                        heading={col.heading}
+                        info={col.info}
+                        orientation={col.right ? 'right' : 'left'}
+                        visibleStyles={{height: this.state.height, ...collapsableContenetStyles}}
+                        isCollapsed={isCollapsed}
+                        onCollapse={onCollapseHanlder}
                     >
                         {col.child}
                     </CollapsableContent>

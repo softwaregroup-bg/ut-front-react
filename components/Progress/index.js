@@ -34,7 +34,7 @@ const Progress = (props) => {
             <div className={classnames(style.legend)}>
                 <div className={style.background} />
                 <div className={style.loadingBarWrapper}>
-                  <div className={classnames(style.loadingBar, progressClassName)} style={{width: loaded}} />
+                    <div className={classnames(style.loadingBar, progressClassName)} style={{width: loaded}} />
                 </div>
             </div>
         </div>

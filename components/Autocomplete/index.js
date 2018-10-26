@@ -14,19 +14,19 @@ export default class SimpleAutoComplete extends Component {
             <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
                 <div className={style.autoCompleteIcon} style={this.props.iconStyles} onClick={this.props.handleButtonClick} />
                 <AutoComplete
-                  className={style.autoCompletePopup}
-                  dataSource={this.props.dataSource}
-                  dataSourceConfig={this.props.dataSourceConfig}
-                  filter={AutoComplete.fuzzyFilter}
-                  openOnFocus={this.props.openOnFocus}
-                  ref={this.props.refval}
-                  maxSearchResults={this.props.maxSearchResults}
-                  animated={false}
-                  style={dpStyles}
-                  fullWidth={!(this.props.fullWidth === false)}
-                  onUpdateInput={this.props.onChange}
-                  onNewRequest={this.props.onSelect}
-                  searchText={this.props.searchText}
+                    className={style.autoCompletePopup}
+                    dataSource={this.props.dataSource}
+                    dataSourceConfig={this.props.dataSourceConfig}
+                    filter={AutoComplete.fuzzyFilter}
+                    openOnFocus={this.props.openOnFocus}
+                    ref={this.props.refval}
+                    maxSearchResults={this.props.maxSearchResults}
+                    animated={false}
+                    style={dpStyles}
+                    fullWidth={!(this.props.fullWidth === false)}
+                    onUpdateInput={this.props.onChange}
+                    onNewRequest={this.props.onSelect}
+                    searchText={this.props.searchText}
                 />
             </div>
         );

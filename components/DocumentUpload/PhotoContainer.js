@@ -28,18 +28,18 @@ const PhotoContainer = ({
                     {tooltip && <Tooltip tooltipText={tooltip} />}
                 </div> }
             { showDetails ? <PhotoPreview
-              className={className}
-              type={documentType}
-              dimensions={imageDimensions}
-              source={file}
-              header={header}
-              onClick={onClick}
-              onDeleteClick={onDeleteClick}
-              onChangeClick={onChangeClick} /> : <AddFileButton
                 className={className}
-                label={label}
-                disabled={disabled}
-                onClick={onClick} /> }
+                type={documentType}
+                dimensions={imageDimensions}
+                source={file}
+                header={header}
+                onClick={onClick}
+                onDeleteClick={onDeleteClick}
+                onChangeClick={onChangeClick} /> : <AddFileButton
+                    className={className}
+                    label={label}
+                    disabled={disabled}
+                    onClick={onClick} /> }
             { subtitle && <div className={styles.photoFooter}>{ subtitle }</div> }
         </div>
     );

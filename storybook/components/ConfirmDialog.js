@@ -4,11 +4,11 @@ import ConfirmDialog from '../../components/ConfirmDialog';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
 storiesOf('ConfirmDialog', module)
-.add('Default', () => (
-    <div>
-        <Wrapper />
-    </div>
-));
+    .add('Default', () => (
+        <div>
+            <Wrapper />
+        </div>
+    ));
 
 class Wrapper extends Component {
     constructor(props) {
@@ -24,13 +24,13 @@ class Wrapper extends Component {
             <MaterialUILayout>
                 <div>
                     <ConfirmDialog
-                      cancelLabel='no'
-                      ref='confirmDialog'
-                      submitLabel='yes'
-                      title='test title'
-                      message='are you sure?'
-                      onSubmit={function(node) { action(node); }}
-                      cannotSubmit={false}
+                        cancelLabel='no'
+                        ref='confirmDialog'
+                        submitLabel='yes'
+                        title='test title'
+                        message='are you sure?'
+                        onSubmit={action}
+                        cannotSubmit={false}
                     />
                     <button onClick={handleButtonClick}>open confirmation</button>
                 </div>

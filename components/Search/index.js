@@ -7,19 +7,20 @@ const Search = ({ wrapper, searchInput, searchBtn, search }) => {
     let classesInput = classnames(style.searchInput, searchInput.className);
     let classesButton = classnames(style.searchButton, searchBtn.className);
     let input;
+    function submit(e) {
+        e.preventDefault();
+        if (!input.value.trim()) {
+            return;
+        }
+        search(input.value);
+    }
     return (
-      <div {...wrapper} className={classesWrapper}>
-        <form onSubmit={function(e) {
-            e.preventDefault();
-            if (!input.value.trim()) {
-                return;
-            }
-            search(input.value);
-        }}>
-          <input type='text' ref={function(node) { input = node; }} className={classesInput} {...searchInput} />
-          <button type='submit' className={classesButton} {...searchBtn} onClick={searchBtn.onSubmit}>{searchBtn.value}</button>
-        </form>
-      </div>
+        <div {...wrapper} className={classesWrapper}>
+            <form onSubmit={submit}>
+                <input type='text' ref={function(node) { input = node; }} className={classesInput} {...searchInput} />
+                <button type='submit' className={classesButton} {...searchBtn} onClick={searchBtn.onSubmit}>{searchBtn.value}</button>
+            </form>
+        </div>
     );
 };
 

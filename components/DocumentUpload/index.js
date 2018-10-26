@@ -170,21 +170,21 @@ export default class DocumentUpload extends Component {
         if (mode === 'initial') {
             return (
                 <DocumentUploadMenu
-                  menuItems={['file', 'camera']}
-                  className={styles.initialViewContainer}
-                  onAddFile={this.onAddFile}
-                  allowedFileTypes={allowedFileTypes}
-                  onFileLoaded={this.onUploadFile}
-                  uploadType={uploadType} />
+                    menuItems={['file', 'camera']}
+                    className={styles.initialViewContainer}
+                    onAddFile={this.onAddFile}
+                    allowedFileTypes={allowedFileTypes}
+                    onFileLoaded={this.onUploadFile}
+                    uploadType={uploadType} />
             );
         }
 
         if (mode === 'takePhoto') {
             return (
                 <Camera
-                  ref='takePhoto'
-                  width={fileDimensions.width}
-                  height={fileDimensions.height} />
+                    ref='takePhoto'
+                    width={fileDimensions.width}
+                    height={fileDimensions.height} />
             );
         }
 
@@ -192,22 +192,22 @@ export default class DocumentUpload extends Component {
             return (
                 <div>
                     <div className={this.validate && styles.hidden}>
-                      <FilePreview
-                        ref='filePreview'
-                        file={this.state.screenshot}
-                        fileExtension={this.state.fileExtension}
-                        originalFilename={this.state.originalFilename}
-                        showCrop={!hideCrop || this.state.showCrop}
-                        onCrop={this.onCrop}
-                        fileDimensions={fileDimensions}
-                        scaleDimensions={scaleDimensions}
-                        cropDimensions={this.cropDimensions}
-                        uploadMethod={uploadMethod}
-                        uploadType={uploadType}
-                        onFileLoaded={this.onUploadFile}
-                        changeMode={this.changeMode}
-                        allowedFileTypes={allowedFileTypes.join(',')}
-                        crop={this.crop} />
+                        <FilePreview
+                            ref='filePreview'
+                            file={this.state.screenshot}
+                            fileExtension={this.state.fileExtension}
+                            originalFilename={this.state.originalFilename}
+                            showCrop={!hideCrop || this.state.showCrop}
+                            onCrop={this.onCrop}
+                            fileDimensions={fileDimensions}
+                            scaleDimensions={scaleDimensions}
+                            cropDimensions={this.cropDimensions}
+                            uploadMethod={uploadMethod}
+                            uploadType={uploadType}
+                            onFileLoaded={this.onUploadFile}
+                            changeMode={this.changeMode}
+                            allowedFileTypes={allowedFileTypes.join(',')}
+                            crop={this.crop} />
                     </div>
                     {this.validate && <div className={styles.errorMsg}>
                         Error: {this.validate}
@@ -366,12 +366,12 @@ export default class DocumentUpload extends Component {
 
         return (
             <Popup
-              ref='popup'
-              isOpen={isOpen}
-              header={header}
-              contentClassName={styles[mode + 'Container']}
-              footer={{actionButtons: this.actionButtons}}
-              closePopup={closePopup}>
+                ref='popup'
+                isOpen={isOpen}
+                header={header}
+                contentClassName={styles[mode + 'Container']}
+                footer={{actionButtons: this.actionButtons}}
+                closePopup={closePopup}>
                 <div>
                     { this.displayError }
                     { this.props.children }

@@ -12,11 +12,11 @@ class CompareGrid extends Component {
         return data.get('data').map((values, index) => {
             let title = titleMapper[type](values.get('boxTitle'));
             return <TitledContentBox
-              key={index}
-              externalContentClasses={styles.titledBoxBody}
-              externalHeaderClasses={styles.titleBoxTitle}
-              title={title}>
-              <DataGrid data={values.get(type)} />
+                key={index}
+                externalContentClasses={styles.titledBoxBody}
+                externalHeaderClasses={styles.titleBoxTitle}
+                title={title}>
+                <DataGrid data={values.get(type)} />
             </TitledContentBox>;
         });
     }
@@ -26,13 +26,13 @@ class CompareGrid extends Component {
         let columnStyle = single ? styles.whole : styles.half;
         return (
             <div>
-              <Accordion
-                title={data.get('title')}
-                marginBottom={false}
-                externalBodyClasses={styles.accordionBody}
-                externalTitleClasses={styles.accordionTitle}
-                className={styles.accordion}
-                collapsed={!data.get('isOpen')}>
+                <Accordion
+                    title={data.get('title')}
+                    marginBottom={false}
+                    externalBodyClasses={styles.accordionBody}
+                    externalTitleClasses={styles.accordionTitle}
+                    className={styles.accordion}
+                    collapsed={!data.get('isOpen')}>
                     <div className={styles.container}>
                         <div className={columnStyle}>
                             {this.renderDataGrid(data, single ? titleTypes.unapproved : titleTypes.current)}
@@ -42,7 +42,7 @@ class CompareGrid extends Component {
                             {this.renderDataGrid(data, titleTypes.unapproved)}
                         </div>}
                     </div>
-              </Accordion>
+                </Accordion>
             </div>
         );
     }

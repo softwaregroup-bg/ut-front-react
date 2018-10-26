@@ -53,20 +53,20 @@ const Header = React.createClass({
                                 return (
                                     <div key={i} className={style.buttonWrap}>
                                         <StandardButton
-                                          styleType={styleType}
-                                          onClick={btn.onClick}
-                                          disabled={btn.disabled === true}
-                                          label={btn.text}
-                                          href={btn.href} />
+                                            styleType={styleType}
+                                            onClick={btn.onClick}
+                                            disabled={btn.disabled === true}
+                                            label={btn.text}
+                                            href={btn.href} />
                                     </div>
                                 );
                             } else {
                                 return (
                                     <Link key={i} to={btn.href} className={style.buttonWrap}>
                                         <StandardButton
-                                          styleType={styleType}
-                                          disabled={btn.disabled === true}
-                                          label={btn.text} />
+                                            styleType={styleType}
+                                            disabled={btn.disabled === true}
+                                            label={btn.text} />
                                     </Link>
                                 );
                             }

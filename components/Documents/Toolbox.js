@@ -121,7 +121,7 @@ class Toolbox extends Component {
                             selectedAttachment.get('statusId') === 'archived' ||
                             selectedAttachment.get('statusId') === 'pending' ||
                             selectedAttachment.get('statusId') === 'replaced')
-                            ) ||
+                        ) ||
                             this.props.selectedFilter === 'archived'),
                     onClick: openDeleteConfirmationDialog
                 });
@@ -192,14 +192,14 @@ class Toolbox extends Component {
             let selected = this.props.selectedFilter || 'all';
             documentsFilter = (
                 <Dropdown
-                  data={options}
-                  defaultSelected={selected}
-                  canSelectPlaceholder={false}
-                  placeholder={'Filter'}
-                  keyProp={'documentFilter'}
-                  onSelect={(obj) => {
-                      this.props.changeDocumentFilter(obj.value);
-                  }}
+                    data={options}
+                    defaultSelected={selected}
+                    canSelectPlaceholder={false}
+                    placeholder={'Filter'}
+                    keyProp={'documentFilter'}
+                    onSelect={(obj) => {
+                        this.props.changeDocumentFilter(obj.value);
+                    }}
                 />);
         }
 
@@ -207,30 +207,30 @@ class Toolbox extends Component {
             <div className={style.header}>
                 {this.state.showDeleteConfirmationPopup &&
                     <Popup
-                      isOpen
-                      header={{text: 'Delete document'}}
-                      closeOnOverlayClick
-                      closeOnEsc
-                      closePopup={closeDeleteConfirmationDialog}
-                      footer={{
-                          className: style.dialogFooter,
-                          actionButtons: deletePopupActionButtons
-                      }}
+                        isOpen
+                        header={{text: 'Delete document'}}
+                        closeOnOverlayClick
+                        closeOnEsc
+                        closePopup={closeDeleteConfirmationDialog}
+                        footer={{
+                            className: style.dialogFooter,
+                            actionButtons: deletePopupActionButtons
+                        }}
                     >
                         <Text>Are you sure you want to delete this document?</Text>
                     </Popup>
                 }
                 {this.state.showArchiveConfirmationPopup &&
                     <Popup
-                      isOpen
-                      header={{text: 'Archive document'}}
-                      closeOnOverlayClick
-                      closeOnEsc
-                      closePopup={closeArchiveConfirmationDialog}
-                      footer={{
-                          className: style.dialogFooter,
-                          actionButtons: archivePopupActionButtons
-                      }}
+                        isOpen
+                        header={{text: 'Archive document'}}
+                        closeOnOverlayClick
+                        closeOnEsc
+                        closePopup={closeArchiveConfirmationDialog}
+                        footer={{
+                            className: style.dialogFooter,
+                            actionButtons: archivePopupActionButtons
+                        }}
                     >
                         <Text>Are you sure you want to archive this document?</Text>
                     </Popup>
@@ -268,10 +268,10 @@ class Toolbox extends Component {
 
             return (
                 <FileDetailsPopup
-                  isOpen={this.state.showDetailsPopUp}
-                  header={{text: 'Preview Document'}}
-                  closePopup={closeHandler}
-                  file={file}
+                    isOpen={this.state.showDetailsPopUp}
+                    header={{text: 'Preview Document'}}
+                    closePopup={closeHandler}
+                    file={file}
                 />
             );
         } else {
@@ -287,15 +287,15 @@ class Toolbox extends Component {
         };
         return (
             <DocumentUploadWithForm
-              isOpen={this.state.isOpen}
-              header={{text: this.state.popupTitle}}
-              closePopup={closeHandler}
-              type={this.state.popupType}
-              editValues={this.props.selectedAttachment && this.props.selectedAttachment.toJS()}
-              uploadNewDocument={this.props.uploadNewDocument}
-              replaceDocument={this.props.replaceDocument}
-              documentTypes={this.props.documentTypes}
-              allowedFileTypes={this.props.allowedFileTypes}
+                isOpen={this.state.isOpen}
+                header={{text: this.state.popupTitle}}
+                closePopup={closeHandler}
+                type={this.state.popupType}
+                editValues={this.props.selectedAttachment && this.props.selectedAttachment.toJS()}
+                uploadNewDocument={this.props.uploadNewDocument}
+                replaceDocument={this.props.replaceDocument}
+                documentTypes={this.props.documentTypes}
+                allowedFileTypes={this.props.allowedFileTypes}
             />
         );
     }

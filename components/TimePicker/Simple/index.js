@@ -9,12 +9,12 @@ export default class TimePicker extends Component {
         return (
             <div className={style.ddframe}>
                 <Dropdown
-                  data={this.props.data}
-                  defaultSelected={this.props.defaultSelected}
-                  placeholder={this.props.defaultLabel}
-                  disabled={this.props.disabled}
-                  onSelect={this.props.onChange}
-                  keyProp={this.props.keyProp}
+                    data={this.props.data}
+                    defaultSelected={this.props.defaultSelected}
+                    placeholder={this.props.defaultLabel}
+                    disabled={this.props.disabled}
+                    onSelect={this.props.onChange}
+                    keyProp={this.props.keyProp}
                 />
             </div>
         );

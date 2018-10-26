@@ -16,14 +16,14 @@ export default function Sidebar({ menuItems }) {
         <div className={style.menuWrapper}>
             <div className={style.menu}>
                 <ul>
-                {menuItems.map((menuItem) =>
-                    <li key={menuItem.id}>
-                        <Link to={menuItem.linkTo} activeClassName={style.active}>
-                            {menuItem.title}
-                            {menuItem.postFix != null && <span className={style.postFix}>({menuItem.postFix})</span>}
-                        </Link>
-                    </li>
-                )}
+                    {menuItems.map((menuItem) =>
+                        <li key={menuItem.id}>
+                            <Link to={menuItem.linkTo} activeClassName={style.active}>
+                                {menuItem.title}
+                                {menuItem.postFix != null && <span className={style.postFix}>({menuItem.postFix})</span>}
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>

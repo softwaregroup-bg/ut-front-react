@@ -35,16 +35,16 @@ export default class MultiTab extends Component {
             let tab;
             if (currentTab.multi) {
                 tab = (<MultiTab
-                  tab={currentTab}
-                  key={generateUniqueId()}
-                  positioningDirections={'top-right'}
-                  rightArrowIcon
-                  className={styles.menuItemTab} />);
+                    tab={currentTab}
+                    key={generateUniqueId()}
+                    positioningDirections={'top-right'}
+                    rightArrowIcon
+                    className={styles.menuItemTab} />);
             } else {
                 tab = (<Tab
-                  key={generateUniqueId()}
-                  tab={currentTab}
-                  className={styles.menuItemTab} />);
+                    key={generateUniqueId()}
+                    tab={currentTab}
+                    className={styles.menuItemTab} />);
             }
 
             tabs.push(tab);
@@ -78,28 +78,28 @@ export default class MultiTab extends Component {
 
         return (
             <div
-              className={styles.navigationMultiTab}
-              onClick={this.props.onClick}
-              ref={(element) => { this.rootElement = element; }}
-              data-type={multiTab}
+                className={styles.navigationMultiTab}
+                onClick={this.props.onClick}
+                ref={(element) => { this.rootElement = element; }}
+                data-type={multiTab}
             >
                 <Link
-                  onClick={this.onClick}
-                  to={tab.routeName}
-                  params={tab.routeParams}
-                  className={classNames(className, styles.navigationTab)}
-                  activeClassName={styles.navigationTabActive} >
+                    onClick={this.onClick}
+                    to={tab.routeName}
+                    params={tab.routeParams}
+                    className={classNames(className, styles.navigationTab)}
+                    activeClassName={styles.navigationTabActive} >
                     {tab.title}
                     {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
                 </Link>
                 <Menu
-                  fields={menuItems}
-                  open={this.state.menuToggled}
-                  requestClose={this.requestCloseMenu}
-                  anchorEl={this.rootElement}
-                  positioningDirections={this.props.positioningDirections}
-                  className={styles.multiTabMenu}
-                  closeOnSelect />
+                    fields={menuItems}
+                    open={this.state.menuToggled}
+                    requestClose={this.requestCloseMenu}
+                    anchorEl={this.rootElement}
+                    positioningDirections={this.props.positioningDirections}
+                    className={styles.multiTabMenu}
+                    closeOnSelect />
             </div>
         );
     }

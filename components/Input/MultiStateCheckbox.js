@@ -38,9 +38,9 @@ class MultiStateCheckbox extends Component {
         let selectedClass = this.state.selected ? style[this.state.selected] : {};
         let click = () => this.onClick();
         return <label className={classnames(style.multistatecheckbox, inherited, selectedClass)}>
-                <input {...this.props} type='checkbox' onChange={click} />
-                <span />
-            </label>;
+            <input {...this.props} type='checkbox' onChange={click} />
+            <span />
+        </label>;
     }
 };
 

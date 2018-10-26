@@ -4,8 +4,8 @@ import MaterialUILayout from '../../components/MaterialUILayout';
 import RaisedButton from 'material-ui/RaisedButton';
 
 storiesOf('MaterialUILayout', module)
-.add('Default', () => (
-    <MaterialUILayout>
-        <RaisedButton label='Default' />
-    </MaterialUILayout>
-));
+    .add('Default', () => (
+        <MaterialUILayout>
+            <RaisedButton label='Default' />
+        </MaterialUILayout>
+    ));
