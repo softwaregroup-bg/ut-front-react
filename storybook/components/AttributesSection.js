@@ -18,100 +18,100 @@ const selectedSourceKeys = [
 ];
 
 storiesOf('AttributesSection', module)
-.add('Default', () => (
-    <AttributesSection
-      selectedSourceData={selectedSourceKeys}
-      singleItemName={'user'}
-      multipleItemNames={''}
-      selected={emptyImmutableMap}
-      checked={emptyImmutableList}
-      checkedMapKey={'userName'}
-      isInfoLoading={false}
-    >
+    .add('Default', () => (
+        <AttributesSection
+            selectedSourceData={selectedSourceKeys}
+            singleItemName={'user'}
+            multipleItemNames={''}
+            selected={emptyImmutableMap}
+            checked={emptyImmutableList}
+            checkedMapKey={'userName'}
+            isInfoLoading={false}
+        >
         Content
-    </AttributesSection>
-))
-.add('one checked', () => (
-    <AttributesSection
-      selectedSourceData={selectedSourceKeys}
-      singleItemName={'user'}
-      multipleItemNames={''}
-      selected={emptyImmutableMap}
-      checked={immutable.List([firstChecked])}
-      checkedMapKey={'userName'}
-      isInfoLoading={false}
-    >
+        </AttributesSection>
+    ))
+    .add('one checked', () => (
+        <AttributesSection
+            selectedSourceData={selectedSourceKeys}
+            singleItemName={'user'}
+            multipleItemNames={''}
+            selected={emptyImmutableMap}
+            checked={immutable.List([firstChecked])}
+            checkedMapKey={'userName'}
+            isInfoLoading={false}
+        >
         Content
-    </AttributesSection>
-))
-.add('two checked', () => (
-    <div style={{width: '300px'}}>
-        <AttributesSection
-          selectedSourceData={selectedSourceKeys}
-          singleItemName={'user'}
-          multipleItemNames={''}
-          selected={emptyImmutableMap}
-          checked={twoChecked}
-          checkedMapKey={'userName'}
-          isInfoLoading={false}
-        />
-    </div>
-))
-.add('three checked', () => (
-    <div style={{width: '300px'}}>
-        <AttributesSection
-          selectedSourceData={selectedSourceKeys}
-          singleItemName={'user'}
-          multipleItemNames={''}
-          selected={emptyImmutableMap}
-          checked={twoChecked}
-          checkedMapKey={'userName'}
-          isInfoLoading={false}
-        />
-    </div>
-))
-
-.add('only selected', () => (
-    <div style={{width: '300px'}}>
-        <AttributesSection
-          selectedSourceData={selectedSourceKeys}
-          singleItemName={'user'}
-          multipleItemNames={''}
-          selected={selected}
-          checked={emptyImmutableList}
-          checkedMapKey={'userName'}
-          isInfoLoading={false}
-        />
-    </div>
-))
-.add('selected and checked', () => (
-    <div style={{width: '300px'}}>
-        <AttributesSection
-          selectedSourceData={selectedSourceKeys}
-          singleItemName={'user'}
-          multipleItemNames={''}
-          selected={selected}
-          checked={twoChecked}
-          checkedMapKey={'userName'}
-          isInfoLoading={false}
-        />
-    </div>
-))
-.add('loading', () => (
-    <MaterialUILayout>
+        </AttributesSection>
+    ))
+    .add('two checked', () => (
         <div style={{width: '300px'}}>
             <AttributesSection
-              selectedSourceData={selectedSourceKeys}
-              singleItemName={'user'}
-              multipleItemNames={''}
-              selected={emptyImmutableMap}
-              checked={emptyImmutableList}
-              checkedMapKey={'userName'}
-              isInfoLoading
+                selectedSourceData={selectedSourceKeys}
+                singleItemName={'user'}
+                multipleItemNames={''}
+                selected={emptyImmutableMap}
+                checked={twoChecked}
+                checkedMapKey={'userName'}
+                isInfoLoading={false}
             />
         </div>
-    </MaterialUILayout>
-));
+    ))
+    .add('three checked', () => (
+        <div style={{width: '300px'}}>
+            <AttributesSection
+                selectedSourceData={selectedSourceKeys}
+                singleItemName={'user'}
+                multipleItemNames={''}
+                selected={emptyImmutableMap}
+                checked={twoChecked}
+                checkedMapKey={'userName'}
+                isInfoLoading={false}
+            />
+        </div>
+    ))
+
+    .add('only selected', () => (
+        <div style={{width: '300px'}}>
+            <AttributesSection
+                selectedSourceData={selectedSourceKeys}
+                singleItemName={'user'}
+                multipleItemNames={''}
+                selected={selected}
+                checked={emptyImmutableList}
+                checkedMapKey={'userName'}
+                isInfoLoading={false}
+            />
+        </div>
+    ))
+    .add('selected and checked', () => (
+        <div style={{width: '300px'}}>
+            <AttributesSection
+                selectedSourceData={selectedSourceKeys}
+                singleItemName={'user'}
+                multipleItemNames={''}
+                selected={selected}
+                checked={twoChecked}
+                checkedMapKey={'userName'}
+                isInfoLoading={false}
+            />
+        </div>
+    ))
+    .add('loading', () => (
+        <MaterialUILayout>
+            <div style={{width: '300px'}}>
+                <AttributesSection
+                    selectedSourceData={selectedSourceKeys}
+                    singleItemName={'user'}
+                    multipleItemNames={''}
+                    selected={emptyImmutableMap}
+                    checked={emptyImmutableList}
+                    checkedMapKey={'userName'}
+                    isInfoLoading
+                />
+            </div>
+        </MaterialUILayout>
+    ));
 
 const emptyImmutableList = immutable.List([]);
 const emptyImmutableMap = immutable.Map({});

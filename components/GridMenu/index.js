@@ -75,36 +75,36 @@ export default class GlobalMenu extends Component {
             .filter((f) => (!f.internal))
             .map((f, idx) => (
                 <MenuItem
-                  key={idx}
-                  onTouchTap={this.toggleColumnVisibility(f)}
-                  children={
-                      <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
-                        <Checkbox isDisabled={false} checked={f.visible} />
-                        {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
-                      </div>
-                  } />
+                    key={idx}
+                    onTouchTap={this.toggleColumnVisibility(f)}
+                    children={
+                        <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
+                            <Checkbox isDisabled={false} checked={f.visible} />
+                            {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
+                        </div>
+                    } />
             ));
     }
     getMenu() {
         return (
             <Popover
-              open={this.state.menuOpened}
-              anchorEl={this.state.anchorEl}
-              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-              targetOrigin={{horizontal: 'left', vertical: 'top'}}
-              onRequestClose={this.handleMenuClose}
-              animation={PopoverAnimationVertical}
-              className={this.getStyle('headerGlobalMenuPopoverWrap')}>
+                open={this.state.menuOpened}
+                anchorEl={this.state.anchorEl}
+                anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                onRequestClose={this.handleMenuClose}
+                animation={PopoverAnimationVertical}
+                className={this.getStyle('headerGlobalMenuPopoverWrap')}>
                 <Menu disableAutoFocus className={this.getStyle('headerGlobalMenuItemWrap')} >
                     {this.props.onRefresh && (<div className={style.refreshContainer}>
                         <MenuItem onTouchTap={this.props.onRefresh} style={{minHeight: 'auto'}}
-                          children={
-                            <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
-                                <div className={classnames(style.icon, style.refreshIcon)} />
-                                <div className={style.iconLabel}> Reload Grid </div>
-                            </div>}
-                            />
-                    </ div>)}
+                            children={
+                                <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
+                                    <div className={classnames(style.icon, style.refreshIcon)} />
+                                    <div className={style.iconLabel}> Reload Grid </div>
+                                </div>}
+                        />
+                    </div>)}
                     <div className={style.columnWrap}>
                         <label className={style.menuLabel}> Manage Columns </label>
                         { this.getItems() }

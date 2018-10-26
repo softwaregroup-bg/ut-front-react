@@ -74,10 +74,10 @@ export default class DropdownSelect extends Component {
         if (this.props.showPlaceHolderAsFirstOption) {
             items.push(
                 <MenuItem
-                  key='_placeholder_'
-                  primaryText={this.props.placeholder}
-                  disabled={!this.props.canSelectPlaceholder || selectedItem[this.props.keyProp] === '_placeholder_'}
-                  onTouchTap={this.select({key: '_placeholder_'})}
+                    key='_placeholder_'
+                    primaryText={this.props.placeholder}
+                    disabled={!this.props.canSelectPlaceholder || selectedItem[this.props.keyProp] === '_placeholder_'}
+                    onTouchTap={this.select({key: '_placeholder_'})}
                 />
             );
         }
@@ -86,10 +86,10 @@ export default class DropdownSelect extends Component {
             let disabled = item.disabled || selectedItem[this.props.keyProp] === item[this.props.keyProp];
             items.push(
                 <MenuItem
-                  key={item[this.props.keyProp]}
-                  primaryText={item[this.props.valueProp]}
-                  disabled={disabled}
-                  onTouchTap={this.select(item)}
+                    key={item[this.props.keyProp]}
+                    primaryText={item[this.props.valueProp]}
+                    disabled={disabled}
+                    onTouchTap={this.select(item)}
                 />
             );
         });
@@ -115,14 +115,14 @@ export default class DropdownSelect extends Component {
                 <div>
                     {this.props.label ? (<span className={style.label}>{this.props.label}</span>) : ''}
                     <div onClick={this.props.onClick} className={classnames.apply(undefined, dropDownWrapStyle)}>
-                    {/* animated=false prevents bugs caused by animation delay */}
+                        {/* animated=false prevents bugs caused by animation delay */}
                         <Popover
-                          open={this.state.dropdownOpen}
-                          animated={false}
-                          anchorEl={this.state.anchorEl}
-                          onRequestClose={this.toggle}
-                          anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
-                          targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                            open={this.state.dropdownOpen}
+                            animated={false}
+                            anchorEl={this.state.anchorEl}
+                            onRequestClose={this.toggle}
+                            anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                            targetOrigin={{horizontal: 'right', vertical: 'top'}}
                         >
                             <Menu>
                                 {this.renderDropdownItems()}

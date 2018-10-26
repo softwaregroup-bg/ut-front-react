@@ -75,13 +75,13 @@ class TextArea extends Component {
         let disabledStyle = readonly ? style.readonlyInput : '';
 
         let textArea = <textArea
-          rows='7'
-          ref='input'
-          className={classnames(style.textarea, errorTextAreaStyle, disabledStyle, cssClass)}
-          value={this.state.value || ''}
-          onChange={this.handleChange}
-          disabled={this.props.disabled}
-          readOnly={this.props.readonly}
+            rows='7'
+            ref='input'
+            className={classnames(style.textarea, errorTextAreaStyle, disabledStyle, cssClass)}
+            value={this.state.value || ''}
+            onChange={this.handleChange}
+            disabled={this.props.disabled}
+            readOnly={this.props.readonly}
         />;
         if (label) {
             return (

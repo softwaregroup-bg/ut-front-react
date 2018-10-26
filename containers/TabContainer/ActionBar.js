@@ -11,8 +11,8 @@ class ActionBar extends Component {
 
         return (
             <button disabled={button.isDisabled}
-              className={classnames('button', 'btn', 'btn-primary')}
-              onClick={handleClick}
+                className={classnames('button', 'btn', 'btn-primary')}
+                onClick={handleClick}
             >
                 {button.label}
             </button>
@@ -29,9 +29,9 @@ class ActionBar extends Component {
 
                 <div className={classnames(style.buttonsWrap, style.prevButtonWrap, prevButtonStyles)}>
                     <button
-                      className={style.navigationButton}
-                      onClick={onPrev}
-                      disabled={!disablePrevBtn}
+                        className={style.navigationButton}
+                        onClick={onPrev}
+                        disabled={!disablePrevBtn}
                     >
                         Previous
                     </button>
@@ -39,9 +39,9 @@ class ActionBar extends Component {
 
                 <div className={classnames(style.buttonsWrap, style.nextButtonWrap, nextButtonStyles, style.pullRight)}>
                     <button
-                      className={style.navigationButton}
-                      onClick={onNext}
-                      disabled={!disableNextBtn}
+                        className={style.navigationButton}
+                        onClick={onNext}
+                        disabled={!disableNextBtn}
                     >
                         Next
                     </button>

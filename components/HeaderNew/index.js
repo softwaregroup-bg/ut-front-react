@@ -13,17 +13,17 @@ export default class HeaderNew extends Component {
         return (
             <div className={styles.headerContainer}>
                 <HeaderLogo
-                  text={headerText}
-                  replaceWithBrakes={!!replaceWithBrakes}
-                  className={classNames(styles.headerLogoContainer, classLogoContainer)} />
+                    text={headerText}
+                    replaceWithBrakes={!!replaceWithBrakes}
+                    className={classNames(styles.headerLogoContainer, classLogoContainer)} />
                 <TabsContainer
-                  tabset={tabset}
-                  className={classNames(styles.tabsContainer, classTabsContainer)} />
+                    tabset={tabset}
+                    className={classNames(styles.tabsContainer, classTabsContainer)} />
                 <HeaderProfileInfo
-                  currentLocation={currentLocation}
-                  personInfo={personInfo}
-                  logout={logout}
-                  className={classNames(styles.profileContainer, classProfileInfoContainer)} />
+                    currentLocation={currentLocation}
+                    personInfo={personInfo}
+                    logout={logout}
+                    className={classNames(styles.profileContainer, classProfileInfoContainer)} />
             </div>
         );
     }

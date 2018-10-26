@@ -8,10 +8,10 @@ export class AdvancedSearchButton extends Component {
     render() {
         return (
             <div>
-            <button className={classnames(styles.defaultBtn, mainStyle.defaultButton)} onClick={this.props.onClick}>
-            {<span className={mainStyle.iconWrap}>
+                <button className={classnames(styles.defaultBtn, mainStyle.defaultButton)} onClick={this.props.onClick}>
+                    {<span className={mainStyle.iconWrap}>
                         <SvgSearchIcon color='#808080' style={{display: 'flex', height: '20px'}} />
-                    </span>} Advanced Search </ button>
+                    </span>} Advanced Search </button>
             </div>
 
         );

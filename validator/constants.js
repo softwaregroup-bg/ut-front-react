@@ -26,7 +26,7 @@ export const textValidations = {
     uniqueValueCaseInsensitive: 'uniqueValueCaseInsensitive',
     uniformCivilNumber: 'uniformCivilNumber',
     length: 'length', // minVal, maxVal
-    regex: 'regex',  // value,
+    regex: 'regex', // value,
     iban: 'iban'
 };
 

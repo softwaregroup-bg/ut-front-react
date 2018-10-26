@@ -32,16 +32,16 @@ class MultiSelectBubble extends Component {
         return (
             <div className={style.outerWrap}>
                 <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
-                        {label}
+                    {label}
                 </div>
                 <div className={style.inputWrap}>
                     <Select
-                      disabled={disabled}
-                      name={name}
-                      value={this.formatValue(value)}
-                      options={this.formatOptions(options)}
-                      onChange={this.handleChange}
-                      multi
+                        disabled={disabled}
+                        name={name}
+                        value={this.formatValue(value)}
+                        options={this.formatOptions(options)}
+                        onChange={this.handleChange}
+                        multi
                     />
                 </div>
             </div>

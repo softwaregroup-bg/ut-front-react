@@ -13,16 +13,16 @@ import KeyValueRow from './KeyValueRow';
 const DataList = ({data}) => {
     let rows = data.map((row, index) => (
         <KeyValueRow
-          wrapperClass={row.get('wrapperClass')}
-          keyClass={row.get('keyClass')}
-          valueClass={row.get('valueClass')}
-          key={index}
-          keyNode={row.get('key')}>
+            wrapperClass={row.get('wrapperClass')}
+            keyClass={row.get('keyClass')}
+            valueClass={row.get('valueClass')}
+            key={index}
+            keyNode={row.get('key')}>
             {row.get('value')}
         </KeyValueRow>));
     return (
         <div>
-          {rows}
+            {rows}
         </div>
     );
 };

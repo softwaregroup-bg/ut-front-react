@@ -11,10 +11,10 @@ class CustomCompareGridItem extends Component {
         let title = titleMapper[type]();
         let customComponent = data.get('customComponent');
         return <TitledContentBox
-          externalContentClasses={styles.titledBoxBody}
-          externalHeaderClasses={styles.titleBoxTitle}
-          title={title}>
-          {customComponent.get(type)}
+            externalContentClasses={styles.titledBoxBody}
+            externalHeaderClasses={styles.titleBoxTitle}
+            title={title}>
+            {customComponent.get(type)}
         </TitledContentBox>;
     };
 
@@ -23,23 +23,23 @@ class CustomCompareGridItem extends Component {
         let columnStyle = single ? styles.whole : styles.half;
         return (
             <div>
-              <Accordion
-                title={data.get('title')}
-                marginBottom
-                externalBodyClasses={styles.accordionBody}
-                externalTitleClasses={styles.accordionTitle}
-                className={styles.accordion}
-                collapsed={!data.get('isOpen')}>
-                <div className={styles.container}>
-                    <div className={columnStyle}>
-                        {this.renderCustomComponent(data, titleTypes.current)}
+                <Accordion
+                    title={data.get('title')}
+                    marginBottom
+                    externalBodyClasses={styles.accordionBody}
+                    externalTitleClasses={styles.accordionTitle}
+                    className={styles.accordion}
+                    collapsed={!data.get('isOpen')}>
+                    <div className={styles.container}>
+                        <div className={columnStyle}>
+                            {this.renderCustomComponent(data, titleTypes.current)}
+                        </div>
+                        {!single &&
+                        <div className={columnStyle}>
+                            {this.renderCustomComponent(data, titleTypes.unapproved)}
+                        </div>}
                     </div>
-                    {!single &&
-                    <div className={columnStyle}>
-                        {this.renderCustomComponent(data, titleTypes.unapproved)}
-                    </div>}
-                </div>
-              </Accordion>
+                </Accordion>
             </div>
         );
     }

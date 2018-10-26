@@ -91,20 +91,20 @@ class TimePicker extends Component {
                 <div className={style.tpWrap}>
                     <div className={style.tpHoursWrap}>
                         <Dropdown
-                          data={tpHours}
-                          defaultSelected={valueHour}
-                          placeholder='Hour'
-                          onSelect={handleHoursChange}
-                          disabled={this.props.disabled}
+                            data={tpHours}
+                            defaultSelected={valueHour}
+                            placeholder='Hour'
+                            onSelect={handleHoursChange}
+                            disabled={this.props.disabled}
                         />
                     </div>
                     <div className={style.tpMinutesWrap}>
                         <Dropdown
-                          data={tpMinuts}
-                          defaultSelected={valueMin}
-                          placeholder='Min'
-                          onSelect={handleMinutesChange}
-                          disabled={this.props.disabled}
+                            data={tpMinuts}
+                            defaultSelected={valueMin}
+                            placeholder='Min'
+                            onSelect={handleMinutesChange}
+                            disabled={this.props.disabled}
                         />
                     </div>
                 </div>

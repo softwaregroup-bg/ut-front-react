@@ -36,23 +36,23 @@ class ButtonInput extends Component {
                 </div>
                 <div className={style.inputWrap}>
                     <input
-                      readOnly={this.props.readOnly}
-                      type={this.props.type}
-                      ref='input'
-                      name={this.props.name}
-                      className={classNames(style.input, style.buttonInput, {
-                          [style.readonlyInput]: readOnly
-                      })}
-                      label={this.props.label}
-                      value={this.state.value}
-                      placeholder={placeholder}
-                      onChange={this.onChange} />
+                        readOnly={this.props.readOnly}
+                        type={this.props.type}
+                        ref='input'
+                        name={this.props.name}
+                        className={classNames(style.input, style.buttonInput, {
+                            [style.readonlyInput]: readOnly
+                        })}
+                        label={this.props.label}
+                        value={this.state.value}
+                        placeholder={placeholder}
+                        onChange={this.onChange} />
                     <StandardButton
-                      type='password'
-                      disabled={btnDisabled}
-                      className='secondaryButton secondaryInputButton'
-                      onClick={this.props.onClick}
-                      label={this.props.btnText} />
+                        type='password'
+                        disabled={btnDisabled}
+                        className='secondaryButton secondaryInputButton'
+                        onClick={this.props.onClick}
+                        label={this.props.btnText} />
                 </div>
             </div>
         );

@@ -76,9 +76,9 @@ export default class MenuNew extends Component {
 
         return (
             <div
-              style={positioningStyles}
-              className={classNames(styles.menu, styles.standardMenu, className)} >
-              {fields}
+                style={positioningStyles}
+                className={classNames(styles.menu, styles.standardMenu, className)} >
+                {fields}
             </div>
         );
     }

@@ -34,7 +34,7 @@ class TabMenu extends React.Component {
     }
 
     componentDidUpdate() {
-//        if (this.state.activeTabIndex && this.state.activeTabIndex < this.props.tabs.length) {
+        //        if (this.state.activeTabIndex && this.state.activeTabIndex < this.props.tabs.length) {
         let node = ReactDom.findDOMNode(this.refs.tabset);
         let rowNodeRect = node.getElementsByTagName('tr')[0].getBoundingClientRect();
         let buttonWidth = 32; // the width of the dropdown button // TODO: consider taking this value dynamically
@@ -73,7 +73,7 @@ class TabMenu extends React.Component {
         } else {
             this.setOffset(0);
         }
-//        }
+        //        }
     }
 
     displayBtn(state) {

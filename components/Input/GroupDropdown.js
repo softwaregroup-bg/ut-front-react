@@ -58,10 +58,10 @@ class GroupDropdown extends Dropdown {
                 <div key={group}>
                     {/* the material ui api allows manipulation of  */}
                     <MenuItem
-                      key={group}
-                      className={style.groupDropdownMenuItem}
-                      disabled
-                      primaryText={group}
+                        key={group}
+                        className={style.groupDropdownMenuItem}
+                        disabled
+                        primaryText={group}
                     />
                     <Divider />
                     {
@@ -72,12 +72,12 @@ class GroupDropdown extends Dropdown {
                                 : style.groupDropdownMenuItem;
                             return (
                                 <MenuItem
-                                  key={item.key + '-' + i}
-                                  className={className}
-                                  disabled={item.disabled}
-                                  value={item.key}
-                                  onTouchTap={() => { this.handleChange(item); }}
-                                  primaryText={item.name}
+                                    key={item.key + '-' + i}
+                                    className={className}
+                                    disabled={item.disabled}
+                                    value={item.key}
+                                    onTouchTap={() => { this.handleChange(item); }}
+                                    primaryText={item.name}
                                 />
                             );
                         })
@@ -87,12 +87,12 @@ class GroupDropdown extends Dropdown {
         });
         menuItems.unshift(
             <MenuItem
-              disabled={false}
-              className={style.groupDropdownMenuItem}
-              key={Math.random() + '-ddfg'}
-              value={this.props.placeholderValue}
-              onTouchTap={() => { this.handleChange({ key: '__placeholder__' }); }}
-              primaryText={this.props.placeholder} />
+                disabled={false}
+                className={style.groupDropdownMenuItem}
+                key={Math.random() + '-ddfg'}
+                value={this.props.placeholderValue}
+                onTouchTap={() => { this.handleChange({ key: '__placeholder__' }); }}
+                primaryText={this.props.placeholder} />
         );
         return menuItems;
     }
@@ -111,30 +111,30 @@ class GroupDropdown extends Dropdown {
 
         return (
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle)} onClick={!this.props.disabled && this.toggleOpen}>
-                    <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
-                        <div className={ddstyles.groupDropdownPlaceholder}>
-                            <div style={{maxWidth: labelMaxWidth}}>
-                                {this.dropdownPlaceholder}
-                            </div>
+                <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
+                    <div className={ddstyles.groupDropdownPlaceholder}>
+                        <div style={{maxWidth: labelMaxWidth}}>
+                            {this.dropdownPlaceholder}
                         </div>
-                        <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
+                    </div>
+                    <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
                     <div className={ddstyles.hideTextWrap} />
                 </div>
                 <Popover
-                  open={this.state.open}
-                  onRequestClose={this.toggleClose}
-                  anchorEl={this.state.anchorEl}
-                  anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                  targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  animation={PopoverAnimationVertical}
+                    open={this.state.open}
+                    onRequestClose={this.toggleClose}
+                    anchorEl={this.state.anchorEl}
+                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    animation={PopoverAnimationVertical}
                 >
                     <Menu
-                      autoWidth={false}
-                      disableAutoFocus
-                      value={this.state.value}
-                      maxHeight={300}
-                      style={{width: rootElementWidth}}
-                      className={ddstyles.groupDropdownMenu}>
+                        autoWidth={false}
+                        disableAutoFocus
+                        value={this.state.value}
+                        maxHeight={300}
+                        style={{width: rootElementWidth}}
+                        className={ddstyles.groupDropdownMenu}>
                         {menuItems}
                     </Menu>
                 </Popover>

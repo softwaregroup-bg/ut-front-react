@@ -158,7 +158,7 @@ class DateTimePicker extends Component {
 
         return (
             <div className={outerWrapStyle}>
-                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}>{label}</span>) : ''}
+                {label ? (<span className={classnames(labelWrap, boldLabelStyle)}>{label}</span>) : ''}
                 <div className={classnames(innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
                         <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
@@ -168,30 +168,30 @@ class DateTimePicker extends Component {
                         <input value={defaultValue ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div> : timeType === 'timeDropdown'
-                    ? <div className={style.ddframe}>
-                        <Dropdown
-                          data={dropdownData}
-                          keyProp='time'
-                          onSelect={this.handleAccept('time')}
-                          defaultSelected={defaultValue ? this.formatTime(date) : ''} />
+                        ? <div className={style.ddframe}>
+                            <Dropdown
+                                data={dropdownData}
+                                keyProp='time'
+                                onSelect={this.handleAccept('time')}
+                                defaultSelected={defaultValue ? this.formatTime(date) : ''} />
                         </div> : ''}
-                     <DatePickerDialog
-                       cancelLabel={cancelLabel}
-                       okLabel={okLabel}
-                       container={container}
-                       initialDate={date}
-                       mode={mode}
-                       onAccept={this.handleAccept('date')}
-                       firstDayOfWeek={firstDayOfWeek}
-                       ref='date' />
+                    <DatePickerDialog
+                        cancelLabel={cancelLabel}
+                        okLabel={okLabel}
+                        container={container}
+                        initialDate={date}
+                        mode={mode}
+                        onAccept={this.handleAccept('date')}
+                        firstDayOfWeek={firstDayOfWeek}
+                        ref='date' />
                     {timeType === 'timePicker' ? <TimePickerDialog
-                      cancelLabel={cancelLabel}
-                      okLabel={okLabel}
-                      initialTime={date}
-                      mode={mode}
-                      onAccept={this.handleAccept('time')}
-                      format={format}
-                      ref='time' /> : ''}
+                        cancelLabel={cancelLabel}
+                        okLabel={okLabel}
+                        initialTime={date}
+                        mode={mode}
+                        onAccept={this.handleAccept('time')}
+                        format={format}
+                        ref='time' /> : ''}
                 </div>
             </div>
         );

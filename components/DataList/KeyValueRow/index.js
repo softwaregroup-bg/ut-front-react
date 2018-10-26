@@ -12,10 +12,10 @@ const KeyValueRow = ({ wrapperClass, keyClass, valueClass, keyNode, orientation 
     });
     let valueClasses = isHorizontal(orientation) ? style.valueCell : null;
     return (
-      <WrapperComponentName xs='6' className={`${wrapperClass} ${wrapperClasses}`}>
-        <CellComponentName xs='6' className={`${keyClass} ${style.keyCell}`} ><Text>{keyNode}</Text></CellComponentName>
-        <CellComponentName xs='6' className={`${valueClass} ${valueClasses}`} >{children}</CellComponentName>
-      </WrapperComponentName>
+        <WrapperComponentName xs='6' className={`${wrapperClass} ${wrapperClasses}`}>
+            <CellComponentName xs='6' className={`${keyClass} ${style.keyCell}`} ><Text>{keyNode}</Text></CellComponentName>
+            <CellComponentName xs='6' className={`${valueClass} ${valueClasses}`} >{children}</CellComponentName>
+        </WrapperComponentName>
     );
 };
 

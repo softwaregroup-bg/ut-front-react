@@ -2,22 +2,23 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import BusinessUnits from '../../components/BusinessUnits';
 import MaterialUILayout from '../../components/MaterialUILayout';
+const noop = function() {};
 
 storiesOf('BusinessUnits', module)
-.add('Default', () => (
-    <div >
-        <MaterialUILayout>
-            <BusinessUnits units={units} unitsTree={unitsTree} rootId='1003' selected='1003' isLoading={false} fetchBusinessUnits={function() {}} selectBusinessUnit={function(node) { action(node); }} styles={{main: {width: '175px', height: '96%'}}} />
-        </MaterialUILayout>
-    </div>
-))
-.add('loading', () => (
-    <div >
-        <MaterialUILayout>
-            <BusinessUnits units={[]} unitsTree={[]} rootId='1003' selected='1003' isLoading fetchBusinessUnits={function() {}} selectBusinessUnit={function(node) { action(node); }} styles={{main: {width: '175px', height: '96%'}}} />
-        </MaterialUILayout>
-    </div>
-));
+    .add('Default', () => (
+        <div >
+            <MaterialUILayout>
+                <BusinessUnits units={units} unitsTree={unitsTree} rootId='1003' selected='1003' isLoading={false} fetchBusinessUnits={noop} selectBusinessUnit={action} styles={{main: {width: '175px', height: '96%'}}} />
+            </MaterialUILayout>
+        </div>
+    ))
+    .add('loading', () => (
+        <div >
+            <MaterialUILayout>
+                <BusinessUnits units={[]} unitsTree={[]} rootId='1003' selected='1003' isLoading fetchBusinessUnits={noop} selectBusinessUnit={action} styles={{main: {width: '175px', height: '96%'}}} />
+            </MaterialUILayout>
+        </div>
+    ));
 
 const unitsTree = [{
     'id': '1003',

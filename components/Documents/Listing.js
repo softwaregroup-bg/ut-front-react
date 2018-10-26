@@ -26,18 +26,18 @@ class Documents extends Component {
     get header() {
         return (
             <Toolbox
-              selectedAttachment={this.props.selectedAttachment}
-              documents={this.mergeDocuments}
-              documentArchived={this.props.documentArchived}
-              selectedFilter={this.props.selectedFilter}
-              changeDocumentFilter={this.props.changeDocumentFilter}
-              documentTypes={this.props.documentTypes}
-              uploadNewDocument={this.props.uploadNewDocument}
-              replaceDocument={this.props.replaceDocument}
-              deleteDocument={this.props.deleteDocument}
-              archiveDocument={this.props.archiveDocument}
-              allowedFileTypes={this.props.allowedFileTypes}
-              permissions={this.props.permissions}
+                selectedAttachment={this.props.selectedAttachment}
+                documents={this.mergeDocuments}
+                documentArchived={this.props.documentArchived}
+                selectedFilter={this.props.selectedFilter}
+                changeDocumentFilter={this.props.changeDocumentFilter}
+                documentTypes={this.props.documentTypes}
+                uploadNewDocument={this.props.uploadNewDocument}
+                replaceDocument={this.props.replaceDocument}
+                deleteDocument={this.props.deleteDocument}
+                archiveDocument={this.props.archiveDocument}
+                allowedFileTypes={this.props.allowedFileTypes}
+                permissions={this.props.permissions}
             />
         );
     }
@@ -52,12 +52,12 @@ class Documents extends Component {
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>
                     <DocumentsGrid
-                      identifier={identifier}
-                      documents={this.mergeDocuments}
-                      selectedFilter={selectedFilter}
-                      documentArchived={documentArchived}
-                      onGridSelect={onGridSelect}
-                      selected={selectedAttachment}
+                        identifier={identifier}
+                        documents={this.mergeDocuments}
+                        selectedFilter={selectedFilter}
+                        documentArchived={documentArchived}
+                        onGridSelect={onGridSelect}
+                        selected={selectedAttachment}
                     />
                 </Vertical>
             </div>

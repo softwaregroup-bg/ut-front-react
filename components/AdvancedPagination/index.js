@@ -93,7 +93,7 @@ class AdvancedPagination extends Component {
             <div className={styles.pageSwitherWrap}>
                 <div className={styles.numberInputWrap}>
                     <input type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
-                      onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} />
+                        onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} />
                 </div>
                 <div className={styles.rightWrap}>
                     / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>Pages</span>
@@ -328,12 +328,12 @@ class AdvancedPagination extends Component {
                     <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}>Items</span>
                 </div>
                 <div className={styles.itemPerPageDDWrap}>
-                     <Dropdown
-                       data={this.props.itemsPerPageData.map((x) => { return {key: x, name: x.toString()}; })}
-                       defaultSelected={this.pageSize || this.props.itemsPerPageData[0]}
-                       onSelect={handlePageSizeDropDrown}
-                       cssStyle={dropdownstyles}
-                       iconStyles={dropdownIconStyles}
+                    <Dropdown
+                        data={this.props.itemsPerPageData.map((x) => { return {key: x, name: x.toString()}; })}
+                        defaultSelected={this.pageSize || this.props.itemsPerPageData[0]}
+                        onSelect={handlePageSizeDropDrown}
+                        cssStyle={dropdownstyles}
+                        iconStyles={dropdownIconStyles}
                     />
                 </div>
                 <div className={styles.perPageWrap}> per page</div>

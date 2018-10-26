@@ -4,10 +4,10 @@ import Preloader from '../../components/Preloader';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
 storiesOf('Preloader', module)
-.add('Default', () => (
-    <MaterialUILayout>
-        <Preloader>
+    .add('Default', () => (
+        <MaterialUILayout>
+            <Preloader>
             Message
-        </Preloader>
-    </MaterialUILayout>
-));
+            </Preloader>
+        </MaterialUILayout>
+    ));

@@ -24,16 +24,17 @@ function getTabClass(isActive) {
 export default function TabSet({ tabs, onTabChanged, activeTab }) {
     return (
         <div className={styles.tabSet}>
-            {tabs.map((tab, i) =>
-                <div
-                  key={tab.key}
-                  className={getTabClass(activeTab === tab.key || activeTab === i)}
-                  onClick={function() { onTabChanged(tab); }}
+            {tabs.map((tab, i) => {
+                function tabClick() { onTabChanged(tab); }
+                return <div
+                    key={tab.key}
+                    className={getTabClass(activeTab === tab.key || activeTab === i)}
+                    onClick={tabClick}
                 >
                     <span>{tab.text}</span>
                     <span className={styles.count}>{tab.count}</span>
-                </div>
-            )}
+                </div>;
+            })}
         </div>
     );
 }

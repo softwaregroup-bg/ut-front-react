@@ -82,10 +82,10 @@ const AttributesSection = (props) => {
                     return <Heading value={sourceData.name} styles={sourceData.styles} />;
                 default:
                     return <Text
-                      title={sourceData.name}
-                      value={value}
-                      valueShouldBeMapped={sourceData.valueShouldBeMapped}
-                      mapKey={sourceData.mapKey}
+                        title={sourceData.name}
+                        value={value}
+                        valueShouldBeMapped={sourceData.valueShouldBeMapped}
+                        mapKey={sourceData.mapKey}
                     />;
             }
         }

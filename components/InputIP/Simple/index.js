@@ -11,13 +11,13 @@ class IPInput extends Component {
         return (
             <div className={style.inputWrap}>
                 <Iput
-                  className={style.ipInput}
-                  value={this.props.value}
-                  onChange={this.props.onChange}
-                  isError={() => (!this.props.isValid)}
-                  placeholder={placeholderValue}
-                  readonly={this.props.readonly}
-                  clear={clearState}
+                    className={style.ipInput}
+                    value={this.props.value}
+                    onChange={this.props.onChange}
+                    isError={() => (!this.props.isValid)}
+                    placeholder={placeholderValue}
+                    readonly={this.props.readonly}
+                    clear={clearState}
                 />
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
             </div>

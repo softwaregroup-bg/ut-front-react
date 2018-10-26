@@ -19,21 +19,21 @@ export default class FormInput extends Component {
         let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
 
         return (
-           <div className={getClass(styles, inputClassName)}>
-               <input
-                 disabled={disabled}
-                 name={name}
-                 type={type}
-                 data-hidden={!!hidden}
-                 placeholder={placeholder}
-                 accept={acceptType}
-                 onChange={onChange}
-                 onBlur={onBlur}
-                 tabIndex={tabIndex}
-                 ref='inputNode' />
-                 { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
-                 { error ? <div className={styles.errorMessage}>{error}</div> : false }
-           </div>
+            <div className={getClass(styles, inputClassName)}>
+                <input
+                    disabled={disabled}
+                    name={name}
+                    type={type}
+                    data-hidden={!!hidden}
+                    placeholder={placeholder}
+                    accept={acceptType}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    tabIndex={tabIndex}
+                    ref='inputNode' />
+                { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
+                { error ? <div className={styles.errorMessage}>{error}</div> : false }
+            </div>
         );
     }
 }

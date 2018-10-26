@@ -63,14 +63,14 @@ class DocumentsGrid extends Component {
             return (
                 <div>
                     <SimpleGrid
-                      multiSelect={false}
-                      globalMenu={false}
-                      emptyRowsMsg={<Text>No results</Text>}
-                      fields={getListTableColumns()}
-                      data={gridData}
-                      transformCellValue={this.mapColumn}
-                      handleRowClick={handleSelectItem}
-                      rowsChecked={selectedItem}
+                        multiSelect={false}
+                        globalMenu={false}
+                        emptyRowsMsg={<Text>No results</Text>}
+                        fields={getListTableColumns()}
+                        data={gridData}
+                        transformCellValue={this.mapColumn}
+                        handleRowClick={handleSelectItem}
+                        rowsChecked={selectedItem}
                     />
                 </div>
             );

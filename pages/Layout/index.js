@@ -16,12 +16,12 @@ class Layout extends Component {
         let result = this.props.login.get('result');
         let header = (
             <Header
-              currentLocation={this.props.location.pathname}
-              personInfo={result && result.toJS()}
-              logout={this.props.logout}
-              replaceWithBrakes
-              tabset={this.context.mainTabset}
-              headerText={this.props.headerText} />
+                currentLocation={this.props.location.pathname}
+                personInfo={result && result.toJS()}
+                logout={this.props.logout}
+                replaceWithBrakes
+                tabset={this.context.mainTabset}
+                headerText={this.props.headerText} />
         );
         let tabMenu = (
             <TabMenu defaultLocation={this.context.mainUrl} />

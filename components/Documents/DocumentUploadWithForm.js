@@ -75,36 +75,36 @@ class DocumentUploadWithForm extends Component {
             <div className={style.formWrapper}>
                 <div className={style.formRow}>
                     <Dropdown
-                      label='Document type'
-                      data={this.props.documentTypes}
-                      canSelectPlaceholder={false}
-                      placeholder='Select document type'
-                      keyProp='fileType'
-                      defaultSelected={this.state.fileType}
-                      onSelect={(obj) => {
-                          this.setState({
-                              fileType: obj.value
-                          }, this.handleValidation(obj.value, this.state.description));
-                      }}
-                      isValid={this.state.errors.fileType === undefined}
-                      errorMessage={this.state.errors.fileType}
-                      disabled={disabledField}
+                        label='Document type'
+                        data={this.props.documentTypes}
+                        canSelectPlaceholder={false}
+                        placeholder='Select document type'
+                        keyProp='fileType'
+                        defaultSelected={this.state.fileType}
+                        onSelect={(obj) => {
+                            this.setState({
+                                fileType: obj.value
+                            }, this.handleValidation(obj.value, this.state.description));
+                        }}
+                        isValid={this.state.errors.fileType === undefined}
+                        errorMessage={this.state.errors.fileType}
+                        disabled={disabledField}
                     />
                 </div>
                 <div className={style.formRow}>
                     <Input
-                      label='Description'
-                      keyProp='description'
-                      placeholder='Description of the document'
-                      value={this.state.description}
-                      onChange={(obj) => {
-                          this.setState({
-                              description: obj.value
-                          }, this.handleValidation(this.state.fileType, obj.value));
-                      }}
-                      isValid={this.state.errors.description === undefined}
-                      errorMessage={this.state.errors.description}
-                      readonly={disabledField}
+                        label='Description'
+                        keyProp='description'
+                        placeholder='Description of the document'
+                        value={this.state.description}
+                        onChange={(obj) => {
+                            this.setState({
+                                description: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        isValid={this.state.errors.description === undefined}
+                        errorMessage={this.state.errors.description}
+                        readonly={disabledField}
                     />
                 </div>
             </div>
@@ -150,15 +150,15 @@ class DocumentUploadWithForm extends Component {
     render() {
         return (
             <DocumentUpload
-              isOpen={this.props.isOpen}
-              header={this.props.header}
-              closePopup={this.closeHandler}
-              scaleDimensions={{width: 350, height: 350}}
-              additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
-              isAdditionalContentValid={this.state.isValidForm}
-              useFile={this.useFileHandler}
-              hideCrop
-              allowedFileTypes={this.props.allowedFileTypes}
+                isOpen={this.props.isOpen}
+                header={this.props.header}
+                closePopup={this.closeHandler}
+                scaleDimensions={{width: 350, height: 350}}
+                additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
+                isAdditionalContentValid={this.state.isValidForm}
+                useFile={this.useFileHandler}
+                hideCrop
+                allowedFileTypes={this.props.allowedFileTypes}
             >
                 {this.renderUploadDocumentForm}
             </DocumentUpload>

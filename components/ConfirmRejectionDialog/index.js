@@ -31,15 +31,15 @@ class ConfirmRejectionDialog extends Component {
             return (
                 <div>
                     <TextArea
-                      type='text'
-                      label='Reason:'
-                      onChange={this.onChange}
-                      keyProp='rejectReason'
-                      value={this.props.value}
-                      isEdited={!!this.props.value}
-                      validators={rejectReasonValidators}
-                      isValid={!errors.get('rejectReason')}
-                      errorMessage={errors.get('rejectReason')}
+                        type='text'
+                        label='Reason:'
+                        onChange={this.onChange}
+                        keyProp='rejectReason'
+                        value={this.props.value}
+                        isEdited={!!this.props.value}
+                        validators={rejectReasonValidators}
+                        isValid={!errors.get('rejectReason')}
+                        errorMessage={errors.get('rejectReason')}
                     />
                 </div>
             );
@@ -65,10 +65,10 @@ class ConfirmRejectionDialog extends Component {
     render() {
         return (
             <Popup
-              fullWidth={!!this.props.fullWidth}
-              isOpen={this.props.isOpen}
-              header={{ text: this.title, closeIcon: false }}
-              footer={{ actionButtons: this.actionButtons }} >
+                fullWidth={!!this.props.fullWidth}
+                isOpen={this.props.isOpen}
+                header={{ text: this.title, closeIcon: false }}
+                footer={{ actionButtons: this.actionButtons }} >
                 {this.props.children}
                 {this.renderContainer()}
             </Popup>

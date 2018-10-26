@@ -35,16 +35,16 @@ const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
     };
 
     return (
-      <Popup
-        isOpen={open}
-        header={header}
-        footer={{ actionButtons: actionButtons }}
-        closePopup={closePopUpHandler} >
-          <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
-          <div className={styles.errorMessageWrap}>
-            {message}
-          </div>
-      </Popup>
+        <Popup
+            isOpen={open}
+            header={header}
+            footer={{ actionButtons: actionButtons }}
+            closePopup={closePopUpHandler} >
+            <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
+            <div className={styles.errorMessageWrap}>
+                {message}
+            </div>
+        </Popup>
     );
 };
 

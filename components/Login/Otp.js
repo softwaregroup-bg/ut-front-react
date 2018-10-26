@@ -21,12 +21,12 @@ const Username = React.createClass({
                 <CardText>
                     <h3 className={style.heading}>OTP CODE</h3>
                     <TextField
-                      onKeyDown={this.props.submit}
-                      name='otp'
-                      ref='f'
-                      style={textFieldStyle}
-                      inputStyle={textFieldInputStyle}
-                      underlineShow={false}
+                        onKeyDown={this.props.submit}
+                        name='otp'
+                        ref='f'
+                        style={textFieldStyle}
+                        inputStyle={textFieldInputStyle}
+                        underlineShow={false}
                     />
                     <button className={style.nextButton} onClick={this.props.submit}>Next</button>
                 </CardText>

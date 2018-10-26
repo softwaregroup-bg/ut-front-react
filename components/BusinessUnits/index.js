@@ -54,28 +54,28 @@ class BusinessUnits extends Component {
                 this.props.clearSelectedBusinessUnit();
             };
             clearButton = <StandardButton
-              onClick={clearSelection}
-              disabled={!this.state.selected.id}
-              label='Unselect all'
-              className={['secondaryButton', this.getStyle('clearButton')]}
-              disabledClassName='disabledsecondaryButton' />;
+                onClick={clearSelection}
+                disabled={!this.state.selected.id}
+                label='Unselect all'
+                className={['secondaryButton', this.getStyle('clearButton')]}
+                disabledClassName='disabledsecondaryButton' />;
         }
 
         return (
             <div className={style.treeStructureWrap}>
                 <div className={style.treeWrap}>
-                <Vertical fixedComponent={clearButton}>
-                    {this.props.isLoading && <CircularProgress style={{display: 'block', margin: '40px auto 0px auto'}} size={45} />}
-                    {!this.props.isLoading && <Tree
-                      onSelect={this.props.selectBusinessUnit}
-                      data={this.getBusinessUnits()}
-                      active={this.state.selected}
-                      openElements={this.props.openElements}
-                      onUnmount={this.props.onUnmount}
-                      reset={this.state.reset}
-                      styles={this.props.styles}
-                    />}
-                </Vertical>
+                    <Vertical fixedComponent={clearButton}>
+                        {this.props.isLoading && <CircularProgress style={{display: 'block', margin: '40px auto 0px auto'}} size={45} />}
+                        {!this.props.isLoading && <Tree
+                            onSelect={this.props.selectBusinessUnit}
+                            data={this.getBusinessUnits()}
+                            active={this.state.selected}
+                            openElements={this.props.openElements}
+                            onUnmount={this.props.onUnmount}
+                            reset={this.state.reset}
+                            styles={this.props.styles}
+                        />}
+                    </Vertical>
                 </div>
             </div>
         );

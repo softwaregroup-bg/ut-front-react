@@ -110,14 +110,14 @@ class LoginForm extends Component {
         let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
-              ref='loginForm'
-              className='loginForm'
-              inputs={inputs}
-              title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
-              buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
-              onChange={this.onChange}
-              onSubmit={this.validateForm}
-              error={error} />
+                ref='loginForm'
+                className='loginForm'
+                inputs={inputs}
+                title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
+                buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
+                onChange={this.onChange}
+                onSubmit={this.validateForm}
+                error={error} />
         );
     }
 }

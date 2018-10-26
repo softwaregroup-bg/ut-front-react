@@ -9,11 +9,11 @@ export default class NavigationLink extends Component {
 
         return (
             <Link
-              to={useRawTo ? to : getLink(to, params)}
-              className={className}
-              activeClassName={activeClassName}
-              onClick={onClick}
-              style={style} >
+                to={useRawTo ? to : getLink(to, params)}
+                className={className}
+                activeClassName={activeClassName}
+                onClick={onClick}
+                style={style} >
                 {children}
             </Link>
         );

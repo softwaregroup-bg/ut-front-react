@@ -37,19 +37,19 @@ const Button = ({
     if (href) {
         return (
             <Link to={href}>
-              <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
-                {icon && <span className={icon} />}
-                {label}
-              </button>
+                <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+                    {icon && <span className={icon} />}
+                    {label}
+                </button>
             </Link>
         );
     }
 
     return (
-      <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
-        {icon && <span className={icon} />}
-        {label}
-      </button>
+        <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+            {icon && <span className={icon} />}
+            {label}
+        </button>
     );
 };
 

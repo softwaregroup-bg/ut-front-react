@@ -45,11 +45,11 @@ class TabDropDown extends React.Component {
             return (
                 <li className={style.tabDdListItem} key={i}>
                     <Link
-                      activeClassName={activeClassName}
-                      className={style.tabDdLink}
-                      to={(tab && tab.pathname) ? tab.pathname : '#/'}
-                      title={tab.title && tab.title.props && tab.title.props.children}
-                      onClick={handleClick}
+                        activeClassName={activeClassName}
+                        className={style.tabDdLink}
+                        to={(tab && tab.pathname) ? tab.pathname : '#/'}
+                        title={tab.title && tab.title.props && tab.title.props.children}
+                        onClick={handleClick}
                     >{ isLinkActive && <img src={checkImage} className={style.img} />}{tab.title}</Link>
                 </li>
             );

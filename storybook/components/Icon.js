@@ -60,17 +60,17 @@ storiesOf('Icon Component', module)
             <input type='checkbox' className={classnames(style.toggle_icons, 'margin-all-10')} id='toggler' /><label htmlFor='toggler'>Toggle icons outline</label>
             <hr />
             <div className={style.allIcons}>
-            {iconNames.map((item, index) => {
-                return <div key={index} style={{display: 'inline-block', float: 'left', border: '1px solid #000', margin: '5px', padding: '10px', width: '180px', height: '180px'}}>
-                    <div style={{textAlign: 'center', margin: '20px', minHeight: '50px'}}>
-                        <Icon icon={item} />
-                    </div>
-                    <div style={{textAlign: 'center'}}>
-                        <div>Usage:</div>
-                        <div style={{fontWeight: 'bold'}}>icon: "{item}"</div>
-                    </div>
-                </div>;
-            })}
+                {iconNames.map((item, index) => {
+                    return <div key={index} style={{display: 'inline-block', float: 'left', border: '1px solid #000', margin: '5px', padding: '10px', width: '180px', height: '180px'}}>
+                        <div style={{textAlign: 'center', margin: '20px', minHeight: '50px'}}>
+                            <Icon icon={item} />
+                        </div>
+                        <div style={{textAlign: 'center'}}>
+                            <div>Usage:</div>
+                            <div style={{fontWeight: 'bold'}}>icon: "{item}"</div>
+                        </div>
+                    </div>;
+                })}
             </div>
         </div>
     ))

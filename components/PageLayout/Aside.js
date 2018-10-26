@@ -16,11 +16,11 @@ const Aside = ({children, right, showCollapsibleButton, visibleStyleWidth, headi
     return (
         <div className={className}>
             <CollapsableContent
-              heading={heading}
-              orientation={right ? 'right' : 'left'}
-              collapsedStyles={{width: '40px', height: '100%'}}
-              visibleStyles={{height: '100%', ...styles}}
-              showCollapsibleButton={showCollapsibleButton}
+                heading={heading}
+                orientation={right ? 'right' : 'left'}
+                collapsedStyles={{width: '40px', height: '100%'}}
+                visibleStyles={{height: '100%', ...styles}}
+                showCollapsibleButton={showCollapsibleButton}
             >
                 {children}
             </CollapsableContent>

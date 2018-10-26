@@ -6,46 +6,48 @@ import MaterialUILayout from '../../components/MaterialUILayout';
 
 let selectedFrom = '08:00';
 let selectedTo = '18:00';
+function changeFrom(event) { selectedFrom = event.value; }
+function changeTo(event) { selectedTo = event.value; }
 
 storiesOf('TimePicker', module)
-.add('Default TimePicker', () => (
+    .add('Default TimePicker', () => (
         <MaterialUILayout>
             <TimePicker />
         </MaterialUILayout>
-))
-.add('Disabled TimePicker', () => (
+    ))
+    .add('Disabled TimePicker', () => (
         <MaterialUILayout>
             <TimePicker
-              disabled
+                disabled
             />
         </MaterialUILayout>
-))
-.add('Default TimePickerRange', () => (
+    ))
+    .add('Default TimePickerRange', () => (
         <MaterialUILayout>
             <TimePickerRange
-              disabled={false}
-              onChangeFrom={function(event) { /* console.log(event); */action('event'); }}
-              onChangeTo={function(event) { /* console.log(event); */action('event'); }}
+                disabled={false}
+                onChangeFrom={action}
+                onChangeTo={action}
             //   onChangeFrom={action('event')}
             //   onChangeTo={action('event')}
             />
         </MaterialUILayout>
-))
-.add('TimePickerRange disabled', () => (
+    ))
+    .add('TimePickerRange disabled', () => (
         <MaterialUILayout>
             <TimePickerRange
-              disabled
+                disabled
             />
         </MaterialUILayout>
-))
-.add('TimePickerRange default selected values', () => (
+    ))
+    .add('TimePickerRange default selected values', () => (
         <MaterialUILayout>
             <TimePickerRange
-              disabled={false}
-              onChangeFrom={function(event) { selectedFrom = event.value; }}
-              onChangeTo={function(event) { selectedTo = event.value; }}
-              defaultSelectedFrom={selectedFrom}
-              defaultSelectedTo={selectedTo}
+                disabled={false}
+                onChangeFrom={changeFrom}
+                onChangeTo={changeTo}
+                defaultSelectedFrom={selectedFrom}
+                defaultSelectedTo={selectedTo}
             />
         </MaterialUILayout>
-));
+    ));

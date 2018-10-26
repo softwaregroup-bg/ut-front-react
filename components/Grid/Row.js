@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import classnames from 'classnames';
 import style from './style.css';
-
+const noop = function() {};
 class GridRow extends Component {
     constructor(props) {
         super(props);
@@ -94,7 +94,7 @@ class GridRow extends Component {
         if (canCheck) {
             columnElements.unshift(
                 <td key='checkbox' className={classnames(style.checkBox, style.tdCheckbox)}>
-                    <input type='checkbox' onClick={this.toggleCheck} onChange={function() {}} checked={this.state.checked} />
+                    <input type='checkbox' onClick={this.toggleCheck} onChange={noop} checked={this.state.checked} />
                 </td>
             );
         }

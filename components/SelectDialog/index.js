@@ -102,12 +102,12 @@ export default class SelectDialog extends Component {
                 this.filteredUnits.map(item => {
                     return (
                         <Checkbox
-                          key={item.get('id')}
-                          label={item.get('title')}
-                          value={item.get('id')}
-                          checked={!!this.state.selectedUnitIds.find(unit => item.get('id') === unit)}
-                          fullWidth
-                          handleChange={this.handleSelectUnit} />
+                            key={item.get('id')}
+                            label={item.get('title')}
+                            value={item.get('id')}
+                            checked={!!this.state.selectedUnitIds.find(unit => item.get('id') === unit)}
+                            fullWidth
+                            handleChange={this.handleSelectUnit} />
                     );
                 })
             );
@@ -120,24 +120,24 @@ export default class SelectDialog extends Component {
         const { open, searchPlaceholder, dialogMessage, title } = this.props;
         return (
             <Popup
-              isOpen={open}
-              header={{text: title, closePopup: this.closeDialog}}
-              footer={{actionButtons: this.dialogButtons}}
-              closePopup={this.closeDialog}
-              closeOnEsc >
+                isOpen={open}
+                header={{text: title, closePopup: this.closeDialog}}
+                footer={{actionButtons: this.dialogButtons}}
+                closePopup={this.closeDialog}
+                closeOnEsc >
                 <div className={style.selectDialogWrapper}>
                     <div className={style.searchInputWrapper}>
-                      <Input
-                        value={this.state.searchValue}
-                        placeholder={searchPlaceholder || 'Search'}
-                        onChange={this.onSearchInputChange} />
+                        <Input
+                            value={this.state.searchValue}
+                            placeholder={searchPlaceholder || 'Search'}
+                            onChange={this.onSearchInputChange} />
                     </div>
                     <div className={style.UnitsMessage}>{dialogMessage}</div>
                     <div className={style.unitsContainer}>
                         {this.renderItems()}
                     </div>
                 </div>
-              </Popup>
+            </Popup>
         );
     }
 }

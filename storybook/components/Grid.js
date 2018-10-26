@@ -8,112 +8,112 @@ import HeaderCell from '../../components/Grid/HeaderCell';
 import Row from '../../components/Grid/Row';
 
 storiesOf('Grid', module)
-.add('Default', () => (
-    <Grid
-      showTableHead
-      columns={tableColumns}
-      onSort={testFunc}
-      onRefresh={testFunc}
-      onSelect={testFunc}
-      rows={allUsers}
-      mapColumn={mapColumn}
-    />
-))
-.add('Custom', () => (
-    <Grid
-      canCheck
-      showTableHead
-      columns={tableColumns}
-      sortableColumns={sortableColumns}
-      linkableColumns={linkableColumns}
-      onSort={testFunc}
-      onRefresh={testFunc}
-      onSelect={testFunc}
-      onCheck={testFunc}
-      rows={allUsers}
-      mapColumn={mapColumn}
-      trStyles={{backgroundColor: 'lightskyblue'}}
-      tdStyles={tdStyles}
-      thStyles={thStyles}
-    />
-))
-.add('Table', () => (
-    <Table>
-        <Header columns={tableColumns} thStyles={thStyles} />
-    </Table>
-))
-.add('Header', () => (
-    <Table>
-        <Header
-          columns={tableColumns}
-          canCheck
-          sortable={[true, true]}
-          linkableColumns={linkableColumns}
-          onSort={testFunc}
-          onRefresh={testFunc}
-          onSelect={testFunc}
-          onCheck={testFunc}
-          rows={allUsers}
-          mapColumn={mapColumn}
-          trStyles={{backgroundColor: 'lightskyblue'}}
-          tdStyles={tdStyles}
-          thStyles={thStyles}
+    .add('Default', () => (
+        <Grid
+            showTableHead
+            columns={tableColumns}
+            onSort={testFunc}
+            onRefresh={testFunc}
+            onSelect={testFunc}
+            rows={allUsers}
+            mapColumn={mapColumn}
         />
-    </Table>
-))
-.add('HeaderCell', () => (
-    <Table>
-        <thead>
-            <tr>
-                <HeaderCell
-                  name='sort desc cell'
-                  canSort
-                  onSort={testFunc}
-                  sortState={2}
-                  styles={thStyles[0]}
-                />
-                <HeaderCell
-                  name='sort asc cell'
-                  canSort
-                  onSort={testFunc}
-                  sortState={1}
-                  styles={thStyles[0]}
-                />
-            </tr>
-        </thead>
-    </Table>
-))
-.add('Row', () => (
-    <Table>
-        <tbody>
-            <Row
-              linkableColumns={linkableColumns}
-              columns={tableColumns}
-              checked
-              onSelect={testFunc}
-              canCheck
-              onCheck={testFunc}
-              data={immutable.Map({name: 'pe6o', url: 'some url'})}
-              tdStyles={tdStyles}
-              thStyles={thStyles}
-              subscribeUnselect={testFunc}
-              mapColumn={mapColumn}
-              />
-            <Row
-              linkableColumns={linkableColumns}
-              columns={tableColumns}
-              selected
-              onSelect={testFunc}
-              onCheck={testFunc}
-              data={immutable.Map({name: 'pe6o', url: 'some url'})}
-              tdStyles={tdStyles}
-              thStyles={thStyles}
-              subscribeUnselect={testFunc}
-              mapColumn={mapColumn}
+    ))
+    .add('Custom', () => (
+        <Grid
+            canCheck
+            showTableHead
+            columns={tableColumns}
+            sortableColumns={sortableColumns}
+            linkableColumns={linkableColumns}
+            onSort={testFunc}
+            onRefresh={testFunc}
+            onSelect={testFunc}
+            onCheck={testFunc}
+            rows={allUsers}
+            mapColumn={mapColumn}
+            trStyles={{backgroundColor: 'lightskyblue'}}
+            tdStyles={tdStyles}
+            thStyles={thStyles}
+        />
+    ))
+    .add('Table', () => (
+        <Table>
+            <Header columns={tableColumns} thStyles={thStyles} />
+        </Table>
+    ))
+    .add('Header', () => (
+        <Table>
+            <Header
+                columns={tableColumns}
+                canCheck
+                sortable={[true, true]}
+                linkableColumns={linkableColumns}
+                onSort={testFunc}
+                onRefresh={testFunc}
+                onSelect={testFunc}
+                onCheck={testFunc}
+                rows={allUsers}
+                mapColumn={mapColumn}
+                trStyles={{backgroundColor: 'lightskyblue'}}
+                tdStyles={tdStyles}
+                thStyles={thStyles}
             />
-        </tbody>
-    </Table>
-));
+        </Table>
+    ))
+    .add('HeaderCell', () => (
+        <Table>
+            <thead>
+                <tr>
+                    <HeaderCell
+                        name='sort desc cell'
+                        canSort
+                        onSort={testFunc}
+                        sortState={2}
+                        styles={thStyles[0]}
+                    />
+                    <HeaderCell
+                        name='sort asc cell'
+                        canSort
+                        onSort={testFunc}
+                        sortState={1}
+                        styles={thStyles[0]}
+                    />
+                </tr>
+            </thead>
+        </Table>
+    ))
+    .add('Row', () => (
+        <Table>
+            <tbody>
+                <Row
+                    linkableColumns={linkableColumns}
+                    columns={tableColumns}
+                    checked
+                    onSelect={testFunc}
+                    canCheck
+                    onCheck={testFunc}
+                    data={immutable.Map({name: 'pe6o', url: 'some url'})}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                    subscribeUnselect={testFunc}
+                    mapColumn={mapColumn}
+                />
+                <Row
+                    linkableColumns={linkableColumns}
+                    columns={tableColumns}
+                    selected
+                    onSelect={testFunc}
+                    onCheck={testFunc}
+                    data={immutable.Map({name: 'pe6o', url: 'some url'})}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                    subscribeUnselect={testFunc}
+                    mapColumn={mapColumn}
+                />
+            </tbody>
+        </Table>
+    ));
 
 const tdStyles = [{backgroundColor: '#F5A9BB'}, {backgroundColor: '#DE99A9'}, {backgroundColor: '#BA7F8C'}];
 const thStyles = [{backgroundColor: 'pink'}, {backgroundColor: 'plum'}, {backgroundColor: 'salmon'}, {backgroundColor: 'sandybrown'}, {backgroundColor: 'tomato'}];

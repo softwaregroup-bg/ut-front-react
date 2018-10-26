@@ -125,24 +125,24 @@ export default class DatePickerBetween extends Component {
                     </div>
                 </div>
                 <DatePickerDialog
-                  cancelLabel={this.props.cancelLabel}
-                  okLabel={this.props.okLabel}
-                  container={this.props.container}
-                  initialDate={fromDate}
-                  mode={this.props.mode}
-                  onAccept={this.handleAccept('from')}
-                  firstDayOfWeek={this.props.firstDayOfWeek}
-                  ref='fromDialogWindow'
+                    cancelLabel={this.props.cancelLabel}
+                    okLabel={this.props.okLabel}
+                    container={this.props.container}
+                    initialDate={fromDate}
+                    mode={this.props.mode}
+                    onAccept={this.handleAccept('from')}
+                    firstDayOfWeek={this.props.firstDayOfWeek}
+                    ref='fromDialogWindow'
                 />
                 <DatePickerDialog
-                  cancelLabel={this.props.cancelLabel}
-                  okLabel={this.props.okLabel}
-                  container={this.props.container}
-                  initialDate={toDate}
-                  mode={this.props.mode}
-                  onAccept={this.handleAccept('to')}
-                  firstDayOfWeek={this.props.firstDayOfWeek}
-                  ref='toDialogWindow'
+                    cancelLabel={this.props.cancelLabel}
+                    okLabel={this.props.okLabel}
+                    container={this.props.container}
+                    initialDate={toDate}
+                    mode={this.props.mode}
+                    onAccept={this.handleAccept('to')}
+                    firstDayOfWeek={this.props.firstDayOfWeek}
+                    ref='toDialogWindow'
                 />
             </div>
         );

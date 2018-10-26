@@ -48,12 +48,12 @@ export class ByCustomSearch extends Component {
             <div>
                 <div className={style.customSearchDropdown}>
                     <Dropdown
-                      defaultSelected={this.props.field}
-                      placeholder={<Text>Search By</Text>}
-                      keyProp='name'
-                      onSelect={this.handleSelect}
-                      data={this.props.fields}
-                      menuAutoWidth />
+                        defaultSelected={this.props.field}
+                        placeholder={<Text>Search By</Text>}
+                        keyProp='name'
+                        onSelect={this.handleSelect}
+                        data={this.props.fields}
+                        menuAutoWidth />
                 </div>
                 <div className={style.customSearchTextField}>
                     <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} />

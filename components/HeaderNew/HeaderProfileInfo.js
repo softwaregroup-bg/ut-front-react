@@ -47,23 +47,23 @@ export default class HeaderProfileInfo extends Component {
 
     getMenuItems() {
         let items = [
-          {text: 'Help', onClick: this.openHelp, routeName: '/'},
-          {text: 'Settings', routeName: 'ut-user:userProfile'},
-          {text: 'Log out', onClick: this.onLogOutClick}
+            {text: 'Help', onClick: this.openHelp, routeName: '/'},
+            {text: 'Settings', routeName: 'ut-user:userProfile'},
+            {text: 'Log out', onClick: this.onLogOutClick}
         ];
 
         return items.reduce((items, currentItem, index) => {
             items.push(
-              <Tab
-                key={currentItem.text}
-                tab={{
-                    routeName: currentItem.routeName,
-                    title: currentItem.text
-                }}
-                className={tabStyles.menuItemTab}
-                disabled={currentItem.disabled}
-                onClick={currentItem.onClick} />
-              );
+                <Tab
+                    key={currentItem.text}
+                    tab={{
+                        routeName: currentItem.routeName,
+                        title: currentItem.text
+                    }}
+                    className={tabStyles.menuItemTab}
+                    disabled={currentItem.disabled}
+                    onClick={currentItem.onClick} />
+            );
 
             return items;
         }, []);
@@ -88,31 +88,31 @@ export default class HeaderProfileInfo extends Component {
 
         return (
             <span className={styles.profileInfo}>
-              <span
-                className={className}
-                ref={(element) => { this.infoArrowNode = element; }} >
-                  <div className={styles.profileInfoContainer}>
-                    <div
-                      className={styles.avatarContainer}
-                      onClick={this.onClick} >
-                      {this.initials}
+                <span
+                    className={className}
+                    ref={(element) => { this.infoArrowNode = element; }} >
+                    <div className={styles.profileInfoContainer}>
+                        <div
+                            className={styles.avatarContainer}
+                            onClick={this.onClick} >
+                            {this.initials}
+                        </div>
+                        <div
+                            className={styles.avatarInfoArrow}
+                            onClick={this.onClick}
+                            ref={(element) => { this.anchorEl = element; }} />
                     </div>
-                    <div
-                      className={styles.avatarInfoArrow}
-                      onClick={this.onClick}
-                      ref={(element) => { this.anchorEl = element; }} />
-                  </div>
-                  <MenuNew
-                    open={menuToggled}
-                    fields={this.getMenuItems()}
-                    anchorEl={this.infoArrowNode}
-                    requestClose={this.requestCloseMenu}
-                    additionalOffsets={{right: 5, bottom: 9}}
-                    positioningDirections='right-bottom'
-                    className={styles.profileInfoPopoverMenu}
-                    separatorsOnIndex={[2]}
-                    closeOnSelect />
-              </span>
+                    <MenuNew
+                        open={menuToggled}
+                        fields={this.getMenuItems()}
+                        anchorEl={this.infoArrowNode}
+                        requestClose={this.requestCloseMenu}
+                        additionalOffsets={{right: 5, bottom: 9}}
+                        positioningDirections='right-bottom'
+                        className={styles.profileInfoPopoverMenu}
+                        separatorsOnIndex={[2]}
+                        closeOnSelect />
+                </span>
             </span>
         );
     }

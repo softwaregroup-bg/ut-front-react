@@ -46,12 +46,12 @@ class GridHeader extends Component {
 
             return col.visible !== false ? (
                 <HeaderCell
-                  key={col.key}
-                  name={col.name}
-                  canSort={haveSortable && sortable[index]}
-                  onSort={handleSort}
-                  sortState={sortState}
-                  styles={currentThStyle}
+                    key={col.key}
+                    name={col.name}
+                    canSort={haveSortable && sortable[index]}
+                    onSort={handleSort}
+                    sortState={sortState}
+                    styles={currentThStyle}
                 />
             ) : null;
         });
