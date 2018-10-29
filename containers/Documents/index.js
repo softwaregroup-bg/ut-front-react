@@ -14,6 +14,8 @@ import {
     changeDocumentStatusArchived
 } from './actions';
 
+import { logout } from '../../containers/LoginForm/actions';
+
 import DocumentsListing from '../../components/Documents/Listing';
 
 class DocumentsContainer extends Component {
@@ -117,6 +119,9 @@ class DocumentsContainer extends Component {
               }}
               selectedFilter={selectedFilter}
               documentArchived={documentArchived}
+              clearLogin={() => {
+                  this.props.logout && this.props.logout();
+              }}
             />
         );
     }
@@ -143,7 +148,8 @@ DocumentsContainer.propTypes = {
     changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
-    pathname: PropTypes.string.isRequired
+    pathname: PropTypes.string.isRequired,
+    logout: PropTypes.func
 };
 
 export default connect(
@@ -156,5 +162,5 @@ export default connect(
             documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})
         };
     },
-    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
+    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter, logout }
 )(DocumentsContainer);

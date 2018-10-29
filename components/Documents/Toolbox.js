@@ -294,6 +294,7 @@ class Toolbox extends Component {
               replaceDocument={this.props.replaceDocument}
               documentTypes={this.props.documentTypes}
               allowedFileTypes={this.props.allowedFileTypes}
+              clearLogin={this.props.clearLogin}
             />
         );
     }
@@ -340,7 +341,8 @@ Toolbox.propTypes = {
         replace: PropTypes.bool,
         archive: PropTypes.bool,
         viewArchive: PropTypes.bool
-    })
+    }),
+    clearLogin: PropTypes.func
 };
 
 Toolbox.defaultProps = {

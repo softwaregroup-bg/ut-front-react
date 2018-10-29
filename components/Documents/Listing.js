@@ -38,6 +38,7 @@ class Documents extends Component {
               archiveDocument={this.props.archiveDocument}
               allowedFileTypes={this.props.allowedFileTypes}
               permissions={this.props.permissions}
+              clearLogin={this.props.clearLogin}
             />
         );
     }
@@ -100,7 +101,8 @@ Documents.propTypes = {
     allowedFileTypes: PropTypes.array,
 
     permissions: Toolbox.propTypes.permissions,
-    hasMakerChecker: PropTypes.bool
+    hasMakerChecker: PropTypes.bool,
+    clearLogin: PropTypes.func
 };
 
 Documents.defaultProps = {
