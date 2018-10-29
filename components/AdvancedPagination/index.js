@@ -93,7 +93,7 @@ class AdvancedPagination extends Component {
             <div className={styles.pageSwitherWrap}>
                 <div className={styles.numberInputWrap}>
                     <input type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
-                      onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} />
+                        onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} data-test={'pageTotal' + this.pagesTotal} />
                 </div>
                 <div className={styles.rightWrap}>
                     / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>Pages</span>
@@ -334,6 +334,7 @@ class AdvancedPagination extends Component {
                        onSelect={handlePageSizeDropDrown}
                        cssStyle={dropdownstyles}
                        iconStyles={dropdownIconStyles}
+                       data-test={'pageSize' + this.pageSize || this.props.itemsPerPageData[0]}
                     />
                 </div>
                 <div className={styles.perPageWrap}> per page</div>
