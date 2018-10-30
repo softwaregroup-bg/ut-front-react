@@ -8,18 +8,19 @@ const getClassInternal = (className) => {
     return buttonStyles[className] || getClass(buttonStyles, className) || className;
 };
 
-const Button = ({
-    type,
-    label,
-    icon,
-    onClick,
-    className,
-    disabled,
-    disabledClassName,
-    href,
-    styleType,
-    children
-}) => {
+const Button = props => {
+
+    const { type,
+        label,
+        icon,
+        onClick,
+        className,
+        disabled,
+        disabledClassName,
+        href,
+        styleType,
+        children,
+        keyProp } = props;
     /* If you want to use both internal modular CSS (from the button itself) and external (in module context) use className as array.
        Pass the internal classes (from the button itself) like strings ('standardBtn') and the external ones already mapped (styles.[cssClassHere]). */
     var cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
@@ -38,7 +39,7 @@ const Button = ({
     if (href) {
         return (
             <Link to={href}>
-              <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+              <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
                 {icon && <span className={icon} />}
                 {label}
               </button>
@@ -47,7 +48,7 @@ const Button = ({
     }
 
     return (
-      <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+      <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
         {icon && <span className={icon} />}
         {label}
         {children}
@@ -65,14 +66,16 @@ Button.propTypes = {
     disabledClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     href: PropTypes.string,
     onClick: PropTypes.func,
-    children: PropTypes.any
+    children: PropTypes.any,
+    keyProp: PropTypes.string
 };
 
 Button.defaultProps = {
     type: 'button',
     className: '',
     disabledClassName: buttonStyles.disabledBtn,
-    onClick: () => {}
+    onClick: () => {},
+    keyProp: ''
 };
 
 export default Button;

@@ -9,7 +9,7 @@ export const Tabs = ({tabs, activeTab, onClick, cssStyle}) => {
             {tabs.map((tab, i) => {
                 let handleClick = () => onClick(tab);
                 let isActive = tab.id === activeTab;
-                return <Tab key={i} {...tab} onClick={handleClick} isActive={isActive} cssStyle={style} />;
+                return <Tab key={i} {...tab} onClick={handleClick} isActive={isActive} cssStyle={style} data-test={tab.title} />;
             })}
         </ul>
     );

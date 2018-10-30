@@ -11,7 +11,8 @@ const Header = React.createClass({
             text: PropTypes.string.isRequired,
             href: PropTypes.string,
             onClick: PropTypes.func,
-            permissions: PropTypes.array
+            permissions: PropTypes.array,
+            keyProp: PropTypes.string
         })),
         location: PropTypes.object,
         buttonsRaw: PropTypes.node,
@@ -59,7 +60,8 @@ const Header = React.createClass({
                                           onClick={btn.onClick}
                                           disabled={btn.disabled === true}
                                           label={btn.text}
-                                          href={btn.href} />
+                                          href={btn.href}
+                                          keyProp={btn.keyProp} />
                                     </div>
                                 );
                             } else {
@@ -68,7 +70,8 @@ const Header = React.createClass({
                                         <StandardButton
                                           styleType={styleType}
                                           disabled={btn.disabled === true}
-                                          label={btn.text} />
+                                          label={btn.text}
+                                          keyProp={btn.keyProp} />
                                     </Link>
                                 );
                             }
