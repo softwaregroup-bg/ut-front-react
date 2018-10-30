@@ -150,3 +150,25 @@ export const calculateAspectRatio = (file, scaleDimensions) => {
         };
     }
 };
+
+/* Formats a number replacing all matches of the regex with the delimeter
+    @param number/string value
+    @param string delimeter
+    @param regex regex
+    @returns string the formatted number as string
+*/
+export function formatMoney(value, delimeter = ',', regex = /\B(?=(\d{3})+$)/g) {
+    const stringValue = value.toString();
+
+    if (stringValue.includes('.')) {
+        // 10000.0456 => 10,000.0456
+        const parts = stringValue.toString().split('.');
+        const partInteger = parts[0];
+        const partDecimal = parts[1];
+        const formattedInteger = partInteger.replace(regex, delimeter);
+        return `${formattedInteger}.${partDecimal}`;
+    } else {
+        // 10000 => 10,000
+        return stringValue.replace(regex, delimeter);
+    }
+}
