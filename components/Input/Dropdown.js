@@ -114,6 +114,7 @@ class Dropdown extends Component {
                   className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}
                   iconStyle={iconStyles}
                   maxHeight={300}
+                  data-test={this.props.keyProp}
                 >
                     {menuItems}
                 </DropDownMenu>

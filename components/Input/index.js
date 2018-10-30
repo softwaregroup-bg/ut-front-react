@@ -93,7 +93,7 @@ class TextField extends Component {
     }
 
     render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName, keyProp } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let zeroHeightStyle = isValid ? this.style.hh : '';
         const value = (!this.state.value && this.state.value !== 0) ? '' : this.state.value;
@@ -121,6 +121,7 @@ class TextField extends Component {
         // If cleave options are passed => use the cleave field
         let input = this.props.options
             ? <Cleave ref='textInput'
+                data-test={keyProp}
                 className={this.inputClassName}
                 value={renderValue}
                 onClick={onClick}
@@ -130,6 +131,7 @@ class TextField extends Component {
                 placeholder={placeholder}
                 options={this.props.options} />
             : <input ref='textInput'
+                data-test={keyProp}
                 type={type} className={this.inputClassName}
                 value={renderValue}
                 onClick={onClick}
