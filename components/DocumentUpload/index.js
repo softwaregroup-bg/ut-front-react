@@ -24,7 +24,8 @@ export default class DocumentUpload extends Component {
             hasCropped: false,
             shouldUse: false,
             isUploading: false,
-            errorUpload: null
+            errorUpload: null,
+            requestStatus: null
         };
 
         this.state = this.initialState;
@@ -165,6 +166,9 @@ export default class DocumentUpload extends Component {
     }
 
     get view() {
+        if (this.state.requestStatus === 401) {
+            return null;
+        }
         const { mode, uploadMethod, fileDimensions } = this.state;
         const { scaleDimensions, allowedFileTypes, hideCrop, uploadType } = this.props;
 
@@ -260,6 +264,18 @@ export default class DocumentUpload extends Component {
             });
         }
 
+        if (this.state.requestStatus === 401) {
+            actionButtons = [{
+                name: 'logout',
+                label: 'Go to login',
+                styleType: 'primaryDialog',
+                onClick: () => {
+                    this.setState({requestStatus: null});
+                    this.props.clearLogin && this.props.clearLogin();
+                }
+            }];
+        }
+
         return actionButtons;
     }
 
@@ -315,6 +331,7 @@ export default class DocumentUpload extends Component {
                 reader.readAsDataURL(img);
             } else {
                 this.setError(request.statusText);
+                this.setState({requestStatus: request.status});
             }
         };
         request.onerror = (e) => {
@@ -365,9 +382,9 @@ export default class DocumentUpload extends Component {
     }
 
     render() {
-        const { isOpen, header, closePopup } = this.props;
+        const { isOpen, header } = this.props;
         const { mode } = this.state;
-
+        let closePopup = this.state.requestStatus !== 401 ? this.props.closePopup : () => {};
         return (
             <Popup
               ref='popup'
@@ -413,5 +430,6 @@ DocumentUpload.propTypes = {
     hideCrop: PropTypes.bool,
     uploadType: PropTypes.string,
     additionalContentValidate: PropTypes.func,
-    isAdditionalContentValid: PropTypes.bool
+    isAdditionalContentValid: PropTypes.bool,
+    clearLogin: PropTypes.func
 };

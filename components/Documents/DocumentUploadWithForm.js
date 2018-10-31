@@ -159,6 +159,7 @@ class DocumentUploadWithForm extends Component {
               useFile={this.useFileHandler}
               hideCrop
               allowedFileTypes={this.props.allowedFileTypes}
+              clearLogin={this.props.clearLogin}
             >
                 {this.renderUploadDocumentForm}
             </DocumentUpload>
@@ -180,7 +181,8 @@ DocumentUploadWithForm.propTypes = {
     ),
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
-    uploadNewDocument: PropTypes.func
+    uploadNewDocument: PropTypes.func,
+    clearLogin: PropTypes.func
 };
 
 DocumentUploadWithForm.defaultProps = {
