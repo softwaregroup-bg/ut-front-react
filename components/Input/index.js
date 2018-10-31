@@ -51,6 +51,7 @@ class TextField extends Component {
             // ex. 10000.537 => 10000.54
             newValue = this.props.normalize(newValue);
         }
+        // For proper caret behavior Cleave needs the value already formatted from last edit
         this.setState({value: newValue, cleaveFormattedValue: e.target.value});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
@@ -110,8 +111,9 @@ class TextField extends Component {
             placeholder
         };
 
+        // For proper caret behavior Cleave needs the value already formatted from last edit
         let renderValue = this.props.options
-            ? this.state.cleaveFormattedValue
+            ? this.state.cleaveFormattedValue || value
             : value;
         if (renderValue && renderValue.toString && typeof this.props.format === 'function') {
             // ex. 10000.54 => 10,000.54
