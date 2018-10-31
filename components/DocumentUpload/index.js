@@ -390,7 +390,7 @@ export default class DocumentUpload extends Component {
 DocumentUpload.defaultProps = {
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
-    maxFileSize: 5 * 1024, // default maximum size 5MB
+    maxFileSize: 20 * 1024, // default maximum size 5MB
     hideCrop: false,
     additionalContentValidate: () => {},
     isAdditionalContentValid: true
