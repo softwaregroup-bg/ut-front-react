@@ -346,7 +346,7 @@ Toolbox.propTypes = {
 };
 
 Toolbox.defaultProps = {
-    allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
+    allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
     documentTypes: []
 };
 
