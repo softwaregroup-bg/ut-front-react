@@ -2,20 +2,7 @@ var path = require('path');
 
 module.exports = {
     start: function() {
-        return this && this.registerRequestHandler && this.registerRequestHandler([{
-            method: 'GET',
-            path: '/static/assets/bootstrap/{p*}',
-            options: {auth: false},
-            handler: {
-                directory: {
-                    path: path.resolve(require.resolve('bootstrap'), '../..'),
-                    listing: false,
-                    index: true,
-                    lookupCompressed: true
-                }
-            }
-        },
-        {
+        let handlers = [{
             method: 'GET',
             path: '/static/assets/react-select/{p*}',
             options: {auth: false},
@@ -27,6 +14,24 @@ module.exports = {
                     lookupCompressed: true
                 }
             }
-        }]);
+        }];
+        try {
+            handlers.push({
+                method: 'GET',
+                path: '/static/assets/bootstrap/{p*}',
+                options: {auth: false},
+                handler: {
+                    directory: {
+                        path: path.resolve(require.resolve('bootstrap'), '../..'),
+                        listing: false,
+                        index: true,
+                        lookupCompressed: true
+                    }
+                }
+            });
+        } catch (e) {
+            // bootstrap is optional
+        }
+        return this && this.registerRequestHandler && this.registerRequestHandler(handlers);
     }
 };

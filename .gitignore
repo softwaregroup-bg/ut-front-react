@@ -5,3 +5,4 @@ styleguidist/node_modules
 .idea
 .vscode/**
 docs
+package-lock.json

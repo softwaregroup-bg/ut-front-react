@@ -286,7 +286,7 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
 .dropdownWrap div {
     padding: 0 !important;
     margin: 0 !important;
-    line-height: 30px !important;
+    line-height: 26px !important;
     border: none !important;
     color: inherit !important;
     text-align: left !important;

@@ -37,12 +37,12 @@
     "sb": "node storybook -c ./storybook -p 9008"
   },
   "devDependencies": {
+    "bootstrap": "^4.1.3",
     "@kadira/storybook": "^2.35.1",
     "ut-tools": "^6.3.8"
   },
   "peerDependencies": {
     "bignumber.js": "^4.0.2",
-    "bootstrap": "^4.1.3",
     "classnames": "^2.2.5",
     "croppie": "^2.4.0",
     "date-fns": "^1.29.0",
