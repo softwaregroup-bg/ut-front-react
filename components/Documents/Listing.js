@@ -108,7 +108,7 @@ Documents.propTypes = {
 Documents.defaultProps = {
     requiresFetch: false,
     isLoading: false,
-    allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
+    allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
     documentTypes: []
 };
 
