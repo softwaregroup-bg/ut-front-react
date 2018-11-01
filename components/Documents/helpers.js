@@ -3,7 +3,7 @@ import { validationTypes, textValidations, dropdownValidations } from '../../val
 // Listing
 export const getListTableColumns = (hasMakerChecker = true) => {
     const columns = [
-        {title: 'Group Name', name: 'documentType'},
+        {title: 'Document Type', name: 'documentType'},
         {title: 'Document Description', name: 'documentDescription'},
         {title: 'File Type', name: 'extension'},
         {title: 'Upload Date', name: 'createdDate'}
