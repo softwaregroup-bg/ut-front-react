@@ -58,6 +58,7 @@ export function mergeDocumentsWithChanged(documents, changedDocuments) {
         switch (changedDoc.statusId) {
             case 'deleted':
             case 'replaced':
+            case 'pending':
             case 'archived':
                 for (let i = 0; i < documents.length; i++) {
                     if (documents[i].documentId) {
