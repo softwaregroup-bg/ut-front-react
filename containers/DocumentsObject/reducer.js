@@ -138,10 +138,14 @@ const documents = (state = defaultState, action) => {
             if (statusId) {
                 let newState = state;
                 if (statusId === 'new' && !action.props.documentObject.get('attachmentId')) {
-                    let docs = state.getIn([action.props.identifier, 'changedDocuments']);
+                    docs = state.getIn([action.props.identifier, 'changedDocuments']);
+                    const fileToDelete = action.props.documentObject.getIn(['attachments', 0, 'filename']);
+
                     let fileIndex = -1;
                     for (let i = 0; i < docs.size; i++) {
-                        if (docs.getIn([i, 'filename']) === action.props.documentObject.get('filename')) {
+                        const currentFile = docs.getIn([i, 'attachments', 0, 'filename']);
+
+                        if (currentFile === fileToDelete) {
                             fileIndex = i;
                             break;
                         }
