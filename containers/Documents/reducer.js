@@ -103,7 +103,7 @@ const documents = (state = defaultState, action) => {
                 return state.setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
         case ADD_NEW_DOCUMENT:
-            let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject));
+            let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject)).sortBy(d => d.documentType);
             let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState)
@@ -140,7 +140,7 @@ const documents = (state = defaultState, action) => {
                 if (statusId === 'new' && !action.props.documentObject.get('attachmentId')) {
                     docs = state.getIn([action.props.identifier, 'changedDocuments']);
                     const fileToDelete = action.props.documentObject.getIn(['attachments', 0, 'filename']);
-                    
+
                     let fileIndex = -1;
                     for (let i = 0; i < docs.size; i++) {
                         const currentFile = docs.getIn([i, 'attachments', 0, 'filename']);
