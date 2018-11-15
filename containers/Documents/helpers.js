@@ -173,7 +173,7 @@ function insertAttachmentsInDocuments(documents = [], attachments = [], factor) 
         document.attachments = [];
         attachments.forEach((attachment) => {
             if (attachment[factor] === document[factor]) {
-                attachment.url = attachment.isNew ? documentTmpUploadPrefix + attachment.filename : documentPrefix + attachment.filename;
+                attachment.url = attachment.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + attachment.filename : documentPrefix + attachment.filename;
                 document.attachments.push(attachment);
             }
         });
