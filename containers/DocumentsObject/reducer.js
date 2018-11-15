@@ -47,7 +47,7 @@ const documents = (state = defaultState, action) => {
         case INIT_DOCUMENTS_STATE:
             if (!state.get(action.params.identifier)) {
                 return state.setIn([action.params.identifier], Immutable.fromJS(getDefaultAttachmentObject()))
-                            .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
+                    .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
             }
             break;
         case REMOVE_TAB:
@@ -63,22 +63,22 @@ const documents = (state = defaultState, action) => {
         case FETCH_ARCHIVED_DOCUMENTS:
             if (action.methodRequestState === methodRequestState.REQUESTED) {
                 return state.setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(true))
-                            .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
+                    .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.document) {
                     let fetchDocumentsResult = parseFetchDocumentsResult(action.result.document);
                     fetchDocumentsResult = mergeDocumentsAndAttachments(fetchDocumentsResult, action.result.attachment);
                     return state.setIn([props.identifier, 'documentArchived', 'data'], Immutable.fromJS(fetchDocumentsResult.localData.viewer))
-                                .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
-                                .setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
-                                .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
+                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null))
+                        .setIn([props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
+                        .setIn([props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(false));
                 }
             }
             return state;
         case FETCH_DOCUMENT_TYPES:
             if (action.methodRequestState === methodRequestState.REQUESTED) {
                 return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
-                            .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(true));
+                    .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(true));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.documentTypeClass) {
                     let data = action.result.documentTypeClass.map((type) => {
@@ -88,11 +88,11 @@ const documents = (state = defaultState, action) => {
                         };
                     });
                     return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
-                                .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false))
-                                .setIn([props.identifier, 'documentTypes', 'data'], Immutable.fromJS(data));
+                        .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false))
+                        .setIn([props.identifier, 'documentTypes', 'data'], Immutable.fromJS(data));
                 } else {
                     return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
-                                .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false));
+                        .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false));
                 }
             }
             return state;
@@ -107,7 +107,7 @@ const documents = (state = defaultState, action) => {
             let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState)
-                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
+                .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case REPLACE_DOCUMENT:
             let doc = action.props.newDocumentObject;
             let newObject = action.props.oldDocumentObject;
@@ -116,7 +116,7 @@ const documents = (state = defaultState, action) => {
             newObject.attachments[0].contentType = doc.contentType;
             newObject.attachments[0].url = documentTmpUploadPrefix + doc.filename;
             newObject.attachments[0].isNew = true;
-            newObject.statusId = 'replaced';
+            newObject.statusId = 'pending';
             let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
             let alreadyReplacedOnce = changedDocuments.findIndex((docObj) => {
                 if (docObj.attachments[0].attachmentId && docObj.attachments[0].attachmentId === newObject.attachments[0].attachmentId) {
@@ -132,7 +132,7 @@ const documents = (state = defaultState, action) => {
                 changedDocuments.push(newObject);
             }
             return state.setIn([props.identifier, 'changedDocuments'], Immutable.fromJS(changedDocuments))
-                        .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
+                .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         case CHANGE_DOCUMENT_STATUS_DELETED:
             let statusId = action.props.documentObject.get('statusId');
             if (statusId) {
@@ -151,14 +151,14 @@ const documents = (state = defaultState, action) => {
                         }
                     }
                     newState = state.deleteIn([action.props.identifier, 'changedDocuments', fileIndex])
-                                .setIn([action.props.identifier, 'selected'], null);
+                        .setIn([action.props.identifier, 'selected'], null);
                     newState = combineAttachments(newState.get(action.props.identifier));
                     return state.set(action.props.identifier, newState);
                 } else {
                     let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
                     docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
                     newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
-                                .setIn([action.props.identifier, 'selected'], null);
+                        .setIn([action.props.identifier, 'selected'], null);
                     newState = combineAttachments(newState.get(action.props.identifier));
                     return state.set(action.props.identifier, newState);
                 }
@@ -195,18 +195,18 @@ const documents = (state = defaultState, action) => {
             let archivedDoc = action.props.documentObject.set('statusId', 'archived');
             docs = state.getIn([action.props.identifier, 'changedDocuments']).push(archivedDoc);
             newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
-                                    .setIn([action.props.identifier, 'selected'], null);
+                .setIn([action.props.identifier, 'selected'], null);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState);
         case CHANGE_DOCUMENT_FILTER:
             if (action.props.filter === 'all') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
-                            .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
+                    .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             } else if (action.props.filter === 'archived') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
-                            .setIn([action.props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(true))
-                            .setIn([action.props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
-                            .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
+                    .setIn([action.props.identifier, 'documentArchived', 'requiresFetch'], Immutable.fromJS(true))
+                    .setIn([action.props.identifier, 'documentArchived', 'isLoading'], Immutable.fromJS(false))
+                    .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
             break;
         default:

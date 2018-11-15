@@ -1,5 +1,5 @@
 import immutable from 'immutable';
-import { documentPrefix, documentTmpUploadPrefix } from '../../constants';
+import { documentPrefix } from '../../constants';
 import { mergeDocumentsWithChanged } from '../../components/Documents/helpers';
 /*
  * createIdentifier - creates an unique identifier for instance of documents tab container
@@ -130,7 +130,7 @@ export function combineAttachments(state) {
         }
     });
     return state.set('attachmentsList', immutable.fromJS(result))
-                .set('deletedList', immutable.fromJS(deletedIds));
+        .set('deletedList', immutable.fromJS(deletedIds));
 }
 
 function mergeAttachments(mainObj, overridesObj) {
