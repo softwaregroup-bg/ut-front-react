@@ -139,17 +139,18 @@ export function mergeDocumentsAndAttachments(documents = [], attachments = [], d
     let sameMaker = [];
     let viewer = [];
     let unapproved = [];
+    let matchType;
     if (documents.length > 0 && attachments.length > 0) {
-        let matchType = documents[0].documentUnapprovedId ? 'unapproved' : 'approved';
+        matchType = documents[0].documentUnapprovedId ? 'unapproved' : 'approved';
         if (matchType === 'unapproved') {
             // Documents are in pending status (unapproved)
-            viewer = insertAttachmentsInDocuments(documents, attachments, 'documentUnapprovedId');
+            unapproved = insertAttachmentsInDocuments(documents, attachments, 'documentUnapprovedId');
         } else {
             // Documents are active (approved)
             viewer = insertAttachmentsInDocuments(documents, attachments, 'documentId');
         }
     }
-    if (documentsUnapproved.length > 0 && attachmentsUnapproved.length > 0) {
+    if (matchType !== 'unapproved' && documentsUnapproved.length > 0 && attachmentsUnapproved.length > 0) {
         unapproved = insertAttachmentsInDocuments(documentsUnapproved, attachmentsUnapproved, 'documentUnapprovedId');
     }
     return {
@@ -272,3 +273,35 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
         actorDocument: resultActorDocuments
     };
 }
+
+export function arrangeDocuments(currentDocs, newDocs) {
+    var arrangeCurrentDocs = []; var unmatchedCurrentDocs = [];
+    var arrangeNewDocs = []; var unmatchedNewDocs = [];
+    var removedDocs = [];
+    currentDocs.map((doc) => {
+        // add unchanged docs to new docs
+        if(!newDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; })) {
+            newDocs.push(doc);
+        }
+    });
+    newDocs.map((doc) => {
+        var matchedDoc = currentDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; });
+        if (matchedDoc && ['deleted', 'archived'].includes(doc.statusId)) {
+            removedDocs.push(matchedDoc);
+        } else if(matchedDoc) {
+            arrangeNewDocs.push(doc);
+            arrangeCurrentDocs.push(matchedDoc);
+        } else {
+            unmatchedNewDocs.push(doc);
+        }
+    });
+    currentDocs.map((doc) => {
+        if (!arrangeNewDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; }) && !removedDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; })) {
+            unmatchedCurrentDocs.push(doc);
+        }
+    });
+    return {
+        arrangedCurrentDocs: arrangeCurrentDocs.concat(unmatchedCurrentDocs).concat(removedDocs),
+        arrangedNewDocs: arrangeNewDocs.concat(unmatchedNewDocs)
+    };
+};
