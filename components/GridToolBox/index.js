@@ -19,7 +19,6 @@ import MultiSelectDropdown from '../Input/MultiSelectDropdown';
 
 import classnames from 'classnames';
 import style from './style.css';
-import Txt from 'ut-front-react/components/Txt';
 
 const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
@@ -427,13 +426,13 @@ class GridToolBox extends Component {
         };
 
         let actionButtons = [
-            {label: <Txt>Apply Search</Txt>, onClick: apply, styleType: 'primaryDialog'},
-            {label: <Txt>Cancel</Txt>, onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
+            {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
+            {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
         ];
 
         return <StandardDialog
           closePopup={this.toggleAdvancedSearch}
-          header={{text: <Txt>Advanced Search</Txt>}}
+          header={{text: 'Advanced Search'}}
           isOpen={this.state.showFiltersPopup}
           footer={{actionButtons: actionButtons}}
           className={style.advancedSearchDialog}>
