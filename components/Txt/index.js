@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 class Txt extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ Txt.propTypes = {
 export default connect(
     state => {
         return {
-            texts: state.gate.get('texts')
+            texts: state.gate.get('texts') || Map()
         };
     },
     { }
