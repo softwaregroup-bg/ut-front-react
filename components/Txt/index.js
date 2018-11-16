@@ -18,6 +18,8 @@ class Txt extends Component {
         let translatedText = texts.get(children) || children;
         if (!texts.get(children)) {
             this.saveNoTranslation(children);
+
+            return <span>[{translatedText}]</span>;
         }
         return (
             <span>{translatedText}</span>

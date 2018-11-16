@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
-import defaultStyle from './style.css';
 import classnames from 'classnames';
+
+import Txt from '../Txt';
+import defaultStyle from './style.css';
 
 export default class Tab extends React.Component {
     render() {
@@ -25,7 +27,7 @@ export default class Tab extends React.Component {
                 }
                 <div className={classnames(style.tabMenuWrap, activeClassName)} onClick={onClickHanlder}>
                     <div className={style.tabMenu}>
-                        {title}
+                        <Txt>{title}</Txt>
                     </div>
                 </div>
             </li>

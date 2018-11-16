@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import Txt from '../Txt';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
@@ -133,11 +134,11 @@ class Dropdown extends Component {
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
-                            {this.props.label} {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                            <Txt>{this.props.label}</Txt> {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                         </div>
                         <div className={classnames(ddstyles.inputWrap)}>
                             {this.renderDropDown()}
-                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
+                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
                         </div>
                     </div>
                 </div>
@@ -148,7 +149,7 @@ class Dropdown extends Component {
                     <div className={ddstyles.outerWrap}>
                         {this.renderDropDown()}
                     </div>
-                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
                 </div>
             );
         }

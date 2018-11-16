@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Txt from '../Txt';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -20,7 +21,7 @@ class HeaderCell extends Component {
 
         return (
              <th onClick={this.props.canSort ? this.props.onSort : null} style={{width: 'auto', ...this.props.styles}}>
-                {this.props.name}
+                <Txt>{this.props.name}</Txt>
                 {this.props.canSort && <span className={sortStyle} />}
             </th>
         );

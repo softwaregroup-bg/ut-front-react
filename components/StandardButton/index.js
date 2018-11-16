@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import classNames from 'classnames';
+
+import Txt from '../Txt';
 import buttonStyles from './styles.css';
 import { getClass } from '../../utils/helpers';
-import { Link } from 'react-router';
 
 const getClassInternal = (className) => {
     return buttonStyles[className] || getClass(buttonStyles, className) || className;
@@ -41,7 +43,7 @@ const Button = props => {
             <Link to={href}>
               <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
                 {icon && <span className={icon} />}
-                {label}
+                <Txt>{label}</Txt>
               </button>
             </Link>
         );
@@ -50,7 +52,7 @@ const Button = props => {
     return (
       <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
         {icon && <span className={icon} />}
-        {label}
+        <Txt>{label}</Txt>
         {children}
       </button>
     );
