@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import DatePickerInput from 'material-ui/DatePicker/DatePicker';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
+import Txt from '../../Txt';
 import style from '../style.css';
 
 export default class DatePicker extends Component {
@@ -43,7 +44,7 @@ export default class DatePicker extends Component {
 
         return (
             <div className={classnames(style.wrap, this.props.wrapperClassName)}>
-                {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
+                {label ? (<span className={classnames(labelStyle, boldLabelStyle)}><Txt>{label}</Txt></span>) : ''}
                 <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles} data-test={keyProp}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
@@ -63,7 +64,7 @@ export default class DatePicker extends Component {
                       hintText={this.props.hintText}
                       hintStyle={hintStyle}
                     />
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
                 </div>
             </div>
         );

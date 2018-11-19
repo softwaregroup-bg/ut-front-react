@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+import Txt from '../../Txt';
 import { propTypeField } from '../common';
 import style from './styles.css';
 
@@ -33,7 +34,7 @@ export default class Field extends Component {
         return (
             <th className={thStyle || girdHeadingStyle.join(' ')} onTouchTap={this.handleOrder}>
                 <span className={this.getStyle('gridHeadingInner')}>
-                    {this.props.transformCellValue(this.props.field.title || '', this.props.field, undefined, true)}
+                    <Txt>{this.props.transformCellValue(this.props.field.title || '', this.props.field, undefined, true)}</Txt>
                     <span className={classnames.apply(undefined, styles)} />
                 </span>
             </th>

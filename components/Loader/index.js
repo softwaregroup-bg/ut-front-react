@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import Txt from '../Txt';
 import styles from './styles.css';
 
 const Loader = ({
@@ -11,7 +12,9 @@ const Loader = ({
         <div className={classnames(styles.loaderContainer, className)}>
                 <div className={styles.overlay} />
                 <div className={classnames(styles.loader, loaderClass)} />
-                <div className={styles.message}>{loadInfo.message}</div>
+                <div className={styles.message}>
+                    <Txt>{loadInfo.message}</Txt>
+                </div>
             </div>
     );
 };
