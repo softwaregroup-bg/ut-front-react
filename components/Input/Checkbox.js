@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Txt from '../Txt';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -11,7 +12,7 @@ const Checkbox = (props) => {
 
     let label = '';
     if (props.label) {
-        label = <p>{props.label}</p>;
+        label = <p><Txt>{props.label}</Txt></p>;
     }
     let isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
 
