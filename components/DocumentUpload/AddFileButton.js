@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import Txt from '../Txt';
 import styles from './styles.css';
 
 const AddFileButton = ({
@@ -15,7 +16,7 @@ const AddFileButton = ({
                 <span className={styles.verticalLine} />
                 <span className={styles.horizontalLine} />
             </div> }
-            <span className={styles.addFileBtnLabel}>{ label }</span>
+            <Txt className={styles.addFileBtnLabel}>{label}</Txt>
         </div>
     );
 };

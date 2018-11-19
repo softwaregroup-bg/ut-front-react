@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Button from '../Button';
 import Glyphicon from '../Glyphicon';
+import Txt from '../Txt';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -33,7 +34,7 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
     let titleSectionClasses = classnames('f-upper', style.boxTitle, titleTypeClass, ballancerClass, externalTitleClasses);
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
     let rightSection = showAccordeon ? accordeon : closeSection;
-    let titleSection = title ? <div className={titleSectionClasses} onClick={!noCollapse ? onToggle : () => {}}>{title}{rightSection}</div> : null;
+    let titleSection = title ? <div className={titleSectionClasses} onClick={!noCollapse ? onToggle : () => {}}><Txt>{title}</Txt>{rightSection}</div> : null;
     let minHeightStyle = minHeight ? { minHeight: minHeight } : null;
     let body = !collapsed ? <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>{children}</div> : null;
     return (

@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
 import { Link } from 'react-router';
 
+import Txt from '../Txt';
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
@@ -473,9 +474,9 @@ class GridToolBox extends Component {
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0]['type'] === filterElementTypes.searchBox) {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : '';
+            leftSide = hasSelectedOrChecked ? <Txt className={style.link}>Show buttons</Txt> : '';
         } else {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by';
+            leftSide = hasSelectedOrChecked ? <Txt className={style.link}>Show buttons</Txt> : <Txt>Filter by</Txt>;
         }
 
         let showSearchBtn = (this.props.filterElements.find(f => {

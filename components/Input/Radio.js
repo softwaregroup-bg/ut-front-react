@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import Txt from '../Txt';
 import style from './style.css';
 import classnames from 'classnames';
 
 const RadioInput = ({ label, boldLabel, onChange, defaultValue, options, disabled, optionClassName }) => (
     <div className={style.outerWrap}>
         <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
-            {label}
+            { label && <Txt>{label}</Txt> }
         </div>
         <div className={style.inputWrap}>
             {options.map(({id, name, label, value}) => {
@@ -13,7 +14,9 @@ const RadioInput = ({ label, boldLabel, onChange, defaultValue, options, disable
                 return (
                     <span className={classnames(style.radio, optionClassName)} key={id}>
                         <input disabled={disabled} onChange={handleChange} checked={defaultValue === value} id={id} type='radio' name={name} data-test={id} />
-                        <label htmlFor={id}>{label}</label>
+                        <label htmlFor={id}>
+                            <Txt>{label}</Txt>
+                        </label>
                     </span>
                 );
             })}
