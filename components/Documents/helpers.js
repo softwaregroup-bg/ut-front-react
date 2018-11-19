@@ -76,5 +76,10 @@ export function mergeDocumentsWithChanged(documents, changedDocuments) {
                 break;
         }
     });
-    return changedDocuments.concat(documents);
+    var allDocuments = changedDocuments.concat(documents);
+    return allDocuments.sort(function(A, B) {
+        var a = A.documentType ? A.documentType : A.documentTypeName;
+        var b = B.documentType ? B.documentType : B.documentTypeName;
+        return (a === b) ? 0 : +(a > b) || -1;
+    });
 }
