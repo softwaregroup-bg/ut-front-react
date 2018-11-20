@@ -62,7 +62,7 @@ class Dropdown extends Component {
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={'__placeholder__'}
-              primaryText={placeholder}
+              primaryText={this.context.translate(placeholder)}
             />
         );
 
@@ -206,6 +206,10 @@ Dropdown.defaultProps = {
     errorMessage: '',
     isEdited: false,
     menuAutoWidth: false
+};
+
+Dropdown.contextTypes = {
+    translate: PropTypes.func
 };
 
 export default Dropdown;
