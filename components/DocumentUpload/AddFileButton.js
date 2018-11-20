@@ -16,7 +16,9 @@ const AddFileButton = ({
                 <span className={styles.verticalLine} />
                 <span className={styles.horizontalLine} />
             </div> }
-            <Text className={styles.addFileBtnLabel}>{label}</Text>
+            <span className={styles.addFileBtnLabel}>
+                <Text>{label}</Text>
+            </span>
         </div>
     );
 };

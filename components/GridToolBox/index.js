@@ -474,9 +474,9 @@ class GridToolBox extends Component {
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0]['type'] === filterElementTypes.searchBox) {
-            leftSide = hasSelectedOrChecked ? <Text className={style.link}>Show buttons</Text> : '';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}><Text>Show buttons</Text></span> : '';
         } else {
-            leftSide = hasSelectedOrChecked ? <Text className={style.link}>Show buttons</Text> : <Text>Filter by</Text>;
+            leftSide = hasSelectedOrChecked ? <span className={style.link}><Text>Show buttons</Text></span> : <Text>Filter by</Text>;
         }
 
         let showSearchBtn = (this.props.filterElements.find(f => {
