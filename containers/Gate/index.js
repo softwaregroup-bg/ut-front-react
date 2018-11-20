@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
 import { cookieCheck, logout } from '../LoginForm/actions.js';
-import { fetchTranslations } from './actions';
+import { fetchTranslations, fetchLanguages } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 import style from './style.css';
 
@@ -52,14 +52,28 @@ class Gate extends Component {
     }
 
     loadGate(permissions, languageId) {
-        let { fetchTranslations } = this.props;
+        const { fetchTranslations, fetchLanguages, platform, projectConfig } = this.props;        
 
         setPermissions(permissions);
 
-        fetchTranslations({
-            languageId,
-            dictName: ['text', 'actionConfirmation']
-        });
+        const shouldTranslate = projectConfig.getIn(['features', 'translate', platform]);
+
+        const dictName = ['text', 'actionConfirmation'];
+
+        // Feature requested October 2018 - use a config file to turn translations ON and OFF per each web portal
+        if (shouldTranslate) {
+            fetchTranslations({ languageId, dictName });
+        } else {
+            fetchLanguages()
+                .then(res => {
+                    const languages = res.result && res.result[0];
+                    
+                    const defaultLanguage = languages.find(l => l.iso2Code === 'en');
+                    const defaultLanguageId = defaultLanguage ? defaultLanguage.languageId : languages[0].languageId;
+
+                    fetchTranslations({ languageId: defaultLanguageId, dictName });
+                });
+        }
     }
 
     render() {
@@ -74,15 +88,17 @@ class Gate extends Component {
 }
 
 export default connect(
-    ({ login, gate }) => ({
+    ({ login, gate, platform, projectConfig }) => ({
         cookieChecked: login.get('cookieChecked'),
         authenticated: login.get('authenticated'),
         result: login.get('result'),
         gate: gate,
         forceLogOut: gate.get('forceLogOut'),
-        loaded: gate.get('loaded')
+        loaded: gate.get('loaded'),
+        platform: platform.get('name'),
+        projectConfig: projectConfig
     }),
-    { cookieCheck, fetchTranslations, logout }
+    { cookieCheck, fetchTranslations, fetchLanguages, logout }
 )(Gate);
 
 Gate.propTypes = {
@@ -91,16 +107,21 @@ Gate.propTypes = {
     cookieChecked: PropTypes.bool,
     authenticated: PropTypes.bool,
     result: PropTypes.object,
+    platform: PropTypes.string,
+    projectConfig: PropTypes.object,
     forceLogOut: PropTypes.bool,
     loaded: PropTypes.bool,
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
+    fetchLanguages: PropTypes.func,
     logout: PropTypes.func
 };
 
 Gate.defaultProps = {
     gate: Map(),
-    login: Map()
+    login: Map(),
+    platform: '',
+    projectConfig: Map()
 };
 
 Gate.contextTypes = {
