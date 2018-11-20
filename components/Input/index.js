@@ -131,7 +131,7 @@ class TextField extends Component {
                 onBlur={onBlur}
                 onChange={this.handleChange}
                 readOnly={this.props.readonly}
-                placeholder={placeholder}
+                placeholder={this.context.translate(placeholder)}
                 options={this.props.options} />
             : <input ref='textInput'
                 data-test={keyProp}
@@ -141,7 +141,7 @@ class TextField extends Component {
                 onBlur={onBlur}
                 onChange={this.handleChange}
                 readOnly={this.props.readonly}
-                placeholder={placeholder} />;
+                placeholder={this.context.translate(placeholder)} />;
 
         let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}><Txt>{dependancyDisabledInputTooltipText}</Txt></span>);
         if (label) {
@@ -226,6 +226,11 @@ TextField.defaultProps = {
     onChange: () => {},
     onBlur: () => {},
     onClick: () => {}
+};
+
+
+TextField.contextTypes = {
+    translate: React.PropTypes.func
 };
 
 export default TextField;

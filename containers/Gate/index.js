@@ -66,12 +66,13 @@ class Gate extends Component {
         } else {
             fetchLanguages()
                 .then(res => {
-                    const languages = res.result && res.result[0];
+                    const languages = (res.result && res.result[0]) || [];
                     
-                    const defaultLanguage = languages.find(l => l.iso2Code === 'en');
-                    const defaultLanguageId = defaultLanguage ? defaultLanguage.languageId : languages[0].languageId;
+                    const configLanguage = projectConfig.get('languageCode');
+                    const defaultLanguage = languages.find(l => l.iso2Code === configLanguage) || {};
+                    const defaultLanguageId = defaultLanguage.languageId;
 
-                    fetchTranslations({ languageId: defaultLanguageId, dictName });
+                    return fetchTranslations({ languageId: defaultLanguageId, dictName });
                 });
         }
     }
@@ -104,13 +105,13 @@ export default connect(
 Gate.propTypes = {
     params: PropTypes.object,
     children: PropTypes.object,
+    projectConfig: PropTypes.object,
+    result: PropTypes.object,
     cookieChecked: PropTypes.bool,
     authenticated: PropTypes.bool,
-    result: PropTypes.object,
-    platform: PropTypes.string,
-    projectConfig: PropTypes.object,
     forceLogOut: PropTypes.bool,
     loaded: PropTypes.bool,
+    platform: PropTypes.string,
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
     fetchLanguages: PropTypes.func,
@@ -120,8 +121,8 @@ Gate.propTypes = {
 Gate.defaultProps = {
     gate: Map(),
     login: Map(),
-    platform: '',
-    projectConfig: Map()
+    projectConfig: Map(),
+    platform: ''
 };
 
 Gate.contextTypes = {
