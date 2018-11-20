@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import Link from './../Link';
-import Txt from '../Txt';
+import Text from '../Text';
 import styles from './styles.css';
 
 export default class Tab extends Component {
@@ -45,7 +45,7 @@ export default class Tab extends Component {
               activeClassName={styles.navigationTabActive}
               params={tab.routeParams}
               onClick={this.onTabClick}>
-                <Txt>{tab.title}</Txt>
+                <Text>{tab.title}</Text>
               </Link>
         );
     }

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { propTypeFields, propTypeData } from '../common';
 import Record from './Record.js';
-import Txt from '../../Txt';
+import Text from '../../Text';
 import style from './styles.css';
 
 export class Body extends Component {
@@ -99,7 +99,7 @@ export class Body extends Component {
         return (
             <tbody>
                 { !!localData.length && this.renderBody(localData) }
-                { (!!data.length && this.renderBody(data)) || <tr><td colSpan={this.filteredFieldsLength} className={this.getStyle('noResultRow')}><Txt>{this.props.emptyRowsMsg}</Txt></td></tr> }
+                { (!!data.length && this.renderBody(data)) || <tr><td colSpan={this.filteredFieldsLength} className={this.getStyle('noResultRow')}><Text>{this.props.emptyRowsMsg}</Text></td></tr> }
             </tbody>
         );
     }

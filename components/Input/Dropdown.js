@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import Txt from '../Txt';
+import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
@@ -134,11 +134,11 @@ class Dropdown extends Component {
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
-                            <Txt>{this.props.label}</Txt> {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                            <Text>{this.props.label}</Text> {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                         </div>
                         <div className={classnames(ddstyles.inputWrap)}>
                             {this.renderDropDown()}
-                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
+                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@ class Dropdown extends Component {
                     <div className={ddstyles.outerWrap}>
                         {this.renderDropDown()}
                     </div>
-                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
+                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import Txt from '../Txt';
+import Text from '../Text';
 import styles from './styles.css';
 
 const Loader = ({
@@ -13,7 +13,7 @@ const Loader = ({
                 <div className={styles.overlay} />
                 <div className={classnames(styles.loader, loaderClass)} />
                 <div className={styles.message}>
-                    <Txt>{loadInfo.message}</Txt>
+                    <Text>{loadInfo.message}</Text>
                 </div>
             </div>
     );

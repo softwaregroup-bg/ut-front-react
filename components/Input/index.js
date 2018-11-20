@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Cleave from 'cleave.js/react';
-import Txt from '../Txt';
+import Text from '../Text';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
@@ -143,17 +143,17 @@ class TextField extends Component {
                 readOnly={this.props.readonly}
                 placeholder={this.context.translate(placeholder)} />;
 
-        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}><Txt>{dependancyDisabledInputTooltipText}</Txt></span>);
+        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}><Text>{dependancyDisabledInputTooltipText}</Text></span>);
         if (label) {
             return (
                 <div className={classnames(this.style.outerWrap, wrapperClassName)}>
                     <div className={classnames(this.style.lableWrap, labelClassName, {[this.style.boldLabel]: this.props.boldLabel})}>
-                        <Txt>{label}</Txt> {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                        <Text>{label}</Text> {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                         {input}
                         {tooltip}
-                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
+                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                     </div>
                 </div>
             );
@@ -162,7 +162,7 @@ class TextField extends Component {
                 <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                     {input}
                     {tooltip}
-                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Txt>{errorMessage}</Txt></div>}</div>
+                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }

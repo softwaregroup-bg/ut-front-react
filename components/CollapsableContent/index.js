@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import { Vertical } from '../Layout';
 import ToolTip from '../ToolTip';
-import Txt from '../Txt';
+import Text from '../Text';
 
 import style from './style.css';
 import toolTipStyle from './tooltipstyles.css';
@@ -85,7 +85,7 @@ export default class CollapsableContent extends Component {
             return (
                 <div className={style.collapsableContentContainer} style={{...this.props.style, ...this.props.visibleStyles}}>
                     <Vertical fixedComponent={<div className={this.getHeadingStyles()} style={currentStyles} onClick={this.toggle}>
-                        <div className={style.textWrap}><Txt>{this.props.heading}</Txt></div>
+                        <div className={style.textWrap}><Text>{this.props.heading}</Text></div>
                         {this.props.info !== '' && <div className={style.toolTipWrap}><ToolTip styles={toolTipStyle}>{this.props.info}</ToolTip></div>}
                         {this.props.showCollapsibleButton && <div className={this.getToggleArrowStyles()} />}
                     </div>

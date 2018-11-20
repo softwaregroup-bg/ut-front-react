@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import Txt from '../Txt';
+import Text from '../Text';
 import style from './style.css';
 
 export class Filters extends Component {
@@ -11,7 +11,7 @@ export class Filters extends Component {
         return (
             <div className={classes.join(' ')}>
                 <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>
-                    <Txt>{this.props.title}</Txt>
+                    <Text>{this.props.title}</Text>
                 </span>
                 <div className={style.content}>
                     {this.props.children}

@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
-import Txt from '../../Txt';
+import Text from '../../Text';
 import style from './style.css';
 
 const KeyValueRow = ({ wrapperClass, keyClass, valueClass, keyNode, bordered = false, children }) => {
     return (
       <div className={`${wrapperClass} ${style.displayFlex} ${style.borderTop}`}>
-        <div className={`${keyClass} ${style.keyCell} ${style.displayFlex}`}><Txt>{keyNode}</Txt></div>
+        <div className={`${keyClass} ${style.keyCell} ${style.displayFlex}`}><Text>{keyNode}</Text></div>
         <div className={`${valueClass} ${style.valueCell} ${style.displayFlex}`}>{children}</div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Txt from '../Txt';
+import Text from '../Text';
 import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router';
 
@@ -38,7 +38,7 @@ const Header = React.createClass({
             <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
                     <div className={style.headingTextWrap}>
-                        <Txt>{text}</Txt>
+                        <Text>{text}</Text>
                     </div>
                 </h1>
                 {extraElements && <div>{extraElements}</div>}
