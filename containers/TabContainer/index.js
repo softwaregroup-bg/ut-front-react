@@ -87,7 +87,9 @@ class TabContainer extends Component {
                             if (errors.length) {
                                 statusErrorMessage += '<ul>';
                                 for (const err of errors) {
-                                    const errProp = Array.isArray(err.key) ? err.key.pop() : err.key;
+                                    const errProp = Array.isArray(err.key)
+                                        ? err.key[err.key.length - 1]
+                                        : err.key;
                                     statusErrorMessage += `<li>${errProp}: ${err.errorMessage}</li>`;
                                 }
                                 statusErrorMessage += '</ul>';

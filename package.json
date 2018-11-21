@@ -58,6 +58,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.2",
     "classnames": "2.2.5",
+    "cleave.js": "^1.4.4",
     "croppie": "2.4.0",
     "date-fns": "1.21.1",
     "debounce": "1.1.0",

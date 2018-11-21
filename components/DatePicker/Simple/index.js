@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import DatePickerInput from 'material-ui/DatePicker/DatePicker';
 import { formatIso } from 'material-ui/DatePicker/dateUtils';
+import Text from '../../Text';
 import style from '../style.css';
 
 export default class DatePicker extends Component {
@@ -18,7 +19,7 @@ export default class DatePicker extends Component {
         };
     }
     render() {
-        let {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass} = this.props;
+        let {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, keyProp} = this.props;
 
         let textFieldStyle = {
             cursor: 'pointer',
@@ -43,8 +44,8 @@ export default class DatePicker extends Component {
 
         return (
             <div className={classnames(style.wrap, this.props.wrapperClassName)}>
-                {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
-                <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles}>
+                {label ? (<span className={classnames(labelStyle, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
+                <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles} data-test={keyProp}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
                       className={classnames(dpStyles, readonlyStyle)}
@@ -63,7 +64,7 @@ export default class DatePicker extends Component {
                       hintText={this.props.hintText}
                       hintStyle={hintStyle}
                     />
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             </div>
         );

@@ -1,4 +1,6 @@
 import React, { PropTypes, Component } from 'react';
+import Cleave from 'cleave.js/react';
+import Text from '../Text';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
@@ -16,7 +18,7 @@ class TextField extends Component {
             isEdited: this.props.isEdited
         };
 
-        this.onChangQueue = [];
+        this.onChangeQueue = [];
         this.initialValue = props.value;
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,13 +39,26 @@ class TextField extends Component {
     }
 
     handleChange(e) {
-        let newValue = e.target.value;
-        this.setState({value: newValue});
+        let newValue = this.props.options
+            ? e.target.rawValue
+            : e.target.value;
+
+        if (typeof this.props.parse === 'function') {
+            // ex. 10,000.537 => 10000.537
+            newValue = this.props.parse(newValue);
+        }
+
+        if (typeof this.props.normalize === 'function') {
+            // ex. 10000.537 => 10000.54
+            newValue = this.props.normalize(newValue);
+        }
+        // For proper caret behavior Cleave needs the value already formatted from last edit
+        this.setState({value: newValue, cleaveFormattedValue: e.target.value});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
-        var oldQueue = this.onChangQueue.shift();
+        var oldQueue = this.onChangeQueue.shift();
         clearTimeout(oldQueue);
-        this.onChangQueue.push(setTimeout(() => {
+        this.onChangeQueue.push(setTimeout(() => {
             this.notifyForChange(newValue);
         }, notifyForChangeInterval));
     }
@@ -80,23 +95,65 @@ class TextField extends Component {
     }
 
     render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName, keyProp } = this.props;
         let { isValid, errorMessage } = this.state.valid;
         let zeroHeightStyle = isValid ? this.style.hh : '';
         const value = (!this.state.value && this.state.value !== 0) ? '' : this.state.value;
+        const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        const eventName = isIE11 ? 'onInput' : 'onChange';
+        const inputProps = {
+            type,
+            className: this.inputClassName,
+            value,
+            onClick,
+            onBlur,
+            [eventName]: this.handleChange,
+            readOnly: this.props.readonly,
+            placeholder
+        };
 
-        let input = <input ref='textInput' type={type} className={this.inputClassName} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
-        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
+        // For proper caret behavior Cleave needs the value already formatted from last edit
+        let renderValue = this.props.options
+            ? this.state.cleaveFormattedValue || value
+            : value;
+        if (renderValue && renderValue.toString && typeof this.props.format === 'function') {
+            // ex. 10000.54 => 10,000.54
+            renderValue = this.props.format(renderValue);
+        }
+
+        // If cleave options are passed => use the cleave field
+        let input = this.props.options
+            ? <Cleave ref='textInput'
+                data-test={keyProp}
+                className={this.inputClassName}
+                value={renderValue}
+                onClick={onClick}
+                onBlur={onBlur}
+                onChange={this.handleChange}
+                readOnly={this.props.readonly}
+                placeholder={this.context.translate(placeholder)}
+                options={this.props.options} />
+            : <input ref='textInput'
+                data-test={keyProp}
+                type={type} className={this.inputClassName}
+                value={renderValue}
+                onClick={onClick}
+                onBlur={onBlur}
+                onChange={this.handleChange}
+                readOnly={this.props.readonly}
+                placeholder={this.context.translate(placeholder)} />;
+
+        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}><Text>{dependancyDisabledInputTooltipText}</Text></span>);
         if (label) {
             return (
                 <div className={classnames(this.style.outerWrap, wrapperClassName)}>
                     <div className={classnames(this.style.lableWrap, labelClassName, {[this.style.boldLabel]: this.props.boldLabel})}>
-                        {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                        <Text>{label}</Text> {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                         {input}
                         {tooltip}
-                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
+                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                     </div>
                 </div>
             );
@@ -105,7 +162,7 @@ class TextField extends Component {
                 <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                     {input}
                     {tooltip}
-                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }
@@ -144,7 +201,15 @@ TextField.propTypes = {
     errorMessage: PropTypes.string,
 
     // Edited
-    isEdited: PropTypes.bool
+    isEdited: PropTypes.bool,
+
+    // Value lifecycle
+    format: PropTypes.func,
+    parse: PropTypes.func,
+    normalize: PropTypes.func,
+
+    // Cleave.js
+    options: PropTypes.object
 };
 
 TextField.defaultProps = {
@@ -161,6 +226,11 @@ TextField.defaultProps = {
     onChange: () => {},
     onBlur: () => {},
     onClick: () => {}
+};
+
+
+TextField.contextTypes = {
+    translate: React.PropTypes.func
 };
 
 export default TextField;

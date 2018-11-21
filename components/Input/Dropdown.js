@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
@@ -61,7 +62,7 @@ class Dropdown extends Component {
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={'__placeholder__'}
-              primaryText={placeholder}
+              primaryText={this.context.translate(placeholder)}
             />
         );
 
@@ -114,6 +115,7 @@ class Dropdown extends Component {
                   className={classnames(ddstyles.dropdownIconBackground, ddstyles.dropDownRoot)}
                   iconStyle={iconStyles}
                   maxHeight={300}
+                  data-test={this.props.keyProp}
                 >
                     {menuItems}
                 </DropDownMenu>
@@ -132,11 +134,11 @@ class Dropdown extends Component {
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
-                            {this.props.label} {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                            <Text>{this.props.label}</Text> {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                         </div>
                         <div className={classnames(ddstyles.inputWrap)}>
                             {this.renderDropDown()}
-                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
+                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                         </div>
                     </div>
                 </div>
@@ -147,7 +149,7 @@ class Dropdown extends Component {
                     <div className={ddstyles.outerWrap}>
                         {this.renderDropDown()}
                     </div>
-                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }
@@ -204,6 +206,10 @@ Dropdown.defaultProps = {
     errorMessage: '',
     isEdited: false,
     menuAutoWidth: false
+};
+
+Dropdown.contextTypes = {
+    translate: PropTypes.func
 };
 
 export default Dropdown;

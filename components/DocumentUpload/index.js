@@ -18,12 +18,14 @@ export default class DocumentUpload extends Component {
             uploadMethod: '',
             screenshot: null,
             fileExtension: '',
+            fileSize: null,
             fileDimensions: {},
             showCrop: false,
             hasCropped: false,
             shouldUse: false,
             isUploading: false,
-            errorUpload: null
+            errorUpload: null,
+            requestStatus: null
         };
 
         this.state = this.initialState;
@@ -92,6 +94,7 @@ export default class DocumentUpload extends Component {
                 screenshot: file,
                 fileExtension: extension,
                 originalFilename: fileObj.name,
+                fileSize: fileObj.size,
                 uploadMethod: 'upload',
                 mode: 'preview',
                 fileDimensions,
@@ -163,6 +166,9 @@ export default class DocumentUpload extends Component {
     }
 
     get view() {
+        if (this.state.requestStatus === 401) {
+            return null;
+        }
         const { mode, uploadMethod, fileDimensions } = this.state;
         const { scaleDimensions, allowedFileTypes, hideCrop, uploadType } = this.props;
 
@@ -189,24 +195,43 @@ export default class DocumentUpload extends Component {
 
         if (mode === 'preview') {
             return (
-                <FilePreview
-                  ref='filePreview'
-                  file={this.state.screenshot}
-                  fileExtension={this.state.fileExtension}
-                  originalFilename={this.state.originalFilename}
-                  showCrop={!hideCrop || this.state.showCrop}
-                  onCrop={this.onCrop}
-                  fileDimensions={fileDimensions}
-                  scaleDimensions={scaleDimensions}
-                  cropDimensions={this.cropDimensions}
-                  uploadMethod={uploadMethod}
-                  uploadType={uploadType}
-                  onFileLoaded={this.onUploadFile}
-                  changeMode={this.changeMode}
-                  allowedFileTypes={allowedFileTypes.join(',')}
-                  crop={this.crop} />
+                <div>
+                    <div className={this.validate && styles.hidden}>
+                        <FilePreview
+                          ref='filePreview'
+                          file={this.state.screenshot}
+                          fileExtension={this.state.fileExtension}
+                          originalFilename={this.state.originalFilename}
+                          showCrop={!hideCrop || this.state.showCrop}
+                          onCrop={this.onCrop}
+                          fileDimensions={fileDimensions}
+                          scaleDimensions={scaleDimensions}
+                          cropDimensions={this.cropDimensions}
+                          uploadMethod={uploadMethod}
+                          uploadType={uploadType}
+                          onFileLoaded={this.onUploadFile}
+                          changeMode={this.changeMode}
+                          allowedFileTypes={allowedFileTypes.join(',')}
+                          crop={this.crop} />
+                    </div>
+                    {this.validate && <div className={styles.errorMsg}>
+                        Error: {this.validate}
+                    </div>}
+                </div>
             );
         }
+    }
+
+    get validate() {
+        // file validation
+        let { allowedFileTypes, maxFileSize } = this.props;
+        let { fileExtension, fileSize } = this.state;
+        if ((!allowedFileTypes.map((tp) => (tp.split('.').pop() || '').toLowerCase()).includes((fileExtension || '').toLowerCase())) || (fileSize > this.maxFileSize)) {
+            return `Please use file types ${allowedFileTypes.join(', ')} and file size up to ${parseInt((maxFileSize) / 1024)}MB per document`;
+        } else return null;
+    }
+    get maxFileSize() {
+        return this.props.maxFileSize * 1024;
     }
 
     get actionButtons() {
@@ -230,13 +255,25 @@ export default class DocumentUpload extends Component {
 
         if (mode === 'preview') {
             let handler = this.props.isAdditionalContentValid ? this.onUseFile : this.props.additionalContentValidate;
-            actionButtons.unshift({
+            !this.validate && actionButtons.unshift({
                 name: 'use',
                 label: 'Use',
                 disabled: this.state.isUploading,
                 styleType: 'secondaryLight',
                 onClick: handler
             });
+        }
+
+        if (this.state.requestStatus === 401) {
+            actionButtons = [{
+                name: 'logout',
+                label: 'Go to login',
+                styleType: 'primaryDialog',
+                onClick: () => {
+                    this.setState({requestStatus: null});
+                    this.props.clearLogin && this.props.clearLogin();
+                }
+            }];
         }
 
         return actionButtons;
@@ -294,6 +331,7 @@ export default class DocumentUpload extends Component {
                 reader.readAsDataURL(img);
             } else {
                 this.setError(request.statusText);
+                this.setState({requestStatus: request.status});
             }
         };
         request.onerror = (e) => {
@@ -344,9 +382,9 @@ export default class DocumentUpload extends Component {
     }
 
     render() {
-        const { isOpen, header, closePopup } = this.props;
+        const { isOpen, header } = this.props;
         const { mode } = this.state;
-
+        let closePopup = this.state.requestStatus !== 401 ? this.props.closePopup : () => {};
         return (
             <Popup
               ref='popup'
@@ -369,6 +407,7 @@ export default class DocumentUpload extends Component {
 DocumentUpload.defaultProps = {
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
+    maxFileSize: 20 * 1024, // default maximum size 5MB
     hideCrop: false,
     additionalContentValidate: () => {},
     isAdditionalContentValid: true
@@ -386,9 +425,11 @@ DocumentUpload.propTypes = {
     useFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
+    maxFileSize: PropTypes.number, // file size in kb
     children: PropTypes.any,
     hideCrop: PropTypes.bool,
     uploadType: PropTypes.string,
     additionalContentValidate: PropTypes.func,
-    isAdditionalContentValid: PropTypes.bool
+    isAdditionalContentValid: PropTypes.bool,
+    clearLogin: PropTypes.func
 };

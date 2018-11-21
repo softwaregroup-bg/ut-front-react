@@ -9,7 +9,8 @@ const PreviewItem = ({
     previewBoxWidth,
     previewBoxHeight
 }) => {
-    switch (fileExtension) {
+    let ext = fileExtension && fileExtension.toLowerCase();
+    switch (ext) {
         case 'jpg':
         case 'jpeg':
         case 'png':
@@ -18,6 +19,8 @@ const PreviewItem = ({
                     <img width={previewBoxWidth} height={previewBoxHeight} src={file} />
                 </span>
             );
+        case 'xls':
+        case 'xlsx':
         case 'doc':
         case 'docx':
         case 'pdf':

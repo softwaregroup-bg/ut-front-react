@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Text from '../Text';
 import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router';
 
@@ -11,7 +12,8 @@ const Header = React.createClass({
             text: PropTypes.string.isRequired,
             href: PropTypes.string,
             onClick: PropTypes.func,
-            permissions: PropTypes.array
+            permissions: PropTypes.array,
+            keyProp: PropTypes.string
         })),
         location: PropTypes.object,
         buttonsRaw: PropTypes.node,
@@ -35,7 +37,9 @@ const Header = React.createClass({
         return (
             <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
-                    <div className={style.headingTextWrap}>{text}</div>
+                    <div className={style.headingTextWrap}>
+                        <Text>{text}</Text>
+                    </div>
                 </h1>
                 {extraElements && <div>{extraElements}</div>}
                 <div className={style.buttonsWrap}>
@@ -59,7 +63,8 @@ const Header = React.createClass({
                                           onClick={btn.onClick}
                                           disabled={btn.disabled === true}
                                           label={btn.text}
-                                          href={btn.href} />
+                                          href={btn.href}
+                                          keyProp={btn.keyProp} />
                                     </div>
                                 );
                             } else {
@@ -68,7 +73,8 @@ const Header = React.createClass({
                                         <StandardButton
                                           styleType={styleType}
                                           disabled={btn.disabled === true}
-                                          label={btn.text} />
+                                          label={btn.text}
+                                          keyProp={btn.keyProp} />
                                     </Link>
                                 );
                             }
