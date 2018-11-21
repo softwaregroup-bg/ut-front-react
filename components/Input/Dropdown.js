@@ -3,7 +3,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import classnames from 'classnames';
 import style from './style.css';
-import { textValidations } from '../../validator/constants';
+import { textValidations, customValidations } from '../../validator/constants';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -181,7 +181,7 @@ Dropdown.propTypes = {
     // Validation
     validators: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, customValidations.function]).isRequired,
             values: PropTypes.any,
             errorMessage: PropTypes.string
         })
