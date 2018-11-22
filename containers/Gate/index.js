@@ -58,7 +58,7 @@ class Gate extends Component {
 
         const shouldTranslate = projectConfig.getIn(['features', 'translate', platform]);
 
-        const dictName = ['text', 'actionConfirmation'];
+        const dictName = ['text', 'actionConfirmation', 'errorManagementLabel'];
 
         // Feature requested October 2018 - use a config file to turn translations ON and OFF per each web portal
         if (shouldTranslate) {
