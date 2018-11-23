@@ -48,6 +48,7 @@ class AutoFetcher extends Component {
     }
 
     onChange(searchText) {
+        if (this.props.onSearchTextInput) this.props.onSearchTextInput(searchText);
         this.setState({ searchText });
         this.debouncedOnChange(searchText);
     }
@@ -93,6 +94,7 @@ AutoFetcher.propTypes = {
     mapRequest: PropTypes.func,
     mapResponse: PropTypes.func,
     onDataFetched: PropTypes.func,
+    onSearchTextInput: PropTypes.func,
     refval: PropTypes.func,
     dataSource: PropTypes.array.isRequired,
     maxSearchResults: PropTypes.number,
