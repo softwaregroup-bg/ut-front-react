@@ -61,15 +61,32 @@ class DocumentsContainer extends Component {
             selectAttachments,
             permissions,
             documentTypes,
+            disabledDocumentTypes,
             selectedFilter,
             documentArchived
         } = this.props;
+        
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
         let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
         let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
+
+        if (disabledDocumentTypes.length > 0) {
+            docTypes = docTypes.map(d => {
+                const docType = d.key;
+    
+                const isDisabled = disabledDocumentTypes.includes(docType);
+    
+                return {
+                    ...d,
+                    disabled: isDisabled
+                }
+            });
+        }
+
         let docs = documents;
         let docsChanged = documentsChanged.toJS();
+        
         if (selectedFilter && selectedFilter === 'archived') {
             docs = documentArchived.get('data').toJS();
             docsChanged = [];
@@ -141,6 +158,7 @@ DocumentsContainer.propTypes = {
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
     documentTypeClass: PropTypes.string.isRequired,
+    disabledDocumentTypes: PropTypes.array,
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,
