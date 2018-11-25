@@ -71,7 +71,7 @@ class DocumentsContainer extends Component {
         let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
         let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
 
-        if (disabledDocumentTypes.length > 0) {
+        if (disabledDocumentTypes && disabledDocumentTypes.length > 0) {
             docTypes = docTypes.map(d => {
                 const docType = d.key;
     
@@ -80,7 +80,7 @@ class DocumentsContainer extends Component {
                 return {
                     ...d,
                     disabled: isDisabled
-                }
+                };
             });
         }
 
