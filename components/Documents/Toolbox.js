@@ -293,6 +293,7 @@ class Toolbox extends Component {
               uploadNewDocument={this.props.uploadNewDocument}
               replaceDocument={this.props.replaceDocument}
               documentTypes={this.props.documentTypes}
+              disabledDocumentTypes={this.props.disabledDocumentTypes}
               allowedFileTypes={this.props.allowedFileTypes}
               clearLogin={this.props.clearLogin}
             />
@@ -326,6 +327,8 @@ Toolbox.propTypes = {
         })
     ),
 
+    disabledDocumentTypes: PropTypes.array,
+
     uploadNewDocument: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     deleteDocument: PropTypes.func.isRequired,
@@ -347,7 +350,8 @@ Toolbox.propTypes = {
 
 Toolbox.defaultProps = {
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
-    documentTypes: []
+    documentTypes: [],
+    disabledDocumentTypes: []
 };
 
 export default Toolbox;
