@@ -1,37 +1,39 @@
 var path = require('path');
 
-module.exports = {
-    start: function() {
-        let handlers = [{
-            method: 'GET',
-            path: '/static/assets/react-select/{p*}',
-            options: {auth: false},
-            handler: {
-                directory: {
-                    path: path.join(__dirname, 'components/MultiSelectBubble/assets'),
-                    listing: false,
-                    index: true,
-                    lookupCompressed: true
-                }
-            }
-        }];
-        try {
-            handlers.push({
+module.exports = function utFrontReact() {
+    return {
+        start: function() {
+            let handlers = [{
                 method: 'GET',
-                path: '/static/assets/bootstrap/{p*}',
+                path: '/static/assets/react-select/{p*}',
                 options: {auth: false},
                 handler: {
                     directory: {
-                        path: path.resolve(require.resolve('bootstrap'), '../..'),
+                        path: path.join(__dirname, 'components/MultiSelectBubble/assets'),
                         listing: false,
                         index: true,
                         lookupCompressed: true
                     }
                 }
-            });
-        } catch (e) {
-            // bootstrap is optional
+            }];
+            try {
+                handlers.push({
+                    method: 'GET',
+                    path: '/static/assets/bootstrap/{p*}',
+                    options: {auth: false},
+                    handler: {
+                        directory: {
+                            path: path.resolve(require.resolve('bootstrap'), '../..'),
+                            listing: false,
+                            index: true,
+                            lookupCompressed: true
+                        }
+                    }
+                });
+            } catch (e) {
+                // bootstrap is optional
+            }
+            return this && this.registerRequestHandler && this.registerRequestHandler(handlers);
         }
-        return this && this.registerRequestHandler && this.registerRequestHandler(handlers);
-    }
+    };
 };
