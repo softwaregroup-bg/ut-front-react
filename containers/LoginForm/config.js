@@ -98,6 +98,12 @@ export const loginSteps = {
         buttonLabel: 'Login',
         title: 'Login with password'
     },
+    'ldap': {
+        inputs: getInputs(['username', 'hiddenPassword', 'password']),
+        disabledFields: [],
+        buttonLabel: 'Login',
+        title: 'Login'
+    },
     'newPassword': {
         inputs: getInputs(['username', 'newPassword', 'confirmPassword']),
         disabledFields: ['username'],

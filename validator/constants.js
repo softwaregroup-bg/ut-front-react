@@ -20,7 +20,7 @@ export const textValidations = {
     numberOnly: 'numberOnly',
     uniqueValue: 'uniqueValue',
     length: 'length', // minVal, maxVal
-    regex: 'regex'  // value
+    regex: 'regex' // value
 };
 
 export const arrayValidations = {
@@ -37,4 +37,12 @@ export const dropdownValidations = {
 
 export const defaultRoleValidations = {
     isRequired: 'isRequired'
+};
+
+export const objectValidations = {
+    hasKeys: 'hasKeys'
+};
+
+export const customValidations = {
+    function: 'function'
 };

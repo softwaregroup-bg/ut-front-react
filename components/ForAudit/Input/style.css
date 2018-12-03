@@ -1,0 +1,490 @@
+/* Common */
+@import './default-config.css';
+@import 'config.css';
+
+.input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #D6D6D6;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-transition: all 0.6s; /* Safari */
+    transition: all 0.6s;
+}
+
+.input.error {
+    border-color: #ff3333 !important;
+}
+.textarea.error {
+    border-color: #ff3333 !important;
+}
+
+.hh {
+    height: 0 !important;
+}
+
+.error {
+    border-color: #ff3333 !important;
+}
+
+.errorWrap {
+    height: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    -webkit-transition: all 0.6s; /* Safari */
+    transition: all 0.6s;
+}
+
+.errorWrap .errorMessage {
+    color: #ff3333;
+    margin: 5px 0 0;
+}
+
+.textArearErrorWrap {
+    font-size: 12px;
+    margin-left: 12px;
+}
+
+.textArearErrorWrap .errorMessage {
+    color: #ff3333;
+    margin: 5px 0 0;
+}
+
+.outerWrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #595959;
+}
+
+.outerWrap .labelWrap {
+    width: 25%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.outerWrap .inputWrap {
+    width: 70%;
+    vertical-align: middle;
+}
+
+.hiddenHeight {
+    height: 0 !important;
+}
+
+.readonlyInput, .readonlyInput div {
+    cursor: not-allowed;
+    border-color: #EBEBEB !important;
+    color: #a9a9a9 !important;
+}
+
+/* Date picker */
+.datePicker {
+    width: 100% !important;
+    height: 43px !important;
+    padding: 10px !important;
+    font-size: 1em !important;
+    border: 1px solid #D6D6D6;
+}
+
+.datePicker hr {
+    display: none !important;
+}
+
+.radio {
+    margin-right: 15px;
+}
+
+.radio label {
+    margin: 0;
+}
+
+.changeBtn {
+    height: 43px;
+    width: 20%;
+    background-color: white;
+    border: 1px solid #D6D6D6;
+    border-left: none;
+}
+
+.textareaWrap {
+    width: 70%;
+}
+
+.textareaWrap textarea {
+    width: 100% !important;
+    display: table-cell;
+    border: 1px solid #D6D6D6;
+}
+
+.textareaLabelWrap {
+    font-weight: bold;
+    vertical-align: top
+}
+
+.tpWrap {
+    overflow: hidden;
+}
+
+.tpHoursWrap {
+    width: 80px;
+    float: left;
+    margin-right: 10px;
+}
+
+.tpMinutesWrap {
+    width: 80px;
+    float: left;
+}
+
+/* CheckboxNew */
+.checkboxNewContainer {
+    display: block;
+}
+
+.checkboxNewAutoWidthContainer {
+    display: inline-block;
+}
+
+.checkboxNewWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.checkboxNewLabel {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.checkboxNew {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: 1px solid #D7D7D7;
+    cursor: pointer;
+}
+
+.checkboxNew.checkedCheckbox {
+    background: url('./images/checkbox.png');
+    background-size: contain;
+    border: none;
+}
+
+/* Checkbox */
+span.checkBoxWrapper {
+    display: inline-block;
+}
+
+span.checkBoxWrapper input.checkBox {
+    display: none;
+}
+
+span.checkBoxWrapper p {
+    display: inline-block;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+
+span.checkBoxWrapper .checkBoxSpanWrapper {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    margin: 0 0 0 7px;
+    padding: 8px 0 0 0;
+    vertical-align:middle;
+    background: white;
+    border: 1px solid #D7D7D7;
+}
+
+span.checkBoxWrapper .innerWrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+span.checkBoxWrapper .innerWrap .checkBoxWrap {
+    display: table-cell;
+    width: 40px;
+    vertical-align: top;
+}
+
+span.checkBoxWrapper .innerWrap .lableWrap {
+    width: 100%;
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 1px;
+}
+
+span.checkBoxWrapper input.checkBox:checked + .innerWrap label span {
+    background: url('./images/checkbox.png');
+    background-position: center center;
+    background-size: 18px 18px;
+    border: none;
+}
+span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label span {
+    background: url('./images/disabled_checkbox.png');
+    background-position: center center;
+    background-size: 18px 18px;
+    border: none;
+}
+
+.notAllowed {
+    cursor: not-allowed !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+/* MultiStateCheckbox */
+.multistatecheckbox input {
+  display: none;
+}
+.multistatecheckbox span {
+  height: 15px;
+  width: 15px;
+  border: 2px solid black;
+  display: inline-block;
+  position: relative;
+}
+.checked span:before {
+  content: '\2714';
+  position: absolute;
+  top: -3px;
+  left: 0;
+}
+
+.unchecked span:before {
+  content: '\2716';
+  position: absolute;
+  top: -3px;
+  left: 0;
+}
+
+.inherited span {
+  border: 2px solid #999;
+  color: #999;
+
+}
+
+/* Dropdown */
+.dropdownWrap {
+    width: 100%;
+    position: relative;
+    border: 1px solid #D6D6D6;
+    height: 30px;
+    color: #595959;
+}
+
+.dropdownWrap div {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 30px !important;
+    border: none !important;
+    color: inherit !important;
+    text-align: left !important;
+}
+
+.dropdownWrap .dropDownRoot {
+    width: 100% !important;
+    height: 28px !important;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-left: 10px !important;
+    padding-right: 1px !important;
+}
+
+.dropdownIconBackground svg, .dropdownIconBackgroundDisabled svg { /* pass over material ui styling limitations */
+    background-color: var(--ut-front-react-standardDropdownIconColor);
+}
+.dropdownIconBackgroundDisabled svg {
+    background-color: #D7D6D6;
+}
+
+.inputWrap {
+    position: relative;
+    display: block;
+}
+.inputWrap .tooltiptext {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 20%;
+    width: 150px;
+    background-color: #FFF;
+    color: #A8A8A8;
+    text-align: center;
+    border: solid #D9D9D9 1px;
+    padding: 5px 0;
+    z-index: 1;
+}
+
+.inputWrap .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #D9D9D9 transparent transparent transparent;
+}
+.inputWrap:hover .tooltiptext {
+    display: block;
+    position: absolute;
+    margin-right: 20px;
+}
+input:read-only{
+    border-color: #EBEBEB;
+}
+
+.multiCheckboxWrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.multiCheckbox {
+    width: 18px;
+    height: 18px;
+    display:inline-block;
+    cursor: pointer;
+    border: 1px solid #D7D7D7;
+}
+
+.multiCheckboxDefaultNone {
+    border: 1px solid #D7D7D7;
+}
+
+.multiCheckboxDefaultChecked {
+    background: url('./images/checkbox.png');
+    background-position: center center;
+    background-size: 18px 18px;
+    border: none;
+}
+
+.multiCheckboxError {
+    color: red;
+}
+
+.multiCheckboxReadOnly {
+    color: lightgrey;
+    cursor: not-allowed !important; /* it needs to be important to overwrite the cursor: pointer */
+    opacity: .5;
+}
+
+.multiCheckboxLabel {
+    display: inline-block;
+    position: relative;
+    left: 9px;
+    bottom: 5px;
+}
+
+.checkPlusPointer {
+    cursor: pointer;
+}
+
+.disabledCheckPlusBox {
+    width: 20px;
+    height: 20px;
+    background: inline('./images/enrollment_checked_disabled.png') no-repeat center center !important;
+}
+
+.lableWrap {
+    width: 30%;
+    padding: 5px 0 0 0;
+}
+
+.inputButtonLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.boldLabel {
+    font-weight: bold;
+}
+
+/* Dropdown arrow background color */
+div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
+    color: var(--ut-front-react-standardDropdownSelectedColor) !important;
+}
+
+.checked {
+    width: 20px;
+    height: 20px;
+    background: inline('./images/enrollment_checked.png') no-repeat center center;
+}
+
+.unchecked {
+    width: 20px;
+    height: 20px;
+    background: inline('./images/enrollment_unchecked.png') no-repeat center center;
+}
+
+.dropdownIconWrap {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 26px;
+    width: 26px;
+}
+
+.arrowIcon {
+    background: inline('./images/dropdownArrow.png') no-repeat center;
+}
+
+.multiSelectDropdownMenu, .groupDropdownMenu, .dropdownMenu {
+    display: block !important;
+}
+
+.multiSelectDropdownMenu div, .groupDropdownMenu div, .dropdownMenu div {
+    font-size: 15px;
+    line-height: 32px;
+}
+
+.multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem, .dropdownMenuItemWrap {
+    display: flex !important;
+}
+
+.multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem, .dropdownMenuItemWrap {
+    align-items: center;
+    min-height: 32px !important;
+}
+
+.groupDropdownMenuSelectedItem {
+    color: var(--ut-front-react-standardDropdownSelectedColor) !important;
+}
+
+.multiSelectDropdownPlaceholder, .groupDropdownPlaceholder, .dropdownPlaceholder {
+    font-size: 15px;
+    margin-top: 3px;
+}
+.dropdownPlaceholder p, .dropdownPlaceholder {
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div {
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.buttonInput {
+    padding-right: 100px;
+}
+.dropdownMenu div {
+    overflow-x: hidden !important;
+    text-overflow: ellipsis;
+}

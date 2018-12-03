@@ -284,6 +284,32 @@ export const isValidEmailRuleArray = (props, rule, result) => {
 
 /* End is valid email array validation */
 
+/* End is valid email array validation */
+
+/* Object validation */
+
+export const hasKeysRule = (props, rule, result) => {
+    checkPasedResultObject(result);
+    if (props.keySeq().size <= 0) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
+/* End Object validation */
+
+/* Custom function validation */
+
+export const customFunctionRule = ({ sourceMap, currentValue }, rule, result) => {
+    let validator = rule.validator;
+    if (!validator({ sourceMap, currentValue })) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
+/* End custom function validation */
+
 function checkPasedResultObject(result) {
     result = result || {};
     result.errors = result.errors || [];

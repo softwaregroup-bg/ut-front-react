@@ -1,4 +1,5 @@
 :root {
     --ut-front-react-loginLogoWidth: 480px;
     --ut-front-react-loginLogoHeight: 80px;
+    --ut-front-react-loginContainerTop: 50%;
 }

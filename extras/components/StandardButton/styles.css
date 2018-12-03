@@ -1,0 +1,311 @@
+    /* in order to have theming first import the default component config and then the implementation config to override the variables*/
+@import './default-config.css';
+/* implementation config; in every implementation the file must be named exactly config.css in order for the theming to work */
+@import 'config.css';
+
+.button {
+    border: var(--ut-front-react-standardBtnBorder);
+    border-radius: var(--ut-front-react-standardBtnBorderRadius);
+    font-family: OpenSans;
+    font-size: var(--ut-front-react-standardBtnFontSize);
+    font-weight: 500;
+    outline: 0;
+}
+
+.button:active, .button:focus, .button:hover {
+    outline: 0;
+}
+
+.standardBtn {
+    composes: button;
+    width: var(--ut-front-react-loginButtonWidth);
+    height: var(--ut-front-react-loginButtonHeight);
+    background-color: var(--ut-front-react-standardBtnBgColor);
+    color: var(--ut-front-react-standardBtnTextColor);
+}
+
+.standardBtn:hover {
+    outline: 0;
+    background-color: var(--ut-front-react-standardBtnHoverColor);
+}
+
+.standardBtn:focus {
+    outline: 0;
+}
+
+.standardBtn:active {
+    outline: 0;
+    background-color: var(--ut-front-react-standardBtnActiveColor);
+}
+
+.loginBtn {
+    font-size: 14px;
+    width: 100%;
+}
+
+.disabledBtn,
+.disabledBtn:hover,
+.disabledBtn:active {
+    background-color: var(--ut-front-react-disabledBtnBackgroundColor);
+    cursor: not-allowed;
+}
+
+.defaultBtn {
+    width: auto;
+    font-size: 14px;
+    border-radius: var(--ut-front-react-defaultBtnBorderRadius);
+    color: var(--ut-front-react-defaultBtnColor);
+    background-color: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    padding: var(--ut-front-react-defaultBtnPadding);
+    height: var(--ut-front-react-defaultBtnHeight);
+    font-weight: normal;
+    text-transform: none;
+    outline: 0;
+}
+.defaultBtn:hover {
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+}
+.defaultBtn:active {
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorActive);
+}
+
+.defaultDarkBgBtn {
+    width: auto;
+    font-size: 14px;
+    border-radius: var(--ut-front-react-defaultBtnBorderRadius);
+    color: var(--ut-front-react-defaultDarkBgBtnColor);
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
+    padding: var(--ut-front-react-defaultBtnPadding);
+    height: var(--ut-front-react-defaultBtnHeight);
+    font-weight: normal;
+    text-transform: none;
+    outline: 0;
+}
+
+.defaultDarkBgBtn:hover {
+    border-color: var(--ut-front-react-defaultDarkBgBtnBorderColorHover);
+    color: var(--ut-front-react-defaultDarkBgBtnColorHover);
+}
+
+.defaultDarkBgBtn:active {
+    color: var(--ut-front-react-defaultDarkBgBtnColorActive);
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColorActive);
+    border-color: var(--ut-front-react-defaultDarkBgBtnBorderColorActive);
+}
+
+.secondaryInputButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 0px !important;
+    float: right;
+}
+
+.smallBtn {
+    width: 30px;
+    height: 30px;
+}
+
+.actionBtn {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    background: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBgColor);
+    outline: 0;
+    font-size: 14px;
+}
+
+.actionBtn:hover, .actionBtn.primary {
+    border: 1px solid var(--ut-front-react-defaultDarkBgBtnBorderColor);
+    border-radius: 2px;
+    background-color: var(--ut-front-react-defaultDarkBgBtnBgColor);
+}
+
+.actionBtn.primary:hover {
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+}
+
+.actionBtn, actionBtn.primary, .actionBtn:active, .actionBtn.primary:active {
+    outline: 0;
+}
+
+.secondaryButton {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background: var(--ut-front-react-defaultBtnBgColor);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    color: var(--ut-front-react-defaultBtnColor) !important;
+    text-transform: none;
+    padding: 4px 20px;
+    font-size: 1em;
+    border-radius: 4px;
+    height: 30px;
+    user-select: none;
+    margin: 0;
+}
+
+.secondaryButton:focus {
+  outline: 0;
+}
+
+.secondaryButton:hover {
+    border-color: var(--ut-front-react-defaultBtnBorderColorHover);
+    color: var(--ut-front-react-defaultDarkBgBtnColorHover);
+    outline: 0;
+}
+
+.disabledsecondaryButton {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.disabledsecondaryButton:hover {
+    background-color: var(--ut-front-react-defaultBtnBackgroundColorHover);
+    border: 1px solid var(--ut-front-react-defaultBtnBorderColor);
+    outline: 0;
+    cursor: not-allowed;
+}
+
+/* PREDEFINED STYLES BY STYLE GUIDELINE */
+
+.predefined {
+    box-sizing: border-box;
+    height: var(--ut-front-react-predefinedHeight);
+    min-width: var(--ut-front-react-predefinedMinWidth);
+    padding: var(--ut-front-react-predefinedPadding);
+    outline: 0;
+    font-size: var(--ut-front-react-predefinedFontSize);
+    border-radius: var(--ut-front-react-predefinedBorderRadius);
+    cursor: pointer;
+}
+
+.predefined:focus,
+.predefined:visited,
+.predefined:hover {
+    outline: 0;
+}
+
+.predefined:disabled {
+    cursor: not-allowed;
+}
+
+.primaryLight, .primaryDark {
+    color: var(--ut-front-react-primaryColor);
+    border: 1px solid var(--ut-front-react-primaryBorderColor);
+    background-color: var(--ut-front-react-primaryBgColor);
+}
+
+.primaryLight:hover, .primaryDark:hover {
+    border: 1px solid var(--ut-front-react-primaryBorderColorHover);
+    background-color: var(--ut-front-react-primaryBgColorHover);
+}
+
+.primaryLight:focus, .primaryDark:visited {
+    border: 1px solid var(--ut-front-react-primaryBorderColorFocus);
+    background-color: var(--ut-front-react-primaryBgColorFocus);
+}
+
+.primaryLight:disabled, .primaryDark:disabled {
+    color: var(--ut-front-react-primaryColorDisabled);
+    border: 1px solid var(--ut-front-react-primaryBorderColorDisabled);
+    background-color: var(--ut-front-react-primaryBgColorDisabled);
+}
+
+.secondaryLight {
+    color: var(--ut-front-react-secondaryLightColor);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColor);
+    background-color: var(--ut-front-react-secondaryLightBgColor);
+}
+
+.secondaryLight:hover {
+    color: var(--ut-front-react-secondaryLightColorHover);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorHover);
+    background-color: var(--ut-front-react-secondaryLightBgColorHover);
+}
+
+.secondaryLight:focus, .secondaryLight:visited {
+    color: var(--ut-front-react-secondaryLightColorFocus);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorFocus);
+    background-color: var(--ut-front-react-secondaryLightBgColorFocus);
+}
+
+.secondaryLight:disabled {
+    color: var(--ut-front-react-secondaryLightColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorDisabled);
+    background-color: var(--ut-front-react-secondaryLightBgColorDisabled);
+}
+
+.secondaryDark {
+    color: var(--ut-front-react-secondaryDarkColor);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColor);
+    background-color: var(--ut-front-react-secondaryDarkBgColor);
+}
+
+.secondaryDark:hover {
+    color: var(--ut-front-react-secondaryDarkColorHover);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColorHover);
+    background-color: var(--ut-front-react-secondaryDarkBgColorHover);
+}
+
+.secondaryDark:focus, .secondaryDark:visited {
+    color: var(--ut-front-react-secondaryDarkColorFocus);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColorFocus);
+    background-color: var(--ut-front-react-secondaryDarkBgColorFocus);
+}
+
+.secondaryDark:disabled {
+    color: var(--ut-front-react-secondaryDarkColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryDarkBorderColorDisabled);
+    background-color: var(--ut-front-react-secondaryDarkBgColorDisabled);
+}
+
+.primaryDialog {
+    margin-left: 10px;
+    color: var(--ut-front-react-primaryColor);
+    border: 1px solid var(--ut-front-react-primaryBorderColor);
+    background-color: var(--ut-front-react-primaryBgColor);
+}
+
+.primaryDialog:hover {
+    border: 1px solid var(--ut-front-react-primaryBorderColorHover);
+    background-color: var(--ut-front-react-primaryBgColorHover);
+}
+
+.primaryDialog:visited, .primaryDialog:focus, .primaryDialog:active {
+    border: 1px solid var(--ut-front-react-primaryBorderColorFocus);
+    background-color: var(--ut-front-react-primaryBgColorFocus);
+}
+
+.primaryDialog:disabled {
+    color: var(--ut-front-react-primaryColorDisabled);
+    border: 1px solid var(--ut-front-react-primaryBorderColorDisabled);
+    background-color: var(--ut-front-react-primaryBgColorDisabled);
+}
+
+.secondaryDialog {
+    margin-left: 10px;
+    color: var(--ut-front-react-secondaryDialogColor);
+    border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
+    background-color: var(--ut-front-react-secondaryDialogBgColor);
+}
+
+.secondaryDialog:hover {
+    color: var(--ut-front-react-secondaryLightColorHover);
+    border: 1px solid var(--ut-front-react-secondaryLightBorderColorHover);
+    background-color: var(--ut-front-react-secondaryLightBgColorHover);
+}
+
+.secondaryDialog:disabled {
+    color: var(--ut-front-react-secondaryDialogColorDisabled);
+    border: 1px solid var(--ut-front-react-secondaryDialogBorderColor);
+    background-color: var(--ut-front-react-secondaryDialogBgColorDisabled);
+}

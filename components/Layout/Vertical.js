@@ -14,7 +14,7 @@ const Vertical = (props) => {
 Vertical.propTypes = {
     children: PropTypes.any,
     fixedComponent: PropTypes.any.isRequired,
-    fixedComponentHeight: PropTypes.number.isRequired // pixels
+    fixedComponentHeight: PropTypes.number // pixels
 };
 
 export default Vertical;

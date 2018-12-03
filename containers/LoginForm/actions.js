@@ -1,4 +1,5 @@
-import { LOGIN, BIO_LOGIN, COOKIE_CHECK, VALIDATE_FORM, LOGOUT, SET_INPUT_VALUE } from './actionTypes';
+import { LOGIN, BIO_LOGIN, COOKIE_CHECK, VALIDATE_FORM, SET_INPUT_VALUE, LDAP, LDAP_INIT } from './actionTypes';
+import { LOGOUT } from 'ut-front/react/actionTypes';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -21,6 +22,20 @@ export const identityCheck = (params) => ({
     params: Object.assign(params.toJS(), {uri: '/login', timezone: getTimezone(), channel: 'web'})
 });
 
+export const identityLdapCheck = (params) => ({
+    type: LDAP,
+    method: 'identity.check',
+    suppressErrorWindow: true,
+    params: Object.assign(params.toJS(), {uri: '/login', timezone: getTimezone(), channel: 'web', ldap: true})
+});
+
+export const ldapInit = () => {
+    return {
+        type: LDAP_INIT,
+        params: {}
+    };
+};
+
 export const bioScan = () => ({
     type: BIO_LOGIN,
     method: 'bio.scan',
@@ -42,5 +57,11 @@ export const logout = (params) => ({
     type: LOGOUT,
     method: 'identity.closeSession',
     suppressErrorWindow: true,
-    params: {}
+    params: { }
+});
+
+export const resetState = (params) => ({
+    type: 'RESET',
+    suppressErrorWindow: true,
+    params: { }
 });

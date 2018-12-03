@@ -1,0 +1,10 @@
+:root {
+    /*colors*/
+    --ut-front-react-standardGridToolBoxToolbarWrapLinkColor: #2881ec;
+    --ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor: #4096fd;
+    --ut-front-react-standardGridToolBoxCloseArrowBackgroundColor: #f4f4f4;
+    --ut-front-react-standardGridToolBoxCloseArrowHoverBackgroundColor: #e8e8e8;
+    --ut-front-react-standardGridToolBoxBorderColor: #ccc;
+    --ut-front-react-standardGridToolBoxAdvancedSearchBackgroundColor: #fff;
+    --ut-front-react-standardGridToolBoxAdvancedSearchBorderColor: #d9d9d9;
+}

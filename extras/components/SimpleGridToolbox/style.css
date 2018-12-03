@@ -1,0 +1,28 @@
+@import './default-config.css';
+@import 'config.css';
+
+.simpleToolbox {
+    display: none;
+}
+.simpleToolbox.opened {
+    display: flex;
+    height: 100%;
+}
+.simpleToolbox .label, .simpleToolbox .link {
+    margin: auto auto auto 20px;
+    min-width: 10%;
+    flex-basis: auto;
+    text-align: left;
+}
+.simpleToolbox .link {
+    cursor: pointer;
+    color: var(--ut-front-react-standardToolboxLinkColor);
+}
+.simpleToolbox .link:hover {
+    text-decoration: underline;
+}
+.simpleToolbox .content {
+    margin: auto 0 auto auto;
+    width: 89%;
+    flex-basis: auto;
+}

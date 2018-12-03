@@ -10,6 +10,7 @@
     /* fix box-shadow */
     position: relative;
     z-index: 15;
+    margin-left: 20px;
     color: var(--ut-front-react-standardMainNavigationTextColor);
     background: var(--ut-front-react-standardMainNavigationBackground);
 }

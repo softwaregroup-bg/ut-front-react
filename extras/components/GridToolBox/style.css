@@ -1,0 +1,163 @@
+@import './default-config.css';
+@import 'config.css';
+
+.toolbarWrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.fixedHeight {
+    height: 55px;
+}
+
+.table {
+    display: table;
+}
+
+.toolbarWrap>div,
+.tableCell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.toolbarWrap .toolbarElement {
+    padding-right: 20px;
+}
+
+.toolbarWrap .toolbarElement:last-child {
+    padding-right: 0;
+}
+
+.toolbarWrap .label {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.toolbarWrap .link {
+    color: var(--ut-front-react-standardGridToolBoxToolbarWrapLinkColor);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.toolbarWrap .link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.toolbarWrap .minWidthed {
+    min-width: 240px;
+}
+
+.toolbarWrap .pullRight {
+    float: right;
+    text-align: right;
+}
+
+.toolbarWrap .noRightMargin {
+    margin-right: 0;
+}
+
+.toolbarWrap .closeArrow, .advancedSearchIcon, .searchIcon {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--ut-front-react-standardGridToolBoxBorderColor);
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.toolbarWrap .closeArrow {
+    background-color: var(--ut-front-react-standardGridToolBoxCloseArrowBackgroundColor);
+    background-image: url('./images/clearfilters-arrow.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.advancedSearchIconWrapper {
+    width: 30px;
+    height: 30px;
+}
+
+.advancedSearchIcon {
+    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
+    display: flex;
+}
+
+.barWrap {
+    width: 60%;
+    margin: auto;
+}
+
+.barWrap .bar {
+    border-top: 2px solid white;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.barWrap .bar:last-child {
+    margin-bottom: 0;
+}
+
+.searchIcon {
+    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchIconBackgroundColor);
+    background-image: url('./images/search.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.toolbarWrap .closeArrow:hover {
+    background-color: var(--ut-front-react-standardGridToolBoxCloseArrowHoverBackgroundColor);
+}
+
+.toolbarWrap .leftFloat {
+    text-align: left;
+}
+
+.advancedSearchPopOver {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 5px;
+    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchBackgroundColor);
+    border: 1px solid var(--ut-front-react-standardGridToolBoxAdvancedSearchBorderColor);
+    z-index: 1;
+    padding: 5px;
+    text-align: left;
+}
+
+.advancedSearchIcon:hover ~ .advancedSearchPopOver{
+    visibility: visible;
+}
+
+.advancedSearchInputWrapper {
+    width: 70%;
+    text-align: left;
+    margin: 5px auto;
+}
+
+.advancedSearchDialog {
+    width: 40%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.spacer {
+    padding-right: 10px;
+}
+
+.space:last-child {
+    padding-right: 0px;
+}
+
+.multiselectDropdownPlaceholder {
+  max-width: 240px;
+  width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  margin-top: 3px;
+}

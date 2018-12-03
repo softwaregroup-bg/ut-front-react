@@ -90,14 +90,14 @@ export default class DatePickerBetween extends Component {
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
                         {this.props.labelFrom ? (<span className={style.label}>{this.props.labelFrom}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
-                            <input value={this.state.from ? this.formatDate(this.state.from) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
+                            <input placeholder={this.props.placeholderFrom} value={this.state.from ? this.formatDate(this.state.from) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
                         {this.props.labelTo ? (<span className={style.label}>{this.props.labelTo}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
-                            <input value={this.state.to ? this.formatDate(this.state.to) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
+                            <input placeholder={this.props.placeholderTo} value={this.state.to ? this.formatDate(this.state.to) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
                             <button onClick={this.handleOpen('to')} />
                         </div>
                     </div>
@@ -148,7 +148,9 @@ DatePickerBetween.propTypes = {
     labelFrom: PropTypes.string,
     labelTo: PropTypes.string,
     DateTimeFormat: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    //placeholderFrom: PropTypes.placeholder,
+    //placeholderTo: PropTypes.placeholder
 };
 
 DatePickerBetween.contextTypes = {

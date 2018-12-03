@@ -23,6 +23,10 @@ export default (state = defaultState, action) => {
 
                 texts = textsMapping;
             }
+
+            window.utCache = {
+                translations: texts
+            };
             return state
                 .set('texts', Immutable.fromJS(texts))
                 .set('activeFilters', Immutable.fromJS(action.params))

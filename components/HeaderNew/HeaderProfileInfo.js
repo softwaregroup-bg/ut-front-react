@@ -46,10 +46,11 @@ export default class HeaderProfileInfo extends Component {
     }
 
     getMenuItems() {
+        const { translate } = this.context;
         let items = [
-          {text: 'Help', onClick: this.openHelp},
-          {text: 'Settings', routeName: 'ut-user:userProfile'},
-          {text: 'Log out', onClick: this.onLogOutClick}
+          {text: translate('Help'), onClick: this.openHelp},
+          {text: translate('Settings'), routeName: 'ut-user:userProfile'},
+          {text: translate('Log out'), onClick: this.onLogOutClick}
         ];
 
         return items.reduce((items, currentItem, index) => {
@@ -105,7 +106,8 @@ export default class HeaderProfileInfo extends Component {
 }
 
 HeaderProfileInfo.contextTypes = {
-    getDocsUrl: PropTypes.func
+    getDocsUrl: PropTypes.func,
+    translate: React.PropTypes.func,
 };
 
 HeaderProfileInfo.defaultProps = {

@@ -37,6 +37,7 @@
   flex-shrink: 0;
   width: var(--ut-front-react-standardMainLogoWidth);
   height: 58px;
+  margin-left: 45px;
   background: inline('logo.png') no-repeat center center;
   cursor: pointer;
 }

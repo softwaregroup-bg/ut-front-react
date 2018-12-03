@@ -1,0 +1,144 @@
+@import './default-config.css';
+@import 'config.css';
+
+.tabContainerWrap {
+    height: 100%;
+    position: relative;
+}
+
+.tabMenuWrap {
+    z-index: 999;
+    position: relative;
+}
+
+.bottomBorderderWrap {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+.contentComponentWrapper {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    padding-top: 125px;
+    padding-bottom: 20px;
+    width: 100%;
+    overflow: auto;
+}
+
+.innerActionBarWrap {
+    width: 100%;
+    display: block;
+}
+
+.prevNextButtonWrap {
+    margin-top: 12px;
+    border-right: 1px solid #DBDBDB;
+    padding-right: 10px;
+}
+
+.prevNextButtonWrapRight {
+    border-right: none !important;
+    padding-right: 0 !important;
+    padding-left: 10px;
+    border-left: 1px solid #DBDBDB;
+}
+
+.prevNextButtonWrap button {
+    border: none;
+}
+
+.buttonsWrap .actionButton {
+    float: left;
+    margin-top: 3px;
+    margin-right: 15px;
+}
+
+.innerActionBarWrap .pullRight {
+    float: right;
+}
+
+.buttonsWrap {
+    float: left;
+    margin: 9px 0 0 0;
+}
+
+.prevButtonWrap {
+    border-right: 1px solid #DBDBDB;
+    padding-right: 10px;
+    margin-top: 12px;
+}
+
+.navigationButton {
+    background-color: transparent;
+    color: var(--ut-agent-standardTabContainerNavigationButtonTextColor);
+    border: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.prevButtonWrap .navigationButton {
+    padding-left: 30px;
+    padding-right: 10px;
+    background-image: url('./images/arrow_btn_l.png');
+    background-position: 10px center;
+}
+.prevButtonWrap .navigationButton:hover {
+    background-image: inline('arrow_btn_l_hover.png');
+}
+.prevButtonWrapDisabled .navigationButton {
+    color: #CCC;
+    background-image: url('./images/arrow_btn_l_disable.png');
+}
+.prevButtonWrapDisabled .navigationButton:hover {
+    color: #CCC;
+    background-image: url('./images/arrow_btn_l_disable.png');
+}
+
+.nextButtonWrap {
+    border-left: 1px solid #DBDBDB;
+    padding-left: 10px;
+    margin-top: 12px;
+}
+.nextButtonWrap .navigationButton {
+    padding-left: 10px;
+    padding-right: 30px;
+    background-image: url('./images/arrow_btn_r.png');
+    background-position: 47px center;
+}
+.nextButtonWrap .navigationButton:hover {
+    background-image: inline('arrow_btn_r_hover.png');
+}
+.nextButtonWrapDisabled .navigationButton {
+    color: #CCC;
+    background-image: url('./images/arrow_btn_r_disable.png')t;
+}
+.nextButtonWrapDisabled .navigationButton:hover {
+    color: #CCC;
+    background-image: url('./images/arrow_btn_r_disable.png');
+}
+
+.navigationButton {
+    color: #999;
+    background-color: #fff;
+    font-weight: normal !important;
+    background-repeat: no-repeat;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    border: none !important;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.navigationButton:hover {
+    color: var(--ut-agent-standardTabContainerNavigationButtonHoverColor);
+}
+
+.navigationButton:active {
+    background-color: #F4F4F4 !important;
+    outline:0;
+}
+.navigationButton:focus {
+    outline: 0;
+}

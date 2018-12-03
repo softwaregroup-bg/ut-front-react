@@ -3,6 +3,6 @@ import { login } from './containers/LoginForm/reducer';
 // import gate from './pages/Gate/reducer';
 import gate from './containers/Gate/reducer';
 import master from './pages/Master/reducer';
-import { reducer as form } from 'redux-form/immutable';
+// import { reducer as form } from 'redux-form/immutable';
 
-export default {login, /* loginData, */ gate, form, ...master};
+export default {login, /* loginData, */ gate, ...master};

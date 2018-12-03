@@ -32,7 +32,7 @@ class AdvancedPagination extends Component {
     }
 
     setPaginationProps(pagination) {
-        this.pagesTotal = pagination.get('pagesTotal') || Math.ceil(pagination.get('recordsTotal') / pagination.get('pageSize')) || 0;
+        this.pagesTotal = pagination.get('pagesTotal') || Math.ceil(pagination.get('recordsTotal') / pagination.get('pageSize')) || 1;
         this.pageNumber = pagination.get('pageNumber');
         this.pageSize = pagination.get('pageSize');
         this.recordsTotal = pagination.get('recordsTotal');
@@ -61,6 +61,7 @@ class AdvancedPagination extends Component {
     renderPageSwitcher() {
         // We have event for keydown and if enter is clicked request is made.
         // We do not want to make the same request once blur out of the box - it is already made
+        const { translate } = this.context;
         let monitorForBlurEvent = true;
         let handleNumberInputChange = (e) => { this.setState({pageNumberInputVal: e.target.value}); };
         let updateNumberInput = (number) => {
@@ -96,7 +97,7 @@ class AdvancedPagination extends Component {
                       onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} />
                 </div>
                 <div className={styles.rightWrap}>
-                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>Pages</span>
+                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>{translate('Pages')}</span>
                 </div>
             </div>
         );
@@ -311,6 +312,7 @@ class AdvancedPagination extends Component {
     }
 
     renderPageSizeBox() {
+        const { translate } = this.context;
         let handlePageSizeDropDrown = (obj) => {
             this.handleChange(1, obj.value);
         };
@@ -325,7 +327,7 @@ class AdvancedPagination extends Component {
         return (
             <div className={styles.pageSizeBoxWrap}>
                 <div className={styles.totalItemsWrap}>
-                    <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}>Items</span>
+                    <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}>{translate('Items')}</span>
                 </div>
                 <div className={styles.itemPerPageDDWrap}>
                      <Dropdown
@@ -336,7 +338,7 @@ class AdvancedPagination extends Component {
                        iconStyles={dropdownIconStyles}
                     />
                 </div>
-                <div className={styles.perPageWrap}> per page</div>
+                <div className={styles.perPageWrap}> {translate('per page')}</div>
             </div>
         );
     }
@@ -351,6 +353,10 @@ class AdvancedPagination extends Component {
         );
     }
 };
+
+AdvancedPagination.contextTypes = {
+    translate: React.PropTypes.func
+}
 
 AdvancedPagination.propTypes = {
     /**

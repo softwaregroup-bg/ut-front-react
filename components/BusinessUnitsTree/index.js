@@ -65,7 +65,7 @@ class TreeNavigation extends React.Component {
             let breadcrumbString = JSON.stringify(breadcrumbArr);
 
             if (active.id === node.id) {
-                let asd = JSON.stringify(active.breadcrumbs);
+                let asd = JSON.stringify(active.breadcrumbs) || JSON.stringify([]);
                 if (asd === breadcrumbString) {
                     activeClass = style.isActive;
                 }

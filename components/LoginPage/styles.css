@@ -4,7 +4,7 @@
 .loginContainer {
     display: flex;
     position: absolute;
-    top: 50%;
+    top: var(--ut-front-react-loginContainerTop);
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -24,4 +24,9 @@
 .loginPageFooter {
     margin-top: 55px;
     background: inline('bottomLogo.png') no-repeat center;
+}
+
+.loginPageFooterUSP {
+    margin-top: 55px;
+    background: inline('bottomLogoUSP.png') no-repeat center;
 }

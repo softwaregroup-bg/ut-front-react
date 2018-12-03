@@ -1,0 +1,90 @@
+@import './default-config.css';
+@import 'config.css';
+
+.modalContainer {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* the default overlay has position fixed because of scrollable content*/
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--ut-front-react-defaultOverlayColor);
+    opacity: 0.5;
+    z-index: 21;
+}
+
+.popupContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    min-width: 540px;
+    background-color: var(--ut-front-react-popupColor);
+    z-index: 22;
+}
+
+.popupSection {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-basis: 50px;
+    box-sizing: border-box;
+    background-color: var(--ut-front-react-popupSectionColor);
+}
+
+.popupHeader {
+    composes: popupSection;
+    justify-content: center;
+    font-size: 18px;
+    border-bottom: 1px solid var(--ut-front-react-popupSectionBorderColor);
+}
+
+.popupContent {
+    padding: 40px;
+    overflow: auto;
+}
+
+.popupFooter {
+    composes: popupSection;
+    justify-content: flex-end;
+    padding-right: 20px;
+    border-top: 1px solid var(--ut-front-react-popupSectionBorderColor);
+}
+
+.leftNode {
+    justify-content: flex-start;
+    flex: 1;
+    padding-left: 20px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background: url('./images/closeTab.png') center no-repeat;
+}
+
+.closeBtn:hover {
+    background: url('./images/closeTabHover.png') center no-repeat;
+}
+
+.headerText {
+    font-size: 18px;
+    font-weight: 700;
+    color: #595959;
+    cursor: default;
+    user-select: none;
+}

@@ -84,13 +84,16 @@ class Grid extends Component {
                 }
                 <tbody>{rows.map((rowData, i) => {
                     let checked = this.state.all || checkedItems.find((i) => rowData.get('actorId') === i.get('actorId')) !== undefined;
+                    const selected = this.props.selectedItem && this.props.selectedItem.get(this.props.itemsMainKey) === rowData.get(this.props.itemsMainKey);
 
                     return (<Row
                       key={i}
+                      fixSelectIssue={this.props.fixSelectIssue}
                       data={rowData}
                       checked={checked}
                       linkableColumns={linkableColumns}
                       columns={rowColumns}
+                      selected={selected}
                       onSelect={this.handleSelect(i)}
                       canSelect={this.props.canSelect}
                       onCheck={this.onCheck}
@@ -111,7 +114,9 @@ Grid.propTypes = {
     columns: PropTypes.array.isRequired,
     rows: PropTypes.object.isRequired, // immutable object (array)
     checkedItems: PropTypes.object, // immutable list
-
+    selectedItem: PropTypes.object,
+    fixSelectIssue: PropTypes.bool,
+    itemsMainKey: PropTypes.string,
     sortableColumns: PropTypes.array,
     activeSort: PropTypes.shape({
         sortBy: PropTypes.string,
@@ -134,6 +139,9 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
     checkedItems: immutable.List([]),
+    selectedItem: immutable.Map(),
+    itemsMainKey: 'actorId',
+    fixSelectIssue: false,
     canCheck: true,
     showTableHead: true,
     mapColumn: (col, colData) => colData,

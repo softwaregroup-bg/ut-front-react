@@ -82,7 +82,10 @@ class GridHeader extends Component {
 
 GridHeader.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.string.isRequired,
+        key: PropTypes.oneOfType([
+            PropTypes.string.isRequired,
+            PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+        ]),
         name: PropTypes.string.isRequired
     })).isRequired,
     isChecked: PropTypes.bool,

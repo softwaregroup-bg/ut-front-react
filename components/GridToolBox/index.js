@@ -7,6 +7,7 @@ import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
 import SearchBox from '../SearchBox';
 import DatePickerBetween from './../DatePicker/Between';
+import MultiSelect from '../Input/MultiSelectDropdown';
 import ConfirmDialog from '../ConfirmDialog';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -37,19 +38,21 @@ class GridToolBox extends Component {
     }
 
     componentWillMount() {
-        this.checkActiveFilters(this.props.filterElements);
+        this.checkActiveFilters(this.props.filterElements, this.props.showClearAlways);
     }
 
     componentWillReceiveProps({ selected, checked, filterElements }) {
-        if (selected.size === 0 && checked.size === 0) {
-            this.setState({ showFilters: true });
-        } else {
-            this.setState({ showFilters: false });
+        if (this.props.selected.size !== selected.size || this.props.checked.size !== checked.size) {
+            if (selected.size === 0 && checked.size === 0) {
+                this.setState({ showFilters: true });
+            } else {
+                this.setState({ showFilters: false });
+            }
         }
-        this.checkActiveFilters(filterElements);
+        this.checkActiveFilters(filterElements, this.props.showClearAlways);
     }
 
-    checkActiveFilters(filterElements = []) {
+    checkActiveFilters(filterElements = [], showClearAlways = false) {
         let foundActiveFilter = false;
         for (var i = 0; i < filterElements.length && !foundActiveFilter; i += 1) {
             let currenctFilterElement = filterElements[i];
@@ -61,12 +64,16 @@ class GridToolBox extends Component {
                 if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
                     foundActiveFilter = true;
                 }
+            } else if (currenctFilterElement.type === 'multiDropDown') {
+                if (currenctFilterElement.defaultValue && currenctFilterElement.defaultValue !== dropDrownAllOptionKey && currenctFilterElement.defaultValue !== dropDrownPlaceholderOptionKey) {
+                    foundActiveFilter = true;
+                }
             } else if (currenctFilterElement.defaultValue) {
                 foundActiveFilter = true;
             }
         }
 
-        if (foundActiveFilter) {
+        if (foundActiveFilter || showClearAlways === true) {
             this.setState({hasActiveFilters: true});
         } else {
             this.setState({hasActiveFilters: false});
@@ -90,6 +97,16 @@ class GridToolBox extends Component {
                       canSelectPlaceholder={filterElement.canSelectPlaceholder}
                     />
                 );
+            case filterElementTypes.multiDropDown:
+                return (
+                    <MultiSelect
+                      placeholder={filterElement.placeholder}
+                      defaultSelected={filterElement.defaultValue}
+                      onSelect={filterElement.onSelect}
+                      data={filterElement.data}
+                      keyProp={filterElement.keyProp}
+                    />
+                );
             case filterElementTypes.searchBox:
                 return (
                     <div>
@@ -99,7 +116,23 @@ class GridToolBox extends Component {
             case filterElementTypes.datePickerBetween:
                 return (
                     <div>
-                        <DatePickerBetween onChange={filterElement.onChange} defaultValue={filterElement.defaultValue} masterLabel={filterElement.masterLabel} labelFrom={filterElement.labelFrom} labelTo={filterElement.labelTo} />
+                        <DatePickerBetween
+                            onChange={filterElement.onChange}
+                            //placeholderFrom={filterElement.defaultValue.from}
+                            //placeholderTo={filterElement.defaultValue.to}
+                            defaultValue={filterElement.defaultValue}
+                            masterLabel={filterElement.masterLabel}
+                            labelFrom={filterElement.labelFrom}
+                            labelTo={filterElement.labelTo}
+                        />
+                    </div>
+                );
+            case filterElementTypes.customElement:
+                let content = filterElement.content || '';
+
+                return (
+                    <div style={filterElement.wrapperStyle}>
+                        {content}
                     </div>
                 );
             default:
@@ -282,14 +315,18 @@ class GridToolBox extends Component {
         return null;
     }
     renderFilters() {
+        const { translate } = this.context;
         let labelClass = this.haveSelectedOrChecked() ? style.link : '';
-        let toggle = () => this.haveSelectedOrChecked() && this.setState({showFilters: false});
+        let toggle = () => this.haveSelectedOrChecked() && (() => {
+            this.props.onFiltersToggle(false);
+            this.setState({showFilters: false});
+        })();
         let filtersNumber = 0;
         let leftSide;
         if (this.props.filterElements.length === 1 && this.props.filterElements[0]['type'] === filterElementTypes.searchBox) {
             leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : '';
         } else {
-            leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : 'Filter by';
+            leftSide = this.haveSelectedOrChecked() ? <span className={style.link}>Show buttons</span> : translate('Filter by');
         }
         return (
             <div className={style.toolbarWrap}>
@@ -300,12 +337,13 @@ class GridToolBox extends Component {
                 <div className={style.pullRight}>
                     {this.props.filterElements.map((el, i) => {
                         let incrementNum = el.type === filterElementTypes.datePickerBetween ? 2 : 1; // datePicker has two input fields
+                        let skipMinWidth = el.type === filterElementTypes.customElement;
                         filtersNumber += incrementNum;
                         if (filtersNumber > this.props.maxVisibleInputs) {
                             return null;
                         } else {
                             return (
-                                <div key={i} className={classnames(style.toolbarElement, style.minWidthed)} style={el.styles}>
+                                <div key={i} className={classnames(style.toolbarElement, skipMinWidth ? null : style.minWidthed)} style={el.styles}>
                                     {this.renderFilter(el)}
                                 </div>
                             );
@@ -483,7 +521,11 @@ class GridToolBox extends Component {
     }
 
     renderActionButtons() {
-        let toggle = () => this.setState({showFilters: true});
+        let toggle = () => {
+            this.setState({showFilters: true}, () => {
+                this.props.onFiltersToggle(true);
+            });
+        };
 
         return (
             <div className={style.toolbarWrap}>
@@ -521,7 +563,13 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([filterElementTypes.dropDown, filterElementTypes.searchBox, filterElementTypes.datePickerBetween]).isRequired,
+            type: PropTypes.oneOf([
+                filterElementTypes.dropDown,
+                filterElementTypes.searchBox,
+                filterElementTypes.datePickerBetween,
+                filterElementTypes.multiDropDown,
+                filterElementTypes.customElement
+            ]).isRequired,
             // Common
             placeholder: PropTypes.string,
             defaultValue: PropTypes.any,
@@ -599,7 +647,13 @@ GridToolBox.propTypes = {
     clearFilters: PropTypes.func,
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
-    batchChange: PropTypes.func
+    onFiltersToggle: PropTypes.func,
+    batchChange: PropTypes.func,
+    showClearAlways: PropTypes.bool
+};
+
+GridToolBox.contextTypes = {
+    translate: React.PropTypes.func
 };
 
 GridToolBox.defaultProps = {

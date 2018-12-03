@@ -81,7 +81,7 @@ class TextField extends Component {
             return (
                 <div className={style.outerWrap}>
                     <div className={classnames(style.lableWrap, {[style.boldLabel]: this.props.boldLabel})}>
-                        {label} {this.props.validators.length > 0 && '*'}
+                        {label} {this.props.hideAsterisk === true ? '' : (this.props.validators.length > 0 && '*')}
                     </div>
                     <div className={style.inputWrap}>
                         {input}
@@ -125,6 +125,7 @@ TextField.propTypes = {
     ),
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
+    hideAsterisk: PropTypes.bool,
 
     // Edited
     isEdited: PropTypes.bool

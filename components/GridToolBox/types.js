@@ -1,7 +1,9 @@
 export const filterElementTypes = {
     dropDown: 'dropDown',
+    multiDropDown: 'multiDropDown',
     searchBox: 'searchBox',
-    datePickerBetween: 'datePickerBetween'
+    datePickerBetween: 'datePickerBetween',
+    customElement: 'customElement'
 };
 
 export const actionButtonElementTypes = {

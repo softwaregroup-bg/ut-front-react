@@ -58,7 +58,8 @@ class GridRow extends Component {
     renderColumns() {
         let {columns, data, canCheck, linkableColumns, tdStyles} = this.props;
         let columnElements = columns.map(({key}, i) => {
-            let transformedData = this.props.mapColumn(columns[i], data.get(key));
+            let keyPath = key ? (typeof key === 'string' ? [key] : key) : undefined;
+            let transformedData = this.props.mapColumn(columns[i], keyPath ? data.getIn(keyPath) : undefined);
             let isLink = linkableColumns && linkableColumns[i];
             let currenctStyles = tdStyles[i];
             if (!currenctStyles) {
@@ -102,7 +103,8 @@ class GridRow extends Component {
         }
 
         // Selected is with higher priority => selected overrides checked class
-        if (this.state.selected) {
+
+        if ((!this.props.fixSelectIssue && this.state.selected) || (this.props.fixSelectIssue && this.props.selected)) {
             className = style.selected;
         }
 
@@ -127,6 +129,8 @@ GridRow.propTypes = {
     })).isRequired,
     data: PropTypes.object.isRequired, // immutable
     linkableColumns: PropTypes.array,
+    selected: PropTypes.bool,
+    fixSelectIssue: PropTypes.bool,
     trStyles: PropTypes.object,
     tdStyles: PropTypes.array,
     mapColumn: PropTypes.func,
@@ -141,6 +145,8 @@ GridRow.propTypes = {
 GridRow.defaultProps = {
     checked: false,
     canCheck: false,
+    selected: false,
+    fixSelectIssue: false,
     isLink: [],
     trStyles: {},
     tdStyles: [],

@@ -5,11 +5,17 @@ import classnames from 'classnames';
 import style from './style.css';
 
 class Dropdown extends Component {
-    constructor(props) {
+    constructor(props, context) {
         super(props);
+
+        let translate = (context ? context.translate : (txt) => txt);
+        let defaultPlaceholder = Dropdown.defaultProps.placeholder;
+        let passedPlaceholder = this.props.placeholder;
+
         this.state = {
             value: props.defaultSelected || '__placeholder__',
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
+            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage},
+            placeholder: defaultPlaceholder === passedPlaceholder ? translate(passedPlaceholder) : passedPlaceholder
         };
 
         this.getMenuItems = this.getMenuItems.bind(this);
@@ -46,7 +52,7 @@ class Dropdown extends Component {
     }
 
     getMenuItems() {
-        let { data, placeholder, canSelectPlaceholder } = this.props;
+        let { data, canSelectPlaceholder } = this.props;
         let menuItems = [];
 
         menuItems.push(
@@ -54,7 +60,7 @@ class Dropdown extends Component {
               key={Math.random() + '-ddfg'}
               disabled={!canSelectPlaceholder}
               value={'__placeholder__'}
-              primaryText={placeholder}
+              primaryText={this.state.placeholder}
             />
         );
 
@@ -147,7 +153,7 @@ class Dropdown extends Component {
 
 Dropdown.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+        key: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]).isRequired,
         name: PropTypes.any.isRequired
     })).isRequired,
     defaultSelected: PropTypes.any,
@@ -169,6 +175,10 @@ Dropdown.propTypes = {
 
     // Edited
     isEdited: PropTypes.bool
+};
+
+Dropdown.contextTypes = {
+    translate: React.PropTypes.func
 };
 
 Dropdown.defaultProps = {
