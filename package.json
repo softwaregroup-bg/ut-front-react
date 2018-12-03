@@ -130,5 +130,5 @@
     "test": "ut-test",
     "version": "ut-version"
   },
-  "version": "8.7.8"
+  "version": "8.8.0-mpay.0"
 }
