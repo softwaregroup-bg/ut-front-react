@@ -89,7 +89,7 @@ class MultiSelectDropdown extends Dropdown {
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
                     <Checkbox
                       checked={values.length === data.length} />
-                    <span>{placeholder}</span>
+                    <span className={ddstyles.dropDownItemText}>{placeholder}</span>
                 </div>
             </MenuItem>,
             <Divider
@@ -108,7 +108,7 @@ class MultiSelectDropdown extends Dropdown {
                         <Checkbox
                           checked={isChecked}
                           disabled={item.disabled} />
-                        <span>{item.name}</span>
+                        <span className={ddstyles.dropDownItemText}>{item.name}</span>
                     </div>
                 </MenuItem>
             );
