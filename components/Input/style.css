@@ -449,7 +449,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 }
 
 .multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem {
-    display: flex !important;
+    display: block;
 }
 
 .multiSelectDropdownMenuItemWrap, .groupDropdownMenuItem {
@@ -471,4 +471,10 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .buttonInput {
     padding-right: 100px;
+}
+
+.dropDownItemText {
+    vertical-align: top;
+    padding-top:10%;
+    
 }
