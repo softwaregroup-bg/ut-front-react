@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
+import MoneyInput from '../Input/MoneyInput';
 import SearchBox from '../SearchBox';
 import DatePicker from './../DatePicker/Simple';
 import DatePickerBetween from './../DatePicker/Between';
@@ -175,6 +176,17 @@ class GridToolBox extends Component {
                           onChange={function(e) {
                               onChange(filterElement.name, e.target.value);
                           }} />
+                    </div>);
+            case filterElementTypes.money:
+                return (<div>
+                        <MoneyInput
+                            label={label}
+                            value={filterValue || ''}
+                            placeholder={filterElement.placeholder}
+                            onChange={function(e) {
+                                onChange(filterElement.name, e.target.value);
+                            }}
+                        />
                     </div>);
             case filterElementTypes.datePicker:
                 return (<div>
