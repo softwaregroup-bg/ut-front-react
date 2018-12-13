@@ -125,7 +125,7 @@ TextArea.propTypes = {
     // Validation
     validators: PropTypes.arrayOf(
         PropTypes.shape({
-            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length]).isRequired,
+            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.regex]).isRequired,
             errorMessage: PropTypes.string
         })
     ),
