@@ -42,29 +42,31 @@ export default class DatePicker extends Component {
         let dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
 
         return (
-            <div className={classnames(style.wrap, this.props.wrapperClassName)}>
-                {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
-                <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles} data-test={keyProp}>
-                    <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
-                    <DatePickerInput
-                      className={classnames(dpStyles, readonlyStyle)}
-                      textFieldStyle={textFieldStyle}
-                      DateTimeFormat={this.props.DateTimeFormat}
-                      cancelLabel={this.props.cancelLabel}
-                      okLabel={this.props.okLabel}
-                      container={this.props.container}
-                      value={dateVal}
-                      mode={this.props.mode}
-                      onChange={this.handleChange()}
-                      firstDayOfWeek={this.props.firstDayOfWeek}
-                      minDate={this.props.minDate}
-                      maxDate={this.props.maxDate}
-                      disabled={this.props.disabled}
-                      hintText={this.props.hintText}
-                      hintStyle={hintStyle}
-                    />
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+            <div>
+                <div className={classnames(style.wrap, this.props.wrapperClassName)}>
+                    {label ? (<span className={classnames(labelStyle, boldLabelStyle)}>{label}</span>) : ''}
+                    <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles} data-test={keyProp}>
+                        <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
+                        <DatePickerInput
+                          className={classnames(dpStyles, readonlyStyle)}
+                          textFieldStyle={textFieldStyle}
+                          DateTimeFormat={this.props.DateTimeFormat}
+                          cancelLabel={this.props.cancelLabel}
+                          okLabel={this.props.okLabel}
+                          container={this.props.container}
+                          value={dateVal}
+                          mode={this.props.mode}
+                          onChange={this.handleChange()}
+                          firstDayOfWeek={this.props.firstDayOfWeek}
+                          minDate={this.props.minDate}
+                          maxDate={this.props.maxDate}
+                          disabled={this.props.disabled}
+                          hintText={this.props.hintText}
+                          hintStyle={hintStyle}
+                        />
+                    </div>
                 </div>
+                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
             </div>
         );
     }
