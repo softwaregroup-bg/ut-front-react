@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import {getLink} from 'ut-front/react/routerHelper';
+import {getLink} from '../../routerHelper';
 import Page from '../../components/PageLayout/Page';
 import { AddTab } from '../TabMenu';
 import style from './style.css';

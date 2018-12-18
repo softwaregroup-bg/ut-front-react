@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { getLink } from 'ut-front/react/routerHelper';
+import { getLink } from '../../routerHelper';
 
 export default class NavigationLink extends Component {
     render() {
