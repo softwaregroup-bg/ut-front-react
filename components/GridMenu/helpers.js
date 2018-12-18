@@ -1,8 +1,10 @@
 export function setGridStorage(name, fields) {
+    if (typeof window === 'undefined') return;
     window.localStorage.setItem(name, JSON.stringify({fields}));
 };
 
 export function getGridFields(name) {
+    if (typeof window === 'undefined') return;
     var gstorage = JSON.parse(window.localStorage.getItem(name)) || {};
     return gstorage.fields;
 }
