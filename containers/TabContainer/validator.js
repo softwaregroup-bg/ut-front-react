@@ -18,7 +18,7 @@ import { validationTypes, textValidations, arrayValidations, dropdownValidations
 import { validationTypes as validationTypesTabContainer } from './constants';
 import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray,
     isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule,
-    hasKeysRule, customFunctionRule, isRequiredEmailRuleArray, isValidEmailRule } from '../../validator';
+    hasKeysRule, customFunctionRule, isRequiredEmailRuleArray, isValidEmailRule, isNumberOnlyRule, isIntegerRangeRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
 export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
@@ -69,6 +69,12 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     }
                     if (validation.type === validationTypes.text && rule.type === textValidations.uniqueValueCaseInsensitive) {
                         isUniqueValueRule(currentValue.toLowerCase(), rule.values, rule, result);
+                    }
+                    if (validation.type === validationTypes.text && rule.type === textValidations.numberOnly) {
+                        isNumberOnlyRule(currentValue, rule, result);
+                    }
+                    if (validation.type === validationTypes.text && rule.type === textValidations.integerRange) {
+                        isIntegerRangeRule(currentValue, rule, result);
                     }
                     if (validation.type === validationTypes.array && rule.type === arrayValidations.isRequired) {
                         isRequiredArrayRule(currentValue, rule, result);
