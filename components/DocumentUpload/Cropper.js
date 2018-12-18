@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Croppie from 'croppie';
 import styles from './styles.css';
 
 export default class Cropper extends Component {
@@ -27,23 +26,26 @@ export default class Cropper extends Component {
     init() {
         const { file, fileDimensions, cropDimensions } = this.props;
 
-        this.cropper = new Croppie(this.refs.previewImage, {
-            customClass: styles.imageCrop,
-            viewport: {
-                width: cropDimensions.width,
-                height: cropDimensions.height,
-                type: 'square'
-            },
-            boundary: {
-                width: fileDimensions.width,
-                height: fileDimensions.height
-            },
-            showZoomer: true
-        });
+        if (typeof window !== 'undefined') {
+            let Croppie = require('croppie');
+            this.cropper = new Croppie(this.refs.previewImage, {
+                customClass: styles.imageCrop,
+                viewport: {
+                    width: cropDimensions.width,
+                    height: cropDimensions.height,
+                    type: 'square'
+                },
+                boundary: {
+                    width: fileDimensions.width,
+                    height: fileDimensions.height
+                },
+                showZoomer: true
+            });
 
-        this.cropper.bind({
-            url: file
-        });
+            this.cropper.bind({
+                url: file
+            });
+        }
     }
 
     render() {
