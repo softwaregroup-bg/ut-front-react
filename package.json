@@ -66,7 +66,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "redux-form": "^6.3.2",
-    "ut-front": "^8.4.0"
+    "ut-front": "^8.5.0-rc-godfather.3"
   },
   "repository": {
     "type": "git",
