@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import buttonStyles from './styles.css';
 import { getClass } from '../../utils/helpers';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const getClassInternal = (className) => {
     return buttonStyles[className] || getClass(buttonStyles, className) || className;

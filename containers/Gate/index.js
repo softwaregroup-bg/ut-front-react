@@ -27,35 +27,35 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        let { cookieChecked, isLogout, authenticated, cookieCheck, params: {appId} } = this.props;
+        let { cookieChecked, isLogout, authenticated, cookieCheck, match } = this.props;
 
         if (!cookieChecked && !isLogout) {
-            cookieCheck({appId});
+            cookieCheck({appId: match && match.params && match.params.appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            this.context.router.push('/');
+            this.context.router.history.push('/');
         } else {
-            this.context.router.push('/login');
+            this.context.router.history.push('/login');
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        let { cookieChecked, authenticated, forceLogOut, logout, params: {ssoOrigin, appId} } = this.props;
+        let { cookieChecked, authenticated, forceLogOut, logout, match } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
         let isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
-        if (!isAuthenticated && this.context.router.location.pathname !== '/login') {
-            if (ssoOrigin) {
-                this.context.router.push(`/sso/${appId}/${ssoOrigin}/login`);
+        if (!isAuthenticated && this.context.router.route.location.pathname !== '/login') {
+            if (match && match.params && match.params.ssoOrigin) {
+                this.context.router.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
             } else {
-                this.context.router.push('/login');
+                this.context.router.history.push('/login');
             }
         } else if (nextProps.authenticated && !nextProps.gateLoaded && nextProps.result) {
             this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result.getIn(['language', 'languageId']));
         } else if (!nextProps.result && authenticated && !nextProps.authenticated) {
-            this.context.router.push('/login');
+            this.context.router.history.push('/login');
         } else if (!forceLogOut && nextProps.forceLogOut) {
             logout();
         }
@@ -99,7 +99,7 @@ export default connect(
 )(Gate);
 
 Gate.propTypes = {
-    params: PropTypes.object,
+    match: PropTypes.object,
     children: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,

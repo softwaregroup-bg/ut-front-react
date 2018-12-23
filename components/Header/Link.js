@@ -1,17 +1,14 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 export default class TabLink extends React.Component {
     render() {
-        let {to, className, children} = this.props;
-        let {wideMatch, ...propsLeft} = this.props;
-        let pathname = typeof to === 'object' ? to.pathname : to;
-        let isActive = this.context.router.isActive(pathname, !wideMatch);
+        let {wideMatch, children, ...propsLeft} = this.props;
 
         return (
-            <Link {...propsLeft} className={className} activeClassName={isActive ? this.props.activeClassName : ''}>
+            <NavLink {...propsLeft} exact={!wideMatch}>
                 {children}
-            </Link>
+            </NavLink>
         );
     }
 }

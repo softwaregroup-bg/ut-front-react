@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import style from './style.css';
 import TabLink from './TabLink';
 import TabDropdown from './TabDropdown';
+import { matchPath } from 'react-router';
 
 class TabMenu extends React.Component {
     constructor(props) {
@@ -94,7 +95,7 @@ class TabMenu extends React.Component {
 
     getActiveTabIndex() {
         for (let i = 0; i < this.props.tabs.length; i++) {
-            if (this.context.router.isActive(this.props.tabs[i], true)) {
+            if (matchPath(this.context.router.route.location.pathname, {path: this.props.tabs[i].pathname, exact: true})) {
                 return i; // 0 based index
             }
         }

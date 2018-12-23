@@ -10,5 +10,6 @@ export default class Portal extends React.Component {
 };
 
 Portal.contextTypes = {
-    portalName: React.PropTypes.string
+    portalName: React.PropTypes.string,
+    location: React.PropTypes.object
 };

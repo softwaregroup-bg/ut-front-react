@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+import { matchPath } from 'react-router';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -22,7 +23,7 @@ export default class TabLink extends React.Component {
     render() {
         let {pathname, isActive, onClick} = this.props;
         let activeClassName = '';
-        if (this.context.router.isActive(pathname, true) || isActive) {
+        if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true}) || isActive) {
             activeClassName = this.getStyle('tabMenuWrapSelected');
         }
         let onClickHandler = () => {

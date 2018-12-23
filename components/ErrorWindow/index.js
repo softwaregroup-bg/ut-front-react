@@ -22,7 +22,7 @@ const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
         header.closeIcon = false; // remove close icon
         let goToLoginHandler = () => {
             clearLoginState();
-            this.context.router.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
+            this.context.router.history.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
         };
         actionButtons = [
             {

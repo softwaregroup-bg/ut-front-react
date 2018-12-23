@@ -23,12 +23,12 @@ class LoginForm extends Component {
 
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
-            this.context.router.push('/');
+            this.context.router.history.push('/');
         } else if (!authenticated && nextProps.authenticated) {
             if (ssoOrigin) {
-                this.context.router.push(`/sso/${appId}/${ssoOrigin}`);
+                this.context.router.history.push(`/sso/${appId}/${ssoOrigin}`);
             } else {
-                this.context.router.push(this.context.mainUrl);
+                this.context.router.history.push(this.context.mainUrl);
             }
         }
 
@@ -38,17 +38,17 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        const { params, cookieChecked, isLogout, authenticated, cookieCheck } = this.props;
+        const { match, cookieChecked, isLogout, authenticated, cookieCheck } = this.props;
 
         if (!cookieChecked && !isLogout) {
             let appId;
-            if (params) {
-                appId = params.appId;
+            if (match) {
+                appId = match.params.appId;
             }
             cookieCheck({appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            this.context.router.push('/');
+            this.context.router.history.push('/');
         }
 
         // if there is previously stored loginData, reset login state
@@ -141,7 +141,7 @@ export default connect(
 )(LoginForm);
 
 LoginForm.propTypes = {
-    params: PropTypes.object,
+    match: PropTypes.object,
     routerParams: PropTypes.object,
     loginData: PropTypes.object,
     cookieChecked: PropTypes.bool,
