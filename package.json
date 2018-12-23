@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "10.5.0-rc-godfather.6",
+  "version": "10.5.0-rc-godfather.7",
   "description": "Frontend module",
   "bin": "index.js",
   "main": "index.js",
