@@ -1,9 +1,8 @@
-import React from 'react';
-import {Route} from 'react-router';
+import React, {PropTypes} from 'react';
+import { MemoryRouter, Route, Switch } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 import {renderToString} from 'react-dom/server';
 import ReactDOM from 'react-dom';
-import {hot} from 'react-hot-loader/root';
-import {UtFront} from './app';
 import Portal from './Portal';
 import Dashboard from './Dashboard';
 import MaterialUILayout from '../components/MaterialUILayout';
@@ -15,54 +14,79 @@ import LoginPage from '../components/LoginPage';
 import SsoPage from '../components/SsoPage';
 import {getRoute} from '../routerHelper';
 import UTFrontReactReducers from './reducers';
+import { Provider } from 'react-redux';
+import { Store } from './Store';
+import UtFrontMiddleware from './middleware';
+// import { syncHistoryWithStore } from 'react-router-redux';
+import PageNotFound from './components/PageNotFound.jsx';
+// import { createHashHistory, createMemoryHistory } from 'history';
 
 export default function ui({utMethod, config = {}}) {
+    async function render() {
+        let routes = await this.fireEvent('route', {}, 'asyncMap');
+        let App = await utMethod('mainUI.provider')({});
+        let ConfigProvider = await utMethod('mainUI.configProvider')({});
+        let Router = (typeof window !== 'undefined') ? HashRouter : MemoryRouter;
+        let MasterComponent = ({location}) => <Master>
+            <ConfigProvider>
+                <Portal location={location}>
+                    {routes}
+                    <Route exact path={getRoute('ut-impl:dashboard')} component={Dashboard} />
+                </Portal>
+            </ConfigProvider>
+        </Master>;
+        MasterComponent.propTypes = {
+            location: PropTypes.object.isRequired
+        };
+        let GateComponent = props => <Gate {...props}>
+            <Switch>
+                <Route path='/sso/:appId/:ssoOrigin' component={SsoPage} />
+                <Route component={MasterComponent} />
+            </Switch>
+        </Gate>;
+        let container = <Provider store={this.store}>
+            <App>
+                <MaterialUILayout>
+                    <Router>
+                        <Switch>
+                            <Route path='/login' component={LoginPage} />
+                            <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
+                            <Route component={GateComponent} />
+                            <Route path='*' component={PageNotFound} />
+                        </Switch>
+                    </Router>
+                </MaterialUILayout>
+            </App>
+        </Provider>;
+        if (typeof document !== 'undefined') {
+            ReactDOM.render(container, document.getElementById('utApp'));
+        } else {
+            console.log(renderToString(container)); // eslint-disable-line
+        }
+    }
+
     return {
         init() {
             if (typeof document === 'undefined') return;
             var headHTML = document.getElementsByTagName('head')[0].innerHTML +
-                        '<link type="text/css" rel="stylesheet" href="/s/user/react/index.css">' +
-                        `<link href="${favicon}" rel="icon" type="image/x-icon" />`;
+                '<link type="text/css" rel="stylesheet" href="/s/user/react/index.css">' +
+                `<link href="${favicon}" rel="icon" type="image/x-icon" />`;
             document.getElementsByTagName('head')[0].innerHTML = headHTML;
             document.title = 'Standard';
+
             // initMirrors();
         },
-        async ready() {
-            let routes = await this.fireEvent('route', {}, 'asyncMap');
+        async start() {
             let reducers = await this.fireEvent('reducer', {}, 'asyncMap');
-            let Provider = await utMethod('mainUI.provider')({});
-            let ConfigProvider = await utMethod('mainUI.configProvider')({});
-            let container = hot(
-                <Provider>
-                    <MaterialUILayout>
-                        <UtFront
-                            reducers={Object.assign({}, UTFrontReactReducers, ...reducers)}
-                            utMethod={utMethod}
-                            resetAction={LOGOUT}>
-                            <Route>
-                                <Route path='/login' component={LoginPage} />
-                                <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
-                                <Route component={Gate}>
-                                    <Route path='/sso/:appId/:ssoOrigin' component={SsoPage} />
-                                    <Route component={Master}>
-                                        <Route component={Portal}>
-                                            <Route component={ConfigProvider}>
-                                                {routes}
-                                                <Route path={getRoute('ut-impl:dashboard')} component={Dashboard} />
-                                            </Route>
-                                        </Route>
-                                    </Route>
-                                </Route>
-                            </Route>
-                        </UtFront>
-                    </MaterialUILayout>
-                </Provider>
+            this.store = Store(
+                Object.assign({}, UTFrontReactReducers, ...reducers),
+                LOGOUT,
+                UtFrontMiddleware(utMethod)
             );
-            if (typeof document !== 'undefined') {
-                ReactDOM.render(container, document.getElementById('utApp'));
-            } else {
-                console.log(renderToString(container)); // eslint-disable-line
-            }
+            // this.history = syncHistoryWithStore(useRouterHistory((typeof window !== 'undefined') ? createHashHistory : createMemoryHistory)(), this.store);
+        },
+        async ready() {
+            await render.call(this);
         }
     };
 };

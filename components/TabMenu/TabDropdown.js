@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import style from './style.css';
 // import classnames from 'classnames';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { matchPath } from 'react-router';
 import enhanceWithClickOutside from 'react-click-outside';
 
 import checkImage from './images/check.png';
@@ -30,7 +31,7 @@ class TabDropDown extends React.Component {
     render() {
         let list = this.props.data.map((tab, i) => {
             let activeClassName;
-            let isLinkActive = tab && tab.pathname && this.context.router.isActive(tab.pathname, true);
+            let isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
             let handleClick = () => {
                 this.setState({
                     open: false
@@ -38,19 +39,19 @@ class TabDropDown extends React.Component {
                 this.props.onSelectItem(tab);
             };
             if (tab && tab.pathname) {
-                if (this.context.router.isActive(tab.pathname, true)) {
+                if (isLinkActive) {
                     activeClassName = style.selected;
                 }
             }
             return (
                 <li className={style.tabDdListItem} key={i}>
-                    <Link
+                    <NavLink
                         activeClassName={activeClassName}
                         className={style.tabDdLink}
                         to={(tab && tab.pathname) ? tab.pathname : '#/'}
                         title={tab.title && tab.title.props && tab.title.props.children}
                         onClick={handleClick}
-                    >{ isLinkActive && <img src={checkImage} className={style.img} />}{tab.title}</Link>
+                    >{ isLinkActive && <img src={checkImage} className={style.img} />}{tab.title}</NavLink>
                 </li>
             );
         });

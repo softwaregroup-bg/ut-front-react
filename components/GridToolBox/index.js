@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Immutable from 'immutable';
 import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';

@@ -19,7 +19,7 @@ class SsoPage extends Component {
         };
     }
     getElement() {
-        let {params: {ssoOrigin, appId}} = this.props;
+        let {params: {ssoOrigin, appId}} = this.props.match;
         var result;
 
         if (!ssoOrigin || !appId || ssoOrigin === 'login' || appId === 'login') {
@@ -55,7 +55,7 @@ class SsoPage extends Component {
     }
 }
 SsoPage.propTypes = {
-    params: PropTypes.object,
+    match: PropTypes.object.isRequired,
     loginData: PropTypes.object
 };
 

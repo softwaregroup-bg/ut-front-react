@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import StandardButton from '../../components/StandardButton';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import style from './style.css';
 

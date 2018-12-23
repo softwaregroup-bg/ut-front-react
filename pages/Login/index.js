@@ -25,7 +25,7 @@ const Login = React.createClass({
         if (this.props.loginData.get('changeId') !== nextProps.loginData.get('changeId')) {
             this.props.identityCheck(nextProps.loginData.get('data').toJS());
         } else if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated') && nextProps.login.get('reqState') === 'finished') {
-            this.context.router.push(this.context.mainUrl); // TODO give correct route
+            this.context.router.history.push(this.context.mainUrl); // TODO give correct route
         }
     },
     getStyle(name) {

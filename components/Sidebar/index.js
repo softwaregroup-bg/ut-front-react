@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import style from './style.css';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 Sidebar.propTypes = {
     menuItems: PropTypes.arrayOf(PropTypes.shape({

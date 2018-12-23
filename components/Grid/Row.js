@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import immutable from 'immutable';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import classnames from 'classnames';
 import style from './style.css';

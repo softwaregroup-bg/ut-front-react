@@ -34,7 +34,7 @@ const Gate = React.createClass({
     componentWillReceiveProps(newProps) {
         if (newProps.login.get('reqState') === 'finished' && (newProps.login.get('cookieCheckResultId') !== this.props.login.get('cookieCheckResultId'))) {
             if (!newProps.login.get('authenticated')) {
-                this.context.router.push('/login');
+                this.context.router.history.push('/login');
             } else if (!newProps.gate.get('reqState')) {
                 setPermissions(newProps.login.getIn(['result', 'permission.get']).toJS());
                 this.props.fetchTranslations({
@@ -48,7 +48,7 @@ const Gate = React.createClass({
         } else if (newProps.login.get('logOutResultId') !== this.props.login.get('logOutResultId')) {
             this.props.checkIdentity();
         } else if (newProps.gate.get('forceLogOut') && this.props.gate.get('forceLogOut') === false) {
-            this.context.router.push('/login');
+            this.context.router.history.push('/login');
             this.props.logout();
         }
     },

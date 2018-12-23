@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { getLink } from '../../routerHelper';
 
 export default class NavigationLink extends Component {
@@ -8,14 +8,14 @@ export default class NavigationLink extends Component {
         const { onClick } = this.props;
 
         return (
-            <Link
+            <NavLink
                 to={useRawTo ? to : getLink(to, params)}
                 className={className}
                 activeClassName={activeClassName}
                 onClick={onClick}
                 style={style} >
                 {children}
-            </Link>
+            </NavLink>
         );
     }
 };

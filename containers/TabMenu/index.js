@@ -9,9 +9,9 @@ class TabMenuWrapper extends Component {
         // on tab close
         let prev = this.props.active;
         if (active && prev && active.pathname !== prev.pathname) { // focus previous tab or...
-            this.context.router.replace(active.pathname);
+            this.context.router.history.replace(active.pathname);
         } else if (!active && defaultLocation) { // focus default url if there is not tabs left for focusing!
-            this.context.router.replace(defaultLocation);
+            this.context.router.history.replace(defaultLocation);
         }
     }
     render() {
