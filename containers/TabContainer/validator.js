@@ -33,7 +33,8 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                     result.isValid = false;
                     let errosObj = {
                         type: validationTypesTabContainer.hasRaisedError,
-                        errorMessage: hasRaisedError
+                        errorMessage: hasRaisedError,
+                        key: validation.key
                     };
                     result.errors.push(errosObj);
                 }
