@@ -45,7 +45,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                 validation.rules.forEach((rule) => {
                     rule.key = Array.isArray(validation.key)
                         ? Array.from(validation.key) // new reference
-                        : validation.key;
+                        : validation.key ? validation.key : validation.keyText;
                     if (validation.type === validationTypes.text && rule.type === textValidations.isRequired) {
                         isRequiredRule(currentValue, rule, result);
                     }
