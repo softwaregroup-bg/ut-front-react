@@ -5,15 +5,6 @@ import TabMenu from '../../components/TabMenu';
 import { removeTab, addTab } from './actions';
 
 class TabMenuWrapper extends Component {
-    componentWillReceiveProps({active, defaultLocation}) {
-        // on tab close
-        let prev = this.props.active;
-        if (active && prev && active.pathname !== prev.pathname) { // focus previous tab or...
-            this.context.router.history.replace(active.pathname);
-        } else if (!active && defaultLocation) { // focus default url if there is not tabs left for focusing!
-            this.context.router.history.replace(defaultLocation);
-        }
-    }
     render() {
         return <TabMenu {...this.props} />;
     }
@@ -21,10 +12,6 @@ class TabMenuWrapper extends Component {
 
 TabMenuWrapper.propTypes = {
     active: PropTypes.object
-};
-
-TabMenuWrapper.contextTypes = {
-    router: PropTypes.object.isRequired
 };
 
 export default connect(
@@ -36,9 +23,7 @@ export default connect(
             dispatch(removeTab(tab.pathname, tab.pagename));
             ownProps.onTabClose && ownProps.onTabClose(tab, next, prev);
         }
-    }),
-    null,
-    {pure: false}
+    })
 )(TabMenuWrapper);
 
 class AddTabWrapper extends Component {
@@ -69,7 +54,12 @@ AddTabWrapper.propTypes = {
     shouldUpdate: PropTypes.bool
 };
 
-export const AddTab = connect(null,
+export const AddTab = connect(
+    (state) => {
+        return {
+            tabs: state.tabMenu.tabs
+        };
+    },
     (dispatch) => ({
         addTab: (...args) => dispatch(addTab(...args))
     })
