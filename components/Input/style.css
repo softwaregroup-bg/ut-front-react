@@ -446,6 +446,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .multiSelectDropdownMenu div, .groupDropdownMenu div {
     font-size: 15px;
     line-height: 32px;
+    max-height: 32px;
 }
 
 .multiSelectDropdownMenuItemWrap, .multiSelectDropdownMenuItem, .groupDropdownMenuItem {
@@ -475,5 +476,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .dropDownItemText {
     vertical-align: top;
-    padding-top: 10%;    
+    /* padding-top: 10%; */
+    display: inline-block;
+    line-height: 32px;
 }
