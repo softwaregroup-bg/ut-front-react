@@ -21,9 +21,9 @@ export default class TabLink extends React.Component {
     }
 
     render() {
-        let {pathname, isActive, onClick} = this.props;
+        let {pathname, onClick} = this.props;
         let activeClassName = '';
-        if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true}) || isActive) {
+        if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true})) {
             activeClassName = this.getStyle('tabMenuWrapSelected');
         }
         let onClickHandler = () => {
@@ -47,7 +47,6 @@ export default class TabLink extends React.Component {
 TabLink.propTypes = {
     pathname: PropTypes.string, // If pathname is not given onClick func will be called
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-    isActive: PropTypes.bool,
     canClose: PropTypes.bool,
     onClose: PropTypes.func,
     onClick: PropTypes.func
@@ -56,7 +55,6 @@ TabLink.propTypes = {
 TabLink.defaultProps = {
     pathname: '',
     canClose: false,
-    isActive: false,
     onClose: () => {},
     onClick: () => {}
 };

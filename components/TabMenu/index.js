@@ -11,13 +11,10 @@ class TabMenu extends React.Component {
         super(props);
         this.state = {
             showDropdown: false,
-            offset: 0,
-            activeTabIndex: 0
+            offset: 0
         };
         this.displayBtn = this.displayBtn.bind(this);
         this.setOffset = this.setOffset.bind(this);
-        this.getActiveTabIndex = this.getActiveTabIndex.bind(this);
-        this.updateActiveTabIndex = this.updateActiveTabIndex.bind(this);
         this.calculateLeftCoordinate = this.calculateLeftCoordinate.bind(this);
         this.calculateRightCoordinate = this.calculateRightCoordinate.bind(this);
     }
@@ -26,16 +23,7 @@ class TabMenu extends React.Component {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
     }
 
-    componentWillReceiveProps(newProps) {
-        if (this.props.activeTab === '') {
-            this.updateActiveTabIndex(this.getActiveTabIndex());
-        } else {
-            this.updateActiveTabIndex(this.props.activeTab);
-        }
-    }
-
     componentDidUpdate() {
-        //        if (this.state.activeTabIndex && this.state.activeTabIndex < this.props.tabs.length) {
         let node = ReactDom.findDOMNode(this.refs.tabset);
         let rowNodeRect = node.getElementsByTagName('tr')[0].getBoundingClientRect();
         let buttonWidth = 32; // the width of the dropdown button // TODO: consider taking this value dynamically
@@ -52,25 +40,25 @@ class TabMenu extends React.Component {
             tabDimensions.push(tds[i].getBoundingClientRect());
             tabsTotalWidth += tds[i].getBoundingClientRect().width;
         }
-        if (tabsTotalWidth >= windowWidth - buttonWidth && this.state.activeTabIndex && this.state.activeTabIndex < tabDimensions.length) {
+        let activeTabIndex = this.getActiveTabIndex();
+        if (tabsTotalWidth >= windowWidth - buttonWidth && activeTabIndex && activeTabIndex < tabDimensions.length) {
             // if the tab is far left
-            if (tabDimensions[this.state.activeTabIndex].left < 0 && tabDimensions[this.state.activeTabIndex].right < windowWidth - buttonWidth) {
+            if (tabDimensions[activeTabIndex].left < 0 && tabDimensions[activeTabIndex].right < windowWidth - buttonWidth) {
                 if (tabsTotalWidth + tabDimensions[0].left < windowWidth - buttonWidth) {
                     // if there is a gap between the last tab and the dropdown button
                     this.setOffset(this.calculateRightCoordinate(tabDimensions, tabDimensions.length - 1, windowWidth, buttonWidth, rowNodeRect.left));
                 } else {
                     // if the tab is far left
-                    this.setOffset(this.calculateLeftCoordinate(tabDimensions, this.state.activeTabIndex));
+                    this.setOffset(this.calculateLeftCoordinate(tabDimensions, activeTabIndex));
                 }
-            } else if (tabDimensions[this.state.activeTabIndex].right > windowWidth - buttonWidth && tabDimensions[this.state.activeTabIndex].left > 0) {
+            } else if (tabDimensions[activeTabIndex].right > windowWidth - buttonWidth && tabDimensions[activeTabIndex].left > 0) {
             // if the tab is far right
-                this.setOffset(this.calculateRightCoordinate(tabDimensions, this.state.activeTabIndex, windowWidth, buttonWidth, rowNodeRect.left));
+                this.setOffset(this.calculateRightCoordinate(tabDimensions, activeTabIndex, windowWidth, buttonWidth, rowNodeRect.left));
             } else if (tabsTotalWidth + tabDimensions[0].left < windowWidth - buttonWidth) {
             // if there is a gap between the last tab and the dropdown button
                 this.setOffset(this.calculateRightCoordinate(tabDimensions, tabDimensions.length - 1, windowWidth, buttonWidth, rowNodeRect.left));
             }
-        } else if (this.state.activeTabIndex && this.state.activeTabIndex >= tabDimensions.length) {
-            this.updateActiveTabIndex(this.state.activeTabIndex - 1);
+        } else if (activeTabIndex && activeTabIndex >= tabDimensions.length) {
         } else {
             this.setOffset(0);
         }
@@ -98,14 +86,6 @@ class TabMenu extends React.Component {
             if (matchPath(this.context.router.route.location.pathname, {path: this.props.tabs[i].pathname, exact: true})) {
                 return i; // 0 based index
             }
-        }
-    }
-
-    updateActiveTabIndex(newIndex) {
-        if (this.state.activeTabIndex !== newIndex) { // DO NOT CHANGE THIS LINE
-            this.setState({
-                activeTabIndex: newIndex
-            });
         }
     }
 
@@ -148,10 +128,9 @@ class TabMenu extends React.Component {
                                             this.props.onTabClose(tab, prev, next);
                                         };
                                         let handleClick = () => this.props.onClick(tab);
-                                        let isActive = tab.id === this.props.activeTab;
                                         return (
                                             <td key={i}>
-                                                <TabLink onClose={onClose} {...tab} onClick={handleClick} isActive={isActive} />
+                                                <TabLink onClose={onClose} {...tab} onClick={handleClick} />
                                             </td>
                                         );
                                     })}
@@ -166,14 +145,13 @@ class TabMenu extends React.Component {
 };
 
 TabMenu.propTypes = {
+    defaultLocation: PropTypes.string.isRequired,
     tabs: PropTypes.array.isRequired,
-    activeTab: PropTypes.any,
     onTabClose: PropTypes.func,
     onClick: PropTypes.func // used when pathname is not given to the tabLink
 };
 
 TabMenu.defaultProps = {
-    activeTab: '',
     onTabClose: function() {}
 };
 
