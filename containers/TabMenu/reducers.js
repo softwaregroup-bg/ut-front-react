@@ -12,12 +12,21 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
 
         if (!state.usedPaths[action.pathname]) {
             // Create new tab if this path is not already presented
-            state.tabs.push(tab);
-            state.usedPaths[action.pathname] = true;
+            return {
+                tabs: state.tabs.concat(tab),
+                active: tab,
+                usedPaths: {
+                    ...state.usedPaths,
+                    [action.pathname]: true
+                }
+            };
         } else if (action.shouldUpdate) {
             // For already presented tabs with updated info (ex. tab title)
-            let tabIndex = state.tabs.findIndex(tab => tab.pathname === action.pathname);
-            state.tabs.splice(tabIndex, 1, tab);
+            return {
+                tabs: state.tabs.map(t => t.pathname === tab.pathname ? tab : t),
+                active: tab,
+                usedPaths: state.usedPaths
+            };
         }
 
         return {
@@ -40,11 +49,18 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
         if (!tab || (state.tabs.length === 1 && state.tabs[0].isMain)) {
             return state;
         }
-        let prev = state.tabs[tabIndex - 1];
-        let next = state.tabs[tabIndex + 1];
-        let active = next || prev;
+        let active;
         if (action.pathname !== state.active.pathname) {
             active = state.active;
+        } else {
+            let prev = state.tabs[tabIndex - 1];
+            let next = state.tabs[tabIndex + 1];
+            active = next || prev;
+            if (active && action.history) {
+                action.history && action.history.push(active.pathname);
+            } else {
+                action.history && action.history.push('/');
+            }
         }
         return {
             active: active,
@@ -56,12 +72,7 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
         };
     }
     if (action.type === actionTypes.UPDATE_TAB_TITLE) {
-        for (let i = 0; i < state.tabs.length; i++) {
-            if (action.pathname === state.tabs[i].pathname) {
-                state.tabs[i].title = action.newTitle;
-                break;
-            }
-        }
+        state.tabs = state.tabs.map(t => t.pathname === action.pathname ? Object.assign({}, t, {title: action.newTitle}) : t);
         return state;
     }
     if (action.type === actionTypes.CLOSE_ALL_TABS) {
