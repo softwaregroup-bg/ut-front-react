@@ -63,7 +63,6 @@ Layout.contextTypes = {
 export default connect(
     (state) => {
         return {
-            tabs: state.tabMenu.tabs,
             login: state.login
         };
     },
