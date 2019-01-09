@@ -1,5 +1,6 @@
 import thunk from 'redux-thunk';
 import immutable, {fromJS} from 'immutable';
+import {REMOVE_TAB} from '../containers/TabMenu/actionTypes';
 
 /**
  * Convert action.params to plain js when action.params is immutable
@@ -20,7 +21,7 @@ const getCookies = () => (typeof document === 'undefined') ? {} : document.cooki
     return a;
 }, {});
 
-export default (utMethod) => {
+export default (utMethod, history) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
             var cookies = getCookies();
@@ -81,5 +82,12 @@ export default (utMethod) => {
         return next(action);
     };
 
-    return [thunk, rpc, utBuslogger];
+    const closeTab = store => next => action => {
+        if (action.type === REMOVE_TAB) {
+            action.history = history;
+        };
+        return next(action);
+    };
+
+    return [thunk, closeTab, rpc, utBuslogger];
 };
