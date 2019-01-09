@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import { MemoryRouter, Route, Switch } from 'react-router';
-import { HashRouter } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router';
+import { createHashHistory, createMemoryHistory } from 'history';
 import {renderToString} from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import Portal from './Portal';
@@ -19,14 +19,12 @@ import { Store } from './Store';
 import UtFrontMiddleware from './middleware';
 // import { syncHistoryWithStore } from 'react-router-redux';
 import PageNotFound from './components/PageNotFound.jsx';
-// import { createHashHistory, createMemoryHistory } from 'history';
 
 export default function ui({utMethod, config = {}}) {
     async function render() {
         let routes = await this.fireEvent('route', {}, 'asyncMap');
         let App = await utMethod('mainUI.provider')({});
         let ConfigProvider = await utMethod('mainUI.configProvider')({});
-        let Router = (typeof window !== 'undefined') ? HashRouter : MemoryRouter;
         let MasterComponent = ({location}) => <Master>
             <ConfigProvider>
                 <Portal location={location}>
@@ -47,7 +45,7 @@ export default function ui({utMethod, config = {}}) {
         let container = <Provider store={this.store}>
             <App>
                 <MaterialUILayout>
-                    <Router>
+                    <Router history={this.history}>
                         <Switch>
                             <Route path='/login' component={LoginPage} />
                             <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
@@ -78,10 +76,11 @@ export default function ui({utMethod, config = {}}) {
         },
         async start() {
             let reducers = await this.fireEvent('reducer', {}, 'asyncMap');
+            this.history = (typeof window !== 'undefined') ? createHashHistory() : createMemoryHistory();
             this.store = Store(
                 Object.assign({}, UTFrontReactReducers, ...reducers),
                 LOGOUT,
-                UtFrontMiddleware(utMethod)
+                UtFrontMiddleware(utMethod, this.history)
             );
             // this.history = syncHistoryWithStore(useRouterHistory((typeof window !== 'undefined') ? createHashHistory : createMemoryHistory)(), this.store);
         },
