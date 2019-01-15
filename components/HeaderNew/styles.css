@@ -36,8 +36,8 @@
 .headerLogo {
   display: inline-block;
   flex-shrink: 0;
-  width: var(--ut-front-react-standardMainLogoWidth);
-  height: 36px !important;
+  width: 44px !important;
+  height: 44px !important;
   background: inline('logo.png') no-repeat center center;
   background-size: contain;
   cursor: pointer;
