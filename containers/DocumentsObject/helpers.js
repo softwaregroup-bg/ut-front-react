@@ -235,7 +235,7 @@ export function formatDocumentAndAttachmentsForSave(documents, objectId, objectT
                     documentId = parseInt(doc.documentId);
                 }
                 let statusId = doc.statusId;
-                if (statusId === 'approved' || statusId === 'replaced') {
+                if (statusId === 'replaced') { // do not change document status to pending, if it is not changed
                     statusId = 'pending';
                 }
                 docObj = {
