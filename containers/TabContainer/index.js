@@ -47,13 +47,13 @@ class TabContainer extends Component {
     }
 
     handleActionButtonClick(index) {
-        let { tabs, errors } = this.props;
+        let { tabs, errors, errorMessageKeysMapping } = this.props;
         let button = this.props.actionButtons[index];
         let valid;
         if (button && button.onNext) {
             if (button.performTabValidation) {
                 let tab = this.props.tabs[this.state.active];
-                valid = validateTab(this.props.sourceMap, tab.validations, this.state.active, undefined, errors);
+                valid = validateTab(this.props.sourceMap, tab.validations, this.state.active, undefined, errors, errorMessageKeysMapping);
                 if (valid.isValid) {
                     this.props.onErrors({});
                     button.onNext();
@@ -61,7 +61,7 @@ class TabContainer extends Component {
                     this.props.onErrors(prepareErrors(valid.errors));
                 }
             } else if (button.performFullValidation) {
-                valid = validateAll(this.props.sourceMap, this.props.tabs, errors);
+                valid = validateAll(this.props.sourceMap, this.props.tabs, errors, errorMessageKeysMapping);
                 if (valid.isValid) {
                     this.props.onErrors({});
                     button.onNext();

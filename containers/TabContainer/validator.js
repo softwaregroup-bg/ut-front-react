@@ -21,7 +21,7 @@ import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule
     hasKeysRule, customFunctionRule, isRequiredEmailRuleArray, isValidEmailRule, isNumberOnlyRule, isIntegerRangeRule } from '../../validator';
 import { getAssignedRoles } from './helper';
 
-export const validateTab = (sourceMap, validations, tabIndex, result, errors) => {
+export const validateTab = (sourceMap, validations, tabIndex, result, errors, errorMessageKeysMapping) => {
     result = result || { isValid: true, errors: [] };
     if (validations) {
         validations.forEach((validation) => {
@@ -146,14 +146,24 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
             }
         });
     }
+    if(!errorMessageKeysMapping !== undefined) {
+        for (let y = 0 ;  y < result.errors.length;  y += 1) {
+                if(result.errors[y].key.slice(0, 1).toString() === Object.keys(errorMessageKeysMapping).toString() ) {
+                if (result.errors[y].key.includes(Object.keys(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString())) {
+                    result.errors[y].key.splice(result.errors[y].key.indexOf(Object.keys(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString()), 1)
+                    result.errors[y].key.push(Object.values(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString());
+                }
+            }
+        }
+    }
     return result;
 };
 
-export const validateAll = (sourceMap, tabs, errors) => {
+export const validateAll = (sourceMap, tabs, errors, errorMessageKeysMapping) => {
     let result = { isValid: true, errors: [] };
 
     tabs.forEach((tab, index) => {
-        validateTab(sourceMap, tab.validations, index, result, errors);
+        validateTab(sourceMap, tab.validations, index, result, errors, errorMessageKeysMapping);
     });
 
     return result;
