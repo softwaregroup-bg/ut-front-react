@@ -66,9 +66,12 @@ class MultiSelectDropdown extends Dropdown {
         let { values } = this.state;
 
         if (values.length === data.length) {
-            values = [];
+            // if item disabled but selected by default
+            values = [].concat(data.filter(i => i.disabled && values.find(v => v.key === i.key)));
         } else {
-            values = [...data];
+            values = []
+                .concat(data.filter(i => !i.disabled)) // add all active items
+                .concat(data.filter(i => i.disabled && values.find(v => v.key === i.key))); // if item disabled but selected by default
         }
         this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {
             onSelect({key: keyProp, value: values});
@@ -101,13 +104,13 @@ class MultiSelectDropdown extends Dropdown {
             }) > -1;
             menuItems.push(
                 <MenuItem
-                  className={ddstyles.multiSelectDropdownMenuItemWrap}
-                  onTouchTap={() => { this.handleChange(item); }}
+                  className={classnames(ddstyles.multiSelectDropdownMenuItemWrap, item.disabled ? style.notAllowed : '')}
+                  onTouchTap={item.disabled ? () => {} : () => { this.handleChange(item); }}
                   key={item.key}>
                     <div className={ddstyles.multiSelectDropdownMenuItem}>
                         <Checkbox
                           checked={isChecked}
-                          disabled={item.disabled} />
+                          isDisabled={item.disabled} />
                         <span className={ddstyles.dropDownItemText}>{item.name}</span>
                     </div>
                 </MenuItem>
