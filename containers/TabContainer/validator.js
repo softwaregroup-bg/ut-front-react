@@ -146,11 +146,11 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors, er
             }
         });
     }
-    if(!errorMessageKeysMapping !== undefined) {
-        for (let y = 0 ;  y < result.errors.length;  y += 1) {
-                if(result.errors[y].key.slice(0, 1).toString() === Object.keys(errorMessageKeysMapping).toString() ) {
+    if (errorMessageKeysMapping) {
+        for (let y = 0; y < result.errors.length; y += 1) {
+            if (result.errors[y].key.slice(0, 1).toString() === Object.keys(errorMessageKeysMapping).toString()) {
                 if (result.errors[y].key.includes(Object.keys(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString())) {
-                    result.errors[y].key.splice(result.errors[y].key.indexOf(Object.keys(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString()), 1)
+                    result.errors[y].key.splice(result.errors[y].key.indexOf(Object.keys(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString()), 1);
                     result.errors[y].key.push(Object.values(errorMessageKeysMapping[Object.keys(errorMessageKeysMapping).toString()]).toString());
                 }
             }
