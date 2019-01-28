@@ -237,9 +237,9 @@ class TabContainer extends Component {
                           />
                       </div>}
                   >
-                      <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
+                      {activeTab && <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
                           {activeTab.component}
-                      </div>
+                      </div>}
                   </Vertical>
                 </Vertical>
             </div>
