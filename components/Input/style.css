@@ -241,6 +241,7 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
 
 .notAllowed {
     cursor: not-allowed !important;
+    color: #a9a9a9 !important;
 }
 
 .pointer {
