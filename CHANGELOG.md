@@ -1,3 +1,32 @@
+# [11.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.4.1...v11.0.0) (2019-02-02)
+
+
+### Bug Fixes
+
+* add common react code ([58cc750](https://github.com/softwaregroup-bg/ut-front-react/commit/58cc750))
+* connect with state.tabMenu ([1712065](https://github.com/softwaregroup-bg/ut-front-react/commit/1712065))
+* dependency ([15117db](https://github.com/softwaregroup-bg/ut-front-react/commit/15117db))
+* deprecation ([8e38494](https://github.com/softwaregroup-bg/ut-front-react/commit/8e38494))
+* disconnect Layout from tabMenu ([3293eb7](https://github.com/softwaregroup-bg/ut-front-react/commit/3293eb7))
+* do not mutate state ([71f5757](https://github.com/softwaregroup-bg/ut-front-react/commit/71f5757))
+* enable server side rendering ([01ddf49](https://github.com/softwaregroup-bg/ut-front-react/commit/01ddf49))
+* lint ([eefdf8c](https://github.com/softwaregroup-bg/ut-front-react/commit/eefdf8c))
+* move tabReducers ([4865e88](https://github.com/softwaregroup-bg/ut-front-react/commit/4865e88))
+* pass history for REMOVE_TAB ([6e9f92e](https://github.com/softwaregroup-bg/ut-front-react/commit/6e9f92e))
+* react-router upgrade & hot reload ([08045cb](https://github.com/softwaregroup-bg/ut-front-react/commit/08045cb))
+* refactor as function ([1c2fe80](https://github.com/softwaregroup-bg/ut-front-react/commit/1c2fe80))
+* remove unnecessary props ([0b71a6c](https://github.com/softwaregroup-bg/ut-front-react/commit/0b71a6c))
+* update ut-tools ([376d843](https://github.com/softwaregroup-bg/ut-front-react/commit/376d843))
+* upgrade bootstrap and make it optional ([9b13014](https://github.com/softwaregroup-bg/ut-front-react/commit/9b13014))
+* upgrade dependencies ([d5bcdb1](https://github.com/softwaregroup-bg/ut-front-react/commit/d5bcdb1))
+
+
+### BREAKING CHANGES
+
+* needs upgrade of ut-run
+
+
+
 <a name="10.4.1"></a>
 ## [10.4.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.4.1-rc-einstein.0...v10.4.1) (2018-08-13)
 
