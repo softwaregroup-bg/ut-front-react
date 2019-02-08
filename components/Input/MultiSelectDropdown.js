@@ -79,7 +79,7 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     getMenuItems() {
-        let {data, placeholder, cssStyle, mergeStyles} = this.props;
+        let {data, placeholder, cssStyle, mergeStyles, disableAllItems} = this.props;
         let {values} = this.state;
 
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
@@ -88,9 +88,11 @@ class MultiSelectDropdown extends Dropdown {
             <MenuItem
               className={ddstyles.multiSelectDropdownMenuItemWrap}
               onTouchTap={this.toggleAllChecks}
+              disabled={disableAllItems}
               key={'1-ddfg'}>
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
                     <Checkbox
+                      isDisabled={disableAllItems}
                       checked={values.length === data.length} />
                     <span className={ddstyles.dropDownItemText}>{placeholder}</span>
                 </div>
@@ -106,6 +108,7 @@ class MultiSelectDropdown extends Dropdown {
                 <MenuItem
                   className={classnames(ddstyles.multiSelectDropdownMenuItemWrap, item.disabled ? style.notAllowed : '')}
                   onTouchTap={item.disabled ? () => {} : () => { this.handleChange(item); }}
+                  disabled={item.disabled}
                   key={item.key}>
                     <div className={ddstyles.multiSelectDropdownMenuItem}>
                         <Checkbox
@@ -174,7 +177,8 @@ class MultiSelectDropdown extends Dropdown {
 MultiSelectDropdown.defaultProps = {
     isValid: true,
     errorMessage: '',
-    isEdited: false
+    isEdited: false,
+    disableAllItems: false
 };
 
 export default MultiSelectDropdown;
