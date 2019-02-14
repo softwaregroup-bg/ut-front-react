@@ -44,19 +44,25 @@ export class ByCustomSearch extends Component {
     }
 
     render() {
+        const { field, fields, value, placeholder, externalStyles } = this.props
         return (
             <div>
                 <div className={style.customSearchDropdown}>
                     <Dropdown
-                      defaultSelected={this.props.field}
+                      defaultSelected={field}
                       placeholder={<Text>Search By</Text>}
                       keyProp='name'
                       onSelect={this.handleSelect}
-                      data={this.props.fields}
+                      data={fields}
                       menuAutoWidth />
                 </div>
                 <div className={style.customSearchTextField}>
-                    <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} />
+                    <SearchBox
+                      placeholder={placeholder}
+                      defaultValue={value}
+                      onSearch={this.handleSearch}
+                      externalStyle={externalStyles.searchBoxStyles}
+                    />
                 </div>
             </div>
         );
@@ -76,7 +82,14 @@ ByCustomSearch.propTypes = {
     fields: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
         text: PropTypes.string
-    })).isRequired
+    })).isRequired,
+    placeholder: PropTypes.string,
+    externalStyles: PropTypes.object
 };
+
+ByCustomSearch.defaultProps = {
+    placeholder: '',
+    externalStyles: {}
+}
 
 export default ByCustomSearch;
