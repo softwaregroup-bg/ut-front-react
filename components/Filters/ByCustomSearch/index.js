@@ -44,7 +44,7 @@ export class ByCustomSearch extends Component {
     }
 
     render() {
-        const { field, fields, value, placeholder, externalStyles } = this.props
+        const { field, fields, value, placeholder, externalStyles } = this.props;
         return (
             <div>
                 <div className={style.customSearchDropdown}>
@@ -90,6 +90,6 @@ ByCustomSearch.propTypes = {
 ByCustomSearch.defaultProps = {
     placeholder: '',
     externalStyles: {}
-}
+};
 
 export default ByCustomSearch;
