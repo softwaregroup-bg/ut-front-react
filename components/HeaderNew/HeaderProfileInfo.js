@@ -87,8 +87,8 @@ export default class HeaderProfileInfo extends Component {
         const { menuToggled } = this.state;
 
         return (
-            <span className={styles.profileInfo}>
-              <span
+            <div className={styles.profileInfo}>
+              <div
                 className={className}
                 ref={(element) => { this.infoArrowNode = element; }} >
                   <div className={styles.profileInfoContainer}>
@@ -112,8 +112,8 @@ export default class HeaderProfileInfo extends Component {
                     className={styles.profileInfoPopoverMenu}
                     separatorsOnIndex={[2]}
                     closeOnSelect />
-              </span>
-            </span>
+              </div>
+            </div>
         );
     }
 }

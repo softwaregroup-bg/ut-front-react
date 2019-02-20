@@ -75,11 +75,11 @@ export default class MenuNew extends Component {
         fields = separatorsOnIndex.length ? this.addSeparators() : fields;
 
         return (
-            <div
+            <ul
               style={positioningStyles}
-              className={classNames(styles.menu, styles.standardMenu, className)} >
-              {fields}
-            </div>
+              className={classNames(styles.menu, styles.standardMenu, className)}>
+              {fields.map((field, index) => <li key={index} > {field} </li>)}
+            </ul>
         );
     }
 }

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Tab, MultiTab } from './../Tab';
 import { permissionPreCheck } from './helpers';
 import { fromJS } from 'immutable';
-
+import classNames from 'classnames';
 import styles from './styles.css';
 
 export default class TabsContainer extends Component {
@@ -41,11 +41,18 @@ export default class TabsContainer extends Component {
     render() {
         const { tabset, className } = this.props;
         const tabs = this.getTabComponents(tabset);
-
+        console.log(tabs);
         return (
-            <span className={className}>
-              {tabs}
-            </span>
+            <div className={styles.tabWrapper}>
+                <div className={className}>
+                    {tabs}
+                </div>
+                < div className = {
+                    classNames(className, styles.tabsContainerHidden)
+                } >
+                    {tabs}
+                </div>
+            </div>
         );
     }
 }

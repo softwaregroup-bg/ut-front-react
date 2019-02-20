@@ -12,14 +12,14 @@ export default class HeaderLogo extends Component {
         const text = replaceWithBrakes ? joinArrayWithBreakTags(breakOnSpaceChars(this.props.text)) : this.props.text;
 
         return (
-            <span className={className}>
+            <div className={className}>
                 <Link
                   to={this.context.mainUrl}
                   useRawTo >
                     <span className={classnames(this.context.implementationStyle['headerLogo'], getClass(styles, 'headerLogo'))} />
                 </Link>
                 <span className={classnames(this.context.implementationStyle['headerTitle'], getClass(styles, 'headerTitle'))}>{text}</span>
-            </span>
+            </div>
         );
     }
 }
