@@ -39,6 +39,9 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                 let currentValue;
                 if (validation.key) {
                     currentValue = sourceMap.getIn(validation.key);
+                    if (immutable.Iterable.isIterable(currentValue)) {
+                        currentValue = currentValue.get('value');
+                    }
                 }
                 validation.rules.forEach((rule) => {
                     rule.key = Array.isArray(validation.key)
