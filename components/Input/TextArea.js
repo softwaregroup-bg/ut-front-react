@@ -108,7 +108,10 @@ class TextArea extends Component {
 
 TextArea.propTypes = {
     value: PropTypes.string,
-    keyProp: PropTypes.string,
+    keyProp: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
     label: PropTypes.node,
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
