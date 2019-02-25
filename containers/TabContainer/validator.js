@@ -14,6 +14,7 @@
     ]
 */
 
+import immutable from 'immutable';
 import { validationTypes, textValidations, arrayValidations, dropdownValidations, defaultRoleValidations, objectValidations, customValidations } from '../../validator/constants';
 import { validationTypes as validationTypesTabContainer } from './constants';
 import { isRequiredRule, lengthRule, isRequiredArrayRule, isRequiredDropdownRule, defaultRoleRule, isValidEmailRuleArray, isNumberOnlyRuleArray, isDecimalOnlyRule, lengthRuleArray, arrayWithTextLengthRule, regexRule, isUniqueValueRule, arrayWithArrayIsRequiredRule, isRequiredOnConditionRule, hasKeysRule, customFunctionRule, isIntegerOnlyRule, isIntegerRangeRule } from '../../validator';
