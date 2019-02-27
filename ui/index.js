@@ -23,6 +23,7 @@ import PageNotFound from './components/PageNotFound.jsx';
 export default function ui({utMethod, config = {}}) {
     async function render() {
         let routes = await this.fireEvent('route', {}, 'asyncMap');
+        let publicRoutes = await this.fireEvent('publicRoute', {}, 'asyncMap');
         let App = await utMethod('mainUI.provider')({});
         let ConfigProvider = await utMethod('mainUI.configProvider')({});
         let MasterComponent = ({location}) => <Master>
@@ -49,6 +50,7 @@ export default function ui({utMethod, config = {}}) {
                         <Switch>
                             <Route path='/login' component={LoginPage} />
                             <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
+                            {publicRoutes}
                             <Route component={GateComponent} />
                             <Route path='*' component={PageNotFound} />
                         </Switch>
@@ -75,7 +77,7 @@ export default function ui({utMethod, config = {}}) {
             // initMirrors();
         },
         async start() {
-            let reducers = await this.fireEvent('reducer', {}, 'asyncMap');
+            const reducers = await this.fireEvent('reducer', {}, 'asyncMap');
             this.history = (typeof window !== 'undefined') ? createHashHistory() : createMemoryHistory();
             this.store = Store(
                 Object.assign({}, UTFrontReactReducers, ...reducers),
