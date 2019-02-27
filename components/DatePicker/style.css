@@ -2,6 +2,7 @@
 @import 'config.css';
 
 .dpBoxWrap {
+    display: flex;
     width: 100%;
     position: relative;
     font-weight: normal;
@@ -21,6 +22,7 @@
 
 .dpWrap {
     display: inline-flex;
+    min-height: 30px;
     margin: 0 20px 0 0;
 }
 
@@ -54,6 +56,7 @@
 }
 
 .dpBoxGroupWrap {
+    display: flex;
     max-width: 100%;
 }
 

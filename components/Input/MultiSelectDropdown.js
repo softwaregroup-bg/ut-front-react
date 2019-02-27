@@ -125,7 +125,7 @@ class MultiSelectDropdown extends Dropdown {
 
     renderDropDown() {
         let menuItems = this.getMenuItems();
-        let { cssStyle, mergeStyles } = this.props;
+        let { cssStyle, mergeStyles, width } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
         let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
@@ -164,7 +164,7 @@ class MultiSelectDropdown extends Dropdown {
                       multiple
                       value={this.state.values.map((value) => (value.key))}
                       maxHeight={300}
-                      style={{width: rootElementWidth}}
+                      style={{width: width || rootElementWidth}}
                       className={ddstyles.multiSelectDropdownMenu}>
                         {menuItems}
                     </Menu>
