@@ -27,6 +27,7 @@ export default class SimpleAutoComplete extends Component {
                   onUpdateInput={this.props.onChange}
                   onNewRequest={this.props.onSelect}
                   searchText={this.props.searchText}
+                  id={this.props.id}
                 />
             </div>
         );
@@ -36,7 +37,8 @@ export default class SimpleAutoComplete extends Component {
 SimpleAutoComplete.defaultProps = {
     filter: AutoComplete.fuzzyFilter,
     maxSearchResults: 10,
-    openOnFocus: true
+    openOnFocus: true,
+    id: 'autocompleteUniqueId'
 };
 
 SimpleAutoComplete.propTypes = {
@@ -54,5 +56,6 @@ SimpleAutoComplete.propTypes = {
     openOnFocus: PropTypes.bool,
     dataSourceConfig: PropTypes.object,
     onSelect: PropTypes.func,
-    searchText: PropTypes.string
+    searchText: PropTypes.string,
+    id: PropTypes.string
 };
