@@ -157,18 +157,20 @@ export const calculateAspectRatio = (file, scaleDimensions) => {
     @param regex regex
     @returns string the formatted number as string
 */
-export function formatMoney(value, delimeter = ',', regex = /\B(?=(\d{3})+$)/g) {
+export function formatMoney(value = '', delimeter = ',', regex = /\B(?=(\d{3})+$)/g) {
     const stringValue = value.toString();
 
-    if (stringValue.includes('.')) {
-        // 10000.0456 => 10,000.0456
-        const parts = stringValue.toString().split('.');
+    const parsed = parseFloat(stringValue).toFixed(2);
+
+    if (stringValue.includes('.') && !isNaN(parsed)) {
+        // 10000.0456 => 10,000.05
+        const parts = parsed.split('.');
         const partInteger = parts[0];
         const partDecimal = parts[1];
         const formattedInteger = partInteger.replace(regex, delimeter);
         return `${formattedInteger}.${partDecimal}`;
-    } else {
-        // 10000 => 10,000
-        return stringValue.replace(regex, delimeter);
-    }
+    } 
+    
+    // 10000 => 10,000
+    return stringValue.replace(regex, delimeter);
 }
