@@ -104,6 +104,10 @@
     margin: 0;
 }
 
+input[type = 'radio']:disabled {
+    cursor: not-allowed;
+}
+
 .changeBtn {
     height: 43px;
     width: 20%;

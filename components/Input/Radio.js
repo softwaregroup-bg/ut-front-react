@@ -2,15 +2,16 @@ import React, { PropTypes } from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 
-const RadioInput = ({ label, boldLabel, errorMessage, isValid, onChange, defaultValue, options, disabled, optionClassName }) => {
+const RadioInput = ({ label, boldLabel, errorMessage, isValid, onChange, defaultValue, options, disabled: fullDisabled, optionClassName }) => {
     return (
         <div className={style.outerWrap}>
             {label && <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
                 {label}
             </div>}
             <div className={style.inputWrap}>
-                {options.map(({id, name, label, value}) => {
+                {options.map(({id, name, label, value, disabled: inputDisabled}) => {
                     let handleChange = () => onChange({id, key: name, label, value});
+                    const disabled = fullDisabled || inputDisabled;
                     return (
                         <span className={classnames(style.radio, optionClassName)} key={id}>
                             <input disabled={disabled} onChange={handleChange} checked={defaultValue === value} id={id} type='radio' name={name} />
