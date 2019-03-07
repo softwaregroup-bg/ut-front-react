@@ -50,8 +50,8 @@ const validators = {
         }
         return true;
     },
-    custom: (value, customFunc, inputs) => {
-        return customFunc(value, inputs || fromJS({}));
+    custom: (value, customFunc, inputs = fromJS({}), dropdowns = fromJS({})) => {
+        return customFunc(value, inputs, dropdowns);
     }
 };
 
@@ -92,7 +92,7 @@ export class Validator {
         this.config = config;
     }
 
-    validateInput(input, value, inputs) {
+    validateInput(input, value, inputs, dropdowns) {
         if (!this.config[input]) {
             // If there is no validation for this input - simulate passing validation
             return {
@@ -104,7 +104,7 @@ export class Validator {
         let error = '';
 
         validateOrder.every((validationRule) => {
-            let isValid = validators[validationRule](value, validations[validationRule], inputs);
+            let isValid = validators[validationRule](value, validations[validationRule], inputs, dropdowns);
             let errorMessage = null;
             if (typeof isValid === 'object' && !isValid.isValid) {
                 errorMessage = isValid.errorMessage;
@@ -127,14 +127,14 @@ export class Validator {
         };
     }
 
-    validateAllFlat(inputs) {
+    validateAllFlat(inputs, dropdowns) {
         // if input values ARE NOT objects with key value
         // inputs - immutable Map with 'data' and 'edited' key filled flat with the data
         let errors = [];
         let computedData = inputs.get('data').merge(inputs.get('edited'));
         let keys = computedData.keySeq().toArray();
         keys.forEach((key) => {
-            let validationResult = this.validateInput(key, computedData.get(key), computedData);
+            let validationResult = this.validateInput(key, computedData.get(key), computedData, dropdowns);
             if (!validationResult.isValid) {
                 errors.push({
                     field: key,
