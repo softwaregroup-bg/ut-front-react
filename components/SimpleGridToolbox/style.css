@@ -6,12 +6,14 @@
 }
 .simpleToolbox.opened {
     display: flex;
+    flex-wrap: wrap;
     height: 100%;
+    border: 1px solid aqua;
 }
 .simpleToolbox .label, .simpleToolbox .link {
     margin: auto auto auto 20px;
-    min-width: 10%;
-    flex-basis: auto;
+    flex: 1;
+    width: 10%;
     text-align: left;
 }
 .simpleToolbox .link {
@@ -22,7 +24,10 @@
     text-decoration: underline;
 }
 .simpleToolbox .content {
+    display: flex;
+    flex-wrap: wrap;
     margin: auto 0 auto auto;
-    width: 89%;
-    flex-basis: auto;
+    flex: 9;
+    width: 90%;
+    height: 100%;
 }

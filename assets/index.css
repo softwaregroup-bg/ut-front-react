@@ -1,4 +1,4 @@
-/* Common */
+Common */
 body {
     font-size: 14px;
     /*background: #f2f2f2;*/
@@ -12,13 +12,13 @@ body {
 .clear {
     overflow: hidden;
 }
-.table {
+/* .table {
     display: table;
     margin-bottom: 0;
 }
 .tableCell {
     display: table-cell;
-}
+} */
 .vaTop {
     vertical-align: top;
 }
@@ -246,8 +246,12 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     margin: 25px 0;
 }
 
+.contentTableWrap>div {
+    display: flex;
+    flex-flow: column;
+}
+
 .contentTableWrap {
-    min-width: 800px;
     height: 100%;
     position: relative;
     width: 100%;
@@ -258,9 +262,13 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
- .actionBarWrap {
+
+.actionBarWrap {
+     display: flex;
+     flex-flow: column;
      width: 100%;
-     height: 55px;
+     min-height: 55px;
+     height: auto;
      padding: 0 10px 0;
      background: #fff;
      border-bottom: 1px solid #D7D6D6;
@@ -268,10 +276,18 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
      -moz-box-sizing: border-box;
      -webkit-box-sizing: border-box;
      text-align: center;
-     z-index: 1;
      position: relative;
  }
-.contentTableWrap .actionBarWrap .textWrap {
+
+ .actionBarWrap > div,
+ .actionBarWrap > div > div {
+     display: flex;
+     flex: 1;
+     width: 100%;
+     height: auto;
+ }
+
+ .contentTableWrap .actionBarWrap .textWrap {
     color: #566591;
     font-weight: bold;
     margin-top: 7px;
@@ -297,23 +313,19 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
 }
 .contentTableWrap .tableWrap {
     width: 100%;
+    height: 50%;
     background: #f2f2f2;
-    padding: 0 20px 20px;
-    margin-top: 30px;
+    padding: 30px 20px 20px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    position: absolute;
-    top: 70px;
-    bottom: 43px;
     overflow-y: auto;
+    overflow-x: scroll;
 }
 .toolbar {
     margin: 0 15px 0 20px;
-    display: block;
 }
 .toolbarElement {
-    float: left;
     margin: 0 20px 0 0;
 }
 .toolbarElement.label {

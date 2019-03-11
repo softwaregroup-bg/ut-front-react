@@ -1,27 +1,25 @@
 @import './default-config.css';
 @import 'config.css';
 
-.toolbarWrap {
+.toolbarWrap,
+.innerGrid {
+    display: grid;
+    margin: auto;
+    grid-template: 1fr / 1fr 4fr;
+    border: 1px solid slateblue;
     width: 100%;
     overflow: hidden;
 }
 
 .fixedHeight {
-    height: 55px;
-}
-
-.table {
-    display: table;
-}
-
-.toolbarWrap>div,
-.tableCell {
-    display: table-cell;
-    vertical-align: middle;
+    margin: auto;
+    min-height: 55px;
+    height: auto;
 }
 
 .toolbarWrap .toolbarElement {
     padding-right: 20px;
+    display: flex;
 }
 
 .toolbarWrap .toolbarElement:last-child {
@@ -30,6 +28,7 @@
 
 .toolbarWrap .label {
     text-align: left;
+    margin: auto;
     white-space: nowrap;
 }
 
@@ -46,10 +45,11 @@
 
 .toolbarWrap .minWidthed {
     min-width: 240px;
+    max-width: 450px;
+    width: 100%;
 }
 
 .toolbarWrap .pullRight {
-    float: right;
     text-align: right;
 }
 
@@ -160,4 +160,17 @@
   text-overflow: ellipsis;
   font-size: 15px;
   margin-top: 3px;
+}
+
+@media (max-width: 400px) {
+    .toolbarWrap {
+        grid-template: 1fr 2fr/ 1fr;
+    }
+    .toolbarWrap .toolbarElement {
+        padding-right: 0px;
+    }
+    .toolbarWrap .minWidthed {
+        min-width: 150px;
+        width: 100%;
+    }
 }

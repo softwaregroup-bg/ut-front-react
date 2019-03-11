@@ -411,7 +411,7 @@ class GridToolBox extends Component {
 
     renderAdvancedButton() {
         let tooltipContent = this.getTooltip();
-        let el = <div key='toggleAdv' className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
+        let el = <div key='toggleAdv' className={classnames(style.toolbarElement, style.advancedSearchIconWrapper)}>
             <div className={classnames(style.noRightMargin, style.advancedSearchIcon)} onClick={this.toggleAdvancedSearch}>
                 <div className={style.barWrap}>
                     <div className={style.bar} />
@@ -467,7 +467,7 @@ class GridToolBox extends Component {
             let advancedDialog = this.renderAdvancedSearchDialog();
 
             return (
-                <div className={classnames(style.toolbarElement, style.tableCell)}>
+                <div className={classnames(style.toolbarElement)}>
                     {advancedSearchBtn}
                     {advancedDialog}
                 </div>
@@ -494,37 +494,37 @@ class GridToolBox extends Component {
             return f.type === filterElementTypes.searchBtn;
         }) !== undefined) || (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
 
+        const gridTemplate = window.innerWidth < 600 ? `repeat( ${filterElements.length}, 1fr) 30px/1fr` : `1fr/repeat(${filterElements.length}, 1fr) 30px`;
+
         return (
-            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
-                {!hideToggle && <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
-                    {leftSide}
+            <div className={classnames(style.toolbarWrap, style.fixedHeight)}>
+                {!hideToggle && <div className={classnames(style.toolbarElement)} onClick={toggle}>
+                    <span className={classnames(style.label, labelClass)}>{leftSide}</span>
                 </div>}
-                <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div className={classnames(style.table, style.fixedHeight)}>
-                        {filterElements.map((el, i) => {
-                            let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
-                            filtersNumber += incrementNum;
-                            if (filtersNumber <= this.props.maxVisibleInputs) {
-                                let filter = this.renderFilter(el);
-                                return filter && (
-                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell)} style={el.styles}>
-                                        <div className={style.minWidthed}>
-                                            {filter}
-                                        </div>
+                <div className={classnames(style.innerGrid)}  style={{ gridTemplate, }}>
+                    {filterElements.map((el, i) => {
+                        let incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
+                        filtersNumber += incrementNum;
+                        if (filtersNumber <= this.props.maxVisibleInputs) {
+                            let filter = this.renderFilter(el);
+                            return filter && (
+                                <div key={i} className={classnames(style.toolbarElement)} style={el.styles}>
+                                    <div className={style.minWidthed}>
+                                        {filter}
                                     </div>
-                                );
-                            }
-                        })}
-                        {this.renderAdvanced()}
-                        {showSearchBtn &&
-                            <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
-                                <div onClick={this.applyFilters} className={style.searchIcon} />
-                            </div>}
-                        {this.state.hasActiveFilters &&
-                            <div className={classnames(style.toolbarElement, style.tableCell)}>
-                                <div key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
-                            </div>}
-                    </div>
+                                </div>
+                            );
+                        }
+                    })}
+                    {this.renderAdvanced()}
+                    {showSearchBtn &&
+                        <div key='searchBtn' className={classnames(style.toolbarElement)}>
+                            <div onClick={this.applyFilters} className={style.searchIcon} />
+                        </div>}
+                    {this.state.hasActiveFilters &&
+                        <div className={classnames(style.toolbarElement)}>
+                            <div key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                        </div>}
                 </div>
             </div>
         );
@@ -717,21 +717,19 @@ class GridToolBox extends Component {
         let toggle = () => this.setState({showFilters: true});
 
         return (
-            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
-                <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
-                    Show filters
+            <div className={classnames(style.toolbarWrap)}>
+                <div className={classnames(style.toolbarElement)} onClick={toggle}>                    
+                    <span className={classnames(style.label, style.link)}>Show filters</span>
                 </div>
 
-                <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div className={classnames(style.table, style.fixedHeight)}>
+                <div className={classnames(style.innerGrid)}>
                     {this.props.actionButtonElements.map((el, i) => {
                         return (
-                            <div key={i} className={classnames(style.tableCell, style.spacer)}>
+                            <div key={i} className={classnames(style.spacer)}>
                                 {this.renderActionButton(el, i)}
                             </div>
                         );
                     })}
-                    </div>
                 </div>
 
             </div>

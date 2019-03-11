@@ -52,10 +52,10 @@
 
 .tabsContainer {
   display: flex;
-  flex: 1;
+  flex: 2;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .profileContainer {
@@ -136,7 +136,7 @@ body .profileInfoPopoverMenu {
   position: absolute;
   max-width: 200px;
   height: auto;
-  left: 50%;
+  left: 20%;
   margin-left: -5%;
   background-color: #eee;
   top: 100%;
@@ -157,7 +157,7 @@ body .profileInfoPopoverMenu {
 }
 
 @media (max-width: 680px) {
-  .tabContainer ul li ul {
+  /* .tabContainer ul li ul {
     left: 100% !important;
     right: unset !important;
   }
@@ -172,9 +172,10 @@ body .profileInfoPopoverMenu {
     width: calc(100% - 100px);
     left: unset !important;
   }
-  
+   */
   .tabsContainer {
     flex: 1;
+    padding-left: 20px;
     flex-flow: column;
     flex-wrap: nowrap;
   }

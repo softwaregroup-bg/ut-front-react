@@ -8,16 +8,18 @@ import style from './style.css';
 
 const heightToSubtratc = 59 + 22 + 91;
 const defaultColWidth = 200;
-const defaultMinWidth = 10;
+const defaultMinWidth = 30;
 
 class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            height: window.innerHeight - heightToSubtratc
+            height: window.innerHeight - heightToSubtratc,
+            width: window.innerWidth - 2 * defaultMinWidth
         };
         this.resize = () => this.setState({
-            height: window.innerHeight - heightToSubtratc
+            height: window.innerHeight - heightToSubtratc,
+            width: window.innerWidth - 2 * defaultMinWidth
         });
 
         // Resizible logic
@@ -287,7 +289,7 @@ class Container extends Component {
                 );
             case resizibleTypes.CONTENT:
                 return (
-                    <div className={style.contentWrap} style={{height: this.state.height, overflow: 'auto'}}>
+                    <div className={style.contentWrap} style={{  height: this.state.height }}>
                         {col.child}
                     </div>
                 );
@@ -297,16 +299,19 @@ class Container extends Component {
     }
 
     render() {
+        const columns = this.props.cols;
         let renderCols = [];
-        this.props.cols.forEach((col, index) => {
-            let currentWidth = col.width || defaultColWidth;
+
+        columns.forEach((col, index) => {
+
+            let currentWidth = columns.length === 1 ? window.innerWidth : col.width || defaultColWidth;
             let currentStyles = {width: currentWidth + 'px', maxWidth: currentWidth + 'px'};
+
             let handleOnMouseDownEvent = (e) => {
                 this.setPosition(e, (index - 1));
             };
 
             let contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
-
             let colResult = (
                 <div id={col.id} key={index} className={style.col} style={currentStyles}>
                     <div className={contentClass} style={col.innerColStyles}>
@@ -326,10 +331,8 @@ class Container extends Component {
         });
 
         return (
-            <div style={{height: this.state.height}}>
-                <div ref='tableWrap' id={style.mainContentWrap}>
-                    {renderCols}
-                </div>
+            <div ref='tableWrap' id={style.mainContentWrap}>
+                {renderCols}
             </div>
         );
     }

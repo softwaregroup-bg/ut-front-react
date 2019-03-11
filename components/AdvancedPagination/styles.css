@@ -13,36 +13,42 @@
 }
 
 .paginationWrap {
+    display: flex;
     width: 100%;
+    height: 100%;
     position: relative;
 }
 
-.pageSwitherWrap {
-    position: absolute; /* otherwise pageBoxesWrap will be on top of it */
-    z-index: 10;
-    top: 0;
-    left: 0;
-    margin-top: 2px;
-    overflow: hidden;
+.paginationWrap:after,
+.pageSwitherWrap:after,
+.pageSizeBoxWrap:after {
+    float: none;
     clear: both;
+    content: " ";
+    display: table;
+}
+
+.pageSwitherWrap {
+    padding: 2px 5px;
+    width: 33%;
+    float: left;
 }
 
 .pageBoxesWrap {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    padding: 2px 5px;
+    width: 33%;
     text-align: center;
-    z-index: 2;
+    float: left;
 }
 
 .pageSizeBoxWrap {
-    position: absolute; /* otherwise pageBoxesWrap will be on top of it */
-    z-index: 10;
-    margin-top: 1px;
-    top: 0;
-    right: 0;
-    overflow: hidden;
+    display: inline-flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    padding: 2px 5px;
+    width: 33%;
+    float: left;
+    text-align: right
 }
 
 /* Specific  */
@@ -166,7 +172,7 @@
     margin-right: 10px;
 }
 .pageSizeBoxWrap .itemPerPageDDWrap {
-    width: 100px;
+    min-width: 80px;
     display: block;
     margin-right: 5px;
     float: left;
