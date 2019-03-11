@@ -41,7 +41,7 @@ export default class TabsContainer extends Component {
     render() {
         const { tabset, className } = this.props;
         const tabs = this.getTabComponents(tabset);
-        console.log(tabs);
+
         return (
             <div className={styles.tabWrapper}>
                 <div className={className}>

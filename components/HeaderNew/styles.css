@@ -136,8 +136,8 @@ body .profileInfoPopoverMenu {
   position: absolute;
   max-width: 200px;
   height: auto;
-  left: 20%;
-  margin-left: -5%;
+  left: 22%;
+  margin-left: 25%;
   background-color: #eee;
   top: 100%;
 }
