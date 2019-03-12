@@ -225,7 +225,9 @@ class GridToolBox extends Component {
                           setField={filterElement.setField}
                           setValue={filterElement.setValue}
                           field={filterElement.field}
-                          value={filterElement.value} />
+                          value={filterElement.value}
+                          placeholder={filterElement.placeholder}
+                          externalStyles={filterElement.externalStyles} />
                     </div>);
             default:
                 return null;
