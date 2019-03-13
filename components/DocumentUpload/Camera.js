@@ -44,7 +44,6 @@ export default class Camera extends Component {
     onVideoSupported(stream) {
         this.stream = stream;
         this.refs.video.srcObject = stream;
-        this.refs.video.play();
     }
 
     onVideoNotSupported(error) {
