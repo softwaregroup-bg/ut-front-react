@@ -43,8 +43,11 @@ export default class Camera extends Component {
 
     onVideoSupported(stream) {
         this.stream = stream;
-        this.refs.video.srcObject = stream;
-    }
+        try {
+            this.refs.video.srcObject = stream;
+        } catch (error) {
+            this.refs.video.src = URL.createObjectURL(mediaSource);
+        }
 
     onVideoNotSupported(error) {
         // TODO
