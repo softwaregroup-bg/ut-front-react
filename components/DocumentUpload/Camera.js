@@ -46,7 +46,7 @@ export default class Camera extends Component {
         try {
             this.refs.video.srcObject = stream;
         } catch (error) {
-            this.refs.video.src = URL.createObjectURL(mediaSource);
+            this.refs.video.src = URL.createObjectURL(stream);
         }
     }
 
