@@ -11,6 +11,7 @@
     ]
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
     "lodash.map": "4.6.0",
@@ -47,7 +48,6 @@
     "bignumber.js": "^4.0.2",
     "classnames": "^2.2.5",
     "croppie": "^2.4.0",
-    "date-fns": "^1.29.0",
     "history": "^4.7.2",
     "immutable": "^3.8.1",
     "material-ui": "^0.16.5",
