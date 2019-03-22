@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "bootstrap": "^4.1.3",
+    "tap":"^12.6.0",
     "@kadira/storybook": "^2.35.1",
     "ut-tools": "^6.8.10"
   },
