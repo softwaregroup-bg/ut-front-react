@@ -1,3 +1,14 @@
+## [11.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.0...v11.0.1) (2019-03-25)
+
+
+### Bug Fixes
+
+* date-fns is dependency ([28f391c](https://github.com/softwaregroup-bg/ut-front-react/commit/28f391c))
+* lint ([d45c47b](https://github.com/softwaregroup-bg/ut-front-react/commit/d45c47b))
+* typo ([202eaa9](https://github.com/softwaregroup-bg/ut-front-react/commit/202eaa9))
+
+
+
 # [11.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v10.4.1...v11.0.0) (2019-02-02)
 
 
