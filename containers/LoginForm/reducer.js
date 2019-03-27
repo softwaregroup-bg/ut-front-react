@@ -6,7 +6,9 @@ import {
     VALIDATE_FORM,
     COOKIE_CHECK,
     LOGOUT,
-    CLEAR_LOGIN_STATE
+    CLEAR_LOGIN_STATE,
+    RESET_FORGOTTEN_PASSWORD,
+    CHANGE_LOGIN_TYPE
 } from './actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
@@ -28,13 +30,14 @@ const updateLoginStep = (state, step) => {
 
     state = state.setIn(['loginForm', 'inputs'], newInputs);
 
-    loginStep.disabledFields.forEach(field => {
+    loginStep.disabledFields && loginStep.disabledFields.forEach(field => {
         state = state.setIn(['loginForm', 'inputs', field, 'disabled'], true);
     });
 
     return state.setIn(['loginForm', 'buttonLabel'], loginStep.buttonLabel)
                 .setIn(['loginForm', 'title'], loginStep.title)
                 .set('formError', '')
+                .set('formMessage', '')
                 .set('loginType', step);
 };
 
@@ -44,6 +47,7 @@ const defaultLoginState = Immutable.fromJS({
     loginForm: loginSteps['initial'],
     loginType: '',
     formError: '',
+    formMessage: '',
     shouldSubmit: false,
     loginData: {}
 });
@@ -113,6 +117,30 @@ const loginReducer = (state = defaultLoginState, action) => {
                     return state.set('result', Immutable.fromJS(action.result))
                                 .set('cookieChecked', true)
                                 .set('authenticated', true);
+                }
+            }
+            return state;
+        case CHANGE_LOGIN_TYPE:
+            return updateLoginStep(state, action.params.loginType);
+        case RESET_FORGOTTEN_PASSWORD:
+            if (action.methodRequestState === 'finished') {
+                if (action.error) {
+                    return state.set('formError', action.error.errorPrint || action.error.message);
+                } else if (action.result) {
+                    if (action.result.forgottenResetPassword) {
+                        return defaultLoginState;
+                    } else if (action.result.otpSentByEmail || action.result.otpSentBySms) {
+                        state = updateLoginStep(state, 'forgottenPasswordReset');
+                        let channels = [];
+                        if (action.result.otpSentByEmail) {
+                            channels.push('email');
+                        }
+                        if (action.result.otpSentBySms) {
+                            channels.push('sms');
+                        }
+                        return state.set('formMessage', `OTP has sent to your ${channels.join(' and ')}`);
+                    }
+                    return state;
                 }
             }
             return state;

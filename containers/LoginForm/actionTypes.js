@@ -6,3 +6,5 @@ export const VALIDATE_FORM = Symbol('VALIDATE_FORM');
 export const COOKIE_CHECK = Symbol('COOKIE_CHECK');
 export const LOGOUT = Symbol('LOGOUT');
 export const CLEAR_LOGIN_STATE = Symbol('CLEAR_LOGIN_STATE');
+export const RESET_FORGOTTEN_PASSWORD = Symbol('RESET_FORGOTTEN_PASSWORD');
+export const CHANGE_LOGIN_TYPE = Symbol('CHANGE_LOGIN_TYPE');

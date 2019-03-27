@@ -5,7 +5,9 @@ import {
     VALIDATE_FORM,
     LOGOUT,
     SET_INPUT_VALUE,
-    CLEAR_LOGIN_STATE
+    CLEAR_LOGIN_STATE,
+    RESET_FORGOTTEN_PASSWORD,
+    CHANGE_LOGIN_TYPE
 } from './actionTypes';
 
 const getTimezone = () => {
@@ -66,4 +68,24 @@ export const logout = (params) => ({
 export const clearLoginState = () => ({
     type: CLEAR_LOGIN_STATE,
     params: {}
+});
+
+export const forgottenPasswordReset = (params = {}) => (dispatch, getStore) => {
+    return dispatch({
+        method: 'cibUser.forgottenPasswordReset',
+        type: RESET_FORGOTTEN_PASSWORD,
+        params: {
+            username: params.username,
+            otp: params.otp,
+            newPassword: params.newPassword
+        },
+        methodType: params.otp ? 'forgottenPasswordReset' : 'forgottenPasswordResetSendOTP'
+    });
+};
+
+export const changeLoginType = (type) => ({
+    type: CHANGE_LOGIN_TYPE,
+    params: {
+        loginType: type
+    }
 });
