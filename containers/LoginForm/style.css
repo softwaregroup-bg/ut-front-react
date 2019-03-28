@@ -1,0 +1,7 @@
+.forgotPasswordLabel {
+    position: relative;
+    top: -30px;
+    float: right;
+    right: 10px;
+    cursor: pointer;
+}

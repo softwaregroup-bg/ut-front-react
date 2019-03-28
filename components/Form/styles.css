@@ -17,3 +17,13 @@
 .formBody {
     height: 100%;
 }
+
+.formMessage {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    line-height: 18px;
+}

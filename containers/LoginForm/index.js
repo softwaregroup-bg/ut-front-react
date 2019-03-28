@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash.debounce';
-
 import Form from '../../components/Form';
-import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState, forgottenPasswordReset, changeLoginType } from './actions';
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
+import style from './style.css';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -18,6 +18,8 @@ class LoginForm extends Component {
         this.syncInputsValuesWithStore = this.syncInputsValuesWithStore.bind(this);
 
         this.submit = this.submit.bind(this);
+
+        this.onForgotPasswordClick = this.onForgotPasswordClick.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -56,6 +58,10 @@ class LoginForm extends Component {
         });
     }
 
+    onForgotPasswordClick() {
+        this.props.forgottenPasswordReset(this.props.loginData.toJS());
+    }
+
     syncInputsValuesWithStore(form) {
         const { setInputValue, inputs } = this.props;
         let allInputs = form.querySelectorAll('input');
@@ -82,17 +88,25 @@ class LoginForm extends Component {
     }
 
     submit(loginType, loginData) {
-        let { bioScan, identityCheck, routerParams: {appId} } = this.props;
+        let { bioScan, identityCheck, forgottenPasswordReset, routerParams: {appId} } = this.props;
         if (appId) {
             loginData = loginData.set('appId', appId);
         }
-        loginType === 'bio' ? bioScan() : identityCheck(loginData);
+        switch (loginType) {
+            case 'bio':
+                bioScan();
+                break;
+            case 'forgottenPasswordReset':
+                forgottenPasswordReset(loginData.toJS());
+                break;
+            default:
+                identityCheck(loginData);
+        }
     }
 
     render() {
-        let { inputs, error, title, buttonLabel } = this.props;
-
-        return (
+        let { inputs, error, title, buttonLabel, formMessage, loginType } = this.props;
+        return (<div>
             <Form
               ref='loginForm'
               className='loginForm'
@@ -101,8 +115,11 @@ class LoginForm extends Component {
               buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
               onChange={this.onChange}
               onSubmit={this.validateForm}
-              error={error} />
-        );
+              error={error}
+              message={formMessage} />
+            {inputs.get('password') && <a onClick={this.onForgotPasswordClick} className={style.forgotPasswordLabel}>Forgot Password</a>}
+            { loginType === 'forgottenPasswordReset' && <a className={style.forgotPasswordLabel} onClick={() => this.props.changeLoginType('initial')} >Back to login</a>}
+        </div>);
     }
 }
 
@@ -115,11 +132,12 @@ export default connect(
             title: login.getIn(['loginForm', 'title']),
             buttonLabel: login.getIn(['loginForm', 'buttonLabel']),
             error: login.get('formError'),
+            formMessage: login.get('formMessage'),
             shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
             loginType: login.get('loginType')
         };
     },
-    { setInputValue, validateForm, identityCheck, bioScan, clearLoginState }
+    { setInputValue, validateForm, identityCheck, bioScan, clearLoginState, forgottenPasswordReset, changeLoginType }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -137,7 +155,10 @@ LoginForm.propTypes = {
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,
     bioScan: PropTypes.func,
-    clearLoginState: PropTypes.func
+    clearLoginState: PropTypes.func,
+    forgottenPasswordReset: PropTypes.func,
+    changeLoginType: PropTypes.func,
+    formMessage: PropTypes.string
 };
 
 LoginForm.contextTypes = {

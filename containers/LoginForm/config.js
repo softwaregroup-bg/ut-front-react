@@ -84,6 +84,12 @@ export const getInputs = (inputNames) => {
 };
 
 export const loginSteps = {
+    'forgottenPasswordReset': {
+        inputs: getInputs(['username', 'otp', 'newPassword', 'confirmPassword']),
+        disabledFields: ['username'],
+        buttonLabel: 'Reset',
+        title: 'Reset Password'
+    },
     'initial': {
         inputs: getInputs(['username']),
         buttonLabel: 'Next',

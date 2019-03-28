@@ -1,6 +1,6 @@
 import { getLoginStaticStorage, setLoginStaticStorage, resetLoginStaticStorage } from './loginStaticStorage';
 import { actionIsForLogin, loginFormPaths, loginDataPaths } from './helpers';
-import { LOGIN, LOGOUT, CLEAR_LOGIN_STATE } from '../actionTypes';
+import { LOGIN, LOGOUT, CLEAR_LOGIN_STATE, RESET_FORGOTTEN_PASSWORD } from '../actionTypes';
 
 // Before login reducer
 
@@ -35,6 +35,7 @@ export const loginReducerProxy = (state, action) => {
     }
     if (action.type === LOGOUT ||
         action.type === CLEAR_LOGIN_STATE ||
+        (action.type === RESET_FORGOTTEN_PASSWORD && action.result && action.result.forgottenResetPassword) ||
         (action.type === LOGIN && state && state.get('authenticated') && state.get('cookieChecked'))) {
         resetLoginStaticStorage();
     }
