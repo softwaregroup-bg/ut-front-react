@@ -244,7 +244,7 @@ class TabContainer extends Component {
 
 TabContainer.propTypes = {
     location: PropTypes.object,
-    headerTitle: PropTypes.string,
+    headerTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     headerBreadcrumbsRemoveSlashes: PropTypes.number,
     tabs: PropTypes.arrayOf(
         PropTypes.shape({
