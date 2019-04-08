@@ -72,7 +72,7 @@ export const clearLoginState = () => ({
 
 export const forgottenPasswordReset = (params = {}) => (dispatch, getStore) => {
     return dispatch({
-        method: 'cibUser.forgottenPasswordReset',
+        method: 'cibUser.forgottenPasswordUser',
         type: RESET_FORGOTTEN_PASSWORD,
         params: {
             username: params.username,
