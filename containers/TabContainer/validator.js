@@ -40,7 +40,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                 let currentValue;
                 if (validation.key) {
                     currentValue = sourceMap.getIn(validation.key);
-                    if (immutable.Iterable.isIterable(currentValue)) {
+                    if (immutable.Iterable.isIterable(currentValue) && !immutable.Iterable.isIndexed(currentValue)) {
                         currentValue = currentValue.get('value');
                     }
                 }
