@@ -1,3 +1,12 @@
+## [11.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.3...v11.0.4) (2019-04-10)
+
+
+### Bug Fixes
+
+* tabContainer iterable validator ([ec7b33e](https://github.com/softwaregroup-bg/ut-front-react/commit/ec7b33e))
+
+
+
 ## [11.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.2...v11.0.3) (2019-04-04)
 
 
