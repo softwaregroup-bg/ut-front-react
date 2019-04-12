@@ -73,7 +73,7 @@ class DocumentsContainer extends Component {
         let docs = documents;
         let docsChanged = documentsChanged.toJS();
         if (selectedFilter && selectedFilter === 'archived') {
-            docs = documentArchived.get('data').toJS();
+            docs = (documentArchived.get('data') || immutable.fromJS([])).toJS();
             docsChanged = [];
         }
         return (
