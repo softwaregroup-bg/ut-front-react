@@ -71,7 +71,7 @@ export const inputs = {
         validateOrder: ['isRequired', 'length'],
         validations: {
             isRequired: true,
-            length: 4
+            length: 6
         }
     }
 };
