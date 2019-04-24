@@ -98,7 +98,7 @@ export default class DocumentUpload extends Component {
                 uploadMethod: 'upload',
                 mode: 'preview',
                 fileDimensions,
-                showCrop: !this.props.hideCrop && true
+                showCrop: extension === 'jpg' || extension === 'png' || extension === 'jpeg',
             });
         });
     }
@@ -122,16 +122,18 @@ export default class DocumentUpload extends Component {
 
     onUseFile() {
         const { screenshot, hasCropped } = this.state;
-
-        // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
-        if (this.props.hideCrop || hasCropped) {
-            this.uploadFile(screenshot);
-        } else {
+        
+         // If the user has cropped, use the file, otherwise crop the visible area first and then use the file        
+        // revesred condition because this.props.hideCrop always is true and never entered in the else statemnet
+        // idea is image always to be cropped no matter user had pressed crop or use button
+        if (screenshot.startsWith('data:image') && !hasCropped) {
             this.crop();
 
             this.setState({
                 shouldUse: true
             });
+        } else if (this.props.hideCrop) {
+            this.uploadFile(screenshot);
         }
     }
 
