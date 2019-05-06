@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import style from './style.css';
 import { Container, Row, Col } from 'reactstrap';
 import Box from '../../components/Box';
-import { identityCheck, bioScan, setLoginData } from './actions';
+import { identityCheck, setLoginData } from './actions';
 import {UserName, Title, SubmitButton, ErrorSection, Password} from './partials';
 
 const Login = React.createClass({
     propTypes: {
         identityCheck: PropTypes.func,
-        bioScan: PropTypes.func,
         setLoginData: PropTypes.func,
         loginData: PropTypes.object,
         login: PropTypes.object
@@ -123,5 +122,5 @@ export default connect(
         login: state.login,
         loginData: state.loginData
     }),
-    {identityCheck, bioScan, setLoginData}
+    {identityCheck, setLoginData}
 )(Login);
