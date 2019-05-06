@@ -1,3 +1,12 @@
+## [11.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.4...v11.0.5) (2019-05-06)
+
+
+### Bug Fixes
+
+* remove unused property ([f468b15](https://github.com/softwaregroup-bg/ut-front-react/commit/f468b15))
+
+
+
 ## [11.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.3...v11.0.4) (2019-04-10)
 
 
