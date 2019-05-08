@@ -88,7 +88,7 @@ class LoginForm extends Component {
     }
 
     submit(loginType, loginData) {
-        let { bioScan, identityCheck, forgottenPasswordReset, routerParams: {appId} } = this.props;
+        let { bioScan, identityCheck, routerParams: {appId} } = this.props;
         if (appId) {
             loginData = loginData.set('appId', appId);
         }
@@ -97,7 +97,7 @@ class LoginForm extends Component {
                 bioScan();
                 break;
             case 'forgottenPasswordReset':
-                forgottenPasswordReset(loginData.toJS());
+                this.props.changeLoginType('password');
                 break;
             default:
                 identityCheck(loginData);
@@ -105,7 +105,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { inputs, error, title, buttonLabel, formMessage, loginType } = this.props;
+        let { inputs, error, title, buttonLabel, formMessage } = this.props;
         return (<div>
             <Form
               ref='loginForm'
@@ -118,7 +118,6 @@ class LoginForm extends Component {
               error={error}
               message={formMessage} />
             {inputs.get('password') && <a onClick={this.onForgotPasswordClick} className={style.forgotPasswordLabel}>Forgot Password</a>}
-            { loginType === 'forgottenPasswordReset' && <a className={style.forgotPasswordLabel} onClick={() => this.props.changeLoginType('initial')} >Back to login</a>}
         </div>);
     }
 }
