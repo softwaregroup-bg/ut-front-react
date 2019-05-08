@@ -35,6 +35,7 @@ const updateLoginStep = (state, step) => {
     });
 
     return state.setIn(['loginForm', 'buttonLabel'], loginStep.buttonLabel)
+                .setIn(['loginForm', 'shouldSubmit'], false)
                 .setIn(['loginForm', 'title'], loginStep.title)
                 .set('formError', '')
                 .set('formMessage', '')
