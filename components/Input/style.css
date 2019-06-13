@@ -298,8 +298,7 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    padding-left: 10px !important;
-    padding-right: 1px !important;
+    padding: 1px 38px 1px 10px !important;
 }
 
 .dropdownIconBackground svg, .dropdownIconBackgroundDisabled svg { /* pass over material ui styling limitations */
@@ -431,7 +430,7 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .dropdownIconWrap {
     position: absolute;
-    top: 1px;
+    top: 0;
     right: 1px;
     height: 26px;
     width: 26px;
@@ -467,15 +466,9 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     font-size: 15px;
     margin-top: 3px;
 }
-.dropdownPlaceholder p, .dropdownPlaceholder {
-    width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.multiSelectDropdownPlaceholder div, .groupDropdownPlaceholder div {
-    width: 90%;
+.dropdownPlaceholder div,
+.multiSelectDropdownPlaceholder div,
+.groupDropdownPlaceholder div {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
