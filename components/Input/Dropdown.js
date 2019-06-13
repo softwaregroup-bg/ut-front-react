@@ -114,9 +114,9 @@ class Dropdown extends Component {
             <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
                 <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                     <div className={ddstyles.dropdownPlaceholder}>
-                        <p title={this.getTitle(this.dropdownPlaceholder)}>
+                        <div title={this.getTitle(this.dropdownPlaceholder)}>
                             {this.dropdownPlaceholder}
-                        </p>
+                        </div>
                     </div>
                     <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
                         <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
@@ -129,8 +129,7 @@ class Dropdown extends Component {
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}
-                >
+                    animation={PopoverAnimationVertical}>
                     <Menu
                         value={this.state.value}
                         onChange={this.handleChange}
