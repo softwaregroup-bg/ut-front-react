@@ -4,6 +4,7 @@ import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
+import SvgDropdownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -113,7 +114,9 @@ class MultiSelectDropdown extends Dropdown {
                             {selectedItems || this.props.placeholder}
                         </div>
                     </div>
-                    <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
+                    <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
+                        <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
+                    </div>
                     <div className={ddstyles.hideTextWrap} />
                 </div>
 
