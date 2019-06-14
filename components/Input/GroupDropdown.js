@@ -4,6 +4,7 @@ import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
 import MenuItem from 'material-ui/MenuItem';
+import SvgDropdownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -61,8 +62,7 @@ class GroupDropdown extends Dropdown {
                         key={group}
                         className={style.groupDropdownMenuItem}
                         disabled
-                        primaryText={group}
-                    />
+                        primaryText={group} />
                     <Divider />
                     {
                         groups[group].map((item, i) => {
@@ -77,8 +77,7 @@ class GroupDropdown extends Dropdown {
                                     disabled={item.disabled}
                                     value={item.key}
                                     onTouchTap={() => { this.handleChange(item); }}
-                                    primaryText={item.name}
-                                />
+                                    primaryText={item.name} />
                             );
                         })
                     }
@@ -117,7 +116,9 @@ class GroupDropdown extends Dropdown {
                             {this.dropdownPlaceholder}
                         </div>
                     </div>
-                    <svg className={classnames(arrowIconDisabled, ddstyles.arrowIcon, ddstyles.dropdownIconWrap)} />
+                    <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
+                        <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
+                    </div>
                     <div className={ddstyles.hideTextWrap} />
                 </div>
                 <Popover
@@ -126,8 +127,7 @@ class GroupDropdown extends Dropdown {
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}
-                >
+                    animation={PopoverAnimationVertical} >
                     <Menu
                         autoWidth={false}
                         disableAutoFocus
