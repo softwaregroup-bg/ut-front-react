@@ -333,8 +333,7 @@ class AdvancedPagination extends Component {
                         defaultSelected={this.pageSize || this.props.itemsPerPageData[0]}
                         onSelect={handlePageSizeDropDrown}
                         cssStyle={dropdownstyles}
-                        iconStyles={dropdownIconStyles}
-                    />
+                        iconStyles={dropdownIconStyles} />
                 </div>
                 <div className={styles.perPageWrap}> per page</div>
             </div>
