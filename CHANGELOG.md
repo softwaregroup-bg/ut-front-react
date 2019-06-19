@@ -1,3 +1,15 @@
+## [11.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.5...v11.0.6) (2019-06-19)
+
+
+### Bug Fixes
+
+* accordeon arrow position ([d9319ac](https://github.com/softwaregroup-bg/ut-front-react/commit/d9319ac))
+* equalize svgs ([711361c](https://github.com/softwaregroup-bg/ut-front-react/commit/711361c))
+* out of place dropdown icon ([b100895](https://github.com/softwaregroup-bg/ut-front-react/commit/b100895))
+* out of place pagination icon ([9dc56b2](https://github.com/softwaregroup-bg/ut-front-react/commit/9dc56b2))
+
+
+
 ## [11.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.4...v11.0.5) (2019-05-06)
 
 
