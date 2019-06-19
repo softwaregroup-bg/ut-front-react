@@ -25,6 +25,9 @@
 }
 
 .boxTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #FAFAFA;
     border-bottom: 1px solid #E6E6E6;
 }

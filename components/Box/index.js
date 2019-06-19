@@ -23,7 +23,9 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
 
     let accordeonDirection = collapsed ? arrowDirection.collapsed : arrowDirection.expanded;
 
-    let accordeon = showAccordeon ? <div className='pull-xs-right clearfix'><Glyphicon glyphicon={accordeonDirection} style={{ color: '#B1B5B6' }} /></div> : null;
+    let accordeon = showAccordeon
+        ? <Glyphicon glyphicon={accordeonDirection} style={{ color: '#B1B5B6' }} />
+        : null;
     let fullWidthClass = fullWidth ? style.boxFull : style.boxInnerPadding;
     let transparentClass = transparent ? style.boxTransparent : null;
     let marginBottomClass = marginBottom ? null : style.boxMarginBottom;
