@@ -139,7 +139,7 @@ const loginReducer = (state = defaultLoginState, action) => {
                         if (action.result.otpSentBySms) {
                             channels.push('sms');
                         }
-                        return state.set('formMessage', `OTP has sent to your ${channels.join(' and ')}`);
+                        return state.set('formMessage', `OTP has been sent to your phone number via ${channels.join(' and ')}`);
                     }
                     return state;
                 }
