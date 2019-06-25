@@ -9,13 +9,13 @@
 }
 
 .dataGridTable a {
-    color: var(--ut-front-react-standardDataGridTableColor);
-    text-decoration: none;
+    color: var(--ut-front-react-standardDataGridTableColor) !important;
+    text-decoration: none !important;
 }
 
 .dataGridTable a:hover {
-    color: var(--ut-front-react-standardDataGridTableColor);
-    text-decoration: underline;
+    color: var(--ut-front-react-standardDataGridTableColor) !important;
+    text-decoration: underline !important;
 }
 
 .dataGridTable tr td, .dataGridTable tr th {
