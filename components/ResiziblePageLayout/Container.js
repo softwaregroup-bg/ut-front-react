@@ -229,7 +229,11 @@ class Container extends Component {
         } else {
             indexToShrink = index + 1;
         }
-
+        
+        if(indexToShrink < 0 || indexToShrink >= this.resizeObjects.length) {
+            return;
+        }
+        
         let offsetToAdd = this.resizeObjects[index].currentWidth - width;
         let secondColNewWidth = this.resizeObjects[indexToShrink].currentWidth + offsetToAdd;
 
@@ -287,7 +291,8 @@ class Container extends Component {
                 );
             case resizibleTypes.CONTENT:
                 return (
-                    <div className={style.contentWrap} style={{height: this.state.height, overflow: 'auto'}}>
+                    <div className={style.contentWrap} 
+                        style={{height: this.state.height, overflow: 'auto'}}>
                         {col.child}
                     </div>
                 );
