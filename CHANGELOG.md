@@ -1,3 +1,13 @@
+## [11.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.6...v11.0.7) (2019-06-26)
+
+
+### Bug Fixes
+
+* link styles ([8ffe99b](https://github.com/softwaregroup-bg/ut-front-react/commit/8ffe99b))
+* remove padding ([94398c1](https://github.com/softwaregroup-bg/ut-front-react/commit/94398c1))
+
+
+
 ## [11.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.5...v11.0.6) (2019-06-19)
 
 
