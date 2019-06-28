@@ -202,6 +202,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                 tmpDocId--;
                 tmpAttId--;
                 let docObj = {
+                    actorId,
                     documentId: tmpDocId,
                     documentTypeId: doc.documentTypeId,
                     description: doc.description || null
