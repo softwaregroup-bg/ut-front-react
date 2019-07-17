@@ -1,4 +1,4 @@
-@import './default-config.css';
+@import '../default-config.css';
 @import 'config.css';
 
 .dpBoxWrap {
@@ -23,7 +23,7 @@
 .dpWrap {
     display: inline-flex;
     min-height: 30px;
-    margin: 0 20px 0 0;
+    /* margin: 0 20px 0 0; */
 }
 
 .dpWrap.last {
@@ -45,7 +45,7 @@
     right: 1px;
     border: none;
     background: var(--ut-front-react-standardDatePickerBackgroundColor);
-    background-image: url('./images/calendar.png');
+    background-image: url('../images/calendar.png');
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -68,16 +68,26 @@
     margin-bottom: 5px;
 }
 
-.verticalWrapper .dpWrap .label{
+.verticalWrapper .dpWrap{
     width: 28%;
-    text-align: left;
+    text-align: right;
     font-size: 14px;
     color: #595959;
     font-weight: bold;
 }
 
-.verticalWrapper .dpWrap .dp{
+.label{
+    width: 39%;
+    text-align: right;
+    font-size: 14px;
+    color: #595959;
+    font-weight: bold;
+}
+.verticalWrapper .dpWrap {
     width: 70%;
+}
+.dp{
+    width: 65%;
 }
 
 /* Styles for Simple Date Picker */
@@ -119,7 +129,7 @@
     width: 26px;
     margin: 2px;
     background: var(--ut-front-react-standardDatePickerBackgroundColor);
-    background-image: url('./images/calendar.png');
+    background-image: url('../images/calendar.png');
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -182,7 +192,7 @@
 
 .labelWrapHorizontal, .labelWrap {
     font-size: 14px;
-    text-align: left;
+    text-align: right;
 }
 
 .labelWrapHorizontal {
