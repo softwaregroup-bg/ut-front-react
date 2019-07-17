@@ -1,0 +1,208 @@
+@import '../default-config.css';
+@import 'config.css';
+
+.dpBoxWrap {
+    display: flex;
+    width: 100%;
+    position: relative;
+    font-weight: normal;
+}
+
+.dp {
+    position: relative;
+    max-width: 100%;
+    border: 1px solid #D7D6D6;
+    color: #595959;
+    font-weight: normal;
+}
+
+.dp.dpNoLabel {
+    width: 100%;
+}
+
+.dpWrap {
+    display: inline-flex;
+    min-height: 30px;
+    /* margin: 0 20px 0 0; */
+}
+
+.dpWrap.last {
+    margin: 0;
+}
+
+.dpWrap input {
+    width: 100%;
+    padding: 4px 36px 4px 10px;
+    border: none;
+    height: 28px;
+}
+
+.dpWrap button {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    border: none;
+    background: var(--ut-front-react-standardDatePickerBackgroundColor);
+    background-image: url('../images/calendar.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.dpWrap .label, .masterLabel {
+    align-self: center;
+    margin: 0 10px 0 0;
+}
+
+.dpBoxGroupWrap {
+    display: flex;
+    max-width: 100%;
+}
+
+
+.verticalWrapper .dpWrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.verticalWrapper .dpWrap{
+    width: 28%;
+    text-align: right;
+    font-size: 14px;
+    color: #595959;
+    font-weight: bold;
+}
+
+.label{
+    width: 39%;
+    text-align: right;
+    font-size: 14px;
+    color: #595959;
+    font-weight: bold;
+}
+.verticalWrapper .dpWrap {
+    width: 70%;
+}
+.dp{
+    width: 65%;
+}
+
+/* Styles for Simple Date Picker */
+
+.datePickerLabeled {
+    width: 70% !important;
+}
+
+.datePicker {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    vertical-align: middle;
+}
+
+.datePicker input:hover {
+    cursor: pointer !important;
+}
+
+.datePicker input:disabled {
+    cursor: not-allowed !important;
+}
+
+.datePicker input {
+    padding-right: 32px !important;
+    padding-left: 5px !important;
+}
+
+.datePicker hr {
+    display: none;
+    width: 0px;
+}
+
+.datePickerIcon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 26px;
+    width: 26px;
+    margin: 2px;
+    background: var(--ut-front-react-standardDatePickerBackgroundColor);
+    background-image: url('../images/calendar.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.datePickerIconDisabled {
+    background-color: #d7d6d6;
+}
+
+.error {
+    border-color: #ff3333 !important;
+}
+
+.errorWrap {
+    height: 23px;
+    overflow: hidden;
+    font-size: 12px;
+    -webkit-transition: all 0.6s; /* Safari */
+    transition: all 0.6s;
+}
+
+.errorWrap .errorMessage {
+    position: relative !important;
+    display: block;
+    color: #ff3333;
+    padding-top: 5px;
+}
+
+.hh {
+    height: 0 !important;
+}
+
+.textFieldStyle {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.dpStylesValid {
+    border: 1px solid #D6D6D6;
+    height: 30px;
+}
+
+.dpStylesNonValid {
+    border: 1px solid #ff3333;
+    height: 30px;
+}
+
+.wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #595959;
+}
+.readonlyInput {
+    cursor: not-allowed;
+    border-color: #EBEBEB !important;
+}
+
+.labelWrapHorizontal, .labelWrap {
+    font-size: 14px;
+    text-align: right;
+}
+
+.labelWrapHorizontal {
+    width: 40%;
+}
+
+.labelWrap {
+    width: 30%;
+}
+
+.boldLabel {
+    font-weight: bold;
+}
