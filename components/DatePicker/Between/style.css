@@ -21,6 +21,7 @@
 
 .dpWrap {
     display: inline-flex;
+    flex: 2 1 auto;
     min-height: 30px;
     /* margin: 0 20px 0 0; */
 }
@@ -30,7 +31,7 @@
 }
 
 .dpWrap input {
-    width: 100%;
+    width: 90%;
     padding: 4px 36px 4px 10px;
     border: 1px solid #D7D6D6;
     height: 28px;
@@ -56,37 +57,48 @@
 
 .dpBoxGroupWrap {
     display: flex;
+    justify-content: space-evenly;
     max-width: 100%;
 }
 
+.dpWrap .label {
+    white-space: nowrap;
+}
 
-.verticalWrapper .dpWrap {
+
+/* .verticalWrapper .dpWrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     margin-bottom: 5px;
 }
 
 .verticalWrapper .dpWrap .label{
-    width: 70%;
-    text-align: right;
+    flex-basis: 160px;
+    flex-grow: 1;
+    text-align: justify;
     font-size: 14px;
     color: #595959;
     font-weight: bold;
-}
+} */
 
 .label{
-    width: 45%;
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     color: #595959;
     font-weight: bold;
 }
-.verticalWrapper .dpWrap {
+/* .verticalWrapper .dpWrap {
     width: 70%;
+} */
+
+.last .label {
+    text-align: right !important;
+    margin-left: 10px;
 }
+
 /* .dp{
-    width: 65%;
+    width: 100%;
 } */
 
 /* Styles for Simple Date Picker */
