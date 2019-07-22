@@ -55,7 +55,10 @@ class DocumentsGrid extends Component {
                 gridData = documents;
                 break;
             case 'archived':
-                gridData = documentArchived.get('data').toJS();
+                if (!documentArchived.get('requiresFetch')) {
+                    const data = documentArchived.get('data');
+                    gridData =  data && data.toJS() || [];
+                }
                 break;
         }
         if (gridData.length > 0) {
