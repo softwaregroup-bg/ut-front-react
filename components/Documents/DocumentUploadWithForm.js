@@ -104,7 +104,6 @@ class DocumentUploadWithForm extends Component {
                       }}
                       isValid={this.state.errors.description === undefined}
                       errorMessage={this.state.errors.description}
-                      readonly={disabledField}
                     />
                 </div>
             </div>
@@ -157,6 +156,7 @@ class DocumentUploadWithForm extends Component {
               additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
               isAdditionalContentValid={this.state.isValidForm}
               useFile={this.useFileHandler}
+              description={this.state.description}
               hideCrop
               allowedFileTypes={this.props.allowedFileTypes}
               clearLogin={this.props.clearLogin}

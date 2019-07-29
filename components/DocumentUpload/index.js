@@ -322,7 +322,8 @@ export default class DocumentUpload extends Component {
                             filename: response.filename,
                             createdDate: new Date().toISOString(),
                             extension: getFileExtension(response.filename),
-                            contentType: response.headers['content-type']
+                            contentType: response.headers['content-type'],
+                            description: this.props.description || '',
                         });
                     } catch (e) {
                         this.setError(e);
