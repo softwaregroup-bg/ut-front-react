@@ -116,6 +116,7 @@ const documents = (state = defaultState, action) => {
             newObject.attachments[0].contentType = doc.contentType;
             newObject.attachments[0].url =doc.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + doc.filename : documentPrefix + doc.filename;
             newObject.attachments[0].isNew = true;
+            newObject.description = doc.description;
             newObject.statusId = 'pending';
             let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
             let alreadyReplacedOnce = changedDocuments.findIndex((docObj) => {
