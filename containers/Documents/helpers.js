@@ -287,7 +287,7 @@ export function arrangeDocuments(currentDocs, newDocs) {
     });
     newDocs.map((doc) => {
         var matchedDoc = currentDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; });
-        if (matchedDoc && ['deleted', 'archived'].includes(doc.statusId)) {
+        if (matchedDoc && ['deleted'].includes(doc.statusId)) {
             removedDocs.push(matchedDoc);
         } else if(matchedDoc) {
             arrangeNewDocs.push(doc);
