@@ -84,7 +84,7 @@ const documents = (state = defaultState, action) => {
                     let data = action.result.documentTypeClass.map((type) => {
                         return {
                             key: type.id,
-                            name: type.description && type.description.length>0 ? type.description : type.name
+                            name: type.name
                         };
                     });
                     return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
@@ -103,7 +103,7 @@ const documents = (state = defaultState, action) => {
                 return state.setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
         case ADD_NEW_DOCUMENT:
-            let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject)).sortBy(d => d.documentType);
+            let docs = state.getIn([action.props.identifier, 'changedDocuments']).unshift(Immutable.fromJS(action.props.newDocumentObject)).sortBy(d => d.documentType);
             let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState)
