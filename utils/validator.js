@@ -183,6 +183,31 @@ export class Validator {
             error: validationError
         };
     }
+
+    validateAllAndReturnErrors(inputs) {
+        let isValid = true;
+        const invalidFields = inputs.reduce((result, config, key) => {
+            const validationObj = this.validateInput(key, config.get('value'), inputs);
+
+            if (!validationObj.isValid) {
+                if (isValid) {
+                    isValid = false;
+                }
+
+                result.push(Object.assign(
+                    { field: key },
+                    this.validateInput(key, config.get('value'), inputs)
+                ));
+            }
+
+            return result;
+        }, []);
+
+        return fromJS({
+            isValid,
+            invalidFields
+        });
+    }
 }
 
 /*

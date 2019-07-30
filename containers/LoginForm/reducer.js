@@ -80,7 +80,7 @@ const loginReducer = (state = defaultLoginState, action) => {
         case SET_INPUT_VALUE:
             return state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
         case VALIDATE_FORM:
-            validationResult = validator.validateAll(state.getIn(['loginForm', 'inputs']));
+            validationResult = validator.validateAllAndReturnErrors(state.getIn(['loginForm', 'inputs']));
 
             const getLoginData = () => {
                 let inputs = state.getIn(['loginForm', 'inputs']);
@@ -93,7 +93,7 @@ const loginReducer = (state = defaultLoginState, action) => {
                 return currentLoginData;
             };
 
-            if (validationResult.isValid) {
+            if (validationResult.get('isValid')) {
                 let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
 
                 if (prevInvalidField) {
@@ -102,11 +102,16 @@ const loginReducer = (state = defaultLoginState, action) => {
 
                 state = state.set('loginData', getLoginData());
             } else {
-                state = state.setIn(['loginForm', 'inputs', validationResult.invalidField, 'error'], validationResult.error)
-                              .set('formError', '');
+
+                validationResult.get('invalidFields').map(invalidFieldRes => {
+                    const { error, field } = invalidFieldRes.toJS();
+                    state = state.setIn(['loginForm', 'inputs', field, 'error'], error);
+                });
+
+                state = state.set('formError', '');
             }
 
-            return state.setIn(['loginForm', 'shouldSubmit'], validationResult.isValid);
+            return state.setIn(['loginForm', 'shouldSubmit'], validationResult.get('isValid'));
 
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
