@@ -84,7 +84,7 @@ const documents = (state = defaultState, action) => {
                     let data = action.result.documentTypeClass.map((type) => {
                         return {
                             key: type.id,
-                            name: type.name
+                            name: type.description && type.description.length>0 ? type.description : type.name
                         };
                     });
                     return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
