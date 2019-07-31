@@ -42,10 +42,7 @@ export const loginReducerProxy = (state, action) => {
     let loginStaticStorage = getLoginStaticStorage();
 
     loginFormPaths.forEach(path => {
-        if (state.getIn(path)) {
-            loginStaticStorage = loginStaticStorage.setIn(path, state.getIn(path));
-        }
-        state = state.deleteIn(path);
+        loginStaticStorage = loginStaticStorage.setIn(path, state.getIn(path));
     });
     loginDataPaths.forEach(path => {
         if (state.getIn(path)) {
