@@ -78,7 +78,24 @@ const loginReducer = (state = defaultLoginState, action) => {
         case BIO_LOGIN:
             return state;
         case SET_INPUT_VALUE:
-            return state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
+            state = state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
+            // returns true only if we are changing password field and there is "password match error"
+            const hasPasswordMatchError = (input, currentInput) => {
+                return input.get('error').toUpperCase().indexOf('PASSWORD') !== -1 && 
+                    input.get('error').toUpperCase().indexOf('MATCH') !== -1 &&
+                    currentInput.toUpperCase().indexOf('PASSWORD') !== -1;
+            }
+            let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('name')===action.input);
+            if(prevInvalidField) {
+                // we clear old error message on this field, and in case it's regarding passwords, on other fields too
+                state = state.setIn(['loginForm', 'inputs', action.input, 'error'], '')
+                state.getIn(['loginForm', 'inputs']).forEach(input => {
+                    if(hasPasswordMatchError(state.getIn(['loginForm', 'inputs', input.get('name')]), action.input)) {
+                        state = state.setIn(['loginForm', 'inputs', input.get('name'), 'error'], '')
+                    }
+                });
+            }
+            return state;
         case VALIDATE_FORM:
             validationResult = validator.validateAllAndReturnErrors(state.getIn(['loginForm', 'inputs']));
 
@@ -102,7 +119,6 @@ const loginReducer = (state = defaultLoginState, action) => {
 
                 state = state.set('loginData', getLoginData());
             } else {
-
                 validationResult.get('invalidFields').map(invalidFieldRes => {
                     const { error, field } = invalidFieldRes.toJS();
                     state = state.setIn(['loginForm', 'inputs', field, 'error'], error);
