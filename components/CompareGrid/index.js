@@ -4,6 +4,7 @@ import Accordion from '../Accordion';
 import CompareGridItem from './CompareGridItem';
 import CustomCompareGridItem from './CustomCompareGridItem';
 
+import classnames from 'classnames';
 import styles from './styles.css';
 
 export const titleTypes = {
@@ -30,9 +31,9 @@ class CompareGrid extends Component {
     }
 
     render() {
-        const {isNew, isDeleted, rejectReason, staticStrings} = this.props;
+        const {isNew, isDeleted, rejectReason, staticStrings, className} = this.props;
         return (
-          <div className={styles.wrapper}>
+          <div className={classnames(styles.wrapper, className)}>
             {isNew && !isDeleted && <h1 className={styles.newEntity}>{staticStrings.headingIsNew}</h1>}
             {isDeleted && <h1 className={styles.rejectTextField}>{staticStrings.headingWillBeDeleted}</h1>}
             {rejectReason &&
@@ -64,6 +65,7 @@ CompareGrid.propTypes = {
     isNew: PropTypes.bool,
     isDeleted: PropTypes.bool,
     rejectReason: PropTypes.string,
+    className: PropTypes.object,
     data: PropTypes.object // immutable List
 };
 
