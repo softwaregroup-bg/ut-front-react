@@ -202,8 +202,15 @@ class GridToolBox extends Component {
                           defaultValue={filterValue}
                           label={filterElement.label}
                           boldLabel={renderInDialog}
-                          minDate={filterElement.minDate}
-                          maxDate={filterElement.maxDate} />
+                          minDate={filterAutoFetch && !renderInDialog
+                                ? filterElement.minDate
+                                : this.state.filters[filterElement.connectedMinDate] ? new Date(this.state.filters[filterElement.connectedMinDate]) : undefined
+                            }
+                           maxDate={ filterAutoFetch && !renderInDialog
+                                ? filterElement.maxDate
+                                : this.state.filters[filterElement.connectedMaxDate] ? new Date(this.state.filters[filterElement.connectedMaxDate]) : undefined
+                            }  
+                        />
                     </div>);
 
             case filterElementTypes.datePickerBetween:
@@ -354,7 +361,6 @@ class GridToolBox extends Component {
                         }
 
                         key = `label${key.charAt(0).toUpperCase() + key.slice(1)}`;
-
                         content.push(<div key={idx + key}>
                             <span className={style.bold}>{filter[key]}: </span>
                             <span> {value} </span>
