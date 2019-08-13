@@ -229,7 +229,7 @@ export const defaultRoleRule = (props, roles, rule, result) => {
 export const isNumberOnlyRule = (props, rule, result) => {
     checkPasedResultObject(result);
 
-    if (props !== '' && !(numbersOnlyRegex.test(props))) {
+    if (props !== '' && props !== null && !(numbersOnlyRegex.test(props))) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
     }
