@@ -107,6 +107,11 @@ class Dropdown extends Component {
                 <div className={classnames(arrowIconDisabled, ddstyles.arrowIcon)} />
                 <div className={ddstyles.hideTextWrap} />
                 <DropDownMenu
+                  iconButton={(
+                    <svg style={{ width: '26px', height: '26px' }} >
+                        <path d="M7 10l5 5 5-5z" style={{ fill:'#fff' }} />
+                    </svg>)
+                  }
                   value={this.state.value}
                   onChange={this.handleChange}
                   autoWidth={this.props.menuAutoWidth}
