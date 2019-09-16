@@ -50,6 +50,28 @@ class DocumentsContainer extends Component {
         }
     }
 
+    addDocument = (newObject) => {
+        let { identifier } = this.props;
+
+        let formatedObj = {
+            createdDate: newObject.createdDate,
+            description: newObject.description,
+            documentType: newObject.documentType,
+            documentTypeId: newObject.documentTypeId,
+            statusId: newObject.statusId,
+            attachments: [
+                {
+                    filename: newObject.filename,
+                    extension: newObject.extension,
+                    contentType: newObject.contentType,
+                    url: documentTmpUploadPrefix + newObject.filename
+                }
+            ]
+        };
+        this.props.addDocument(identifier, formatedObj);
+        this.props.onAddDocument && this.props.onAddDocument(identifier, formatedObj)
+    }
+
     render() {
         let {
             identifier,
@@ -104,24 +126,7 @@ class DocumentsContainer extends Component {
               onGridSelect={selectAttachments}
               permissions={permissions}
               documentTypes={docTypes}
-              uploadNewDocument={(newObject) => {
-                  let formatedObj = {
-                      createdDate: newObject.createdDate,
-                      description: newObject.description,
-                      documentType: newObject.documentType,
-                      documentTypeId: newObject.documentTypeId,
-                      statusId: newObject.statusId,
-                      attachments: [
-                          {
-                              filename: newObject.filename,
-                              extension: newObject.extension,
-                              contentType: newObject.contentType,
-                              url: documentTmpUploadPrefix + newObject.filename
-                          }
-                      ]
-                  };
-                  this.props.addDocument(identifier, formatedObj);
-              }}
+              uploadNewDocument={this.addDocument}
               replaceDocument={(replaceObject) => {
                   this.props.replaceDocument(identifier, selectedAttachment.toJS(), replaceObject);
               }}
@@ -167,7 +172,8 @@ DocumentsContainer.propTypes = {
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
     pathname: PropTypes.string.isRequired,
-    logout: PropTypes.func
+    logout: PropTypes.func,
+    onAddDocument: PropTypes.func
 };
 
 export default connect(
