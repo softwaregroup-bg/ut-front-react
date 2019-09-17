@@ -180,7 +180,7 @@ class TabContainer extends Component {
     render() {
         let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, hideHeader, extraElements } = this.props;
 
-        let activeTab = tabs[this.state.active];
+        // let activeTab = tabs[this.state.active];
         let handleTabClick = ({id}) => {
             let ableToGoToNextTab = true;
             if (id > this.state.active) {
@@ -210,9 +210,12 @@ class TabContainer extends Component {
                 });
 
                 return hasPermission;
-            }).map(({title}, id) => ({
-                title, id, errorsCount: tabErrrors[id]
-            }));
+            });
+
+        let activeTab = allowedTabs[this.state.active];
+        allowedTabs = allowedTabs.map(({title}, id) => ({
+            title, id, errorsCount: tabErrrors[id]
+        }));
 
         return (
             <div className={style.tabContainerWrap}>
