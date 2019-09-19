@@ -24,6 +24,7 @@ class LoginForm extends Component {
         let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId} } = this.props;
 
         if (!authenticated && nextProps.authenticated) {
+            debugger;
             if (ssoOrigin) {
                 this.context.router.push(`/sso/${appId}/${ssoOrigin}`);
             } else {

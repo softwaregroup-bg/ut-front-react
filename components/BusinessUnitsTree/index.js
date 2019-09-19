@@ -122,7 +122,7 @@ TreeNavigation.propTypes = {
     })),
     openElements: PropTypes.object, // immutable object
     active: PropTypes.shape({
-        id: PropTypes.string,
+        id: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
         breadcrumbs: PropTypes.any // immutable list
     }),
     styles: PropTypes.object,
