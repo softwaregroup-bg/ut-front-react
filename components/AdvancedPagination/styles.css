@@ -8,19 +8,15 @@
     color: var(--ut-front-react-standardPaginationLightColor);
 }
 
-.paginationWrap {
-    width: 100%;
-    position: relative;
-    height: 30px;
+.wrap {
     display: flex;
-    padding: 5px 0;
 }
 
-.paginationWrap > div {
+.wrap > div {
     height: 23px;
 }
 
-.paginationWrap > div > div {
+.wrap > div > div {
     line-height: 21px;
 }
 
