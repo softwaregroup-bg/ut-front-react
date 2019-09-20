@@ -46,8 +46,9 @@
 }
 .dropdownIconWrap {
     position: absolute;
-    top: 0;
+    top: 1px;
     right: 1px;
+    display: flex;
 }
 .dropdownIconWrap svg,
 .dropdownIconBackground svg { /* pass over material ui styling limitations */

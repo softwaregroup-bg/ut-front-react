@@ -430,10 +430,11 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 
 .dropdownIconWrap {
     position: absolute;
-    top: 0;
+    top: 1px;
     right: 1px;
     height: 26px;
     width: 26px;
+    display: flex;
 }
 
 .arrowIcon {
