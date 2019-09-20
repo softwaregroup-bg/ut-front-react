@@ -19,6 +19,7 @@ import ByCustomSearch from '../Filters/ByCustomSearch';
 
 import classnames from 'classnames';
 import style from './style.css';
+import cssStandard from '../../assets/index.css';
 
 const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
@@ -523,8 +524,7 @@ class GridToolBox extends Component {
                             title={actionButtonElement.confirmDialog.title}
                             message={actionButtonElement.confirmDialog.message}
                             onSubmit={actionButtonElement.onClick}
-                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
-                        />
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit} />
                         <Button disabled={isDisabled} onClick={handleButtonClick} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
                     </div>
                 );
@@ -548,16 +548,14 @@ class GridToolBox extends Component {
                             title={actionButtonElement.confirmDialog.title}
                             message={actionButtonElement.confirmDialog.message}
                             onSubmit={actionButtonElement.onClick}
-                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
-                        />
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit} />
                         <ConfirmDialog
                             ref={'errorDialog-' + index}
                             cancelLabel={actionButtonElement.errorDialog.cancelLabel}
                             submitLabel=''
                             title={actionButtonElement.errorDialog.title}
                             message={actionButtonElement.errorDialog.message}
-                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
-                        />
+                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit} />
                         <Button disabled={isDisabled} onClick={handleAction} className={classnames('button', style.button)}>{buttonLabel}</Button>
                     </div>
                 );
@@ -593,16 +591,14 @@ class GridToolBox extends Component {
                             title={actionButtonElement.confirmDialog.title}
                             message={actionButtonElement.confirmDialog.message}
                             onSubmit={actionButtonElement.onClick}
-                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
-                        />
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit} />
                         <ConfirmDialog
                             ref={'errorDialog-' + index}
                             cancelLabel={actionButtonElement.errorDialog.cancelLabel}
                             submitLabel=''
                             title={actionButtonElement.errorDialog.title}
                             message={actionButtonElement.errorDialog.message}
-                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
-                        />
+                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit} />
                         <Button disabled={isDisabled} onClick={handleActionDependingOnPropertyValue} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
                     </div>
                 );
@@ -616,8 +612,7 @@ class GridToolBox extends Component {
                             title={dialog.title}
                             message={dialog.message}
                             onSubmit={dialog.onSubmit}
-                            cannotSubmit={dialog.cannotSubmit}
-                        />
+                            cannotSubmit={dialog.cannotSubmit} />
                     );
                 });
 
@@ -682,17 +677,27 @@ class GridToolBox extends Component {
 
     render() {
         let showFilter = this.state.showFilters;
-
+        if (!this.props.cssStandard) {
+            return (
+                <div>
+                    {showFilter && this.renderFilters()}
+                    {!showFilter && this.renderActionButtons()}
+                </div>
+            );
+        }
         return (
-            <div>
-                {showFilter && this.renderFilters()}
-                {!showFilter && this.renderActionButtons()}
+            <div className={cssStandard.actionBarWrap}>
+                <div className={cssStandard.gridToolboxWrap}>
+                    {showFilter && this.renderFilters()}
+                    {!showFilter && this.renderActionButtons()}
+                </div>
             </div>
         );
     }
 }
 
 GridToolBox.propTypes = {
+    cssStandard: PropTypes.bool,
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
             type: PropTypes.oneOf([
@@ -789,6 +794,7 @@ GridToolBox.propTypes = {
 };
 
 GridToolBox.defaultProps = {
+    cssStandard: false,
     maxVisibleInputs: 4,
     showAdvanced: false,
     filterAutoFetch: true,
