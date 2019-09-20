@@ -5,6 +5,7 @@ import Header from './Header';
 import Row from './Row';
 
 import style from './style.css';
+import cssStandard from '../../assets/index.css';
 
 class Grid extends Component {
     constructor(props) {
@@ -76,7 +77,7 @@ class Grid extends Component {
         let trStyles = this.props.trStyles;
         let thStyles = this.props.thStyles;
 
-        return (
+        let grid = (
             <table className={style.dataGridTable}>
                 {this.props.showTableHead &&
                     <Header
@@ -117,6 +118,15 @@ class Grid extends Component {
                 })}</tbody>
             </table>
         );
+        if (!this.props.cssStandard) {
+            return grid;
+        }
+
+        return (
+            <div className={cssStandard.tableWrap}>
+                {grid}
+            </div>
+        );
     }
 }
 
@@ -135,6 +145,7 @@ Grid.propTypes = {
     trStyles: PropTypes.object,
     tdStyles: PropTypes.array,
     thStyles: PropTypes.array,
+    cssStandard: PropTypes.bool,
     canCheck: PropTypes.bool,
     showTableHead: PropTypes.bool,
     mapColumn: PropTypes.func,
@@ -151,6 +162,7 @@ Grid.propTypes = {
 Grid.defaultProps = {
     checkedItems: immutable.List([]),
     rowIdentifier: 'actorId',
+    cssStandard: false,
     canCheck: true,
     showTableHead: true,
     mapColumn: (col, colData) => colData,
