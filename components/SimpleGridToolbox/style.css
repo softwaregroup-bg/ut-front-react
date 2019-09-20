@@ -6,8 +6,9 @@
 }
 .simpleToolbox.opened {
     display: flex;
-    height: 100%;
     align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 .buttonsOpened {
     justify-content: space-between;

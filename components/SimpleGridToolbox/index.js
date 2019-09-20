@@ -2,16 +2,16 @@ import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 
 import style from './style.css';
-
+import cssStandard from '../../assets/index.css';
 export class Filters extends Component {
     render() {
-        var classes = [style.simpleToolbox];
+        var classes = [this.props.cssStandard && cssStandard.actionBarWrap, style.simpleToolbox];
         this.props.opened && classes.push(style.opened);
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
             <div className={classes.join(' ')}>
                 <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>
-                <div className={classnames(style.content, this.props.contentWrapClassName)}>
+                <div className={classnames(this.props.cssStandard && cssStandard.gridToolboxWrap, style.content, this.props.contentWrapClassName)}>
                     {this.props.children}
                 </div>
             </div>
@@ -24,10 +24,12 @@ Filters.propTypes = {
     contentWrapClassName: PropTypes.string,
     opened: PropTypes.bool.isRequired,
     title: PropTypes.any.isRequired,
-    isTitleLink: PropTypes.bool.isRequired
+    isTitleLink: PropTypes.bool.isRequired,
+    cssStandard: PropTypes.bool
 };
 Filters.defaultProps = {
-    isTitleLink: false
+    isTitleLink: false,
+    cssStandard: false
 };
 
 export default Filters;
