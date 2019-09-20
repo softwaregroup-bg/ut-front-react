@@ -4,6 +4,7 @@ import { propTypeFields, propTypeData } from './common';
 import { Header } from './Header';
 import { Body } from './Body';
 import style from './style.css';
+import cssStandard from '../../assets/index.css';
 
 function findField(haystack, needle) {
     return haystack.findKey((piece) => {
@@ -114,7 +115,7 @@ export class SimpleGrid extends Component {
         var iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         var fields = iFields.toJS();
         let {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
-        return (
+        let grid = (
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
                     externalStyle={this.props.externalStyle}
@@ -157,6 +158,15 @@ export class SimpleGrid extends Component {
                 />
             </table>
         );
+        if (!this.props.cssStandard) {
+            return grid;
+        }
+
+        return (
+            <div className={cssStandard.tableWrap}>
+                {grid}
+            </div>
+        );
     }
 }
 
@@ -198,7 +208,8 @@ SimpleGrid.propTypes = {
     handleCellClick: PropTypes.func,
     handleRowClick: PropTypes.func,
     handleRowDoubleClick: PropTypes.func,
-    rowStyleField: PropTypes.string
+    rowStyleField: PropTypes.string,
+    cssStandard: PropTypes.bool
 };
 
 SimpleGrid.defaultProps = {
@@ -218,7 +229,8 @@ SimpleGrid.defaultProps = {
     mainClassName: 'dataGridTable',
     selectable: {
         checkbox: false
-    }
+    },
+    cssStandard: false
 };
 
 SimpleGrid.contextTypes = {
