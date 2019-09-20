@@ -5,6 +5,7 @@ import Dropdown from '../Input/Dropdown';
 import classnames from 'classnames';
 import dropdownstyles from './dropdownstyles.css';
 import styles from './styles.css';
+import standardStyle from '../../assets/index.css';
 
 const separateSymbol = '...';
 
@@ -341,11 +342,19 @@ class AdvancedPagination extends Component {
     }
 
     render() {
-        return (
-            <div className={classnames(styles.paginationWrap, this.props.cssClass)}>
+        let pagination = (
+            <div className={styles.wrap}>
                 {this.renderPageSwitcher()}
                 {this.renderPageBoxes()}
                 {this.renderPageSizeBox()}
+            </div>
+        );
+        if (!this.props.cssStandard) {
+            return pagination;
+        }
+        return (
+            <div className={standardStyle.paginationWrap}>
+                {pagination}
             </div>
         );
     }
@@ -361,12 +370,13 @@ AdvancedPagination.propTypes = {
     pagination: PropTypes.object.isRequired, // immutable object,
     itemsPerPageData: PropTypes.arrayOf(PropTypes.number),
     dropdownIconStyles: PropTypes.object,
-    cssClass: PropTypes.string,
+    cssStandard: PropTypes.bool,
     onUpdate: PropTypes.func
 };
 
 AdvancedPagination.defaultProps = {
     itemsPerPageData: [25, 50, 100, 150, 200, 250, 500],
+    cssStandard: false,
     onUpdate: () => {}
 };
 
