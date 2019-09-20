@@ -4,6 +4,7 @@ import React, { PropTypes, Component } from 'react';
 import resizibleTypes from './resizibleTypes';
 import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';
+import cssStandard from '../../assets/index.css';
 import style from './style.css';
 
 const heightToSubtratc = 59 + 22 + 91;
@@ -288,15 +289,16 @@ class Container extends Component {
                         orientation={col.right ? 'right' : 'left'}
                         visibleStyles={{height: this.state.height, ...collapsableContenetStyles}}
                         isCollapsed={isCollapsed}
-                        onCollapse={onCollapseHanlder}
-                    >
+                        onCollapse={onCollapseHanlder}>
                         {col.child}
                     </CollapsableContent>
                 );
             case resizibleTypes.CONTENT:
                 return (
-                    <div className={style.contentWrap} style={{height: this.state.height, overflow: 'auto'}}>
-                        {col.child}
+                    <div className={style.contentWrap} style={{height: this.state.height}}>
+                        {this.props.cssStandard
+                            ? <div className={cssStandard.contentTableWrap}> {col.child} </div>
+                            : col.child}
                     </div>
                 );
             default:
@@ -359,11 +361,13 @@ Container.propTypes = {
         styles: PropTypes.object,
         right: PropTypes.bool
     }).isRequired),
+    cssStandard: PropTypes.bool,
     localStorageType: PropTypes.string
 };
 
 Container.defaultProps = {
-    localStorageType: localStorageTypes.THREE_COLS
+    localStorageType: localStorageTypes.THREE_COLS,
+    cssStandard: false
 };
 
 export default Container;
