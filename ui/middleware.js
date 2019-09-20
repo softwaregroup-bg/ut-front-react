@@ -1,12 +1,12 @@
 import thunk from 'redux-thunk';
-import immutable, {fromJS} from 'immutable';
+import {isImmutable, fromJS} from 'immutable';
 import {REMOVE_TAB} from '../containers/TabMenu/actionTypes';
 
 /**
  * Convert action.params to plain js when action.params is immutable
  */
 const cloneParams = (params) => {
-    if (params instanceof immutable.Collection) {
+    if (isImmutable(params)) {
         return params.toJS(); // no need to clone as toJS returns a new instance
     } else if (params instanceof Array) {
         return params.slice();
