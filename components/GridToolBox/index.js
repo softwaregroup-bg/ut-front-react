@@ -864,7 +864,8 @@ GridToolBox.propTypes = {
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
-    hideToggle: PropTypes.bool
+    hideToggle: PropTypes.bool,
+    onChange: PropTypes.func
 };
 
 GridToolBox.defaultProps = {
