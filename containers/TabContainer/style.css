@@ -15,8 +15,7 @@
 
 .contentComponentWrapper {
     height: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin: 20px 0;
     width: 100%;
     overflow: auto;
 }
