@@ -103,15 +103,15 @@ class GridToolBox extends Component {
     }
 
     renderFilter(filterElement, renderInDialog = false) {
-        let { filterAutoFetch, onChange } = this.props;
+        let { filterAutoFetch } = this.props;
         let { filters, showFiltersPopup } = this.state;
 
         let onChange = (key, value) => {
             filters[key] = value;
             this.setState({filters});
 
-            if (onChange) {
-                onChange(key, value);
+            if (this.props.onChange) {
+                this.props.onChange(key, value);
             }
         };
 
