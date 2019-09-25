@@ -5,13 +5,13 @@ import style from './style.css';
 import cssStandard from '../../assets/index.css';
 export class Filters extends Component {
     render() {
-        var classes = [this.props.cssStandard && cssStandard.actionBarWrap, style.simpleToolbox];
+        var classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
         this.props.opened && classes.push(style.opened);
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
-            <div className={classes.join(' ')}>
+            <div className={classnames(classes)}>
                 <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>
-                <div className={classnames(this.props.cssStandard && cssStandard.gridToolboxWrap, style.content, this.props.contentWrapClassName)}>
+                <div className={this.props.contentWrapClassName}>
                     {this.props.children}
                 </div>
             </div>
