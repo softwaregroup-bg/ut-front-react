@@ -103,14 +103,15 @@ class GridToolBox extends Component {
     }
 
     renderFilter(filterElement, renderInDialog = false) {
-        let { filterAutoFetch } = this.props;
+        let { filterAutoFetch, onChange } = this.props;
         let { filters, showFiltersPopup } = this.state;
 
         let onChange = (key, value) => {
             filters[key] = value;
             this.setState({filters});
-            if (this.props.onChange) {
-                this.props.onChange(key, value);
+
+            if (onChange) {
+                onChange(key, value);
             }
         };
 
@@ -169,7 +170,7 @@ class GridToolBox extends Component {
                             <SearchBox
                               defaultValue={filterValue}
                               placeholder={filterElement.placeholder}
-                              onSearch={filterElement.onSearch} 
+                              onSearch={filterElement.onSearch}
                               isValid={filterElement.isValid}
                               errorMessage={filterElement.errorMessage}
                               />
@@ -194,7 +195,7 @@ class GridToolBox extends Component {
                             isValid={filterElement.isValid}
                             errorMessage={filterElement.errorMessage}
                             onChange={function(e) {
-                                onChange(filterElement.name, e.target.value);
+                                onChange(filterElement.name, e.value);
                             }}
                         />
                     </div>);
@@ -219,7 +220,7 @@ class GridToolBox extends Component {
                            maxDate={ filterAutoFetch && !renderInDialog
                                 ? filterElement.maxDate
                                 : this.state.filters[filterElement.connectedMaxDate] ? new Date(this.state.filters[filterElement.connectedMaxDate]) : undefined
-                            }  
+                            }
                         />
                     </div>);
 
@@ -863,8 +864,7 @@ GridToolBox.propTypes = {
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
-    hideToggle: PropTypes.bool,
-    onChange: PropTypes.func
+    hideToggle: PropTypes.bool
 };
 
 GridToolBox.defaultProps = {
