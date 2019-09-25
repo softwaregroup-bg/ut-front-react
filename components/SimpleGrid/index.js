@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {fromJS, List} from 'immutable';
+import classnames from 'classnames';
 import { propTypeFields, propTypeData } from './common';
 import { Header } from './Header';
 import { Body } from './Body';
@@ -163,7 +164,7 @@ export class SimpleGrid extends Component {
         }
 
         return (
-            <div className={cssStandard.tableWrap}>
+            <div className={classnames(cssStandard.tableWrap, this.props.externalClassName)}>
                 {grid}
             </div>
         );
@@ -197,6 +198,7 @@ SimpleGrid.propTypes = {
     transformCellValue: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,
     mainClassName: PropTypes.string,
+    externalClassName: PropTypes.string,
     emptyRowsMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimitExceedMsg: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     rowsRenderLimit: PropTypes.number,
