@@ -17,7 +17,7 @@ class ButtonsHeader extends Component {
 
         return (
             <div key={key} className={wrapperClassName}>
-                <StandardButton label={label} onClick={onClick} disabled={disabled} styleType='secondaryLight' />
+                <StandardButton label={label} onClick={onClick} disabled={disabled} styleType='secondaryDark' />
             </div>
         );
     }
