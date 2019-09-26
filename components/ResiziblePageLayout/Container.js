@@ -65,7 +65,7 @@ class Container extends Component {
         });
         args.forEach((el) => {
             let currentElement = document.getElementById(el.domId);
-            let currentWidth = currentElement.clientWidth;
+            let currentWidth = (currentElement && currentElement.clientWidth) || defaultColWidth;
             let currentMinWidth = el.minWidth || defaultMinWidth;
             let currentCollapsedWidth = el.collapsedWidth;
 
