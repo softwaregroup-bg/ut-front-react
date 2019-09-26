@@ -139,8 +139,9 @@ class Dropdown extends Component {
                         autoWidth={false}
                         disabled={this.props.disabled}
                         className={classnames(ddstyles.dropdownMenu)}
-                        style={{width: rootElementWidth}}
-                        maxHeight={300}>
+                        style={{ minWidth: rootElementWidth }}
+                        maxHeight={300}
+                    >
                         {menuItems}
                     </Menu>
                 </Popover>
