@@ -13,8 +13,11 @@
 .buttonsOpened {
     justify-content: space-between;
 }
-.simpleToolbox .label, .simpleToolbox .link {
+.simpleToolbox .label,
+.simpleToolbox .link {
+    text-align: left;
     margin-right: 20px;
+    min-width: 90px;
 }
 .simpleToolbox .link {
     cursor: pointer;
