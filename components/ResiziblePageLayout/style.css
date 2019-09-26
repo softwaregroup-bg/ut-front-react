@@ -15,10 +15,6 @@
     /* overflow: hidden; */
 }
 
-.col div:first-child {
-    overflow-x: unset !important;
-}
-
 #mainContentWrap .col .innerCol {
     width: 100%;
     height: 100%;
