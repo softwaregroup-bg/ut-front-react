@@ -1,3 +1,12 @@
+## [11.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.7...v11.0.8) (2019-09-20)
+
+
+### Bug Fixes
+
+* immutable request parameters ([1147fe3](https://github.com/softwaregroup-bg/ut-front-react/commit/1147fe3))
+
+
+
 ## [11.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.6...v11.0.7) (2019-06-26)
 
 
