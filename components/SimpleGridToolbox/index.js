@@ -10,10 +10,12 @@ export class Filters extends Component {
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
             <div className={classnames(classes)}>
-                <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>
-                <div className={this.props.contentWrapClassName}>
-                    {this.props.children}
-                </div>
+                {this.props.title && <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>}
+                {this.props.contentWrapClassName
+                    ? <div className={this.props.contentWrapClassName}>
+                        {this.props.children}
+                    </div>
+                    : this.props.children}
             </div>
         );
     }
@@ -28,6 +30,7 @@ Filters.propTypes = {
     cssStandard: PropTypes.bool
 };
 Filters.defaultProps = {
+    title: '',
     isTitleLink: false,
     cssStandard: false
 };
