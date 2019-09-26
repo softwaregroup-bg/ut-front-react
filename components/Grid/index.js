@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import immutable from 'immutable';
+import classnames from 'classnames';
 
 import Header from './Header';
 import Row from './Row';
@@ -123,7 +124,7 @@ class Grid extends Component {
         }
 
         return (
-            <div className={cssStandard.tableWrap}>
+            <div className={classnames(cssStandard.tableWrap, this.props.externalClassName)}>
                 {grid}
             </div>
         );
@@ -142,6 +143,7 @@ Grid.propTypes = {
         sortOrder: PropTypes.any // oneOfType([PropTypes.string, PropTypes.string])
     }),
     linkableColumns: PropTypes.array,
+    externalClassName: PropTypes.string,
     trStyles: PropTypes.object,
     tdStyles: PropTypes.array,
     thStyles: PropTypes.array,
