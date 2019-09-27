@@ -7,7 +7,6 @@ import CollapsableContent from '../../components/CollapsableContent';
 import cssStandard from '../../assets/index.css';
 import style from './style.css';
 
-const heightToSubtratc = 59 + 22 + 91;
 const defaultColWidth = 200;
 const defaultMinWidth = 10;
 
@@ -15,10 +14,10 @@ class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            height: window.innerHeight - heightToSubtratc
+            height: window.innerHeight - props.heightToSubtract
         };
         this.resize = () => this.setState({
-            height: window.innerHeight - heightToSubtratc
+            height: window.innerHeight - props.heightToSubtract
         });
 
         // Resizible logic
@@ -295,7 +294,7 @@ class Container extends Component {
                 );
             case resizibleTypes.CONTENT:
                 return (
-                    <div className={style.contentWrap} style={{height: this.state.height}}>
+                    <div className={style.contentWrap} style={{height: this.state.height, maxHeight: '100%'}}>
                         {this.props.cssStandard
                             ? <div className={cssStandard.contentTableWrap}> {col.child} </div>
                             : col.child}
@@ -336,8 +335,8 @@ class Container extends Component {
         });
 
         return (
-            <div style={{height: this.state.height}}>
-                <div ref='tableWrap' id={style.mainContentWrap}>
+            <div style={{height: this.state.height, maxHeight: '100%'}}>
+                <div ref='tableWrap' id={style.mainContentWrap} className={this.props.externalClassName} >
                     {renderCols}
                 </div>
             </div>
@@ -362,11 +361,14 @@ Container.propTypes = {
         right: PropTypes.bool
     }).isRequired),
     cssStandard: PropTypes.bool,
-    localStorageType: PropTypes.string
+    externalClassName: PropTypes.string,
+    localStorageType: PropTypes.string,
+    heightToSubtract: PropTypes.number
 };
 
 Container.defaultProps = {
     localStorageType: localStorageTypes.THREE_COLS,
+    heightToSubtract: 59 + 22 + 91,
     cssStandard: false
 };
 
