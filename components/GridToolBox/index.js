@@ -142,6 +142,7 @@ class GridToolBox extends Component {
             case filterElementTypes.dropDown:
                 return (
                     <Dropdown
+                      {...filterElement}
                       label={label}
                       boldLabel={renderInDialog}
                       data={filterElement.data}
@@ -267,6 +268,7 @@ class GridToolBox extends Component {
                 return (
                   <div>
                       <MultiSelectDropdown
+                        {...filterElement}
                         defaultSelected={filterValue || []}
                         label={filterElement.label}
                         data={filterElement.data}
