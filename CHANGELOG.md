@@ -1,3 +1,23 @@
+## [11.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.8...v11.0.9) (2019-09-30)
+
+
+### Bug Fixes
+
+* add external classname property ([39c6076](https://github.com/softwaregroup-bg/ut-front-react/commit/39c6076))
+* add external classname property ([ab58004](https://github.com/softwaregroup-bg/ut-front-react/commit/ab58004))
+* allow externalClassName & extract as proptype ([d76b182](https://github.com/softwaregroup-bg/ut-front-react/commit/d76b182))
+* button styletype ([727be33](https://github.com/softwaregroup-bg/ut-front-react/commit/727be33))
+* check existence ([29c8d7e](https://github.com/softwaregroup-bg/ut-front-react/commit/29c8d7e))
+* common styles ([54a444d](https://github.com/softwaregroup-bg/ut-front-react/commit/54a444d))
+* dropdown icon ([68e56e9](https://github.com/softwaregroup-bg/ut-front-react/commit/68e56e9))
+* render when needed ([53d73fe](https://github.com/softwaregroup-bg/ut-front-react/commit/53d73fe))
+* set minimum length ([98f2744](https://github.com/softwaregroup-bg/ut-front-react/commit/98f2744))
+* switch padding to margin ([d0bed1b](https://github.com/softwaregroup-bg/ut-front-react/commit/d0bed1b))
+* tab validator ([e2d0574](https://github.com/softwaregroup-bg/ut-front-react/commit/e2d0574))
+* use classnames instead of joining ([de641cd](https://github.com/softwaregroup-bg/ut-front-react/commit/de641cd))
+
+
+
 ## [11.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.7...v11.0.8) (2019-09-20)
 
 
