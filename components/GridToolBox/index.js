@@ -4,7 +4,7 @@ import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunction
 import { Link } from 'react-router';
 
 import Dropdown from '../Input/Dropdown';
-import Input from '../Input';
+import Input from '../Input/TextField';
 import MoneyInput from '../Input/MoneyInput';
 import SearchBox from '../SearchBox';
 import DatePicker from './../DatePicker/Simple';
@@ -42,6 +42,7 @@ class GridToolBox extends Component {
         this.renderActionButton = this.renderActionButton.bind(this);
         this.toggleAdvancedSearch = this.toggleAdvancedSearch.bind(this);
         this.applyFilters = this.applyFilters.bind(this);
+        this.closeAdvancedSearchDialog = this.closeAdvancedSearchDialog.bind(this);
     }
 
     componentWillMount() {
@@ -109,10 +110,6 @@ class GridToolBox extends Component {
         let onChange = (key, value) => {
             filters[key] = value;
             this.setState({filters});
-
-            if (this.props.onChange) {
-                this.props.onChange(key, value);
-            }
         };
 
         let filterValue;
@@ -170,20 +167,15 @@ class GridToolBox extends Component {
                             <SearchBox
                               defaultValue={filterValue}
                               placeholder={filterElement.placeholder}
-                              onSearch={filterElement.onSearch}
-                              isValid={filterElement.isValid}
-                              errorMessage={filterElement.errorMessage}
-                              />
+                              onSearch={filterElement.onSearch} />
                         </div>)
                     : (<div>
                         <Input
                           label={label}
                           value={filterValue || ''}
                           placeholder={filterElement.placeholder}
-                          isValid={filterElement.isValid}
-                          errorMessage={filterElement.errorMessage}
                           onChange={function(e) {
-                              onChange(filterElement.name, e.value);
+                              onChange(filterElement.name, e.target.value);
                           }} />
                     </div>);
             case filterElementTypes.money:
@@ -192,10 +184,8 @@ class GridToolBox extends Component {
                             label={label}
                             value={filterValue || ''}
                             placeholder={filterElement.placeholder}
-                            isValid={filterElement.isValid}
-                            errorMessage={filterElement.errorMessage}
                             onChange={function(e) {
-                                onChange(filterElement.name, e.value);
+                                onChange(filterElement.name, e.target.value);
                             }}
                         />
                     </div>);
@@ -282,8 +272,6 @@ class GridToolBox extends Component {
                         data={filterElement.data}
                         keyProp={filterElement.keyProp}
                         placeholder={filterElement.placeholder}
-                        isValid={filterElement.isValid}
-                        errorMessage={filterElement.errorMessage}
                         mergeStyles={filterElement.mergeStyles || {
                             multiSelectDropdownPlaceholder: style.multiselectDropdownPlaceholder
                         }}
@@ -333,6 +321,11 @@ class GridToolBox extends Component {
             showFiltersPopup: !showFiltersPopup,
             filters: defaultValues
         });
+    }
+
+    closeAdvancedSearchDialog() {
+        this.setState({filters: {}});
+        this.toggleAdvancedSearch();
     }
 
     getTooltip() {
@@ -458,11 +451,11 @@ class GridToolBox extends Component {
 
         let actionButtons = [
             {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
-            {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
+            {label: 'Cancel', onClick: this.closeAdvancedSearchDialog, styleType: 'secondaryDialog'}
         ];
 
         return <StandardDialog
-          closePopup={this.toggleAdvancedSearch}
+          closePopup={this.closeAdvancedSearchDialog}
           header={{text: 'Advanced Search'}}
           isOpen={this.state.showFiltersPopup}
           footer={{actionButtons: actionButtons}}
@@ -864,8 +857,7 @@ GridToolBox.propTypes = {
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
-    hideToggle: PropTypes.bool,
-    onChange: PropTypes.func
+    hideToggle: PropTypes.bool
 };
 
 GridToolBox.defaultProps = {

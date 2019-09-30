@@ -44,20 +44,23 @@ class MultiSelectDropdown extends Dropdown {
     handleChange(menuItem) {
         let { onSelect, keyProp, data } = this.props;
         let { values } = this.state;
+        let newValues = values.slice();
+
         let itemIndex = values.findIndex((value) => {
             return value.key === menuItem.key;
         });
+
         if (itemIndex > -1) {
-            values.splice(itemIndex, 1);
+            newValues.splice(itemIndex, 1);
         } else {
             let item = data.find((value) => {
                 return value.key === menuItem.key;
             });
-            values.push(item);
+            newValues.push(item);
         }
 
-        this.setState({values: values, valid: {isValid: true, errorMessage: ''}}, () => {
-            onSelect({key: keyProp, value: values});
+        this.setState({values: newValues, valid: {isValid: true, errorMessage: ''}}, () => {
+            onSelect({key: keyProp, value: newValues});
         });
     }
 
