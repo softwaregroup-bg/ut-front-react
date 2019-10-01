@@ -33,24 +33,21 @@ const Button = ({
     if (disabled) {
         disabledClass = Array.isArray(disabledClassName) ? disabledClassName.map(getClassInternal) : getClassInternal(disabledClassName);
     }
-
-    if (href) {
-        return (
-            <Link to={href}>
-                <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
-                    {icon && <span className={icon} />}
-                    {label}
-                </button>
-            </Link>
-        );
-    }
-
-    return (
+    let button = (
         <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
             {icon && <span className={icon} />}
             {label}
         </button>
     );
+    if (href && !disabled) {
+        return (
+            <Link to={href}>
+                {button}
+            </Link>
+        );
+    }
+
+    return button;
 };
 
 Button.propTypes = {
