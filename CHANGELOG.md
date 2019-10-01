@@ -1,3 +1,13 @@
+## [11.0.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.9...v11.0.10) (2019-10-01)
+
+
+### Bug Fixes
+
+* disabled button & href ([514fb51](https://github.com/softwaregroup-bg/ut-front-react/commit/514fb51))
+* revert react-router ([ccb177e](https://github.com/softwaregroup-bg/ut-front-react/commit/ccb177e))
+
+
+
 ## [11.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.8...v11.0.9) (2019-09-30)
 
 
