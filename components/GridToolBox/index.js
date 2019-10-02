@@ -186,7 +186,7 @@ class GridToolBox extends Component {
                             value={filterValue || ''}
                             placeholder={filterElement.placeholder}
                             onChange={function(e) {
-                                onChange(filterElement.name, e.target.value);
+                                onChange(filterElement.name, e.value);
                             }}
                         />
                     </div>);
@@ -777,7 +777,8 @@ GridToolBox.propTypes = {
                 filterElementTypes.customSearch,
                 filterElementTypes.clear,
                 filterElementTypes.searchBtn,
-                filterElementTypes.multiselect
+                filterElementTypes.multiselect,
+                filterElementTypes.money
             ]).isRequired,
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
