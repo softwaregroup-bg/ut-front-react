@@ -78,8 +78,13 @@ class GridRow extends Component {
             }
 
             if (isLink) {
+                const styles = {
+                    ...currenctStyles,
+                    whiteSpace: 'pre'
+                };
+
                 return (
-                    <td key={key || i} style={currenctStyles}>
+                    <td key={key || i} style={styles}>
                         <Link to={data.get('url')} className={style.link}>
                             {transformedData || false}
                         </Link>
