@@ -206,5 +206,8 @@ a.tabMenuWrap:hover.tabMenuWrapSelected,
     height: 40px;
     width: 100%;
     float: left;
-    white-space: nowrap;
+}
+
+.tabMenuItemContent {
+    white-space: pre;
 }

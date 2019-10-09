@@ -2,6 +2,7 @@
     height: 54px;
     padding: 20px;
     position: relative;
+    white-space: pre;
 }
 
 .valueRowHover {

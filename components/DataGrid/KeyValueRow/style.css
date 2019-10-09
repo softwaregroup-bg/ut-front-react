@@ -20,6 +20,7 @@
 
 .valueCell {
     padding: 20px 27px;
+    white-space: pre;
 }
 
 .displayFlex {
