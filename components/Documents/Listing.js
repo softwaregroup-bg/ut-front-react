@@ -32,6 +32,7 @@ class Documents extends Component {
               selectedFilter={this.props.selectedFilter}
               changeDocumentFilter={this.props.changeDocumentFilter}
               documentTypes={this.props.documentTypes}
+              documentAllowedSize={this.props.documentAllowedSize}
               uploadNewDocument={this.props.uploadNewDocument}
               replaceDocument={this.props.replaceDocument}
               deleteDocument={this.props.deleteDocument}
@@ -93,6 +94,7 @@ Documents.propTypes = {
             name: PropTypes.string
         })
     ),
+    documentAllowedSize: PropTypes.number,
 
     uploadNewDocument: PropTypes.func,
     replaceDocument: PropTypes.func,
@@ -109,6 +111,7 @@ Documents.defaultProps = {
     requiresFetch: false,
     isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
+    documentAllowedSize: 5 * 1024, // Allowed size in kb
     documentTypes: []
 };
 

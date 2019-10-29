@@ -159,6 +159,7 @@ class DocumentUploadWithForm extends Component {
               description={this.state.description}
               hideCrop
               allowedFileTypes={this.props.allowedFileTypes}
+              maxFileSize={this.props.documentAllowedSize}
               clearLogin={this.props.clearLogin}
             >
                 {this.renderUploadDocumentForm}
@@ -179,6 +180,7 @@ DocumentUploadWithForm.propTypes = {
             name: PropTypes.string
         })
     ),
+    documentAllowedSize: PropTypes.number,
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
     uploadNewDocument: PropTypes.func,
@@ -187,6 +189,7 @@ DocumentUploadWithForm.propTypes = {
 
 DocumentUploadWithForm.defaultProps = {
     documentTypes: [],
+    documentAllowedSize: 5 * 1024, // Allowed size in kb
     uploadNewDocument: () => {},
     replaceDocument: () => {},
     closePopup: () => {}

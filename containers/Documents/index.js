@@ -7,6 +7,7 @@ import {
     fetchArchivedDocuments,
     selectAttachments,
     fetchDocumentTypes,
+    fetchDocumentAllowedSize,
     addDocument,
     replaceDocument,
     changeDocumentFilter,
@@ -29,8 +30,9 @@ class DocumentsContainer extends Component {
         this.initState(this.props.identifier, this.props.pathname);
     }
 
-    componentDidMount() {
+    componentDidMount () {
         this.fetchDocumentTypes(this.props.documentTypes.get('requiresFetch'), this.props.documentTypes.get('isLoading'));
+        this.props.fetchDocumentAllowedSize();
     }
 
     componentWillReceiveProps(newProps) {
@@ -61,6 +63,7 @@ class DocumentsContainer extends Component {
             selectAttachments,
             permissions,
             documentTypes,
+            documentAllowedSize,
             disabledDocumentTypes,
             selectedFilter,
             documentArchived
@@ -104,6 +107,7 @@ class DocumentsContainer extends Component {
               onGridSelect={selectAttachments}
               permissions={permissions}
               documentTypes={docTypes}
+              documentAllowedSize={documentAllowedSize}
               uploadNewDocument={(newObject) => {
                   let formatedObj = {
                       createdDate: newObject.createdDate,
@@ -154,6 +158,7 @@ DocumentsContainer.propTypes = {
     initState: PropTypes.func,
     selectAttachments: PropTypes.func,
     fetchDocumentTypes: PropTypes.func,
+    fetchDocumentAllowedSize: PropTypes.func,
     changeDocumentFilter: PropTypes.func,
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
@@ -162,6 +167,7 @@ DocumentsContainer.propTypes = {
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,
+    documentAllowedSize: PropTypes.number,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
@@ -176,9 +182,10 @@ export default connect(
             attachments: frontDocuments,
             documentsChanged: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([]),
             documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
+            documentAllowedSize: frontDocuments.getIn(['documentAllowedSize']),
             selectedFilter: frontDocuments.getIn([props.identifier, 'selectedFilter']),
             documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})
         };
     },
-    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter, logout }
+    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, fetchDocumentAllowedSize, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter, logout }
 )(DocumentsContainer);
