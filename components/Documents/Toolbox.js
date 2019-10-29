@@ -295,6 +295,7 @@ class Toolbox extends Component {
               documentTypes={this.props.documentTypes}
               disabledDocumentTypes={this.props.disabledDocumentTypes}
               allowedFileTypes={this.props.allowedFileTypes}
+              documentAllowedSize={this.props.documentAllowedSize}
               clearLogin={this.props.clearLogin}
             />
         );
@@ -326,6 +327,7 @@ Toolbox.propTypes = {
             name: PropTypes.string
         })
     ),
+    documentAllowedSize: PropTypes.number,
 
     disabledDocumentTypes: PropTypes.array,
 
@@ -350,6 +352,7 @@ Toolbox.propTypes = {
 
 Toolbox.defaultProps = {
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
+    documentAllowedSize: 20 * 1024, // Allowed size in kb
     documentTypes: [],
     disabledDocumentTypes: []
 };

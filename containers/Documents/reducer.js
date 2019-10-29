@@ -4,6 +4,7 @@ import {
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     FETCH_DOCUMENT_TYPES,
+    FETCH_DOCUMENT_ALLOWED_SIZE,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
@@ -34,6 +35,7 @@ const getDefaultAttachmentObject = function() {
             isLoading: false,
             data: []
         },
+        documentAllowedSize: 20 * 1024, // Allowed Size in kb
         editedBy: null
     };
 };
@@ -94,6 +96,11 @@ const documents = (state = defaultState, action) => {
                     return state.setIn([props.identifier, 'documentTypes', 'requiresFetch'], Immutable.fromJS(false))
                         .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(false));
                 }
+            }
+            return state;
+        case FETCH_DOCUMENT_ALLOWED_SIZE:
+            if (action.methodRequestState === methodRequestState.FINISHED && action.result[0].length) {
+                return state.setIn(['documentAllowedSize'], (parseInt(action.result[0][0].value || 20) * 1024)); // Allowed Size in kb
             }
             return state;
         case SELECT_ATTACHMENT:

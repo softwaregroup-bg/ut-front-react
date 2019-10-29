@@ -3,6 +3,7 @@ import {
     FETCH_ARCHIVED_DOCUMENTS,
     SELECT_ATTACHMENT,
     FETCH_DOCUMENT_TYPES,
+    FETCH_DOCUMENT_ALLOWED_SIZE,
     ADD_NEW_DOCUMENT,
     REPLACE_DOCUMENT,
     CHANGE_DOCUMENT_STATUS_DELETED,
@@ -60,6 +61,14 @@ export const fetchDocumentTypes = (identifier, classParam) => ({
     },
     props: {
         identifier
+    }
+});
+
+export const fetchDocumentAllowedSize = (key) => ({
+    type: FETCH_DOCUMENT_ALLOWED_SIZE,
+    method: 'core.configuration.fetch',
+    params: {
+        key
     }
 });
 
