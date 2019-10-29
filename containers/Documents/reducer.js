@@ -35,7 +35,7 @@ const getDefaultAttachmentObject = function() {
             isLoading: false,
             data: []
         },
-        documentAllowedSize: 5 * 1024, // Allowed Size in kb
+        documentAllowedSize: 20 * 1024, // Allowed Size in kb
         editedBy: null
     };
 };
@@ -99,7 +99,7 @@ const documents = (state = defaultState, action) => {
             }
             return state;
         case FETCH_DOCUMENT_ALLOWED_SIZE:
-            if (action.methodRequestState === methodRequestState.FINISHED && action.result) {
+            if (action.methodRequestState === methodRequestState.FINISHED && action.result && action.result.configuration.length) {
                 return state.setIn(['documentAllowedSize'], (parseInt(action.result.configuration[0].value) * 1024)); // Allowed Size in kb
             }
             return state;

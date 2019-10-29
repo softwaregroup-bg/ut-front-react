@@ -111,7 +111,7 @@ Documents.defaultProps = {
     requiresFetch: false,
     isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
-    documentAllowedSize: 5 * 1024, // Allowed size in kb
+    documentAllowedSize: 20 * 1024, // Allowed size in kb
     documentTypes: []
 };
 

@@ -189,7 +189,7 @@ DocumentUploadWithForm.propTypes = {
 
 DocumentUploadWithForm.defaultProps = {
     documentTypes: [],
-    documentAllowedSize: 5 * 1024, // Allowed size in kb
+    documentAllowedSize: 20 * 1024, // Allowed size in kb
     uploadNewDocument: () => {},
     replaceDocument: () => {},
     closePopup: () => {}
