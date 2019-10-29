@@ -64,11 +64,11 @@ export const fetchDocumentTypes = (identifier, classParam) => ({
     }
 });
 
-export const fetchDocumentAllowedSize = () => ({
+export const fetchDocumentAllowedSize = (key) => ({
     type: FETCH_DOCUMENT_ALLOWED_SIZE,
-    method: 'implementation.configuration.fetch',
+    method: 'core.configuration.fetch',
     params: {
-        key: 'documentMaxFileSize'
+        key
     }
 });
 

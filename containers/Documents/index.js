@@ -32,7 +32,7 @@ class DocumentsContainer extends Component {
 
     componentDidMount () {
         this.fetchDocumentTypes(this.props.documentTypes.get('requiresFetch'), this.props.documentTypes.get('isLoading'));
-        this.props.fetchDocumentAllowedSize();
+        this.props.fetchDocumentAllowedSize(this.props.documentAllowedSizeKey);
     }
 
     componentWillReceiveProps(newProps) {
@@ -147,6 +147,9 @@ class DocumentsContainer extends Component {
         );
     }
 }
+DocumentsContainer.defaultProps = {
+    documentAllowedSizeKey: 'documentMaxFileSize'
+  }
 
 DocumentsContainer.propTypes = {
     identifier: DocumentsListing.propTypes.identifier,
@@ -168,6 +171,7 @@ DocumentsContainer.propTypes = {
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,
     documentAllowedSize: PropTypes.number,
+    documentAllowedSizeKey: PropTypes.string,
     changeDocumentStatusDeleted: PropTypes.func.isRequired,
     changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
