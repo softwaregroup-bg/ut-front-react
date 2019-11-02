@@ -17,7 +17,7 @@
     "immutable": "3.8.1",
     "lodash.get": "4.3.0",
     "lodash.map": "4.4.0",
-    "lodash.merge": "4.4.0",
+    "lodash.merge": "4.6.2",
     "material-ui": "0.16.2",
     "react": "15.2.1",
     "react-addons-transition-group": "15.2.1",
