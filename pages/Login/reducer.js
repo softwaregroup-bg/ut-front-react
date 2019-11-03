@@ -47,6 +47,7 @@ export const login = (state = defaultLoginState, action) => {
             }
             break;
         case actionList.COOKIE_CHECK:
+            debugger;
             state = state.set('reqState', action.methodRequestState);
             if (action.methodRequestState === 'finished') {
                 if (action.error) {

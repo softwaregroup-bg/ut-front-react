@@ -41,7 +41,7 @@ const updateLoginStep = (state, step) => {
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
-    loginForm: loginSteps['password'],
+    loginForm: loginSteps['initial'],
     loginType: '',
     formError: '',
     shouldSubmit: false,
