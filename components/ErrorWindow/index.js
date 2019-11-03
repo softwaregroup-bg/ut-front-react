@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Popup from '../Popup';
+import Text from '../Text';
 
 import styles from './style.css';
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
@@ -41,7 +42,7 @@ const ErrorWindow = ({open, message, close, title, type, login, logout}) => {
         closePopup={closePopUpHandler} >
           <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
           <div className={styles.errorMessageWrap}>
-            {message}
+          <Text>{message}</Text> 
           </div>
       </Popup>
     );

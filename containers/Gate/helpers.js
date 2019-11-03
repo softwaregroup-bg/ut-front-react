@@ -34,6 +34,9 @@ export const translate = (props) => (text, language) => {
     let texts = props.gate.get('texts');
 
     if (!texts || !texts.get(text)) {
+        if (!window.noTranslationList) window.noTranslationList = {};
+        window.noTranslationList[text] = true;
+
         return text;
     }
 

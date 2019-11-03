@@ -49,7 +49,7 @@ export default class Camera extends Component {
             this.refs.video.src = URL.createObjectURL(stream);
         }
     }
-
+    
     onVideoNotSupported(error) {
         // TODO
         return error;

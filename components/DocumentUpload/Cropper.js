@@ -17,10 +17,11 @@ export default class Cropper extends Component {
 
     cropImage() {
         const { onCrop } = this.props;
-
         this.cropper.result({
-            result: 'canvas',
-            size: 'original'
+                result: 'base64',
+                size: 'viewport', 
+                format: 'jpeg',
+                quality: 0.99, 
         }).then(onCrop);
     }
 
@@ -37,6 +38,12 @@ export default class Cropper extends Component {
             boundary: {
                 width: fileDimensions.width,
                 height: fileDimensions.height
+            },
+            result:{
+                result: 'base64',
+                size: 'viewport',
+                format: 'jpeg',
+                quality: 0.99,
             },
             showZoomer: true
         });

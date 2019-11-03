@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import Text from '../Text';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
@@ -94,7 +95,7 @@ class TextArea extends Component {
             return (
                 <div className={style.outerWrap}>
                     <div className={style.textareaLabelWrap}>
-                        {label} {this.props.validators.length > 0 && '*'}
+                        <Text>{label}</Text> {this.props.validators.length > 0 && '*'}
                     </div>
                     <div className={style.textareaWrap}>
                         {textArea}
