@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import Text from '../Text';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -9,7 +10,7 @@ export default class TabLink extends React.Component {
 
         return (
             <div className={this.getStyle('tabMenuItemContent')}>
-                {title}
+                <Text>{title}</Text>
                 {canClose && <div className={this.getStyle('xicon')} onClick={onClose} />}
             </div>
         );

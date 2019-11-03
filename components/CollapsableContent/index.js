@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import ToolTip from '../ToolTip';
-
 import classnames from 'classnames';
+
+import { Vertical } from '../Layout';
+import ToolTip from '../ToolTip';
+import Text from '../Text';
+
 import style from './style.css';
 import toolTipStyle from './tooltipstyles.css';
 import collapableIcon from './images/collapsable.png';
-import { Vertical } from '../Layout';
 
 export default class CollapsableContent extends Component {
     constructor(props, context) {
@@ -83,7 +85,7 @@ export default class CollapsableContent extends Component {
             return (
                 <div className={style.collapsableContentContainer} style={{...this.props.style, ...this.props.visibleStyles}}>
                     <Vertical fixedComponent={<div className={this.getHeadingStyles()} style={currentStyles} onClick={this.toggle}>
-                        <div className={style.textWrap}>{this.props.heading}</div>
+                        <div className={style.textWrap}><Text>{this.props.heading}</Text></div>
                         {this.props.info !== '' && <div className={style.toolTipWrap}><ToolTip styles={toolTipStyle}>{this.props.info}</ToolTip></div>}
                         {this.props.showCollapsibleButton && <div className={this.getToggleArrowStyles()} />}
                     </div>

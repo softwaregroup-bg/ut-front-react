@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+import Text from '../Text';
 import Dropdown from '../Input/Dropdown';
 
 import classnames from 'classnames';
@@ -96,7 +97,9 @@ class AdvancedPagination extends Component {
                         onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} data-test={'pageTotal' + this.pagesTotal} />
                 </div>
                 <div className={styles.rightWrap}>
-                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>Pages</span>
+                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>
+                        <Text>Pages</Text>
+                    </span>
                 </div>
             </div>
         );
@@ -325,7 +328,7 @@ class AdvancedPagination extends Component {
         return (
             <div className={styles.pageSizeBoxWrap}>
                 <div className={styles.totalItemsWrap}>
-                    <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}>Items</span>
+                    <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}><Text>Items</Text></span>
                 </div>
                 <div className={styles.itemPerPageDDWrap}>
                      <Dropdown
@@ -337,7 +340,7 @@ class AdvancedPagination extends Component {
                        data-test={'pageSize' + this.pageSize || this.props.itemsPerPageData[0]}
                     />
                 </div>
-                <div className={styles.perPageWrap}> per page</div>
+                <div className={styles.perPageWrap}>{' '}<Text>per page</Text></div>
             </div>
         );
     }

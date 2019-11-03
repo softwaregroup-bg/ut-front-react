@@ -65,7 +65,7 @@ class DocumentsGrid extends Component {
                     <SimpleGrid
                       multiSelect={false}
                       globalMenu={false}
-                      emptyRowsMsg={<Text>No results</Text>}
+                      emptyRowsMsg="No results"
                       fields={getListTableColumns(hasMakerChecker !== false)}
                       data={gridData}
                       transformCellValue={this.mapColumn}
