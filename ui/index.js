@@ -5,6 +5,7 @@ import {renderToString} from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import Portal from './Portal';
 import Dashboard from './Dashboard';
+import wrapper from './wrapper';
 import MaterialUILayout from '../components/MaterialUILayout';
 import favicon from '../assets/images/favicon.ico';
 import {LOGOUT} from '../containers/LoginForm/actionTypes';
@@ -22,10 +23,12 @@ import PageNotFound from './components/PageNotFound.jsx';
 
 export default function ui({utMethod, config = {}}) {
     async function render() {
-        let routes = await this.fireEvent('route', {}, 'asyncMap');
-        let App = await utMethod('mainUI.provider')({});
-        let ConfigProvider = await utMethod('mainUI.configProvider')({});
-        let MasterComponent = ({location}) => <Master>
+        const routes = await this.fireEvent('route', {}, 'asyncMap');
+        const menus = await this.fireEvent('menu', {}, 'asyncMap');
+        const Wrapper = wrapper({menus});
+        const App = await utMethod('mainUI.provider')({});
+        const ConfigProvider = await utMethod('mainUI.configProvider')({});
+        const MasterComponent = ({location}) => <Master>
             <ConfigProvider>
                 <Portal location={location}>
                     {routes}
@@ -36,24 +39,26 @@ export default function ui({utMethod, config = {}}) {
         MasterComponent.propTypes = {
             location: PropTypes.object.isRequired
         };
-        let GateComponent = props => <Gate {...props}>
+        const GateComponent = props => <Gate {...props}>
             <Switch>
                 <Route path='/sso/:appId/:ssoOrigin' component={SsoPage} />
                 <Route component={MasterComponent} />
             </Switch>
         </Gate>;
-        let container = <Provider store={this.store}>
+        const container = <Provider store={this.store}>
             <App>
-                <MaterialUILayout>
-                    <Router history={this.history}>
-                        <Switch>
-                            <Route path='/login' component={LoginPage} />
-                            <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
-                            <Route component={GateComponent} />
-                            <Route path='*' component={PageNotFound} />
-                        </Switch>
-                    </Router>
-                </MaterialUILayout>
+                <Wrapper>
+                    <MaterialUILayout>
+                        <Router history={this.history}>
+                            <Switch>
+                                <Route path='/login' component={LoginPage} />
+                                <Route path='/sso/:appId/:ssoOrigin/login' component={LoginPage} />
+                                <Route component={GateComponent} />
+                                <Route path='*' component={PageNotFound} />
+                            </Switch>
+                        </Router>
+                    </MaterialUILayout>
+                </Wrapper>
             </App>
         </Provider>;
         if (typeof document !== 'undefined') {
@@ -75,7 +80,7 @@ export default function ui({utMethod, config = {}}) {
             // initMirrors();
         },
         async start() {
-            let reducers = await this.fireEvent('reducer', {}, 'asyncMap');
+            const reducers = await this.fireEvent('reducer', {}, 'asyncMap');
             this.history = (typeof window !== 'undefined') ? createHashHistory() : createMemoryHistory();
             this.store = Store(
                 Object.assign({}, UTFrontReactReducers, ...reducers),
