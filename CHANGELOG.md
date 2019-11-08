@@ -1,3 +1,12 @@
+# [11.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.11...v11.1.0) (2019-11-08)
+
+
+### Features
+
+* split menu items  - each module to provide their own ([#528](https://github.com/softwaregroup-bg/ut-front-react/issues/528)) ([132fa09](https://github.com/softwaregroup-bg/ut-front-react/commit/132fa09))
+
+
+
 ## [11.0.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.10...v11.0.11) (2019-11-02)
 
 
