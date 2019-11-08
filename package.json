@@ -14,8 +14,7 @@
     "date-fns": "1.29.0",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
-    "lodash.map": "4.6.0",
-    "lodash.merge": "4.6.2"
+    "lodash.map": "4.6.0"
   },
   "scripts": {
     "lint": "ut-lint .",
