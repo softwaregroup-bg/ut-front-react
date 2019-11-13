@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Cleave from 'cleave.js/react';
 import { textValidations, customValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
+import Text from '../Text';
 
 import classnames from 'classnames';
 import defaultStyle from './style.css';
