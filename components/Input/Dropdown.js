@@ -72,7 +72,7 @@ class Dropdown extends Component {
                   key={item.key + '-' + i}
                   disabled={item.disabled}
                   value={item.key}
-                  primaryText={item.name}
+                  primaryText={this.context.translate(item.name)}
                 />
             );
         });
