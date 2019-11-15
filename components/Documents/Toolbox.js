@@ -182,10 +182,10 @@ class Toolbox extends Component {
         if (this.props.permissions.viewArchive) {
             let options = [{
                 key: 'all',
-                name: 'Active documents'
+                name: this.context.translate('Active documents')
             }, {
                 key: 'archived',
-                name: 'Archived documents'
+                name: this.context.translate('Archived documents')
             }];
             let selected = this.props.selectedFilter || 'all';
             documentsFilter = (
@@ -352,6 +352,10 @@ Toolbox.defaultProps = {
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx', '.xls', '.xlsx'],
     documentTypes: [],
     disabledDocumentTypes: []
+};
+
+Toolbox.contextTypes = {
+    translate: PropTypes.func
 };
 
 export default Toolbox;

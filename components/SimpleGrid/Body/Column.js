@@ -33,7 +33,7 @@ export default class Column extends Component {
 
         return (
             <td onTouchTap={this.handleClick(value)} style={this.props.field.style} className={fieldClasses.join(' ')} colSpan={this.props.colspan}>
-                {this.props.transformValue(value, this.props.field, this.props.data)}
+                {this.context.translate(this.props.transformValue(value, this.props.field, this.props.data))}
             </td>
         );
     }
@@ -57,5 +57,6 @@ Column.defaultProps = {
 };
 
 Column.contextTypes = {
-    implementationStyle: PropTypes.object
+    implementationStyle: PropTypes.object,
+    translate: PropTypes.func
 };
