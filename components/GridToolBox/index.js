@@ -152,6 +152,7 @@ class GridToolBox extends Component {
                         data={filterElement.data}
                         customTheme
                         placeholder={filterElement.placeholder}
+                        placeholderValue={filterElement.placeholderValue}
                         defaultSelected={filterValue}
                         onSelect={filterAutoFetch && !renderInDialog
                             ? filterElement.onSelect
