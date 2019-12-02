@@ -1,3 +1,12 @@
+## [11.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.1.0...v11.1.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* pass placeholderValue on ([#530](https://github.com/softwaregroup-bg/ut-front-react/issues/530)) ([7911a19](https://github.com/softwaregroup-bg/ut-front-react/commit/7911a19))
+
+
+
 # [11.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.0.11...v11.1.0) (2019-11-08)
 
 
