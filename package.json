@@ -46,15 +46,10 @@
     "/",
     "/ut-atm"
   ],
-  "_resolved": "https://nexus.softwaregroup.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz",
   "_shasum": "f0041a8094e453da26c0baaf6dd6261de2c3b066",
   "_shrinkwrap": null,
   "_spec": "ut-front-react@9.10.12",
-  "_where": "D:\\abt\\impl-accessbank-tanzania-mwallet",
   "author": "",
-  "bugs": {
-    "url": "https://github.com/softwaregroup-bg/ut-front-react/issues"
-  },
   "dependencies": {
     "date-fns": "1.29.0",
     "lodash.debounce": "4.0.8",
@@ -64,16 +59,10 @@
   },
   "description": "Frontend module",
   "devDependencies": {
+    "bootstrap": "4.0.0-alpha.2",
     "@kadira/storybook": "^2.35.1",
     "ut-tools": "5.6.0"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "f0041a8094e453da26c0baaf6dd6261de2c3b066",
-    "tarball": "https://nexus.softwaregroup.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz"
-  },
-  "gitHead": "ee1be279c1846721633a72254c7a4b5650a12a97",
-  "homepage": "https://github.com/softwaregroup-bg/ut-front-react#readme",
   "license": "Apache-2.0",
   "main": "index.js",
   "maintainers": [
@@ -91,7 +80,6 @@
     "style-loader": "^0.19.0",
     "ut-front": "^8.4.0",
     "cleave.js": "^1.4.4",
-    "bootstrap": "4.0.0-alpha.2",
     "classnames": "^2.2.5",
     "croppie": "^2.4.0",
     "debounce": "1.1.0",
@@ -113,7 +101,7 @@
   "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/softwaregroup-bg/ut-front-react.git"
+    "url": "git@github.com:softwaregroup-bg/ut-front-react.git"
   },
   "scripts": {
     "changelog": "ut-changelog",
