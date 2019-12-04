@@ -40,18 +40,20 @@ class WrapperTabsClick extends Component {
 }
 class WrapperTabLinks extends Component {
     render() {
+        let actionNodeF = function(node) { action(node); };
         return (
             <div>
-                <TabMenu tabs={tabsLinks} onClick={function (node) { action(node); }} onTabClose={function (node) { action(node); }} />
+                <TabMenu tabs={tabsLinks} onClick={actionNodeF} onTabClose={actionNodeF} />
             </div>
         );
     }
 }
 class WrapperCustomActive extends Component {
     render() {
+        let actionNodeF = function(node) { action(node); };
         return (
             <div>
-                <TabMenu activeTab={2} tabs={customTabLinks} onClick={function (node) { action(node); }} onTabClose={function (node) { action(node); }} cssStyle={customCss} />
+                <TabMenu activeTab={2} tabs={customTabLinks} onClick={actionNodeF} onTabClose={actionNodeF} cssStyle={customCss} />
             </div>
         );
     }

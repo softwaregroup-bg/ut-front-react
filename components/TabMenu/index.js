@@ -173,7 +173,7 @@ TabMenu.propTypes = {
 
 TabMenu.defaultProps = {
     activeTab: '',
-    onTabClose: function () { }
+    onTabClose: function() { }
 };
 
 TabMenu.contextTypes = {

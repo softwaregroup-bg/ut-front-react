@@ -69,7 +69,7 @@ class DocumentsContainer extends Component {
             ]
         };
         this.props.addDocument(identifier, formatedObj);
-        this.props.onAddDocument && this.props.onAddDocument(identifier, formatedObj)
+        this.props.onAddDocument && this.props.onAddDocument(identifier, formatedObj);
     }
 
     render() {

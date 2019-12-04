@@ -3,13 +3,13 @@ import { storiesOf, action } from '@kadira/storybook';
 // import { Router, Route, browserHistory } from 'react-router';
 import Tabs from '../../components/Tabs';
 // import customCss from './../../components/TabMenu/style.css';
-
+let actionNodeF = function(node) { action(node); };
 storiesOf('Tabs', module)
-.add('Default usage', () => (
-    <div>
-        <Tabs tabs={customTabLinks} activeTab={2} onClick={function(node) { action(node); }} onTabClose={function(node) { action(node); }} />
-    </div>
-));
+    .add('Default usage', () => (
+        <div>
+            <Tabs tabs={customTabLinks} activeTab={2} onClick={actionNodeF} onTabClose={actionNodeF} />
+        </div>
+    ));
 
 const customTabLinks = [{
     id: 1,

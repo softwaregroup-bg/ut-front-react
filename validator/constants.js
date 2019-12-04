@@ -26,7 +26,7 @@ export const textValidations = {
     uniqueValue: 'uniqueValue',
     uniqueValueCaseInsensitive: 'uniqueValueCaseInsensitive',
     length: 'length', // minVal, maxVal
-    regex: 'regex'  // value
+    regex: 'regex'
 };
 
 export const arrayValidations = {

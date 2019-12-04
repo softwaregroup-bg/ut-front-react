@@ -29,7 +29,7 @@ storiesOf('AttributesSection', module)
             isInfoLoading={false}
         >
             Content
-    </AttributesSection>
+        </AttributesSection>
     ))
     .add('one checked', () => (
         <AttributesSection
@@ -42,7 +42,7 @@ storiesOf('AttributesSection', module)
             isInfoLoading={false}
         >
             Content
-    </AttributesSection>
+        </AttributesSection>
     ))
     .add('two checked', () => (
         <div style={{ width: '300px' }}>

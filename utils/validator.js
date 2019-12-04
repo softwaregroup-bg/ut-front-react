@@ -27,7 +27,7 @@ const validators = {
     minLength: (value, minLength) => {
         return !minLength || value.length >= minLength;
     },
-    maxLength: (value, maxLength) => {  
+    maxLength: (value, maxLength) => {
         return !maxLength || !value || value.length <= maxLength;
     },
     shouldMatchField: (value, shouldMatch, inputs) => {
@@ -115,7 +115,7 @@ export class Validator {
                 isValid = true;
             }
             if (!isValid) {
-                error = this.errorMapping[validationRule]({...validations, input, errorMessage});
+                error = this.errorMapping[validationRule]({ ...validations, input, errorMessage });
             }
 
             return isValid;

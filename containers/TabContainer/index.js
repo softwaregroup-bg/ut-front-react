@@ -255,6 +255,7 @@ TabContainer.propTypes = {
     headerTitle: PropTypes.string,
     headerBreadcrumbsRemoveSlashes: PropTypes.number,
     hideHeader: PropTypes.bool,
+    errorMessageKeysMapping: PropTypes.object,
     tabs: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string.isRequired,

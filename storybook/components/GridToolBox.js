@@ -8,19 +8,19 @@ class MultipleDialogsWrapper extends React.Component {
     render() {
         let copiedObj = Object.assign({}, actionButtonWIthMultimpleDialogs);
         let identifier = copiedObj.dialogs[0].identifier;
-        let objectToPass = {identifier: identifier, message: 'test message'};
+        let objectToPass = { identifier: identifier, message: 'test message' };
         copiedObj.onClick = () => { this.refs.gridToolBox.openRefDialogWithMessage(objectToPass); };
         return <div>
             <GridToolBox
-              ref='gridToolBox'
-              filterElements={[filterDropDown, filterSearchBox]}
-              actionButtonElements={[copiedObj]}
-              clearFilters={resetFiltersHanlder}
-              selected={selected}
-              checked={checked}
-                />
+                ref='gridToolBox'
+                filterElements={[filterDropDown, filterSearchBox]}
+                actionButtonElements={[copiedObj]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
             <div>
-                <p style={{color: 'cornflowerblue'}}>Click on 'show buttons' to see the example</p>
+                <p style={{ color: 'cornflowerblue' }}>Click on 'show buttons' to see the example</p>
                 <p>Description: </p>
                 <p>we set ref on GridToolBox instance ('gridToolBox'),
                 onClick function and pass identifier on every dialog object. <br />
@@ -33,107 +33,107 @@ class MultipleDialogsWrapper extends React.Component {
 }
 
 storiesOf('GridToolBox', module)
-.add('Default', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          customTheme
-          filterElements={[filterDropDown, filterSearchBox]}
-          actionButtonElements={[actionLink, actionButton, actionButtonWithConfirmPopUp, actionButtonWithPopUpsDependingOnProperty, actionButtonWIthMultimpleDialogs]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-        <div>
-            <p>Click on 'show filters'</p>
-            <p>Edit btn is of type 'link'</p>
-            <p>Action btn is of type 'button'</p>
-            <p>Delete btn is of type 'buttonWithConfirmPopUp'</p>
-            <p>Lock btn is of type 'buttonWithPopUpsDependingOnProperty'</p>
-            <p>Approve btn is of type 'buttonWIthMultimpleDialogs'</p>
-        </div>
-    </MaterialUILayout>
-))
-.add('Dropdown filter', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          filterElements={[filterDropDown]}
-          actionButtonElements={[actionLink, actionButton, actionButtonWithConfirmPopUp]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-    </MaterialUILayout>
-))
-.add('SearchBox filter', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          filterElements={[filterSearchBox]}
-          actionButtonElements={[actionLink, actionButton, actionButtonWithConfirmPopUp]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-    </MaterialUILayout>
-))
-.add('ActionLink', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          filterElements={[filterDropDown, filterSearchBox]}
-          actionButtonElements={[actionLink]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-        <div>
-            <p style={{color: 'cornflowerblue'}}>Click on 'show buttons' to see the example</p>
-        </div>
-    </MaterialUILayout>
-))
-.add('ActionButton', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          filterElements={[filterDropDown, filterSearchBox]}
-          actionButtonElements={[actionButton]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-        <div>
-            <p style={{color: 'cornflowerblue'}}>Click on 'show buttons' to see the example</p>
-        </div>
-    </MaterialUILayout>
-))
-.add('ActionButtonWithConfirmPopUp', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          filterElements={[filterDropDown, filterSearchBox]}
-          actionButtonElements={[actionButtonWithConfirmPopUp]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-        <div>
-            <p style={{color: 'cornflowerblue'}}>Click on 'show buttons' to see the example</p>
-        </div>
-    </MaterialUILayout>
-))
-.add('actionButtonWithPopUpsDependingOnProperty', () => (
-    <MaterialUILayout>
-        <GridToolBox
-          filterElements={[filterDropDown, filterSearchBox]}
-          actionButtonElements={[actionButtonWithPopUpsDependingOnProperty]}
-          clearFilters={resetFiltersHanlder}
-          selected={selected}
-          checked={checked}
-        />
-        <div>
-            <p style={{color: 'cornflowerblue'}}>Click on 'show buttons' to see the example</p>
-        </div>
-    </MaterialUILayout>
-))
-.add('actionButtonWIthMultimpleDialogs', () => (
-    <MaterialUILayout>
-        {/* <GridToolBox
+    .add('Default', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                customTheme
+                filterElements={[filterDropDown, filterSearchBox]}
+                actionButtonElements={[actionLink, actionButton, actionButtonWithConfirmPopUp, actionButtonWithPopUpsDependingOnProperty, actionButtonWIthMultimpleDialogs]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+            <div>
+                <p>Click on 'show filters'</p>
+                <p>Edit btn is of type 'link'</p>
+                <p>Action btn is of type 'button'</p>
+                <p>Delete btn is of type 'buttonWithConfirmPopUp'</p>
+                <p>Lock btn is of type 'buttonWithPopUpsDependingOnProperty'</p>
+                <p>Approve btn is of type 'buttonWIthMultimpleDialogs'</p>
+            </div>
+        </MaterialUILayout>
+    ))
+    .add('Dropdown filter', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                filterElements={[filterDropDown]}
+                actionButtonElements={[actionLink, actionButton, actionButtonWithConfirmPopUp]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+        </MaterialUILayout>
+    ))
+    .add('SearchBox filter', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                filterElements={[filterSearchBox]}
+                actionButtonElements={[actionLink, actionButton, actionButtonWithConfirmPopUp]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+        </MaterialUILayout>
+    ))
+    .add('ActionLink', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                filterElements={[filterDropDown, filterSearchBox]}
+                actionButtonElements={[actionLink]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+            <div>
+                <p style={{ color: 'cornflowerblue' }}>Click on 'show buttons' to see the example</p>
+            </div>
+        </MaterialUILayout>
+    ))
+    .add('ActionButton', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                filterElements={[filterDropDown, filterSearchBox]}
+                actionButtonElements={[actionButton]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+            <div>
+                <p style={{ color: 'cornflowerblue' }}>Click on 'show buttons' to see the example</p>
+            </div>
+        </MaterialUILayout>
+    ))
+    .add('ActionButtonWithConfirmPopUp', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                filterElements={[filterDropDown, filterSearchBox]}
+                actionButtonElements={[actionButtonWithConfirmPopUp]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+            <div>
+                <p style={{ color: 'cornflowerblue' }}>Click on 'show buttons' to see the example</p>
+            </div>
+        </MaterialUILayout>
+    ))
+    .add('actionButtonWithPopUpsDependingOnProperty', () => (
+        <MaterialUILayout>
+            <GridToolBox
+                filterElements={[filterDropDown, filterSearchBox]}
+                actionButtonElements={[actionButtonWithPopUpsDependingOnProperty]}
+                clearFilters={resetFiltersHanlder}
+                selected={selected}
+                checked={checked}
+            />
+            <div>
+                <p style={{ color: 'cornflowerblue' }}>Click on 'show buttons' to see the example</p>
+            </div>
+        </MaterialUILayout>
+    ))
+    .add('actionButtonWIthMultimpleDialogs', () => (
+        <MaterialUILayout>
+            {/* <GridToolBox
           filterElements={[filterDropDown, filterSearchBox]}
           actionButtonElements={[actionButtonWIthMultimpleDialogs]}
           clearFilters={resetFiltersHanlder}
@@ -143,9 +143,9 @@ storiesOf('GridToolBox', module)
         <div>
             <p style={{color: 'cornflowerblue'}}>Click on 'show buttons' to see the example</p>
         </div> */}
-        <MultipleDialogsWrapper />
-    </MaterialUILayout>
-));
+            <MultipleDialogsWrapper />
+        </MaterialUILayout>
+    ));
 
 const checked = immutable.fromJS([{
     'actorId': '1023',
@@ -173,7 +173,7 @@ const filterDropDown = {
     'placeholder': 'Status',
     'defaultValue': '1',
     'onSelect': (node) => { action(node); },
-    'styles': {width: '200px'}
+    'styles': { width: '200px' }
 };
 
 const filterSearchBox = {
@@ -181,7 +181,7 @@ const filterSearchBox = {
     'defaultValue': 'defaoult value',
     'placeholder': 'Search Business Unit',
     'onSearch': (node) => { action(node); },
-    'styles': {width: '200px'}
+    'styles': { width: '200px' }
 };
 
 const actionLink = {

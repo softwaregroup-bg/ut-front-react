@@ -122,7 +122,7 @@ class Dropdown extends Component {
                     </div>
                     <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
                         <svg style={{ width: '26px', height: '26px' }}>
-                            <path d="M7 10l5 5 5-5z" style={{ fill: '#fff' }} />
+                            <path d='M7 10l5 5 5-5z' style={{ fill: '#fff' }} />
                         </svg>
                     </div>
                     <div className={ddstyles.hideTextWrap} />

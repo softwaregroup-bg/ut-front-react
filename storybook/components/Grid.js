@@ -8,124 +8,124 @@ import HeaderCell from '../../components/Grid/HeaderCell';
 import Row from '../../components/Grid/Row';
 
 storiesOf('Grid', module)
-.add('Default', () => (
-    <Grid
-      showTableHead
-      columns={tableColumns}
-      onSort={testFunc}
-      onRefresh={testFunc}
-      onSelect={testFunc}
-      rows={allUsers}
-      mapColumn={mapColumn}
-    />
-))
-.add('Custom', () => (
-    <Grid
-      canCheck
-      showTableHead
-      columns={tableColumns}
-      sortableColumns={sortableColumns}
-      linkableColumns={linkableColumns}
-      onSort={testFunc}
-      onRefresh={testFunc}
-      onSelect={testFunc}
-      onCheck={testFunc}
-      rows={allUsers}
-      mapColumn={mapColumn}
-      trStyles={{backgroundColor: 'lightskyblue'}}
-      tdStyles={tdStyles}
-      thStyles={thStyles}
-    />
-))
-.add('Table', () => (
-    <Table>
-        <Header columns={tableColumns} thStyles={thStyles} />
-    </Table>
-))
-.add('Header', () => (
-    <Table>
-        <Header
-          columns={tableColumns}
-          canCheck
-          sortable={[true, true]}
-          linkableColumns={linkableColumns}
-          onSort={testFunc}
-          onRefresh={testFunc}
-          onSelect={testFunc}
-          onCheck={testFunc}
-          rows={allUsers}
-          mapColumn={mapColumn}
-          trStyles={{backgroundColor: 'lightskyblue'}}
-          tdStyles={tdStyles}
-          thStyles={thStyles}
+    .add('Default', () => (
+        <Grid
+            showTableHead
+            columns={tableColumns}
+            onSort={testFunc}
+            onRefresh={testFunc}
+            onSelect={testFunc}
+            rows={allUsers}
+            mapColumn={mapColumn}
         />
-    </Table>
-))
-.add('HeaderCell', () => (
-    <Table>
-        <thead>
-            <tr>
-                <HeaderCell
-                  name='sort desc cell'
-                  canSort
-                  onSort={testFunc}
-                  sortState={2}
-                  styles={thStyles[0]}
-                />
-                <HeaderCell
-                  name='sort asc cell'
-                  canSort
-                  onSort={testFunc}
-                  sortState={1}
-                  styles={thStyles[0]}
-                />
-            </tr>
-        </thead>
-    </Table>
-))
-.add('Row', () => (
-    <Table>
-        <tbody>
-            <Row
-              linkableColumns={linkableColumns}
-              columns={tableColumns}
-              checked
-              onSelect={testFunc}
-              canCheck
-              onCheck={testFunc}
-              data={immutable.Map({name: 'pe6o', url: 'some url'})}
-              tdStyles={tdStyles}
-              thStyles={thStyles}
-              subscribeUnselect={testFunc}
-              mapColumn={mapColumn}
-              />
-            <Row
-              linkableColumns={linkableColumns}
-              columns={tableColumns}
-              selected
-              onSelect={testFunc}
-              onCheck={testFunc}
-              data={immutable.Map({name: 'pe6o', url: 'some url'})}
-              tdStyles={tdStyles}
-              thStyles={thStyles}
-              subscribeUnselect={testFunc}
-              mapColumn={mapColumn}
+    ))
+    .add('Custom', () => (
+        <Grid
+            canCheck
+            showTableHead
+            columns={tableColumns}
+            sortableColumns={sortableColumns}
+            linkableColumns={linkableColumns}
+            onSort={testFunc}
+            onRefresh={testFunc}
+            onSelect={testFunc}
+            onCheck={testFunc}
+            rows={allUsers}
+            mapColumn={mapColumn}
+            trStyles={{ backgroundColor: 'lightskyblue' }}
+            tdStyles={tdStyles}
+            thStyles={thStyles}
+        />
+    ))
+    .add('Table', () => (
+        <Table>
+            <Header columns={tableColumns} thStyles={thStyles} />
+        </Table>
+    ))
+    .add('Header', () => (
+        <Table>
+            <Header
+                columns={tableColumns}
+                canCheck
+                sortable={[true, true]}
+                linkableColumns={linkableColumns}
+                onSort={testFunc}
+                onRefresh={testFunc}
+                onSelect={testFunc}
+                onCheck={testFunc}
+                rows={allUsers}
+                mapColumn={mapColumn}
+                trStyles={{ backgroundColor: 'lightskyblue' }}
+                tdStyles={tdStyles}
+                thStyles={thStyles}
             />
-        </tbody>
-    </Table>
-));
+        </Table>
+    ))
+    .add('HeaderCell', () => (
+        <Table>
+            <thead>
+                <tr>
+                    <HeaderCell
+                        name='sort desc cell'
+                        canSort
+                        onSort={testFunc}
+                        sortState={2}
+                        styles={thStyles[0]}
+                    />
+                    <HeaderCell
+                        name='sort asc cell'
+                        canSort
+                        onSort={testFunc}
+                        sortState={1}
+                        styles={thStyles[0]}
+                    />
+                </tr>
+            </thead>
+        </Table>
+    ))
+    .add('Row', () => (
+        <Table>
+            <tbody>
+                <Row
+                    linkableColumns={linkableColumns}
+                    columns={tableColumns}
+                    checked
+                    onSelect={testFunc}
+                    canCheck
+                    onCheck={testFunc}
+                    data={immutable.Map({ name: 'pe6o', url: 'some url' })}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                    subscribeUnselect={testFunc}
+                    mapColumn={mapColumn}
+                />
+                <Row
+                    linkableColumns={linkableColumns}
+                    columns={tableColumns}
+                    selected
+                    onSelect={testFunc}
+                    onCheck={testFunc}
+                    data={immutable.Map({ name: 'pe6o', url: 'some url' })}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                    subscribeUnselect={testFunc}
+                    mapColumn={mapColumn}
+                />
+            </tbody>
+        </Table>
+    ));
 
-const tdStyles = [{backgroundColor: '#F5A9BB'}, {backgroundColor: '#DE99A9'}, {backgroundColor: '#BA7F8C'}];
-const thStyles = [{backgroundColor: 'pink'}, {backgroundColor: 'plum'}, {backgroundColor: 'salmon'}, {backgroundColor: 'sandybrown'}, {backgroundColor: 'tomato'}];
+const tdStyles = [{ backgroundColor: '#F5A9BB' }, { backgroundColor: '#DE99A9' }, { backgroundColor: '#BA7F8C' }];
+const thStyles = [{ backgroundColor: 'pink' }, { backgroundColor: 'plum' }, { backgroundColor: 'salmon' }, { backgroundColor: 'sandybrown' }, { backgroundColor: 'tomato' }];
 
 const tableColumns = [
-    {name: 'Username', key: 'userName'},
-    {name: 'First Name', key: 'firstName'},
-    {name: 'Last Name', key: 'lastName'},
-    {name: 'Roles', key: 'roles'},
-    {name: 'Branches', key: 'branches'},
-    {name: 'Status', key: 'isEnabled'},
-    {name: 'Approved', key: 'isApproved'}
+    { name: 'Username', key: 'userName' },
+    { name: 'First Name', key: 'firstName' },
+    { name: 'Last Name', key: 'lastName' },
+    { name: 'Roles', key: 'roles' },
+    { name: 'Branches', key: 'branches' },
+    { name: 'Status', key: 'isEnabled' },
+    { name: 'Approved', key: 'isApproved' }
 ];
 
 const sortableColumns = [true, true, true, true, true, true];
@@ -136,7 +136,7 @@ const mapColumn = function(col, colData) {
         if (colData === true) {
             return 'Yes';
         } else {
-            return <span style={{color: '#cc3333'}}>No</span>;
+            return <span style={{ color: '#cc3333' }}>No</span>;
         }
     }
     if (col.key === 'isEnabled') {
@@ -159,7 +159,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Microcred',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/bo/1021'},
+        'url': '/user/users/bo/1021' },
     {
         'actorId': '1048',
         'userName': 'ChinaCheckerUser',
@@ -169,7 +169,7 @@ const allUsers = immutable.fromJS([
         'branches': 'China',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/ChinaCheckerUser/1048'},
+        'url': '/user/users/ChinaCheckerUser/1048' },
     {
         'actorId': '1047',
         'userName': 'ChinaMakerUser',
@@ -179,7 +179,7 @@ const allUsers = immutable.fromJS([
         'branches': 'China',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/ChinaMakerUser/1047'},
+        'url': '/user/users/ChinaMakerUser/1047' },
     {
         'actorId': '1019',
         'userName': 'contentAdmin',
@@ -189,7 +189,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Microcred',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/contentAdmin/1019'},
+        'url': '/user/users/contentAdmin/1019' },
     {
         'actorId': '1046',
         'userName': 'CoteDIvoireCheckerUser',
@@ -199,7 +199,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Cote d\'Ivoire',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/CoteDIvoireCheckerUser/1046'},
+        'url': '/user/users/CoteDIvoireCheckerUser/1046' },
     {
         'actorId': '1045',
         'userName': 'CoteDIvoireMakerUser',
@@ -209,7 +209,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Cote d\'Ivoire',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/CoteDIvoireMakerUser/1045'},
+        'url': '/user/users/CoteDIvoireMakerUser/1045' },
     {
         'actorId': '1020',
         'userName': 'cs',
@@ -219,7 +219,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Microcred',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/cs/1020'},
+        'url': '/user/users/cs/1020' },
     {
         'actorId': '1056',
         'userName': 'MadagascarCheckerUser',
@@ -229,7 +229,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Madagascar',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/MadagascarCheckerUser/1056'},
+        'url': '/user/users/MadagascarCheckerUser/1056' },
     {
         'actorId': '1055',
         'userName': 'MadagascarMakerUser',
@@ -239,7 +239,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Madagascar',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/MadagascarMakerUser/1055'},
+        'url': '/user/users/MadagascarMakerUser/1055' },
     {
         'actorId': '1054',
         'userName': 'MaliCheckerUser',
@@ -249,7 +249,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Mali',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/MaliCheckerUser/1054'},
+        'url': '/user/users/MaliCheckerUser/1054' },
     {
         'actorId': '1053',
         'userName': 'MaliMakerUser',
@@ -259,7 +259,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Mali',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/MaliMakerUser/1053'},
+        'url': '/user/users/MaliMakerUser/1053' },
     {
         'actorId': '1050',
         'userName': 'NigeriaCheckerUser',
@@ -269,7 +269,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Nigeria',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/NigeriaCheckerUser/1050'},
+        'url': '/user/users/NigeriaCheckerUser/1050' },
     {
         'actorId': '1049',
         'userName': 'NigeriaMakerUser',
@@ -279,7 +279,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Nigeria',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/NigeriaMakerUser/1049'},
+        'url': '/user/users/NigeriaMakerUser/1049' },
     {
         'actorId': '1000',
         'userName': 'sa',
@@ -289,7 +289,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Microcred',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/sa/1000'},
+        'url': '/user/users/sa/1000' },
     {
         'actorId': '1044',
         'userName': 'SenegalCheckerUser',
@@ -299,7 +299,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Senegal',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/SenegalCheckerUser/1044'},
+        'url': '/user/users/SenegalCheckerUser/1044' },
     {
         'actorId': '1043',
         'userName': 'SenegalMakerUser',
@@ -309,7 +309,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Senegal',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/SenegalMakerUser/1043'},
+        'url': '/user/users/SenegalMakerUser/1043' },
     {
         'actorId': '1052',
         'userName': 'TunisiaCheckerUser',
@@ -319,7 +319,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Tunisia',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/TunisiaCheckerUser/1052'},
+        'url': '/user/users/TunisiaCheckerUser/1052' },
     {
         'actorId': '1051',
         'userName': 'TunisiaMakerUser',
@@ -329,7 +329,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Tunisia',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/TunisiaMakerUser/1051'},
+        'url': '/user/users/TunisiaMakerUser/1051' },
     {
         'actorId': '1017',
         'userName': 'userCheckerAdmin',
@@ -339,7 +339,7 @@ const allUsers = immutable.fromJS([
         'branches': 'Microcred',
         'isEnabled': true,
         'isApproved': false,
-        'url': '/user/users/userCheckerAdmin/1017'},
+        'url': '/user/users/userCheckerAdmin/1017' },
     {
         'actorId': '1016',
         'userName': 'userMakerAdmin',

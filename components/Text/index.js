@@ -38,7 +38,7 @@ const TOKEN = /\${([\w]*)}/g;
  */
 function applyTemplate(template, params) {
     if (typeof template === 'string' && params) {
-        return template.replace(TOKEN, function (wholeMatch, key) {
+        return template.replace(TOKEN, function(wholeMatch, key) {
             return (key in params &&
                 typeof params[key] !== 'object' &&
                 typeof params[key] !== 'function' &&

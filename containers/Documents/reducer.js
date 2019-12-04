@@ -15,7 +15,7 @@ import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix, documentPrefix } from '../../constants';
 import { parseFetchDocumentsResult, combineAttachments, mergeDocumentsAndAttachments } from './helpers';
 
-const getDefaultAttachmentObject = function () {
+const getDefaultAttachmentObject = function() {
     return {
         attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
         deletedList: [], // if you need all deleted attachments, subscribe to this object in mapstatetoprops
