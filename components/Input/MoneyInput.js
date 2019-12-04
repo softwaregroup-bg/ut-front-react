@@ -6,3 +6,7 @@ export default function MoneyInput(props) {
     // The options prop will tell Input to use a Cleave.js input instead of <input> tag
     return <Input options={props.options || moneyInputOptions} {...props} />;
 };
+
+MoneyInput.propTypes = {
+    options: PropTypes.object
+};

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {fromJS, List} from 'immutable';
+import { fromJS, List } from 'immutable';
 import { propTypeFields, propTypeData } from './common';
 import { Header } from './Header';
 import { Body } from './Body';
@@ -45,15 +45,15 @@ function reorderVerticalFields(verticalFields, verticalSpanFields) {
     verticalFields.filter((verticalField) => {
         return !allChildren.includes(verticalField.name);
     })
-    .reverse()
-    .forEach((freeChild) => {
-        verticalSpanFields.unshift({
-            title: '',
-            children: [
-                freeChild.name
-            ]
+        .reverse()
+        .forEach((freeChild) => {
+            verticalSpanFields.unshift({
+                title: '',
+                children: [
+                    freeChild.name
+                ]
+            });
         });
-    });
     return {
         verticalFields: reorderFields(fromJS(verticalFields), fromJS(verticalSpanFields)).toJS(),
         verticalSpanFields: verticalSpanFields
@@ -109,50 +109,50 @@ export class SimpleGrid extends Component {
     render() {
         var newSpanFields = this.props.spanFields.map((c) => {
             let shortName = c.children.join('-').toLowerCase();
-            return {shortName: shortName, title: c.title, children: c.children};
+            return { shortName: shortName, title: c.title, children: c.children };
         });
         var iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         var fields = iFields.toJS();
-        let {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
+        let { verticalFields, verticalSpanFields } = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
         return (
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
-                  externalStyle={this.props.externalStyle}
-                  transformCellValue={this.props.transformCellValue}
-                  spanFields={newSpanFields}
-                  fields={fields}
-                  toggleColumnVisibility={this.props.toggleColumnVisibility}
-                  orderBy={this.props.orderBy}
-                  orderDirections={this.props.orderDirections}
-                  multiSelect={this.props.multiSelect}
-                  handleOrder={this.props.handleOrder}
-                  isChecked={this.handleIsChecked()}
-                  globalMenu={this.props.globalMenu}
-                  handleHeaderCheckboxSelect={this.handleHeaderCheckboxSelect}
-                  verticalFields={verticalFields && verticalFields.length > 0}
-                  verticalSpanFields={verticalSpanFields && verticalSpanFields.length > 0}
-                  verticalFieldsVisible={this.props.verticalFieldsVisible}
+                    externalStyle={this.props.externalStyle}
+                    transformCellValue={this.props.transformCellValue}
+                    spanFields={newSpanFields}
+                    fields={fields}
+                    toggleColumnVisibility={this.props.toggleColumnVisibility}
+                    orderBy={this.props.orderBy}
+                    orderDirections={this.props.orderDirections}
+                    multiSelect={this.props.multiSelect}
+                    handleOrder={this.props.handleOrder}
+                    isChecked={this.handleIsChecked()}
+                    globalMenu={this.props.globalMenu}
+                    handleHeaderCheckboxSelect={this.handleHeaderCheckboxSelect}
+                    verticalFields={verticalFields && verticalFields.length > 0}
+                    verticalSpanFields={verticalSpanFields && verticalSpanFields.length > 0}
+                    verticalFieldsVisible={this.props.verticalFieldsVisible}
                 />}
                 <Body
-                  externalStyle={this.props.externalStyle}
-                  fields={fields}
-                  data={this.props.data}
-                  localData={this.props.localData}
-                  emptyRowsMsg={this.props.emptyRowsMsg}
-                  rowsRenderLimit={this.props.rowsRenderLimit}
-                  rowsRenderLimitExceedMsg={this.props.rowsRenderLimitExceedMsg}
-                  multiSelect={this.props.multiSelect}
-                  globalMenu={this.props.globalMenu}
-                  transformCellValue={this.props.transformCellValue}
-                  handleCheckboxSelect={this.props.handleCheckboxSelect}
-                  handleCellClick={this.props.handleCellClick}
-                  handleRowClick={this.props.handleRowClick}
-                  rowsChecked={this.props.rowsChecked}
-                  rowStyleField={this.props.rowStyleField}
-                  verticalFields={verticalFields}
-                  verticalSpanFields={verticalSpanFields}
-                  verticalFieldsRenderComplete={this.props.verticalFieldsRenderComplete}
-                  verticalFieldsVisible={this.props.verticalFieldsVisible}
+                    externalStyle={this.props.externalStyle}
+                    fields={fields}
+                    data={this.props.data}
+                    localData={this.props.localData}
+                    emptyRowsMsg={this.props.emptyRowsMsg}
+                    rowsRenderLimit={this.props.rowsRenderLimit}
+                    rowsRenderLimitExceedMsg={this.props.rowsRenderLimitExceedMsg}
+                    multiSelect={this.props.multiSelect}
+                    globalMenu={this.props.globalMenu}
+                    transformCellValue={this.props.transformCellValue}
+                    handleCheckboxSelect={this.props.handleCheckboxSelect}
+                    handleCellClick={this.props.handleCellClick}
+                    handleRowClick={this.props.handleRowClick}
+                    rowsChecked={this.props.rowsChecked}
+                    rowStyleField={this.props.rowStyleField}
+                    verticalFields={verticalFields}
+                    verticalSpanFields={verticalSpanFields}
+                    verticalFieldsRenderComplete={this.props.verticalFieldsRenderComplete}
+                    verticalFieldsVisible={this.props.verticalFieldsVisible}
                 />
             </table>
         );

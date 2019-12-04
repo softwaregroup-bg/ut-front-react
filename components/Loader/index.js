@@ -10,12 +10,12 @@ const Loader = ({
 }) => {
     return (
         <div className={classnames(styles.loaderContainer, className)}>
-                <div className={styles.overlay} />
-                <div className={classnames(styles.loader, loaderClass)} />
-                <div className={styles.message}>
-                    <Text>{loadInfo.message}</Text>
-                </div>
+            <div className={styles.overlay} />
+            <div className={classnames(styles.loader, loaderClass)} />
+            <div className={styles.message}>
+                <Text>{loadInfo.message}</Text>
             </div>
+        </div>
     );
 };
 

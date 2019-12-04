@@ -34,7 +34,7 @@ class TabMenu extends React.Component {
     }
 
     componentDidUpdate() {
-//        if (this.state.activeTabIndex && this.state.activeTabIndex < this.props.tabs.length) {
+        //        if (this.state.activeTabIndex && this.state.activeTabIndex < this.props.tabs.length) {
         let node = ReactDom.findDOMNode(this.refs.tabset);
         let rowNodeRect = node.getElementsByTagName('tr')[0].getBoundingClientRect();
         let buttonWidth = 32; // the width of the dropdown button // TODO: consider taking this value dynamically
@@ -62,10 +62,10 @@ class TabMenu extends React.Component {
                     this.setOffset(this.calculateLeftCoordinate(tabDimensions, this.state.activeTabIndex));
                 }
             } else if (tabDimensions[this.state.activeTabIndex].right > windowWidth - buttonWidth && tabDimensions[this.state.activeTabIndex].left > 0) {
-            // if the tab is far right
+                // if the tab is far right
                 this.setOffset(this.calculateRightCoordinate(tabDimensions, this.state.activeTabIndex, windowWidth, buttonWidth, rowNodeRect.left));
             } else if (tabsTotalWidth + tabDimensions[0].left < windowWidth - buttonWidth) {
-            // if there is a gap between the last tab and the dropdown button
+                // if there is a gap between the last tab and the dropdown button
                 this.setOffset(this.calculateRightCoordinate(tabDimensions, tabDimensions.length - 1, windowWidth, buttonWidth, rowNodeRect.left));
             }
         } else if (this.state.activeTabIndex && this.state.activeTabIndex >= tabDimensions.length) {
@@ -73,7 +73,7 @@ class TabMenu extends React.Component {
         } else {
             this.setOffset(0);
         }
-//        }
+        //        }
     }
 
     displayBtn(state) {
@@ -130,12 +130,12 @@ class TabMenu extends React.Component {
         }
         return (
             <div className={classnames(style.TabMenu, this.getStyle('tabMenu'))}>
-                <div className={this.getStyle('tabSelectorWrapper')} style={{display: displayBtnStyle}}>
+                <div className={this.getStyle('tabSelectorWrapper')} style={{ display: displayBtnStyle }}>
                     <TabDropdown data={this.props.tabs} activeItem={this.state.activeTabIndex} onSelectItem={this.props.onClick} />
                 </div>
                 <div className={style.relativeWrapper}>
                     <div className={style.absoluteWrapper}>
-                        <table ref='tabset' className={this.getStyle('tabNavbar')} style={{left: offsetStyle}}>
+                        <table ref='tabset' className={this.getStyle('tabNavbar')} style={{ left: offsetStyle }}>
                             <tbody>
                                 <tr>
                                     {this.props.tabs.map((tab, i) => {
@@ -173,7 +173,7 @@ TabMenu.propTypes = {
 
 TabMenu.defaultProps = {
     activeTab: '',
-    onTabClose: function() {}
+    onTabClose: function () { }
 };
 
 TabMenu.contextTypes = {

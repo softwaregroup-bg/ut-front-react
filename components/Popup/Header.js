@@ -16,7 +16,7 @@ const Header = ({
                 <span className={styles.headerText}>
                     <Text>{text}</Text>
                 </span>
-                {closeIcon && <div className={styles.closeBtn} onClick={closePopup} data-test="btnClose" />}
+                {closeIcon && <div className={styles.closeBtn} onClick={closePopup} data-test='btnClose' />}
             </div>
         </div>
     );

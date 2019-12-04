@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import Tree from './../../components/BusinessUnitsTree';
-
+let selectNode = function(node) { action(node); };
 storiesOf('BusinnesUnitsTree', module)
-.add('Default', () => (
-    <Tree onSelect={function(node) { action(node); }} data={unitsTree} styles={{main: {width: '175px', height: '96%'}}} />
-));
+    .add('Default', () => (
+        <Tree onSelect={selectNode} data={unitsTree} styles={{ main: { width: '175px', height: '96%' } }} />
+    ));
 
 const unitsTree = [{
     'id': '1003',

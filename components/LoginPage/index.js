@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import LoginForm from '../../containers/LoginForm';
 import { getClass } from '../../utils/helpers';
@@ -9,7 +9,7 @@ class LoginPage extends Component {
         return (
             <div className={styles.loginContainer}>
                 <div className={classnames(this.context.implementationStyle.loginLogoHeader, getClass(styles, 'loginLogo loginPageHeader'))} />
-                    <LoginForm routerParams={this.props.params} />
+                <LoginForm routerParams={this.props.params} />
                 <div className={classnames(this.context.implementationStyle.loginLogoFooter, getClass(styles, 'loginLogo loginPageFooter'))} />
             </div>
         );

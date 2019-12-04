@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
+import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
 import Checkbox from '../../../Input/Checkbox';
 import style from './GlobalMenu.css';
 
@@ -16,7 +16,7 @@ export default class GlobalMenu extends Component {
         this.handleMenuOpen = this.handleMenuOpen.bind(this);
         this.handleMenuClose = this.handleMenuClose.bind(this);
         this.toggleColumnVisibility = this.toggleColumnVisibility.bind(this);
-        this.state = {menuOpened: false};
+        this.state = { menuOpened: false };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -70,30 +70,30 @@ export default class GlobalMenu extends Component {
             .filter((f) => (!f.internal))
             .map((f, idx) => (
                 <MenuItem
-                  key={idx}
-                  onTouchTap={this.toggleColumnVisibility(f)}
-                  children={
-                      <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
-                        <Checkbox isDisabled={false} checked={f.visible} />
-                        {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
-                      </div>
-                  } />
+                    key={idx}
+                    onTouchTap={this.toggleColumnVisibility(f)}
+                    children={
+                        <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
+                            <Checkbox isDisabled={false} checked={f.visible} />
+                            {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
+                        </div>
+                    } />
             ));
     }
     getMenu() {
         return (
             <Popover
-              open={this.state.menuOpened}
-              anchorEl={this.state.anchorEl}
-              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-              targetOrigin={{horizontal: 'left', vertical: 'top'}}
-              onRequestClose={this.handleMenuClose}
-              animation={PopoverAnimationVertical}
-              className={this.getStyle('headerGlobalMenuPopoverWrap')}>
+                open={this.state.menuOpened}
+                anchorEl={this.state.anchorEl}
+                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                onRequestClose={this.handleMenuClose}
+                animation={PopoverAnimationVertical}
+                className={this.getStyle('headerGlobalMenuPopoverWrap')}>
                 <Menu
-                  className={this.getStyle('headerGlobalMenuItemWrap')}
-                  disableAutoFocus>
-                    { this.getItems() }
+                    className={this.getStyle('headerGlobalMenuItemWrap')}
+                    disableAutoFocus>
+                    {this.getItems()}
                 </Menu>
             </Popover>
         );
@@ -117,7 +117,7 @@ GlobalMenu.propTypes = {
 
 GlobalMenu.defaultProps = {
     externalStyle: {},
-    handleCheckboxSelect: (currentValue) => {},
+    handleCheckboxSelect: (currentValue) => { },
     toggleColumnVisibility: (field) => ({}),
     transformCellValue: (value, field, data, isHeader) => (value)
 };

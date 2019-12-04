@@ -11,7 +11,6 @@ const getClassInternal = (className) => {
 };
 
 const Button = props => {
-
     const { type,
         label,
         icon,
@@ -41,20 +40,20 @@ const Button = props => {
     if (href) {
         return (
             <Link to={href}>
-              <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
-                {icon && <span className={icon} />}
-                <Text>{label}</Text>
-              </button>
+                <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
+                    {icon && <span className={icon} />}
+                    <Text>{label}</Text>
+                </button>
             </Link>
         );
     }
 
     return (
-      <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
-        {icon && <span className={icon} />}
-        <Text>{label}</Text>
-        {children}
-      </button>
+        <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick} data-test={keyProp}>
+            {icon && <span className={icon} />}
+            <Text>{label}</Text>
+            {children}
+        </button>
     );
 };
 
@@ -76,7 +75,7 @@ Button.defaultProps = {
     type: 'button',
     className: '',
     disabledClassName: buttonStyles.disabledBtn,
-    onClick: () => {},
+    onClick: () => { },
     keyProp: ''
 };
 

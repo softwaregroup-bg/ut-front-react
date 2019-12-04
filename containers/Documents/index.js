@@ -87,7 +87,7 @@ class DocumentsContainer extends Component {
             selectedFilter,
             documentArchived
         } = this.props;
-        
+
         let selectedAttachment = attachments.getIn([identifier, 'selected']);
         let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
         let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
@@ -96,9 +96,9 @@ class DocumentsContainer extends Component {
         if (disabledDocumentTypes && disabledDocumentTypes.length > 0) {
             docTypes = docTypes.map(d => {
                 const docType = d.key;
-    
+
                 const isDisabled = disabledDocumentTypes.includes(docType);
-    
+
                 return {
                     ...d,
                     disabled: isDisabled
@@ -108,42 +108,42 @@ class DocumentsContainer extends Component {
 
         let docs = documents;
         let docsChanged = documentsChanged.toJS();
-        
+
         if (selectedFilter && selectedFilter === 'archived') {
             docs = documentArchived.get('data').toJS();
             docsChanged = [];
         }
         return (
             <DocumentsListing
-              identifier={identifier}
-              actorId={actorId}
-              documents={docs}
-              documentsChanged={docsChanged}
-              selectedAttachment={selectedAttachment}
-              requiresFetch={requiresFetch}
-              isLoading={isLoading}
-              fetchArchivedDocuments={fetchArchivedDocuments}
-              onGridSelect={selectAttachments}
-              permissions={permissions}
-              documentTypes={docTypes}
-              uploadNewDocument={this.addDocument}
-              replaceDocument={(replaceObject) => {
-                  this.props.replaceDocument(identifier, selectedAttachment.toJS(), replaceObject);
-              }}
-              deleteDocument={(documentObject) => {
-                  this.props.changeDocumentStatusDeleted(identifier, documentObject);
-              }}
-              archiveDocument={(documentObject) => {
-                  this.props.changeDocumentStatusArchived(identifier, documentObject);
-              }}
-              changeDocumentFilter={(newFilter) => {
-                  this.props.changeDocumentFilter(identifier, newFilter);
-              }}
-              selectedFilter={selectedFilter}
-              documentArchived={documentArchived}
-              clearLogin={() => {
-                  this.props.logout && this.props.logout();
-              }}
+                identifier={identifier}
+                actorId={actorId}
+                documents={docs}
+                documentsChanged={docsChanged}
+                selectedAttachment={selectedAttachment}
+                requiresFetch={requiresFetch}
+                isLoading={isLoading}
+                fetchArchivedDocuments={fetchArchivedDocuments}
+                onGridSelect={selectAttachments}
+                permissions={permissions}
+                documentTypes={docTypes}
+                uploadNewDocument={this.addDocument}
+                replaceDocument={(replaceObject) => {
+                    this.props.replaceDocument(identifier, selectedAttachment.toJS(), replaceObject);
+                }}
+                deleteDocument={(documentObject) => {
+                    this.props.changeDocumentStatusDeleted(identifier, documentObject);
+                }}
+                archiveDocument={(documentObject) => {
+                    this.props.changeDocumentStatusArchived(identifier, documentObject);
+                }}
+                changeDocumentFilter={(newFilter) => {
+                    this.props.changeDocumentFilter(identifier, newFilter);
+                }}
+                selectedFilter={selectedFilter}
+                documentArchived={documentArchived}
+                clearLogin={() => {
+                    this.props.logout && this.props.logout();
+                }}
             />
         );
     }
@@ -177,7 +177,7 @@ DocumentsContainer.propTypes = {
 };
 
 export default connect(
-    ({frontDocuments}, props) => {
+    ({ frontDocuments }, props) => {
         return {
             attachments: frontDocuments,
             documentsChanged: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([]),

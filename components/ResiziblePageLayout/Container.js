@@ -47,7 +47,7 @@ class Container extends Component {
         // Resizible logic
         this.setResizorsHeight();
         let initObjects = this.props.cols.map((col) => {
-            return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
+            return { domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev };
         });
         this.initResize(initObjects);
         document.onmouseup = this.updateOnMouseUp;
@@ -150,8 +150,8 @@ class Container extends Component {
 
             let savedValueColObject = newValue[this.props.localStorageType];
             if (savedValueColObject) {
-                savedValueColObject[firstIndex] = {width: this.resizeObjects[firstIndex].currentWidth};
-                savedValueColObject[secondIndex] = {width: this.resizeObjects[secondIndex].currentWidth};
+                savedValueColObject[firstIndex] = { width: this.resizeObjects[firstIndex].currentWidth };
+                savedValueColObject[secondIndex] = { width: this.resizeObjects[secondIndex].currentWidth };
             } else {
                 newValue[this.props.localStorageType] = getNewArrayValue();
             }
@@ -229,11 +229,11 @@ class Container extends Component {
         } else {
             indexToShrink = index + 1;
         }
-        
-        if(indexToShrink < 0 || indexToShrink >= this.resizeObjects.length) {
+
+        if (indexToShrink < 0 || indexToShrink >= this.resizeObjects.length) {
             return;
         }
-        
+
         let offsetToAdd = this.resizeObjects[index].currentWidth - width;
         let secondColNewWidth = this.resizeObjects[indexToShrink].currentWidth + offsetToAdd;
 
@@ -279,20 +279,20 @@ class Container extends Component {
 
                 return (
                     <CollapsableContent
-                      heading={col.heading}
-                      info={col.info}
-                      orientation={col.right ? 'right' : 'left'}
-                      visibleStyles={{height: this.state.height, ...collapsableContenetStyles}}
-                      isCollapsed={isCollapsed}
-                      onCollapse={onCollapseHanlder}
+                        heading={col.heading}
+                        info={col.info}
+                        orientation={col.right ? 'right' : 'left'}
+                        visibleStyles={{ height: this.state.height, ...collapsableContenetStyles }}
+                        isCollapsed={isCollapsed}
+                        onCollapse={onCollapseHanlder}
                     >
                         {col.child}
                     </CollapsableContent>
                 );
             case resizibleTypes.CONTENT:
                 return (
-                    <div className={style.contentWrap} 
-                        style={{height: this.state.height, overflow: 'auto'}}>
+                    <div className={style.contentWrap}
+                        style={{ height: this.state.height, overflow: 'auto' }}>
                         {col.child}
                     </div>
                 );
@@ -305,7 +305,7 @@ class Container extends Component {
         let renderCols = [];
         this.props.cols.forEach((col, index) => {
             let currentWidth = col.width || defaultColWidth;
-            let currentStyles = {width: currentWidth + 'px', maxWidth: currentWidth + 'px'};
+            let currentStyles = { width: currentWidth + 'px', maxWidth: currentWidth + 'px' };
             let handleOnMouseDownEvent = (e) => {
                 this.setPosition(e, (index - 1));
             };
@@ -331,7 +331,7 @@ class Container extends Component {
         });
 
         return (
-            <div style={{height: this.state.height}}>
+            <div style={{ height: this.state.height }}>
                 <div ref='tableWrap' id={style.mainContentWrap}>
                     {renderCols}
                 </div>

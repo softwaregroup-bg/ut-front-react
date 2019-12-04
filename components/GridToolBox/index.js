@@ -143,6 +143,9 @@ class GridToolBox extends Component {
 
         switch (filterElement.type) {
             case filterElementTypes.dropDown:
+                let onChangeType = function(obj) {
+                    onChange(filterElement.name, obj.value);
+                };
                 return (
                     <Dropdown
                         label={label}
@@ -151,11 +154,7 @@ class GridToolBox extends Component {
                         customTheme
                         placeholder={filterElement.placeholder}
                         defaultSelected={filterValue}
-                        onSelect={filterAutoFetch && !renderInDialog
-                            ? filterElement.onSelect
-                            : function (obj) {
-                                onChange(filterElement.name, obj.value);
-                            }}
+                        onSelect={filterAutoFetch && !renderInDialog ? filterElement.onSelect : onChangeType}
                         canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
             case filterElementTypes.custom:
@@ -165,6 +164,9 @@ class GridToolBox extends Component {
 
                 return filterElement.render(customChangeHandler);
             case filterElementTypes.searchBox:
+                let onChangeSearchBox = function(e) {
+                    onChange(filterElement.name, e.value);
+                };
                 return (filterAutoFetch && !renderInDialog)
                     ? (<div>
                         <SearchBox
@@ -182,11 +184,12 @@ class GridToolBox extends Component {
                             placeholder={filterElement.placeholder}
                             isValid={filterElement.isValid}
                             errorMessage={filterElement.errorMessage}
-                            onChange={function (e) {
-                                onChange(filterElement.name, e.value);
-                            }} />
+                            onChange={onChangeSearchBox} />
                     </div>);
             case filterElementTypes.money:
+                let onChangeMoney = function(e) {
+                    onChange(filterElement.name, e.target.value);
+                };
                 return (<div>
                     <MoneyInput
                         label={label}
@@ -194,20 +197,16 @@ class GridToolBox extends Component {
                         placeholder={filterElement.placeholder}
                         isValid={filterElement.isValid}
                         errorMessage={filterElement.errorMessage}
-                        onChange={function (e) {
-                            onChange(filterElement.name, e.target.value);
-                        }}
+                        onChange={onChangeMoney}
                     />
                 </div>);
             case filterElementTypes.datePicker:
+                let onChangeDatePicker = function(obj) {
+                    onChange(filterElement.name, obj.value);
+                };
                 return (<div>
                     <DatePicker
-                        onChange={filterAutoFetch && !renderInDialog
-                            ? filterElement.onChange
-                            : function (obj) {
-                                onChange(filterElement.name, obj.value);
-                            }
-                        }
+                        onChange={filterAutoFetch && !renderInDialog ? filterElement.onChange : onChangeDatePicker}
                         withVerticalClass={renderInDialog}
                         locale={filterElement.locale}
                         defaultValue={filterValue}
@@ -225,13 +224,12 @@ class GridToolBox extends Component {
                 </div>);
 
             case filterElementTypes.datePickerBetween:
+                let onChangeDatePickerBetween = function(obj) {
+                    onChange(filterElement.name[obj.key], obj.value);
+                };
                 return (<div>
                     <DatePickerBetween
-                        onChange={filterAutoFetch && !renderInDialog
-                            ? filterElement.onChange
-                            : function (obj) {
-                                onChange(filterElement.name[obj.key], obj.value);
-                            }}
+                        onChange={filterAutoFetch && !renderInDialog ? filterElement.onChange : onChangeDatePickerBetween}
                         withVerticalClass={renderInDialog}
                         defaultValue={filterValue}
                         dateFormat={filterElement.dateFormat || defaultDateFormat}
@@ -245,13 +243,12 @@ class GridToolBox extends Component {
                         boldLabel={renderInDialog} />
                 </div>);
             case filterElementTypes.dateTimePickerBetween:
+                let onChangeDateTimePickerBetween = function(obj) {
+                    onChange(filterElement.name[obj.key], obj.value);
+                };
                 return (<div>
                     <DateTimePickerBetween
-                        onChange={filterAutoFetch && !renderInDialog
-                            ? filterElement.onChange
-                            : function (obj) {
-                                onChange(filterElement.name[obj.key], obj.value);
-                            }}
+                        onChange={filterAutoFetch && !renderInDialog ? filterElement.onChange : onChangeDateTimePickerBetween}
                         withVerticalClass={renderInDialog}
                         defaultValue={filterValue}
                         timeFormat={filterElement.timeFormat || defaultTimeFormat}
@@ -274,6 +271,9 @@ class GridToolBox extends Component {
                         value={filterElement.value} />
                 </div>);
             case filterElementTypes.multiselect:
+                let onChangeMultiselect = function(obj) {
+                    onChange(filterElement.name, obj.value);
+                };
                 return (
                     <div>
                         <MultiSelectDropdown
@@ -287,11 +287,7 @@ class GridToolBox extends Component {
                             mergeStyles={filterElement.mergeStyles || {
                                 multiSelectDropdownPlaceholder: style.multiselectDropdownPlaceholder
                             }}
-                            onSelect={filterAutoFetch && !renderInDialog
-                                ? filterElement.onSelect
-                                : function (obj) {
-                                    onChange(filterElement.name, obj.value);
-                                }}
+                            onSelect={filterAutoFetch && !renderInDialog ? filterElement.onSelect : onChangeMultiselect}
                             type='dropdownMultiSelect'
                         />
                     </div>

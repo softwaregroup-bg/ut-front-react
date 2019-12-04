@@ -43,5 +43,5 @@ export default connect(
             texts: state.gate.get('texts') || Map()
         };
     },
-    { }
+    {}
 )(Txt);

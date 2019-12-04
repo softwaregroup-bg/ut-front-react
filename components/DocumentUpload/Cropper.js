@@ -21,7 +21,7 @@ export default class Cropper extends Component {
             result: 'base64',
             size: 'viewport',
             format: 'jpeg',
-            quality: 0.99,
+            quality: 0.99
         }).then(onCrop);
     }
 

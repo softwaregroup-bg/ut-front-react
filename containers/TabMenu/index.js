@@ -5,7 +5,7 @@ import TabMenu from '../../components/TabMenu';
 import { removeTab, addTab } from './actions';
 
 class TabMenuWrapper extends Component {
-    componentWillReceiveProps({active, defaultLocation}) {
+    componentWillReceiveProps({ active, defaultLocation }) {
         // on tab close
         let prev = this.props.active;
         if (active && prev && active.pathname !== prev.pathname) { // focus previous tab or...
@@ -20,7 +20,8 @@ class TabMenuWrapper extends Component {
 }
 
 TabMenuWrapper.propTypes = {
-    active: PropTypes.object
+    active: PropTypes.object,
+    defaultLocation: PropTypes.string
 };
 
 TabMenuWrapper.contextTypes = {
@@ -38,7 +39,7 @@ export default connect(
         }
     }),
     null,
-    {pure: false}
+    { pure: false }
 )(TabMenuWrapper);
 
 class AddTabWrapper extends Component {

@@ -15,7 +15,7 @@ import { REMOVE_TAB } from '../TabMenu/actionTypes';
 import { methodRequestState, documentTmpUploadPrefix, documentPrefix } from '../../constants';
 import { parseFetchDocumentsResult, combineAttachments, mergeDocumentsAndAttachments } from './helpers';
 
-const getDefaultAttachmentObject = function() {
+const getDefaultAttachmentObject = function () {
     return {
         attachmentsList: [], // if you need all active attachments, subscribe to this object in mapstatetoprops
         deletedList: [], // if you need all deleted attachments, subscribe to this object in mapstatetoprops
@@ -114,7 +114,7 @@ const documents = (state = defaultState, action) => {
             newObject.attachments[0].filename = doc.filename;
             newObject.attachments[0].extension = doc.extension;
             newObject.attachments[0].contentType = doc.contentType;
-            newObject.attachments[0].url =doc.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + doc.filename : documentPrefix + doc.filename;
+            newObject.attachments[0].url = doc.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + doc.filename : documentPrefix + doc.filename;
             newObject.attachments[0].isNew = true;
             newObject.statusId = 'pending';
             let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();

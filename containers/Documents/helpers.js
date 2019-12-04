@@ -128,7 +128,7 @@ export function combineAttachments(state) {
         }
     });
     return state.set('attachmentsList', immutable.fromJS(result))
-                .set('deletedList', immutable.fromJS(deletedIds));
+        .set('deletedList', immutable.fromJS(deletedIds));
 }
 
 function mergeAttachments(mainObj, overridesObj) {
@@ -181,7 +181,7 @@ function insertAttachmentsInDocuments(documents = [], attachments = [], factor) 
     });
 }
 
-export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprovedDocuments = {unapprovedDocuments: [], unapprovedAttachments: []}) {
+export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprovedDocuments = { unapprovedDocuments: [], unapprovedAttachments: [] }) {
     let resultDocuments = [];
     let resultAttachments = [];
     let resultActorDocuments = [];
@@ -280,7 +280,7 @@ export function arrangeDocuments(currentDocs, newDocs) {
     var removedDocs = [];
     currentDocs.map((doc) => {
         // add unchanged docs to new docs
-        if(!newDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; })) {
+        if (!newDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; })) {
             newDocs.push(doc);
         }
     });
@@ -288,7 +288,7 @@ export function arrangeDocuments(currentDocs, newDocs) {
         var matchedDoc = currentDocs.find((cDoc) => { return doc.documentId === cDoc.documentId; });
         if (matchedDoc && ['deleted', 'archived'].includes(doc.statusId)) {
             removedDocs.push(matchedDoc);
-        } else if(matchedDoc) {
+        } else if (matchedDoc) {
             arrangeNewDocs.push(doc);
             arrangeCurrentDocs.push(matchedDoc);
         } else {

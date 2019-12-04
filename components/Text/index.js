@@ -12,7 +12,7 @@ Text.contextTypes = {
 };
 
 export default function Text(props, context) {
-    let {children, params, prefix} = props;
+    let { children, params, prefix } = props;
     let template = children;
     if (typeof context.translate === 'function') {
         var text = (prefix ? [prefix, children] : [children]).join('>');
@@ -38,13 +38,13 @@ const TOKEN = /\${([\w]*)}/g;
  */
 function applyTemplate(template, params) {
     if (typeof template === 'string' && params) {
-        return template.replace(TOKEN, function(wholeMatch, key) {
+        return template.replace(TOKEN, function (wholeMatch, key) {
             return (key in params &&
-                    typeof params[key] !== 'object' &&
-                    typeof params[key] !== 'function' &&
-                    typeof params[key] !== 'undefined')
-                    ? params[key]
-                    : wholeMatch;
+                typeof params[key] !== 'object' &&
+                typeof params[key] !== 'function' &&
+                typeof params[key] !== 'undefined')
+                ? params[key]
+                : wholeMatch;
         });
     } else {
         // We cannot do any processing - just return the original

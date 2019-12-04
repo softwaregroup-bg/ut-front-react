@@ -6,8 +6,8 @@ storiesOf('Accordion', module)
     .add('Initial extended', () => (
         <div>
             <Accordion
-              title='IDENTIFICATION'
-              >
+                title='IDENTIFICATION'
+            >
                 <div>child</div>
             </Accordion>
             <p style={{ color: 'cornflowerblue' }}>additional props will be passed to Box component</p>
@@ -15,9 +15,9 @@ storiesOf('Accordion', module)
     ))
     .add('Collapsed', () => (
         <Accordion
-          title='IDENTIFICATION'
-          collapsed
-          >
+            title='IDENTIFICATION'
+            collapsed
+        >
             <div>child</div>
         </Accordion>
     ));

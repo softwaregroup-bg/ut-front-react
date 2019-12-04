@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const Image = ({className = '', ...props}) => {
+const Image = ({ className = '', ...props }) => {
     let classes = classNames('img-responsive', className);
     return (
-      <img className={classes} {...props} />
+        <img className={classes} {...props} />
     );
 };
 

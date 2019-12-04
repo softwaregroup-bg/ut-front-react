@@ -49,14 +49,14 @@ export default class CheckboxNew extends Component {
         const { label } = this.props;
         return (
             <span className={this.checkboxWrapperClasses}>
-              <span className={styles.checkboxNewWrapper}>
-                <span
-                  className={this.checkboxClasses}
-                  onClick={this.onChange} />
-                <span
-                  className={this.checkboxLabelClasses}
-                  onClick={this.onChange} >{label}</span>
-              </span>
+                <span className={styles.checkboxNewWrapper}>
+                    <span
+                        className={this.checkboxClasses}
+                        onClick={this.onChange} />
+                    <span
+                        className={this.checkboxLabelClasses}
+                        onClick={this.onChange} >{label}</span>
+                </span>
             </span>
         );
     }

@@ -5,8 +5,8 @@ import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
-import SvgIcon from 'material-ui/SvgIcon';
+import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
+// import SvgIcon from 'material-ui/SvgIcon';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class Dropdown extends Component {
         this.state = {
             open: false,
             value: props.defaultSelected || this.props.placeholderValue,
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
+            valid: { isValid: this.props.isValid, errorMessage: this.props.errorMessage }
         };
 
         this.getMenuItems = this.getMenuItems.bind(this);
@@ -25,10 +25,10 @@ class Dropdown extends Component {
         this.renderDropDown = this.renderDropDown.bind(this);
     }
 
-    componentWillReceiveProps({defaultSelected, data, isValid, errorMessage}) {
+    componentWillReceiveProps({ defaultSelected, data, isValid, errorMessage }) {
         // when item is saved defaultSelected should be restored to placeholder
         if (!defaultSelected) {
-            this.setState({value: this.props.placeholderValue});
+            this.setState({ value: this.props.placeholderValue });
         }
 
         if (defaultSelected !== this.props.defaultSelected || this.props.data !== data) {
@@ -37,32 +37,32 @@ class Dropdown extends Component {
                     return item.key === defaultSelected;
                 }
             );
-            if (value) this.setState({value: value.key});
+            if (value) this.setState({ value: value.key });
         }
 
         if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
+            this.setState({ valid: { isValid: isValid, errorMessage: errorMessage } });
         }
     }
     toggleOpen(event) {
-        return this.setState({open: true, anchorEl: event.currentTarget});
+        return this.setState({ open: true, anchorEl: event.currentTarget });
     }
 
     toggleClose() {
-        return this.setState({open: false});
+        return this.setState({ open: false });
     }
 
     handleChange(event, value) {
         let { onSelect, keyProp } = this.props;
-        let objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
+        let objectToPassOnChange = { key: keyProp, value: value, initValue: this.state.value };
 
-        this.setState({value: value, valid: {isValid: true, errorMessage: ''}});
+        this.setState({ value: value, valid: { isValid: true, errorMessage: '' } });
         onSelect(objectToPassOnChange);
         this.toggleClose();
     }
 
     get dropdownPlaceholder() {
-        const {defaultSelected, data, placeholder} = this.props;
+        const { defaultSelected, data, placeholder } = this.props;
         const selected = data.find(item => item.key === defaultSelected);
         return (selected && selected.name) || placeholder;
     }
@@ -77,11 +77,11 @@ class Dropdown extends Component {
 
         menuItems.push(
             <MenuItem
-              key={Math.random() + '-ddfg'}
-              disabled={!canSelectPlaceholder}
-              value={this.props.placeholderValue || '__placeholder__'}
-              primaryText={this.context.translate(placeholder)}
-              className={ddstyles.dropdownMenuItemWrap}
+                key={Math.random() + '-ddfg'}
+                disabled={!canSelectPlaceholder}
+                value={this.props.placeholderValue || '__placeholder__'}
+                primaryText={this.context.translate(placeholder)}
+                className={ddstyles.dropdownMenuItemWrap}
             />
         );
 
@@ -121,8 +121,8 @@ class Dropdown extends Component {
                         </p>
                     </div>
                     <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
-                        <svg style={{width: '26px', height: '26px'}}>
-                            <path d="M7 10l5 5 5-5z" style={{fill:'#fff'}}/>
+                        <svg style={{ width: '26px', height: '26px' }}>
+                            <path d="M7 10l5 5 5-5z" style={{ fill: '#fff' }} />
                         </svg>
                     </div>
                     <div className={ddstyles.hideTextWrap} />
@@ -131,8 +131,8 @@ class Dropdown extends Component {
                     open={this.state.open}
                     onRequestClose={this.toggleClose}
                     anchorEl={this.state.anchorEl}
-                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                     animation={PopoverAnimationVertical}
                 >
                     <Menu
@@ -141,7 +141,7 @@ class Dropdown extends Component {
                         autoWidth={false}
                         disabled={this.props.disabled}
                         className={classnames(ddstyles.dropdownMenu)}
-                        style={{width: rootElementWidth}}
+                        style={{ width: rootElementWidth }}
                         maxHeight={300}>
                         {menuItems}
                     </Menu>
@@ -151,7 +151,8 @@ class Dropdown extends Component {
     }
 
     render() {
-        let { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
+        // let { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
+        let { label, cssStyle, mergeStyles, containerClassName, inputWrap } = this.props;
         let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         let { isValid, errorMessage } = this.state.valid;
         let invalidStyle = isValid ? ddstyles.hiddenHeight : '';
@@ -160,7 +161,7 @@ class Dropdown extends Component {
             return (
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
-                        <div className={classnames(ddstyles.lableWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
+                        <div className={classnames(ddstyles.lableWrap, { [ddstyles.boldLabel]: this.props.boldLabel })}>
                             <Text>{this.props.label}</Text> {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                         </div>
                         <div className={classnames(ddstyles.inputWrap, inputWrap)}>
@@ -229,7 +230,7 @@ Dropdown.defaultProps = {
     canSelectPlaceholder: false,
     disabled: false,
     keyProp: '__no_source_prop_key__',
-    onSelect: () => {},
+    onSelect: () => { },
     isValid: true,
     errorMessage: '',
     menuAutoWidth: false

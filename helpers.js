@@ -114,16 +114,16 @@ export const dateDisplayFormat = (date, format) => {
     return dateFormat(new Date(date), 'YYYY-MM-DD');
 };
 
-export var checkPermission = function() {
+export var checkPermission = function () {
     return false;
 };
 
-export const setPermissions = function(permissions) {
+export const setPermissions = function (permissions) {
     var cache = {};
-    var regExp = new RegExp(permissions.map(function(permission) {
+    var regExp = new RegExp(permissions.map(function (permission) {
         return ['^', permission.actionId.replace('%', '(.+?)'), '$'].join('');
     }).join('|'));
-    checkPermission = function(action) {
+    checkPermission = function (action) {
         if (cache[action] === undefined) {
             cache[action] = regExp.test(action);
         }
@@ -169,8 +169,8 @@ export function formatMoney(value = '', delimeter = ',', regex = /\B(?=(\d{3})+$
         const partDecimal = parts[1];
         const formattedInteger = partInteger.replace(regex, delimeter);
         return `${formattedInteger}.${partDecimal}`;
-    } 
-    
+    }
+
     // 10000 => 10,000
     return stringValue.replace(regex, delimeter);
 }

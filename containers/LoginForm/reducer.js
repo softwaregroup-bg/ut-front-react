@@ -33,9 +33,9 @@ const updateLoginStep = (state, step) => {
     });
 
     return state.setIn(['loginForm', 'buttonLabel'], loginStep.buttonLabel)
-                .setIn(['loginForm', 'title'], loginStep.title)
-                .set('formError', '')
-                .set('loginType', step);
+        .setIn(['loginForm', 'title'], loginStep.title)
+        .set('formError', '')
+        .set('loginType', step);
 };
 
 const defaultLoginState = Immutable.fromJS({
@@ -65,8 +65,8 @@ const loginReducer = (state = defaultLoginState, action) => {
                     return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message);
                 } else if (action.result) {
                     return state.set('authenticated', true)
-                                .set('cookieChecked', true)
-                                .set('formError', '');
+                        .set('cookieChecked', true)
+                        .set('formError', '');
                 }
             }
             return state;
@@ -98,7 +98,7 @@ const loginReducer = (state = defaultLoginState, action) => {
                 state = state.set('loginData', getLoginData());
             } else {
                 state = state.setIn(['loginForm', 'inputs', validationResult.invalidField, 'error'], validationResult.error)
-                              .set('formError', '');
+                    .set('formError', '');
             }
 
             return state.setIn(['loginForm', 'shouldSubmit'], validationResult.isValid);
@@ -107,12 +107,12 @@ const loginReducer = (state = defaultLoginState, action) => {
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
                     return state.delete('result')
-                                .set('cookieChecked', true)
-                                .set('authenticated', false);
+                        .set('cookieChecked', true)
+                        .set('authenticated', false);
                 } else if (action.result) {
                     return state.set('result', Immutable.fromJS(action.result))
-                                .set('cookieChecked', true)
-                                .set('authenticated', true);
+                        .set('cookieChecked', true)
+                        .set('authenticated', true);
                 }
             }
             return state;

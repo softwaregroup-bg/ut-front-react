@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import {fromJS, Map} from 'immutable';
-import {propTypeFields} from '../common';
+import { fromJS, Map } from 'immutable';
+import { propTypeFields } from '../common';
 import Field from './Field';
 import MultiSelectField from './SpecialFields/MultiSelect';
 import GlobalMenu from './SpecialFields/GlobalMenu';
@@ -12,7 +12,7 @@ export class Header extends Component {
         this.handleOrder = this.handleOrder.bind(this);
     }
     componentWillMount() {
-        this.setState({orderDirections: {}});
+        this.setState({ orderDirections: {} });
     }
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
@@ -33,26 +33,26 @@ export class Header extends Component {
             if (this.props.multiOrder) {
                 this.state.orderDirections[fieldName] = orderDirection;
             } else {
-                this.state.orderDirections = {[fieldName]: orderDirection};
+                this.state.orderDirections = { [fieldName]: orderDirection };
             }
-            this.props.handleOrder({field: fieldName, new: orderDirection, old: orderDirectionOld, all: this.state.orderDirections});
+            this.props.handleOrder({ field: fieldName, new: orderDirection, old: orderDirectionOld, all: this.state.orderDirections });
             this.setState(this.state);
         }
     }
     getFields() {
         let fields = fromJS(this.props.fields);
         if (this.props.multiSelect) {
-            fields = fields.unshift(Map({internal: 'multiSelect'}));
+            fields = fields.unshift(Map({ internal: 'multiSelect' }));
         }
         if (this.props.globalMenu) {
-            fields = fields.push(Map({internal: 'globalMenu'}));
+            fields = fields.push(Map({ internal: 'globalMenu' }));
         }
         if (this.props.verticalFields) {
             if (this.props.verticalFieldsVisible) {
-                fields = fields.unshift(Map({internal: 'verticalField'}));
+                fields = fields.unshift(Map({ internal: 'verticalField' }));
             }
             if (this.props.verticalSpanFields) {
-                fields = fields.unshift(Map({internal: 'verticalSpanField'}));
+                fields = fields.unshift(Map({ internal: 'verticalSpanField' }));
             }
         }
         return fields;
@@ -77,29 +77,29 @@ export class Header extends Component {
             {fields.filter((field) => { // cleanup fields that are not visible
                 return field.get('visible', true);
             })
-            .map((field, idx, array) => {
-                var fieldsInSpanList = spanFields.filter((spanField) => {
-                    return spanField.get('children').filter((child) => {
-                        return child === field.get('name');
-                    }).size > 0;
-                });
-                if (fieldsInSpanList.size > 0) {
-                    let identifier = fieldsInSpanList.getIn([0, 'children']).join();
-                    let classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'shortName']).toLowerCase());
-                    if (!spanDrawn[identifier]) {
-                        spanDrawn[identifier] = 1;
-                        let childNum = fieldsInSpanList.getIn([0, 'children']).size;
-                        let title = fieldsInSpanList.getIn([0, 'title']);
-                        if (title instanceof Map) {
-                            title = title.toJS();
-                        }
+                .map((field, idx, array) => {
+                    var fieldsInSpanList = spanFields.filter((spanField) => {
+                        return spanField.get('children').filter((child) => {
+                            return child === field.get('name');
+                        }).size > 0;
+                    });
+                    if (fieldsInSpanList.size > 0) {
+                        let identifier = fieldsInSpanList.getIn([0, 'children']).join();
+                        let classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'shortName']).toLowerCase());
+                        if (!spanDrawn[identifier]) {
+                            spanDrawn[identifier] = 1;
+                            let childNum = fieldsInSpanList.getIn([0, 'children']).size;
+                            let title = fieldsInSpanList.getIn([0, 'title']);
+                            if (title instanceof Map) {
+                                title = title.toJS();
+                            }
 
-                        return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), classSpanName].join(' ') : '')} key={idx} colSpan={childNum}>{title}</td>;
+                            return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), classSpanName].join(' ') : '')} key={idx} colSpan={childNum}>{title}</td>;
+                        }
+                    } else {
+                        return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;
                     }
-                } else {
-                    return <td className={(array.get(idx + 1) ? [this.getStyle('gridHeaderTrSpanColumnNotLast'), this.getStyle('gridHeaderTrSpanColumnContentless')].join(' ') : this.getStyle('gridHeaderTrSpanColumnContentless'))} key={idx}>&nbsp;</td>;
-                }
-            })}
+                })}
         </tr>);
     }
     render() {
@@ -112,38 +112,38 @@ export class Header extends Component {
                     {fields.map((field, idx) => {
                         if (!field.get('internal')) {
                             return <Field
-                              externalStyle={this.props.externalStyle}
-                              transformCellValue={this.props.transformCellValue}
-                              key={idx} field={field.toJS()}
-                              handleOrder={this.handleOrder}
-                              orderDirection={
-                                  (this.props.orderDirections && this.props.orderDirections[field.get('name')]) ||
-                                  this.state.orderDirections[field.get('name')]
-                              } />;
+                                externalStyle={this.props.externalStyle}
+                                transformCellValue={this.props.transformCellValue}
+                                key={idx} field={field.toJS()}
+                                handleOrder={this.handleOrder}
+                                orderDirection={
+                                    (this.props.orderDirections && this.props.orderDirections[field.get('name')]) ||
+                                    this.state.orderDirections[field.get('name')]
+                                } />;
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField
-                              field={field.toJS()}
-                              key={idx}
-                              handleCheckboxSelect={this.props.handleHeaderCheckboxSelect}
-                              isChecked={this.props.isChecked} />;
+                                field={field.toJS()}
+                                key={idx}
+                                handleCheckboxSelect={this.props.handleHeaderCheckboxSelect}
+                                isChecked={this.props.isChecked} />;
                         } else if (field.get('internal') === 'globalMenu') {
                             return <GlobalMenu
-                              field={field.toJS()}
-                              key={idx}
-                              fields={this.props.fields}
-                              transformCellValue={this.props.transformCellValue}
-                              toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                                field={field.toJS()}
+                                key={idx}
+                                fields={this.props.fields}
+                                transformCellValue={this.props.transformCellValue}
+                                toggleColumnVisibility={this.props.toggleColumnVisibility} />;
                         } else if (field.get('internal') === 'verticalSpanField') {
                             return <Field
-                              field={{name: 'verticalSpanField'}}
-                              externalStyle={this.props.externalStyle}
-                              key={idx}
+                                field={{ name: 'verticalSpanField' }}
+                                externalStyle={this.props.externalStyle}
+                                key={idx}
                             />;
                         } else if (field.get('internal') === 'verticalField') {
                             return <Field
-                              field={{name: 'verticalField'}}
-                              externalStyle={this.props.externalStyle}
-                              key={idx}
+                                field={{ name: 'verticalField' }}
+                                externalStyle={this.props.externalStyle}
+                                key={idx}
                             />;
                         }
                     })}

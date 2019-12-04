@@ -14,7 +14,7 @@ class TextField extends Component {
         super(props);
         this.state = {
             value: props.value,
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage},
+            valid: { isValid: this.props.isValid, errorMessage: this.props.errorMessage },
             isEdited: this.props.isEdited
         };
 
@@ -26,13 +26,13 @@ class TextField extends Component {
         this.style = props.customStyle || defaultStyle;
     }
 
-    componentWillReceiveProps({value, isValid, errorMessage, isEdited}) {
+    componentWillReceiveProps({ value, isValid, errorMessage, isEdited }) {
         this.initialValue = value;
 
         if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.isEdited !== isEdited || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
                 value: value,
-                valid: {isValid: isValid, errorMessage: errorMessage},
+                valid: { isValid: isValid, errorMessage: errorMessage },
                 isEdited: isEdited
             });
         }
@@ -53,7 +53,7 @@ class TextField extends Component {
             newValue = this.props.normalize(newValue);
         }
         // For proper caret behavior Cleave needs the value already formatted from last edit
-        this.setState({value: newValue, cleaveFormattedValue: e.target.value});
+        this.setState({ value: newValue, cleaveFormattedValue: e.target.value });
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
         var oldQueue = this.onChangeQueue.shift();
@@ -65,8 +65,8 @@ class TextField extends Component {
 
     notifyForChange(newValue) {
         let { validators, keyProp, onChange } = this.props;
-        let newState = {value: newValue};
-        let objectToPassOnChange = {key: keyProp, value: newValue, initValue: this.initialValue};
+        let newState = { value: newValue };
+        let objectToPassOnChange = { key: keyProp, value: newValue, initValue: this.initialValue };
 
         // Perfom validation
         if (validators.length > 0) {
@@ -75,9 +75,9 @@ class TextField extends Component {
                 let errorMessage = valid.errors[0].errorMessage;
                 objectToPassOnChange.error = true;
                 objectToPassOnChange.errorMessage = errorMessage;
-                newState.valid = {isValid: false, errorMessage: errorMessage};
+                newState.valid = { isValid: false, errorMessage: errorMessage };
             } else if (!this.state.valid.isValid) {
-                newState.valid = {isValid: true, errorMessage: ''};
+                newState.valid = { isValid: true, errorMessage: '' };
             }
         }
         this.setState(newState);
@@ -99,18 +99,18 @@ class TextField extends Component {
         let { isValid, errorMessage } = this.state.valid;
         let zeroHeightStyle = isValid ? this.style.hh : '';
         const value = (!this.state.value && this.state.value !== 0) ? '' : this.state.value;
-        const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-        const eventName = isIE11 ? 'onInput' : 'onChange';
-        const inputProps = {
-            type,
-            className: this.inputClassName,
-            value,
-            onClick,
-            onBlur,
-            [eventName]: this.handleChange,
-            readOnly: this.props.readonly,
-            placeholder
-        };
+        // const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+        // const eventName = isIE11 ? 'onInput' : 'onChange';
+        // const inputProps = {
+        //     type,
+        //     className: this.inputClassName,
+        //     value,
+        //     onClick,
+        //     onBlur,
+        //     [eventName]: this.handleChange,
+        //     readOnly: this.props.readonly,
+        //     placeholder
+        // };
 
         // For proper caret behavior Cleave needs the value already formatted from last edit
         let renderValue = this.props.options
@@ -147,7 +147,7 @@ class TextField extends Component {
         if (label) {
             return (
                 <div className={classnames(this.style.outerWrap, wrapperClassName)}>
-                    <div className={classnames(this.style.lableWrap, labelClassName, {[this.style.boldLabel]: this.props.boldLabel})}>
+                    <div className={classnames(this.style.lableWrap, labelClassName, { [this.style.boldLabel]: this.props.boldLabel })}>
                         <Text>{label}</Text> {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
@@ -223,12 +223,10 @@ TextField.defaultProps = {
     isValid: true,
     errorMessage: '',
     isEdited: false,
-    onChange: () => {},
-    onBlur: () => {},
-    onClick: () => {}
+    onChange: () => { },
+    onBlur: () => { },
+    onClick: () => { }
 };
-
-
 TextField.contextTypes = {
     translate: React.PropTypes.func
 };

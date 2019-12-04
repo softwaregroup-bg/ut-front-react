@@ -181,13 +181,13 @@ function getClasses(glyphicon) {
     };
 }
 const Glyphicon = ({ glyphicon, size, color, className, style, ...props }) => {
-    let {typeClass, defaultSize} = getClasses(glyphicon);
+    let { typeClass, defaultSize } = getClasses(glyphicon);
     let glyphiconColor = getColor(color);
     let classes = classnames(styles.defaultRules, typeClass, className);
     let glyphiconSize = (size || defaultSize) + 'px';
-    let inlineStyles = {fontSize: glyphiconSize, color: glyphiconColor, ...style};
+    let inlineStyles = { fontSize: glyphiconSize, color: glyphiconColor, ...style };
     return (
-      <span {...props} className={classes} style={inlineStyles} />
+        <span {...props} className={classes} style={inlineStyles} />
     );
 };
 

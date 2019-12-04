@@ -76,9 +76,9 @@ export default class MenuNew extends Component {
 
         return (
             <div
-              style={positioningStyles}
-              className={classNames(styles.menu, styles.standardMenu, className)} >
-              {fields}
+                style={positioningStyles}
+                className={classNames(styles.menu, styles.standardMenu, className)} >
+                {fields}
             </div>
         );
     }
@@ -90,7 +90,7 @@ MenuNew.defaultProps = {
     fields: [],
     anchorEl: null,
     positioningDirections: 'right-bottom',
-    additionalOffsets: {top: 0, right: 0, bottom: 0, left: 0},
+    additionalOffsets: { top: 0, right: 0, bottom: 0, left: 0 },
     separatorsOnIndex: []
 };
 

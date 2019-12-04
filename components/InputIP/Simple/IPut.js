@@ -48,9 +48,9 @@ function getRange(el) {
 }
 
 class IPut extends Component {
-/**
- * constructor
- */
+    /**
+     * constructor
+     */
     constructor() {
         super();
         this.state = {
@@ -69,9 +69,9 @@ class IPut extends Component {
             value: Array.isArray(this.props.value) ? this.props.value : this.props.value.split('.')
         });
     }
-/**
- * Change Event
- */
+    /**
+     * Change Event
+     */
     handleChange(e, i) {
         let val = parseInt(e.target.value);
         if (isNaN(e.target.value)) { return e.preventDefault(); }
@@ -79,24 +79,24 @@ class IPut extends Component {
 
         let value = this.state.value;
         value[i] = val;
-        this.setState({value}, () => this.onPropsChange());
+        this.setState({ value }, () => this.onPropsChange());
 
         if (!isNaN(val) && String(val).length === 3 && i < 3) { this[`_input-${i + 1}`].focus(); }
     }
-/**
- * Keydown Event
- */
+    /**
+     * Keydown Event
+     */
     handleKeyDown(e, i) {
-    /* 37 = ←, 39 = →, 8 = backspace, 190 & 110 = dot */
+        /* 37 = ←, 39 = →, 8 = backspace, 190 & 110 = dot */
         let domId = i;
         if ((e.keyCode === 37 || e.keyCode === 8) && getRange(e.target).end === 0 && i > 0) { domId = i - 1; }
         if (e.keyCode === 39 && getRange(e.target).end === e.target.value.length && i < 3) { domId = i + 1; }
         if ((e.keyCode === 190 || e.keyCode === 110) && getRange(e.target).end > 0 && i < 3) { domId = i + 1; }
         this[`_input-${domId}`].focus();
     }
-/**
- * Paste Event
- */
+    /**
+     * Paste Event
+     */
     handlePaste(e, i) {
         let value = e.clipboardData.getData('text/plain').split('.').map(val => parseInt(val));
         if (value.length === 4 - i && value.every(val => !isNaN(val) && val >= 0 && val <= 255)) {
@@ -104,13 +104,13 @@ class IPut extends Component {
             value.forEach((val, j) => {
                 oldValue[i + j] = val;
             });
-            this.setState({value: oldValue}, () => this.onPropsChange());
+            this.setState({ value: oldValue }, () => this.onPropsChange());
             return e.preventDefault();
         }
     }
-/**
- * call change props
- */
+    /**
+     * call change props
+     */
     onPropsChange() {
         this.props.onChange(this.state.value.map(val => isNaN(val) ? '' : val).join('.'));
     }
@@ -127,19 +127,19 @@ class IPut extends Component {
         return (
             <div className={className}>
                 {this.state.value.map((val, i) =>
-                <div className={style.ipInputItem} key={i}>
-                    <input
-                      ref={(el) => (this[`_input-${i}`] = el)}
-                      type='text'
-                      value={isNaN(val) ? '' : val}
-                      placeholder={isNaN(placeholders[i]) ? '' : placeholders[i]}
-                      onChange={(e) => this.handleChange(e, i)}
-                      onKeyDown={(e) => this.handleKeyDown(e, i)}
-                      onPaste={(e) => this.handlePaste(e, i)}
-                      readOnly={this.props.readonly}
-                    />
-                    {i !== 3 ? <i>.</i> : false}
-                </div>
+                    <div className={style.ipInputItem} key={i}>
+                        <input
+                            ref={(el) => (this[`_input-${i}`] = el)}
+                            type='text'
+                            value={isNaN(val) ? '' : val}
+                            placeholder={isNaN(placeholders[i]) ? '' : placeholders[i]}
+                            onChange={(e) => this.handleChange(e, i)}
+                            onKeyDown={(e) => this.handleKeyDown(e, i)}
+                            onPaste={(e) => this.handlePaste(e, i)}
+                            readOnly={this.props.readonly}
+                        />
+                        {i !== 3 ? <i>.</i> : false}
+                    </div>
                 )}
             </div>
         );
@@ -153,7 +153,7 @@ IPut.defaultProps = {
     isError: () => false,
     readonly: false,
     clear: false,
-    onChange: () => {}
+    onChange: () => { }
 };
 
 IPut.propTypes = {

@@ -39,21 +39,21 @@ export default class Tab extends Component {
 
         return (
             <Link
-              style={this.props.style}
-              to={tab.routeName}
-              className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
-              activeClassName={styles.navigationTabActive}
-              params={tab.routeParams}
-              onClick={this.onTabClick}>
+                style={this.props.style}
+                to={tab.routeName}
+                className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
+                activeClassName={styles.navigationTabActive}
+                params={tab.routeParams}
+                onClick={this.onTabClick}>
                 <Text>{tab.title}</Text>
-              </Link>
+            </Link>
         );
     }
 };
 
 Tab.deafultProps = {
     disabled: false,
-    onClick: () => {}
+    onClick: () => { }
 };
 
 Tab.propTypes = {

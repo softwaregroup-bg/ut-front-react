@@ -9,8 +9,8 @@ export default class TabsContainer extends Component {
     hasPermission(permissions) {
         return permissions.every((permission) => {
             return permission.indexOf('!') === 0
-              ? !this.context.checkPermission(permission.substr(1))
-              : this.context.checkPermission(permission);
+                ? !this.context.checkPermission(permission.substr(1))
+                : this.context.checkPermission(permission);
         });
     }
 
@@ -30,7 +30,7 @@ export default class TabsContainer extends Component {
 
             memo.push(
                 <div key={i} className={styles.tabContainer}>
-                  {isMulti ? <MultiTab tab={tab} /> : <Tab tab={tab} />}
+                    {isMulti ? <MultiTab tab={tab} /> : <Tab tab={tab} />}
                 </div>
             );
 
@@ -44,7 +44,7 @@ export default class TabsContainer extends Component {
 
         return (
             <span className={className}>
-              {tabs}
+                {tabs}
             </span>
         );
     }

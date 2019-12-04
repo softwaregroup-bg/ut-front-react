@@ -1,4 +1,4 @@
-import {actionList} from './actions';
+import { actionList } from './actions';
 import Immutable from 'immutable';
 const defaultLoginState = Immutable.fromJS({
     authenticated: false,
@@ -26,13 +26,13 @@ export const login = (state = defaultLoginState, action) => {
             if (action.methodRequestState === 'finished') {
                 if (action.error && (~action.error.type.indexOf('.param.') || ~action.error.type.indexOf('.term.'))) {
                     return state
-                        .set('loginCourse', Immutable.Map({message: action.error.message, type: Immutable.List(action.error.type.split('.'))}))
+                        .set('loginCourse', Immutable.Map({ message: action.error.message, type: Immutable.List(action.error.type.split('.')) }))
                         .set('cookieCheckResultId', 0)
                         .update('loginResultId', (v) => (v + 1))
                         .set('authenticated', false);
                 } else if (action.error) {
                     return state
-                        .set('error', Immutable.fromJS({code: action.error.code, message: action.error.message, type: action.error.type}))
+                        .set('error', Immutable.fromJS({ code: action.error.code, message: action.error.message, type: action.error.type }))
                         .update('loginResultId', (v) => (v + 1))
                         .set('cookieCheckResultId', 0)
                         .set('authenticated', false);
@@ -52,7 +52,7 @@ export const login = (state = defaultLoginState, action) => {
             if (action.methodRequestState === 'finished') {
                 if (action.error) {
                     return state
-                        .set('error', Immutable.fromJS({code: action.error.code, message: action.error.message, type: action.error.type}))
+                        .set('error', Immutable.fromJS({ code: action.error.code, message: action.error.message, type: action.error.type }))
                         .delete('result')
                         .update('cookieCheckResultId', (v) => (v + 1))
                         .delete('loginResultId')

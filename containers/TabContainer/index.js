@@ -7,7 +7,7 @@ import Header from '../../components/PageLayout/Header';
 import { validationTypes, textValidations, dropdownValidations, objectValidations, customValidations } from '../../validator/constants';
 import { validateTab, validateAll } from './validator';
 import { prepareErrors } from './helper';
-import {validationTypes as customValidationTypes} from './constants';
+import { validationTypes as customValidationTypes } from './constants';
 import { Vertical } from '../../components/Layout';
 
 import style from './style.css';
@@ -99,7 +99,7 @@ class TabContainer extends Component {
                     statusErrorMessage += '</ul>';
 
                     this.setState(
-                        { statusObj: immutable.fromJS({status: 'failed', message: statusErrorMessage}) },
+                        { statusObj: immutable.fromJS({ status: 'failed', message: statusErrorMessage }) },
                         () => {
                             this.props.onErrors(prepareErrors(valid.errors, errors.toJS()));
                         }
@@ -169,7 +169,7 @@ class TabContainer extends Component {
 
     renderStatusDialog() {
         let handleDialogClose = () => {
-            this.setState({statusObj: immutable.Map({})});
+            this.setState({ statusObj: immutable.Map({}) });
         };
 
         return (
@@ -181,12 +181,12 @@ class TabContainer extends Component {
         let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, hideHeader, extraElements } = this.props;
 
         // let activeTab = tabs[this.state.active];
-        let handleTabClick = ({id}) => {
+        let handleTabClick = ({ id }) => {
             let ableToGoToNextTab = true;
             if (id > this.state.active) {
                 ableToGoToNextTab = this.checkIfSwithToNextTabIsAble(this.state.active + 1);
             }
-            if (ableToGoToNextTab) this.setState({active: id});
+            if (ableToGoToNextTab) this.setState({ active: id });
         };
 
         if (actionButtons.length && !allowSave) {
@@ -203,7 +203,7 @@ class TabContainer extends Component {
         let tabErrrors = this.mapErrorsToTabs();
 
         let allowedTabs = tabs
-            .filter(({title, permission}) => {
+            .filter(({ title, permission }) => {
                 let hasPermission = true;
                 permission && permission.forEach(p => {
                     hasPermission = hasPermission && this.context.checkPermission(p);
@@ -213,7 +213,7 @@ class TabContainer extends Component {
             });
 
         let activeTab = allowedTabs[this.state.active];
-        allowedTabs = allowedTabs.map(({title}, id) => ({
+        allowedTabs = allowedTabs.map(({ title }, id) => ({
             title, id, errorsCount: tabErrrors[id]
         }));
 
@@ -221,29 +221,29 @@ class TabContainer extends Component {
             <div className={style.tabContainerWrap}>
                 <Vertical fixedComponent={
                     !hideHeader
-                    ? <Header
-                      extraElements={extraElements}
-                      text={headerTitle}
-                      location={location}
-                      breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
-                      buttons={actionButtons} />
-                    : undefined
-                  }
+                        ? <Header
+                            extraElements={extraElements}
+                            text={headerTitle}
+                            location={location}
+                            breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
+                            buttons={actionButtons} />
+                        : undefined
+                }
                 >
-                {this.renderStatusDialog()}
-                  <Vertical fixedComponent={
-                      <div className={style.bottomBorderderWrap}>
-                          <Tabs
-                            tabs={allowedTabs}
-                            activeTab={this.state.active}
-                            onClick={handleTabClick}
-                          />
-                      </div>}
-                  >
-                      {activeTab && <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
-                          {activeTab.component}
-                      </div>}
-                  </Vertical>
+                    {this.renderStatusDialog()}
+                    <Vertical fixedComponent={
+                        <div className={style.bottomBorderderWrap}>
+                            <Tabs
+                                tabs={allowedTabs}
+                                activeTab={this.state.active}
+                                onClick={handleTabClick}
+                            />
+                        </div>}
+                    >
+                        {activeTab && <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
+                            {activeTab.component}
+                        </div>}
+                    </Vertical>
                 </Vertical>
             </div>
         );
@@ -276,20 +276,20 @@ TabContainer.propTypes = {
                         customValidationTypes.hasRaisedError,
                         validationTypes.object]),
                     rules: PropTypes.arrayOf(
-                         PropTypes.shape({
-                             type: PropTypes.oneOf([
-                                 textValidations.isRequired,
-                                 textValidations.length,
-                                 textValidations.numberOnly,
-                                 textValidations.decimalOnly,
-                                 textValidations.email,
-                                 textValidations.uniqueValue,
-                                 textValidations.regex,
-                                 dropdownValidations.isRequiredOnCondition,
-                                 objectValidations.hasKeys,
-                                 customValidations.function]),
-                             errorMessage: PropTypes.string
-                         })
+                        PropTypes.shape({
+                            type: PropTypes.oneOf([
+                                textValidations.isRequired,
+                                textValidations.length,
+                                textValidations.numberOnly,
+                                textValidations.decimalOnly,
+                                textValidations.email,
+                                textValidations.uniqueValue,
+                                textValidations.regex,
+                                dropdownValidations.isRequiredOnCondition,
+                                objectValidations.hasKeys,
+                                customValidations.function]),
+                            errorMessage: PropTypes.string
+                        })
                     )
                 })
             ),
@@ -322,7 +322,7 @@ TabContainer.defaultProps = {
     allowSave: true,
     errors: immutable.Map({}),
     allowTabSwithIfNotValid: false,
-    onErrors: () => {}
+    onErrors: () => { }
 };
 
 TabContainer.contextTypes = {

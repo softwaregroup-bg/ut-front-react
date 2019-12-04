@@ -25,13 +25,13 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        let { cookieCheck, params: {appId} } = this.props;
+        let { cookieCheck, params: { appId } } = this.props;
 
-        cookieCheck({appId});
+        cookieCheck({ appId });
     }
 
     componentWillReceiveProps(nextProps) {
-        let { cookieChecked, authenticated, result, forceLogOut, logout, params: {ssoOrigin, appId} } = this.props;
+        let { cookieChecked, authenticated, result, forceLogOut, logout, params: { ssoOrigin, appId } } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
@@ -52,7 +52,7 @@ class Gate extends Component {
     }
 
     loadGate(permissions, languageId) {
-        const { fetchTranslations, fetchLanguages, platform, projectConfig } = this.props;        
+        const { fetchTranslations, fetchLanguages, platform, projectConfig } = this.props;
 
         setPermissions(permissions);
 
@@ -66,8 +66,8 @@ class Gate extends Component {
         } else {
             fetchLanguages()
                 .then(res => {
-                    const languages = Array.isArray(res.result) ? res.result: [];
-                    
+                    const languages = Array.isArray(res.result) ? res.result : [];
+
                     const configLanguage = projectConfig.get('languageCode');
                     const defaultLanguage = languages.find(l => l.iso2Code === configLanguage) || {};
                     const defaultLanguageId = defaultLanguage.languageId;
@@ -82,7 +82,7 @@ class Gate extends Component {
 
         return (
             <div className={style.h100pr}>
-                { loaded ? this.props.children : <Loader /> }
+                {loaded ? this.props.children : <Loader />}
             </div>
         );
     }
