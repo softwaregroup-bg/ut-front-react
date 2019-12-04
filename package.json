@@ -71,6 +71,9 @@
       "email": "kalin.krustev@gmail.com"
     }
   ],
+  "publishConfig": {
+    "registry": "https://nexus.softwaregroup.com/repository/npm-internal"
+  },
   "name": "ut-front-react",
   "optionalDependencies": {},
   "peerDependencies": {
