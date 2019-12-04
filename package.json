@@ -46,7 +46,7 @@
     "/",
     "/ut-atm"
   ],
-  "_resolved": "https://nexus.softwaregroup-bg.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz",
+  "_resolved": "https://nexus.softwaregroup.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz",
   "_shasum": "f0041a8094e453da26c0baaf6dd6261de2c3b066",
   "_shrinkwrap": null,
   "_spec": "ut-front-react@9.10.12",
@@ -60,15 +60,13 @@
     "classnames": "2.2.5",
     "cleave.js": "^1.4.4",
     "croppie": "2.4.0",
-    "date-fns": "1.21.1",
+    "date-fns": "1.29.0",
     "debounce": "1.1.0",
-    "eslint-plugin-disallow-methods": "^0.1.0",
-    "eslint-plugin-no-require-lodash": "^1.1.0",
     "immutable": "3.8.1",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
     "lodash.map": "4.6.0",
-    "lodash.merge": "4.6.0",
+    "lodash.merge": "4.6.2",
     "material-ui": "0.16.5",
     "react": "15.4.1",
     "react-addons-css-transition-group": "15.4.1",
@@ -90,12 +88,12 @@
     "babel-preset-stage-0": "6.16.0",
     "css-loader": "0.26.1",
     "style-loader": "0.13.1",
-    "ut-tools": "*"
+    "ut-tools": "5.6.0"
   },
   "directories": {},
   "dist": {
     "shasum": "f0041a8094e453da26c0baaf6dd6261de2c3b066",
-    "tarball": "https://nexus.softwaregroup-bg.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz"
+    "tarball": "https://nexus.softwaregroup.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz"
   },
   "gitHead": "ee1be279c1846721633a72254c7a4b5650a12a97",
   "homepage": "https://github.com/softwaregroup-bg/ut-front-react#readme",
@@ -110,7 +108,7 @@
   "name": "ut-front-react",
   "optionalDependencies": {},
   "peerDependencies": {
-    "ut-front": "^7.0.9"
+    "ut-front": "^8.4.0"
   },
   "readme": "ERROR: No README data found!",
   "repository": {
@@ -129,6 +127,7 @@
     "postversion": "ut-postversion",
     "precommit": "ut-precommit",
     "prepublish": "ut-prepublish",
+    "precover": "ut-precover",
     "prepush": "ut-prepush",
     "pretest": "ut-pretest",
     "preversion": "ut-preversion",
