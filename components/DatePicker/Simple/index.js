@@ -19,7 +19,7 @@ export default class DatePicker extends Component {
         };
     }
     render() {
-        let {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, keyProp} = this.props;
+        let { disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, keyProp } = this.props;
 
         let textFieldStyle = {
             cursor: 'pointer',
@@ -48,21 +48,21 @@ export default class DatePicker extends Component {
                 <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles} data-test={keyProp}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
-                      className={classnames(dpStyles, readonlyStyle)}
-                      textFieldStyle={textFieldStyle}
-                      DateTimeFormat={this.props.DateTimeFormat}
-                      cancelLabel={this.props.cancelLabel}
-                      okLabel={this.props.okLabel}
-                      container={this.props.container}
-                      value={dateVal}
-                      mode={this.props.mode}
-                      onChange={this.handleChange()}
-                      firstDayOfWeek={this.props.firstDayOfWeek}
-                      minDate={this.props.minDate}
-                      maxDate={this.props.maxDate}
-                      disabled={this.props.disabled}
-                      hintText={this.props.hintText}
-                      hintStyle={hintStyle}
+                        className={classnames(dpStyles, readonlyStyle)}
+                        textFieldStyle={textFieldStyle}
+                        DateTimeFormat={this.props.DateTimeFormat}
+                        cancelLabel={this.props.cancelLabel}
+                        okLabel={this.props.okLabel}
+                        container={this.props.container}
+                        value={dateVal}
+                        mode={this.props.mode}
+                        onChange={this.handleChange()}
+                        firstDayOfWeek={this.props.firstDayOfWeek}
+                        minDate={this.props.minDate}
+                        maxDate={this.props.maxDate}
+                        disabled={this.props.disabled}
+                        hintText={this.props.hintText}
+                        hintStyle={hintStyle}
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
@@ -104,6 +104,7 @@ DatePicker.propTypes = {
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
     hintText: PropTypes.string,
+    keyProp: PropTypes.string,
     withVerticalClass: PropTypes.bool
 };
 

@@ -34,7 +34,7 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
     let titleSectionClasses = classnames('f-upper', style.boxTitle, titleTypeClass, ballancerClass, externalTitleClasses);
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
     let rightSection = showAccordeon ? accordeon : closeSection;
-    let titleSection = title ? <div className={titleSectionClasses} onClick={!noCollapse ? onToggle : () => {}}><Text>{title}</Text>{rightSection}</div> : null;
+    let titleSection = title ? <div className={titleSectionClasses} onClick={!noCollapse ? onToggle : () => { }}><Text>{title}</Text>{rightSection}</div> : null;
     let minHeightStyle = minHeight ? { minHeight: minHeight } : null;
     let body = !collapsed ? <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>{children}</div> : null;
     return (
@@ -62,7 +62,8 @@ Box.propTypes = {
     externalTitleClasses: PropTypes.string,
     externalBodyClasses: PropTypes.string,
     style: PropTypes.object,
-    arrowDirection: PropTypes.object
+    arrowDirection: PropTypes.object,
+    noCollapse: PropTypes.string
 };
 
 export default Box;

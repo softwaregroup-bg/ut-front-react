@@ -5,34 +5,35 @@ import TabMenu from '../../components/TabMenu';
 import customCss from './../../components/TabMenu/style.css';
 
 storiesOf('TabMenu', module)
-.add('Tab menu with Link-s', () => (
-    <div>
-        <Router history={browserHistory}>
-            <Route path='*' component={WrapperTabLinks} />
-        </Router>
-    </div>
-))
-.add('Tab menu with div-s for clicking', () => (
-    <div>
-        <Router>
-            <Route path='*' component={WrapperTabsClick} />
-        </Router>
-    </div>
-))
-.add('Tab menu with setting custom active tab', () => (
-    <div>
-        <Router>
-            <Route path='/' component={WrapperCustomActive} />
-        </Router>
-        <p style={{color: 'cornflowerblue'}}>passing pathname in tabs should match the current route and than it is active. In this case we pass empty string as path that maches '/' route </p>
-    </div>
-));
+    .add('Tab menu with Link-s', () => (
+        <div>
+            <Router history={browserHistory}>
+                <Route path='*' component={WrapperTabLinks} />
+            </Router>
+        </div>
+    ))
+    .add('Tab menu with div-s for clicking', () => (
+        <div>
+            <Router>
+                <Route path='*' component={WrapperTabsClick} />
+            </Router>
+        </div>
+    ))
+    .add('Tab menu with setting custom active tab', () => (
+        <div>
+            <Router>
+                <Route path='/' component={WrapperCustomActive} />
+            </Router>
+            <p style={{ color: 'cornflowerblue' }}>passing pathname in tabs should match the current route and than it is active. In this case we pass empty string as path that maches '/' route </p>
+        </div>
+    ));
 
 class WrapperTabsClick extends Component {
     render() {
+        let onTabClose = function(node) { action(node); };
         return (
             <div>
-                <TabMenu tabs={tabsForClick} onTabClose={function(node) { action(node); }} />
+                <TabMenu tabs={tabsForClick} onTabClose={onTabClose} />
             </div>
         );
     }
@@ -41,7 +42,7 @@ class WrapperTabLinks extends Component {
     render() {
         return (
             <div>
-                <TabMenu tabs={tabsLinks} onClick={function(node) { action(node); }} onTabClose={function(node) { action(node); }} />
+                <TabMenu tabs={tabsLinks} onClick={function (node) { action(node); }} onTabClose={function (node) { action(node); }} />
             </div>
         );
     }
@@ -50,7 +51,7 @@ class WrapperCustomActive extends Component {
     render() {
         return (
             <div>
-                <TabMenu activeTab={2} tabs={customTabLinks} onClick={function(node) { action(node); }} onTabClose={function(node) { action(node); }} cssStyle={customCss} />
+                <TabMenu activeTab={2} tabs={customTabLinks} onClick={function (node) { action(node); }} onTabClose={function (node) { action(node); }} cssStyle={customCss} />
             </div>
         );
     }

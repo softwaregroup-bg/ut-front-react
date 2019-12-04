@@ -51,7 +51,7 @@ class GridToolBox extends Component {
 
     componentWillReceiveProps({ selected, checked, filterElements }) {
         let showFilters = (selected.size === 0 && checked.size === 0);
-        this.setState({showFilters});
+        this.setState({ showFilters });
 
         this.checkActiveFilters(filterElements);
     }
@@ -94,7 +94,7 @@ class GridToolBox extends Component {
             foundActiveFilter = foundActiveFilter || hasValue;
         });
 
-        this.setState({hasActiveFilters: foundActiveFilter});
+        this.setState({ hasActiveFilters: foundActiveFilter });
     }
 
     hasSelectedOrChecked() {
@@ -109,7 +109,7 @@ class GridToolBox extends Component {
 
         let onChange = (key, value) => {
             filters[key] = value;
-            this.setState({filters});
+            this.setState({ filters });
             if (this.props.onChange) {
                 this.props.onChange(key, value);
             }
@@ -133,7 +133,7 @@ class GridToolBox extends Component {
         }
 
         if (showFiltersPopup && !renderInDialog) {
-        // dont change values in the background when advanced is open
+            // dont change values in the background when advanced is open
             filterValue = filterElement.defaultValue;
         }
 
@@ -145,18 +145,18 @@ class GridToolBox extends Component {
             case filterElementTypes.dropDown:
                 return (
                     <Dropdown
-                      label={label}
-                      boldLabel={renderInDialog}
-                      data={filterElement.data}
-                      customTheme
-                      placeholder={filterElement.placeholder}
-                      defaultSelected={filterValue}
-                      onSelect={filterAutoFetch && !renderInDialog
-                        ? filterElement.onSelect
-                        : function(obj) {
-                            onChange(filterElement.name, obj.value);
-                        }}
-                      canSelectPlaceholder={filterElement.canSelectPlaceholder} />
+                        label={label}
+                        boldLabel={renderInDialog}
+                        data={filterElement.data}
+                        customTheme
+                        placeholder={filterElement.placeholder}
+                        defaultSelected={filterValue}
+                        onSelect={filterAutoFetch && !renderInDialog
+                            ? filterElement.onSelect
+                            : function (obj) {
+                                onChange(filterElement.name, obj.value);
+                            }}
+                        canSelectPlaceholder={filterElement.canSelectPlaceholder} />
                 );
             case filterElementTypes.custom:
                 const customChangeHandler = (value) => {
@@ -167,134 +167,134 @@ class GridToolBox extends Component {
             case filterElementTypes.searchBox:
                 return (filterAutoFetch && !renderInDialog)
                     ? (<div>
-                            <SearchBox
-                              defaultValue={filterValue}
-                              placeholder={filterElement.placeholder}
-                              onSearch={filterElement.onSearch} 
-                              isValid={filterElement.isValid}
-                              errorMessage={filterElement.errorMessage}
-                              />
-                        </div>)
+                        <SearchBox
+                            defaultValue={filterValue}
+                            placeholder={filterElement.placeholder}
+                            onSearch={filterElement.onSearch}
+                            isValid={filterElement.isValid}
+                            errorMessage={filterElement.errorMessage}
+                        />
+                    </div>)
                     : (<div>
                         <Input
-                          label={label}
-                          value={filterValue || ''}
-                          placeholder={filterElement.placeholder}
-                          isValid={filterElement.isValid}
-                          errorMessage={filterElement.errorMessage}
-                          onChange={function(e) {
-                              onChange(filterElement.name, e.value);
-                          }} />
-                    </div>);
-            case filterElementTypes.money:
-                return (<div>
-                        <MoneyInput
                             label={label}
                             value={filterValue || ''}
                             placeholder={filterElement.placeholder}
                             isValid={filterElement.isValid}
                             errorMessage={filterElement.errorMessage}
-                            onChange={function(e) {
-                                onChange(filterElement.name, e.target.value);
-                            }}
-                        />
+                            onChange={function (e) {
+                                onChange(filterElement.name, e.value);
+                            }} />
                     </div>);
-            case filterElementTypes.datePicker:
+            case filterElementTypes.money:
                 return (<div>
-                        <DatePicker
-                          onChange={filterAutoFetch && !renderInDialog
-                                ? filterElement.onChange
-                                : function(obj) {
-                                    onChange(filterElement.name, obj.value);
-                                }
-                            }
-                          withVerticalClass={renderInDialog}
-                          locale={filterElement.locale}
-                          defaultValue={filterValue}
-                          label={filterElement.label}
-                          boldLabel={renderInDialog}
-                          minDate={filterAutoFetch && !renderInDialog
-                                ? filterElement.minDate
-                                : this.state.filters[filterElement.connectedMinDate] ? new Date(this.state.filters[filterElement.connectedMinDate]) : undefined
-                            }
-                           maxDate={ filterAutoFetch && !renderInDialog
-                                ? filterElement.maxDate
-                                : this.state.filters[filterElement.connectedMaxDate] ? new Date(this.state.filters[filterElement.connectedMaxDate]) : undefined
-                            }  
-                        />
-                    </div>);
-
-            case filterElementTypes.datePickerBetween:
-                return (<div>
-                            <DatePickerBetween
-                              onChange={filterAutoFetch && !renderInDialog
-                                  ? filterElement.onChange
-                                  : function(obj) {
-                                      onChange(filterElement.name[obj.key], obj.value);
-                                  }}
-                              withVerticalClass={renderInDialog}
-                              defaultValue={filterValue}
-                              dateFormat={filterElement.dateFormat || defaultDateFormat}
-                              transformDate={filterElement.transformDate}
-                              locale={filterElement.locale}
-                              masterLabel={filterElement.masterLabel}
-                              labelFrom={filterElement.labelFrom}
-                              labelTo={filterElement.labelTo}
-                              maxDate={filterElement.maxDate}
-                              minDate={filterElement.minDate}
-                              boldLabel={renderInDialog} />
-                        </div>);
-            case filterElementTypes.dateTimePickerBetween:
-                return (<div>
-                            <DateTimePickerBetween
-                              onChange={filterAutoFetch && !renderInDialog
-                                  ? filterElement.onChange
-                                  : function(obj) {
-                                      onChange(filterElement.name[obj.key], obj.value);
-                                  }}
-                              withVerticalClass={renderInDialog}
-                              defaultValue={filterValue}
-                              timeFormat={filterElement.timeFormat || defaultTimeFormat}
-                              dateFormat={filterElement.dateFormat || defaultDateFormat}
-                              transformDate={filterElement.transformDate}
-                              transformTime={filterElement.transformTime}
-                              locale={filterElement.locale}
-                              labelFrom={filterElement.labelFrom}
-                              labelTo={filterElement.labelTo}
-                              boldLabel={renderInDialog} />
-                        </div>);
-            case filterElementTypes.customSearch:
-                return (<div>
-                        <ByCustomSearch
-                          fields={filterElement.fields}
-                          defaultField={filterElement.defaultField}
-                          setField={filterElement.setField}
-                          setValue={filterElement.setValue}
-                          field={filterElement.field}
-                          value={filterElement.value} />
-                    </div>);
-            case filterElementTypes.multiselect:
-                return (
-                  <div>
-                      <MultiSelectDropdown
-                        defaultSelected={filterValue || []}
-                        label={filterElement.label}
-                        data={filterElement.data}
-                        keyProp={filterElement.keyProp}
+                    <MoneyInput
+                        label={label}
+                        value={filterValue || ''}
                         placeholder={filterElement.placeholder}
                         isValid={filterElement.isValid}
                         errorMessage={filterElement.errorMessage}
-                        mergeStyles={filterElement.mergeStyles || {
-                            multiSelectDropdownPlaceholder: style.multiselectDropdownPlaceholder
+                        onChange={function (e) {
+                            onChange(filterElement.name, e.target.value);
                         }}
-                        onSelect={filterAutoFetch && !renderInDialog
-                          ? filterElement.onSelect
-                          : function(obj) {
-                              onChange(filterElement.name, obj.value);
-                          }}
-                        type='dropdownMultiSelect'
                     />
-                  </div>
+                </div>);
+            case filterElementTypes.datePicker:
+                return (<div>
+                    <DatePicker
+                        onChange={filterAutoFetch && !renderInDialog
+                            ? filterElement.onChange
+                            : function (obj) {
+                                onChange(filterElement.name, obj.value);
+                            }
+                        }
+                        withVerticalClass={renderInDialog}
+                        locale={filterElement.locale}
+                        defaultValue={filterValue}
+                        label={filterElement.label}
+                        boldLabel={renderInDialog}
+                        minDate={filterAutoFetch && !renderInDialog
+                            ? filterElement.minDate
+                            : this.state.filters[filterElement.connectedMinDate] ? new Date(this.state.filters[filterElement.connectedMinDate]) : undefined
+                        }
+                        maxDate={filterAutoFetch && !renderInDialog
+                            ? filterElement.maxDate
+                            : this.state.filters[filterElement.connectedMaxDate] ? new Date(this.state.filters[filterElement.connectedMaxDate]) : undefined
+                        }
+                    />
+                </div>);
+
+            case filterElementTypes.datePickerBetween:
+                return (<div>
+                    <DatePickerBetween
+                        onChange={filterAutoFetch && !renderInDialog
+                            ? filterElement.onChange
+                            : function (obj) {
+                                onChange(filterElement.name[obj.key], obj.value);
+                            }}
+                        withVerticalClass={renderInDialog}
+                        defaultValue={filterValue}
+                        dateFormat={filterElement.dateFormat || defaultDateFormat}
+                        transformDate={filterElement.transformDate}
+                        locale={filterElement.locale}
+                        masterLabel={filterElement.masterLabel}
+                        labelFrom={filterElement.labelFrom}
+                        labelTo={filterElement.labelTo}
+                        maxDate={filterElement.maxDate}
+                        minDate={filterElement.minDate}
+                        boldLabel={renderInDialog} />
+                </div>);
+            case filterElementTypes.dateTimePickerBetween:
+                return (<div>
+                    <DateTimePickerBetween
+                        onChange={filterAutoFetch && !renderInDialog
+                            ? filterElement.onChange
+                            : function (obj) {
+                                onChange(filterElement.name[obj.key], obj.value);
+                            }}
+                        withVerticalClass={renderInDialog}
+                        defaultValue={filterValue}
+                        timeFormat={filterElement.timeFormat || defaultTimeFormat}
+                        dateFormat={filterElement.dateFormat || defaultDateFormat}
+                        transformDate={filterElement.transformDate}
+                        transformTime={filterElement.transformTime}
+                        locale={filterElement.locale}
+                        labelFrom={filterElement.labelFrom}
+                        labelTo={filterElement.labelTo}
+                        boldLabel={renderInDialog} />
+                </div>);
+            case filterElementTypes.customSearch:
+                return (<div>
+                    <ByCustomSearch
+                        fields={filterElement.fields}
+                        defaultField={filterElement.defaultField}
+                        setField={filterElement.setField}
+                        setValue={filterElement.setValue}
+                        field={filterElement.field}
+                        value={filterElement.value} />
+                </div>);
+            case filterElementTypes.multiselect:
+                return (
+                    <div>
+                        <MultiSelectDropdown
+                            defaultSelected={filterValue || []}
+                            label={filterElement.label}
+                            data={filterElement.data}
+                            keyProp={filterElement.keyProp}
+                            placeholder={filterElement.placeholder}
+                            isValid={filterElement.isValid}
+                            errorMessage={filterElement.errorMessage}
+                            mergeStyles={filterElement.mergeStyles || {
+                                multiSelectDropdownPlaceholder: style.multiselectDropdownPlaceholder
+                            }}
+                            onSelect={filterAutoFetch && !renderInDialog
+                                ? filterElement.onSelect
+                                : function (obj) {
+                                    onChange(filterElement.name, obj.value);
+                                }}
+                            type='dropdownMultiSelect'
+                        />
+                    </div>
                 );
             default:
                 return null;
@@ -320,7 +320,7 @@ class GridToolBox extends Component {
     }
 
     toggleAdvancedSearch() {
-        let {showFiltersPopup} = this.state;
+        let { showFiltersPopup } = this.state;
 
         let defaultValues = {};
 
@@ -457,16 +457,16 @@ class GridToolBox extends Component {
         };
 
         let actionButtons = [
-            {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
-            {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
+            { label: 'Apply Search', onClick: apply, styleType: 'primaryDialog' },
+            { label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog' }
         ];
 
         return <StandardDialog
-          closePopup={this.toggleAdvancedSearch}
-          header={{text: 'Advanced Search'}}
-          isOpen={this.state.showFiltersPopup}
-          footer={{actionButtons: actionButtons}}
-          className={style.advancedSearchDialog}>
+            closePopup={this.toggleAdvancedSearch}
+            header={{ text: 'Advanced Search' }}
+            isOpen={this.state.showFiltersPopup}
+            footer={{ actionButtons: actionButtons }}
+            className={style.advancedSearchDialog}>
             {this.props.filterElements.map((el, i) => {
                 let filter = this.renderFilter(el, true);
                 return filter && (
@@ -500,7 +500,7 @@ class GridToolBox extends Component {
         let hasSelectedOrChecked = this.hasSelectedOrChecked();
 
         let labelClass = hasSelectedOrChecked ? style.link : '';
-        let toggle = () => hasSelectedOrChecked && this.setState({showFilters: false});
+        let toggle = () => hasSelectedOrChecked && this.setState({ showFilters: false });
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0]['type'] === filterElementTypes.searchBox) {
@@ -541,7 +541,7 @@ class GridToolBox extends Component {
                             </div>}
                         {this.state.hasActiveFilters &&
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
-                                <div key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                                <div key='clearFilters' onClick={() => { this.setState({ filters: {} }); this.props.clearFilters(); }} className={style.closeArrow} />
                             </div>}
                     </div>
                 </div>
@@ -561,7 +561,7 @@ class GridToolBox extends Component {
         });
 
         this.props.batchChange(result);
-        this.setState({filters: {}});
+        this.setState({ filters: {} });
     }
 
     renderActionButton(actionButtonElement, index) {
@@ -590,13 +590,13 @@ class GridToolBox extends Component {
                 return (
                     <div>
                         <ConfirmDialog
-                          ref={'confirmDialog-' + index}
-                          cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
-                          submitLabel={actionButtonElement.confirmDialog.submitLabel}
-                          title={actionButtonElement.confirmDialog.title}
-                          message={actionButtonElement.confirmDialog.message}
-                          onSubmit={actionButtonElement.onClick}
-                          cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
+                            ref={'confirmDialog-' + index}
+                            cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
+                            submitLabel={actionButtonElement.confirmDialog.submitLabel}
+                            title={actionButtonElement.confirmDialog.title}
+                            message={actionButtonElement.confirmDialog.message}
+                            onSubmit={actionButtonElement.onClick}
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <Button disabled={isDisabled} onClick={handleButtonClick} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
                     </div>
@@ -615,21 +615,21 @@ class GridToolBox extends Component {
                 return (
                     <div>
                         <ConfirmDialog
-                          ref={'confirmDialog-' + index}
-                          cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
-                          submitLabel={actionButtonElement.confirmDialog.submitLabel}
-                          title={actionButtonElement.confirmDialog.title}
-                          message={actionButtonElement.confirmDialog.message}
-                          onSubmit={actionButtonElement.onClick}
-                          cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
+                            ref={'confirmDialog-' + index}
+                            cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
+                            submitLabel={actionButtonElement.confirmDialog.submitLabel}
+                            title={actionButtonElement.confirmDialog.title}
+                            message={actionButtonElement.confirmDialog.message}
+                            onSubmit={actionButtonElement.onClick}
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <ConfirmDialog
-                          ref={'errorDialog-' + index}
-                          cancelLabel={actionButtonElement.errorDialog.cancelLabel}
-                          submitLabel=''
-                          title={actionButtonElement.errorDialog.title}
-                          message={actionButtonElement.errorDialog.message}
-                          cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
+                            ref={'errorDialog-' + index}
+                            cancelLabel={actionButtonElement.errorDialog.cancelLabel}
+                            submitLabel=''
+                            title={actionButtonElement.errorDialog.title}
+                            message={actionButtonElement.errorDialog.message}
+                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
                         />
                         <Button disabled={isDisabled} onClick={handleAction} className={classnames('button', style.button)}>{buttonLabel}</Button>
                     </div>
@@ -660,21 +660,21 @@ class GridToolBox extends Component {
                 return (
                     <div>
                         <ConfirmDialog
-                          ref={'confirmDialog-' + index}
-                          cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
-                          submitLabel={actionButtonElement.confirmDialog.submitLabel}
-                          title={actionButtonElement.confirmDialog.title}
-                          message={actionButtonElement.confirmDialog.message}
-                          onSubmit={actionButtonElement.onClick}
-                          cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
+                            ref={'confirmDialog-' + index}
+                            cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
+                            submitLabel={actionButtonElement.confirmDialog.submitLabel}
+                            title={actionButtonElement.confirmDialog.title}
+                            message={actionButtonElement.confirmDialog.message}
+                            onSubmit={actionButtonElement.onClick}
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <ConfirmDialog
-                          ref={'errorDialog-' + index}
-                          cancelLabel={actionButtonElement.errorDialog.cancelLabel}
-                          submitLabel=''
-                          title={actionButtonElement.errorDialog.title}
-                          message={actionButtonElement.errorDialog.message}
-                          cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
+                            ref={'errorDialog-' + index}
+                            cancelLabel={actionButtonElement.errorDialog.cancelLabel}
+                            submitLabel=''
+                            title={actionButtonElement.errorDialog.title}
+                            message={actionButtonElement.errorDialog.message}
+                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
                         />
                         <Button disabled={isDisabled} onClick={handleActionDependingOnPropertyValue} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
                     </div>
@@ -687,13 +687,13 @@ class GridToolBox extends Component {
 
                     return (
                         <ConfirmDialog key={i}
-                          ref={'dialog-' + dialog.identifier}
-                          cancelLabel={dialog.cancelLabel}
-                          submitLabel={dialog.submitLabel}
-                          title={dialog.title}
-                          message={dialog.message}
-                          onSubmit={dialog.onSubmit}
-                          cannotSubmit={dialog.cannotSubmit}
+                            ref={'dialog-' + dialog.identifier}
+                            cancelLabel={dialog.cancelLabel}
+                            submitLabel={dialog.submitLabel}
+                            title={dialog.title}
+                            message={dialog.message}
+                            onSubmit={dialog.onSubmit}
+                            cannotSubmit={dialog.cannotSubmit}
                         />
                     );
                 });
@@ -729,11 +729,11 @@ class GridToolBox extends Component {
             status = selected.getIn(selectProperty) || selected.get(property);
         }
 
-        return {canDoAction, status: !status};
+        return { canDoAction, status: !status };
     }
 
     renderActionButtons() {
-        let toggle = () => this.setState({showFilters: true});
+        let toggle = () => this.setState({ showFilters: true });
 
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
@@ -743,13 +743,13 @@ class GridToolBox extends Component {
 
                 <div className={classnames(style.pullRight, style.tableCell)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
-                    {this.props.actionButtonElements.map((el, i) => {
-                        return (
-                            <div key={i} className={classnames(style.tableCell, style.spacer)}>
-                                {this.renderActionButton(el, i)}
-                            </div>
-                        );
-                    })}
+                        {this.props.actionButtonElements.map((el, i) => {
+                            return (
+                                <div key={i} className={classnames(style.tableCell, style.spacer)}>
+                                    {this.renderActionButton(el, i)}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
 
@@ -872,8 +872,8 @@ GridToolBox.defaultProps = {
     maxVisibleInputs: 4,
     showAdvanced: false,
     filterAutoFetch: true,
-    clearFilters: () => {},
-    batchChange: () => {},
+    clearFilters: () => { },
+    batchChange: () => { },
     selected: Immutable.Map({}),
     checked: Immutable.List()
 };

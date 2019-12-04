@@ -17,9 +17,9 @@ const Accordion = React.createClass({
     },
     render() {
         return (
-          <Box title={this.props.title} showAccordeon {...this.props} collapsed={this.state.collapsed} onToggle={this.handleToggle}>
-            {this.props.children}
-          </Box>
+            <Box title={this.props.title} showAccordeon {...this.props} collapsed={this.state.collapsed} onToggle={this.handleToggle}>
+                {this.props.children}
+            </Box>
         );
     }
 });

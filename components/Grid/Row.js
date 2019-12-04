@@ -13,20 +13,20 @@ class GridRow extends Component {
             selected: false
         };
         this.disableDeselect = false;
-        this.deselect = () => this.disableDeselect || this.setState({selected: false});
+        this.deselect = () => this.disableDeselect || this.setState({ selected: false });
         this.toggleSelect = this.toggleSelect.bind(this);
         this.toggleCheck = this.toggleCheck.bind(this);
     }
 
     componentWillReceiveProps({ checked, data }) {
         if (checked !== this.props.checked) {
-            this.setState({checked});
+            this.setState({ checked });
         }
 
         if (this.props.canCheck === false && this.state.selected && this.props.data.get('actorId') !== data.get('actorId')) {
             // Case: if the data item is different but the previous one was selected - reset selected state
-            this.props.subscribeUnselect(() => {});
-            this.setState({selected: false});
+            this.props.subscribeUnselect(() => { });
+            this.setState({ selected: false });
         }
     }
 
@@ -37,7 +37,7 @@ class GridRow extends Component {
     toggleSelect() {
         if (this.props.canSelect === true) {
             let isSelected = !this.state.selected;
-            this.setState({selected: isSelected}, () => {
+            this.setState({ selected: isSelected }, () => {
                 this.props.onSelect(this.props.data, isSelected);
                 isSelected && this.props.subscribeUnselect(this.deselect);
             });
@@ -49,24 +49,24 @@ class GridRow extends Component {
         let isChecked = !this.state.checked;
         if (!this.props.onlyDisplayChecked) {
             this.setState(
-                {checked: isChecked},
+                { checked: isChecked },
                 () => this.props.onCheck(immutable.List([this.props.data]), isChecked)
             );
         }
     }
 
     clearSelected() {
-        this.setState({selected: false});
+        this.setState({ selected: false });
     }
 
     clearChecked() {
-        this.setState({checked: false});
+        this.setState({ checked: false });
     }
 
     renderColumns() {
-        let {columns, data, canCheck, linkableColumns, tdStyles} = this.props;
+        let { columns, data, canCheck, linkableColumns, tdStyles } = this.props;
         let rowIndex = this.props.rowIndex;
-        let columnElements = columns.map(({key}, i) => {
+        let columnElements = columns.map(({ key }, i) => {
             let transformedData = this.props.mapColumn(columns[i], data.get(key), rowIndex, data);
             let isLink = linkableColumns && linkableColumns[i];
             let currenctStyles = tdStyles[i];
@@ -94,9 +94,10 @@ class GridRow extends Component {
             }
         });
         if (canCheck) {
+            let emptyFunc = function() {};
             columnElements.unshift(
                 <td key='checkbox' className={classnames(style.checkBox, style.tdCheckbox)}>
-                    <input type='checkbox' onClick={this.toggleCheck} onChange={function() {}} checked={this.state.checked} />
+                    <input type='checkbox' onClick={this.toggleCheck} onChange={emptyFunc} checked={this.state.checked} />
                 </td>
             );
         }
@@ -156,10 +157,10 @@ GridRow.defaultProps = {
     trStyles: {},
     tdStyles: [],
     mapData: (data) => data,
-    onSelect: function() {},
+    onSelect: function() { },
     canSelect: true,
-    onCheck: function() {},
-    subscribeUnselect: function() {},
+    onCheck: function() { },
+    subscribeUnselect: function() { },
     mapColumn: (col, value) => value
 };
 

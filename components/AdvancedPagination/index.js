@@ -331,7 +331,7 @@ class AdvancedPagination extends Component {
                     <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}><Text>Items</Text></span>
                 </div>
                 <div className={styles.itemPerPageDDWrap}>
-                     <Dropdown
+                    <Dropdown
                        data={this.props.itemsPerPageData.map((x) => { return {key: x, name: x.toString()}; })}
                        defaultSelected={this.pageSize || this.props.itemsPerPageData[0]}
                        onSelect={handlePageSizeDropDrown}

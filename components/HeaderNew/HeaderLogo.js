@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Link from './../Link';
-import { breakOnSpaceChars } from './../../utils/helpers';
+import { breakOnSpaceChars, getClass } from './../../utils/helpers';
 import { joinArrayWithBreakTags } from './../../utils/dom';
-import { getClass } from '../../utils/helpers';
 import styles from './styles.css';
 
 export default class HeaderLogo extends Component {
@@ -14,8 +13,8 @@ export default class HeaderLogo extends Component {
         return (
             <span className={className}>
                 <Link
-                  to={this.context.mainUrl}
-                  useRawTo >
+                    to={this.context.mainUrl}
+                    useRawTo >
                     <span className={classnames(this.context.implementationStyle['headerLogo'], getClass(styles, 'headerLogo'))} />
                 </Link>
                 <span className={classnames(this.context.implementationStyle['headerTitle'], getClass(styles, 'headerTitle'))}>{text}</span>

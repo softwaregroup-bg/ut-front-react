@@ -26,14 +26,12 @@ class AutoFetcher extends Component {
                         pageSize: this.props.maxSearchResults || 5
                     })
                 }
-            )
-            .then(res => {
+            ).then(res => {
                 if (res.result) {
                     const data = this.props.mapResponse(res.result);
-                    this.setState({dataSource: data});
+                    this.setState({ dataSource: data });
                     this.props.onDataFetched(data);
                 }
-
                 this.props.onChange(searchText);
             });
         }, 500);
@@ -62,20 +60,7 @@ class AutoFetcher extends Component {
 
         return (
             <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
-                <AutoComplete
-                  className={style.autoCompletePopup}
-                  dataSource={this.props.dataSource || this.state.dataSource}
-                  dataSourceConfig={this.props.dataSourceConfig}
-                  openOnFocus={this.props.openOnFocus !== false}
-                  ref={this.props.refval}
-                  maxSearchResults={this.props.maxSearchResults || 5}
-                  animated={false}
-                  style={dpStyles}
-                  filter={this.props.filter || (() => true)}
-                  fullWidth={this.props.fullWidth !== false}
-                  onUpdateInput={this.onChange}
-                  onNewRequest={this.props.onSelect}
-                  searchText={this.state.searchText}
+                <AutoComplete className={style.autoCompletePopup} dataSource={this.props.dataSource || this.state.dataSource} dataSourceConfig={this.props.dataSourceConfig} openOnFocus={this.props.openOnFocus !== false} ref={this.props.refval} maxSearchResults={this.props.maxSearchResults || 5} animated={false} style={dpStyles} filter={this.props.filter || (() => true)} fullWidth={this.props.fullWidth !== false} onUpdateInput={this.onChange} onNewRequest={this.props.onSelect} searchText={this.state.searchText}
                 />
             </div>
         );
@@ -85,8 +70,8 @@ class AutoFetcher extends Component {
 AutoFetcher.defaultProps = {
     mapRequest: request => request,
     mapResponse: response => response,
-    onDataFetched: () => {},
-    onChange: () => {}
+    onDataFetched: () => { },
+    onChange: () => { }
 };
 
 AutoFetcher.propTypes = {

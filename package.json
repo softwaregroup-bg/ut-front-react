@@ -62,6 +62,8 @@
     "croppie": "2.4.0",
     "date-fns": "1.21.1",
     "debounce": "1.1.0",
+    "eslint-plugin-disallow-methods": "^0.1.0",
+    "eslint-plugin-no-require-lodash": "^1.1.0",
     "immutable": "3.8.1",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
@@ -90,9 +92,7 @@
     "style-loader": "0.13.1",
     "ut-tools": "*"
   },
-  "directories": {
-    
-  },
+  "directories": {},
   "dist": {
     "shasum": "f0041a8094e453da26c0baaf6dd6261de2c3b066",
     "tarball": "https://nexus.softwaregroup-bg.com/repository/npm-all/ut-front-react/-/ut-front-react-9.10.12.tgz"
@@ -108,9 +108,7 @@
     }
   ],
   "name": "ut-front-react",
-  "optionalDependencies": {
-    
-  },
+  "optionalDependencies": {},
   "peerDependencies": {
     "ut-front": "^7.0.9"
   },

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Accordion from '../Accordion';
 import CompareGridItem from './CompareGridItem';
@@ -31,30 +31,23 @@ class CompareGrid extends Component {
     }
 
     render() {
-        const {isNew, isDeleted, rejectReason, staticStrings} = this.props;
+        const { isNew, isDeleted, rejectReason, staticStrings } = this.props;
         return (
-          <div className={styles.wrapper}>
-            {isNew && !isDeleted && <h1 className={styles.newEntity}><Text>{staticStrings.headingIsNew}</Text></h1>}
-            {isDeleted && <h1 className={styles.rejectTextField}><Text>{staticStrings.headingWillBeDeleted}</Text></h1>}
-            {rejectReason &&
-                <Accordion
-                  title='Changes Rejected'
-                  marginBottom={false}
-                  fullWidth
-                  externalBodyClasses={styles.accordionBody}
-                  externalTitleClasses={styles.accordionTitle}
-                  className={styles.accordion}
-                  collapsed={false}>
-                    <div className={styles.container}>
-                        <div className={styles.whole}>
-                            <p className={styles.rejectTextField}>
-                                <Text>{rejectReason}</Text>
-                            </p>
+            <div className={styles.wrapper}>
+                {isNew && !isDeleted && <h1 className={styles.newEntity}><Text>{staticStrings.headingIsNew}</Text></h1>}
+                {isDeleted && <h1 className={styles.rejectTextField}><Text>{staticStrings.headingWillBeDeleted}</Text></h1>}
+                {rejectReason &&
+                    <Accordion title='Changes Rejected' marginBottom={false} fullWidth externalBodyClasses={styles.accordionBody} externalTitleClasses={styles.accordionTitle} className={styles.accordion} collapsed={false}>
+                        <div className={styles.container}>
+                            <div className={styles.whole}>
+                                <p className={styles.rejectTextField}>
+                                    <Text>{rejectReason}</Text>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </Accordion>}
-            {this.renderItems()}
-          </div>
+                    </Accordion>}
+                {this.renderItems()}
+            </div>
         );
     }
 }

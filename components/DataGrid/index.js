@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import KeyValueRow from './KeyValueRow';
 
 // DataList component may recieve data property which is array of objects that looks like this:
@@ -10,19 +10,14 @@ import KeyValueRow from './KeyValueRow';
 //   }
 // ]
 
-const DataList = ({data}) => {
+const DataList = ({ data }) => {
     let rows = data.map((row, index) => (
-        <KeyValueRow
-          wrapperClass={row.get('wrapperClass')}
-          keyClass={row.get('keyClass')}
-          valueClass={row.get('valueClass')}
-          key={index}
-          keyNode={row.get('key')}>
+        <KeyValueRow wrapperClass={row.get('wrapperClass')} keyClass={row.get('keyClass')} valueClass={row.get('valueClass')} key={index} keyNode={row.get('key')}>
             {row.get('value')}
         </KeyValueRow>));
     return (
         <div>
-          {rows}
+            {rows}
         </div>
     );
 };

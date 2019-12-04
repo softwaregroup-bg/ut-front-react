@@ -5,7 +5,7 @@ import styles from './styles.css';
 export default class Camera extends Component {
     static hasUserMedia() {
         return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-           navigator.mozGetUserMedia || navigator.msGetUserMedia);
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
     }
 
     constructor() {
@@ -34,9 +34,9 @@ export default class Camera extends Component {
 
     requestUserMedia() {
         navigator.getUserMedia = navigator.getUserMedia ||
-                                       navigator.webkitGetUserMedia ||
-                                       navigator.mozGetUserMedia ||
-                                       navigator.msGetUserMedia;
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
 
         navigator.getUserMedia && navigator.getUserMedia({ video: true }, this.onVideoSupported, this.onVideoNotSupported);
     }
@@ -49,7 +49,7 @@ export default class Camera extends Component {
             this.refs.video.src = URL.createObjectURL(stream);
         }
     }
-    
+
     onVideoNotSupported(error) {
         // TODO
         return error;
@@ -80,9 +80,9 @@ export default class Camera extends Component {
         return (
             <div style={{ height: height, width: width }} className={classnames(styles.cameraContainer, className)}>
                 <video
-                  ref='video'
-                  className={styles.videoElement}
-                  autoPlay={autoPlay} />
+                    ref='video'
+                    className={styles.videoElement}
+                    autoPlay={autoPlay} />
             </div>
         );
     }

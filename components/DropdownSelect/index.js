@@ -21,22 +21,22 @@ export default class DropdownSelect extends Component {
         }
         this.state = {
             dropdownOpen: false,
-            selected: selected || {[props.keyProp]: '_placeholder_'},
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
+            selected: selected || { [props.keyProp]: '_placeholder_' },
+            valid: { isValid: this.props.isValid, errorMessage: this.props.errorMessage }
         };
     }
 
-    componentWillReceiveProps({defaultSelected, keyProp, data, isValid, errorMessage}) {
+    componentWillReceiveProps({ defaultSelected, keyProp, data, isValid, errorMessage }) {
         if ((defaultSelected !== this.props.defaultSelected && this.state.selected[keyProp] !== defaultSelected) || this.props.data !== data) {
             let selected = data.find(
                 (item) => item[keyProp] === defaultSelected
             );
-            selected = selected || {[keyProp]: '_placeholder_'};
-            this.setState({selected: selected});
+            selected = selected || { [keyProp]: '_placeholder_' };
+            this.setState({ selected: selected });
         }
 
         if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
+            this.setState({ valid: { isValid: isValid, errorMessage: errorMessage } });
         }
     }
 
@@ -56,8 +56,8 @@ export default class DropdownSelect extends Component {
     select(item) {
         return () => {
             this.toggle();
-            this.props.updateError({key: this.props.keyProp});
-            this.setState({selected: item, valid: {isValid: true, errorMessage: ''}});
+            this.props.updateError({ key: this.props.keyProp });
+            this.setState({ selected: item, valid: { isValid: true, errorMessage: '' } });
 
             if (item[this.props.keyProp] === '_placeholder_') {
                 this.props.onSelect(undefined);
@@ -74,10 +74,10 @@ export default class DropdownSelect extends Component {
         if (this.props.showPlaceHolderAsFirstOption) {
             items.push(
                 <MenuItem
-                  key='_placeholder_'
-                  primaryText={this.props.placeholder}
-                  disabled={!this.props.canSelectPlaceholder || selectedItem[this.props.keyProp] === '_placeholder_'}
-                  onTouchTap={this.select({key: '_placeholder_'})}
+                    key='_placeholder_'
+                    primaryText={this.props.placeholder}
+                    disabled={!this.props.canSelectPlaceholder || selectedItem[this.props.keyProp] === '_placeholder_'}
+                    onTouchTap={this.select({ key: '_placeholder_' })}
                 />
             );
         }
@@ -86,10 +86,10 @@ export default class DropdownSelect extends Component {
             let disabled = item.disabled || selectedItem[this.props.keyProp] === item[this.props.keyProp];
             items.push(
                 <MenuItem
-                  key={item[this.props.keyProp]}
-                  primaryText={item[this.props.valueProp]}
-                  disabled={disabled}
-                  onTouchTap={this.select(item)}
+                    key={item[this.props.keyProp]}
+                    primaryText={item[this.props.valueProp]}
+                    disabled={disabled}
+                    onTouchTap={this.select(item)}
                 />
             );
         });
@@ -115,14 +115,14 @@ export default class DropdownSelect extends Component {
                 <div>
                     {this.props.label ? (<span className={style.label}>{this.props.label}</span>) : ''}
                     <div onClick={this.props.onClick} className={classnames.apply(undefined, dropDownWrapStyle)}>
-                    {/* animated=false prevents bugs caused by animation delay */}
+                        {/* animated=false prevents bugs caused by animation delay */}
                         <Popover
-                          open={this.state.dropdownOpen}
-                          animated={false}
-                          anchorEl={this.state.anchorEl}
-                          onRequestClose={this.toggle}
-                          anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
-                          targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                            open={this.state.dropdownOpen}
+                            animated={false}
+                            anchorEl={this.state.anchorEl}
+                            onRequestClose={this.toggle}
+                            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
                         >
                             <Menu>
                                 {this.renderDropdownItems()}
@@ -176,12 +176,12 @@ DropdownSelect.defaultProps = {
     data: [],
     customTheme: false,
     placeholder: 'Select',
-    onSelect: function() {},
+    onSelect: function() { },
     keyProp: 'key',
     valueProp: 'name',
     canSelectPlaceholder: false,
     showPlaceHolderAsFirstOption: true,
     isValid: true,
     errorMessage: '',
-    updateError: () => {}
+    updateError: () => { }
 };

@@ -9,9 +9,9 @@ import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
 import classnames from 'classnames';
 import { logout } from '../../containers/LoginForm/actions';
 
-const ErrorWindow = ({open, message, close, title, type, login, logout}) => {
+const ErrorWindow = ({ open, message, close, title, type, logout }) => {
     let closePopUpHandler = close;
-    let header = {text: title};
+    let header = { text: title };
     let actionButtons = [
         {
             label: 'Close',
@@ -35,16 +35,16 @@ const ErrorWindow = ({open, message, close, title, type, login, logout}) => {
     };
 
     return (
-      <Popup
-        isOpen={open}
-        header={header}
-        footer={{ actionButtons: actionButtons }}
-        closePopup={closePopUpHandler} >
-          <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
-          <div className={styles.errorMessageWrap}>
-          <Text>{message}</Text> 
-          </div>
-      </Popup>
+        <Popup
+            isOpen={open}
+            header={header}
+            footer={{ actionButtons: actionButtons }}
+            closePopup={closePopUpHandler} >
+            <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
+            <div className={styles.errorMessageWrap}>
+                <Text>{message}</Text>
+            </div>
+        </Popup>
     );
 };
 
@@ -68,7 +68,5 @@ export default connect(
         return {
             login: store.login.toJS()
         };
-    }, {
-        logout
-    }
+    }, { logout }
 )(ErrorWindow);

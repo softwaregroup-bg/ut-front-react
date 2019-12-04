@@ -98,7 +98,7 @@ export default class DocumentUpload extends Component {
                 uploadMethod: 'upload',
                 mode: 'preview',
                 fileDimensions,
-                showCrop: extension === 'jpg' || extension === 'png' || extension === 'jpeg',
+                showCrop: extension === 'jpg' || extension === 'png' || extension === 'jpeg'
             });
         });
     }
@@ -122,8 +122,8 @@ export default class DocumentUpload extends Component {
 
     onUseFile() {
         const { screenshot, hasCropped } = this.state;
-        
-         // If the user has cropped, use the file, otherwise crop the visible area first and then use the file        
+
+        // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
         // revesred condition because this.props.hideCrop always is true and never entered in the else statemnet
         // idea is image always to be cropped no matter user had pressed crop or use button
         if (screenshot.startsWith('data:image') && !hasCropped) {
@@ -177,21 +177,21 @@ export default class DocumentUpload extends Component {
         if (mode === 'initial') {
             return (
                 <DocumentUploadMenu
-                  menuItems={['file', 'camera']}
-                  className={styles.initialViewContainer}
-                  onAddFile={this.onAddFile}
-                  allowedFileTypes={allowedFileTypes}
-                  onFileLoaded={this.onUploadFile}
-                  uploadType={uploadType} />
+                    menuItems={['file', 'camera']}
+                    className={styles.initialViewContainer}
+                    onAddFile={this.onAddFile}
+                    allowedFileTypes={allowedFileTypes}
+                    onFileLoaded={this.onUploadFile}
+                    uploadType={uploadType} />
             );
         }
 
         if (mode === 'takePhoto') {
             return (
                 <Camera
-                  ref='takePhoto'
-                  width={fileDimensions.width}
-                  height={fileDimensions.height} />
+                    ref='takePhoto'
+                    width={fileDimensions.width}
+                    height={fileDimensions.height} />
             );
         }
 
@@ -200,21 +200,21 @@ export default class DocumentUpload extends Component {
                 <div>
                     <div className={this.validate && styles.hidden}>
                         <FilePreview
-                          ref='filePreview'
-                          file={this.state.screenshot}
-                          fileExtension={this.state.fileExtension}
-                          originalFilename={this.state.originalFilename}
-                          showCrop={!hideCrop || this.state.showCrop}
-                          onCrop={this.onCrop}
-                          fileDimensions={fileDimensions}
-                          scaleDimensions={scaleDimensions}
-                          cropDimensions={this.cropDimensions}
-                          uploadMethod={uploadMethod}
-                          uploadType={uploadType}
-                          onFileLoaded={this.onUploadFile}
-                          changeMode={this.changeMode}
-                          allowedFileTypes={allowedFileTypes.join(',')}
-                          crop={this.crop} />
+                            ref='filePreview'
+                            file={this.state.screenshot}
+                            fileExtension={this.state.fileExtension}
+                            originalFilename={this.state.originalFilename}
+                            showCrop={!hideCrop || this.state.showCrop}
+                            onCrop={this.onCrop}
+                            fileDimensions={fileDimensions}
+                            scaleDimensions={scaleDimensions}
+                            cropDimensions={this.cropDimensions}
+                            uploadMethod={uploadMethod}
+                            uploadType={uploadType}
+                            onFileLoaded={this.onUploadFile}
+                            changeMode={this.changeMode}
+                            allowedFileTypes={allowedFileTypes.join(',')}
+                            crop={this.crop} />
                     </div>
                     {this.validate && <div className={styles.errorMsg}>
                         Error: {this.validate}
@@ -272,7 +272,7 @@ export default class DocumentUpload extends Component {
                 label: 'Go to login',
                 styleType: 'primaryDialog',
                 onClick: () => {
-                    this.setState({requestStatus: null});
+                    this.setState({ requestStatus: null });
                     this.props.clearLogin && this.props.clearLogin();
                 }
             }];
@@ -333,7 +333,7 @@ export default class DocumentUpload extends Component {
                 reader.readAsDataURL(img);
             } else {
                 this.setError(request.statusText);
-                this.setState({requestStatus: request.status});
+                this.setState({ requestStatus: request.status });
             }
         };
         request.onerror = (e) => {
@@ -362,7 +362,7 @@ export default class DocumentUpload extends Component {
             ia[i] = byteString.charCodeAt(i);
         }
 
-        return new window.Blob([ia], {type: mimeString});
+        return new window.Blob([ia], { type: mimeString });
     }
 
     setError(errMsg) {
@@ -386,20 +386,20 @@ export default class DocumentUpload extends Component {
     render() {
         const { isOpen, header } = this.props;
         const { mode } = this.state;
-        let closePopup = this.state.requestStatus !== 401 ? this.props.closePopup : () => {};
+        let closePopup = this.state.requestStatus !== 401 ? this.props.closePopup : () => { };
         return (
             <Popup
-              ref='popup'
-              isOpen={isOpen}
-              header={header}
-              contentClassName={styles[mode + 'Container']}
-              footer={{actionButtons: this.actionButtons}}
-              closePopup={closePopup}>
+                ref='popup'
+                isOpen={isOpen}
+                header={header}
+                contentClassName={styles[mode + 'Container']}
+                footer={{ actionButtons: this.actionButtons }}
+                closePopup={closePopup}>
                 <div>
-                    { this.displayError }
-                    { this.props.children }
-                    { this.details }
-                    { this.view }
+                    {this.displayError}
+                    {this.props.children}
+                    {this.details}
+                    {this.view}
                 </div>
             </Popup>
         );
@@ -411,7 +411,7 @@ DocumentUpload.defaultProps = {
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     maxFileSize: 20 * 1024, // default maximum size 5MB
     hideCrop: false,
-    additionalContentValidate: () => {},
+    additionalContentValidate: () => { },
     isAdditionalContentValid: true
 };
 

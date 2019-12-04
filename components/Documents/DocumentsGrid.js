@@ -63,14 +63,14 @@ class DocumentsGrid extends Component {
             return (
                 <div>
                     <SimpleGrid
-                      multiSelect={false}
-                      globalMenu={false}
-                      emptyRowsMsg="No results"
-                      fields={getListTableColumns(hasMakerChecker !== false)}
-                      data={gridData}
-                      transformCellValue={this.mapColumn}
-                      handleRowClick={handleSelectItem}
-                      rowsChecked={selectedItem}
+                        multiSelect={false}
+                        globalMenu={false}
+                        emptyRowsMsg="No results"
+                        fields={getListTableColumns(hasMakerChecker !== false)}
+                        data={gridData}
+                        transformCellValue={this.mapColumn}
+                        handleRowClick={handleSelectItem}
+                        rowsChecked={selectedItem}
                     />
                 </div>
             );
@@ -93,7 +93,7 @@ class DocumentsGrid extends Component {
 }
 
 DocumentsGrid.defaultProps = {
-    onGridSelect: () => {},
+    onGridSelect: () => { },
     selectedFilter: 'all'
 };
 

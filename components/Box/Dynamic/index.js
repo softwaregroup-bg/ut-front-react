@@ -5,7 +5,7 @@ import Icon from '../../Icon';
 import style from '../style.css';
 import classnames from 'classnames';
 
-const Box = ({children, className, title, externalTitleClasses, externalBodyClasses, titleType, showClose, fullWidth, minHeight, transparent, marginBottom = true, onClose, showAccordeon = false, collapsed = false, onToggle, ...props}) => {
+const Box = ({ children, className, title, externalTitleClasses, externalBodyClasses, titleType, showClose, fullWidth, minHeight, transparent, marginBottom = true, onClose, showAccordeon = false, collapsed = false, onToggle, ...props }) => {
     let titleTypeClass;
     switch (titleType) {
         case 'small':
@@ -28,17 +28,17 @@ const Box = ({children, className, title, externalTitleClasses, externalBodyClas
     let ballancerClass = showClose ? style.ballancer : null;
     let titleSectionClasses = classnames('f-upper', style.boxTitle, titleTypeClass, ballancerClass, externalTitleClasses);
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
-    let minHeightStyle = minHeight && {minHeight};
+    let minHeightStyle = minHeight && { minHeight };
 
     return (
-      <div style={props.style} className={classes}>
-        {title && <TitleSection title={title} className={titleSectionClasses} rightSection={rightSection} buttons={props.buttons} onClick={onToggle} />}
-        {!collapsed &&
-        <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>
-            {children}
+        <div style={props.style} className={classes}>
+            {title && <TitleSection title={title} className={titleSectionClasses} rightSection={rightSection} buttons={props.buttons} onClick={onToggle} />}
+            {!collapsed &&
+                <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>
+                    {children}
+                </div>
+            }
         </div>
-        }
-      </div>
     );
 };
 

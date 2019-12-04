@@ -20,7 +20,7 @@ class HeaderCell extends Component {
         }
 
         return (
-             <th onClick={this.props.canSort ? this.props.onSort : null} style={{width: 'auto', ...this.props.styles}}>
+            <th onClick={this.props.canSort ? this.props.onSort : null} style={{ width: 'auto', ...this.props.styles }}>
                 <Text>{this.props.name}</Text>
                 {this.props.canSort && <span className={sortStyle} />}
             </th>
@@ -37,7 +37,7 @@ HeaderCell.propTypes = {
 };
 
 HeaderCell.defaultProps = {
-    onSort: function() {},
+    onSort: function() { },
     styles: {},
     canSort: false,
     sortState: 0
