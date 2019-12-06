@@ -73,9 +73,9 @@ export default function ui({utMethod, config = {}}) {
             if (typeof document === 'undefined') return;
             var headHTML = document.getElementsByTagName('head')[0].innerHTML +
                 '<link type="text/css" rel="stylesheet" href="/s/user/react/index.css">' +
-                `<link href="${favicon}" rel="icon" type="image/x-icon" />`;
+                `<link href="${config.favicon || favicon}" rel="icon" type="image/x-icon" />`;
             document.getElementsByTagName('head')[0].innerHTML = headHTML;
-            document.title = 'Standard';
+            document.title = config.title || 'Standard';
 
             // initMirrors();
         },
