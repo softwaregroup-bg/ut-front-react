@@ -1,3 +1,12 @@
+## [11.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.2.1...v11.2.2) (2020-01-17)
+
+
+### Bug Fixes
+
+* apply manually [#533](https://github.com/softwaregroup-bg/ut-front-react/issues/533) ([f6f0f89](https://github.com/softwaregroup-bg/ut-front-react/commit/f6f0f89))
+
+
+
 ## [11.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.1.2...v11.2.1) (2020-01-17)
 
 
