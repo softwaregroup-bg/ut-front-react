@@ -109,10 +109,10 @@ class GridToolBox extends Component {
 
         if (filterElement.type === filterElementTypes.datePickerBetween || filterElement.type === filterElementTypes.dateTimePickerBetween) {
             filterValue = {
-                from: filters.hasOwnProperty(filterElement.name.from)
+                from: filters.hasOwnProperty(filterElement.name && filterElement.name.from)
                     ? filters[filterElement.name.from]
                     : filterElement.defaultValue['from'],
-                to: filters.hasOwnProperty(filterElement.name.to)
+                to: filters.hasOwnProperty(filterElement.name && filterElement.name.to)
                     ? filters[filterElement.name.to]
                     : filterElement.defaultValue['to']
             };
