@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import immutable from 'immutable';
 import Grid from '../../components/Grid';
 import Header from '../../components/Grid/Header';

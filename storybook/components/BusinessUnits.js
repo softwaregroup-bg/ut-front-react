@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import BusinessUnits from '../../components/BusinessUnits';
 import MaterialUILayout from '../../components/MaterialUILayout';
 const noop = function() {};

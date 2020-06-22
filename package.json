@@ -36,12 +36,12 @@
     "version": "ut-version",
     "jenkins": "ut-jenkins",
     "gitlab": "ut-gitlab",
-    "sb": "node storybook -c ./storybook -p 9008"
+    "sb": "start-storybook"
   },
   "devDependencies": {
+    "@storybook/react": "5.3.19",
     "bootstrap": "^4.3.1",
     "tap": "^12.7.0",
-    "@kadira/storybook": "^2.35.1",
     "ut-tools": "^6.30.5"
   },
   "peerDependencies": {

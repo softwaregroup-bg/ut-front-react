@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import immutable from 'immutable';
 import AttributesSection from '../../components/AttributesSection';
 import types from '../../components/AttributesSection/types';

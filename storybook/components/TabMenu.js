@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import { Router, Route, browserHistory } from 'react-router';
 import TabMenu from '../../components/TabMenu';
 import customCss from './../../components/TabMenu/style.css';

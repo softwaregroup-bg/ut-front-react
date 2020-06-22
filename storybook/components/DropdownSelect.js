@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import DropdownSelect from '../../components/DropdownSelect';
 import MaterialUILayout from '../../components/MaterialUILayout';
 

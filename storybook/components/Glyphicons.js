@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import Glyphicon, {iconNames} from '../../components/Glyphicon';
 
 storiesOf('Glyphicons', module)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import Date from '../../components/Date';
 import ContextWrapper from './../ContextWrapper.js';
 

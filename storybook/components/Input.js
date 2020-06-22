@@ -3,7 +3,7 @@ import immutable from 'immutable';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import getMuiTheme from '@material-ui/core/styles/getMuiTheme';
 import lightBaseTheme from '@material-ui/core/styles/baseThemes/lightBaseTheme';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import { textValidations } from './../../validator/constants.js';
 import Input from '../../components/Input';
 import Dropdown from './../../components/Input/Dropdown';

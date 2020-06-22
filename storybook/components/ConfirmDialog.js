@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
