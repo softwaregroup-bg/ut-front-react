@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import Link from './../Link';
 import styles from './styles.css';
@@ -48,7 +49,7 @@ export default class Tab extends Component {
             </Link>
         );
     }
-};
+}
 
 Tab.deafultProps = {
     disabled: false,

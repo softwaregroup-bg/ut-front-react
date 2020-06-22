@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import Number from '../../components/Number';
 import dateFormat from 'date-fns/format';
@@ -24,7 +25,7 @@ class Wrap extends React.Component {
                 }).format(amount);
             },
             dateFormat: function(date, format) {
-                if (!format) format = 'YYYY-MM-DD';
+                if (!format) format = 'yyyy-MM-dd';
                 return dateFormat(new Date(date), format);
             },
             numberFormat: function(num, format) {
@@ -47,7 +48,7 @@ Wrap.propTypes = {
     children: PropTypes.any
 };
 Wrap.childContextTypes = {
-    money: React.PropTypes.func,
-    dateFormat: React.PropTypes.func,
-    numberFormat: React.PropTypes.func
+    money: PropTypes.func,
+    dateFormat: PropTypes.func,
+    numberFormat: PropTypes.func
 };

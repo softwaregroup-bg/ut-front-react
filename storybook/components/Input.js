@@ -1,8 +1,8 @@
 import React from 'react';
 import immutable from 'immutable';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import getMuiTheme from '@material-ui/core/styles/getMuiTheme';
+import lightBaseTheme from '@material-ui/core/styles/baseThemes/lightBaseTheme';
 import { storiesOf, action } from '@kadira/storybook';
 import { textValidations } from './../../validator/constants.js';
 import Input from '../../components/Input';

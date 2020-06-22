@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import Tree from '../BusinessUnitsTree';
 import StandardButton from '../StandardButton';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { Vertical } from '../Layout';
 
 import style from './styles.css';

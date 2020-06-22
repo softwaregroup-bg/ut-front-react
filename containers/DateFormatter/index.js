@@ -1,11 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import dateFormat from 'date-fns/format';
 import Immutable from 'immutable';
 
 export class DateFormatter extends Component {
     render() {
-        let date = new Date(this.props.children || 'invalid-date');
+        const date = new Date(this.props.children || 'invalid-date');
 
         return !isNaN(date.getTime())
             ? (<span>{dateFormat(date, this.props.format || this.props.userFormat)}</span>)
@@ -26,7 +27,7 @@ export default connect(
         }
 
         return {
-            userFormat: login.getIn(['result', 'localisation', 'dateFormat']) || 'YYYY-MM-DD'
+            userFormat: login.getIn(['result', 'localisation', 'dateFormat']) || 'yyyy-MM-dd'
         };
     }
 )(DateFormatter);

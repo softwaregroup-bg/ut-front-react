@@ -3,8 +3,7 @@ import { login } from '../containers/LoginForm/reducer';
 // import gate from './pages/Gate/reducer';
 import gate from '../containers/Gate/reducer';
 import master from '../pages/Master/reducer';
-import { reducer as form } from 'redux-form/immutable';
 import frontDocuments from '../containers/Documents/reducer';
 import tabReducers from '../containers/TabMenu/reducers';
 
-export default {login, /* loginData, */ gate, form, ...master, ...tabReducers, frontDocuments};
+export default {login, /* loginData, */ gate, ...master, ...tabReducers, frontDocuments};

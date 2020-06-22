@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import Dropdown from '../Input/Dropdown';
 
@@ -358,7 +359,7 @@ class AdvancedPagination extends Component {
             </div>
         );
     }
-};
+}
 
 AdvancedPagination.propTypes = {
     /**

@@ -105,13 +105,13 @@ export const numberFormat = (props) => (num, format) => {
 
 export const df = (props) => (date, format) => {
     if (!format) {
-        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'dateFormat']) ? props.login.getIn(['result', 'localisation', 'dateFormat']) : 'YYYY-MM-DD';
+        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'dateFormat']) ? props.login.getIn(['result', 'localisation', 'dateFormat']) : 'yyyy-MM-dd';
     }
     return dateFormat(new Date(date), format);
 };
 
 export const dateDisplayFormat = (date, format) => {
-    return dateFormat(new Date(date), 'YYYY-MM-DD');
+    return dateFormat(new Date(date), 'yyyy-MM-dd');
 };
 
 export var checkPermission = function() {

@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 import {
     unstable_renderSubtreeIntoContainer as unstableRenderSubtreeIntoContainer,
     unmountComponentAtNode
@@ -47,7 +48,7 @@ export default class RenderToLayer extends Component {
     render() {
         return null;
     }
-};
+}
 
 RenderToLayer.propTypes = {
     open: PropTypes.bool,

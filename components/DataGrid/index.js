@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import KeyValueRow from './KeyValueRow';
 
 // DataList component may recieve data property which is array of objects that looks like this:

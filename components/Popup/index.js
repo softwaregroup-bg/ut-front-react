@@ -1,9 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 import RenderToLayer from './RenderToLayer';
 import Header from './Header.js';
 import Footer from './Footer.js';
+import DateUtils from '../DateUtils';
 import {
     POPUP_MIN_OFFSETS,
     POPUP_HEADER_HEIGHT,
@@ -178,7 +180,11 @@ class Popup extends Component {
     }
 
     renderLayer() {
-        return <PopupInternal {...this.props} />;
+        return (
+            <DateUtils>
+                <PopupInternal {...this.props} />
+            </DateUtils>
+        );
     }
 
     render() {

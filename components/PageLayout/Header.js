@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router-dom';
 
 import style from './style.css';
 
-const Header = React.createClass({
-    propTypes: {
+class Header extends React.Component {
+    static propTypes = {
         text: PropTypes.node.isRequired,
         buttons: PropTypes.arrayOf(PropTypes.shape({
             text: PropTypes.string.isRequired,
@@ -16,18 +17,19 @@ const Header = React.createClass({
         location: PropTypes.object,
         buttonsRaw: PropTypes.node,
         breadcrumbsRemoveSlashes: PropTypes.number
-    },
-    getDefaultProps() {
-        return {
-            buttonsRaw: [],
-            buttons: [],
-            location: undefined,
-            breadcrumbsRemoveSlashes: 1
-        };
-    },
-    contextTypes: {
+    }
+
+    static defaultProps = {
+        buttonsRaw: [],
+        buttons: [],
+        location: undefined,
+        breadcrumbsRemoveSlashes: 1
+    }
+
+    static contextTypes = {
         checkPermission: PropTypes.func
-    },
+    }
+
     render() {
         let { text, buttons, buttonsRaw } = this.props;
 
@@ -76,6 +78,6 @@ const Header = React.createClass({
             </div>
         );
     }
-});
+};
 
 export default Header;

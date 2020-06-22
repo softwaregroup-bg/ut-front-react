@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import ReactDom from 'react-dom';
 import classnames from 'classnames';
 import style from './style.css';
@@ -142,7 +143,7 @@ class TabMenu extends React.Component {
             </div>
         );
     }
-};
+}
 
 TabMenu.propTypes = {
     defaultLocation: PropTypes.string.isRequired,

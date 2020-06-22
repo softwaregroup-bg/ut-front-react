@@ -1,19 +1,23 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import Text from '../../../components/Text';
 import style from '../style.css';
 import Icon from '../../../components/Icon';
 
-const ErrorSection = React.createClass({
-    propTypes: {
+class ErrorSection extends React.Component {
+    static propTypes = {
         text: PropTypes.string
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         implementationStyle: PropTypes.object
-    },
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    },
+    }
+
     render() {
         return (
             <div>
@@ -26,6 +30,6 @@ const ErrorSection = React.createClass({
             </div>
         );
     }
-});
+};
 
 export default ErrorSection;

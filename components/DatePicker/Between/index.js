@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
-import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
-import {formatIso} from 'material-ui/DatePicker/dateUtils';
+import {DatePicker as DatePickerDialog} from '@material-ui/pickers';
 import style from '../style.css';
 
 const noop = () => {};
@@ -31,7 +31,7 @@ export default class DatePickerBetween extends Component {
             return transformDate(date, dateFormat, locale);
         }
 
-        return formatIso(date);
+        return date.toISOString();
     }
     handleAccept(ref) {
         let {defaultValue} = this.props;
@@ -131,7 +131,7 @@ export default class DatePickerBetween extends Component {
                     initialDate={fromDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('from')}
-                    firstDayOfWeek={this.props.firstDayOfWeek}
+                    variant='dialog'
                     ref='fromDialogWindow'
                 />
                 <DatePickerDialog
@@ -141,7 +141,7 @@ export default class DatePickerBetween extends Component {
                     initialDate={toDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('to')}
-                    firstDayOfWeek={this.props.firstDayOfWeek}
+                    variant='dialog'
                     ref='toDialogWindow'
                 />
             </div>
@@ -154,7 +154,7 @@ DatePickerBetween.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     withVerticalClass: false,
-    dateFormat: 'YYYY-MM-DD'
+    dateFormat: 'yyyy-MM-dd'
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.shape({

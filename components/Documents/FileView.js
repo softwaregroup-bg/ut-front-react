@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import StandardButton from '../StandardButton';
 import { defaultImageDimensions } from './config';
 import { mapContentTypeToExtension } from './helpers';

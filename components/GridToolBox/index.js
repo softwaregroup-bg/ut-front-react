@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Immutable from 'immutable';
 import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
 import { Link } from 'react-router-dom';
@@ -13,8 +14,6 @@ import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
 import { Button } from 'reactstrap';
-import { formatIso } from 'material-ui/DatePicker/dateUtils';
-import { formatTime } from 'material-ui/TimePicker/timeUtils';
 import ByCustomSearch from '../Filters/ByCustomSearch';
 
 import classnames from 'classnames';
@@ -25,7 +24,7 @@ const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
 
 const defaultTimeFormat = 'HH:mm';
-const defaultDateFormat = 'YYYY-MM-DD';
+const defaultDateFormat = 'yyyy-MM-dd';
 
 class GridToolBox extends Component {
     constructor(props) {
@@ -294,12 +293,12 @@ class GridToolBox extends Component {
                         if (filter.transformDate) {
                             dateValue = filter.transformDate(date, dateFormat, filter.locale);
                         } else {
-                            dateValue = formatIso(date);
+                            dateValue = date.toISOString();
                         }
                         if (filter.transformTime) {
                             timeValue = filter.transformTime(date, timeFormat, filter.locale);
                         } else {
-                            timeValue = formatTime(date);
+                            timeValue = date.toISOString().substr(11, 5);
                         }
 
                         let value = dateValue;

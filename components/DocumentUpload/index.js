@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Popup from '../Popup';
 import DocumentUploadMenu from './DocumentUploadMenu';
 import Camera from './Camera';
@@ -381,7 +382,7 @@ export default class DocumentUpload extends Component {
             </Popup>
         );
     }
-};
+}
 
 DocumentUpload.defaultProps = {
     useFile: () => ({}),

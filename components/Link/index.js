@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getLink } from '../../routerHelper';
 
@@ -18,7 +19,7 @@ export default class NavigationLink extends Component {
             </NavLink>
         );
     }
-};
+}
 
 NavigationLink.propTypes = {
     to: PropTypes.string.isRequired,

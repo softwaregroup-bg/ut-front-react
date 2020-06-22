@@ -1,12 +1,13 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 
 import Logo from './Logo';
 import User from './User';
 import style from './style.css';
 
-const Header = React.createClass({
-    propTypes: {
+class Header extends React.Component {
+    static propTypes = {
         headerCellText: PropTypes.object,
         children: PropTypes.any,
         personInfo: PropTypes.shape({
@@ -18,22 +19,26 @@ const Header = React.createClass({
         version: PropTypes.string,
         onLogOut: PropTypes.func,
         currentLocation: PropTypes.object
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         implementationStyle: PropTypes.object,
         assets: PropTypes.shape({
             headerMenu: PropTypes.shape({
                 profilePicture: PropTypes.string
             })
         })
-    },
-    defaultProps: {
+    }
+
+    static defaultProps = {
         version: '',
         onLogOut: () => {}
-    },
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    },
+    }
+
     render() {
         return (
             <div className={this.getStyle('header')}>
@@ -53,6 +58,6 @@ const Header = React.createClass({
             </div>
         );
     }
-});
+};
 
 export default Header;

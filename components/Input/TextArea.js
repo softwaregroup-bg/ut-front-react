@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
@@ -74,7 +75,7 @@ class TextArea extends Component {
         let zeroHeightStyle = isValid ? style.hh : '';
         let disabledStyle = readonly ? style.readonlyInput : '';
 
-        let textArea = <textArea
+        let textArea = <textarea
             rows='7'
             ref='input'
             className={classnames(style.textarea, errorTextAreaStyle, disabledStyle, cssClass)}

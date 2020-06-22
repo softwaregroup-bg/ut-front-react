@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from '@material-ui/core/DropDownMenu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = {
     customWidth: {
@@ -21,7 +21,7 @@ export default class SelectableSearch extends Component {
     render() {
         return (
             <div style={{height: '37px', border: '1px solid black'}}>
-                <DropDownMenu value={this.state.value} onChange={this.handleChange} style={styles.customWidth} autoWidth={false}>
+                <DropDownMenu value={this.state.value} onChange={this.handleChange} style={styles.customWidth}>
                     <MenuItem value={1} primaryText='Never' />
                     <MenuItem value={2} primaryText='Every Night' />
                     <MenuItem value={3} primaryText='Weeknights' />

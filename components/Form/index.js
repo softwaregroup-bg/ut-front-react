@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';
@@ -88,7 +89,7 @@ export default class Form extends Component {
             </div>
         );
     }
-};
+}
 
 Form.propTypes = {
     className: PropTypes.string,

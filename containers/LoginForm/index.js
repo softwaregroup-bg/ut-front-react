@@ -1,6 +1,8 @@
 /** eslint-disable react/no-unused-prop-types */
 
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
 
 import Form from '../../components/Form';

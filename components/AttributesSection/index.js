@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import types from './types.js';
 import immutable from 'immutable';
 
@@ -6,7 +7,7 @@ import Text from './sections/Text';
 import Heading from './sections/Heading';
 import Image from './sections/Image';
 import LinkButton from './sections/Link';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import classnames from 'classnames';
 import style from './style.css';

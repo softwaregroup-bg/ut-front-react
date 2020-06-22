@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import SettingsIcon from 'material-ui/svg-icons/action/settings';
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import SettingsIcon from '@material-ui/icons/Settings';
+import Popover, {PopoverAnimationVertical} from '@material-ui/core/Popover';
 import classnames from 'classnames';
 import Checkbox from '../Input/Checkbox';
 import style from './style.css';
@@ -21,11 +22,34 @@ export default class GlobalMenu extends Component {
         this.state = {menuOpened: false};
     }
 
+    static propTypes = {
+        fields: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.any,
+            name: PropTypes.any,
+            visible: PropTypes.bool
+        })).isRequired,
+        externalStyle: PropTypes.object,
+        onRefresh: PropTypes.func,
+        toggleColumnVisibility: PropTypes.func,
+        transformCellValue: PropTypes.func
+    }
+
+    static defaultProps = {
+        externalStyle: {},
+        handleCheckboxSelect: (currentValue) => {},
+        toggleColumnVisibility: (field) => ({}),
+        transformCellValue: (value, field, data, isHeader) => (value)
+    }
+
+    static contextTypes = {
+        implementationStyle: PropTypes.object
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.fields.filter(f => (f.visible)).length > this.props.fields.filter(f => (f.visible)).length) {
             // prevents horizontal scroll /if any/ movement when adding visible columns
-            let fieldControlEl = document.getElementById(menuFieldControl);
-            let tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
+            const fieldControlEl = document.getElementById(menuFieldControl);
+            const tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
 
             if (tableWrap.scrollWidth > tableWrap.clientWidth) {
                 tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
@@ -40,13 +64,16 @@ export default class GlobalMenu extends Component {
             }
         }
     }
+
     onRefresh() {
-        let {onRefresh} = this.props;
+        const {onRefresh} = this.props;
         onRefresh && onRefresh();
     }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
+
     handleMenuOpen(event) {
         event.preventDefault();
 
@@ -55,11 +82,13 @@ export default class GlobalMenu extends Component {
             anchorEl: event.currentTarget
         });
     }
+
     handleMenuClose() {
         this.setState({
             menuOpened: false
         });
     }
+
     toggleColumnVisibility(field) {
         return () => {
             if (this.props.fields.filter(f => (f.visible)).length > 1 || !field.visible) {
@@ -69,6 +98,7 @@ export default class GlobalMenu extends Component {
             return false;
         };
     }
+
     getItems() {
         return this.props
             .fields
@@ -76,72 +106,53 @@ export default class GlobalMenu extends Component {
             .map((f, idx) => (
                 <MenuItem
                     key={idx}
-                    onTouchTap={this.toggleColumnVisibility(f)}
+                    onClick={this.toggleColumnVisibility(f)}
                     children={
                         <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
                             <Checkbox isDisabled={false} checked={f.visible} />
                             {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
                         </div>
-                    } />
+                    }
+                />
             ));
     }
+
     getMenu() {
         return (
             <Popover
                 open={this.state.menuOpened}
                 anchorEl={this.state.anchorEl}
                 anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                onRequestClose={this.handleMenuClose}
+                transformOrigin={{horizontal: 'left', vertical: 'top'}}
+                onClose={this.handleMenuClose}
                 animation={PopoverAnimationVertical}
-                className={this.getStyle('headerGlobalMenuPopoverWrap')}>
-                <Menu disableAutoFocus className={this.getStyle('headerGlobalMenuItemWrap')} >
+                className={this.getStyle('headerGlobalMenuPopoverWrap')}
+            >
+                <MenuList className={this.getStyle('headerGlobalMenuItemWrap')}>
                     {this.props.onRefresh && (<div className={style.refreshContainer}>
-                        <MenuItem onTouchTap={this.props.onRefresh} style={{minHeight: 'auto'}}
+                        <MenuItem
+                            onClick={this.props.onRefresh} style={{minHeight: 'auto'}}
                             children={
                                 <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
                                     <div className={classnames(style.icon, style.refreshIcon)} />
                                     <div className={style.iconLabel}> Reload Grid </div>
-                                </div>}
+                                </div>
+                            }
                         />
                     </div>)}
                     <div className={style.columnWrap}>
                         <label className={style.menuLabel}> Manage Columns </label>
-                        { this.getItems() }
+                        {this.getItems()}
                     </div>
-                </Menu>
+                </MenuList>
             </Popover>
         );
     }
+
     render() {
         return (<th id={menuFieldControl} className={this.getStyle('headerGlobalMenuField')}>
-            <div onTouchTap={this.handleMenuOpen} className={this.getStyle('headerGlobalMenuFieldControl')}><SettingsIcon /></div>
+            <div onClick={this.handleMenuOpen} className={this.getStyle('headerGlobalMenuFieldControl')}><SettingsIcon /></div>
             {this.getMenu()}
         </th>);
     }
 }
-
-GlobalMenu.propTypes = {
-    fields: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.any,
-        name: PropTypes.any,
-        visible: PropTypes.bool
-    })).isRequired,
-    handleCheckboxSelect: PropTypes.func,
-    externalStyle: PropTypes.object,
-    isChecked: PropTypes.bool,
-    onRefresh: PropTypes.func,
-    toggleColumnVisibility: PropTypes.func,
-    transformCellValue: PropTypes.func
-};
-
-GlobalMenu.defaultProps = {
-    externalStyle: {},
-    handleCheckboxSelect: (currentValue) => {},
-    toggleColumnVisibility: (field) => ({}),
-    transformCellValue: (value, field, data, isHeader) => (value)
-};
-
-GlobalMenu.contextTypes = {
-    implementationStyle: PropTypes.object
-};

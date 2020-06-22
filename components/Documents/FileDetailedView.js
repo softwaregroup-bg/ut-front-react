@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { calculateAspectRatio } from '../../helpers';
 import { detailsMapping } from './config';
 import FileView from './FileView';

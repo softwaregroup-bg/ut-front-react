@@ -1,6 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import mainStyle from './style.css';
-import SvgSearchIcon from 'material-ui/svg-icons/action/search';
+import SvgSearchIcon from '@material-ui/icons/Search';
 import styles from '../StandardButton/styles.css';
 import classnames from 'classnames';
 
@@ -10,7 +11,7 @@ export class AdvancedSearchButton extends Component {
             <div>
                 <button className={classnames(styles.defaultBtn, mainStyle.defaultButton)} onClick={this.props.onClick}>
                     {<span className={mainStyle.iconWrap}>
-                        <SvgSearchIcon color='#808080' style={{display: 'flex', height: '20px'}} />
+                        <SvgSearchIcon color='action' style={{display: 'flex', height: '20px'}} />
                     </span>} Advanced Search </button>
             </div>
 

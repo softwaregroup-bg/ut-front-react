@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import get from 'lodash.get';
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import style from './style.css';
 
 export default class User extends React.Component {

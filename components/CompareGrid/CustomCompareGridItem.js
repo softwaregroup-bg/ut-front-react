@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import TitledContentBox from '../TitledContentBox';
 import Accordion from '../Accordion';
@@ -43,7 +44,7 @@ class CustomCompareGridItem extends Component {
             </div>
         );
     }
-};
+}
 
 CustomCompareGridItem.propTypes = {
     data: PropTypes.object.isRequired,

@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Username from './Username';
 import Password from './Password';
 import Otp from './Otp';
 import Bio from './Bio';
 
-const Login = React.createClass({
-    propTypes: {
+class Login extends React.Component {
+    static propTypes = {
         loginRequest: PropTypes.func,
         errorWindowToggle: PropTypes.func,
         prefetchWindowClose: PropTypes.func,
@@ -19,42 +20,49 @@ const Login = React.createClass({
         values: PropTypes.object,
         loginPolicy: PropTypes.array,
         captured: PropTypes.bool
-    },
-    loginWithUserPass() {
+    };
+
+    loginWithUserPass = () => {
         this.props.loginRequest({
             username: this.props.values.username,
             password: this.refs.password.getValue()
         });
-    },
-    loginWithUser() {
+    };
+
+    loginWithUser = () => {
         this.props.loginRequest({
             username: this.refs.username.getValue()
         });
-    },
-    loginWithOtp() {
+    };
+
+    loginWithOtp = () => {
         this.props.loginRequest({
             username: this.props.values.username,
             password: this.props.values.password,
             otp: this.refs.otp.getValue()
         });
-    },
-    loginWithBio() {
+    };
+
+    loginWithBio = () => {
         this.props.loginRequest({
             username: this.refs.username.getValue(),
             bio: this.refs.password.getValue()
         });
-    },
-    switchTo(to, transfer) {
+    };
+
+    switchTo = (to, transfer) => {
         return () => {
             if ((to === 'bio' || to === 'otp' || to === 'password') && this.refs.username.getValue() === '') {
                 return this.props.errorWindowToggle({message: 'Username is required'});
             }
             return this.props.switchTo(to, transfer);
         };
-    },
-    enroll(params) {
+    };
+
+    enroll = (params) => {
         this.props.enroll(params);
-    },
+    };
+
     shouldComponentUpdate(nextProps) {
         if (!nextProps.loginInProgress) {
             if (nextProps.loginPolicy && nextProps.loginPolicy.length > 0) { // login policy just returned
@@ -110,22 +118,26 @@ const Login = React.createClass({
         //     }
         // }
         return true;
-    },
-    passwordLogIn(e) {
+    }
+
+    passwordLogIn = (e) => {
         if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.password.getValue().length > 0)) {
             this.loginWithUserPass();
         }
-    },
-    userLogIn(e) {
+    };
+
+    userLogIn = (e) => {
         if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.username.getValue().length > 0)) {
             this.loginWithUser();
         }
-    },
-    otpLogIn(e) {
+    };
+
+    otpLogIn = (e) => {
         if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.otp.getValue().length > 0)) {
             this.loginWithOtp();
         }
-    },
+    };
+
     render() {
         var r;
         switch (this.props.loginType) {
@@ -144,6 +156,6 @@ const Login = React.createClass({
 
         return r;
     }
-});
+}
 
 export default Login;

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import HeaderCell from './HeaderCell';
 import Menu from '../GridMenu';
 import classnames from 'classnames';
@@ -92,7 +93,7 @@ class GridHeader extends Component {
             </thead>
         );
     }
-};
+}
 
 GridHeader.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Layout from '../pages/Layout';
 
@@ -7,9 +8,9 @@ export default class Portal extends React.Component {
             <Layout {...this.props} headerText={`${this.context.portalName}\nPortal`} />
         );
     }
-};
+}
 
 Portal.contextTypes = {
-    portalName: React.PropTypes.string,
-    location: React.PropTypes.object
+    portalName: PropTypes.string,
+    location: PropTypes.object
 };

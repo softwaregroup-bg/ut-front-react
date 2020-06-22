@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Box from '../Box';
 import { Row, Col } from 'reactstrap';
 import classnames from 'classnames';

@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { textValidations, customValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 

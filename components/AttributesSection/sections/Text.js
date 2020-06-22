@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from '../style.css';
 
 class Text extends Component {
@@ -21,7 +22,7 @@ class Text extends Component {
             </div>
         );
     }
-};
+}
 
 Text.propTypes = {
     title: PropTypes.string,

@@ -1,32 +1,35 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-Text.propTypes = {
-    children: React.PropTypes.string,
-    params: React.PropTypes.object,
-    prefix: React.PropTypes.string // prefix, narrowing search in translation dictionary
-};
-
-Text.contextTypes = {
-    language: React.PropTypes.string,
-    translate: React.PropTypes.func
-};
-
-export default function Text(props, context) {
-    let {children, params, prefix} = props;
-    let template = children;
-    if (typeof context.translate === 'function') {
-        var text = (prefix ? [prefix, children] : [children]).join('>');
-        // Translate the template
-        template = context.translate(text, context.language);
-        if (template === text) {
-            template = children;
-        }
+export default class Text extends React.Component {
+    static contextTypes = {
+        language: PropTypes.string,
+        translate: PropTypes.func
     }
-    // In either case - apply the params to the template
-    children = applyTemplate(template, params);
-    return (
-        <span>{children}</span>
-    );
+
+    static propTypes = {
+        children: PropTypes.string,
+        params: PropTypes.object,
+        prefix: PropTypes.string // prefix, narrowing search in translation dictionary
+    }
+
+    render() {
+        let {children, params, prefix} = this.props;
+        let template = children;
+        if (typeof this.context.translate === 'function') {
+            var text = (prefix ? [prefix, children] : [children]).join('>');
+            // Translate the template
+            template = this.context.translate(text, this.context.language);
+            if (template === text) {
+                template = children;
+            }
+        }
+        // In either case - apply the params to the template
+        children = applyTemplate(template, params);
+        return (
+            <span>{children}</span>
+        );
+    }
 }
 
 const TOKEN = /\${([\w]*)}/g;

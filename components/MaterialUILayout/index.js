@@ -1,15 +1,20 @@
-import React, { PropTypes } from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import DateUtils from '../DateUtils';
 
-injectTapEventPlugin();
+const theme = createMuiTheme({
+    palette: {
+        type: 'light'
+    }
+});
 
 const MaterialUILayout = ({children}) => (
-    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        {children}
-    </MuiThemeProvider>
+    <DateUtils>
+        <MuiThemeProvider theme={theme}>
+            {children}
+        </MuiThemeProvider>
+    </DateUtils>
 );
 
 MaterialUILayout.propTypes = {

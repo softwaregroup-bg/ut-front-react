@@ -1,8 +1,10 @@
-import React, {PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Router, Route, Switch } from 'react-router';
 import { createHashHistory, createMemoryHistory } from 'history';
 import {renderToString} from 'react-dom/server';
 import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Portal from './Portal';
 import Dashboard from './Dashboard';
 import wrapper from './wrapper';
@@ -49,6 +51,7 @@ export default function ui({utMethod, config = {}}) {
             <App>
                 <Wrapper>
                     <MaterialUILayout>
+                        <CssBaseline />
                         <Router history={this.history}>
                             <Switch>
                                 <Route path='/login' component={LoginPage} />
@@ -62,7 +65,7 @@ export default function ui({utMethod, config = {}}) {
             </App>
         </Provider>;
         if (typeof document !== 'undefined') {
-            ReactDOM.render(container, document.getElementById('utApp'));
+            ReactDOM.render(container, document.getElementById('root'));
         } else {
             console.log(renderToString(container)); // eslint-disable-line
         }
@@ -93,4 +96,4 @@ export default function ui({utMethod, config = {}}) {
             await render.call(this);
         }
     };
-};
+}

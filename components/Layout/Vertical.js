@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from './verticalStyles.css';
 import { getMarginBox } from '../../utils/dom';
 
@@ -39,7 +40,7 @@ class Vertical extends Component {
             </div>
         );
     }
-};
+}
 
 Vertical.propTypes = {
     children: PropTypes.any,

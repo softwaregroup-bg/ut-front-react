@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 export default class InlineEditor extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +46,7 @@ export default class InlineEditor extends Component {
             );
         }
     }
-};
+}
 
 InlineEditor.propTypes = {
     text: PropTypes.string,

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import dateFormat from 'date-fns/format';
 
 // for testing purposes in storybook
@@ -15,7 +16,7 @@ export default class Wrap extends React.Component {
                 }).format(amount);
             },
             dateFormat: function(date, format) {
-                if (!format) format = 'YYYY-MM-DD';
+                if (!format) format = 'yyyy-MM-dd';
                 return dateFormat(new Date(date), format);
             },
             numberFormat: function(num, format) {

@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import Popover from '@material-ui/core/Popover';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 import style from './style.css';
 import classnames from 'classnames';
 import dropdownIcon from './images/dropdown.png';
@@ -10,7 +11,7 @@ import dropdownIcon from './images/dropdown.png';
 export default class DropdownSelect extends Component {
     constructor(props, context) {
         super(props, context);
-        this.toggle = this.toggle.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
         let selected = null;
         if (props.defaultSelected !== undefined) {
             selected = props.data.find(
@@ -24,6 +25,41 @@ export default class DropdownSelect extends Component {
             selected: selected || {[props.keyProp]: '_placeholder_'},
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
+    }
+
+    static propTypes = {
+        label: PropTypes.string,
+        data: PropTypes.arrayOf(PropTypes.shape({
+            disabled: PropTypes.bool,
+            header: PropTypes.bool,
+            selected: PropTypes.bool
+        })),
+        customTheme: PropTypes.bool,
+        placeholder: PropTypes.string,
+        defaultSelected: PropTypes.any,
+        onSelect: PropTypes.func,
+        onClick: PropTypes.func,
+        keyProp: PropTypes.string,
+        valueProp: PropTypes.string,
+        canSelectPlaceholder: PropTypes.bool,
+        showPlaceHolderAsFirstOption: PropTypes.bool,
+        isValid: PropTypes.bool,
+        errorMessage: PropTypes.string,
+        updateError: PropTypes.func
+    }
+
+    static defaultProps = {
+        data: [],
+        customTheme: false,
+        placeholder: 'Select',
+        onSelect: function() {},
+        keyProp: 'key',
+        valueProp: 'name',
+        canSelectPlaceholder: false,
+        showPlaceHolderAsFirstOption: true,
+        isValid: true,
+        errorMessage: '',
+        updateError: () => {}
     }
 
     componentWillReceiveProps({defaultSelected, keyProp, data, isValid, errorMessage}) {
@@ -40,7 +76,7 @@ export default class DropdownSelect extends Component {
         }
     }
 
-    toggle(event) {
+    handleToggle(event) {
         if (event) {
             this.setState({
                 dropdownOpen: !this.state.dropdownOpen,
@@ -55,7 +91,7 @@ export default class DropdownSelect extends Component {
 
     select(item) {
         return () => {
-            this.toggle();
+            this.handleToggle();
             this.props.updateError({key: this.props.keyProp});
             this.setState({selected: item, valid: {isValid: true, errorMessage: ''}});
 
@@ -68,8 +104,8 @@ export default class DropdownSelect extends Component {
     }
 
     renderDropdownItems() {
-        let selectedItem = this.state.selected || {};
-        let items = [];
+        const selectedItem = this.state.selected || {};
+        const items = [];
 
         if (this.props.showPlaceHolderAsFirstOption) {
             items.push(
@@ -77,19 +113,19 @@ export default class DropdownSelect extends Component {
                     key='_placeholder_'
                     primaryText={this.props.placeholder}
                     disabled={!this.props.canSelectPlaceholder || selectedItem[this.props.keyProp] === '_placeholder_'}
-                    onTouchTap={this.select({key: '_placeholder_'})}
+                    onClick={this.select({key: '_placeholder_'})}
                 />
             );
         }
 
         this.props.data.forEach((item) => {
-            let disabled = item.disabled || selectedItem[this.props.keyProp] === item[this.props.keyProp];
+            const disabled = item.disabled || selectedItem[this.props.keyProp] === item[this.props.keyProp];
             items.push(
                 <MenuItem
                     key={item[this.props.keyProp]}
                     primaryText={item[this.props.valueProp]}
                     disabled={disabled}
-                    onTouchTap={this.select(item)}
+                    onClick={this.select(item)}
                 />
             );
         });
@@ -102,12 +138,12 @@ export default class DropdownSelect extends Component {
     }
 
     render() {
-        let { isValid, errorMessage } = this.state.valid;
-        let errorDropDownStyle = !isValid ? style.error : '';
-        let asd = isValid ? style.hh : '';
+        const { isValid, errorMessage } = this.state.valid;
+        const errorDropDownStyle = !isValid ? style.error : '';
+        const asd = isValid ? style.hh : '';
 
         if (this.props.customTheme) {
-            let dropDownWrapStyle = [style.dropDownWrap];
+            const dropDownWrapStyle = [style.dropDownWrap];
             if (!this.props.label) {
                 dropDownWrapStyle.push(style.noLabel);
             }
@@ -116,29 +152,29 @@ export default class DropdownSelect extends Component {
                     {this.props.label ? (<span className={style.label}>{this.props.label}</span>) : ''}
                     <div onClick={this.props.onClick} className={classnames.apply(undefined, dropDownWrapStyle)}>
                         {/* animated=false prevents bugs caused by animation delay */}
-                        <Popover
-                            open={this.state.dropdownOpen}
-                            animated={false}
-                            anchorEl={this.state.anchorEl}
-                            onRequestClose={this.toggle}
-                            anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
-                            targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                        >
-                            <Menu>
-                                {this.renderDropdownItems()}
-                            </Menu>
-                        </Popover>
-                        <div className={classnames('dropdownSelect', style.selectWithArrowWrap, errorDropDownStyle)} onClick={this.toggle}>
+                        <div className={classnames('dropdownSelect', style.selectWithArrowWrap, errorDropDownStyle)} onClick={this.handleToggle}>
                             <span className={style.defaultSelection}>{this.getSelected()[this.props.valueProp] || this.props.placeholder}</span>
                             <div className={style.arrowWrap}><img src={dropdownIcon} /></div>
                         </div>
                     </div>
+                    <Popover
+                        open={this.state.dropdownOpen}
+                        animated={false}
+                        anchorEl={this.state.anchorEl}
+                        onClose={this.handleToggle}
+                        anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                        transformOrigin={{horizontal: 'right', vertical: 'top'}}
+                    >
+                        <MenuList>
+                            {this.renderDropdownItems()}
+                        </MenuList>
+                    </Popover>
                     <div className={classnames(style.errorWrap, asd)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
             );
         } else {
             return (
-                <Dropdown {...this.props} isOpen={this.state.dropdownOpen} toggle={this.toggle} onClick={this.props.onClick}>
+                <Dropdown {...this.props} isOpen={this.state.dropdownOpen} onToggle={this.handleToggle} onClick={this.props.onClick}>
                     <DropdownToggle caret>
                         {this.getSelected()[this.props.valueProp] || this.props.placeholder}
                     </DropdownToggle>
@@ -150,38 +186,3 @@ export default class DropdownSelect extends Component {
         }
     }
 }
-
-DropdownSelect.propTypes = {
-    label: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.shape({
-        disabled: PropTypes.bool,
-        header: PropTypes.bool,
-        selected: PropTypes.bool
-    })),
-    customTheme: PropTypes.bool,
-    placeholder: PropTypes.string,
-    defaultSelected: PropTypes.any,
-    onSelect: PropTypes.func,
-    onClick: PropTypes.func,
-    keyProp: PropTypes.string,
-    valueProp: PropTypes.string,
-    canSelectPlaceholder: PropTypes.bool,
-    showPlaceHolderAsFirstOption: PropTypes.bool,
-    isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    updateError: PropTypes.func
-};
-
-DropdownSelect.defaultProps = {
-    data: [],
-    customTheme: false,
-    placeholder: 'Select',
-    onSelect: function() {},
-    keyProp: 'key',
-    valueProp: 'name',
-    canSelectPlaceholder: false,
-    showPlaceHolderAsFirstOption: true,
-    isValid: true,
-    errorMessage: '',
-    updateError: () => {}
-};

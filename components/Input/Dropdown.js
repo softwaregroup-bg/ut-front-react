@@ -1,11 +1,13 @@
-import React, { PropTypes, Component } from 'react';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
+import Box from '@material-ui/core/Box';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
-import SvgDropdownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import Popover, {PopoverAnimationVertical} from '@material-ui/core/Popover';
+import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -16,12 +18,59 @@ class Dropdown extends Component {
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
 
-        this.getMenuItems = this.getMenuItems.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.toggleOpen = this.toggleOpen.bind(this);
-        this.toggleClose = this.toggleClose.bind(this);
-        this.getTitle = this.getTitle.bind(this);
-        this.renderDropDown = this.renderDropDown.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    static propTypes = {
+        data: PropTypes.arrayOf(PropTypes.shape({
+            key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+            name: PropTypes.any.isRequired,
+            leftIcon: PropTypes.string,
+            rightIcon: PropTypes.string
+        })).isRequired,
+        defaultSelected: PropTypes.any,
+        label: PropTypes.node,
+        boldLabel: PropTypes.bool,
+        containerClassName: PropTypes.string,
+        placeholder: PropTypes.any,
+        placeholderValue: PropTypes.any,
+        labelWrap: PropTypes.string,
+        inputWrap: PropTypes.string,
+        keyProp: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array
+        ]),
+        canSelectPlaceholder: PropTypes.bool,
+        onSelect: PropTypes.func,
+        disabled: PropTypes.bool,
+        mergeStyles: PropTypes.object,
+        cssStyle: PropTypes.any, // css file to take styles [Should have the same classes/divs like in styles.css]
+
+        // Validation
+        validators: PropTypes.arrayOf(
+            PropTypes.shape({
+                type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+                values: PropTypes.any,
+                errorMessage: PropTypes.string
+            })
+        ),
+        isValid: PropTypes.bool,
+        errorMessage: PropTypes.string
+    }
+
+    static defaultProps = {
+        label: undefined,
+        boldLabel: true,
+        placeholder: 'Select',
+        placeholderValue: '__placeholder__',
+        canSelectPlaceholder: false,
+        disabled: false,
+        keyProp: '__no_source_prop_key__',
+        onSelect: () => {},
+        isValid: true,
+        errorMessage: ''
     }
 
     componentWillReceiveProps({defaultSelected, data, isValid, errorMessage}) {
@@ -31,7 +80,7 @@ class Dropdown extends Component {
         }
 
         if (defaultSelected !== this.props.defaultSelected || this.props.data !== data) {
-            let value = data.find(
+            const value = data.find(
                 (item) => {
                     return item.key === defaultSelected;
                 }
@@ -43,21 +92,23 @@ class Dropdown extends Component {
             this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
         }
     }
-    toggleOpen(event) {
-        return this.setState({open: true, anchorEl: event.currentTarget});
+
+    handleOpen(event) {
+        this.setState({open: true, anchorEl: event.currentTarget});
     }
 
-    toggleClose() {
-        return this.setState({open: false});
+    handleClose(event) {
+        event.preventDefault();
+        this.setState({open: false, anchorEl: null});
     }
 
     handleChange(event, value) {
-        let { onSelect, keyProp } = this.props;
-        let objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
+        const { onSelect, keyProp } = this.props;
+        const objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
 
         this.setState({value: value, valid: {isValid: true, errorMessage: ''}});
         onSelect(objectToPassOnChange);
-        this.toggleClose();
+        this.handleClose(event);
     }
 
     get dropdownPlaceholder() {
@@ -65,14 +116,16 @@ class Dropdown extends Component {
         const selected = data.find(item => item.key === defaultSelected);
         return (selected && selected.name) || placeholder;
     }
+
     getTitle(name) {
-        var title = name && typeof name === 'object' ? name.props.children : name;
+        const title = name && typeof name === 'object' ? name.props.children : name;
         return title;
     }
-    getMenuItems() {
-        let { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let menuItems = [];
+
+    getMenuItems(width) {
+        const { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const menuItems = [];
 
         menuItems.push(
             <MenuItem
@@ -80,7 +133,10 @@ class Dropdown extends Component {
                 key={Math.random() + '-ddfg'}
                 disabled={!canSelectPlaceholder}
                 value={this.props.placeholderValue}
-                primaryText={<div title={this.getTitle(placeholder)}>{placeholder}</div>} />
+                onClick={(event) => this.handleChange(event, this.props.placeholderValue)}
+            >
+                <div title={this.getTitle(placeholder)}>{placeholder}</div>
+            </MenuItem>
         );
 
         data.forEach((item, i) => {
@@ -90,9 +146,12 @@ class Dropdown extends Component {
                     key={item.key + '-' + i}
                     disabled={item.disabled}
                     value={item.key}
-                    primaryText={<div title={this.getTitle(item.name)}>{item.name}</div>}
-                    leftIcon={item.leftIcon && <img src={item.leftIcon} />}
-                    rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
+                    onClick={(event) => this.handleChange(event, item.key)}
+                >
+                    {item.leftIcon && <img src={item.leftIcon} />}
+                    <div title={this.getTitle(item.name)}>{item.name}</div>
+                    {item.rightIcon && <img src={item.rightIcon} />}
+                </MenuItem>
             );
         });
 
@@ -100,56 +159,60 @@ class Dropdown extends Component {
     }
 
     renderDropDown() {
-        let menuItems = this.getMenuItems();
-        let { cssStyle, mergeStyles } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
-        let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
-        let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
-        let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
-        let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        const { cssStyle, mergeStyles } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
+        const arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
+        const inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
+        const iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
+        const rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        const menuItems = this.getMenuItems(rootElementWidth);
         // let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
         return (
-            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
-                <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
-                    <div className={ddstyles.dropdownPlaceholder}>
-                        <div title={this.getTitle(this.dropdownPlaceholder)}>
-                            {this.dropdownPlaceholder}
+            <>
+                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
+                    <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
+                        <div className={ddstyles.dropdownPlaceholder}>
+                            <div title={this.getTitle(this.dropdownPlaceholder)}>
+                                {this.dropdownPlaceholder}
+                            </div>
                         </div>
+                        <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
+                            <SvgDropdownIcon htmlColor='white' style={{width: '100%', height: '100%'}} />
+                        </div>
+                        <div className={ddstyles.hideTextWrap} />
                     </div>
-                    <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
-                        <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
-                    </div>
-                    <div className={ddstyles.hideTextWrap} />
                 </div>
                 <Popover
                     open={this.state.open}
-                    onRequestClose={this.toggleClose}
+                    onClose={this.handleClose}
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}>
-                    <Menu
-                        value={this.state.value}
-                        onChange={this.handleChange}
-                        autoWidth={false}
-                        disabled={this.props.disabled}
-                        className={classnames(ddstyles.dropdownMenu)}
-                        style={{width: rootElementWidth}}
-                        maxHeight={300}>
-                        {menuItems}
-                    </Menu>
+                    transformOrigin={{horizontal: 'left', vertical: 'top'}}
+                    animation={PopoverAnimationVertical}
+                >
+                    <Box maxHeight={300} width={rootElementWidth}>
+                        <MenuList
+                            open={this.state.open}
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            disabled={this.props.disabled}
+                            className={classnames(ddstyles.dropdownMenu)}
+                        >
+                            {menuItems}
+                        </MenuList>
+                    </Box>
                 </Popover>
-            </div>
+            </>
         );
     }
 
     render() {
-        let { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let { isValid, errorMessage } = this.state.valid;
-        let invalidStyle = isValid ? ddstyles.hiddenHeight : '';
+        const { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const { isValid, errorMessage } = this.state.valid;
+        const invalidStyle = isValid ? ddstyles.hiddenHeight : '';
 
         if (label) {
             return (
@@ -177,57 +240,5 @@ class Dropdown extends Component {
         }
     }
 }
-
-Dropdown.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-        name: PropTypes.any.isRequired,
-        leftIcon: PropTypes.string,
-        rightIcon: PropTypes.string
-    })).isRequired,
-    defaultSelected: PropTypes.any,
-    label: PropTypes.node,
-    boldLabel: PropTypes.bool,
-    containerClassName: PropTypes.string,
-    placeholder: PropTypes.any,
-    placeholderValue: PropTypes.any,
-    labelWrap: PropTypes.string,
-    inputWrap: PropTypes.string,
-    keyProp: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array
-    ]),
-    canSelectPlaceholder: PropTypes.bool,
-    onSelect: PropTypes.func,
-    disabled: PropTypes.bool,
-    menuAutoWidth: PropTypes.bool,
-    mergeStyles: PropTypes.object,
-    cssStyle: PropTypes.any, // css file to take styles [Should have the same classes/divs like in styles.css]
-
-    // Validation
-    validators: PropTypes.arrayOf(
-        PropTypes.shape({
-            type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
-            values: PropTypes.any,
-            errorMessage: PropTypes.string
-        })
-    ),
-    isValid: PropTypes.bool,
-    errorMessage: PropTypes.string
-};
-
-Dropdown.defaultProps = {
-    label: undefined,
-    boldLabel: true,
-    placeholder: 'Select',
-    placeholderValue: '__placeholder__',
-    canSelectPlaceholder: false,
-    disabled: false,
-    keyProp: '__no_source_prop_key__',
-    onSelect: () => {},
-    isValid: true,
-    errorMessage: '',
-    menuAutoWidth: false
-};
 
 export default Dropdown;

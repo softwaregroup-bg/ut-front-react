@@ -1,4 +1,5 @@
-import {Component, PropTypes, Children} from 'react';
+import PropTypes from 'prop-types';
+import { Component, Children } from 'react';
 
 export default function wrapper({menus = []}) {
     const tabset = menus.reduce((all, items) => all.concat(items), []);
@@ -23,6 +24,7 @@ export default function wrapper({menus = []}) {
                     .map(item => setMenuItemProps(item, {activeClassName: active}))
             };
         }
+
         render() {
             return Children.only(this.props.children);
         }
@@ -42,4 +44,4 @@ export default function wrapper({menus = []}) {
     };
 
     return Wrapper;
-};
+}

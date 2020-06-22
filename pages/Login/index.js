@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {Map} from 'immutable';
 import { connect } from 'react-redux';
 import style from './style.css';
@@ -7,29 +8,38 @@ import Box from '../../components/Box';
 import { identityCheck, setLoginData } from './actions';
 import {UserName, Title, SubmitButton, ErrorSection, Password} from './partials';
 
-const Login = React.createClass({
-    propTypes: {
+class Login extends React.Component {
+    static propTypes = {
         identityCheck: PropTypes.func,
         setLoginData: PropTypes.func,
         loginData: PropTypes.object,
         login: PropTypes.object
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         router: PropTypes.object,
         implementationStyle: PropTypes.object,
         mainUrl: PropTypes.string,
         initialLoginFields: PropTypes.object
-    },
+    }
+
+    static defaultProps = {
+        loginData: Map(),
+        login: Map()
+    }
+
     componentWillReceiveProps(nextProps) {
         if (this.props.loginData.get('changeId') !== nextProps.loginData.get('changeId')) {
             this.props.identityCheck(nextProps.loginData.get('data').toJS());
         } else if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated') && nextProps.login.get('reqState') === 'finished') {
             this.context.router.history.push(this.context.mainUrl); // TODO give correct route
         }
-    },
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    },
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         if (this.refs.username) {
@@ -38,7 +48,8 @@ const Login = React.createClass({
         if (this.refs.password) {
             this.props.setLoginData({key: 'password', value: this.refs.password.getValue()});
         }
-    },
+    }
+
     getLoginCourse() {
         var loginCourse = this.props.login.get('loginCourse');
         var inputs = {};
@@ -68,7 +79,8 @@ const Login = React.createClass({
             }
         }
         return {inputs, title};
-    },
+    }
+
     renderLoginBody(step) {
         var err;
         if (this.props.login.get('loginResultId')) {
@@ -86,7 +98,8 @@ const Login = React.createClass({
                 <SubmitButton title='Next' />
             </div>
         );
-    },
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -110,11 +123,6 @@ const Login = React.createClass({
             </form>
         );
     }
-});
-
-Login.defaultProps = {
-    loginData: Map(),
-    login: Map()
 };
 
 export default connect(

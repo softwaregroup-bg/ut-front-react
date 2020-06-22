@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { propTypeFields, propTypeData } from '../common';
 import Record from './Record.js';
 import style from './styles.css';

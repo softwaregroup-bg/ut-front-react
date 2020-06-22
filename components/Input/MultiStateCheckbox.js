@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -42,7 +43,7 @@ class MultiStateCheckbox extends Component {
             <span />
         </label>;
     }
-};
+}
 
 MultiStateCheckbox.propTypes = {
     onChange: PropTypes.func,

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import styles from './styles.css';
 
 export default class Cropper extends Component {
@@ -53,7 +54,7 @@ export default class Cropper extends Component {
             <div ref='previewImage' />
         );
     }
-};
+}
 
 Cropper.propTypes = {
     file: PropTypes.string,

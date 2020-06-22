@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import UploadFileButton from './UploadFileButton';
 import AddFileButton from './AddFileButton';
@@ -76,7 +77,7 @@ export default class FilePreview extends Component {
             </div>
         );
     }
-};
+}
 
 FilePreview.propTypes = {
     className: PropTypes.string,
