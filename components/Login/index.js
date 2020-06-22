@@ -7,6 +7,7 @@ import Bio from './Bio';
 
 class Login extends React.Component {
     static propTypes = {
+        loginInProgress: PropTypes.bool,
         loginRequest: PropTypes.func,
         errorWindowToggle: PropTypes.func,
         prefetchWindowClose: PropTypes.func,
@@ -67,10 +68,10 @@ class Login extends React.Component {
         if (!nextProps.loginInProgress) {
             if (nextProps.loginPolicy && nextProps.loginPolicy.length > 0) { // login policy just returned
                 if (this.props.loginType === nextProps.loginType) {
-                    var nextStep = 1;
-                    var val = {};
+                    let nextStep = 1;
+                    let val = {};
                     if (nextProps.loginType) {
-                        var currentStep = nextProps.loginPolicy.filter((el) => (el.type === nextProps.loginType)).reduce((cur, el) => (el), {});
+                        const currentStep = nextProps.loginPolicy.filter((el) => (el.type === nextProps.loginType)).reduce((cur, el) => (el), {});
                         nextStep = nextProps.loginPolicy.filter((el) => (el.step > currentStep.step)).reduce((cur, el) => (el.step), 0);
                         val[currentStep.type] = this.refs[currentStep.type].getValue(currentStep.type);
                     } else {
@@ -139,7 +140,7 @@ class Login extends React.Component {
     };
 
     render() {
-        var r;
+        let r;
         switch (this.props.loginType) {
             case 'bio':
                 r = <Bio />;

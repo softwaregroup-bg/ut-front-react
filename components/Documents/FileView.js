@@ -13,7 +13,7 @@ class FileView extends Component {
         let content;
         switch (file.details.type) {
             case 'image/png':
-            case 'image/jpeg':
+            case 'image/jpeg': {
                 let imageDimensions;
                 if (scaleDimensions) {
                     imageDimensions = calculateAspectRatio(file.content, scaleDimensions);
@@ -25,17 +25,19 @@ class FileView extends Component {
                 }
                 content = <img width={imageDimensions.width} height={imageDimensions.height} src={file.content} />;
                 break;
-            default:
-                let extension = mapContentTypeToExtension(file.details.type);
+            }
+            default: {
+                const extension = mapContentTypeToExtension(file.details.type);
                 if (extension !== 'unknown') {
                     content = <div className={styles.noPictureDocument}>{mapContentTypeToExtension(file.details.type)}</div>;
                 } else {
                     content = <div className={styles.noPictureDocumentInvalidType}>{extension}</div>;
                 }
+            }
         }
 
-        let clickOriginalButtonHandler = () => {
-            let tempLink = document.createElement('a');
+        const clickOriginalButtonHandler = () => {
+            const tempLink = document.createElement('a');
             tempLink.href = `${file.content}`;
             tempLink.setAttribute('target', '_blank');
             tempLink.click();
@@ -46,8 +48,7 @@ class FileView extends Component {
                 {showOriginalFileButton &&
                     <div className={styles.fileViewOriginalButtonWrap}>
                         <StandardButton label='View original' onClick={clickOriginalButtonHandler} styleType='secondaryLight' />
-                    </div>
-                }
+                    </div>}
             </div>
         );
     }

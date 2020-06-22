@@ -23,7 +23,7 @@ storiesOf('DropdownSelect', module)
             <DropdownSelect
                 data={data}
                 customTheme
-                defaultSelected={'2'}
+                defaultSelected='2'
                 onSelect={action}
             />
         </MaterialUILayout>
@@ -46,7 +46,7 @@ storiesOf('DropdownSelect', module)
             <DropdownSelect
                 data={data}
                 customTheme
-                defaultSelected={'2'}
+                defaultSelected='2'
                 isValid={false}
                 errorMessage='custom error'
                 onSelect={action}

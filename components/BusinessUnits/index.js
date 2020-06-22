@@ -51,7 +51,7 @@ class BusinessUnits extends Component {
     render() {
         let clearButton = <span />;
         if (this.props.clearSelectedBusinessUnit && !this.props.isLoading) {
-            let clearSelection = () => {
+            const clearSelection = () => {
                 this.props.clearSelectedBusinessUnit();
             };
             clearButton = <StandardButton
@@ -59,7 +59,8 @@ class BusinessUnits extends Component {
                 disabled={!this.state.selected.id}
                 label='Unselect all'
                 className={['secondaryButton', this.getStyle('clearButton')]}
-                disabledClassName='disabledsecondaryButton' />;
+                disabledClassName='disabledsecondaryButton'
+            />;
         }
 
         return (

@@ -44,7 +44,8 @@ class CompareGrid extends Component {
                     externalBodyClasses={styles.accordionBody}
                     externalTitleClasses={styles.accordionTitle}
                     className={styles.accordion}
-                    collapsed={false}>
+                    collapsed={false}
+                >
                     <div className={styles.container}>
                         <div className={styles.whole}>
                             <p className={styles.rejectTextField}>{rejectReason}</p>

@@ -13,7 +13,7 @@ class DateTimePickerBetween extends Component {
     }
 
     handleChange(ref, value) {
-        let { onChange } = this.props;
+        const { onChange } = this.props;
         let newDate = new Date(value);
         if (ref === 'to' || (newDate.getHours() === 23 && newDate.getMinutes() === 59)) {
             newDate.setSeconds(59);
@@ -25,7 +25,7 @@ class DateTimePickerBetween extends Component {
         if (newDate && !isNaN(newDate.valueOf())) {
             if (ref === 'from') {
                 if (!this.props.defaultValue.to) {
-                    let defaultToDate = new Date(value);
+                    const defaultToDate = new Date(value);
                     defaultToDate.setHours(23);
                     defaultToDate.setMinutes(59);
                     defaultToDate.setSeconds(59);
@@ -37,7 +37,7 @@ class DateTimePickerBetween extends Component {
                 }
             } else if (ref === 'to') {
                 if (!this.props.defaultValue.from) {
-                    let defaultFromDate = new Date(value);
+                    const defaultFromDate = new Date(value);
                     defaultFromDate.setHours(0);
                     defaultFromDate.setMinutes(0);
                     defaultFromDate.setSeconds(0);
@@ -62,7 +62,7 @@ class DateTimePickerBetween extends Component {
     }
 
     render() {
-        let {
+        const {
             locale,
             labelFrom,
             labelTo,
@@ -80,7 +80,7 @@ class DateTimePickerBetween extends Component {
             timeType,
             timeDropDownData
         } = this.props;
-        let layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
+        const layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
 
         return (
             <div className={layoutClassName}>
@@ -99,7 +99,8 @@ class DateTimePickerBetween extends Component {
                     timeType={timeType}
                     data={timeDropDownData}
                     onChange={({value}) => { this.handleChange('from', value); }}
-                    boldLabel={boldLabel} />
+                    boldLabel={boldLabel}
+                />
                 <DateTimePicker
                     defaultValue={defaultValue.to}
                     dateFormat={dateFormat}
@@ -115,7 +116,8 @@ class DateTimePickerBetween extends Component {
                     timeType={timeType}
                     data={timeDropDownData}
                     onChange={({value}) => { this.handleChange('to', value); }}
-                    boldLabel={boldLabel} />
+                    boldLabel={boldLabel}
+                />
             </div>
         );
     }

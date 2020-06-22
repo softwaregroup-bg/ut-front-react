@@ -28,7 +28,7 @@ export default class Cropper extends Component {
         const { file, fileDimensions, cropDimensions } = this.props;
 
         if (typeof window !== 'undefined') {
-            let Croppie = require('croppie');
+            const Croppie = require('croppie');
             this.cropper = new Croppie(this.refs.previewImage, {
                 customClass: styles.imageCrop,
                 viewport: {

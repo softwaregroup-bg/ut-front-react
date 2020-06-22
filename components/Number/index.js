@@ -11,7 +11,7 @@ class Number extends React.Component {
     };
 
     render() {
-        var children = this.props.children;
+        let children = this.props.children;
         if (typeof this.context.numberFormat === 'function') {
             this.text = this.context.numberFormat(this.props.children);
             children = this.text;

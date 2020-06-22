@@ -51,12 +51,12 @@ class Login extends React.Component {
     }
 
     getLoginCourse() {
-        var loginCourse = this.props.login.get('loginCourse');
-        var inputs = {};
-        var title = 'Login';
+        const loginCourse = this.props.login.get('loginCourse');
+        const inputs = {};
+        let title = 'Login';
 
         if (loginCourse) {
-            var corseType = loginCourse.get('type').get(2);
+            const corseType = loginCourse.get('type').get(2);
             inputs[corseType] = 1;
             switch (corseType) {
                 case 'password':
@@ -67,7 +67,7 @@ class Login extends React.Component {
         }
         if (Object.keys(inputs).length === 0) {
             if (this.context.initialLoginFields) {
-                var fields = this.context.initialLoginFields;
+                const fields = this.context.initialLoginFields;
                 if (fields.title) {
                     title = fields.title;
                 }
@@ -82,12 +82,12 @@ class Login extends React.Component {
     }
 
     renderLoginBody(step) {
-        var err;
+        let err;
         if (this.props.login.get('loginResultId')) {
             err = this.props.login.get('error');
         }
-        var loginCourse = this.getLoginCourse();
-        var {loginData} = this.props;
+        const loginCourse = this.getLoginCourse();
+        const {loginData} = this.props;
 
         return (
             <div>

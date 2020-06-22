@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Icon from '../Icon';
 
 const FooterIcon = ({ icons = [], className, ...props }) => {
-    let iconsLength = icons.length;
+    const iconsLength = icons.length;
     switch (iconsLength) {
         case 0:
             return <span {...props} />;

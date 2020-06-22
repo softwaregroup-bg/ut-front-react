@@ -11,7 +11,7 @@ storiesOf('CollapsableContent', module)
             orientation='left'
             style={{width: '300px'}}
         >
-        Content
+            Content
         </CollapsableContent>
     ))
     .add('right orientation', () => (
@@ -20,6 +20,6 @@ storiesOf('CollapsableContent', module)
             collapsedStyles={{width: '40px', minHeight: '200px'}}
             orientation='right'
         >
-        Content
+            Content
         </CollapsableContent>
     ));

@@ -24,13 +24,13 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
     result = result || { isValid: true, errors: [] };
     if (validations) {
         validations.forEach((validation) => {
-            let startErrorsLength = result.errors.length;
+            const startErrorsLength = result.errors.length;
 
             if (validation.type === validationTypesTabContainer.hasRaisedError) {
-                let hasRaisedError = errors.getIn(validation.key);
+                const hasRaisedError = errors.getIn(validation.key);
                 if (hasRaisedError) {
                     result.isValid = false;
-                    let errosObj = {
+                    const errosObj = {
                         type: validationTypesTabContainer.hasRaisedError,
                         errorMessage: hasRaisedError
                     };
@@ -116,10 +116,10 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
 
                     // custom for password hash in user -> credentials tab
                     if (validation.type === validationTypes.custom + 'passwordHash') {
-                        let hashes = sourceMap.getIn(validation.sourceMapKey);
-                        let passwordHash = hashes.find((hash) => hash.get('type') === 'password');
+                        const hashes = sourceMap.getIn(validation.sourceMapKey);
+                        const passwordHash = hashes.find((hash) => hash.get('type') === 'password');
                         if (passwordHash) {
-                            let passwordValue = passwordHash.get('newValue');
+                            const passwordValue = passwordHash.get('newValue');
                             if (rule.type === textValidations.isRequired) {
                                 isRequiredRule(passwordValue, rule, result);
                             }
@@ -134,7 +134,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                 });
             }
 
-            let lengthDiff = result.errors.length - startErrorsLength;
+            const lengthDiff = result.errors.length - startErrorsLength;
             if (lengthDiff > 0) {
                 for (let i = result.errors.length - (lengthDiff); i <= result.errors.length - 1; i += 1) {
                     result.errors[i].tabIndex = tabIndex;
@@ -146,7 +146,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
 };
 
 export const validateAll = (sourceMap, tabs, errors) => {
-    let result = { isValid: true, errors: [] };
+    const result = { isValid: true, errors: [] };
 
     tabs.forEach((tab, index) => {
         validateTab(sourceMap, tab.validations, index, result, errors);

@@ -23,12 +23,12 @@ const PhotoContainer = ({
 
     return (
         <div className={classnames(styles.photoContainer)}>
-            { title &&
+            {title &&
                 <div className={styles.photoHeader}>
                     {title}
                     {tooltip && <Tooltip tooltipText={tooltip} />}
-                </div> }
-            { showDetails ? <PhotoPreview
+                </div>}
+            {showDetails ? <PhotoPreview
                 className={className}
                 type={documentType}
                 dimensions={imageDimensions}
@@ -36,12 +36,14 @@ const PhotoContainer = ({
                 header={header}
                 onClick={onClick}
                 onDeleteClick={onDeleteClick}
-                onChangeClick={onChangeClick} /> : <AddFileButton
-                    className={className}
-                    label={label}
-                    disabled={disabled}
-                    onClick={onClick} /> }
-            { subtitle && <div className={styles.photoFooter}>{ subtitle }</div> }
+                onChangeClick={onChangeClick}
+            /> : <AddFileButton
+                className={className}
+                label={label}
+                disabled={disabled}
+                onClick={onClick}
+            />}
+            {subtitle && <div className={styles.photoFooter}>{subtitle}</div>}
         </div>
     );
 };

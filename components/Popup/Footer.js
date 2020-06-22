@@ -12,10 +12,10 @@ const Footer = ({
 }) => {
     return (
         <div className={classnames(styles.popupFooter, className)}>
-            { leftNode && <div className={styles.leftNode}> {leftNode} </div> }
-            { actionButtons &&
+            {leftNode && <div className={styles.leftNode}> {leftNode} </div>}
+            {actionButtons &&
             actionButtons.map((button, index) => <StandardButton key={index} {...button} />)}
-            { rightNode && <div className={styles.rightNode}> {rightNode} </div> }
+            {rightNode && <div className={styles.rightNode}> {rightNode} </div>}
         </div>
     );
 };

@@ -7,7 +7,7 @@ storiesOf('Preloader', module)
     .add('Default', () => (
         <MaterialUILayout>
             <Preloader>
-            Message
+                Message
             </Preloader>
         </MaterialUILayout>
     ));

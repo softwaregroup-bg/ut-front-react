@@ -3,7 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import style from '../style.css';
 
-class Username  extends React.Component {
+class Username extends React.Component {
     static propTypes = {
         value: PropTypes.string
     }

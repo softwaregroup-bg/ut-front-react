@@ -16,7 +16,7 @@ class MultiSelectBubbleCustom extends Component {
     }
 
     handleChange(val) {
-        let newValue = val.map((option) => ({ key: option.value, name: option.label }));
+        const newValue = val.map((option) => ({ key: option.value, name: option.label }));
         this.props.onChange(newValue);
     }
 

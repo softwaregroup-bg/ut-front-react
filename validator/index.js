@@ -10,7 +10,7 @@ const numbersOnlyRegex = /^[0-9]+$/;
 export const isRequiredRule = (prop, rule, result) => {
     checkPasedResultObject(result);
 
-    let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
+    const trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -20,7 +20,7 @@ export const isRequiredRule = (prop, rule, result) => {
 export const lengthRule = (val, minVal, maxVal, rule, result) => {
     checkPasedResultObject(result);
 
-    let trimmedValue = val ? (val.trim ? val.trim() : val) : '';
+    const trimmedValue = val ? (val.trim ? val.trim() : val) : '';
     if (trimmedValue && (trimmedValue.length < minVal || trimmedValue.length > maxVal)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -33,8 +33,8 @@ export const regexRule = (val, regex, rule, result) => {
     }
     checkPasedResultObject(result);
 
-    var regexPattern = new RegExp(regex);
-    var regexResult = regexPattern.test(val);
+    const regexPattern = new RegExp(regex);
+    const regexResult = regexPattern.test(val);
     if (!regexResult) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -60,7 +60,7 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
 
     checkPasedResultObject(result);
 
-    let trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
+    const trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
     if (!prop || trimmed.length === 0 || prop === '__placeholder__') {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -80,7 +80,7 @@ export const isRequiredOnConditionRule = (prop, shouldValidateProp, rule, result
  */
 export const isValidIBANRule = (value, rule, result) => {
     checkPasedResultObject(result);
-    let length = value && value.length;
+    const length = value && value.length;
     if (!length) {
         return;
     }
@@ -92,16 +92,16 @@ export const isValidIBANRule = (value, rule, result) => {
 
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     const letterMap = new Map();
-    var letterValue = 10;
+    let letterValue = 10;
     letters.forEach(letter => {
         letterMap.set(letter, String(letterValue));
         letterValue++;
     });
 
-    let firstFourChars = value.substring(0, 4);
-    let restOfIban = value.substring(value.length - (value.length - 4));
-    let rearrangedIban = `${restOfIban}${firstFourChars}`;
-    var ibanCharValues = [];
+    const firstFourChars = value.substring(0, 4);
+    const restOfIban = value.substring(value.length - (value.length - 4));
+    const rearrangedIban = `${restOfIban}${firstFourChars}`;
+    const ibanCharValues = [];
 
     for (let i = 0; i < rearrangedIban.length; i++) {
         let char = rearrangedIban[i];
@@ -115,8 +115,8 @@ export const isValidIBANRule = (value, rule, result) => {
         }
     }
 
-    let ibanToValidate = new BigNumber(ibanCharValues.join(''));
-    let mod = ibanToValidate.modulo(97);
+    const ibanToValidate = new BigNumber(ibanCharValues.join(''));
+    const mod = ibanToValidate.modulo(97);
     if (!mod.equals(1)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -130,7 +130,7 @@ export const isValidIBANRule = (value, rule, result) => {
 export const lengthRuleArray = (values, minVal, maxVal, rule, result) => {
     checkPasedResultObject(result);
     values.forEach(val => {
-        let value = val.get('value') || val.get('phoneNumber');
+        const value = val.get('value') || val.get('phoneNumber');
         if (value && (value.length < minVal || value.length > maxVal)) {
             result.isValid = false;
             result.errors.push(getErrorObject(rule));
@@ -153,7 +153,7 @@ export const arrayWithTextLengthRule = (array, textProp, minVal, maxVal, rule, r
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let currentValue = item.getIn(textProp);
+        const currentValue = item.getIn(textProp);
         if (currentValue && (currentValue.length < minVal || currentValue.length > maxVal)) {
             result.isValid = false;
             rule.index = index;
@@ -166,8 +166,8 @@ export const arrayWithTextisRequiredRule = (array, textProp, rule, result) => {
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let currentValue = item.getIn(textProp);
-        let trimmed = currentValue ? (currentValue.trim ? currentValue.trim() : currentValue) : '';
+        const currentValue = item.getIn(textProp);
+        const trimmed = currentValue ? (currentValue.trim ? currentValue.trim() : currentValue) : '';
         if (!currentValue || trimmed.length === 0) {
             result.isValid = false;
             rule.index = index;
@@ -180,11 +180,11 @@ export const arrayWithTextisRequiredRuleOptional = (array, textProp, shouldValid
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let shouldValidate = item.getIn(shouldValidateProp);
+        const shouldValidate = item.getIn(shouldValidateProp);
         if (!shouldValidate) {
             return;
         }
-        let currentValue = item.getIn(textProp);
+        const currentValue = item.getIn(textProp);
         let trimmed;
         if (isNaN(currentValue)) {
             trimmed = currentValue ? currentValue.trim() : '';
@@ -203,11 +203,11 @@ export const arrayWithTextisNumberOnlyRuleOptional = (array, textProp, shouldVal
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let shouldValidate = item.getIn(shouldValidateProp);
+        const shouldValidate = item.getIn(shouldValidateProp);
         if (!shouldValidate) {
             return;
         }
-        let currentValue = item.getIn(textProp);
+        const currentValue = item.getIn(textProp);
         if (currentValue !== '' && !(numbersOnlyRegex.test(currentValue))) {
             result.isValid = false;
             rule.index = index;
@@ -220,7 +220,7 @@ export const arrayWithTextisNumberOnlyRule = (array, textProp, rule, result) => 
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let currentValue = item.getIn(textProp);
+        const currentValue = item.getIn(textProp);
         if (currentValue !== '' && !(numbersOnlyRegex.test(currentValue))) {
             result.isValid = false;
             rule.index = index;
@@ -233,7 +233,7 @@ export const arrayWithArrayIsRequiredRule = (array, textProp, rule, result) => {
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let currentValue = item.getIn(textProp);
+        const currentValue = item.getIn(textProp);
         if (currentValue && (currentValue.size === 0 || currentValue.length === 0)) {
             result.isValid = false;
             rule.index = index;
@@ -246,7 +246,7 @@ export const arrayWithDropdownIsRequiredRule = (array, textProp, rule, result) =
     checkPasedResultObject(result);
 
     array.forEach((item, index) => {
-        let currentValue = item.getIn(textProp);
+        const currentValue = item.getIn(textProp);
         if (!currentValue) {
             result.isValid = false;
             rule.index = index;
@@ -273,7 +273,7 @@ export const isRequiredDropdownRule = (props, rule, result) => {
 export const defaultRoleRule = (props, roles, rule, result) => {
     checkPasedResultObject(result);
 
-    let assignedRoles = roles.filter(role => (role.get('isAssigned')));
+    const assignedRoles = roles.filter(role => (role.get('isAssigned')));
     if (!props && assignedRoles.size > 0) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -298,7 +298,7 @@ export const isNumberOnlyRule = (props, rule, result) => {
 export const isIntegerOnlyRule = (props, rule, result) => {
     checkPasedResultObject(result);
 
-    let regex = /^-?\d+$/;
+    const regex = /^-?\d+$/;
     if (props && !(regex.test(props))) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -308,11 +308,11 @@ export const isIntegerOnlyRule = (props, rule, result) => {
 export const isIntegerRangeRule = (props, rule, result) => {
     checkPasedResultObject(result);
     if (props && /^-?\d+$/.test(props)) {
-        let value = parseInt(props);
-        if (rule.minVal === null || rule.minVal === void 0) {
+        const value = parseInt(props);
+        if (rule.minVal == null) {
             rule.minVal = null;
         }
-        if (rule.maxVal === null || rule.maxVal === void 0) {
+        if (rule.maxVal == null) {
             rule.maxValue = null;
         }
         if (rule.minVal !== null && value < rule.minVal) {
@@ -340,8 +340,8 @@ export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
     if (!value) {
         return true;
     }
-    let digitsLeftOfDecimalPoint = precision - scale;
-    let regex = new RegExp('^(\\d{0,' + digitsLeftOfDecimalPoint + '}\\.?\\d{0,' + scale + '}|\\.\\d{1,' + scale + '})$');
+    const digitsLeftOfDecimalPoint = precision - scale;
+    const regex = new RegExp('^(\\d{0,' + digitsLeftOfDecimalPoint + '}\\.?\\d{0,' + scale + '}|\\.\\d{1,' + scale + '})$');
 
     if (value !== '' && !(regex.test(value))) {
         result.isValid = false;
@@ -356,7 +356,7 @@ export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
 export const isValidEmailRule = (props, rule, result) => {
     checkPasedResultObject(result);
 
-    let regex = /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+    const regex = /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
     if (props !== '' && !(regex.test(props))) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
@@ -368,9 +368,9 @@ export const isValidEmailRule = (props, rule, result) => {
 
 export const isNumberOnlyRuleArray = (props, rule, result) => {
     checkPasedResultObject(result);
-    let propsMutable = immutable.Iterable.isIterable(props) ? props.toJS() : props;
+    const propsMutable = immutable.Iterable.isIterable(props) ? props.toJS() : props;
     propsMutable.forEach(prop => {
-        let value = prop.value || prop.phoneNumber;
+        const value = prop.value || prop.phoneNumber;
         if (value !== '' && !numbersOnlyRegex.test(value)) {
             result.isValid = false;
             result.errors.push(getErrorObject(rule));
@@ -383,7 +383,7 @@ export const isNumberOnlyRuleArray = (props, rule, result) => {
 /* Is valid email array validation */
 
 export const isValidEmailRuleArray = (props, rule, result) => {
-    let regex = /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+    const regex = /^[-a-z0-9~!$%^&*_=+}{'?]+(\.[-a-z0-9~!$%^&*_=+}{'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
     checkPasedResultObject(result);
 
     props.forEach(prop => {
@@ -401,7 +401,7 @@ function isDateValid(month, day, year) {
     if (year < 1000 || year > 3000 || month <= 0 || month > 12) {
         return false;
     }
-    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+    const monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     // Adjust for leap years
     if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
@@ -415,13 +415,13 @@ function isDateValid(month, day, year) {
 export const isValidUniformCivilNumberRule = (props, rule, result) => {
     checkPasedResultObject(result);
     let isValid = true;
-    let valueToCheck = props.toString();
+    const valueToCheck = props.toString();
     if (valueToCheck.length !== uniformCivilNumberLength || !numbersOnlyRegex.test(props)) {
         isValid = false;
     } else {
-        let year = Number(valueToCheck.substring(0, 2));
-        let month = Number(valueToCheck.substring(2, 4));
-        let day = Number(valueToCheck.substring(4, 6));
+        const year = Number(valueToCheck.substring(0, 2));
+        const month = Number(valueToCheck.substring(2, 4));
+        const day = Number(valueToCheck.substring(4, 6));
         if (month > 40) {
             if (!isDateValid(month - 40, day, year + 2000)) {
                 isValid = false;
@@ -435,9 +435,9 @@ export const isValidUniformCivilNumberRule = (props, rule, result) => {
                 isValid = false;
             }
         }
-        let checkSum = Number(valueToCheck[9]);
+        const checkSum = Number(valueToCheck[9]);
         let uniformCivilNumberSum = 0;
-        for (var i = 0; i < uniformCivilNumberLength - 1; i++) {
+        for (let i = 0; i < uniformCivilNumberLength - 1; i++) {
             uniformCivilNumberSum += Number(valueToCheck[i]) * uniformCivilNumbersWights[i];
         }
         let validCheckSum = uniformCivilNumberSum % 11;
@@ -471,7 +471,7 @@ export const hasKeysRule = (props, rule, result) => {
 /* Custom function validation */
 
 export const customFunctionRule = ({ sourceMap, currentValue }, rule, result) => {
-    let validator = rule.validator;
+    const validator = rule.validator;
     if (!validator({ sourceMap, currentValue })) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));

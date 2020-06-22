@@ -27,12 +27,11 @@ class Main extends React.Component {
     render() {
         return (
             <div className={style.h100pr}>
-                { this.props.children }
-                { this.props.loadInfo && !!this.props.loadInfo.open && <Loader loadInfo={this.props.loadInfo} />}
+                {this.props.children}
+                {this.props.loadInfo && !!this.props.loadInfo.open && <Loader loadInfo={this.props.loadInfo} />}
                 <ErrorWindowContainer />
             </div>
         );
-
     }
 }
 
@@ -41,4 +40,3 @@ export default connect(({ preloadWindow }) => {
         loadInfo: preloadWindow && preloadWindow.toJS()
     };
 })(Main);
-

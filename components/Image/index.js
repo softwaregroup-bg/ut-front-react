@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Image = ({className = '', ...props}) => {
-    let classes = classNames('img-responsive', className);
+    const classes = classNames('img-responsive', className);
     return (
         <img className={classes} {...props} />
     );

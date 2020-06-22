@@ -11,7 +11,7 @@ const RadioInput = ({ label, boldLabel, errorMessage, isValid, onChange, default
             </div>}
             <div className={style.inputWrap}>
                 {options.map(({id, name, label, value}) => {
-                    let handleChange = () => onChange({id, key: name, label, value});
+                    const handleChange = () => onChange({id, key: name, label, value});
                     return (
                         <span className={classnames(style.radio, optionClassName)} key={id}>
                             <input disabled={disabled} onChange={handleChange} checked={defaultValue === value} id={id} type='radio' name={name} />

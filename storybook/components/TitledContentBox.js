@@ -8,6 +8,6 @@ storiesOf('TitledContentBox', module)
             title='test title'
             headRightWrap='test right wrap'
         >
-        Content
+            Content
         </TitledContentBox>
     ));

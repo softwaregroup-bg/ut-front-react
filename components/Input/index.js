@@ -43,7 +43,7 @@ class TextField extends Component {
         this.setState({value: newValue});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
-        var oldQueue = this.onChangQueue.shift();
+        const oldQueue = this.onChangQueue.shift();
         clearTimeout(oldQueue);
         this.onChangQueue.push(setTimeout(() => {
             this.notifyForChange(newValue);
@@ -51,15 +51,15 @@ class TextField extends Component {
     }
 
     notifyForChange(newValue) {
-        let { validators, keyProp, onChange } = this.props;
-        let newState = {value: newValue};
-        let objectToPassOnChange = {key: keyProp, value: newValue, initValue: this.initialValue};
+        const { validators, keyProp, onChange } = this.props;
+        const newState = {value: newValue};
+        const objectToPassOnChange = {key: keyProp, value: newValue, initValue: this.initialValue};
 
         // Perfom validation
         if (validators.length > 0) {
-            let valid = inputValidator(newValue, validators);
+            const valid = inputValidator(newValue, validators);
             if (!valid.isValid) {
-                let errorMessage = valid.errors[0].errorMessage;
+                const errorMessage = valid.errors[0].errorMessage;
                 objectToPassOnChange.error = true;
                 objectToPassOnChange.errorMessage = errorMessage;
                 newState.valid = {isValid: false, errorMessage: errorMessage};
@@ -81,12 +81,12 @@ class TextField extends Component {
     }
 
     render() {
-        let { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
-        let { isValid, errorMessage } = this.state.valid;
-        let zeroHeightStyle = isValid ? this.style.hh : '';
+        const { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        const { isValid, errorMessage } = this.state.valid;
+        const zeroHeightStyle = isValid ? this.style.hh : '';
 
-        let input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
-        let tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
+        const input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
         if (label) {
             return (
                 <div className={classnames(this.style.outerWrap, wrapperClassName)}>

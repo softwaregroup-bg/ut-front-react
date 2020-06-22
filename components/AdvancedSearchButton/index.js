@@ -10,17 +10,16 @@ export class AdvancedSearchButton extends Component {
         return (
             <div>
                 <button className={classnames(styles.defaultBtn, mainStyle.defaultButton)} onClick={this.props.onClick}>
-                    {<span className={mainStyle.iconWrap}>
+                    <span className={mainStyle.iconWrap}>
                         <SvgSearchIcon color='action' style={{display: 'flex', height: '20px'}} />
-                    </span>} Advanced Search </button>
+                    </span> Advanced Search </button>
             </div>
 
         );
     }
 }
 
-AdvancedSearchButton.propTypes = {
-    onClick: PropTypes.func.isRequired};
+AdvancedSearchButton.propTypes = {onClick: PropTypes.func.isRequired};
 
 AdvancedSearchButton.defaultProps = {
     show: false

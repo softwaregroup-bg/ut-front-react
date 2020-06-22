@@ -77,7 +77,8 @@ export default class FileDetailsPopup extends Component {
                 closeOnOverlayClick={closeOnOverlayClick}
                 closeOnEsc={closeOnEsc}
                 closePopup={closePopup}
-                footer={{actionButtons: this.actionButtons}}>
+                footer={{actionButtons: this.actionButtons}}
+            >
                 {this.view}
             </Popup>
         );

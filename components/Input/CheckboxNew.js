@@ -53,10 +53,12 @@ export default class CheckboxNew extends Component {
                 <span className={styles.checkboxNewWrapper}>
                     <span
                         className={this.checkboxClasses}
-                        onClick={this.onChange} />
+                        onClick={this.onChange}
+                    />
                     <span
                         className={this.checkboxLabelClasses}
-                        onClick={this.onChange} >{label}</span>
+                        onClick={this.onChange}
+                    >{label}</span>
                 </span>
             </span>
         );

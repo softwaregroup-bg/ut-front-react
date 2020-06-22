@@ -4,7 +4,7 @@ import style from '../style.css';
 
 class Image extends Component {
     render() {
-        let backgroundImageStyle = {};
+        const backgroundImageStyle = {};
         if (this.props.defaultSrc) {
             backgroundImageStyle.backgroundImage = `url(${this.props.defaultSrc}`;
         }

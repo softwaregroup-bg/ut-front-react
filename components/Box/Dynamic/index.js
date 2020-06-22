@@ -16,20 +16,20 @@ const Box = ({children, className, title, externalTitleClasses, externalBodyClas
             titleTypeClass = classnames('f20', 'f-semibold', 'padding-all-20');
     }
 
-    let accordeonDirection = collapsed ? 'accountArrowDown' : 'accountArrowUp';
+    const accordeonDirection = collapsed ? 'accountArrowDown' : 'accountArrowUp';
 
-    let accordeon = showAccordeon && <Icon icon={accordeonDirection} />;
-    let closeSection = showClose && <CloseButton className={classnames(style.boxTitleClose, 'pointer')} onClick={onClose} />;
-    let rightSection = showAccordeon ? accordeon : closeSection;
+    const accordeon = showAccordeon && <Icon icon={accordeonDirection} />;
+    const closeSection = showClose && <CloseButton className={classnames(style.boxTitleClose, 'pointer')} onClick={onClose} />;
+    const rightSection = showAccordeon ? accordeon : closeSection;
 
-    let fullWidthClass = fullWidth ? style.boxFull : style.boxInnerPadding;
-    let transparentClass = transparent && style.boxTransparent;
-    let marginBottomClass = marginBottom ? null : style.boxMarginBottom;
-    let classes = classnames(style.box, transparentClass, marginBottomClass, className);
-    let ballancerClass = showClose ? style.ballancer : null;
+    const fullWidthClass = fullWidth ? style.boxFull : style.boxInnerPadding;
+    const transparentClass = transparent && style.boxTransparent;
+    const marginBottomClass = marginBottom ? null : style.boxMarginBottom;
+    const classes = classnames(style.box, transparentClass, marginBottomClass, className);
+    const ballancerClass = showClose ? style.ballancer : null;
     let titleSectionClasses = classnames('f-upper', style.boxTitle, titleTypeClass, ballancerClass, externalTitleClasses);
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
-    let minHeightStyle = minHeight && {minHeight};
+    const minHeightStyle = minHeight && {minHeight};
 
     return (
         <div style={props.style} className={classes}>
@@ -37,8 +37,7 @@ const Box = ({children, className, title, externalTitleClasses, externalBodyClas
             {!collapsed &&
             <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>
                 {children}
-            </div>
-            }
+            </div>}
         </div>
     );
 };

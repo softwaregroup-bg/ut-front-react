@@ -38,7 +38,7 @@ const positioning = {
 };
 
 const getOffsets = (targetDimensions, additionalOffsets = {}) => {
-    let directions = ['top', 'right', 'bottom', 'left'];
+    const directions = ['top', 'right', 'bottom', 'left'];
     return directions.reduce((offsets, currentDirection) => {
         offsets[currentDirection] = additionalOffsets[currentDirection] || 0;
 
@@ -47,7 +47,7 @@ const getOffsets = (targetDimensions, additionalOffsets = {}) => {
 };
 
 export const getDimensions = (position, targetDimensions, additionalOffsets) => {
-    let offsets = getOffsets(position, additionalOffsets);
+    const offsets = getOffsets(position, additionalOffsets);
     if (!positioning[position]) {
         return {top: 0, right: 0};
     }

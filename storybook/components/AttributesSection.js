@@ -21,38 +21,38 @@ storiesOf('AttributesSection', module)
     .add('Default', () => (
         <AttributesSection
             selectedSourceData={selectedSourceKeys}
-            singleItemName={'user'}
-            multipleItemNames={''}
+            singleItemName='user'
+            multipleItemNames=''
             selected={emptyImmutableMap}
             checked={emptyImmutableList}
-            checkedMapKey={'userName'}
+            checkedMapKey='userName'
             isInfoLoading={false}
         >
-        Content
+            Content
         </AttributesSection>
     ))
     .add('one checked', () => (
         <AttributesSection
             selectedSourceData={selectedSourceKeys}
-            singleItemName={'user'}
-            multipleItemNames={''}
+            singleItemName='user'
+            multipleItemNames=''
             selected={emptyImmutableMap}
             checked={immutable.List([firstChecked])}
-            checkedMapKey={'userName'}
+            checkedMapKey='userName'
             isInfoLoading={false}
         >
-        Content
+            Content
         </AttributesSection>
     ))
     .add('two checked', () => (
         <div style={{width: '300px'}}>
             <AttributesSection
                 selectedSourceData={selectedSourceKeys}
-                singleItemName={'user'}
-                multipleItemNames={''}
+                singleItemName='user'
+                multipleItemNames=''
                 selected={emptyImmutableMap}
                 checked={twoChecked}
-                checkedMapKey={'userName'}
+                checkedMapKey='userName'
                 isInfoLoading={false}
             />
         </div>
@@ -61,11 +61,11 @@ storiesOf('AttributesSection', module)
         <div style={{width: '300px'}}>
             <AttributesSection
                 selectedSourceData={selectedSourceKeys}
-                singleItemName={'user'}
-                multipleItemNames={''}
+                singleItemName='user'
+                multipleItemNames=''
                 selected={emptyImmutableMap}
                 checked={twoChecked}
-                checkedMapKey={'userName'}
+                checkedMapKey='userName'
                 isInfoLoading={false}
             />
         </div>
@@ -75,11 +75,11 @@ storiesOf('AttributesSection', module)
         <div style={{width: '300px'}}>
             <AttributesSection
                 selectedSourceData={selectedSourceKeys}
-                singleItemName={'user'}
-                multipleItemNames={''}
+                singleItemName='user'
+                multipleItemNames=''
                 selected={selected}
                 checked={emptyImmutableList}
-                checkedMapKey={'userName'}
+                checkedMapKey='userName'
                 isInfoLoading={false}
             />
         </div>
@@ -88,11 +88,11 @@ storiesOf('AttributesSection', module)
         <div style={{width: '300px'}}>
             <AttributesSection
                 selectedSourceData={selectedSourceKeys}
-                singleItemName={'user'}
-                multipleItemNames={''}
+                singleItemName='user'
+                multipleItemNames=''
                 selected={selected}
                 checked={twoChecked}
-                checkedMapKey={'userName'}
+                checkedMapKey='userName'
                 isInfoLoading={false}
             />
         </div>
@@ -102,11 +102,11 @@ storiesOf('AttributesSection', module)
             <div style={{width: '300px'}}>
                 <AttributesSection
                     selectedSourceData={selectedSourceKeys}
-                    singleItemName={'user'}
-                    multipleItemNames={''}
+                    singleItemName='user'
+                    multipleItemNames=''
                     selected={emptyImmutableMap}
                     checked={emptyImmutableList}
-                    checkedMapKey={'userName'}
+                    checkedMapKey='userName'
                     isInfoLoading
                 />
             </div>
@@ -146,29 +146,29 @@ const twoChecked = immutable.List([
 ]);
 
 const selected = immutable.fromJS({
-    'identifier': 'ChinaMakerUser',
-    'email': [
+    identifier: 'ChinaMakerUser',
+    email: [
         {
-            'value': 'test email'
+            value: 'test email'
         }
     ],
-    'phone': [
+    phone: [
         {
-            'phoneNumber': 'phone number'
+            phoneNumber: 'phone number'
         }
     ],
-    'person': {
-        'imageSrc': 'http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg',
-        'firstName': 'China User',
-        'lastName': 'Admin'
+    person: {
+        imageSrc: 'http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg',
+        firstName: 'China User',
+        lastName: 'Admin'
     },
-    'url': '/user/users/ChinaMakerUser/1047',
-    'roles': [{
-        'isAssigned': 1,
+    url: '/user/users/ChinaMakerUser/1047',
+    roles: [{
+        isAssigned: 1,
         name: 'China_UserMaker',
         roleId: '1041'
     }],
-    'memberOf': [{
+    memberOf: [{
         object: '1028',
         organizationName: 'China'
     }]

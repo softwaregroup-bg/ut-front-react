@@ -5,7 +5,7 @@ import style from './style.css';
 
 class TitledContentBox extends Component {
     render() {
-        let {externalContentClasses, externalHeaderClasses} = this.props;
+        const {externalContentClasses, externalHeaderClasses} = this.props;
         return (
             <div className={style.titledContentWrap}>
 

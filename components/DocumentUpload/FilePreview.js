@@ -18,7 +18,8 @@ export default class FilePreview extends Component {
                     className={styles.changeFileBtn}
                     label='Retake'
                     icon={styles.changeBtn}
-                    onClick={() => { changeMode('takePhoto'); }} />
+                    onClick={() => { changeMode('takePhoto'); }}
+                />
             );
         }
 
@@ -28,7 +29,8 @@ export default class FilePreview extends Component {
                 acceptType={allowedFileTypes}
                 label='Change'
                 icon={styles.changeBtn}
-                onFileLoaded={onFileLoaded} />
+                onFileLoaded={onFileLoaded}
+            />
         );
     }
 
@@ -40,7 +42,8 @@ export default class FilePreview extends Component {
                 className={styles.cropButton}
                 icon={styles.cropIcon}
                 label='Crop'
-                onClick={crop} />
+                onClick={crop}
+            />
         );
     }
 
@@ -58,21 +61,22 @@ export default class FilePreview extends Component {
 
         return (
             <div className={classnames(styles.filePreviewContainer, className)}>
-                { showCrop ? <Cropper
+                {showCrop ? <Cropper
                     ref='editPhoto'
                     file={file}
                     fileDimensions={fileDimensions}
                     cropDimensions={cropDimensions}
-                    onCrop={onCrop} /> : <PreviewItem
-                        file={file}
-                        fileExtension={fileExtension}
-                        originalFilename={originalFilename}
-                        previewBoxWidth={fileDimensions.width}
-                        previewBoxHeight={fileDimensions.height} />
-                }
+                    onCrop={onCrop}
+                /> : <PreviewItem
+                    file={file}
+                    fileExtension={fileExtension}
+                    originalFilename={originalFilename}
+                    previewBoxWidth={fileDimensions.width}
+                    previewBoxHeight={fileDimensions.height}
+                />}
                 <div className={classnames(styles.imageButtonsContainer)}>
-                    { this.changeFileButton }
-                    { this.cropButton }
+                    {this.changeFileButton}
+                    {this.cropButton}
                 </div>
             </div>
         );

@@ -9,6 +9,7 @@ export class Dashboard extends Component {
     getStyle(name) {
         return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name] || style[name];
     }
+
     render() {
         return (
             <Page>

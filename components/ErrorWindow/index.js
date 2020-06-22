@@ -7,10 +7,10 @@ import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
 import classnames from 'classnames';
 
 class ErrorWindow extends React.Component {
-    render () {
-        const {open, message, close, title, type, clearLoginState} = this.props
+    render() {
+        const {open, message, close, title, type, clearLoginState} = this.props;
         let closePopUpHandler = close;
-        let header = {text: title};
+        const header = {text: title};
         let actionButtons = [
             {
                 label: 'Close',
@@ -23,7 +23,7 @@ class ErrorWindow extends React.Component {
         if (type === 'identity.invalidCredentials') {
             closePopUpHandler = undefined;
             header.closeIcon = false; // remove close icon
-            let goToLoginHandler = () => {
+            const goToLoginHandler = () => {
                 clearLoginState();
                 this.context.router.history.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
             };
@@ -42,7 +42,8 @@ class ErrorWindow extends React.Component {
                 isOpen={open}
                 header={header}
                 footer={{ actionButtons: actionButtons }}
-                closePopup={closePopUpHandler} >
+                closePopup={closePopUpHandler}
+            >
                 <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
                 <div className={styles.errorMessageWrap}>
                     {message}

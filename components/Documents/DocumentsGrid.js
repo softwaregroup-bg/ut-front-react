@@ -34,20 +34,21 @@ class DocumentsGrid extends Component {
                 return obj.attachments && obj.attachments[0] ? obj.attachments[0].extension : '';
             case 'createdDate':
                 return <DateComponent>{obj.createdDate}</DateComponent>;
-            case 'statusId':
+            case 'statusId': {
                 let label = obj.statusId;
                 if (obj.statusId === 'approved') {
                     label = 'active';
                 }
                 return capitalizeFirstLetter(label);
+            }
         }
         return capitalizeFirstLetter(content);
     }
 
     get content() {
-        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
-        let handleSelectItem = (selectedItem) => {
-            let isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
+        const { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
+        const handleSelectItem = (selectedItem) => {
+            const isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
             onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
         };
         let gridData = [];
@@ -60,7 +61,7 @@ class DocumentsGrid extends Component {
                 break;
         }
         if (gridData.length > 0) {
-            let selectedItem = selected ? [selected] : [];
+            const selectedItem = selected ? [selected] : [];
             return (
                 <div>
                     <SimpleGrid

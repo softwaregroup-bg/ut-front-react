@@ -176,14 +176,14 @@ storiesOf('Inputs, (Text, Textarea, Dropdown, Date, Radio, ..., ..)', module)
         <Checkbox
             onClick={changeInput}
             checked
-            label={'Checkbox label'}
+            label='Checkbox label'
         />
     ))
     .add('Checkbox unchecked', () => (
         <Checkbox
             onClick={changeInput}
             checked={false}
-            label={'Checkbox label'}
+            label='Checkbox label'
         />
     ))
     .add('MultiStateCheckbox', () => (

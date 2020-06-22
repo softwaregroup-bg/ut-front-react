@@ -22,7 +22,7 @@ class Container extends Component {
     }
 
     render() {
-        let styles = {
+        const styles = {
             borderTop: this.props.bordered ? '' : 'none'
         };
         return (

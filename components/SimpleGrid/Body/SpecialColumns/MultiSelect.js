@@ -7,10 +7,12 @@ export default class InternalColumn extends Component {
         super(props);
         this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this);
     }
+
     handleCheckboxSelect(e) {
         e.stopPropagation();
         this.props.handleCheckboxSelect(this.props.isChecked, this.props.data, this.props.recordIndex);
     }
+
     render() {
         return (
             <td>

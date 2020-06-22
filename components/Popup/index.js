@@ -86,7 +86,7 @@ class PopupInternal extends Component {
 
     get contentWidth() {
         const { contentMaxWidth } = this.state;
-        var style = {
+        const style = {
             maxWidth: contentMaxWidth
         };
         if (this.props.fullWidth) {
@@ -111,19 +111,19 @@ class PopupInternal extends Component {
 
         return (
             <div className={styles.modalContainer}>
-                { hasOverlay && <div className={styles.modalOverlay} style={{zIndex: this.zIndexOverlay}} onClick={closeOnOverlayClick ? closePopup : null} /> }
+                {hasOverlay && <div className={styles.modalOverlay} style={{zIndex: this.zIndexOverlay}} onClick={closeOnOverlayClick ? closePopup : null} />}
                 <div style={{...this.contentWidth, ...{zIndex: this.zIndexDialog}}} className={classnames(styles.popupContainer, className)}>
-                    { header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} /> }
-                    { staticContentTop && <div ref={(staticTop) => { this.staticTop = staticTop; }} className={classnames(styles.staticContentTop, staticContentTop.className)}>
+                    {header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} />}
+                    {staticContentTop && <div ref={(staticTop) => { this.staticTop = staticTop; }} className={classnames(styles.staticContentTop, staticContentTop.className)}>
                         {staticContentTop.content}
-                    </div> }
+                    </div>}
                     <div style={{maxHeight: this.state.contentMaxHeight}} className={classnames(styles.popupContent, contentClassName)}>
-                        { children }
+                        {children}
                     </div>
-                    { staticContentBottom && <div ref={(staticBottom) => { this.staticBottom = staticBottom; }} className={classnames(styles.staticContentBottom, staticContentBottom.className)}>
+                    {staticContentBottom && <div ref={(staticBottom) => { this.staticBottom = staticBottom; }} className={classnames(styles.staticContentBottom, staticContentBottom.className)}>
                         {staticContentBottom.content}
-                    </div> }
-                    { footer && <Footer leftNode={footer.leftNode} rightNode={footer.rightNode} className={footer.className} actionButtons={footer.actionButtons} /> }
+                    </div>}
+                    {footer && <Footer leftNode={footer.leftNode} rightNode={footer.rightNode} className={footer.className} actionButtons={footer.actionButtons} />}
                 </div>
             </div>
         );
@@ -158,6 +158,7 @@ PopupInternal.propTypes = {
             label: PropTypes.string,
             onClick: PropTypes.func
         })),
+        rightNode: PropTypes.node,
         leftNode: PropTypes.node
     }),
     fullWidth: PropTypes.bool,

@@ -50,7 +50,7 @@ class DocumentsContainer extends Component {
     }
 
     render() {
-        let {
+        const {
             identifier,
             actorId,
             attachments,
@@ -63,10 +63,10 @@ class DocumentsContainer extends Component {
             selectedFilter,
             documentArchived
         } = this.props;
-        let selectedAttachment = attachments.getIn([identifier, 'selected']);
-        let requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
-        let isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
-        let docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
+        const selectedAttachment = attachments.getIn([identifier, 'selected']);
+        const requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
+        const isLoading = attachments.getIn([identifier, 'remoteDocuments', 'isLoading']);
+        const docTypes = documentTypes.get('data') ? documentTypes.get('data').toJS() : [];
         let docs = documents;
         let docsChanged = documentsChanged.toJS();
         if (selectedFilter && selectedFilter === 'archived') {
@@ -87,7 +87,7 @@ class DocumentsContainer extends Component {
                 permissions={permissions}
                 documentTypes={docTypes}
                 uploadNewDocument={(newObject) => {
-                    let formatedObj = {
+                    const formatedObj = {
                         createdDate: newObject.createdDate,
                         description: newObject.description,
                         documentType: newObject.documentType,

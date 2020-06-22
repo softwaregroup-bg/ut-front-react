@@ -6,9 +6,9 @@ import style from './style.css';
 
 class IPInput extends Component {
     render() {
-        let zeroHeightStyle = this.props.isValid || this.props.errorMessage.trim() === '' ? style.hh : '';
-        let placeholderValue = (this.props.value === '...') ? this.props.placeholder : '';
-        let clearState = this.props.value === '...';
+        const zeroHeightStyle = this.props.isValid || this.props.errorMessage.trim() === '' ? style.hh : '';
+        const placeholderValue = (this.props.value === '...') ? this.props.placeholder : '';
+        const clearState = this.props.value === '...';
         return (
             <div className={style.inputWrap}>
                 <Iput

@@ -37,7 +37,7 @@ class GridRow extends Component {
 
     toggleSelect() {
         if (this.props.canSelect === true) {
-            let isSelected = !this.state.selected;
+            const isSelected = !this.state.selected;
             this.setState({selected: isSelected}, () => {
                 this.props.onSelect(this.props.data, isSelected);
                 isSelected && this.props.subscribeUnselect(this.deselect);
@@ -47,7 +47,7 @@ class GridRow extends Component {
 
     toggleCheck(e) {
         e.stopPropagation();
-        let isChecked = !this.state.checked;
+        const isChecked = !this.state.checked;
         this.setState(
             {checked: isChecked},
             () => this.props.onCheck(immutable.List([this.props.data]), isChecked)
@@ -63,11 +63,11 @@ class GridRow extends Component {
     }
 
     renderColumns() {
-        let {columns, data, canCheck, linkableColumns, tdStyles} = this.props;
-        let rowIndex = this.props.rowIndex;
-        let columnElements = columns.map(({key, visible}, i) => {
-            let transformedData = this.props.mapColumn(columns[i], data.get(key), rowIndex, data);
-            let isLink = linkableColumns && linkableColumns[i];
+        const {columns, data, canCheck, linkableColumns, tdStyles} = this.props;
+        const rowIndex = this.props.rowIndex;
+        const columnElements = columns.map(({key, visible}, i) => {
+            const transformedData = this.props.mapColumn(columns[i], data.get(key), rowIndex, data);
+            const isLink = linkableColumns && linkableColumns[i];
             let currenctStyles = tdStyles[i];
             if (!currenctStyles) {
                 currenctStyles = {};

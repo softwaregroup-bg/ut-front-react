@@ -7,6 +7,7 @@ export default class Logo extends React.Component {
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
     }
+
     render() {
         return (
             <div>

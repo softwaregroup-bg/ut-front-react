@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 // import { combineReducers } from 'redux';
-var store;
+let store;
 
 export default () => {
     if (!store) {

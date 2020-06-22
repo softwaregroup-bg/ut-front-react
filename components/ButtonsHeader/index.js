@@ -14,7 +14,7 @@ class ButtonsHeader extends Component {
             isLeftOriented = true;
         }
 
-        let wrapperClassName = isLeftOriented ? style.leftButtonsHeaderButton : style.rightButtonsHeaderButton;
+        const wrapperClassName = isLeftOriented ? style.leftButtonsHeaderButton : style.rightButtonsHeaderButton;
 
         return (
             <div key={key} className={wrapperClassName}>
@@ -24,7 +24,7 @@ class ButtonsHeader extends Component {
     }
 
     render() {
-        let { config } = this.props;
+        const { config } = this.props;
         let leftButtons;
         let rightButtons;
 

@@ -39,7 +39,7 @@ class Button extends React.Component {
     }
 
     render() {
-        let {children, button, sizeType, fullWidth = false, ...props} = this.props;
+        const {children, button, sizeType, fullWidth = false, ...props} = this.props;
         let sizeTypeClass;
 
         switch (sizeType) {
@@ -49,7 +49,7 @@ class Button extends React.Component {
             default:
                 sizeTypeClass = this.getStyle('btnNormal');
         }
-        let fullWidthClass = fullWidth ? this.getStyle('btnFullWidth') : null;
+        const fullWidthClass = fullWidth ? this.getStyle('btnFullWidth') : null;
         let typeClass;
         switch (button) {
             case 'add':

@@ -16,14 +16,14 @@ class GridHeader extends Component {
     }
 
     sort(col) {
-        let { sortBy, sortOrder } = this.state;
+        const { sortBy, sortOrder } = this.state;
 
         if (sortBy === col) {
             if (sortOrder + 1 > 2) {
                 this.setState({sortBy: '', sortOrder: 0});
                 this.props.onSort('', 0);
             } else {
-                let newSortOrder = sortOrder + 1;
+                const newSortOrder = sortOrder + 1;
                 this.setState({sortOrder: newSortOrder});
                 this.props.onSort(sortBy, newSortOrder);
             }
@@ -34,16 +34,16 @@ class GridHeader extends Component {
     }
 
     render() {
-        let { columns, sortable, onCheck, canCheck, onRefresh, isChecked, trStyles, thStyles, onToggleColumn, canColCustomize } = this.props;
-        let haveSortable = sortable.length > 0;
+        const { columns, sortable, onCheck, canCheck, onRefresh, isChecked, trStyles, thStyles, onToggleColumn, canColCustomize } = this.props;
+        const haveSortable = sortable.length > 0;
 
-        let headCols = columns.map((col, index) => {
-            let currentThStyle = thStyles[index];
-            let handleSort = (e) => {
+        const headCols = columns.map((col, index) => {
+            const currentThStyle = thStyles[index];
+            const handleSort = (e) => {
                 e.stopPropagation();
                 this.sort(col.key);
             };
-            let sortState = this.state.sortBy === col.key ? this.state.sortOrder : 0;
+            const sortState = this.state.sortBy === col.key ? this.state.sortOrder : 0;
 
             return col.visible !== false ? (
                 <HeaderCell
@@ -66,7 +66,7 @@ class GridHeader extends Component {
         }
 
         if (canColCustomize) {
-            var gmfields = columns.slice().map((f) => {
+            const gmfields = columns.slice().map((f) => {
                 if (!f.title) {
                     return {
                         name: f.key,
@@ -77,7 +77,7 @@ class GridHeader extends Component {
                 } else return f;
             });
             headCols.push(
-                <Menu key={'settingsMenu'} fields={gmfields} toggleColumnVisibility={onToggleColumn} onRefresh={onRefresh} />
+                <Menu key='settingsMenu' fields={gmfields} toggleColumnVisibility={onToggleColumn} onRefresh={onRefresh} />
             );
         } else if (onRefresh) {
             headCols.push(

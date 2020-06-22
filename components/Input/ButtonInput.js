@@ -12,6 +12,7 @@ class ButtonInput extends Component {
         };
         this.onChange = this.onChange.bind(this);
     }
+
     componentWillReceiveProps(nextProps) {
         if (this.state.value !== nextProps.value) {
             this.setState({
@@ -19,15 +20,18 @@ class ButtonInput extends Component {
             });
         }
     }
+
     getValue() {
         return this.refs.input.value;
     }
+
     onChange(e) {
         this.setState({
             value: e.target.value
         });
         this.props.onChange && this.props.onChange(e.target.value);
     }
+
     render() {
         const { placeholder, readOnly, btnDisabled } = this.props;
         return (
@@ -47,13 +51,15 @@ class ButtonInput extends Component {
                         label={this.props.label}
                         value={this.state.value}
                         placeholder={placeholder}
-                        onChange={this.onChange} />
+                        onChange={this.onChange}
+                    />
                     <StandardButton
                         type='password'
                         disabled={btnDisabled}
                         className='secondaryButton secondaryInputButton'
                         onClick={this.props.onClick}
-                        label={this.props.btnText} />
+                        label={this.props.btnText}
+                    />
                 </div>
             </div>
         );

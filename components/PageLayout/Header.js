@@ -31,7 +31,7 @@ class Header extends React.Component {
     }
 
     render() {
-        let { text, buttons, buttonsRaw } = this.props;
+        const { text, buttons, buttonsRaw } = this.props;
 
         return (
             <div className={style.headerWrapper}>
@@ -46,7 +46,7 @@ class Header extends React.Component {
                             );
                         })}
                         {buttons.map((btn, i) => {
-                            let styleType = btn.styleType || 'secondaryDark';
+                            const styleType = btn.styleType || 'secondaryDark';
                             if (btn.permissions && !this.context.checkPermission(btn.permissions)) {
                                 return <div />;
                             }
@@ -59,7 +59,8 @@ class Header extends React.Component {
                                             onClick={btn.onClick}
                                             disabled={btn.disabled === true}
                                             label={btn.text}
-                                            href={btn.href} />
+                                            href={btn.href}
+                                        />
                                     </div>
                                 );
                             } else {
@@ -68,7 +69,8 @@ class Header extends React.Component {
                                         <StandardButton
                                             styleType={styleType}
                                             disabled={btn.disabled === true}
-                                            label={btn.text} />
+                                            label={btn.text}
+                                        />
                                     </Link>
                                 );
                             }

@@ -50,14 +50,15 @@ const documents = (state = defaultState, action) => {
                     .setIn([action.params.identifier, 'pathname'], Immutable.fromJS(action.params.pathname));
             }
             break;
-        case REMOVE_TAB:
-            let documentObjects = Object.keys(state.toJS());
+        case REMOVE_TAB: {
+            const documentObjects = Object.keys(state.toJS());
             for (let i = 0; i < documentObjects.length; i++) {
                 if (action.pathname === state.getIn([documentObjects[i], 'pathname'])) {
                     return state.delete(documentObjects[i]);
                 }
             }
             return state;
+        }
         case RESET_DOCUMENT_STATE:
             return state.delete(action.props.identifier);
         case FETCH_ARCHIVED_DOCUMENTS:
@@ -81,7 +82,7 @@ const documents = (state = defaultState, action) => {
                     .setIn([props.identifier, 'documentTypes', 'isLoading'], Immutable.fromJS(true));
             } else if (action.methodRequestState === methodRequestState.FINISHED) {
                 if (action.result && action.result.documentTypeClass) {
-                    let data = action.result.documentTypeClass.map((type) => {
+                    const data = action.result.documentTypeClass.map((type) => {
                         return {
                             key: type.id,
                             name: type.name
@@ -102,23 +103,24 @@ const documents = (state = defaultState, action) => {
             } else {
                 return state.setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
-        case ADD_NEW_DOCUMENT:
-            let docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject));
+        case ADD_NEW_DOCUMENT: {
+            const docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject));
             let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState)
                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
-        case REPLACE_DOCUMENT:
-            let doc = action.props.newDocumentObject;
-            let newObject = action.props.oldDocumentObject;
+        }
+        case REPLACE_DOCUMENT: {
+            const doc = action.props.newDocumentObject;
+            const newObject = action.props.oldDocumentObject;
             newObject.attachments[0].filename = doc.filename;
             newObject.attachments[0].extension = doc.extension;
             newObject.attachments[0].contentType = doc.contentType;
             newObject.attachments[0].url = doc.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + doc.filename : documentPrefix + doc.filename;
             newObject.attachments[0].isNew = true;
             newObject.statusId = 'replaced';
-            let changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
-            let alreadyReplacedOnce = changedDocuments.findIndex((docObj) => {
+            const changedDocuments = state.getIn([props.identifier, 'changedDocuments']).toJS();
+            const alreadyReplacedOnce = changedDocuments.findIndex((docObj) => {
                 if (docObj.attachments[0].attachmentId && docObj.attachments[0].attachmentId === newObject.attachments[0].attachmentId) {
                     return true;
                 } else if (docObj.attachments[0].attachmentUnapprovedId && docObj.attachments[0].attachmentUnapprovedId === newObject.attachments[0].attachmentUnapprovedId) {
@@ -133,12 +135,13 @@ const documents = (state = defaultState, action) => {
             }
             return state.setIn([props.identifier, 'changedDocuments'], Immutable.fromJS(changedDocuments))
                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
-        case CHANGE_DOCUMENT_STATUS_DELETED:
-            let statusId = action.props.documentObject.get('statusId');
+        }
+        case CHANGE_DOCUMENT_STATUS_DELETED: {
+            const statusId = action.props.documentObject.get('statusId');
             if (statusId) {
                 let newState = state;
                 if (statusId === 'new' && !action.props.documentObject.get('attachmentId')) {
-                    let _docs = state.getIn([action.props.identifier, 'changedDocuments']);
+                    const _docs = state.getIn([action.props.identifier, 'changedDocuments']);
                     let fileIndex = -1;
                     for (let i = 0; i < _docs.size; i++) {
                         if (_docs.getIn([i, 'attachments', '0', 'filename']) === action.props.documentObject.getIn(['attachments', '0', 'filename'])) {
@@ -151,8 +154,8 @@ const documents = (state = defaultState, action) => {
                     newState = combineAttachments(newState.get(action.props.identifier));
                     return state.set(action.props.identifier, newState);
                 } else {
-                    let deletedDoc = action.props.documentObject.set('statusId', 'deleted');
-                    docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
+                    const deletedDoc = action.props.documentObject.set('statusId', 'deleted');
+                    const docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
                     newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
                         .setIn([action.props.identifier, 'selected'], null);
                     newState = combineAttachments(newState.get(action.props.identifier));
@@ -187,14 +190,16 @@ const documents = (state = defaultState, action) => {
             }
             // return state;
             break;
-        case CHANGE_DOCUMENT_STATUS_ARCHIVED:
-            let archivedDoc = action.props.documentObject.set('statusId', 'archived');
-            docs = state.getIn([action.props.identifier, 'changedDocuments']).push(archivedDoc);
-            newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
+        }
+        case CHANGE_DOCUMENT_STATUS_ARCHIVED: {
+            const archivedDoc = action.props.documentObject.set('statusId', 'archived');
+            const docs = state.getIn([action.props.identifier, 'changedDocuments']).push(archivedDoc);
+            let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
                 .setIn([action.props.identifier, 'selected'], null);
             newState = combineAttachments(newState.get(action.props.identifier));
             return state.set(action.props.identifier, newState);
-        case CHANGE_DOCUMENT_FILTER:
+        }
+        case CHANGE_DOCUMENT_FILTER: {
             if (action.props.filter === 'all') {
                 return state.setIn([action.props.identifier, 'selectedFilter'], Immutable.fromJS(action.props.filter))
                     .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
@@ -205,6 +210,7 @@ const documents = (state = defaultState, action) => {
                     .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
             break;
+        }
         default:
             return state;
     }

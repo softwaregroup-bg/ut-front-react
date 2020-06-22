@@ -66,7 +66,8 @@ export default class FileDetailsPopup extends Component {
                     file={file}
                     className={previewType}
                     scaleDimensions={scaleDimensions}
-                    onClick={this.onImageClick} />
+                    onClick={this.onImageClick}
+                />
             );
         }
 
@@ -91,7 +92,8 @@ export default class FileDetailsPopup extends Component {
                 closeOnOverlayClick={closeOnOverlayClick}
                 closeOnEsc={closeOnEsc}
                 closePopup={closePopup}
-                footer={{actionButtons: this.actionButtons}}>
+                footer={{actionButtons: this.actionButtons}}
+            >
                 {this.view}
             </Popup>
         );

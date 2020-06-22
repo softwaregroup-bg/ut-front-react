@@ -12,11 +12,11 @@ const AddFileButton = ({
 }) => {
     return (
         <div className={classnames(styles.addFileBtn, className, { [styles.disabled]: disabled })} onClick={onClick}>
-            { icon ? <span className={classnames(styles.addFileIcon, icon)} /> : <div className={styles.plusIcon}>
+            {icon ? <span className={classnames(styles.addFileIcon, icon)} /> : <div className={styles.plusIcon}>
                 <span className={styles.verticalLine} />
                 <span className={styles.horizontalLine} />
-            </div> }
-            <span className={styles.addFileBtnLabel}>{ label }</span>
+            </div>}
+            <span className={styles.addFileBtnLabel}>{label}</span>
         </div>
     );
 };

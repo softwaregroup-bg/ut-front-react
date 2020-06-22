@@ -18,7 +18,7 @@ const defaultHours = 8;
 class TimePicker extends Component {
     constructor(props) {
         super(props);
-        let initialDate = props.value;
+        const initialDate = props.value;
         this.state = {
             value: props.value || undefined,
             userSelectedHours: initialDate ? this.formatHours(initialDate) : undefined,
@@ -37,7 +37,7 @@ class TimePicker extends Component {
     }
 
     componentWillReceiveProps({value}) {
-        let newValue = value || undefined;
+        const newValue = value || undefined;
         this.setState({
             value: newValue,
             userSelectedHours: newValue ? this.formatHours(newValue) : undefined,
@@ -46,19 +46,19 @@ class TimePicker extends Component {
     }
 
     handleChange(value) {
-        let { keyProp, onChange } = this.props;
-        let objectToPassOnChange = {key: keyProp, value: value, prevValue: this.state.value};
+        const { keyProp, onChange } = this.props;
+        const objectToPassOnChange = {key: keyProp, value: value, prevValue: this.state.value};
         onChange(objectToPassOnChange);
     }
 
     getTimePicker() {
-        let initialDate = this.state.value;
-        let valueHour = this.state.userSelectedHours;
-        let valueMin = this.state.userSelectedMinutes;
+        const initialDate = this.state.value;
+        const valueHour = this.state.userSelectedHours;
+        const valueMin = this.state.userSelectedMinutes;
 
-        let handleHoursChange = (e) => {
-            let selectedHour = e.value;
-            let currentDate = initialDate || new Date();
+        const handleHoursChange = (e) => {
+            const selectedHour = e.value;
+            const currentDate = initialDate || new Date();
             currentDate.setHours(selectedHour);
             if (this.state.userSelectedMinutes) {
                 currentDate.setMinutes(this.state.userSelectedMinutes);
@@ -66,14 +66,14 @@ class TimePicker extends Component {
                 currentDate.setMinutes(defaultMinutes);
             }
 
-            let formatedHours = this.formatHours(currentDate);
-            let formatedMinutes = this.formatMinutes(currentDate);
+            const formatedHours = this.formatHours(currentDate);
+            const formatedMinutes = this.formatMinutes(currentDate);
             this.setState({userSelectedHours: formatedHours, userSelectedMinutes: formatedMinutes}, this.handleChange(currentDate));
         };
 
-        let handleMinutesChange = (e) => {
-            let selectedMinutes = e.value;
-            let currentDate = initialDate || new Date();
+        const handleMinutesChange = (e) => {
+            const selectedMinutes = e.value;
+            const currentDate = initialDate || new Date();
             currentDate.setMinutes(selectedMinutes);
             if (this.state.userSelectedHours) {
                 currentDate.setHours(this.state.userSelectedHours);
@@ -81,8 +81,8 @@ class TimePicker extends Component {
                 currentDate.setHours(defaultHours);
             }
 
-            let formatedHours = this.formatHours(currentDate);
-            let formatedMinutes = this.formatMinutes(currentDate);
+            const formatedHours = this.formatHours(currentDate);
+            const formatedMinutes = this.formatMinutes(currentDate);
             this.setState({userSelectedMinutes: formatedMinutes, userSelectedHours: formatedHours}, this.handleChange(currentDate));
         };
 
@@ -115,7 +115,7 @@ class TimePicker extends Component {
     }
 
     render() {
-        let { label } = this.props;
+        const { label } = this.props;
 
         if (label) {
             return (

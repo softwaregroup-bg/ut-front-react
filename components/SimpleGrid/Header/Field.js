@@ -9,19 +9,22 @@ export default class Field extends Component {
         super(props);
         this.handleOrder = this.handleOrder.bind(this);
     }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
+
     handleOrder() {
         this.props.handleOrder(this.props.field.name);
     }
+
     render() {
         if (this.props.field.visible === false) {
             return false;
         }
-        let styles = [this.getStyle('girdOrderHeadingStyle')];
-        let girdHeadingStyle = [this.getStyle('girdHeading')];
-        let {orderDirection} = this.props;
+        const styles = [this.getStyle('girdOrderHeadingStyle')];
+        const girdHeadingStyle = [this.getStyle('girdHeading')];
+        const {orderDirection} = this.props;
 
         if (orderDirection) {
             styles.push(this.getStyle('girdOrderHeadingStyle' + orderDirection.toUpperCase()));
@@ -30,7 +33,7 @@ export default class Field extends Component {
             this.getStyle(this.props.field.inSpanStyle) && girdHeadingStyle.push(this.getStyle(this.props.field.inSpanStyle));
         }
 
-        let thStyle = ['verticalSpanField', 'verticalField'].includes(this.props.field.name) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : undefined;
+        const thStyle = ['verticalSpanField', 'verticalField'].includes(this.props.field.name) ? this.getStyle('gridHeaderTrSpanColumnNotLast') : undefined;
         return (
             <th className={thStyle || girdHeadingStyle.join(' ')}>
                 <span className={classnames(style.thTitle, this.getStyle('gridHeadingInner'))} onClick={this.handleOrder}>

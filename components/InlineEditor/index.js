@@ -15,6 +15,7 @@ export default class InlineEditor extends Component {
             editing: true
         });
     }
+
     keyPressed(e) {
         if (e.keyCode === 13) {
             this.props.onFinish(this.props.item, this.props.text, this.refs.inPlace.value);
@@ -32,13 +33,14 @@ export default class InlineEditor extends Component {
             });
         }
     }
+
     render() {
         if (this.state.editing) {
-            var onChange = (e) => { this.keyPressed(e); };
+            const onChange = (e) => { this.keyPressed(e); };
             return <input type='text' ref='inPlace' defaultValue={this.state.text} onKeyDown={onChange} />;
         } else {
-            var onClick = () => { this.inPlaceEdit(); };
-            let text = this.state.text || ' ';
+            const onClick = () => { this.inPlaceEdit(); };
+            const text = this.state.text || ' ';
             return (
                 <div onClick={onClick}>&nbsp;
                     {text}
