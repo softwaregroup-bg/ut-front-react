@@ -18,7 +18,6 @@ function loadStories() {
     require('./components/ConfirmDialog');
     require('./components/Date');
     require('./components/DatePicker');
-    require('./components/DropdownSelect');
     require('./components/FooterIcon');
     require('./components/Glyphicons');
     require('./components/Grid');

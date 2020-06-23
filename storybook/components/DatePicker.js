@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import DatePickerRange from './../../components/DatePicker/Between';
 import DatePicker from './../../components/DatePicker/Simple';
 import ContextWrapper from './../ContextWrapper.js';
-// import DropdownSelect from '../../components/DropdownSelect';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
 const defaultValue = {

@@ -13,7 +13,7 @@ import DatePickerBetween from './../DatePicker/Between';
 import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
-import { Button } from 'reactstrap';
+import Button from '../StandardButton';
 import ByCustomSearch from '../Filters/ByCustomSearch';
 
 import classnames from 'classnames';
@@ -511,15 +511,15 @@ class GridToolBox extends Component {
         switch (actionButtonElement.type) {
             case actionButtonElementTypes.link:
                 if (isDisabled) {
-                    return <Button disabled className={classnames('button', style.button)}>{actionButtonElement.label}</Button>;
+                    return <Button disabled styleType='primaryLight' label={actionButtonElement.label} />;
                 } else {
                     return (
-                        <Link to={actionButtonElement.path}><Button className={classnames('button', style.button)}>{actionButtonElement.label}</Button></Link>
+                        <Link to={actionButtonElement.path}><Button styleType='primaryLight' label={actionButtonElement.label} /></Link>
                     );
                 }
             case actionButtonElementTypes.button:
                 return (
-                    <Button disabled={isDisabled} onClick={actionButtonElement.onClick} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
+                    <Button disabled={isDisabled} onClick={actionButtonElement.onClick} styleType='primaryLight' label={actionButtonElement.label} />
                 );
             case actionButtonElementTypes.buttonWithConfirmPopUp: {
                 const handleButtonClick = () => this.refs['confirmDialog-' + index].open();
@@ -534,7 +534,7 @@ class GridToolBox extends Component {
                             onSubmit={actionButtonElement.onClick}
                             cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
-                        <Button disabled={isDisabled} onClick={handleButtonClick} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
+                        <Button disabled={isDisabled} onClick={handleButtonClick} styleType='primaryLight' label={actionButtonElement.label} />
                     </div>
                 );
             }
@@ -568,7 +568,7 @@ class GridToolBox extends Component {
                             message={actionButtonElement.errorDialog.message}
                             cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
                         />
-                        <Button disabled={isDisabled} onClick={handleAction} className={classnames('button', style.button)}>{buttonLabel}</Button>
+                        <Button disabled={isDisabled} onClick={handleAction} styleType='primaryLight' label={buttonLabel} />
                     </div>
                 );
             }
@@ -614,7 +614,7 @@ class GridToolBox extends Component {
                             message={actionButtonElement.errorDialog.message}
                             cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
                         />
-                        <Button disabled={isDisabled} onClick={handleActionDependingOnPropertyValue} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
+                        <Button disabled={isDisabled} onClick={handleActionDependingOnPropertyValue} styleType='primaryLight' label={actionButtonElement.label} />
                     </div>
                 );
             }
@@ -637,7 +637,7 @@ class GridToolBox extends Component {
                 return (
                     <div>
                         {dialogs}
-                        <Button disabled={isDisabled} onClick={actionButtonElement.onClick} className={classnames('button', style.button)}>{actionButtonElement.label}</Button>
+                        <Button disabled={isDisabled} onClick={actionButtonElement.onClick} styleType='primaryLight' label={actionButtonElement.label} />
                     </div>
                 );
             }

@@ -1,33 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import style from './style.css';
+import classnames from 'classnames';
 
 class Container extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            height: window.innerHeight - (59 + 55 + 76)
-        };
-        this.resize = () => this.setState({
-            height: window.innerHeight - (59 + 55 + 76)
-        });
-    }
-
-    componentDidMount() {
-        window.addEventListener('resize', this.resize);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.resize);
-    }
-
     render() {
         const styles = {
             borderTop: this.props.bordered ? '' : 'none'
         };
         return (
             <div id={style.mainContentWrap} style={styles}>
-                <div className='w100pr h100pr'>
+                <div className={classnames(style.h100pr, style.w100pr)}>
                     {this.props.children}
                 </div>
             </div>

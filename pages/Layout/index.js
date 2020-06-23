@@ -9,6 +9,24 @@ import styles from './style.css';
 import classnames from 'classnames';
 
 class Layout extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            height: window.innerHeight
+        };
+        this.resize = () => this.setState({
+            height: window.innerHeight
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.resize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resize);
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || '';
     }
@@ -30,7 +48,7 @@ class Layout extends Component {
         );
         if (result) {
             return (
-                <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)}>
+                <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)} style={{height: this.state.height}}>
                     <Vertical fixedComponent={header}>
                         <Vertical fixedComponent={tabMenu}>
                             <div id='appContent' className={styles.h100pr}>

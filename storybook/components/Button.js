@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '../../components/Button';
-import { Container, Row, Col } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 
 const buttonTypes = [
     'add',
@@ -29,15 +29,14 @@ storiesOf('Button Component', module)
         <Button>My button</Button>
     ))
     .add('All Button Types', () => (
-        <Container fluid>
-            {buttonTypes.map((item, index) => {
-                return <Row key={index} style={{marginTop: '20px'}}>
-                    <Col xs='12'>
-                        <Button button={item}>{item}</Button>
-                    </Col>
-                </Row>;
-            })}
-        </Container>
+        <Grid container>
+            {buttonTypes.map((item, index) => (
+                <Grid item key={index} style={{marginTop: '20px'}} xs={12}>
+                    <Button button={item}>{item}</Button>
+                </Grid>
+            )
+            )}
+        </Grid>
     ))
     .add('small buttons', () => (
         <div>

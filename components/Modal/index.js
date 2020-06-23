@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Box from '../Box';
-import { Row, Col } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 import classnames from 'classnames';
 import Icon from '../Icon';
 import style from './style.css';
@@ -39,21 +39,21 @@ const Modal = ({
         e.stopPropagation();
     };
     if (showFooter) {
-        footer = <Row className={classnames('row-reset', style.modalFooterWrapper)}>
-            <Col xs='5' className='col-reset'>
+        footer = <Grid container className={classnames('row-reset', style.modalFooterWrapper)}>
+            <Grid item xs={5} className='col-reset'>
                 <div className='pull-xs-left clearfix' style={{padding: '12px 0px 12px 15px'}}>
                     {leftButton}
                 </div>
-            </Col>
-            <Col xs='2' className={classnames('col-reset')}>
+            </Grid>
+            <Grid item xs={2} className={classnames('col-reset')}>
                 {footerMiddle}
-            </Col>
-            <Col xs='5' className='col-reset'>
+            </Grid>
+            <Grid item xs={5} className='col-reset'>
                 <div className='pull-xs-right clearfix' style={{padding: '12px 15px 12px 0px'}}>
                     {rightButton}
                 </div>
-            </Col>
-        </Row>;
+            </Grid>
+        </Grid>;
     }
     switch (messageType) {
         case 'success':

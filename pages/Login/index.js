@@ -3,7 +3,7 @@ import React from 'react';
 import {Map} from 'immutable';
 import { connect } from 'react-redux';
 import style from './style.css';
-import { Container, Row, Col } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 import Box from '../../components/Box';
 import { identityCheck, setLoginData } from './actions';
 import {UserName, Title, SubmitButton, ErrorSection, Password} from './partials';
@@ -103,23 +103,21 @@ class Login extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <Container>
-                    <Row>
-                        <Col xs={{size: 6, push: 3}}>
-                            <Row className={this.getStyle('loginPageLogo')} />
-                            <Row>
-                                <Box>
-                                    <Row className='row-reset'>
-                                        <Col md={{size: 8, offset: 2}} className='col-reset' style={{textAlign: 'center'}}>
-                                            {this.renderLoginBody()}
-                                        </Col>
-                                    </Row>
-                                </Box>
-                            </Row>
-                            <Row className={this.getStyle('footerLogoContainer')} />
-                        </Col>
-                    </Row>
-                </Container>
+                <Grid container>
+                    <Grid container item justify='center'>
+                        <Grid item xs={6} className={this.getStyle('loginPageLogo')} />
+                    </Grid>
+                    <Grid container item justify='center'>
+                        <Box>
+                            <Grid item xs={8}>
+                                {this.renderLoginBody()}
+                            </Grid>
+                        </Box>
+                    </Grid>
+                    <Grid container item justify='center'>
+                        <Grid item xs={6} className={this.getStyle('footerLogoContainer')} />
+                    </Grid>
+                </Grid>
             </form>
         );
     }

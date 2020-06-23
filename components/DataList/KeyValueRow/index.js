@@ -1,42 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 import classnames from 'classnames';
 import Text from '../../Text';
 import style from './style.css';
 
 const KeyValueRow = ({ wrapperClass, keyClass, valueClass, keyNode, orientation = 'horizontal', bordered = false, children }) => {
-    const {WrapperComponentName, CellComponentName} = getComponentsName(orientation);
     const wrapperClasses = classnames({
         borderedHorizontalOrientation: bordered && orientation === 'horizontal',
         borderedVerticalOrientation: bordered && orientation === 'vertical'
     });
     const valueClasses = isHorizontal(orientation) ? style.valueCell : null;
     return (
-        <WrapperComponentName xs='6' className={`${wrapperClass} ${wrapperClasses}`}>
-            <CellComponentName xs='6' className={`${keyClass} ${style.keyCell}`}><Text>{keyNode}</Text></CellComponentName>
-            <CellComponentName xs='6' className={`${valueClass} ${valueClasses}`}>{children}</CellComponentName>
-        </WrapperComponentName>
+        <Grid container className={`${wrapperClass} ${wrapperClasses}`}>
+            <Grid item xs={6} className={`${keyClass} ${style.keyCell}`}><Text>{keyNode}</Text></Grid>
+            <Grid item xs={6} className={`${valueClass} ${valueClasses}`}>{children}</Grid>
+        </Grid>
     );
 };
 
 function isHorizontal(orientation) {
     return orientation === 'horizontal';
-}
-
-function getComponentsName(orientation) {
-    const cases = {
-        horizontal: {
-            WrapperComponentName: Row,
-            CellComponentName: Col
-        },
-        vertical: {
-            WrapperComponentName: Col,
-            CellComponentName: Row
-        }
-    };
-
-    return cases[orientation];
 }
 
 KeyValueRow.propTypes = {
