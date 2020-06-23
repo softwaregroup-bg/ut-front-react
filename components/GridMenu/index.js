@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Popover, {PopoverAnimationVertical} from '@material-ui/core/Popover';
+import Popover from '@material-ui/core/Popover';
 import classnames from 'classnames';
 import Checkbox from '../Input/Checkbox';
 import style from './style.css';
@@ -125,7 +125,6 @@ export default class GlobalMenu extends Component {
                 anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                 transformOrigin={{horizontal: 'left', vertical: 'top'}}
                 onClose={this.handleMenuClose}
-                animation={PopoverAnimationVertical}
                 className={this.getStyle('headerGlobalMenuPopoverWrap')}
             >
                 <MenuList className={this.getStyle('headerGlobalMenuItemWrap')}>

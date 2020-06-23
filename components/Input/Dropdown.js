@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import classnames from 'classnames';
 import style from './style.css';
 import { textValidations } from '../../validator/constants';
-import Popover, {PopoverAnimationVertical} from '@material-ui/core/Popover';
+import Popover from '@material-ui/core/Popover';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 
 class Dropdown extends Component {
@@ -190,7 +190,6 @@ class Dropdown extends Component {
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                     transformOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}
                 >
                     <Box maxHeight={300} width={rootElementWidth}>
                         <MenuList

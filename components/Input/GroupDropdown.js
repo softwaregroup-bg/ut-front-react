@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import Popover, {PopoverAnimationVertical} from '@material-ui/core/Popover';
+import Popover from '@material-ui/core/Popover';
 import MenuList from '@material-ui/core/MenuList';
 import Divider from '@material-ui/core/Divider';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -133,7 +133,6 @@ class GroupDropdown extends Dropdown {
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                     transformOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}
                 >
                     <Box maxHeight={300} width={rootElementWidth}>
                         <MenuList value={this.state.value} className={ddstyles.groupDropdownMenu}>
