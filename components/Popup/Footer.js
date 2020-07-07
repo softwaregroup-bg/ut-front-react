@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import StandardButton from '../StandardButton';
 import styles from './styles.css';
@@ -11,10 +12,10 @@ const Footer = ({
 }) => {
     return (
         <div className={classnames(styles.popupFooter, className)}>
-            { leftNode && <div className={styles.leftNode}> {leftNode} </div> }
-            { actionButtons &&
+            {leftNode && <div className={styles.leftNode}> {leftNode} </div>}
+            {actionButtons &&
             actionButtons.map((button, index) => <StandardButton key={index} {...button} />)}
-            { rightNode && <div className={styles.rightNode}> {rightNode} </div> }
+            {rightNode && <div className={styles.rightNode}> {rightNode} </div>}
         </div>
     );
 };

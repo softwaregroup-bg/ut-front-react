@@ -1,5 +1,5 @@
-var permissions = null;
-var cache = {};
+let permissions = null;
+let cache = {};
 
 export const check = function(actions) {
     if (!Array.isArray(actions)) {
@@ -7,11 +7,11 @@ export const check = function(actions) {
     }
 
     for (let i = 0; i < actions.length; i++) {
-        let action = actions[i];
-        let value = cache[action];
+        const action = actions[i];
+        const value = cache[action];
 
         if (value === undefined) {
-            let has = cache[action] = permissions.test(action);
+            const has = cache[action] = permissions.test(action);
             if (has) {
                 return true;
             }

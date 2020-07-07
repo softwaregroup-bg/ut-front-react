@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import { SimpleGrid } from './../../components/SimpleGrid';
 import ContextWrapper from './../ContextWrapper.js';
 

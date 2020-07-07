@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 
 export default class DialogExampleModal extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ export default class DialogExampleModal extends Component {
             message: this.props.message // Reset
         });
     }
+
     componentWillReceiveProps({message}) {
         if (this.props.message !== message) {
             this.setState({message});
@@ -38,9 +40,9 @@ export default class DialogExampleModal extends Component {
     render() {
         const actions = [];
         if (!this.props.cannotSubmit) {
-            actions.push(<FlatButton label={this.props.submitLabel || 'Yes'} disabled={this.props.cannotSubmit} onTouchTap={this.submit} />);
+            actions.push(<Button label={this.props.submitLabel || 'Yes'} disabled={this.props.cannotSubmit} onClick={this.submit} />);
         }
-        actions.push(<FlatButton label={this.props.cancelLabel || 'No'} primary onTouchTap={this.close} />);
+        actions.push(<Button label={this.props.cancelLabel || 'No'} primary onClick={this.close} />);
 
         return (
             <div>

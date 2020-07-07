@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import TitledContentBox from '../../components/TitledContentBox';
 
 storiesOf('TitledContentBox', module)
@@ -8,6 +8,6 @@ storiesOf('TitledContentBox', module)
             title='test title'
             headRightWrap='test right wrap'
         >
-        Content
+            Content
         </TitledContentBox>
     ));

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/HeaderNew';
 import TabMenu from '../../containers/TabMenu';
@@ -8,27 +9,46 @@ import styles from './style.css';
 import classnames from 'classnames';
 
 class Layout extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            height: window.innerHeight
+        };
+        this.resize = () => this.setState({
+            height: window.innerHeight
+        });
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.resize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.resize);
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || '';
     }
 
     render() {
-        let result = this.props.login.get('result');
-        let header = (
+        const result = this.props.login.get('result');
+        const header = (
             <Header
                 currentLocation={this.props.location.pathname}
                 personInfo={result && result.toJS()}
                 logout={this.props.logout}
                 replaceWithBrakes
                 tabset={this.context.mainTabset}
-                headerText={this.props.headerText} />
+                headerText={this.props.headerText}
+            />
         );
-        let tabMenu = (
+        const tabMenu = (
             <TabMenu defaultLocation={this.context.mainUrl} />
         );
         if (result) {
             return (
-                <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)}>
+                <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)} style={{height: this.state.height}}>
                     <Vertical fixedComponent={header}>
                         <Vertical fixedComponent={tabMenu}>
                             <div id='appContent' className={styles.h100pr}>

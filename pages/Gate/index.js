@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {Map} from 'immutable';
 import { connect } from 'react-redux';
 import {cookieCheck, logout} from '../../containers/LoginForm/actions';
@@ -6,18 +7,20 @@ import {fetchTranslations} from './actions';
 import {translate, money, numberFormat, df, checkPermission, setPermissions} from '../../helpers.js';
 import Loader from '../../components/Loader';
 
-const Gate = React.createClass({
-    propTypes: {
+class Gate extends React.Component {
+    static propTypes = {
         login: PropTypes.object,
         checkIdentity: PropTypes.func,
         logout: PropTypes.func,
         children: PropTypes.object,
         fetchTranslations: PropTypes.func,
         gate: PropTypes.object
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         router: PropTypes.object
-    },
+    }
+
     getChildContext() {
         return {
             translate: translate(this.props),
@@ -26,11 +29,13 @@ const Gate = React.createClass({
             numberFormat: numberFormat(this.props),
             checkPermission: checkPermission
         };
-    },
-    defaultProps: {
+    }
+
+    static defaultProps = {
         gate: Map(),
         login: Map()
-    },
+    }
+
     componentWillReceiveProps(newProps) {
         if (newProps.login.get('reqState') === 'finished' && (newProps.login.get('cookieCheckResultId') !== this.props.login.get('cookieCheckResultId'))) {
             if (!newProps.login.get('authenticated')) {
@@ -51,10 +56,12 @@ const Gate = React.createClass({
             this.context.router.history.push('/login');
             this.props.logout();
         }
-    },
+    }
+
     componentWillMount() {
         this.props.checkIdentity();
-    },
+    }
+
     render() {
         if (this.props.login.get('result') && this.props.login.get('authenticated') && this.props.gate.get('loaded')) {
             return this.props.children;
@@ -62,7 +69,7 @@ const Gate = React.createClass({
             return <Loader />;
         }
     }
-});
+};
 
 const mapStateToProps = (state, ownProps) => ({login: state.login, gate: state.gate});
 

@@ -1,26 +1,33 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import style from '../style.css';
 
-const Username = React.createClass({
-    propTypes: {
+class Username extends React.Component {
+    static propTypes = {
         value: PropTypes.string
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         implementationStyle: PropTypes.object
-    },
-    getInitialState: function() {
+    }
+
+    getInitialState() {
         return {};
-    },
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    },
-    handleChange: function(e) {
+    }
+
+    handleChange(e) {
         this.setState({value: e.target.value});
-    },
+    }
+
     getValue() {
         return this.state.value;
-    },
+    }
+
     render() {
         let value = this.props.value || '';
         if (this.state.value || this.state.value === '') {
@@ -32,6 +39,6 @@ const Username = React.createClass({
             </div>
         );
     }
-});
+};
 
 export default Username;

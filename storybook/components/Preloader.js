@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import Preloader from '../../components/Preloader';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
@@ -7,7 +7,7 @@ storiesOf('Preloader', module)
     .add('Default', () => (
         <MaterialUILayout>
             <Preloader>
-            Message
+                Message
             </Preloader>
         </MaterialUILayout>
     ));

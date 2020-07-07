@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from './style.css';
 import Icon from '../Icon';
 
@@ -22,7 +23,7 @@ class ToolTip extends Component {
 
     render() {
         let hoverClass = '';
-        let stylesToUse = this.props.styles || style;
+        const stylesToUse = this.props.styles || style;
 
         if (this.state.hover) {
             hoverClass =

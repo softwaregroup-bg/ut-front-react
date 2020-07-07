@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { propTypeFields, propTypeData } from '../common';
 import Record from './Record.js';
 import style from './styles.css';
@@ -73,7 +74,8 @@ export class Body extends Component {
                             handleDoubleClick={handleRowDoubleClick}
                             rowsChecked={rowsChecked}
                             handleCellClick={handleCellClick}
-                            rowStyleField={rowStyleField} />
+                            rowStyleField={rowStyleField}
+                        />
                     );
                 });
             }
@@ -99,8 +101,8 @@ export class Body extends Component {
 
         return (
             <tbody>
-                { !!localData.length && this.renderBody(localData) }
-                { (!!data.length && this.renderBody(data)) || <tr><td colSpan={this.filteredFieldsLength} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg}</td></tr> }
+                {!!localData.length && this.renderBody(localData)}
+                {(!!data.length && this.renderBody(data)) || <tr><td colSpan={this.filteredFieldsLength} className={this.getStyle('noResultRow')}>{this.props.emptyRowsMsg}</td></tr>}
             </tbody>
         );
     }

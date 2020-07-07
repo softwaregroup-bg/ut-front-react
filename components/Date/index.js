@@ -1,14 +1,17 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const Date = React.createClass({
-    propTypes: {
-        children: React.PropTypes.string
-    },
-    contextTypes: {
-        dateFormat: React.PropTypes.func
-    },
-    render: function() {
-        var children = this.props.children;
+class Date extends React.Component {
+    static propTypes = {
+        children: PropTypes.string
+    };
+
+    static contextTypes = {
+        dateFormat: PropTypes.func
+    };
+
+    render() {
+        let children = this.props.children;
         if (typeof this.context.dateFormat === 'function') {
             this.text = this.context.dateFormat(this.props.children);
             children = this.text;
@@ -17,6 +20,6 @@ const Date = React.createClass({
             <span>{children}</span>
         );
     }
-});
+}
 
 export default Date;

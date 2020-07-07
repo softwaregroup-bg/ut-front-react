@@ -1,6 +1,8 @@
 /** eslint-disable react/no-unused-prop-types */
 
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
@@ -27,7 +29,7 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        let { cookieChecked, isLogout, authenticated, cookieCheck, match } = this.props;
+        const { cookieChecked, isLogout, authenticated, cookieCheck, match } = this.props;
 
         if (!cookieChecked && !isLogout) {
             cookieCheck({appId: match && match.params && match.params.appId});
@@ -40,12 +42,12 @@ class Gate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { cookieChecked, authenticated, forceLogOut, logout, match } = this.props;
+        const { cookieChecked, authenticated, forceLogOut, logout, match } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
-        let isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
+        const isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
         if (!isAuthenticated && this.context.router.route.location.pathname !== '/login') {
             if (match && match.params && match.params.ssoOrigin) {
                 this.context.router.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
@@ -62,7 +64,7 @@ class Gate extends Component {
     }
 
     loadGate(permissions, languageId) {
-        let { setLoadGate, fetchTranslations } = this.props;
+        const { setLoadGate, fetchTranslations } = this.props;
 
         setPermissions(permissions);
 
@@ -74,11 +76,11 @@ class Gate extends Component {
     }
 
     render() {
-        let { loaded } = this.props;
+        const { loaded } = this.props;
 
         return (
             <div className={style.h100pr}>
-                { loaded ? this.props.children : <Loader /> }
+                {loaded ? this.props.children : <Loader />}
             </div>
         );
     }

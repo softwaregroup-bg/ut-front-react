@@ -8,7 +8,7 @@ export const prePopulate = (state, action) => {
     if (!actionIsForLogin(action.type)) {
         return state;
     }
-    let loginStaticStorage = getLoginStaticStorage();
+    const loginStaticStorage = getLoginStaticStorage();
 
     // pre-populates loginForm state
     loginFormPaths.forEach(path => {

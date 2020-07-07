@@ -1,14 +1,17 @@
-import React, { PropTypes } from 'react';
-import Card from 'material-ui/Card/Card';
-import CardText from 'material-ui/Card/CardText';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Card from '@material-ui/core/Card/Card';
+import CardText from '@material-ui/core/Card/CardText';
 
-const Username = React.createClass({
-    propTypes: {
+class Username extends React.Component {
+    static propTypes = {
         onKeyDown: PropTypes.func
-    },
-    getValues() {
+    };
+
+    getValues = () => {
         return this.refs.f.getValue();
-    },
+    };
+
     render() {
         return (
             <Card>
@@ -18,6 +21,6 @@ const Username = React.createClass({
             </Card>
         );
     }
-});
+}
 
 export default Username;

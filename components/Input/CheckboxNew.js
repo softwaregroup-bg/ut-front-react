@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import styles from './style.css';
 import classNames from 'classnames';
 
@@ -52,10 +53,12 @@ export default class CheckboxNew extends Component {
                 <span className={styles.checkboxNewWrapper}>
                     <span
                         className={this.checkboxClasses}
-                        onClick={this.onChange} />
+                        onClick={this.onChange}
+                    />
                     <span
                         className={this.checkboxLabelClasses}
-                        onClick={this.onChange} >{label}</span>
+                        onClick={this.onChange}
+                    >{label}</span>
                 </span>
             </span>
         );
@@ -64,7 +67,10 @@ export default class CheckboxNew extends Component {
 
 CheckboxNew.propTypes = {
     handleChange: PropTypes.func,
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
+    ]),
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     value: PropTypes.oneOfType([

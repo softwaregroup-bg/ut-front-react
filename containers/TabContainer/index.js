@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import immutable from 'immutable';
 import Tabs from '../../components/Tabs';
 import StatusDialog from '../../components/StatusDialog';
@@ -47,13 +48,13 @@ class TabContainer extends Component {
     }
 
     handleActionButtonClick(index) {
-        let { tabs, errors } = this.props;
-        let button = this.props.actionButtons[index];
+        const { tabs, errors } = this.props;
+        const button = this.props.actionButtons[index];
 
         if (button && button.onNext) {
             if (button.performTabValidation) {
-                let tab = this.props.tabs[this.state.active];
-                let valid = validateTab(this.props.sourceMap, tab.validations, this.state.active, undefined, errors);
+                const tab = this.props.tabs[this.state.active];
+                const valid = validateTab(this.props.sourceMap, tab.validations, this.state.active, undefined, errors);
                 if (valid.isValid) {
                     this.props.onErrors({});
                     button.onNext();
@@ -61,13 +62,13 @@ class TabContainer extends Component {
                     this.props.onErrors(prepareErrors(valid.errors));
                 }
             } else if (button.performFullValidation) {
-                let valid = validateAll(this.props.sourceMap, this.props.tabs, errors);
+                const valid = validateAll(this.props.sourceMap, this.props.tabs, errors);
                 if (valid.isValid) {
                     this.props.onErrors({});
                     button.onNext();
                 } else {
-                    let tabErrorsCount = {};
-                    let sameErrorKey = [];
+                    const tabErrorsCount = {};
+                    const sameErrorKey = [];
                     valid.errors.forEach((err) => {
                         if (err.key) {
                             if (sameErrorKey.indexOf(err.key.toString()) > -1) {
@@ -82,13 +83,13 @@ class TabContainer extends Component {
                         }
                     });
 
-                    let errorString = valid.errors.length > 1 ? 'errors' : 'error';
-                    let tabString = Object.keys(tabErrorsCount).length > 1 ? 'tabs' : 'tab';
+                    const errorString = valid.errors.length > 1 ? 'errors' : 'error';
+                    const tabString = Object.keys(tabErrorsCount).length > 1 ? 'tabs' : 'tab';
 
                     let statusErrorMessage = `Your request can not be saved because you have ${errorString} in the following ${tabString}:<ul>`;
-                    for (var key in tabErrorsCount) {
-                        if (tabErrorsCount.hasOwnProperty(key)) {
-                            let currentErrorString = tabErrorsCount[key] > 1 ? 'errors' : 'error';
+                    for (const key in tabErrorsCount) {
+                        if (Object.prototype.hasOwnProperty.call(tabErrorsCount, key)) {
+                            const currentErrorString = tabErrorsCount[key] > 1 ? 'errors' : 'error';
                             statusErrorMessage += `<li>${key}: ${tabErrorsCount[key]} ${currentErrorString}</li>`;
                         }
                     }
@@ -108,16 +109,16 @@ class TabContainer extends Component {
     }
 
     checkIfSwithToNextTabIsAble(index) {
-        let { errors } = this.props;
+        const { errors } = this.props;
 
         let ableToGoToNextTab = true;
         // this.props.onErrors({});
 
         if (!this.props.allowTabSwithIfNotValid) {
-            let tab = this.props.tabs[this.state.active];
-            let currentTabIsValid = validateTab(this.props.sourceMap, tab.validations, index - 1, undefined, errors);
+            const tab = this.props.tabs[this.state.active];
+            const currentTabIsValid = validateTab(this.props.sourceMap, tab.validations, index - 1, undefined, errors);
             if (tab.customValidation) {
-                let customError = tab.customValidationFunction(this.props.sourceMap);
+                const customError = tab.customValidationFunction(this.props.sourceMap);
                 if (customError) {
                     currentTabIsValid.isValid = false;
                     currentTabIsValid.errors.push(customError);
@@ -133,17 +134,17 @@ class TabContainer extends Component {
     }
 
     mapErrorsToTabs() {
-        let { tabs, errors } = this.props;
-        let tabErrors = Array.apply(null, Array(tabs.length)).map(Number.prototype.valueOf, 0);
+        const { tabs, errors } = this.props;
+        const tabErrors = Array.apply(null, Array(tabs.length)).map(Number.prototype.valueOf, 0);
 
         errors.forEach((errValue, errKey) => {
             tabs.forEach((tab, tabIndex) => {
                 if (tab.validations) {
-                    let validation = tab.validations.find((validation) => {
+                    const validation = tab.validations.find((validation) => {
                         if (validation.key) {
                             return validation.key[validation.key.length - 1] === errKey;
                         } else if (validation.keyText && validation.keyArray) { // Array with text case
-                            let concatedErrorKey = validation.keyArray[validation.keyArray.length - 1] + '-' + validation.keyText[validation.keyText.length - 1] + '-';
+                            const concatedErrorKey = validation.keyArray[validation.keyArray.length - 1] + '-' + validation.keyText[validation.keyText.length - 1] + '-';
                             return errKey.indexOf(concatedErrorKey) >= 0;
                         } else if (validation.keyArray) {
                             return validation.keyArray.join(',') === errKey;
@@ -166,7 +167,7 @@ class TabContainer extends Component {
     }
 
     renderStatusDialog() {
-        let handleDialogClose = () => {
+        const handleDialogClose = () => {
             this.setState({statusObj: immutable.Map({})});
         };
 
@@ -178,8 +179,8 @@ class TabContainer extends Component {
     render() {
         let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, onTabClick } = this.props;
 
-        let activeTab = tabs[this.state.active];
-        let handleTabClick = (tab) => {
+        const activeTab = tabs[this.state.active];
+        const handleTabClick = (tab) => {
             let ableToGoToNextTab = true;
             if (tab.id > this.state.active) {
                 ableToGoToNextTab = this.checkIfSwithToNextTabIsAble(this.state.active + 1);
@@ -199,9 +200,9 @@ class TabContainer extends Component {
                 };
             }
         });
-        let tabErrrors = this.mapErrorsToTabs();
+        const tabErrrors = this.mapErrorsToTabs();
 
-        let allowedTabs = tabs
+        const allowedTabs = tabs
             .filter(({title, permission}) => {
                 let hasPermission = true;
                 permission && permission.forEach(p => {
@@ -220,7 +221,9 @@ class TabContainer extends Component {
                         text={headerTitle}
                         location={location}
                         breadcrumbsRemoveSlashes={headerBreadcrumbsRemoveSlashes}
-                        buttons={actionButtons} />}
+                        buttons={actionButtons}
+                    />
+                }
                 >
                     {this.renderStatusDialog()}
                     <Vertical fixedComponent={
@@ -230,7 +233,8 @@ class TabContainer extends Component {
                                 activeTab={this.state.active}
                                 onClick={handleTabClick}
                             />
-                        </div>}
+                        </div>
+                    }
                     >
                         <div className={style.contentComponentWrapper} style={activeTab.styleContentWrapper}>
                             {activeTab.component}

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import ButtonsHeader from '../ButtonsHeader';
 import Text from '../Text';
@@ -22,16 +23,16 @@ class Toolbox extends Component {
     }
 
     get header() {
-        let { selectedAttachment, deleteDocument, selectedFilter, documents, documentArchived, archiveDocument } = this.props;
+        const { selectedAttachment, deleteDocument, selectedFilter, documents, documentArchived, archiveDocument } = this.props;
 
-        let addNewDocumentHandler = () => {
+        const addNewDocumentHandler = () => {
             this.setState({
                 isOpen: true,
                 popupType: 'add',
                 popupTitle: 'Add Document'
             });
         };
-        let replaceDocumentHandler = () => {
+        const replaceDocumentHandler = () => {
             this.setState({
                 isOpen: true,
                 popupType: 'replace',
@@ -39,15 +40,15 @@ class Toolbox extends Component {
             });
         };
 
-        let disabledButtonsState = !selectedAttachment;
+        const disabledButtonsState = !selectedAttachment;
 
         // Details
-        let openDetailsDialog = () => {
+        const openDetailsDialog = () => {
             this.setState({ showDetailsPopUp: true });
         };
         // Download button
-        let downloadButtonHandler = () => {
-            let tempLink = document.createElement('a');
+        const downloadButtonHandler = () => {
+            const tempLink = document.createElement('a');
             tempLink.href = selectedAttachment.getIn(['attachments', 0, 'url']);
             tempLink.setAttribute('download', selectedAttachment.getIn(['attachments', 0, 'filename']));
             tempLink.setAttribute('target', '_blank');
@@ -56,31 +57,31 @@ class Toolbox extends Component {
             document.body.removeChild(tempLink);
         };
         // Delete
-        let openDeleteConfirmationDialog = () => {
+        const openDeleteConfirmationDialog = () => {
             this.setState({ showDeleteConfirmationPopup: true });
         };
-        let closeDeleteConfirmationDialog = () => {
+        const closeDeleteConfirmationDialog = () => {
             this.setState({ showDeleteConfirmationPopup: false });
         };
-        let handleDeleteDocument = () => {
+        const handleDeleteDocument = () => {
             this.setState({ showDeleteConfirmationPopup: false }, () => {
                 deleteDocument(selectedAttachment);
             });
         };
         // Archive
-        let openArchiveConfirmationDialog = () => {
+        const openArchiveConfirmationDialog = () => {
             this.setState({ showArchiveConfirmationPopup: true });
         };
-        let closeArchiveConfirmationDialog = () => {
+        const closeArchiveConfirmationDialog = () => {
             this.setState({ showArchiveConfirmationPopup: false });
         };
-        let handleArchiveDocument = () => {
+        const handleArchiveDocument = () => {
             this.setState({ showArchiveConfirmationPopup: false }, () => {
                 archiveDocument(selectedAttachment);
             });
         };
 
-        let headerButtonsConfig = {
+        const headerButtonsConfig = {
             left: []
         };
 
@@ -156,7 +157,7 @@ class Toolbox extends Component {
             }
         }
 
-        let deletePopupActionButtons = [{
+        const deletePopupActionButtons = [{
             name: 'yes',
             styleType: 'primaryDialog',
             label: 'Yes',
@@ -168,7 +169,7 @@ class Toolbox extends Component {
             onClick: closeDeleteConfirmationDialog
         }];
 
-        let archivePopupActionButtons = [{
+        const archivePopupActionButtons = [{
             name: 'yes',
             styleType: 'primaryDialog',
             label: 'Yes',
@@ -182,21 +183,21 @@ class Toolbox extends Component {
 
         let documentsFilter;
         if (this.props.permissions.viewArchive) {
-            let options = [{
+            const options = [{
                 key: 'all',
                 name: 'Active documents'
             }, {
                 key: 'archived',
                 name: 'Archived documents'
             }];
-            let selected = this.props.selectedFilter || 'all';
+            const selected = this.props.selectedFilter || 'all';
             documentsFilter = (
                 <Dropdown
                     data={options}
                     defaultSelected={selected}
                     canSelectPlaceholder={false}
-                    placeholder={'Filter'}
-                    keyProp={'documentFilter'}
+                    placeholder='Filter'
+                    keyProp='documentFilter'
                     onSelect={(obj) => {
                         this.props.changeDocumentFilter(obj.value);
                     }}
@@ -218,8 +219,7 @@ class Toolbox extends Component {
                         }}
                     >
                         <Text>Are you sure you want to delete this document?</Text>
-                    </Popup>
-                }
+                    </Popup>}
                 {this.state.showArchiveConfirmationPopup &&
                     <Popup
                         isOpen
@@ -233,8 +233,7 @@ class Toolbox extends Component {
                         }}
                     >
                         <Text>Are you sure you want to archive this document?</Text>
-                    </Popup>
-                }
+                    </Popup>}
                 <div className={style.toolbox}>
                     <div className={style.toolboxItem}>
                         <ButtonsHeader config={headerButtonsConfig} />
@@ -248,13 +247,13 @@ class Toolbox extends Component {
     }
 
     get detailsView() {
-        let { selectedAttachment } = this.props;
+        const { selectedAttachment } = this.props;
 
         if (selectedAttachment) {
-            let closeHandler = () => {
+            const closeHandler = () => {
                 this.setState({ showDetailsPopUp: false });
             };
-            let file = {
+            const file = {
                 content: selectedAttachment.getIn(['attachments', 0, 'url']),
                 details: {
                     type: selectedAttachment.getIn(['attachments', 0, 'contentType']),
@@ -280,7 +279,7 @@ class Toolbox extends Component {
     }
 
     get renderDocumentUplodDialog() {
-        let closeHandler = () => {
+        const closeHandler = () => {
             this.setState({
                 isOpen: false
             });

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Popup from '../Popup';
 import FileDetailedView from './FileDetailedView';
 import { getFileDimensions } from '../../utils/image';
@@ -65,7 +66,8 @@ export default class FileDetailsPopup extends Component {
                     file={file}
                     className={previewType}
                     scaleDimensions={scaleDimensions}
-                    onClick={this.onImageClick} />
+                    onClick={this.onImageClick}
+                />
             );
         }
 
@@ -90,7 +92,8 @@ export default class FileDetailsPopup extends Component {
                 closeOnOverlayClick={closeOnOverlayClick}
                 closeOnEsc={closeOnEsc}
                 closePopup={closePopup}
-                footer={{actionButtons: this.actionButtons}}>
+                footer={{actionButtons: this.actionButtons}}
+            >
                 {this.view}
             </Popup>
         );

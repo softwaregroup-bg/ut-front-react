@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 import Icon from '../Icon';
 
 const FooterIcon = ({ icons = [], className, ...props }) => {
-    let iconsLength = icons.length;
+    const iconsLength = icons.length;
     switch (iconsLength) {
         case 0:
             return <span {...props} />;

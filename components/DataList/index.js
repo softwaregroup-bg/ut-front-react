@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import KeyValueRow from './KeyValueRow';
 
 // DataList component may recieve data property which is array of objects that looks like this:
@@ -10,7 +11,7 @@ import KeyValueRow from './KeyValueRow';
 //   }
 // ]
 const DataList = ({data}) => {
-    let rows = data.map((row, index) => (<KeyValueRow wrapperClass={row.wrapperClass} keyClass={row.keyClass} valueClass={row.valueClass} key={index} keyNode={row.key} orientation={row.orientation ? row.orientation : 'horizontal'}>{row.value}</KeyValueRow>));
+    const rows = data.map((row, index) => (<KeyValueRow wrapperClass={row.wrapperClass} keyClass={row.keyClass} valueClass={row.valueClass} key={index} keyNode={row.key} orientation={row.orientation ? row.orientation : 'horizontal'}>{row.value}</KeyValueRow>));
     return (
         <div>
             {rows}

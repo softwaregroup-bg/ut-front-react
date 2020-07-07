@@ -1,18 +1,22 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Text from '../../../components/Text';
 import classnames from 'classnames';
 import style from '../style.css';
 
-const Username = React.createClass({
-    propTypes: {
+class Title extends React.Component {
+    static propTypes = {
         title: PropTypes.string
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         implementationStyle: PropTypes.object
-    },
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    },
+    }
+
     render() {
         return (
             <div className={classnames('f15 f-semibold f-gray-dark f-upper margin-top-15', this.getStyle('loginTitleContainer'))}>
@@ -20,6 +24,6 @@ const Username = React.createClass({
             </div>
         );
     }
-});
+};
 
-export default Username;
+export default Title;

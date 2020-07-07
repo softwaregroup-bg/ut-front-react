@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import CollapsableContent from '../../components/CollapsableContent';
 
 storiesOf('CollapsableContent', module)
@@ -8,6 +8,6 @@ storiesOf('CollapsableContent', module)
             visibleStyles={{maxWidth: '200px', minHeight: '200px'}}
             collapsedStyles={{width: '40px', minHeight: '200px'}}
         >
-        Content
+            Content
         </CollapsableContent>
     ));

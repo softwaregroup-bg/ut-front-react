@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import TextArea from '../Input/TextArea';
 import Text from '../Text';
 import Popup from '../Popup';
@@ -11,10 +12,11 @@ class ConfirmRejectionDialog extends Component {
         this.renderContainer = this.renderContainer.bind(this);
         this.onChange = this.onChange.bind(this);
     }
+
     onChange(e) {
-        let rejectReasonValidators = getRejectReasonValidationRules();
+        const rejectReasonValidators = getRejectReasonValidationRules();
         let canSubmit;
-        let valid = rejectReasonValidator(e.value, rejectReasonValidators);
+        const valid = rejectReasonValidator(e.value, rejectReasonValidators);
         if (valid.isValid) {
             canSubmit = true;
             this.props.updateErrors({}, this.props.id);
@@ -24,9 +26,10 @@ class ConfirmRejectionDialog extends Component {
         }
         this.props.changeConfirmDialogValue({value: e.value, canSubmit: canSubmit});
     }
+
     renderContainer() {
-        let rejectReasonValidators = getRejectReasonValidationRules();
-        let {errors} = this.props;
+        const rejectReasonValidators = getRejectReasonValidationRules();
+        const {errors} = this.props;
         if (this.props.showInput) {
             return (
                 <div>
@@ -47,6 +50,7 @@ class ConfirmRejectionDialog extends Component {
             return (<Text>{this.props.message}</Text>);
         }
     }
+
     get actionButtons() {
         const { buttons } = this.props;
         return buttons.map((button) => {
@@ -59,16 +63,19 @@ class ConfirmRejectionDialog extends Component {
             };
         }).toJS();
     }
+
     get title() {
         return capitalizeEveryWord(this.props.title || 'Confirm Approval');
     }
+
     render() {
         return (
             <Popup
                 fullWidth={!!this.props.fullWidth}
                 isOpen={this.props.isOpen}
                 header={{ text: this.title, closeIcon: false }}
-                footer={{ actionButtons: this.actionButtons }} >
+                footer={{ actionButtons: this.actionButtons }}
+            >
                 {this.props.children}
                 {this.renderContainer()}
             </Popup>

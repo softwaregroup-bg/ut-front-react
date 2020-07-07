@@ -16,14 +16,14 @@ import { loginReducerProxy, prePopulate } from './storeProxy/loginReducerProxy';
 const validator = new Validator(inputsConfig);
 
 const updateLoginStep = (state, step) => {
-    let loginStep = loginSteps[step];
-    let currentInputs = state.getIn(['loginForm', 'inputs']);
+    const loginStep = loginSteps[step];
+    const currentInputs = state.getIn(['loginForm', 'inputs']);
     let newInputs = Immutable.Map();
 
     Object.keys(loginStep.inputs).forEach(input => {
-        let inputValue = state.getIn(['loginForm', 'inputs', input, 'value']);
+        const inputValue = state.getIn(['loginForm', 'inputs', input, 'value']);
         // if the form already has this input, perserve its value only and reset its cofig
-        let newInput = currentInputs.has(input) ? Object.assign({}, loginStep.inputs[input], { value: inputValue }) : loginStep.inputs[input];
+        const newInput = currentInputs.has(input) ? Object.assign({}, loginStep.inputs[input], { value: inputValue }) : loginStep.inputs[input];
         newInputs = newInputs.set(input, Immutable.fromJS(newInput));
     });
 
@@ -43,7 +43,7 @@ const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
     isLogout: false,
-    loginForm: loginSteps['initial'],
+    loginForm: loginSteps.initial,
     loginType: '',
     formError: '',
     shouldSubmit: false,
@@ -62,8 +62,8 @@ const loginReducer = (state = defaultLoginState, action) => {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
 
                 if (action.error) {
-                    let err = action.error.type.split('.');
-                    let type = err[err.length - 1];
+                    const err = action.error.type.split('.');
+                    const type = err[err.length - 1];
 
                     return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message);
                 } else if (action.result) {
@@ -78,11 +78,11 @@ const loginReducer = (state = defaultLoginState, action) => {
             return state;
         case SET_INPUT_VALUE:
             return state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
-        case VALIDATE_FORM:
+        case VALIDATE_FORM: {
             validationResult = validator.validateAll(state.getIn(['loginForm', 'inputs']));
 
             const getLoginData = () => {
-                let inputs = state.getIn(['loginForm', 'inputs']);
+                const inputs = state.getIn(['loginForm', 'inputs']);
                 let currentLoginData = state.get('loginData');
                 inputs.toSeq().forEach(input => {
                     if (!input.get('skipSubmit')) {
@@ -93,7 +93,7 @@ const loginReducer = (state = defaultLoginState, action) => {
             };
 
             if (validationResult.isValid) {
-                let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
+                const prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
 
                 if (prevInvalidField) {
                     state = state.setIn(['loginForm', 'inputs', prevInvalidField.get('name'), 'error'], '');
@@ -106,7 +106,7 @@ const loginReducer = (state = defaultLoginState, action) => {
             }
 
             return state.setIn(['loginForm', 'shouldSubmit'], validationResult.isValid);
-
+        }
         case COOKIE_CHECK:
             if (action.methodRequestState === 'finished') {
                 if (action.error) {

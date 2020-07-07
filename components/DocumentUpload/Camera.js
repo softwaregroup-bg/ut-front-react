@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import styles from './styles.css';
 
@@ -53,7 +54,7 @@ export default class Camera extends Component {
         if (Camera.hasUserMedia()) {
             const video = this.refs.video;
             const aspectRatio = video.videoWidth / video.videoHeight;
-            let canvas = document.createElement('canvas');
+            const canvas = document.createElement('canvas');
 
             canvas.width = video.clientWidth;
             canvas.height = video.clientWidth / aspectRatio;
@@ -76,7 +77,8 @@ export default class Camera extends Component {
                 <video
                     ref='video'
                     className={styles.videoElement}
-                    autoPlay={autoPlay} />
+                    autoPlay={autoPlay}
+                />
             </div>
         );
     }

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from './verticalStyles.css';
 import { getMarginBox } from '../../utils/dom';
 
@@ -20,7 +21,7 @@ class Vertical extends Component {
     }
 
     updateHeight() {
-        let height = getMarginBox(this.refs.fixedComponent).height;
+        const height = getMarginBox(this.refs.fixedComponent).height;
         if (height !== this.state.fixedComponent) {
             this.setState({
                 fixedComponent: height
@@ -29,7 +30,7 @@ class Vertical extends Component {
     }
 
     render() {
-        let height = this.state.fixedComponent + 'px';
+        const height = this.state.fixedComponent + 'px';
         return (
             <div className={style.verticalWrapper}>
                 <div ref='fixedComponent'>{this.props.fixedComponent}</div>
@@ -39,7 +40,7 @@ class Vertical extends Component {
             </div>
         );
     }
-};
+}
 
 Vertical.propTypes = {
     children: PropTypes.any,

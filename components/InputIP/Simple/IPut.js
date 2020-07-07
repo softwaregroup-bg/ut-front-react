@@ -2,7 +2,9 @@
  * iput v0.0.4 (https://github.com/lizheming/iput)
  * Licensed under MIT
  */
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import style from './style.css';
 
 /**
@@ -14,7 +16,7 @@ function getRange(el) {
     let headRange;
     let range;
     let dupRange;
-    let ret = {};
+    const ret = {};
     if (el.setSelectionRange) {
         // standard
         ret.begin = el.selectionStart;
@@ -57,6 +59,7 @@ class IPut extends Component {
             value: []
         };
     }
+
     componentWillReceiveProps(newProps) {
         if (newProps.clear) {
             this.setState({
@@ -64,11 +67,13 @@ class IPut extends Component {
             });
         }
     }
+
     componentDidMount() {
         this.setState({
             value: Array.isArray(this.props.value) ? this.props.value : this.props.value.split('.')
         });
     }
+
     /**
  * Change Event
  */
@@ -77,12 +82,13 @@ class IPut extends Component {
         if (isNaN(e.target.value)) { return e.preventDefault(); }
         if (val !== '' && (val > 255 || val < 0)) { val = 255; }
 
-        let value = this.state.value;
+        const value = this.state.value;
         value[i] = val;
         this.setState({value}, () => this.onPropsChange());
 
         if (!isNaN(val) && String(val).length === 3 && i < 3) { this[`_input-${i + 1}`].focus(); }
     }
+
     /**
  * Keydown Event
  */
@@ -94,13 +100,14 @@ class IPut extends Component {
         if ((e.keyCode === 190 || e.keyCode === 110) && getRange(e.target).end > 0 && i < 3) { domId = i + 1; }
         this[`_input-${domId}`].focus();
     }
+
     /**
  * Paste Event
  */
     handlePaste(e, i) {
-        let value = e.clipboardData.getData('text/plain').split('.').map(val => parseInt(val));
+        const value = e.clipboardData.getData('text/plain').split('.').map(val => parseInt(val));
         if (value.length === 4 - i && value.every(val => !isNaN(val) && val >= 0 && val <= 255)) {
-            let oldValue = this.state.value;
+            const oldValue = this.state.value;
             value.forEach((val, j) => {
                 oldValue[i + j] = val;
             });
@@ -108,6 +115,7 @@ class IPut extends Component {
             return e.preventDefault();
         }
     }
+
     /**
  * call change props
  */
@@ -116,13 +124,13 @@ class IPut extends Component {
     }
 
     render() {
-        let className = [
+        const className = [
             style.ipInput,
             this.props.className,
             this.props.isError() ? style.error : '',
             this.props.readonly ? style.readonly : ''
         ].join(' ');
-        let placeholders = Array.isArray(this.props.placeholder) ? this.props.placeholder : this.props.placeholder.split('.');
+        const placeholders = Array.isArray(this.props.placeholder) ? this.props.placeholder : this.props.placeholder.split('.');
 
         return (
             <div className={className}>

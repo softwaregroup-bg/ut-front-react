@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 import ErrorWindow from '../../components/ErrorWindow';
 import Loader from '../../components/Loader';
@@ -13,30 +14,29 @@ const ErrorWindowContainer = connect(
     {close, clearLoginState}
 )(ErrorWindow);
 
-const Main = ({
-    loadInfo,
-    children
-}) => {
-    return (
-        <div className={style.h100pr}>
-            { children }
-            { loadInfo && !!loadInfo.open && <Loader loadInfo={loadInfo} />}
-            <ErrorWindowContainer />
-        </div>
-    );
-};
+class Main extends React.Component {
+    static propTypes = {
+        loadInfo: PropTypes.object,
+        children: PropTypes.object
+    }
+
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    }
+
+    render() {
+        return (
+            <div className={style.h100pr}>
+                {this.props.children}
+                {this.props.loadInfo && !!this.props.loadInfo.open && <Loader loadInfo={this.props.loadInfo} />}
+                <ErrorWindowContainer />
+            </div>
+        );
+    }
+}
 
 export default connect(({ preloadWindow }) => {
     return {
         loadInfo: preloadWindow && preloadWindow.toJS()
     };
 })(Main);
-
-Main.propTypes = {
-    loadInfo: PropTypes.object,
-    children: PropTypes.object
-};
-
-Main.contextTypes = {
-    router: PropTypes.object.isRequired
-};

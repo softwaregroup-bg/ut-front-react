@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
-import DatePickerInput from 'material-ui/DatePicker/DatePicker';
-import { formatIso } from 'material-ui/DatePicker/dateUtils';
+import {DatePicker as DatePickerInput} from '@material-ui/pickers';
 import style from '../style.css';
 
 export default class DatePicker extends Component {
@@ -9,36 +9,25 @@ export default class DatePicker extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     }
+
     handleChange() {
-        let self = this;
-        return (event, date) => {
-            self.props.onChange({
-                value: formatIso(date)
+        return date => {
+            this.props.onChange({
+                value: date && date.toISOString()
             });
         };
     }
+
     render() {
-        let {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, labelWrap} = this.props;
+        const {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, labelWrap} = this.props;
+        const zeroHeightStyle = isValid ? style.hh : '';
+        const dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
+        const iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
+        const readonlyStyle = disabled ? style.readonlyInput : '';
+        const datePickerLabeled = label ? style.datePickerLabeled : '';
+        const labelStyle = withVerticalClass ? style.labelWrap : style.labelWrapHorizontal;
 
-        let textFieldStyle = {
-            cursor: 'pointer',
-            width: '100%',
-            height: '30px'
-        };
-
-        let hintStyle = {
-            margin: '0 0 4px 10px',
-            bottom: '0px'
-        };
-
-        let zeroHeightStyle = isValid ? style.hh : '';
-        let dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
-        let iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
-        let readonlyStyle = disabled ? style.readonlyInput : '';
-        let datePickerLabeled = label ? style.datePickerLabeled : '';
-        let labelStyle = withVerticalClass ? style.labelWrap : style.labelWrapHorizontal;
-
-        let dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
+        const dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
 
         return (
             <div className={classnames(style.wrap, this.props.wrapperClassName)}>
@@ -47,20 +36,16 @@ export default class DatePicker extends Component {
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
                         className={classnames(dpStyles, readonlyStyle)}
-                        textFieldStyle={textFieldStyle}
-                        DateTimeFormat={this.props.DateTimeFormat}
                         cancelLabel={this.props.cancelLabel}
                         okLabel={this.props.okLabel}
                         container={this.props.container}
+                        color='secondary'
                         value={dateVal}
                         mode={this.props.mode}
                         onChange={this.handleChange()}
-                        firstDayOfWeek={this.props.firstDayOfWeek}
                         minDate={this.props.minDate}
                         maxDate={this.props.maxDate}
                         disabled={this.props.disabled}
-                        hintText={this.props.hintText}
-                        hintStyle={hintStyle}
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>

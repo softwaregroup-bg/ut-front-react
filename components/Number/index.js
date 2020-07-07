@@ -1,14 +1,17 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const Number = React.createClass({
-    propTypes: {
-        children: React.PropTypes.string
-    },
-    contextTypes: {
-        numberFormat: React.PropTypes.func
-    },
-    render: function() {
-        var children = this.props.children;
+class Number extends React.Component {
+    static propTypes = {
+        children: PropTypes.string
+    };
+
+    static contextTypes = {
+        numberFormat: PropTypes.func
+    };
+
+    render() {
+        let children = this.props.children;
         if (typeof this.context.numberFormat === 'function') {
             this.text = this.context.numberFormat(this.props.children);
             children = this.text;
@@ -17,6 +20,6 @@ const Number = React.createClass({
             <span>{children}</span>
         );
     }
-});
+}
 
 export default Number;

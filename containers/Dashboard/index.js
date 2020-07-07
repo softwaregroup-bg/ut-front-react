@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {getLink} from '../../routerHelper';
 import Page from '../../components/PageLayout/Page';
 import { AddTab } from '../TabMenu';
@@ -8,6 +9,7 @@ export class Dashboard extends Component {
     getStyle(name) {
         return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name] || style[name];
     }
+
     render() {
         return (
             <Page>
@@ -22,7 +24,7 @@ export class Dashboard extends Component {
             </Page>
         );
     }
-};
+}
 
 Dashboard.propTypes = {
     tabName: PropTypes.any,

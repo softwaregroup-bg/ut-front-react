@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import Link from './../Link';
 import { breakOnSpaceChars, getClass } from './../../utils/helpers';
@@ -12,10 +13,10 @@ export default class HeaderLogo extends Component {
 
         return (
             <span className={className}>
-                <Link to={this.context.mainUrl} useRawTo >
-                    <span className={classnames(this.context.implementationStyle['headerLogo'], getClass(styles, 'headerLogo'))} />
+                <Link to={this.context.mainUrl} useRawTo>
+                    <span className={classnames(this.context.implementationStyle.headerLogo, getClass(styles, 'headerLogo'))} />
                 </Link>
-                <span className={classnames(this.context.implementationStyle['headerTitle'], getClass(styles, 'headerTitle'))}>{text}</span>
+                <span className={classnames(this.context.implementationStyle.headerTitle, getClass(styles, 'headerTitle'))}>{text}</span>
             </span>
         );
     }

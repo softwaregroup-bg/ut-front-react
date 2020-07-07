@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Checkbox from '../../../Input/Checkbox';
 
 export default class InternalColumn extends Component {
@@ -6,10 +7,12 @@ export default class InternalColumn extends Component {
         super(props);
         this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this);
     }
+
     handleCheckboxSelect(e) {
         e.stopPropagation();
         this.props.handleCheckboxSelect(this.props.isChecked, this.props.data, this.props.recordIndex);
     }
+
     render() {
         return (
             <td>

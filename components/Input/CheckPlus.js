@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -6,12 +7,12 @@ import classnames from 'classnames';
 const noop = function() {};
 
 const CheckPlus = (props) => {
-    let {disabled, checked} = props;
-    let disabledClass = disabled ? classnames(style.notAllowed, style.disabledCheckPlusBox) : style.pointer;
-    let checkedClass = checked ? style.checked : style.unchecked;
+    const {disabled, checked} = props;
+    const disabledClass = disabled ? classnames(style.notAllowed, style.disabledCheckPlusBox) : style.pointer;
+    const checkedClass = checked ? style.checked : style.unchecked;
     return (
         <span className={style.checkBoxWrapper + ' ' + style.checkPlusPointer}>
-            <div className={classnames(props.className, checkedClass, disabledClass)} style={props.style} onTouchTap={disabled ? noop : props.onClick} />
+            <div className={classnames(props.className, checkedClass, disabledClass)} style={props.style} onClick={disabled ? noop : props.onClick} />
             <label><span /></label>
             <p>{props.label}</p>
         </span>

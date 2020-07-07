@@ -22,7 +22,6 @@ module.exports = {
         {components: '../components/DataList/ValueRow/index.js'},
         {components: '../components/DataList/KeyValueRow/index.js'},
         {components: '../components/Date/index.js'},
-        {components: '../components/DropdownSelect/index.js'},
         {components: '../components/FooterIcon/index.js'},
         {components: '../components/Icon/index.js'},
         {components: '../components/Image/index.js'},

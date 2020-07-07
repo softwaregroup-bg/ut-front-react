@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import StandardButton from '../StandardButton';
 
 import style from './style.css';
@@ -13,7 +14,7 @@ class ButtonsHeader extends Component {
             isLeftOriented = true;
         }
 
-        let wrapperClassName = isLeftOriented ? style.leftButtonsHeaderButton : style.rightButtonsHeaderButton;
+        const wrapperClassName = isLeftOriented ? style.leftButtonsHeaderButton : style.rightButtonsHeaderButton;
 
         return (
             <div key={key} className={wrapperClassName}>
@@ -23,7 +24,7 @@ class ButtonsHeader extends Component {
     }
 
     render() {
-        let { config } = this.props;
+        const { config } = this.props;
         let leftButtons;
         let rightButtons;
 

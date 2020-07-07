@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
 
@@ -34,11 +35,11 @@ class TextArea extends Component {
     }
 
     handleChange(e) {
-        let newValue = e.target.value;
+        const newValue = e.target.value;
         this.setState({value: newValue});
 
         // Add to queue (when user is typing new values fast we want to delay the call of props.onChange() to avoid unnecessary calculations)
-        var oldQueue = this.onChangQueue.shift();
+        const oldQueue = this.onChangQueue.shift();
         clearTimeout(oldQueue);
         this.onChangQueue.push(setTimeout(() => {
             this.notifyForChange(newValue);
@@ -46,15 +47,15 @@ class TextArea extends Component {
     }
 
     notifyForChange(newValue) {
-        let { validators, keyProp, onChange } = this.props;
-        let newState = {value: newValue};
-        let objectToPassOnChange = {key: keyProp, value: newValue, initValue: this.initialValue};
+        const { validators, keyProp, onChange } = this.props;
+        const newState = {value: newValue};
+        const objectToPassOnChange = {key: keyProp, value: newValue, initValue: this.initialValue};
 
         // Perform validation
         if (validators.length > 0) {
-            let valid = inputValidator(newValue, validators);
+            const valid = inputValidator(newValue, validators);
             if (!valid.isValid) {
-                let errorMessage = valid.errors[0].errorMessage;
+                const errorMessage = valid.errors[0].errorMessage;
                 objectToPassOnChange.error = true;
                 objectToPassOnChange.errorMessage = errorMessage;
                 newState.valid = {isValid: false, errorMessage: errorMessage};
@@ -68,13 +69,13 @@ class TextArea extends Component {
     }
 
     render() {
-        let { label, readonly, cssClass } = this.props;
-        let { isValid, errorMessage } = this.state.valid;
-        let errorTextAreaStyle = !isValid ? style.error : '';
-        let zeroHeightStyle = isValid ? style.hh : '';
-        let disabledStyle = readonly ? style.readonlyInput : '';
+        const { label, readonly, cssClass } = this.props;
+        const { isValid, errorMessage } = this.state.valid;
+        const errorTextAreaStyle = !isValid ? style.error : '';
+        const zeroHeightStyle = isValid ? style.hh : '';
+        const disabledStyle = readonly ? style.readonlyInput : '';
 
-        let textArea = <textArea
+        const textArea = <textarea
             rows='7'
             ref='input'
             className={classnames(style.textarea, errorTextAreaStyle, disabledStyle, cssClass)}

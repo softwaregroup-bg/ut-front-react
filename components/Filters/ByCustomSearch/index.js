@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import Dropdown from '../../../components/Input/Dropdown';
 import SearchBox from '../../../components/SearchBox';
@@ -53,7 +54,8 @@ export class ByCustomSearch extends Component {
                         keyProp='name'
                         onSelect={this.handleSelect}
                         data={this.props.fields}
-                        menuAutoWidth />
+                        menuAutoWidth
+                    />
                 </div>
                 <div className={style.customSearchTextField}>
                     <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} />

@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Box from '../Box';
-import { Row, Col } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 import classnames from 'classnames';
 import Icon from '../Icon';
 import style from './style.css';
@@ -21,38 +22,38 @@ const Modal = ({
     onClickOut,
     ...props
 }) => {
-    let showModalClass = show ? style.showDialog : style.hideDialog;
+    const showModalClass = show ? style.showDialog : style.hideDialog;
     let messageNode;
     let messageBodyClasses;
     let footer;
-    let leftButton = (buttons && buttons.left) ? buttons.left : null;
-    let rightButton = (buttons && buttons.right) ? buttons.right : null;
+    const leftButton = (buttons && buttons.left) ? buttons.left : null;
+    const rightButton = (buttons && buttons.right) ? buttons.right : null;
     let classes = classnames(style.overlay, showModalClass);
-    let modalClickOut = (e) => {
+    const modalClickOut = (e) => {
         onClickOut && onClickOut();
     };
     if (onClickOut) {
         classes = classnames(classes, 'pointer');
     }
-    let stopPropagation = (e) => {
+    const stopPropagation = (e) => {
         e.stopPropagation();
     };
     if (showFooter) {
-        footer = <Row className={classnames('row-reset', style.modalFooterWrapper)}>
-            <Col xs='5' className='col-reset'>
+        footer = <Grid container className={classnames('row-reset', style.modalFooterWrapper)}>
+            <Grid item xs={5} className='col-reset'>
                 <div className='pull-xs-left clearfix' style={{padding: '12px 0px 12px 15px'}}>
                     {leftButton}
                 </div>
-            </Col>
-            <Col xs='2' className={classnames('col-reset')}>
+            </Grid>
+            <Grid item xs={2} className={classnames('col-reset')}>
                 {footerMiddle}
-            </Col>
-            <Col xs='5' className='col-reset'>
+            </Grid>
+            <Grid item xs={5} className='col-reset'>
                 <div className='pull-xs-right clearfix' style={{padding: '12px 15px 12px 0px'}}>
                     {rightButton}
                 </div>
-            </Col>
-        </Row>;
+            </Grid>
+        </Grid>;
     }
     switch (messageType) {
         case 'success':

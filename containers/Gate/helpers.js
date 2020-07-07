@@ -14,8 +14,8 @@ export const checkPermission = (actions) => {
         }
     });
 
-    var foundPermissions = 0;
-    for (var i = 0; i < actions.length; i += 1) {
+    let foundPermissions = 0;
+    for (let i = 0; i < actions.length; i += 1) {
         if (permissionsCache[actions[i]]) {
             foundPermissions++;
         }
@@ -31,7 +31,7 @@ export const setPermissions = (permissions) => {
 };
 
 export const translate = (props) => (text, language) => {
-    let texts = props.gate.get('texts');
+    const texts = props.gate.get('texts');
 
     if (!texts || !texts.get(text)) {
         return text;
@@ -50,7 +50,7 @@ export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
 
 export const df = (props) => (date, format) => {
     if (!format) {
-        format = props.login.get('result') && props.login.result.getIn(['localisation', 'dateFormat']) ? props.login.result.getIn(['localisation', 'dateFormat']) : 'YYYY-MM-DD';
+        format = props.login.get('result') && props.login.result.getIn(['localisation', 'dateFormat']) ? props.login.result.getIn(['localisation', 'dateFormat']) : 'yyyy-MM-dd';
     }
 
     return dateFormat(new Date(date), format);

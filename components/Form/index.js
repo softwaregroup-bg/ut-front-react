@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';
@@ -22,11 +23,12 @@ export default class Form extends Component {
     }
 
     renderInputs() {
-        let { inputs, onChange } = this.props;
-        let inputNodes = [];
+        const { inputs, onChange } = this.props;
+        const inputNodes = [];
 
         inputs.toSeq().forEach((input, index) => {
-            inputNodes.push(<FormInput key={index}
+            inputNodes.push(<FormInput
+                key={index}
                 ref={input.get('name')}
                 className='loginInput'
                 hidden={input.get('hidden')}
@@ -38,23 +40,24 @@ export default class Form extends Component {
                 name={input.get('name')}
                 placeholder={input.get('placeholder')}
                 onChange={onChange}
-                error={input.get('error')} />);
+                error={input.get('error')}
+            />);
         });
 
         return inputNodes;
     }
 
     renderButtons() {
-        let { buttons } = this.props;
+        const { buttons } = this.props;
 
         return buttons.map((button, index) => <Button key={index} {...button} />);
     }
 
     focusNextInput() {
-        let { inputs } = this.props;
+        const { inputs } = this.props;
 
         // find the first input which doesn't have value
-        let nextInput = inputs.find(input => {
+        const nextInput = inputs.find(input => {
             return !input.get('value') && !input.get('hidden');
         });
 
@@ -73,22 +76,22 @@ export default class Form extends Component {
     }
 
     render() {
-        let { className, title, error, onSubmit } = this.props;
+        const { className, title, error, onSubmit } = this.props;
 
         return (
             <div className={getClass(styles, className)}>
-                { title ? <Title className={title.className} text={title.text} /> : false }
-                { error ? <FormErrorMessage useNew message={error} /> : false }
+                {title ? <Title className={title.className} text={title.text} /> : false}
+                {error ? <FormErrorMessage useNew message={error} /> : false}
                 <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
-                        { this.renderInputs() }
-                        { this.renderButtons() }
+                        {this.renderInputs()}
+                        {this.renderButtons()}
                     </div>
                 </form>
             </div>
         );
     }
-};
+}
 
 Form.propTypes = {
     className: PropTypes.string,

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
 import style from './style.css';
@@ -15,7 +16,7 @@ class MultiSelectBubble extends Component {
     }
 
     handleChange(val) {
-        let newValue = val.map((option) => ({ key: option.value, name: option.label }));
+        const newValue = val.map((option) => ({ key: option.value, name: option.label }));
         this.props.onChange(newValue);
     }
 
@@ -28,7 +29,7 @@ class MultiSelectBubble extends Component {
     }
 
     render() {
-        let { name, value, options, label, disabled, boldLabel } = this.props;
+        const { name, value, options, label, disabled, boldLabel } = this.props;
         return (
             <div className={style.outerWrap}>
                 <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>

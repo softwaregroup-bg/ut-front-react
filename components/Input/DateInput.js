@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
-import DatePicker from 'material-ui/DatePicker';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {DatePicker} from '@material-ui/pickers';
 import classnames from 'classnames';
 import style from './style.css';
 
 const DateInput = (props) => {
-    let { placeholder, label, boldLabel } = props;
+    const { placeholder, label, boldLabel } = props;
 
     if (label) {
         return (

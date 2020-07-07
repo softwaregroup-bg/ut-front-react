@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import Link from './../Link';
 import styles from './styles.css';
@@ -43,12 +44,13 @@ export default class Tab extends Component {
                 className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
                 activeClassName={styles.navigationTabActive}
                 params={tab.routeParams}
-                onClick={this.onTabClick}>
+                onClick={this.onTabClick}
+            >
                 {tab.title}
             </Link>
         );
     }
-};
+}
 
 Tab.deafultProps = {
     disabled: false,

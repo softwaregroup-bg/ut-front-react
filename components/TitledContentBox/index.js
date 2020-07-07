@@ -1,10 +1,11 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import style from './style.css';
 
 class TitledContentBox extends Component {
     render() {
-        let {externalContentClasses, externalHeaderClasses} = this.props;
+        const {externalContentClasses, externalHeaderClasses} = this.props;
         return (
             <div className={style.titledContentWrap}>
 

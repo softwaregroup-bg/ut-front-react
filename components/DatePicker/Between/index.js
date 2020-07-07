@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
-import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
-import {formatIso} from 'material-ui/DatePicker/dateUtils';
+import {DatePicker as DatePickerDialog} from '@material-ui/pickers';
 import style from '../style.css';
 
 const noop = () => {};
@@ -21,22 +21,24 @@ export default class DatePickerBetween extends Component {
             this.refs[`${ref}DialogWindow`].show();
         };
     }
+
     formatDate(date) {
         if (!date || isNaN(date.valueOf())) {
             return '';
         }
 
-        let { locale, dateFormat, transformDate } = this.props;
+        const { locale, dateFormat, transformDate } = this.props;
         if (transformDate) {
             return transformDate(date, dateFormat, locale);
         }
 
-        return formatIso(date);
+        return date.toISOString();
     }
-    handleAccept(ref) {
-        let {defaultValue} = this.props;
 
-        let currentDate = new Date(defaultValue);
+    handleAccept(ref) {
+        const {defaultValue} = this.props;
+
+        const currentDate = new Date(defaultValue);
         return (date) => {
             if ((currentDate && currentDate[ref] === date) || (!date && (!currentDate || !currentDate[ref]))) {
                 return;
@@ -61,22 +63,25 @@ export default class DatePickerBetween extends Component {
             });
         };
     }
+
     handleKeyPress(ref) {
         return () => {
             this.handleAccept(ref)(undefined);
         };
     }
+
     getContextStyles(className) {
         if (this.context.implementationStyle[className]) {
             return this.context.implementationStyle[className];
         }
         return null;
     }
+
     render() {
-        let boxStylesFrom = [style.dp];
-        let boxStylesTo = [style.dp];
-        let boxGroupStyles = [style.dpBoxGroupWrap];
-        let verticalClass = [];
+        const boxStylesFrom = [style.dp];
+        const boxStylesTo = [style.dp];
+        const boxGroupStyles = [style.dpBoxGroupWrap];
+        const verticalClass = [];
         if (!this.props.labelFrom) {
             boxStylesFrom.push(style.dpNoLabel);
         }
@@ -96,12 +101,12 @@ export default class DatePickerBetween extends Component {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
 
-        let {from, to} = this.props.defaultValue;
+        const {from, to} = this.props.defaultValue;
 
-        let fromDate = from
+        const fromDate = from
             ? new Date(from)
             : new Date();
-        let toDate = to
+        const toDate = to
             ? new Date(to)
             : new Date();
 
@@ -131,7 +136,7 @@ export default class DatePickerBetween extends Component {
                     initialDate={fromDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('from')}
-                    firstDayOfWeek={this.props.firstDayOfWeek}
+                    variant='dialog'
                     ref='fromDialogWindow'
                 />
                 <DatePickerDialog
@@ -141,7 +146,7 @@ export default class DatePickerBetween extends Component {
                     initialDate={toDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('to')}
-                    firstDayOfWeek={this.props.firstDayOfWeek}
+                    variant='dialog'
                     ref='toDialogWindow'
                 />
             </div>
@@ -154,7 +159,7 @@ DatePickerBetween.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     withVerticalClass: false,
-    dateFormat: 'YYYY-MM-DD'
+    dateFormat: 'yyyy-MM-dd'
 };
 DatePickerBetween.propTypes = {
     defaultValue: PropTypes.shape({

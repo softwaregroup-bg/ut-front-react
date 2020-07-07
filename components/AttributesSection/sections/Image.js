@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from '../style.css';
 
 class Image extends Component {
     render() {
-        let backgroundImageStyle = {};
+        const backgroundImageStyle = {};
         if (this.props.defaultSrc) {
             backgroundImageStyle.backgroundImage = `url(${this.props.defaultSrc}`;
         }

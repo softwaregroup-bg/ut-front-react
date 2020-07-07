@@ -1,11 +1,12 @@
-import React, {PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import style from './style.css';
 
 const Search = ({ wrapper, searchInput, searchBtn, search }) => {
-    let classesWrapper = classnames(style.searchbar, wrapper.className);
-    let classesInput = classnames(style.searchInput, searchInput.className);
-    let classesButton = classnames(style.searchButton, searchBtn.className);
+    const classesWrapper = classnames(style.searchbar, wrapper.className);
+    const classesInput = classnames(style.searchInput, searchInput.className);
+    const classesButton = classnames(style.searchButton, searchBtn.className);
     let input;
     function submit(e) {
         e.preventDefault();
@@ -27,9 +28,12 @@ const Search = ({ wrapper, searchInput, searchBtn, search }) => {
 Search.propTypes = {
     wrapper: PropTypes.object,
     searchInput: PropTypes.shape({
+        className: PropTypes.string,
         onChange: PropTypes.func.isRequired
     }),
     searchBtn: PropTypes.shape({
+        value: PropTypes.any,
+        className: PropTypes.string,
         onSubmit: PropTypes.func.isRequired
     }),
     search: PropTypes.func

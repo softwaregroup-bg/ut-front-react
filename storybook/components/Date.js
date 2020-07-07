@@ -1,8 +1,6 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import Date from '../../components/Date';
-// import dateFormat from 'date-fns/format';
-// import {format as test} from 'date-fns';
 import ContextWrapper from './../ContextWrapper.js';
 
 storiesOf('Date translation', module)

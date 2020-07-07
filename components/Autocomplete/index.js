@@ -1,11 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
-import AutoComplete from 'material-ui/AutoComplete';
+import AutoComplete from '@material-ui/core/AutoComplete';
 import style from './style.css';
 
 export default class SimpleAutoComplete extends Component {
     render() {
-        let dpStyles = {
+        const dpStyles = {
             border: '1px solid #D6D6D6',
             width: '100%',
             height: '30px'

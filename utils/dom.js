@@ -2,9 +2,9 @@ import { capitalizeFirstLetter } from './helpers';
 import React from 'react';
 
 const computeStyle = (styleRule, element, { skip } = {}) => {
-    let dimensions = ['top', 'right', 'bottom', 'left'];
+    const dimensions = ['top', 'right', 'bottom', 'left'];
     return dimensions.reduce((result, currentDimension) => {
-        let propertyName = styleRule + capitalizeFirstLetter(currentDimension);
+        const propertyName = styleRule + capitalizeFirstLetter(currentDimension);
         result[propertyName] = skip ? 0 : parseFloat(element.style[propertyName]) || 0;
 
         return result;
@@ -12,8 +12,8 @@ const computeStyle = (styleRule, element, { skip } = {}) => {
 };
 
 const matchesPolyfill = (element, selector) => {
-    var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
-    var index = 0;
+    const elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+    let index = 0;
 
     while (elements[index] && elements[index] !== element) {
         ++index;
@@ -37,9 +37,9 @@ const closestPolyfill = (element, selector) => {
 export const getMarginBox = (element, { skipBorders = false } = {}) => {
     // get width and height of element, including margins and borders
 
-    let rect = element.getBoundingClientRect();
-    let margins = computeStyle('margin', element);
-    let borders = computeStyle('border', element, { skip: skipBorders });
+    const rect = element.getBoundingClientRect();
+    const margins = computeStyle('margin', element);
+    const borders = computeStyle('border', element, { skip: skipBorders });
 
     return {
         width: rect.width + margins.marginLeft + margins.marginRight + borders.borderLeft + borders.borderRight,
@@ -51,7 +51,7 @@ export const closest = (element, selector) => {
     // returns the closest ancestor of the element which matches the given selectors
     // if there isn't such an ancestor, it returns null
 
-    let closestNative = typeof element.closest === 'function' && element.closest;
+    const closestNative = typeof element.closest === 'function' && element.closest;
     return closestNative ? element.closest(selector) : closestPolyfill(element, selector);
 };
 
@@ -59,7 +59,7 @@ export const matches = (element, selector) => {
     // returns true if the element would be selected by the specified selector string
     // otherwise, returns false
 
-    let matchesNative = typeof element.matches === 'function' &&
+    const matchesNative = typeof element.matches === 'function' &&
           (element.matches || element.msMatchesSelector ||
             element.mozMatchesSelector || element.webkitMatchesSelector);
 

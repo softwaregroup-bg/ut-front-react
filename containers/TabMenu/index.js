@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Text from '../../components/Text';
 import TabMenu from '../../components/TabMenu';
@@ -30,12 +31,15 @@ class AddTabWrapper extends Component {
     componentDidMount() {
         this.props.addTab(this.props.pathname, <Text>{this.props.title}</Text>, this.props.pathname === this.context.mainUrl, this.props.pagename, this.props.shouldUpdate);
     }
+
     componentDidUpdate() {
         this.props.addTab(this.props.pathname, <Text>{this.props.title}</Text>, this.props.pathname === this.context.mainUrl, this.props.pagename, this.props.shouldUpdate);
     }
+
     componentWillUnmount() {
         this.props.onUnmount && this.props.onUnmount();
     }
+
     render() {
         return false;
     }

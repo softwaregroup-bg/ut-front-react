@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import Accordion from '../Accordion';
 import CompareGridItem from './CompareGridItem';
@@ -43,7 +44,8 @@ class CompareGrid extends Component {
                     externalBodyClasses={styles.accordionBody}
                     externalTitleClasses={styles.accordionTitle}
                     className={styles.accordion}
-                    collapsed={false}>
+                    collapsed={false}
+                >
                     <div className={styles.container}>
                         <div className={styles.whole}>
                             <p className={styles.rejectTextField}>{rejectReason}</p>

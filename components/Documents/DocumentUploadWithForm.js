@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import immutable from 'immutable';
 import { getDocumentTypeValidators, getDocumentDescriptionValidators } from './helpers';
 import { validateAll } from '../../utils/validator';
@@ -50,11 +51,11 @@ class DocumentUploadWithForm extends Component {
     }
 
     handleValidation(fileType, description) {
-        let result = validateAll(immutable.fromJS({
+        const result = validateAll(immutable.fromJS({
             fileType: fileType,
             description: description
         }), [getDocumentTypeValidators(), getDocumentDescriptionValidators()]);
-        let errors = {};
+        const errors = {};
         if (result.errors && result.errors.length > 0) {
             result.errors.forEach((err) => {
                 errors[err.key[0]] = err.errorMessage;
@@ -128,7 +129,7 @@ class DocumentUploadWithForm extends Component {
                 break;
             }
         }
-        let description = this.state.description;
+        const description = this.state.description;
         this.closeHandler();
         if (this.props.type === 'add') {
             this.props.uploadNewDocument({

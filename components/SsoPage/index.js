@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Text from '../Text';
 /* global atob */
@@ -8,6 +9,7 @@ class SsoPage extends Component {
         this.onLoad = this.onLoad.bind(this);
         this.getElement = this.getElement.bind(this);
     }
+
     onLoad(ssoOrigin, jwtData, originRedirectTo) {
         return function(e) {
             if (e.target && e.target.contentWindow && e.target.contentWindow.postMessage) {
@@ -18,9 +20,10 @@ class SsoPage extends Component {
             }
         };
     }
+
     getElement() {
-        let {params: {ssoOrigin, appId}} = this.props.match;
-        var result;
+        const {params: {ssoOrigin, appId}} = this.props.match;
+        let result;
 
         if (!ssoOrigin || !appId || ssoOrigin === 'login' || appId === 'login') {
             result = (
@@ -30,11 +33,11 @@ class SsoPage extends Component {
             );
         } else {
             // ssoOrigin should looks like: http://abc:121/redirect/to/here
-            let originRedirectTo = atob(ssoOrigin);
-            let originHostArr = originRedirectTo.split('//');
-            let prefix = originHostArr.shift();
-            let sufix = originHostArr.shift().split('/').shift();
-            let ssoOriginUrl = `${prefix}//${sufix}/sso/client`;
+            const originRedirectTo = atob(ssoOrigin);
+            const originHostArr = originRedirectTo.split('//');
+            const prefix = originHostArr.shift();
+            const sufix = originHostArr.shift().split('/').shift();
+            const ssoOriginUrl = `${prefix}//${sufix}/sso/client`;
 
             result = (
                 <div>
@@ -47,6 +50,7 @@ class SsoPage extends Component {
         }
         return result;
     }
+
     render() {
         return (
             (this.props.loginData && this.props.loginData.jwt && this.getElement()) ||

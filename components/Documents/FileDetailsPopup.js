@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { defaultImageDimensions } from './config';
 import Popup from '../Popup';
 import FileDetailedView from './FileDetailedView';
@@ -76,7 +77,8 @@ export default class FileDetailsPopup extends Component {
                 closeOnOverlayClick={closeOnOverlayClick}
                 closeOnEsc={closeOnEsc}
                 closePopup={closePopup}
-                footer={{actionButtons: this.actionButtons}}>
+                footer={{actionButtons: this.actionButtons}}
+            >
                 {this.view}
             </Popup>
         );

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import immutable from 'immutable';
 import Popup from '../Popup';
 import Input from '../Input';
@@ -107,7 +108,8 @@ export default class SelectDialog extends Component {
                             value={item.get('id')}
                             checked={!!this.state.selectedUnitIds.find(unit => item.get('id') === unit)}
                             fullWidth
-                            handleChange={this.handleSelectUnit} />
+                            handleChange={this.handleSelectUnit}
+                        />
                     );
                 })
             );
@@ -124,13 +126,15 @@ export default class SelectDialog extends Component {
                 header={{text: title, closePopup: this.closeDialog}}
                 footer={{actionButtons: this.dialogButtons}}
                 closePopup={this.closeDialog}
-                closeOnEsc >
+                closeOnEsc
+            >
                 <div className={style.selectDialogWrapper}>
                     <div className={style.searchInputWrapper}>
                         <Input
                             value={this.state.searchValue}
                             placeholder={searchPlaceholder || 'Search'}
-                            onChange={this.onSearchInputChange} />
+                            onChange={this.onSearchInputChange}
+                        />
                     </div>
                     <div className={style.UnitsMessage}>{dialogMessage}</div>
                     <div className={style.unitsContainer}>

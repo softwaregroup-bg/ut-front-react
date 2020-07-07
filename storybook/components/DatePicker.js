@@ -1,9 +1,8 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import DatePickerRange from './../../components/DatePicker/Between';
 import DatePicker from './../../components/DatePicker/Simple';
 import ContextWrapper from './../ContextWrapper.js';
-// import DropdownSelect from '../../components/DropdownSelect';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
 const defaultValue = {
@@ -20,7 +19,8 @@ storiesOf('DatePicker', module)
                 <ContextWrapper>
                     <DatePicker
                         defaultValue={defaultValue}
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -31,7 +31,8 @@ storiesOf('DatePicker', module)
                 <ContextWrapper>
                     <DatePickerRange
                         defaultValue={defaultValue}
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -47,7 +48,8 @@ storiesOf('DatePicker', module)
                         labelTo='labelTo test'
                         okLabel='save me'
                         cancelLabel='cancel me'
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -59,7 +61,8 @@ storiesOf('DatePicker', module)
                     <DatePickerRange
                         defaultValue={defaultValue}
                         DateTimeFormat={DateTimeFormat}
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -71,7 +74,8 @@ storiesOf('DatePicker', module)
                     <DatePickerRange
                         defaultValue={defaultValue}
                         mode='portrait'
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -83,7 +87,8 @@ storiesOf('DatePicker', module)
                     <DatePickerRange
                         defaultValue={defaultValue}
                         container='inline'
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -95,7 +100,8 @@ storiesOf('DatePicker', module)
                     <DatePickerRange
                         defaultValue={defaultValue}
                         locale='en-US'
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -107,7 +113,8 @@ storiesOf('DatePicker', module)
                     <DatePickerRange
                         defaultValue={defaultValue}
                         locale='en-US'
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>
@@ -119,7 +126,8 @@ storiesOf('DatePicker', module)
                     <DatePickerRange
                         defaultValue={defaultValue}
                         firstDayOfWeek={4}
-                        onChange={onChange} />
+                        onChange={onChange}
+                    />
                 </ContextWrapper>
             </div>
         </MaterialUILayout>

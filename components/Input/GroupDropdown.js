@@ -1,10 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
-import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import Divider from 'material-ui/Divider';
-import MenuItem from 'material-ui/MenuItem';
-import SvgDropdownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import Popover from '@material-ui/core/Popover';
+import MenuList from '@material-ui/core/MenuList';
+import Divider from '@material-ui/core/Divider';
+import MenuItem from '@material-ui/core/MenuItem';
+import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
+import Box from '@material-ui/core/Box';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -17,25 +18,25 @@ class GroupDropdown extends Dropdown {
             value: props.defaultSelected || '__placeholder__',
             valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
         };
-        this.toggleOpen = this.toggleOpen.bind(this);
-        this.toggleClose = this.toggleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
-    toggleOpen(event) {
+    handleOpen(event) {
         return this.setState({open: true, anchorEl: event.currentTarget});
     }
 
-    toggleClose() {
+    handleClose() {
         return this.setState({open: false});
     }
 
     handleChange(item) {
-        let { onSelect, keyProp } = this.props;
-        let objectToPassOnChange = {key: keyProp, value: item.key, initValue: this.state.value};
+        const { onSelect, keyProp } = this.props;
+        const objectToPassOnChange = {key: keyProp, value: item.key, initValue: this.state.value};
 
         this.setState({value: item.key, valid: {isValid: true, errorMessage: ''}});
         onSelect(objectToPassOnChange);
-        this.toggleClose();
+        this.handleClose();
     }
 
     get dropdownPlaceholder() {
@@ -45,9 +46,9 @@ class GroupDropdown extends Dropdown {
     }
 
     getMenuItems() {
-        let { data } = this.props;
+        const { data } = this.props;
         const groups = data.reduce((acc, curr) => {
-            let group = acc[curr.group] = acc[curr.group] || [];
+            const group = acc[curr.group] = acc[curr.group] || [];
             group.push({
                 key: curr.key,
                 name: curr.name
@@ -62,12 +63,13 @@ class GroupDropdown extends Dropdown {
                         key={group}
                         className={style.groupDropdownMenuItem}
                         disabled
-                        primaryText={group} />
+                        primaryText={group}
+                    />
                     <Divider />
                     {
                         groups[group].map((item, i) => {
-                            let isSelected = this.state.value === item.key;
-                            let className = isSelected
+                            const isSelected = this.state.value === item.key;
+                            const className = isSelected
                                 ? classnames(style.groupDropdownMenuItem, style.groupDropdownMenuSelectedItem)
                                 : style.groupDropdownMenuItem;
                             return (
@@ -76,8 +78,9 @@ class GroupDropdown extends Dropdown {
                                     className={className}
                                     disabled={item.disabled}
                                     value={item.key}
-                                    onTouchTap={() => { this.handleChange(item); }}
-                                    primaryText={item.name} />
+                                    onClick={() => { this.handleChange(item); }}
+                                    primaryText={item.name}
+                                />
                             );
                         })
                     }
@@ -90,55 +93,54 @@ class GroupDropdown extends Dropdown {
                 className={style.groupDropdownMenuItem}
                 key={Math.random() + '-ddfg'}
                 value={this.props.placeholderValue}
-                onTouchTap={() => { this.handleChange({ key: '__placeholder__' }); }}
-                primaryText={this.props.placeholder} />
+                onClick={() => { this.handleChange({ key: '__placeholder__' }); }}
+                primaryText={this.props.placeholder}
+            />
         );
         return menuItems;
     }
 
     renderDropDown() {
-        let menuItems = this.getMenuItems();
-        let { cssStyle, mergeStyles } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
-        let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
-        let cursorStyle = this.props.disabled ? ddstyles.notAllowed : ddstyles.pointer;
-        let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
-        let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        const menuItems = this.getMenuItems();
+        const { cssStyle, mergeStyles } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
+        const errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
+        const cursorStyle = this.props.disabled ? ddstyles.notAllowed : ddstyles.pointer;
+        const iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
+        const rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         // 30 px for dropdown icon
-        let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
+        const labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
         return (
-            <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle)} onClick={!this.props.disabled && this.toggleOpen}>
-                <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
-                    <div className={ddstyles.groupDropdownPlaceholder}>
-                        <div style={{maxWidth: labelMaxWidth}}>
-                            {this.dropdownPlaceholder}
+            <>
+                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
+                    <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
+                        <div className={ddstyles.groupDropdownPlaceholder}>
+                            <div style={{maxWidth: labelMaxWidth}}>
+                                {this.dropdownPlaceholder}
+                            </div>
                         </div>
+                        <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
+                            <SvgDropdownIcon htmlColor='white' style={{width: '100%', height: '100%'}} />
+                        </div>
+                        <div className={ddstyles.hideTextWrap} />
                     </div>
-                    <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
-                        <SvgDropdownIcon color='#fff' style={{width: '26px', height: '26px'}} />
-                    </div>
-                    <div className={ddstyles.hideTextWrap} />
                 </div>
                 <Popover
                     open={this.state.open}
-                    onRequestClose={this.toggleClose}
+                    onClose={this.handleClose}
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical} >
-                    <Menu
-                        autoWidth={false}
-                        disableAutoFocus
-                        value={this.state.value}
-                        maxHeight={300}
-                        style={{width: rootElementWidth}}
-                        className={ddstyles.groupDropdownMenu}>
-                        {menuItems}
-                    </Menu>
+                    transformOrigin={{horizontal: 'left', vertical: 'top'}}
+                >
+                    <Box maxHeight={300} width={rootElementWidth}>
+                        <MenuList value={this.state.value} className={ddstyles.groupDropdownMenu}>
+                            {menuItems}
+                        </MenuList>
+                    </Box>
                 </Popover>
-            </div>
+            </>
         );
     }
 }

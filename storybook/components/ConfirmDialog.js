@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import MaterialUILayout from '../../components/MaterialUILayout';
 
@@ -18,8 +18,9 @@ class Wrapper extends Component {
             hasActiveFilters: false
         };
     }
+
     render() {
-        let handleButtonClick = () => this.refs['confirmDialog'].open();
+        const handleButtonClick = () => this.refs.confirmDialog.open();
         return (
             <MaterialUILayout>
                 <div>

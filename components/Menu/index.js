@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Sidebar from '../Sidebar';
-import { Container, Row, Col } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 
 Menu.propTypes = {
     children: PropTypes.element,
@@ -10,21 +11,17 @@ Menu.propTypes = {
 export default function Menu({ children, menuItems }) {
     return (
         <div>
-            <Container fluid>
-                <Row>
-                    <Col xs='12'>
-                        <Sidebar menuItems={menuItems} />
-                    </Col>
-                </Row>
-            </Container>
-            <Container>
-                <Row>
-                    <Col xs='2' />
-                    <Col xs='10'>
-                        {children}
-                    </Col>
-                </Row>
-            </Container>
+            <Grid container>
+                <Grid item xs={12}>
+                    <Sidebar menuItems={menuItems} />
+                </Grid>
+            </Grid>
+            <Grid>
+                <Grid xs={2} />
+                <Grid xs={10}>
+                    {children}
+                </Grid>
+            </Grid>
         </div>
     );
 }

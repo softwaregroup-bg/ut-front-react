@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Creatable } from 'react-select';
 import classnames from 'classnames';
 import style from './style.css';
@@ -15,7 +16,7 @@ class MultiSelectBubbleCustom extends Component {
     }
 
     handleChange(val) {
-        let newValue = val.map((option) => ({ key: option.value, name: option.label }));
+        const newValue = val.map((option) => ({ key: option.value, name: option.label }));
         this.props.onChange(newValue);
     }
 

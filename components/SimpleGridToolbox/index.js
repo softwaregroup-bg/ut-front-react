@@ -1,16 +1,17 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 
 import style from './style.css';
 import cssStandard from '../../assets/index.css';
 export class Filters extends Component {
     render() {
-        var classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
+        const classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
         this.props.opened && classes.push(style.opened);
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
             <div className={classnames(classes)}>
-                {this.props.title && <span className={this.props.isTitleLink ? style.link : style.label} onTouchTap={this.props.toggle}>{this.props.title}</span>}
+                {this.props.title && <span className={this.props.isTitleLink ? style.link : style.label} onClick={this.props.toggle}>{this.props.title}</span>}
                 {this.props.contentWrapClassName
                     ? <div className={this.props.contentWrapClassName}>
                         {this.props.children}
@@ -19,7 +20,7 @@ export class Filters extends Component {
             </div>
         );
     }
-};
+}
 Filters.propTypes = {
     toggle: PropTypes.func,
     children: PropTypes.any.isRequired,

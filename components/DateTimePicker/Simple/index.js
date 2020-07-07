@@ -1,10 +1,8 @@
 
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import classnames from 'classnames';
-import DatePickerDialog from 'material-ui/DatePicker/DatePickerDialog';
-import { formatIso } from 'material-ui/DatePicker/dateUtils';
-import TimePickerDialog from 'material-ui/TimePicker/TimePickerDialog';
-import { formatTime } from 'material-ui/TimePicker/timeUtils';
+import {DatePicker, TimePicker} from '@material-ui/pickers';
 import Dropdown from './../../Input/Dropdown';
 import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
 
@@ -29,35 +27,38 @@ class DateTimePicker extends Component {
             this.refs[ref].show();
         };
     }
+
     formatDate(date) {
         if (!date || isNaN(date.valueOf())) {
             return '';
         }
 
-        let { locale, dateFormat, transformDate } = this.props;
+        const { locale, dateFormat, transformDate } = this.props;
 
         if (transformDate) {
             return transformDate(date, dateFormat, locale);
         }
 
-        return formatIso(date);
+        return date.toISOString();
     }
+
     formatTime(time) {
         if (!time || isNaN(time.valueOf())) {
             return '';
         }
 
-        let { locale, timeFormat, transformTime } = this.props;
+        const { locale, timeFormat, transformTime } = this.props;
 
         if (transformTime) {
             return transformTime(time, timeFormat, locale);
         }
 
-        return formatTime(time);
+        return time.toISOString().substr(11, 5);
     }
+
     handleAccept(ref) {
-        let {defaultValue, timeType} = this.props;
-        let currentDate = new Date(defaultValue);
+        const {defaultValue, timeType} = this.props;
+        const currentDate = new Date(defaultValue);
         return (newDate) => {
             if (newDate === currentDate) {
                 return;
@@ -86,10 +87,10 @@ class DateTimePicker extends Component {
                     }
                 }
             } else if (ref === 'time' && timeType === 'timeDropdown') {
-                var timeSet = function() {
-                    var time;
+                const timeSet = function() {
+                    let time;
                     if (newDate.value.indexOf('am') > -1 || newDate.value.indexOf('pm') > -1) {
-                        var newTime = newDate ? newDate.value.split(' ') : [];
+                        const newTime = newDate ? newDate.value.split(' ') : [];
                         time = newTime.length ? newTime[0].split(':') : [];
                         time[0] = newTime[1] === 'am' ? time[0] < 12 ? time[0] : parseInt(time[0]) - 12 : newTime[1] === 'pm' ? time[0] < 12 ? parseInt(time[0]) + 12 : time[0] : '';
                     } else {
@@ -120,31 +121,34 @@ class DateTimePicker extends Component {
             });
         };
     }
+
     handleKeyPress(ref) {
         return () => {
             this.handleAccept(ref)(undefined);
         };
     }
+
     getContextStyles(className) {
         if (this.context.implementationStyle[className]) {
             return this.context.implementationStyle[className];
         }
         return null;
     }
+
     render() {
-        let { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
-        let { defaultValue, timeType } = this.props;
+        const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
+        const { defaultValue, timeType } = this.props;
 
-        let outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
-        let boldLabelStyle = boldLabel ? style.boldLabel : '';
+        const outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
+        const boldLabelStyle = boldLabel ? style.boldLabel : '';
 
-        let format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
-        var defaultDate = new Date().setHours(0, 0, 0, 0);
-        var dropdownData = format === '24hr'
+        const format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
+        const defaultDate = new Date().setHours(0, 0, 0, 0);
+        const dropdownData = format === '24hr'
             ? timeValues24HrFormat
             : format === 'ampm' ? timeValues12HrFormat : '';
 
-        let date = defaultValue
+        const date = defaultValue
             ? new Date(defaultValue)
             : new Date(defaultDate);
 
@@ -173,9 +177,10 @@ class DateTimePicker extends Component {
                                 data={dropdownData}
                                 keyProp='time'
                                 onSelect={this.handleAccept('time')}
-                                defaultSelected={defaultValue ? this.formatTime(date) : ''} />
+                                defaultSelected={defaultValue ? this.formatTime(date) : ''}
+                            />
                         </div> : ''}
-                    <DatePickerDialog
+                    <DatePicker
                         cancelLabel={cancelLabel}
                         okLabel={okLabel}
                         container={container}
@@ -183,15 +188,19 @@ class DateTimePicker extends Component {
                         mode={mode}
                         onAccept={this.handleAccept('date')}
                         firstDayOfWeek={firstDayOfWeek}
-                        ref='date' />
-                    {timeType === 'timePicker' ? <TimePickerDialog
+                        variant='dialog'
+                        ref='date'
+                    />
+                    {timeType === 'timePicker' ? <TimePicker
                         cancelLabel={cancelLabel}
                         okLabel={okLabel}
                         initialTime={date}
                         mode={mode}
                         onAccept={this.handleAccept('time')}
                         format={format}
-                        ref='time' /> : ''}
+                        variant='dialog'
+                        ref='time'
+                    /> : ''}
                 </div>
             </div>
         );
@@ -204,7 +213,7 @@ DateTimePicker.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     timeFormat: 'HH:mm',
-    dateFormat: 'YYYY-MM-DD',
+    dateFormat: 'yyyy-MM-dd',
     data: timeValues24HrFormat
 };
 DateTimePicker.propTypes = {

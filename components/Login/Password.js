@@ -1,20 +1,24 @@
-import React, { PropTypes } from 'react';
-import TextField from 'material-ui/TextField/TextField';
-import Card from 'material-ui/Card/Card';
-import CardText from 'material-ui/Card/CardText';
+import PropTypes from 'prop-types';
+import React from 'react';
+import TextField from '@material-ui/core/TextField/TextField';
+import Card from '@material-ui/core/Card/Card';
+import CardText from '@material-ui/core/Card/CardText';
 import style from './style.css';
 import {textFieldStyle, textFieldInputStyle} from './style.js';
 
-const Password = React.createClass({
-    propTypes: {
+class Password extends React.Component {
+    static propTypes = {
         submit: PropTypes.func
-    },
-    getValue() {
+    };
+
+    getValue = () => {
         return this.refs.f.getValue();
-    },
+    };
+
     componentDidMount() {
         this.refs.f.input.focus();
-    },
+    }
+
     render() {
         return (
             <Card>
@@ -34,6 +38,6 @@ const Password = React.createClass({
             </Card>
         );
     }
-});
+}
 
 export default Password;

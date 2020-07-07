@@ -1,19 +1,20 @@
-import React, { PropTypes } from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
 
 const StatusDialog = ({ status, onClose }) => {
-    var actions = [];
+    const actions = [];
 
-    let isOpen = status.size > 0;
-    let statusString = status.get('status');
+    const isOpen = status.size > 0;
+    const statusString = status.get('status');
     if (statusString !== 'pending') {
-        actions.push(<FlatButton label='Ok' onTouchTap={onClose} />);
+        actions.push(<Button label='Ok' onClick={onClose} />);
     }
 
-    let upperCasedStatus = statusString ? statusString.toUpperCase() : '';
-    let message = status.get('message');
-    let displayMsg = [];
+    const upperCasedStatus = statusString ? statusString.toUpperCase() : '';
+    const message = status.get('message');
+    const displayMsg = [];
     if (upperCasedStatus) {
         displayMsg.push(upperCasedStatus);
     }

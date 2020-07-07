@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import style from './style.css';
 
@@ -6,6 +7,7 @@ export default class Logo extends React.Component {
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
     }
+
     render() {
         return (
             <div>

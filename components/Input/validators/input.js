@@ -2,7 +2,7 @@ import { textValidations } from '../../../validator/constants';
 import { isRequiredRule, lengthRule, regexRule, isNumberOnlyRule, isValidUniformCivilNumberRule, isIntegerOnlyRule, isIntegerRangeRule, isDecimalOnlyRule, isValidEmailRule, isUniqueValueRule, isValidIBANRule } from '../../../validator';
 
 export default (valueToValidate, validators) => {
-    let result = { isValid: true, errors: [] };
+    const result = { isValid: true, errors: [] };
 
     validators.forEach((validator) => {
         if (validator.type === textValidations.isRequired) isRequiredRule(valueToValidate, validator, result);

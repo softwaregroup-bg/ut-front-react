@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import IPInput from '../Simple';
 import Input from '../../Input';
 import { textValidations } from '../../../validator/constants';
@@ -7,13 +8,13 @@ import style from './style.css';
 
 class Range extends Component {
     render() {
-        let zeroHeightStyle = this.props.isValidGeneral ? style.hh : '';
+        const zeroHeightStyle = this.props.isValidGeneral ? style.hh : '';
         let isValidFrom = this.props.isValidFrom;
         let isValidTo = this.props.isValidTo;
         let errorMessageFrom = this.props.errorMessageFrom;
         let errorMessageTo = this.props.errorMessageTo;
         let errorMessageGeneral = this.props.errorMessageGeneral;
-        let { inputWrapper, inputWrapClassName, keyProp, value, validators, labelClassName, boldLabel, inputType, errorMessageWrap } = this.props;
+        const { inputWrapper, inputWrapClassName, keyProp, value, validators, labelClassName, boldLabel, inputType, errorMessageWrap } = this.props;
         if (isValidFrom && isValidTo && this.props.valueFrom !== '...' && this.props.valueTo !== '...') {
             if (this.props.isValidGeneral) {
                 errorMessageFrom = '';

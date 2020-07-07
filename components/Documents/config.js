@@ -1,7 +1,7 @@
 export const detailsMapping = {
-    'extension': 'File type',
-    'dateUploaded': 'Date uploaded',
-    'description': 'Description'
+    extension: 'File type',
+    dateUploaded: 'Date uploaded',
+    description: 'Description'
 };
 
 export const defaultImageDimensions = {

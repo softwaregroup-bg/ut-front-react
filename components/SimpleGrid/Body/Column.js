@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { propTypeField } from '../common';
 
 export default class Column extends Component {
@@ -6,24 +7,27 @@ export default class Column extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
     getStyle(name) {
         return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name];
     }
+
     handleClick(value) {
         return () => {
             this.props.handleClick(this.props.data, this.props.field, value, this.props.recordIndex);
         };
     }
+
     render() {
         if (this.props.field.visible === false) {
             return false;
         }
-        var reMapKey = (this.props.data[this.props.field.name] === undefined) ? '' : this.props.data[this.props.field.name];
-        var value = reMapKey;
+        const reMapKey = (this.props.data[this.props.field.name] === undefined) ? '' : this.props.data[this.props.field.name];
+        let value = reMapKey;
         if (typeof (this.props.field.dataReMap) !== 'undefined') {
             value = this.props.field.dataReMap[reMapKey];
         }
-        var fieldClasses = [];
+        const fieldClasses = [];
         if (this.props.field.className) {
             fieldClasses.push(this.props.field.className);
         }
@@ -32,7 +36,7 @@ export default class Column extends Component {
         }
 
         return (
-            <td onTouchTap={this.handleClick(value)} style={this.props.field.style} className={fieldClasses.join(' ')} colSpan={this.props.colspan}>
+            <td onClick={this.handleClick(value)} style={this.props.field.style} className={fieldClasses.join(' ')} colSpan={this.props.colspan}>
                 {this.props.transformValue(value, this.props.field, this.props.data, false, this.props.recordIndex)}
             </td>
         );

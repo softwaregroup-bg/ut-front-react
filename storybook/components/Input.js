@@ -1,9 +1,9 @@
 import React from 'react';
 import immutable from 'immutable';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import { storiesOf, action } from '@kadira/storybook';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import getMuiTheme from '@material-ui/core/styles/getMuiTheme';
+import lightBaseTheme from '@material-ui/core/styles/baseThemes/lightBaseTheme';
+import { storiesOf, action } from '@storybook/react';
 import { textValidations } from './../../validator/constants.js';
 import Input from '../../components/Input';
 import Dropdown from './../../components/Input/Dropdown';
@@ -176,14 +176,14 @@ storiesOf('Inputs, (Text, Textarea, Dropdown, Date, Radio, ..., ..)', module)
         <Checkbox
             onClick={changeInput}
             checked
-            label={'Checkbox label'}
+            label='Checkbox label'
         />
     ))
     .add('Checkbox unchecked', () => (
         <Checkbox
             onClick={changeInput}
             checked={false}
-            label={'Checkbox label'}
+            label='Checkbox label'
         />
     ))
     .add('MultiStateCheckbox', () => (

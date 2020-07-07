@@ -15,7 +15,7 @@ export default (state = defaultState, action) => {
                 texts = action.result.translations;
             }
             if (texts.length) {
-                let textsMapping = {};
+                const textsMapping = {};
 
                 texts.map((text) => {
                     textsMapping[text.dictionaryKey] = text.translatedValue;

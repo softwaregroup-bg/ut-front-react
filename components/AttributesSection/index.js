@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import types from './types.js';
 import immutable from 'immutable';
 
@@ -6,17 +7,17 @@ import Text from './sections/Text';
 import Heading from './sections/Heading';
 import Image from './sections/Image';
 import LinkButton from './sections/Link';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import classnames from 'classnames';
 import style from './style.css';
 
 const AttributesSection = (props) => {
-    let { checked, selected, isInfoLoading, multipleItemNames, checkedMapKey, selectedSourceData, singleItemName, hasPermissions } = props;
+    const { checked, selected, isInfoLoading, multipleItemNames, checkedMapKey, selectedSourceData, singleItemName, hasPermissions } = props;
 
-    let getCheckedItemsText = () => {
-        let multipleItemNamesString = multipleItemNames !== '' ? multipleItemNames : singleItemName + 's';
-        let itemPlurizationName = checked.size === 1 ? singleItemName : multipleItemNamesString;
+    const getCheckedItemsText = () => {
+        const multipleItemNamesString = multipleItemNames !== '' ? multipleItemNames : singleItemName + 's';
+        const itemPlurizationName = checked.size === 1 ? singleItemName : multipleItemNamesString;
 
         let itemNamesAsString = '';
         if (checked.size < 10) {
@@ -42,7 +43,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let getSelectedInfo = () => {
+    const getSelectedInfo = () => {
         return (
             <div>
                 <div className={style.selectedAndCheckeLabel}>Selected</div>
@@ -61,7 +62,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderSelectedRow = (sourceData) => {
+    const renderSelectedRow = (sourceData) => {
         let value;
 
         if (Array.isArray(sourceData.key)) {
@@ -91,7 +92,7 @@ const AttributesSection = (props) => {
         }
     };
 
-    let renderChecked = () => {
+    const renderChecked = () => {
         return (
             <div className={style.wrap}>
                 {getCheckedItemsText()}
@@ -99,7 +100,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderProgress = () => {
+    const renderProgress = () => {
         return (
             <div className={classnames(style.wrap, style.progressWrap)}>
                 <div className={style.renderProgress}>
@@ -109,7 +110,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderSelected = () => {
+    const renderSelected = () => {
         return (
             <div className={style.wrap}>
                 {getSelectedInfo()}
@@ -117,7 +118,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderCheckedAndSelected = () => {
+    const renderCheckedAndSelected = () => {
         return (
             <div className={style.wrap}>
                 {getCheckedItemsText()}
@@ -129,7 +130,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderEmpty = () => {
+    const renderEmpty = () => {
         return (
             <div className={style.wrap}>
                 <div className={classnames(style.noSelectedData, style.innerWrap)}>
@@ -139,7 +140,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderNoPermissions = () => {
+    const renderNoPermissions = () => {
         return (
             <div className={style.wrap}>
                 <div className={classnames(style.noSelectedData, style.innerWrap)}>

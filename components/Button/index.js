@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 
-const Button = React.createClass({
-    propTypes: {
+class Button extends React.Component {
+    static propTypes = {
         children: PropTypes.node,
         button: PropTypes.oneOf([
             'add',
@@ -27,15 +28,18 @@ const Button = React.createClass({
         ]),
         sizeType: PropTypes.oneOf(['small', 'big']),
         fullWidth: PropTypes.bool
-    },
-    contextTypes: {
+    }
+
+    static contextTypes = {
         implementationStyle: PropTypes.object
-    },
+    }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
-    },
+    }
+
     render() {
-        let {children, button, sizeType, fullWidth = false, ...props} = this.props;
+        const {children, button, sizeType, fullWidth = false, ...props} = this.props;
         let sizeTypeClass;
 
         switch (sizeType) {
@@ -45,7 +49,7 @@ const Button = React.createClass({
             default:
                 sizeTypeClass = this.getStyle('btnNormal');
         }
-        let fullWidthClass = fullWidth ? this.getStyle('btnFullWidth') : null;
+        const fullWidthClass = fullWidth ? this.getStyle('btnFullWidth') : null;
         let typeClass;
         switch (button) {
             case 'add':
@@ -94,6 +98,6 @@ const Button = React.createClass({
             <button type='button' className={classes} tabIndex='0' {...props}>{children}</button>
         );
     }
-});
+};
 
 export default Button;

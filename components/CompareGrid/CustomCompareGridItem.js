@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import TitledContentBox from '../TitledContentBox';
 import Accordion from '../Accordion';
@@ -8,19 +9,20 @@ import styles from './styles.css';
 
 class CustomCompareGridItem extends Component {
     renderCustomComponent(data, type) {
-        let title = titleMapper[type]();
-        let customComponent = data.get('customComponent');
+        const title = titleMapper[type]();
+        const customComponent = data.get('customComponent');
         return <TitledContentBox
             externalContentClasses={styles.titledBoxBody}
             externalHeaderClasses={styles.titleBoxTitle}
-            title={title}>
+            title={title}
+        >
             {customComponent.get(type)}
         </TitledContentBox>;
     };
 
     render() {
-        let { data, single } = this.props;
-        let columnStyle = single ? styles.whole : styles.half;
+        const { data, single } = this.props;
+        const columnStyle = single ? styles.whole : styles.half;
         return (
             <div>
                 <Accordion
@@ -29,7 +31,8 @@ class CustomCompareGridItem extends Component {
                     externalBodyClasses={styles.accordionBody}
                     externalTitleClasses={styles.accordionTitle}
                     className={styles.accordion}
-                    collapsed={!data.get('isOpen')}>
+                    collapsed={!data.get('isOpen')}
+                >
                     <div className={styles.container}>
                         <div className={columnStyle}>
                             {this.renderCustomComponent(data, titleTypes.current)}
@@ -43,7 +46,7 @@ class CustomCompareGridItem extends Component {
             </div>
         );
     }
-};
+}
 
 CustomCompareGridItem.propTypes = {
     data: PropTypes.object.isRequired,

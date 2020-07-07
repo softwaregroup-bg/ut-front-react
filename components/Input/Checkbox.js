@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -6,21 +7,21 @@ import classnames from 'classnames';
 const noop = function() {};
 
 const Checkbox = (props) => {
-    let {isDisabled, ...propsLeft} = props;
+    const {isDisabled, ...propsLeft} = props;
     delete propsLeft.isDisabled; // Remove wrong html input prop (no such props from input tag)
 
     let label = '';
     if (props.label) {
-        label = <p onTouchTap={isDisabled ? noop : props.onClick}>{props.label}</p>;
+        label = <p onClick={isDisabled ? noop : props.onClick}>{props.label}</p>;
     }
-    let isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
+    const isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
 
     return (
-        <span className={classnames(style.checkBoxWrapper, isDisabledClass)} >
+        <span className={classnames(style.checkBoxWrapper, isDisabledClass)}>
             <input {...propsLeft} type='checkbox' onChange={noop} className={classnames(style.checkBox, isDisabledClass)} />
             <div className={style.innerWrap}>
-                <label className={style.checkBoxWrap} onTouchTap={isDisabled ? noop : props.onClick}><span className={classnames(style.checkBoxSpanWrapper, isDisabledClass)} /></label>
-                {label && <div className={style.lableWrap} >{label}</div>}
+                <label className={style.checkBoxWrap} onClick={isDisabled ? noop : props.onClick}><span className={classnames(style.checkBoxSpanWrapper, isDisabledClass)} /></label>
+                {label && <div className={style.lableWrap}>{label}</div>}
             </div>
         </span>
     );

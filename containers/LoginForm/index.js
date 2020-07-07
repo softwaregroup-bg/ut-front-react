@@ -1,6 +1,8 @@
 /** eslint-disable react/no-unused-prop-types */
 
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
 
 import Form from '../../components/Form';
@@ -19,7 +21,7 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs } = this.props;
+        const { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs } = this.props;
 
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
@@ -59,13 +61,13 @@ class LoginForm extends Component {
     }
 
     onChange(e) {
-        let { name, value } = e.target;
+        const { name, value } = e.target;
         e.persist();
         this.handleChange({ name, value });
     }
 
     handleChange({ name, value }) {
-        let { setInputValue } = this.props;
+        const { setInputValue } = this.props;
 
         setInputValue({
             input: name,
@@ -78,9 +80,9 @@ class LoginForm extends Component {
         let allInputs = form.querySelectorAll('input');
         allInputs = Array.prototype.slice.call(allInputs); // convert NodeList to Array - required for IE
         allInputs.forEach((input) => {
-            let { name, value } = input;
+            const { name, value } = input;
             // This sync does not apply to hidden fields
-            let isHiddenField = input.getAttribute('data-hidden') === 'true';
+            const isHiddenField = input.getAttribute('data-hidden') === 'true';
 
             if (inputs.get(name) && inputs.get(name).get('value') !== value && !isHiddenField) {
                 // If change and submit events happen in the 100ms debounce range
@@ -91,7 +93,7 @@ class LoginForm extends Component {
     }
 
     validateForm(e) {
-        let { validateForm } = this.props;
+        const { validateForm } = this.props;
 
         e.preventDefault();
         this.syncInputsValuesWithStore(e.target);
@@ -99,7 +101,7 @@ class LoginForm extends Component {
     }
 
     submit(loginType, loginData) {
-        let { bioScan, identityCheck, routerParams: {appId} } = this.props;
+        const { bioScan, identityCheck, routerParams: {appId} } = this.props;
         if (appId) {
             loginData = loginData.set('appId', appId);
         }
@@ -107,7 +109,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
+        const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
                 ref='loginForm'
@@ -117,7 +119,8 @@ class LoginForm extends Component {
                 buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
                 onChange={this.onChange}
                 onSubmit={this.validateForm}
-                error={error} />
+                error={error}
+            />
         );
     }
 }

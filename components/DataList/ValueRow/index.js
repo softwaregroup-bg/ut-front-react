@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classnames from 'classnames';
 import Icon from '../../Icon';
 import Text from '../../Text';
@@ -9,8 +10,8 @@ const ValueRow = ({children = '', hoverValue, showAlert = false, onClick, readOn
     if (!hValueText) {
         hValueText = children;
     }
-    let alertNode = showAlert ? <Icon icon='status' className={classnames('pull-xs-right', style.alertNode)} /> : '';
-    let classes = classnames('f14', style.valueRowValue, {'pointer': !readOnly});
+    const alertNode = showAlert ? <Icon icon='status' className={classnames('pull-xs-right', style.alertNode)} /> : '';
+    const classes = classnames('f14', style.valueRowValue, {pointer: !readOnly});
     return (
         <div {...props}>
             <div className={classes} onClick={onClick}>

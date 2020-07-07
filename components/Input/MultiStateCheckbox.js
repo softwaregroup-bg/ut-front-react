@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -14,6 +15,7 @@ class MultiStateCheckbox extends Component {
             own: this.props.own || this.props.checked === null
         };
     }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.reload) {
             this.state = {
@@ -22,27 +24,28 @@ class MultiStateCheckbox extends Component {
             };
         }
     }
+
     onClick() {
-        let oldState = states.indexOf(this.state.selected);
-        let newState = oldState > -1 && oldState < states.length - 1 ? oldState + 1 : 0;
+        const oldState = states.indexOf(this.state.selected);
+        const newState = oldState > -1 && oldState < states.length - 1 ? oldState + 1 : 0;
         this.setState({
             selected: states[newState],
             own: true
         });
-        let value = newState === 1 ? true : newState === 2 ? false : null;
+        const value = newState === 1 ? true : newState === 2 ? false : null;
         this.props.onChange(value);
     }
 
     render() {
-        let inherited = !this.state.own ? style.inherited : {};
-        let selectedClass = this.state.selected ? style[this.state.selected] : {};
-        let click = () => this.onClick();
+        const inherited = !this.state.own ? style.inherited : {};
+        const selectedClass = this.state.selected ? style[this.state.selected] : {};
+        const click = () => this.onClick();
         return <label className={classnames(style.multistatecheckbox, inherited, selectedClass)}>
             <input {...this.props} type='checkbox' onChange={click} />
             <span />
         </label>;
     }
-};
+}
 
 MultiStateCheckbox.propTypes = {
     onChange: PropTypes.func,

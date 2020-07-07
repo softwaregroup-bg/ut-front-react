@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Vertical } from '../Layout';
 import Toolbox from './Toolbox';
 import DocumentsGrid from './DocumentsGrid';
@@ -47,7 +48,7 @@ class Documents extends Component {
     }
 
     render() {
-        let { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>

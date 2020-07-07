@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import Aside from '../../components/PageLayout/Aside';
 import Container from '../../components/PageLayout/Container';
 import Content from '../../components/PageLayout/Content';

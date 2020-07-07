@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { storiesOf, action } from '@storybook/react';
 import TimePicker from './../../components/TimePicker/Simple';
 import TimePickerRange from './../../components/TimePicker/Range';
 import MaterialUILayout from '../../components/MaterialUILayout';

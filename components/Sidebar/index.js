@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import style from './style.css';
 import { Link } from 'react-router-dom';
 
@@ -28,4 +29,4 @@ export default function Sidebar({ menuItems }) {
             </div>
         </div>
     );
-};
+}
