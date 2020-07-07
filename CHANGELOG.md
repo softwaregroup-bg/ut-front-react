@@ -1,3 +1,12 @@
+# [12.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.2.2...v12.0.0) (2020-07-07)
+
+
+### Features
+
+* react 16 ([79d8403](https://github.com/softwaregroup-bg/ut-front-react/commit/79d840310476166799b78637c9aa9bbcd386f678))
+
+
+
 ## [11.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.2.1...v11.2.2) (2020-01-17)
 
 
