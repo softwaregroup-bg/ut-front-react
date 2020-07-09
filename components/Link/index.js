@@ -2,18 +2,27 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getLink } from '../../routerHelper';
+import classNames from 'classnames';
+import styles from './styles.css';
+
+function clickDisabled(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+}
 
 export default class NavigationLink extends Component {
     render() {
         const { to, useRawTo, params, className, children, activeClassName, style } = this.props;
         const { onClick } = this.props;
+        const linkTo = (useRawTo ? to : getLink(to, params));
 
         return (
             <NavLink
-                to={useRawTo ? to : getLink(to, params)}
-                className={className}
-                activeClassName={activeClassName}
-                onClick={onClick}
+                to={linkTo || '#'}
+                className={classNames(className, !linkTo && styles.menuDisabled)}
+                activeClassName={classNames(activeClassName, !linkTo && styles.menuDisabled)}
+                onClick={linkTo ? onClick : clickDisabled}
                 style={style}
             >
                 {children}

@@ -1,0 +1,4 @@
+body a.menuDisabled {
+  color: #e6e6e6 !important;
+  cursor: not-allowed !important;
+}
