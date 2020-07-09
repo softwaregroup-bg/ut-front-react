@@ -1,3 +1,12 @@
+## [12.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.0...v12.0.1) (2020-07-09)
+
+
+### Bug Fixes
+
+* do not crash on missing nav links ([ff8aa1d](https://github.com/softwaregroup-bg/ut-front-react/commit/ff8aa1dfda1c045ebe4dd97bacf0a200de988a64))
+
+
+
 # [12.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v11.2.2...v12.0.0) (2020-07-07)
 
 
