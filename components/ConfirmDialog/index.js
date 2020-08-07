@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 export default class DialogExampleModal extends Component {
@@ -38,16 +42,26 @@ export default class DialogExampleModal extends Component {
     }
 
     render() {
-        const actions = [];
-        if (!this.props.cannotSubmit) {
-            actions.push(<Button label={this.props.submitLabel || 'Yes'} disabled={this.props.cannotSubmit} onClick={this.submit} />);
-        }
-        actions.push(<Button label={this.props.cancelLabel || 'No'} primary onClick={this.close} />);
-
         return (
             <div>
-                <Dialog title={this.props.title} actions={actions} modal open={this.state.open}>
-                    {this.state.message}
+                <Dialog
+                  fullWidth={true}
+                  open={this.state.open} 
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      {this.props.message}
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    {!this.props.cannotSubmit && <Button disabled={this.props.cannotSubmit} onClick={this.submit}>{this.props.submitLabel || 'Yes'}</Button>}
+                    <Button color="primary" onClick={this.close}>
+                      {this.props.cancelLabel || 'No'}
+                    </Button>
+                  </DialogActions>
                 </Dialog>
             </div>
         );

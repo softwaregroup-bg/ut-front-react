@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 
 const StatusDialog = ({ status, onClose }) => {
-    const actions = [];
-
     const isOpen = status.size > 0;
     const statusString = status.get('status');
-    if (statusString !== 'pending') {
-        actions.push(<Button label='Ok' onClick={onClose} />);
-    }
 
     const upperCasedStatus = statusString ? statusString.toUpperCase() : '';
     const message = status.get('message');
@@ -24,15 +22,26 @@ const StatusDialog = ({ status, onClose }) => {
 
     return (
         <div>
-            <Dialog actions={actions} modal open={isOpen}>
-                <div dangerouslySetInnerHTML={{__html: displayMsg.join(' - ')}} />
+            <Dialog
+              fullWidth={true}
+              open={isOpen}
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <div dangerouslySetInnerHTML={{__html: displayMsg.join(' - ')}} />
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                {statusString !== 'pending' && <Button onClick={onClose}>{'Ok'}</Button>}
+              </DialogActions>  
             </Dialog>
         </div>
     );
 };
 
 StatusDialog.propTypes = {
-    status: PropTypes.object.isRequired, // immutalbe object,
+    status: PropTypes.object.isRequired, // immutable object,
     onClose: PropTypes.func.isRequired
 };
 
