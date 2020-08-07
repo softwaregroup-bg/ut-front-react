@@ -1,3 +1,12 @@
+## [12.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.1...v12.0.2) (2020-08-07)
+
+
+### Bug Fixes
+
+* confirm and status dialogs are not showing ([#538](https://github.com/softwaregroup-bg/ut-front-react/issues/538)) ([daaa22b](https://github.com/softwaregroup-bg/ut-front-react/commit/daaa22b9bc94a96c12449aa88745eb5d592fbac6))
+
+
+
 ## [12.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.0...v12.0.1) (2020-07-09)
 
 
