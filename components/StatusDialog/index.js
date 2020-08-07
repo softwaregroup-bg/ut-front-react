@@ -23,18 +23,18 @@ const StatusDialog = ({ status, onClose }) => {
     return (
         <div>
             <Dialog
-              fullWidth={true}
-              open={isOpen}
-              aria-describedby="alert-dialog-description"
+                fullWidth
+                open={isOpen}
+                aria-describedby='alert-dialog-description'
             >
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  <div dangerouslySetInnerHTML={{__html: displayMsg.join(' - ')}} />
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                {statusString !== 'pending' && <Button onClick={onClose}>{'Ok'}</Button>}
-              </DialogActions>  
+                <DialogContent>
+                    <DialogContentText id='alert-dialog-description'>
+                        <div dangerouslySetInnerHTML={{__html: displayMsg.join(' - ')}} />
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    {statusString !== 'pending' && <Button onClick={onClose}>Ok</Button>}
+                </DialogActions>
             </Dialog>
         </div>
     );

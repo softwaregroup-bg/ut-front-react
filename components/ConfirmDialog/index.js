@@ -45,23 +45,23 @@ export default class DialogExampleModal extends Component {
         return (
             <div>
                 <Dialog
-                  fullWidth={true}
-                  open={this.state.open} 
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
+                    fullWidth
+                    open={this.state.open}
+                    aria-labelledby='alert-dialog-title'
+                    aria-describedby='alert-dialog-description'
                 >
-                  <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                      {this.props.message}
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    {!this.props.cannotSubmit && <Button disabled={this.props.cannotSubmit} onClick={this.submit}>{this.props.submitLabel || 'Yes'}</Button>}
-                    <Button color="primary" onClick={this.close}>
-                      {this.props.cancelLabel || 'No'}
-                    </Button>
-                  </DialogActions>
+                    <DialogTitle id='alert-dialog-title'>{this.props.title}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id='alert-dialog-description'>
+                            {this.props.message}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        {!this.props.cannotSubmit && <Button disabled={this.props.cannotSubmit} onClick={this.submit}>{this.props.submitLabel || 'Yes'}</Button>}
+                        <Button color='primary' onClick={this.close}>
+                            {this.props.cancelLabel || 'No'}
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div>
         );
