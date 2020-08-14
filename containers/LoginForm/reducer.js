@@ -79,6 +79,7 @@ const loginReducer = (state = defaultLoginState, action) => {
             return state;
         case SET_INPUT_VALUE:
             state = state.setIn(['loginForm', 'inputs', action.input, 'value'], action.value);
+                state = state.set('formError', '');
             // returns true only if we are changing password field and there is "password match error"
             const hasPasswordMatchError = (input, currentInput) => {
                 return input.get('error').toUpperCase().indexOf('PASSWORD') !== -1 && 
