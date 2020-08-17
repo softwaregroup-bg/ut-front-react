@@ -91,9 +91,9 @@ export const loginSteps = {
         title: 'Reset Password'
     },
     'initial': {
-        inputs: getInputs(['username']),
-        buttonLabel: 'Next',
-        title: 'System Login'
+        inputs: getInputs(['username', 'password']),
+        buttonLabel: 'Login',
+        title: 'Login with password'
     },
     'password': {
         inputs: getInputs(['username', 'hiddenPassword', 'password']),
