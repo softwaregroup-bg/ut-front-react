@@ -303,7 +303,7 @@ export default class DocumentUpload extends Component {
         var data = new window.FormData();
         var img = this.dataURItoBlob(file);
         let ext = this.state.fileExtension || 'unknown';
-        data.append('file', img, 'file.' + ext);
+        data.append('file', img, this.state.originalFilename + ext);
         var request = new window.XMLHttpRequest();
         request.open('POST', '/file-upload', true);
         this.setState({
@@ -331,7 +331,8 @@ export default class DocumentUpload extends Component {
                 };
                 reader.readAsDataURL(img);
             } else {
-                this.setError(request.statusText);
+                // this.setError(request.statusText);
+                this.setError(request.responseText || request.statusText);
                 this.setState({requestStatus: request.status});
             }
         };
