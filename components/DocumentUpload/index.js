@@ -303,7 +303,7 @@ export default class DocumentUpload extends Component {
         var data = new window.FormData();
         var img = this.dataURItoBlob(file);
         let ext = this.state.fileExtension || 'unknown';
-        data.append('file', img, this.state.originalFilename + ext);
+        data.append('file', img, this.state.originalFilename);
         var request = new window.XMLHttpRequest();
         request.open('POST', '/file-upload', true);
         this.setState({
