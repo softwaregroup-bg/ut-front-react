@@ -26,19 +26,23 @@ export default class Form extends Component {
         let inputNodes = [];
 
         inputs.toSeq().forEach((input, index) => {
-            inputNodes.push(<FormInput key={index}
-              ref={input.get('name')}
-              className='loginInput'
-              hidden={input.get('hidden')}
-              disabled={input.get('disabled')}
-              type={input.get('type')}
-              value={input.get('value')}
-              label={input.get('label')}
-              tabIndex={input.get('tabIndex')}
-              name={input.get('name')}
-              placeholder={input.get('placeholder')}
-              onChange={onChange}
-              error={input.get('error')} />);
+            if (index.indexOf('customInput') === -1) {
+                inputNodes.push(<FormInput key={index}
+                    ref={input.get('name')}
+                    className='loginInput'
+                    hidden={input.get('hidden')}
+                    disabled={input.get('disabled')}
+                    type={input.get('type')}
+                    value={input.get('value')}
+                    label={input.get('label')}
+                    tabIndex={input.get('tabIndex')}
+                    name={input.get('name')}
+                    placeholder={input.get('placeholder')}
+                    onChange={onChange}
+                    error={input.get('error')} />);
+            } else {
+                inputNodes.push(input);
+            }
         });
 
         return inputNodes;

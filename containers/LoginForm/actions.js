@@ -76,6 +76,7 @@ export const forgottenPasswordReset = (params = {}) => (dispatch, getStore) => {
         type: RESET_FORGOTTEN_PASSWORD,
         params: {
             username: params.username,
+            captcha: params.captcha,
             otp: params.otp,
             newPassword: params.newPassword
         },

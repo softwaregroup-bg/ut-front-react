@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce';
 import Form from '../../components/Form';
 import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState, forgottenPasswordReset, changeLoginType } from './actions';
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
+import ReCAPTCHA from 'react-google-recaptcha';
 import style from './style.css';
 
 class LoginForm extends Component {
@@ -59,7 +60,24 @@ class LoginForm extends Component {
     }
 
     onForgotPasswordClick() {
-        this.props.forgottenPasswordReset(this.props.loginData.toJS());
+        let loginData = {
+            username:   this.refs.loginForm &&
+                        this.refs.loginForm.refs &&
+                        this.refs.loginForm.refs.username &&
+                        this.refs.loginForm.refs.username.refs && 
+                        this.refs.loginForm.refs.username.refs.inputNode && 
+                        this.refs.loginForm.refs.username.refs.inputNode.value
+        };
+        loginData.captcha = this.captchaValue;
+        this.props.forgottenPasswordReset(loginData)
+        .then(r => {
+            this.captcha.reset();
+            this.captchaValue = undefined;
+        })
+        .catch(e => {
+            this.captcha.reset();
+            this.captchaValue = undefined;
+        })
     }
 
     syncInputsValuesWithStore(form) {
@@ -89,8 +107,12 @@ class LoginForm extends Component {
 
     submit(loginType, loginData) {
         let { bioScan, identityCheck, routerParams: {appId} } = this.props;
+        var captcha = this.captcha;
         if (appId) {
             loginData = loginData.set('appId', appId);
+        }
+        if (this.captchaValue) {
+            loginData = loginData.set('captcha', this.captchaValue);
         }
         switch (loginType) {
             case 'bio':
@@ -100,12 +122,33 @@ class LoginForm extends Component {
                 this.props.changeLoginType('password');
                 break;
             default:
-                identityCheck(loginData);
+                identityCheck(loginData)
+                .then(r => {
+                    captcha.reset();
+                    this.captchaValue = undefined;
+                    loginData.set('captcha', undefined);
+                })
+                .catch(e => {
+                    captcha.reset();
+                    this.captchaValue = undefined;
+                    loginData.set('captcha', undefined);
+                });
         }
     }
-
+    onChangeCaptcha = (value) => {
+        this.captchaValue = value;
+    };
+    
     render() {
         let { inputs, error, title, buttonLabel, formMessage } = this.props;
+        inputs = inputs.set('customInput_captcha', (
+            <ReCAPTCHA
+                key='customInput_captcha'
+                ref={(el) => { this.captcha = el; }}
+                sitekey="6Ld2f8kZAAAAAB7a-pSt0YERCUfVJVVKlQLvC5w2"
+                onChange={this.onChangeCaptcha}
+            />
+        ));
         return (<div>
             <Form
               ref='loginForm'
