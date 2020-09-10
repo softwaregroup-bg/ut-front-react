@@ -5,6 +5,7 @@ import { setInputValue, validateForm, identityCheck, bioScan, clearLoginState, f
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
 import ReCAPTCHA from 'react-google-recaptcha';
 import style from './style.css';
+import Immutable from 'immutable';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -46,6 +47,10 @@ class LoginForm extends Component {
 
     onChange(e) {
         let { name, value } = e.target;
+        if (name === 'captcha') {
+            this.captchaValue = value;
+            return ;
+        }
         e.persist();
         this.handleChange({ name, value });
     }
@@ -141,14 +146,31 @@ class LoginForm extends Component {
     
     render() {
         let { inputs, error, title, buttonLabel, formMessage } = this.props;
-        inputs = inputs.set('customInput_captcha', (
-            <ReCAPTCHA
-                key='customInput_captcha'
-                ref={(el) => { this.captcha = el; }}
-                sitekey="6Ld2f8kZAAAAAB7a-pSt0YERCUfVJVVKlQLvC5w2"
-                onChange={this.onChangeCaptcha}
-            />
-        ));
+        if (document.captchaConfig) {
+            if (document.captchaConfig.mockField) {
+                inputs = inputs.set('captcha', Immutable.fromJS({
+                    name: 'captcha',
+                    type: 'text',
+                    label: 'captcha',
+                    value: '',
+                    error: '',
+                    validateOrder: ['isRequired', 'minLength', 'maxLength'],
+                    validations: {
+                        isRequired: true,
+                        minLength: 2,
+                        maxLength: 200
+                    }
+                }))
+            }
+            inputs = inputs.set('customInput_captcha', (
+                <ReCAPTCHA
+                    key='customInput_captcha'
+                    ref={(el) => { this.captcha = el; }}
+                    sitekey={document.captchaConfig.sitekey}
+                    onChange={this.onChangeCaptcha}
+                />
+            ));
+        }
         return (<div>
             <Form
               ref='loginForm'
