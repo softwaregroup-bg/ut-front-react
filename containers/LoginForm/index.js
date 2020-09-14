@@ -22,6 +22,7 @@ class LoginForm extends Component {
         this.submit = this.submit.bind(this);
 
         this.onForgotPasswordClick = this.onForgotPasswordClick.bind(this);
+        this.state = {};
     }
 
     componentWillReceiveProps(nextProps) {
@@ -142,6 +143,7 @@ class LoginForm extends Component {
     }
     onChangeCaptcha = (value) => {
         this.captchaValue = value;
+        this.setState({captchaValue: value});
     };
     
     render() {
@@ -152,7 +154,7 @@ class LoginForm extends Component {
                     name: 'captcha',
                     type: 'text',
                     label: 'captcha',
-                    value: '',
+                    value: this.state.captchaValue ,
                     error: '',
                     validateOrder: ['isRequired', 'minLength', 'maxLength'],
                     validations: {
@@ -181,7 +183,8 @@ class LoginForm extends Component {
               onChange={this.onChange}
               onSubmit={this.validateForm}
               error={error}
-              message={formMessage} />
+              message={formMessage}
+                />
             {inputs.get('password') && <a onClick={this.onForgotPasswordClick} className={style.forgotPasswordLabel}>Forgot Password</a>}
         </div>);
     }

@@ -71,7 +71,8 @@ export default class Form extends Component {
 
     componentDidUpdate(prevProps) {
         // if the previous and the newly added input differ, focus the new one
-        if (prevProps.inputs.last().get('name') !== this.props.inputs.last().get('name')) {
+        let prevLastInput = prevProps.inputs.last();
+        if (prevLastInput.get &&typeof prevLastInput.get === 'function' &&prevLastInput.get('name') !== this.props.inputs.last().get('name')) {
             this.focusNextInput();
         }
     }
