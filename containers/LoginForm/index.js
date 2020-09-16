@@ -163,12 +163,16 @@ class LoginForm extends Component {
                 }))
             }
             inputs = inputs.set('customInput_captcha', (
+                <div
+                className={style.recaptchaResize}
+                >
                 <ReCAPTCHA
                     key='customInput_captcha'
                     ref={(el) => { this.captcha = el; }}
                     sitekey={document.captchaConfig.sitekey}
                     onChange={this.onChangeCaptcha}
                 />
+                </div>
             ));
         }
         return (<div>
