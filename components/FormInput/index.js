@@ -24,6 +24,7 @@ export default class FormInput extends Component {
                  disabled={disabled}
                  name={name}
                  type={type}
+                 value={value}
                  data-hidden={!!hidden}
                  placeholder={placeholder}
                  accept={acceptType}

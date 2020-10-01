@@ -5,3 +5,7 @@
     right: 10px;
     cursor: pointer;
 }
+
+.recaptchaResize {
+    transform: scale(0.94) translate(-3%);
+}
