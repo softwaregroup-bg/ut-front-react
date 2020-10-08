@@ -346,10 +346,11 @@ class AdvancedPagination extends Component {
     }
 
     render() {
+        const { showPageBoxes } = this.props;
         const pagination = (
             <div className={styles.wrap}>
                 {this.renderPageSwitcher()}
-                {this.renderPageBoxes()}
+                {showPageBoxes ? this.renderPageBoxes() : null}
                 {this.renderPageSizeBox()}
             </div>
         );
@@ -375,12 +376,14 @@ AdvancedPagination.propTypes = {
     itemsPerPageData: PropTypes.arrayOf(PropTypes.number),
     dropdownIconStyles: PropTypes.object,
     cssStandard: PropTypes.bool,
+    showPageBoxes: PropTypes.bool,
     onUpdate: PropTypes.func
 };
 
 AdvancedPagination.defaultProps = {
     itemsPerPageData: [25, 50, 100, 150, 200, 250, 500],
     cssStandard: false,
+    showPageBoxes: true,
     onUpdate: () => {}
 };
 
