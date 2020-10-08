@@ -1,3 +1,12 @@
+## [12.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.2...v12.0.3) (2020-10-08)
+
+
+### Bug Fixes
+
+* add prop to show or hide pageboxes ([#544](https://github.com/softwaregroup-bg/ut-front-react/issues/544)) ([445fd73](https://github.com/softwaregroup-bg/ut-front-react/commit/445fd73f0bc3f7ab49f610962eda9b2d87f4c21d))
+
+
+
 ## [12.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.1...v12.0.2) (2020-08-07)
 
 
