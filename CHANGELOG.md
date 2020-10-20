@@ -1,3 +1,12 @@
+## [12.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.3...v12.0.4) (2020-10-20)
+
+
+### Bug Fixes
+
+* **datepickerbetween:** working with new material ui ([#545](https://github.com/softwaregroup-bg/ut-front-react/issues/545)) ([499d586](https://github.com/softwaregroup-bg/ut-front-react/commit/499d586cd3139df5809d743a50bb00642170d502))
+
+
+
 ## [12.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.2...v12.0.3) (2020-10-08)
 
 
