@@ -14,11 +14,18 @@ export default class DatePickerBetween extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
+        this.state = { fromDialogWindow: false, toDialogWindow: false };
     }
 
     handleOpen(ref) {
         return () => {
-            this.refs[`${ref}DialogWindow`].show();
+            this.setState({[`${ref}DialogWindow`]: true});
+        };
+    }
+
+    handleClose(ref) {
+        return () => {
+            this.setState({[`${ref}DialogWindow`]: false});
         };
     }
 
@@ -133,21 +140,31 @@ export default class DatePickerBetween extends Component {
                     cancelLabel={this.props.cancelLabel}
                     okLabel={this.props.okLabel}
                     container={this.props.container}
-                    initialDate={fromDate}
+                    initialFocusedDate={fromDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('from')}
+                    onChange={() => {}}
                     variant='dialog'
                     ref='fromDialogWindow'
+                    TextFieldComponent={() => null}
+                    onOpen={this.handleOpen('from')}
+                    onClose={this.handleClose('from')}
+                    open={this.state.fromDialogWindow}
                 />
                 <DatePickerDialog
                     cancelLabel={this.props.cancelLabel}
                     okLabel={this.props.okLabel}
                     container={this.props.container}
-                    initialDate={toDate}
+                    initialFocusedDate={toDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('to')}
+                    onChange={() => {}}
                     variant='dialog'
                     ref='toDialogWindow'
+                    TextFieldComponent={() => null}
+                    onOpen={this.handleOpen('to')}
+                    onClose={this.handleClose('to')}
+                    open={this.state.toDialogWindow}
                 />
             </div>
         );
@@ -155,7 +172,6 @@ export default class DatePickerBetween extends Component {
 }
 
 DatePickerBetween.defaultProps = {
-    firstDayOfWeek: 1,
     mode: 'landscape',
     container: 'dialog',
     withVerticalClass: false,
@@ -169,7 +185,6 @@ DatePickerBetween.propTypes = {
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    firstDayOfWeek: PropTypes.number,
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     withVerticalClass: PropTypes.bool,
