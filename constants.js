@@ -3,5 +3,5 @@ export const methodRequestState = {
     REQUESTED: 'requested'
 };
 
-export const documentPrefix = '/s/ut-document/repository/';
+export const documentPrefix = '/a/document/repository/';
 export const documentTmpUploadPrefix = '/file-upload/';
