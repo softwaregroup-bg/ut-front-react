@@ -295,6 +295,7 @@ class Toolbox extends Component {
                 replaceDocument={this.props.replaceDocument}
                 documentTypes={this.props.documentTypes}
                 allowedFileTypes={this.props.allowedFileTypes}
+                uploadURL={this.props.uploadURL}
             />
         );
     }
@@ -315,6 +316,7 @@ Toolbox.propTypes = {
     selectedAttachment: PropTypes.object, // immutable object
     documentArchived: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
+    uploadURL: PropTypes.string,
 
     // funcs
     changeDocumentFilter: PropTypes.func.isRequired,
