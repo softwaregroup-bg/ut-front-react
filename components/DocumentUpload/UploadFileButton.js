@@ -9,16 +9,17 @@ export default class UploadFileButton extends Component {
     constructor(props) {
         super(props);
 
-        this.onChange = this.onChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 
-        this.onClick = this.onClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    onChange() {
-        const { onFileLoaded, onFileError } = this.props;
+    handleChange() {
+        const { onFileLoaded, onFileError, onFileSelected } = this.props;
+        if (onFileSelected) onFileSelected(this.refs.fileInput.refs.inputNode.files);
         const file = this.refs.fileInput.refs.inputNode.files[0];
 
-        if (file) {
+        if (file && onFileLoaded) {
             const fileReader = new window.FileReader();
 
             fileReader.addEventListener('load', e => {
@@ -30,7 +31,7 @@ export default class UploadFileButton extends Component {
                 }
             });
 
-            fileReader.addEventListener('error', e => {
+            onFileError && fileReader.addEventListener('error', e => {
                 onFileError(e);
                 fileReader.removeEventListener('error', this);
             });
@@ -39,7 +40,7 @@ export default class UploadFileButton extends Component {
         }
     }
 
-    onClick() {
+    handleClick() {
         this.refs.fileInput.refs.inputNode.click();
     }
 
@@ -47,9 +48,9 @@ export default class UploadFileButton extends Component {
         const { className, label, icon, acceptType } = this.props;
 
         return (
-            <div className={classnames(fileUploadStyles.uploadFileBtn, className)} onClick={this.onClick}>
+            <div className={classnames(fileUploadStyles.uploadFileBtn, className)} onClick={this.handleClick}>
                 <AddFileButton icon={icon} label={label} />
-                <FormInput ref='fileInput' type='file' hidden acceptType={acceptType} onChange={this.onChange} />
+                <FormInput ref='fileInput' type='file' hidden acceptType={acceptType} onChange={this.handleChange} />
             </div>
         );
     }
@@ -61,10 +62,6 @@ UploadFileButton.propTypes = {
     icon: PropTypes.string,
     acceptType: PropTypes.string,
     onFileLoaded: PropTypes.func,
+    onFileSelected: PropTypes.func,
     onFileError: PropTypes.func
-};
-
-UploadFileButton.defaultProps = {
-    onFileLoaded: () => {},
-    onFileError: () => {}
 };
