@@ -1,3 +1,12 @@
+# [12.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.5...v12.1.0) (2020-11-25)
+
+
+### Features
+
+* **UploadFileButton:** add selected files handler ([a658cd6](https://github.com/softwaregroup-bg/ut-front-react/commit/a658cd65911c17dc8628f242202063a63001c26a))
+
+
+
 ## [12.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.4...v12.0.5) (2020-11-05)
 
 
