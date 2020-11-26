@@ -1,3 +1,12 @@
+# [12.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.1.0...v12.2.0) (2020-11-26)
+
+
+### Features
+
+* Add file upload url as parameter; remove unused variables ([52e56f3](https://github.com/softwaregroup-bg/ut-front-react/commit/52e56f33d00b92b5c6f205160b731b3578a03073))
+
+
+
 # [12.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.0.5...v12.1.0) (2020-11-25)
 
 
