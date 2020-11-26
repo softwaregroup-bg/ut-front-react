@@ -160,6 +160,7 @@ class DocumentUploadWithForm extends Component {
                 useFile={this.useFileHandler}
                 hideCrop
                 allowedFileTypes={this.props.allowedFileTypes}
+                uploadURL={this.props.uploadURL}
             >
                 {this.renderUploadDocumentForm}
             </DocumentUpload>
@@ -179,6 +180,7 @@ DocumentUploadWithForm.propTypes = {
             name: PropTypes.string
         })
     ),
+    uploadURL: PropTypes.string,
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
     uploadNewDocument: PropTypes.func

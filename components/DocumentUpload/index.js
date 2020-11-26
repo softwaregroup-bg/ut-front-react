@@ -125,7 +125,7 @@ export default class DocumentUpload extends Component {
 
         // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
         if (this.props.hideCrop || hasCropped) {
-            this.uploadFile(screenshot);
+            this.uploadFile(screenshot, this.props.uploadURL);
         } else {
             this.crop();
 
@@ -286,14 +286,14 @@ export default class DocumentUpload extends Component {
         return getViewport(fileDimensions, scaleDimensions);
     }
 
-    uploadFile(file) {
+    uploadFile(file, uploadURL = '/file-upload') {
         const { useFile } = this.props;
         const data = new window.FormData();
         const img = this.dataURItoBlob(file);
         const ext = this.state.fileExtension || 'unknown';
         data.append('file', img, 'file.' + ext);
         const request = new window.XMLHttpRequest();
-        request.open('POST', '/file-upload', true);
+        request.open('POST', uploadURL, true);
         this.setState({
             isUploading: true
         });
@@ -418,5 +418,6 @@ DocumentUpload.propTypes = {
     hideCrop: PropTypes.bool,
     uploadType: PropTypes.string,
     additionalContentValidate: PropTypes.func,
-    isAdditionalContentValid: PropTypes.bool
+    isAdditionalContentValid: PropTypes.bool,
+    uploadURL: PropTypes.string
 };

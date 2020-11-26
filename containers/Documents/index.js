@@ -86,6 +86,7 @@ class DocumentsContainer extends Component {
                 onGridSelect={selectAttachments}
                 permissions={permissions}
                 documentTypes={docTypes}
+                uploadURL={this.props.uploadURL}
                 uploadNewDocument={(newObject) => {
                     const formatedObj = {
                         createdDate: newObject.createdDate,
@@ -137,6 +138,7 @@ DocumentsContainer.propTypes = {
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
     documentTypeClass: PropTypes.string.isRequired,
+    uploadURL: PropTypes.string,
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,

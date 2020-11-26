@@ -39,6 +39,7 @@ class Documents extends Component {
                 archiveDocument={this.props.archiveDocument}
                 allowedFileTypes={this.props.allowedFileTypes}
                 permissions={this.props.permissions}
+                uploadURL={this.props.uploadURL}
             />
         );
     }
@@ -76,10 +77,11 @@ Documents.propTypes = {
     documents: PropTypes.array,
     documentsChanged: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
-    requiresFetch: PropTypes.bool,
-    isLoading: PropTypes.bool,
+    // requiresFetch: PropTypes.bool,
+    // isLoading: PropTypes.bool,
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
+    uploadURL: PropTypes.string,
 
     // funcs
     fetchArchivedDocuments: PropTypes.func.isRequired,
@@ -103,8 +105,8 @@ Documents.propTypes = {
 };
 
 Documents.defaultProps = {
-    requiresFetch: false,
-    isLoading: false,
+    // requiresFetch: false,
+    // isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: []
 };
