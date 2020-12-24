@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Text from '../Text';
 import classnames from 'classnames';
 import styles from './styles.css';
 
@@ -13,7 +14,7 @@ const Header = ({
     return (
         <div className={classnames(styles.popupHeader, className)}>
             <div>
-                <span className={styles.headerText}>{text}</span>
+                <span className={styles.headerText}><Text>{text}</Text></span>
                 {closeIcon && <div className={styles.closeBtn} onClick={closePopup} />}
             </div>
         </div>

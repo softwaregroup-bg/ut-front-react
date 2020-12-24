@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -11,7 +12,7 @@ class TitledContentBox extends Component {
 
                 <div className={classnames(style.headerWrap, externalHeaderClasses)}>
                     <div className={this.props.centered ? style.titleCentered : style.title}>
-                        {this.props.title}
+                        <Text>{this.props.title}</Text>
                     </div>
                     <div className={style.rightWrap}>
                         {this.props.headRightWrap}

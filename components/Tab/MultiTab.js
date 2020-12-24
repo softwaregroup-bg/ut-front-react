@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Link from './../Link';
 import Tab from './Tab';
+import Text from '../Text';
 import Menu from './../MenuNew';
 import styles from './styles.css';
 import {closest} from '../../utils/dom';
@@ -96,7 +97,7 @@ export default class MultiTab extends Component {
                     className={classNames(className, styles.navigationTab)}
                     activeClassName={styles.navigationTabActive}
                 >
-                    {tab.title}
+                    <Text>{tab.title}</Text>
                     {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
                 </Link>
                 <Menu

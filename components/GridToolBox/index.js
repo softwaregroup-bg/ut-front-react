@@ -15,6 +15,7 @@ import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
 import Button from '../StandardButton';
 import ByCustomSearch from '../Filters/ByCustomSearch';
+import Text from '../Text';
 
 import classnames from 'classnames';
 import style from './style.css';
@@ -439,9 +440,9 @@ class GridToolBox extends Component {
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0].type === filterElementTypes.searchBox) {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by:';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}><Text>Show buttons</Text></span> : <Text>Filter by:</Text>;
         } else {
-            leftSide = hasSelectedOrChecked ? <span className={style.link}>Show buttons</span> : 'Filter by:';
+            leftSide = hasSelectedOrChecked ? <span className={style.link}><Text>Show buttons</Text></span> : <Text>Filter by:</Text>;
         }
 
         const showSearchBtn = (this.props.filterElements.find(f => {

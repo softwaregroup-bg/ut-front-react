@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Dropdown from '../Input/Dropdown';
+import Text from '../Text';
 
 import classnames from 'classnames';
 import dropdownstyles from './dropdownstyles.css';
@@ -100,7 +101,7 @@ class AdvancedPagination extends Component {
                     />
                 </div>
                 <div className={styles.rightWrap}>
-                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>Pages</span>
+                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
                 </div>
             </div>
         );
@@ -329,7 +330,7 @@ class AdvancedPagination extends Component {
         return (
             <div className={styles.pageSizeBoxWrap}>
                 <div className={styles.totalItemsWrap}>
-                    <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}>Items</span>
+                    <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}><Text>Items</Text></span>
                 </div>
                 <div className={styles.itemPerPageDDWrap}>
                     <Dropdown
@@ -340,7 +341,7 @@ class AdvancedPagination extends Component {
                         iconStyles={dropdownIconStyles}
                     />
                 </div>
-                <div className={styles.perPageWrap}> per page</div>
+                <div className={styles.perPageWrap}><Text>per page</Text></div>
             </div>
         );
     }

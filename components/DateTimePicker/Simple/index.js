@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import {DatePicker, TimePicker} from '@material-ui/pickers';
 import Dropdown from './../../Input/Dropdown';
+import Text from '../../Text';
 import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
 
 import style from './style.css';
@@ -162,7 +163,7 @@ class DateTimePicker extends Component {
 
         return (
             <div className={outerWrapStyle}>
-                {label ? (<span className={classnames(labelWrap, boldLabelStyle)}>{label}</span>) : ''}
+                {label ? (<span className={classnames(labelWrap, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
                 <div className={classnames(innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
                         <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />

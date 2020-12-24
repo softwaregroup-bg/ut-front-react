@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import Text from '../Text';
 
 import style from './style.css';
 import cssStandard from '../../assets/index.css';
@@ -11,7 +12,7 @@ export class Filters extends Component {
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
             <div className={classnames(classes)}>
-                {this.props.title && <span className={this.props.isTitleLink ? style.link : style.label} onClick={this.props.toggle}>{this.props.title}</span>}
+                {this.props.title && <span className={this.props.isTitleLink ? style.link : style.label} onClick={this.props.toggle}><Text>{this.props.title}</Text></span>}
                 {this.props.contentWrapClassName
                     ? <div className={this.props.contentWrapClassName}>
                         {this.props.children}

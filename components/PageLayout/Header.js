@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router-dom';
+import Text from '../Text';
 
 import style from './style.css';
 
@@ -36,7 +37,7 @@ class Header extends React.Component {
         return (
             <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
-                    <div className={style.headingTextWrap}>{text}</div>
+                    <div className={style.headingTextWrap}><Text>{text}</Text></div>
                 </h1>
                 <div className={style.buttonsWrap}>
                     <div className={style.buttonsContainer}>

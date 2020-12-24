@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
+import Text from '../../../components/Text';
 import Dropdown from '../../../components/Input/Dropdown';
 import SearchBox from '../../../components/SearchBox';
-import Text from '../../../components/Text';
 
 import style from './style.css';
 

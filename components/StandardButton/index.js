@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Text from '../Text';
 import classNames from 'classnames';
 import buttonStyles from './styles.css';
 import { getClass } from '../../utils/helpers';
@@ -37,7 +38,7 @@ const Button = ({
     const button = (
         <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
             {icon && <span className={icon} />}
-            {label}
+            <Text>{label}</Text>
         </button>
     );
     if (href && !disabled) {
