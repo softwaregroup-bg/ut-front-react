@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { textValidations, customValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
+import Text from '../Text';
 
 import classnames from 'classnames';
 import defaultStyle from './style.css';
@@ -86,17 +87,17 @@ class TextField extends Component {
         const zeroHeightStyle = isValid ? this.style.hh : '';
 
         const input = <input ref='textInput' type={type} className={this.inputClassName} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
-        const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> {dependancyDisabledInputTooltipText} </span>);
+        const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (
                 <div className={classnames(this.style.outerWrap, wrapperClassName)}>
                     <div className={classnames(this.style.lableWrap, labelClassName, {[this.style.boldLabel]: this.props.boldLabel})}>
-                        {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                        <Text>{label}</Text> {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                         {input}
                         {tooltip}
-                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
+                        <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                     </div>
                 </div>
             );

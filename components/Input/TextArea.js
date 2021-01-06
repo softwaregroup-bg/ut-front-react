@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { textValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
-
+import Text from '../Text';
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -88,7 +88,7 @@ class TextArea extends Component {
             return (
                 <div className={style.outerWrap}>
                     <div className={style.textareaLabelWrap}>
-                        {label} {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                        <Text>{label}</Text> {this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
                     </div>
                     <div className={style.textareaWrap}>
                         {textArea}

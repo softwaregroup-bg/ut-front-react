@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Text from '../Text';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -12,7 +13,7 @@ const Checkbox = (props) => {
 
     let label = '';
     if (props.label) {
-        label = <p onClick={isDisabled ? noop : props.onClick}>{props.label}</p>;
+        label = <p onClick={isDisabled ? noop : props.onClick}><Text>{props.label}</Text></p>;
     }
     const isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
 

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Text from '../Text';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -21,7 +22,7 @@ class HeaderCell extends Component {
 
         return (
             <th style={{width: 'auto', ...this.props.styles}}>
-                <span onClick={this.props.canSort ? this.props.onSort : null} className={style.thTitle}> {this.props.name} {this.props.canSort && <span className={sortStyle} />} </span>
+                <span onClick={this.props.canSort ? this.props.onSort : null} className={style.thTitle}><Text>{this.props.name}</Text> {this.props.canSort && <span className={sortStyle} />} </span>
             </th>
         );
     }

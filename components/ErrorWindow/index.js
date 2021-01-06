@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Popup from '../Popup';
+import Text from '../Text';
 
 import styles from './style.css';
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
@@ -46,7 +47,7 @@ class ErrorWindow extends React.Component {
             >
                 <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
                 <div className={styles.errorMessageWrap}>
-                    {message}
+                    <Text>{message}</Text>
                 </div>
             </Popup>
         );
