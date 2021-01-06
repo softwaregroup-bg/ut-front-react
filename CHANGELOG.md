@@ -1,3 +1,12 @@
+## [12.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.0...v12.2.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* lint errors ([2185f69](https://github.com/softwaregroup-bg/ut-front-react/commit/2185f699b109d7d36141bfad30b7077d7771b027))
+
+
+
 # [12.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.1.0...v12.2.0) (2020-11-26)
 
 
