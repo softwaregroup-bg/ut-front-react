@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactDom from 'react-dom';
 import classnames from 'classnames';
 import style from './style.css';
 import TabLink from './TabLink';
@@ -18,6 +17,10 @@ class TabMenu extends React.Component {
         this.setOffset = this.setOffset.bind(this);
         this.calculateLeftCoordinate = this.calculateLeftCoordinate.bind(this);
         this.calculateRightCoordinate = this.calculateRightCoordinate.bind(this);
+        this.tabset = null;
+        this.setTabset = element => {
+            this.tabset = element;
+        };
     }
 
     getStyle(name) {
@@ -25,7 +28,7 @@ class TabMenu extends React.Component {
     }
 
     componentDidUpdate() {
-        const node = ReactDom.findDOMNode(this.refs.tabset);
+        const node = this.tabset;
         const rowNodeRect = node.getElementsByTagName('tr')[0].getBoundingClientRect();
         const buttonWidth = 32; // the width of the dropdown button // TODO: consider taking this value dynamically
         const windowWidth = window.innerWidth; // TODO: consider taking the wrapper of the table instead of the window's width'
@@ -59,8 +62,7 @@ class TabMenu extends React.Component {
             // if there is a gap between the last tab and the dropdown button
                 this.setOffset(this.calculateRightCoordinate(tabDimensions, tabDimensions.length - 1, windowWidth, buttonWidth, rowNodeRect.left));
             }
-        } else if (activeTabIndex && activeTabIndex >= tabDimensions.length) {
-        } else {
+        } else if (!(activeTabIndex && activeTabIndex >= tabDimensions.length)) {
             this.setOffset(0);
         }
         //        }
@@ -117,7 +119,7 @@ class TabMenu extends React.Component {
                 </div>
                 <div className={style.relativeWrapper}>
                     <div className={style.absoluteWrapper}>
-                        <table ref='tabset' className={this.getStyle('tabNavbar')} style={{left: offsetStyle}}>
+                        <table ref={this.setTabset} className={this.getStyle('tabNavbar')} style={{left: offsetStyle}}>
                             <tbody>
                                 <tr>
                                     {this.props.tabs.map((tab, i) => {

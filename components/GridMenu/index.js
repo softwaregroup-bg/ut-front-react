@@ -104,16 +104,12 @@ export default class GlobalMenu extends Component {
             .fields
             .filter((f) => (!f.internal))
             .map((f, idx) => (
-                <MenuItem
-                    key={idx}
-                    onClick={this.toggleColumnVisibility(f)}
-                    children={
-                        <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
-                            <Checkbox isDisabled={false} checked={f.visible} />
-                            {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
-                        </div>
-                    }
-                />
+                <MenuItem key={idx} onClick={this.toggleColumnVisibility(f)}>
+                    <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
+                        <Checkbox isDisabled={false} checked={f.visible} />
+                        {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
+                    </div>
+                </MenuItem>
             ));
     }
 
@@ -129,15 +125,12 @@ export default class GlobalMenu extends Component {
             >
                 <MenuList className={this.getStyle('headerGlobalMenuItemWrap')}>
                     {this.props.onRefresh && (<div className={style.refreshContainer}>
-                        <MenuItem
-                            onClick={this.props.onRefresh} style={{minHeight: 'auto'}}
-                            children={
-                                <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
-                                    <div className={classnames(style.icon, style.refreshIcon)} />
-                                    <div className={style.iconLabel}> Reload Grid </div>
-                                </div>
-                            }
-                        />
+                        <MenuItem onClick={this.props.onRefresh} style={{minHeight: 'auto'}}>
+                            <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
+                                <div className={classnames(style.icon, style.refreshIcon)} />
+                                <div className={style.iconLabel}> Reload Grid </div>
+                            </div>
+                        </MenuItem>
                     </div>)}
                     <div className={style.columnWrap}>
                         <label className={style.menuLabel}> Manage Columns </label>

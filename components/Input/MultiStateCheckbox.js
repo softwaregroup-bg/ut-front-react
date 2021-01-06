@@ -10,18 +10,18 @@ const states = [
 ];
 class MultiStateCheckbox extends Component {
     componentWillMount() {
-        this.state = {
+        this.setState({
             selected: this.props.checked === true ? states[1] : this.props.checked === false ? states[2] : states[0],
             own: this.props.own || this.props.checked === null
-        };
+        });
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.reload) {
-            this.state = {
+            this.setState({
                 selected: nextProps.checked === true ? states[1] : nextProps.checked === false ? states[2] : states[0],
                 own: nextProps.own || nextProps.checked === null
-            };
+            });
         }
     }
 

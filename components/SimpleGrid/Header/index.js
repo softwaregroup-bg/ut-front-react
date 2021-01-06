@@ -35,12 +35,18 @@ export class Header extends Component {
                 orderDirection = '';
             }
             if (this.props.multiOrder) {
-                this.state.orderDirections[fieldName] = orderDirection;
+                this.setState({
+                    orderDirections: {
+                        ...this.state.orderDirections,
+                        [fieldName]: orderDirection
+                    }
+                });
             } else {
-                this.state.orderDirections = {[fieldName]: orderDirection};
+                this.setState({
+                    orderDirections: {[fieldName]: orderDirection}
+                });
             }
             this.props.handleOrder({field: fieldName, new: orderDirection, old: orderDirectionOld, all: this.state.orderDirections});
-            this.setState(this.state);
         }
     }
 
