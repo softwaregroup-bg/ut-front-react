@@ -75,7 +75,6 @@ export default function ui({utMethod, config = {}}) {
         init() {
             if (typeof document === 'undefined') return;
             const headHTML = document.getElementsByTagName('head')[0].innerHTML +
-                '<link type="text/css" rel="stylesheet" href="/s/user/react/index.css">' +
                 `<link href="${config.favicon || favicon}" rel="icon" type="image/x-icon" />`;
             document.getElementsByTagName('head')[0].innerHTML = headHTML;
             document.title = config.title || 'Standard';
