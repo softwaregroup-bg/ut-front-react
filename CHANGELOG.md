@@ -1,3 +1,14 @@
+## [12.2.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.4...v12.2.5) (2021-01-20)
+
+
+### Bug Fixes
+
+* avoid loop ([746fced](https://github.com/softwaregroup-bg/ut-front-react/commit/746fced974f55747daf8fa57f83a030a827d87c7))
+* do not try to translate non-string ([323c797](https://github.com/softwaregroup-bg/ut-front-react/commit/323c797619755671609f4fd17f91f6dff7c60ad8))
+* remove invalid css link ([c5860fc](https://github.com/softwaregroup-bg/ut-front-react/commit/c5860fc6aba99a426dff14b27c801a80ab0fa29b))
+
+
+
 ## [12.2.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.3...v12.2.4) (2021-01-06)
 
 
