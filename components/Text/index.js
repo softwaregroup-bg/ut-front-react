@@ -8,13 +8,14 @@ export default class Text extends React.Component {
     }
 
     static propTypes = {
-        children: PropTypes.string,
+        children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         params: PropTypes.object,
         prefix: PropTypes.string // prefix, narrowing search in translation dictionary
     }
 
     render() {
         let {children, params, prefix} = this.props;
+        if (typeof children !== 'string') return children;
         let template = children;
         if (typeof this.context.translate === 'function') {
             const text = (prefix ? [prefix, children] : [children]).join('>');
