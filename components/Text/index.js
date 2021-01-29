@@ -15,7 +15,7 @@ export default class Text extends React.Component {
 
     render() {
         let {children, params, prefix} = this.props;
-        if (typeof children !== 'string') return children;
+        if (typeof children !== 'string') return children || null;
         let template = children;
         if (typeof this.context.translate === 'function') {
             const text = (prefix ? [prefix, children] : [children]).join('>');
