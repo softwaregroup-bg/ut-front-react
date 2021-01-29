@@ -1,3 +1,12 @@
+## [12.2.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.5...v12.2.6) (2021-01-29)
+
+
+### Bug Fixes
+
+* render "null" in case of no children ([5b22395](https://github.com/softwaregroup-bg/ut-front-react/commit/5b22395cab9468c5ad35d482b8507bb5dbb319fc))
+
+
+
 ## [12.2.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.4...v12.2.5) (2021-01-20)
 
 
