@@ -1,3 +1,12 @@
+## [12.2.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.6...v12.2.7) (2021-03-01)
+
+
+### Bug Fixes
+
+* help menu link should not change users page ([a334468](https://github.com/softwaregroup-bg/ut-front-react/commit/a33446827f67e59b2df4dc1d2c3df6207434f9bb))
+
+
+
 ## [12.2.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.5...v12.2.6) (2021-01-29)
 
 
