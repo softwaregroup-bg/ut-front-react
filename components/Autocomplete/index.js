@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import AutoComplete from '@material-ui/core/AutoComplete';
+import AutoComplete from '@material-ui/lab/AutoComplete';
 import style from './style.css';
 
 export default class SimpleAutoComplete extends Component {
