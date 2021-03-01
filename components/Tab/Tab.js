@@ -35,7 +35,16 @@ export default class Tab extends Component {
         const { tab, disabled, className } = this.props;
 
         if (!tab.routeName) {
-            tab.routeName = 'ut-user:home';
+            return (
+                <span
+                    style={this.props.style}
+                    className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
+                    activeClassName={styles.navigationTabActive}
+                    onClick={this.onTabClick}
+                >
+                    <Text>{tab.title}</Text>
+                </span>
+            );
         }
 
         return (
