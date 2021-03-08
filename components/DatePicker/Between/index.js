@@ -89,6 +89,9 @@ export default class DatePickerBetween extends Component {
         const boxStylesTo = [style.dp];
         const boxGroupStyles = [style.dpBoxGroupWrap];
         const verticalClass = [];
+        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        const dpWrapDirectionClass = isTextDirectionRightToLeft ? style.dpWrapRtl : style.dpWrapLtr;
+        
         if (!this.props.labelFrom) {
             boxStylesFrom.push(style.dpNoLabel);
         }
@@ -121,14 +124,14 @@ export default class DatePickerBetween extends Component {
             <div className={classnames(style.dpBoxWrap, this.getContextStyles('dpBoxWrap'), verticalClass)}>
                 {this.props.masterLabel ? (<span className={classnames(style.masterLabel, this.getContextStyles('masteLabelStyle'))}>{this.props.masterLabel}</span>) : ''}
                 <div className={classnames.apply(undefined, boxGroupStyles)}>
-                    <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
+                    <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, dpWrapDirectionClass)}>
                         {this.props.labelFrom ? (<span className={style.label}>{this.props.labelFrom}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
                             <input value={from ? this.formatDate(fromDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
-                    <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
+                    <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last, dpWrapDirectionClass)}>
                         {this.props.labelTo ? (<span className={style.label}>{this.props.labelTo}</span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
                             <input value={to ? this.formatDate(toDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />

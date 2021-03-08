@@ -48,6 +48,10 @@ class SearchBox extends Component {
 
     render() {
         const boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
+        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        const searchBoxWrapDirection = isTextDirectionRightToLeft ? this.getStyle('searchBoxWrapRtl') : this.getStyle('searchBoxWrapLtr');
+        const searchBoxWrapInputDirection = isTextDirectionRightToLeft ? this.getStyle('searchBoxWrapInputRtl') : this.getStyle('searchBoxWrapInputLtr');
+
         if (!this.props.label) {
             boxStyles.push(this.getStyle('searchBoxNoLabel'));
         }
@@ -56,10 +60,10 @@ class SearchBox extends Component {
         }
         const zeroHeightStyle = this.props.isValid ? style.hh : '';
         return (
-            <div className={this.getStyle('searchBoxWrap')}>
+            <div className={classnames(this.getStyle('searchBoxWrap'), searchBoxWrapDirection)}>
                 {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</span>) : ''}
                 <div className={classnames.apply(undefined, boxStyles)}>
-                    <input value={this.state.value} onKeyUp={this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} />
+                    <input value={this.state.value} onKeyUp={this.handleKeyUp} type='text' onChange={this.handleChange} className={classnames(this.getStyle('searchBoxWrapInput'), searchBoxWrapInputDirection)} placeholder={this.props.placeholder} />
                     <button onClick={this.handleSearch} />
                 </div>
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>

@@ -24,9 +24,16 @@
 
 .searchBoxWrapInput {
     width: 100%;
-    padding: 0px 36px 0px 10px;
     border: none;
     height: 28px;
+}
+
+.searchBoxWrapInputRtl {
+    padding: 0px 10px 0px 36px;
+}
+
+.searchBoxWrapInputLtr {
+    padding: 0px 36px 0px 10px;
 }
 
 .searchBoxWrap .label {
@@ -45,12 +52,19 @@
     height: 26px;
     position: absolute;
     top: 1px;
-    right: 1px;
     border: none;
     background: var(--ut-front-react-standardSearchBoxColor);
     background-image: url('./images/search.png');
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.searchBoxWrapRtl button {
+    left: 1px;
+}
+
+.searchBoxWrapLtr button {
+    right: 1px;
 }
 
 .errorWrap {

@@ -289,6 +289,13 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
     line-height: 26px !important;
     border: none !important;
     color: inherit !important;
+}
+
+.dropdownWrapRtl div {
+    text-align: right !important;
+}
+
+.dropdownWrapLtr div {
     text-align: left !important;
 }
 
@@ -298,6 +305,13 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
+}
+
+.dropdownWrapRtl .dropDownRoot {
+    padding: 1px 10px 1px 38px !important;
+}
+
+.dropdownWrapLtr .dropDownRoot {
     padding: 1px 38px 1px 10px !important;
 }
 
@@ -431,10 +445,17 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .dropdownIconWrap {
     position: absolute;
     top: 1px;
-    right: 1px;
     height: 26px;
     width: 26px;
     display: flex;
+}
+
+.dropdownIconWrapRtl {
+    left: 1px;
+}
+
+.dropdownIconWrapLtr {
+    right: 1px;
 }
 
 .arrowIcon {
