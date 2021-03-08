@@ -45,7 +45,3 @@ NavigationLink.propTypes = {
 NavigationLink.defaultProps = {
     params: {}
 };
-
-NavigationLink.contextTypes = {
-    router: PropTypes.object.isRequired
-};
