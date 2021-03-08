@@ -34,9 +34,17 @@
     display: block;
     position: absolute;
     top: 0;
-    left: 0;
 	cursor: col-resize;
 }
+
+.resizorRtl {
+    right: 0;
+}
+
+.resizorLtr {
+    left: 0;
+}
+
 .resizor .visibleResizor {
     width: 1px;
     margin-left: 0px; /* 1 line, 3 offset, 2 dots, 3 offset */
