@@ -72,7 +72,6 @@
     padding: 0px 9px;
     line-height: 20px;
     border: 1px solid var(--ut-front-react-standardPaginationBorderColor);
-    border-left: none;
     display: inline-block;
     cursor: pointer;
     text-align: center;
@@ -82,6 +81,9 @@
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently */
+}
+.pageBoxesWrapLtr .pageBoxesWrapInnerWrap .pageBox {
+    border-left: none;
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:first-child {
     border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
@@ -156,10 +158,22 @@
     border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 
-.pageSizeBoxWrap .totalItemsWrap {
+.pageSizeBoxWrapRtl .totalItemsWrap {
+    margin-left: 10px;
+}
+
+.pageSizeBoxWrapLtr .totalItemsWrap {
     margin-right: 10px;
 }
+
 .pageSizeBoxWrap .itemPerPageDDWrap {
     width: 100px;
+}
+
+.pageSizeBoxWrapRtl .itemPerPageDDWrap {
+    margin-left: 5px;
+}
+
+.pageSizeBoxWrapLtr .itemPerPageDDWrap {
     margin-right: 5px;
 }

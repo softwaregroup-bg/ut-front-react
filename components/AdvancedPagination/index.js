@@ -92,19 +92,44 @@ class AdvancedPagination extends Component {
             }
         };
 
-        return (
-            <div className={styles.pageSwitherWrap}>
-                <div className={styles.numberInputWrap}>
-                    <input
-                        type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
-                        onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
-                    />
-                </div>
-                <div className={styles.rightWrap}>
-                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
-                </div>
-            </div>
-        );
+        const getPageSwitcherHtml= () => {
+            const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+            let content = '';
+    
+            if(isTextDirectionRightToLeft){
+                content = (
+                    <div className={styles.pageSwitherWrap}>
+                        <div className={styles.rightWrap}>
+                            / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
+                        </div>
+                        <div className={styles.numberInputWrap}>
+                            <input
+                                type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
+                                onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
+                            />
+                        </div>
+                    </div>
+                );
+            }else{
+                content = (
+                    <div className={styles.pageSwitherWrap}>
+                        <div className={styles.numberInputWrap}>
+                            <input
+                                type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
+                                onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
+                            />
+                        </div>
+                        <div className={styles.rightWrap}>
+                            / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
+                        </div>
+                    </div>
+                );
+            }
+    
+            return content;
+        }
+
+        return getPageSwitcherHtml();
     }
 
     renderPageBoxes() {
@@ -306,8 +331,11 @@ class AdvancedPagination extends Component {
             pushArrowsToPagesBoxes(false);
         }
 
+        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        const pageBoxesWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageBoxesWrapRtl : styles.pageBoxesWrapLtr;
+
         return (
-            <div className={styles.pageBoxesWrap}>
+            <div className={classnames(styles.pageBoxesWrap,pageBoxesWrapDirectionClass)}>
                 <div className={styles.pageBoxesWrapInnerWrap}>
                     {pageBoxes}
                 </div>
@@ -327,8 +355,12 @@ class AdvancedPagination extends Component {
         if (this.props.dropdownIconStyles) {
             dropdownIconStyles = Object.assign(dropdownIconStyles, this.props.dropdownIconStyles);
         }
+        
+        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        const pageSizeBoxWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageSizeBoxWrapRtl : styles.pageSizeBoxWrapLtr;
+
         return (
-            <div className={styles.pageSizeBoxWrap}>
+            <div className={classnames(styles.pageSizeBoxWrap, pageSizeBoxWrapDirectionClass)}>
                 <div className={styles.totalItemsWrap}>
                     <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}><Text>Items</Text></span>
                 </div>
