@@ -8,6 +8,7 @@ import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';
 import cssStandard from '../../assets/index.css';
 import style from './style.css';
+import classnames from 'classnames';
 
 const defaultColWidth = 200;
 const defaultMinWidth = 10;
@@ -196,13 +197,24 @@ class Container extends Component {
             const secondObject = this.resizeObjects[this.resizeIndex + 1];
             let firstIndexWidthToUpdate;
             let secondIndexWidthToupdate;
-
-            if (diffPosition < 0) { // right move
-                firstIndexWidthToUpdate = firstObject.currentWidth + Math.abs(diffPosition);
-                secondIndexWidthToupdate = secondObject.currentWidth + diffPosition; // diffPosition is negative => + -: -
-            } else { // left move
-                firstIndexWidthToUpdate = firstObject.currentWidth - diffPosition;
-                secondIndexWidthToupdate = secondObject.currentWidth + diffPosition;
+            const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        
+            if (isTextDirectionRightToLeft){
+                if (diffPosition < 0) { // right move
+                    firstIndexWidthToUpdate = firstObject.currentWidth - Math.abs(diffPosition);
+                    secondIndexWidthToupdate = secondObject.currentWidth - diffPosition; // diffPosition is negative => + -: -
+                } else { // left move
+                    firstIndexWidthToUpdate = firstObject.currentWidth + diffPosition;
+                    secondIndexWidthToupdate = secondObject.currentWidth - diffPosition;
+                }
+            }else{            
+                if (diffPosition < 0) { // right move
+                    firstIndexWidthToUpdate = firstObject.currentWidth + Math.abs(diffPosition);
+                    secondIndexWidthToupdate = secondObject.currentWidth + diffPosition; // diffPosition is negative => + -: -
+                } else { // left move
+                    firstIndexWidthToUpdate = firstObject.currentWidth - diffPosition;
+                    secondIndexWidthToupdate = secondObject.currentWidth + diffPosition;
+                }
             }
 
             // prevent if size gets below min
@@ -331,6 +343,8 @@ class Container extends Component {
             };
 
             const contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
+            const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+            const resizorDirectionClass = isTextDirectionRightToLeft ? style.resizorRtl : style.resizorLtr;
 
             const colResult = (
                 <div id={col.id} key={index} className={style.col} style={currentStyles}>
@@ -340,7 +354,7 @@ class Container extends Component {
 
                     {
                         index !== 0 &&
-                        <span className={style.resizor} onMouseDown={handleOnMouseDownEvent}>
+                        <span className={classnames(style.resizor, resizorDirectionClass)} onMouseDown={handleOnMouseDownEvent}>
                             <span className={style.visibleResizor} />
                             <span className={style.resizorDots} />
                         </span>
