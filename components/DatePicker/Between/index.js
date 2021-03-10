@@ -89,6 +89,7 @@ export default class DatePickerBetween extends Component {
         const boxStylesTo = [style.dp];
         const boxGroupStyles = [style.dpBoxGroupWrap];
         const verticalClass = [];
+
         if (!this.props.labelFrom) {
             boxStylesFrom.push(style.dpNoLabel);
         }

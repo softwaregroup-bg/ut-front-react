@@ -92,19 +92,44 @@ class AdvancedPagination extends Component {
             }
         };
 
-        return (
-            <div className={styles.pageSwitherWrap}>
-                <div className={styles.numberInputWrap}>
-                    <input
-                        type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
-                        onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
-                    />
-                </div>
-                <div className={styles.rightWrap}>
-                    / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
-                </div>
-            </div>
-        );
+        const getPageSwitcherHtml = () => {
+            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') && document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
+            let content = '';
+
+            if (isTextDirectionRightToLeft) {
+                content = (
+                    <div className={styles.pageSwitherWrap}>
+                        <div className={styles.rightWrap}>
+                            / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
+                        </div>
+                        <div className={styles.numberInputWrap}>
+                            <input
+                                type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
+                                onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
+                            />
+                        </div>
+                    </div>
+                );
+            } else {
+                content = (
+                    <div className={styles.pageSwitherWrap}>
+                        <div className={styles.numberInputWrap}>
+                            <input
+                                type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
+                                onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
+                            />
+                        </div>
+                        <div className={styles.rightWrap}>
+                            / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}><Text>Pages</Text></span>
+                        </div>
+                    </div>
+                );
+            }
+
+            return content;
+        };
+
+        return getPageSwitcherHtml();
     }
 
     renderPageBoxes() {
@@ -327,6 +352,7 @@ class AdvancedPagination extends Component {
         if (this.props.dropdownIconStyles) {
             dropdownIconStyles = Object.assign(dropdownIconStyles, this.props.dropdownIconStyles);
         }
+
         return (
             <div className={styles.pageSizeBoxWrap}>
                 <div className={styles.totalItemsWrap}>

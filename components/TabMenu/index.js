@@ -112,6 +112,10 @@ class TabMenu extends React.Component {
         } else {
             offsetStyle = this.state.offset + 'px';
         }
+
+        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        let tabNavBarOffset = isTextDirectionRightToLeft ? {right: offsetStyle} : {left: offsetStyle};
+
         return (
             <div className={classnames(style.TabMenu, this.getStyle('tabMenu'))}>
                 <div className={this.getStyle('tabSelectorWrapper')} style={{display: displayBtnStyle}}>
@@ -119,7 +123,7 @@ class TabMenu extends React.Component {
                 </div>
                 <div className={style.relativeWrapper}>
                     <div className={style.absoluteWrapper}>
-                        <table ref={this.setTabset} className={this.getStyle('tabNavbar')} style={{left: offsetStyle}}>
+                        <table ref={this.setTabset} className={this.getStyle('tabNavbar')} style={tabNavBarOffset}>
                             <tbody>
                                 <tr>
                                     {this.props.tabs.map((tab, i) => {
