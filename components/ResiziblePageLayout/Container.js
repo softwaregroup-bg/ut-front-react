@@ -198,8 +198,8 @@ class Container extends Component {
             let firstIndexWidthToUpdate;
             let secondIndexWidthToupdate;
             const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        
-            if (isTextDirectionRightToLeft){
+
+            if (isTextDirectionRightToLeft) {
                 if (diffPosition < 0) { // right move
                     firstIndexWidthToUpdate = firstObject.currentWidth - Math.abs(diffPosition);
                     secondIndexWidthToupdate = secondObject.currentWidth - diffPosition; // diffPosition is negative => + -: -
@@ -207,7 +207,7 @@ class Container extends Component {
                     firstIndexWidthToUpdate = firstObject.currentWidth + diffPosition;
                     secondIndexWidthToupdate = secondObject.currentWidth - diffPosition;
                 }
-            }else{            
+            } else {
                 if (diffPosition < 0) { // right move
                     firstIndexWidthToUpdate = firstObject.currentWidth + Math.abs(diffPosition);
                     secondIndexWidthToupdate = secondObject.currentWidth + diffPosition; // diffPosition is negative => + -: -

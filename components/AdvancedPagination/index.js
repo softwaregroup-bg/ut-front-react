@@ -92,11 +92,11 @@ class AdvancedPagination extends Component {
             }
         };
 
-        const getPageSwitcherHtml= () => {
+        const getPageSwitcherHtml = () => {
             const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
             let content = '';
-    
-            if(isTextDirectionRightToLeft){
+
+            if (isTextDirectionRightToLeft) {
                 content = (
                     <div className={styles.pageSwitherWrap}>
                         <div className={styles.rightWrap}>
@@ -110,7 +110,7 @@ class AdvancedPagination extends Component {
                         </div>
                     </div>
                 );
-            }else{
+            } else {
                 content = (
                     <div className={styles.pageSwitherWrap}>
                         <div className={styles.numberInputWrap}>
@@ -125,9 +125,9 @@ class AdvancedPagination extends Component {
                     </div>
                 );
             }
-    
+
             return content;
-        }
+        };
 
         return getPageSwitcherHtml();
     }
@@ -335,7 +335,7 @@ class AdvancedPagination extends Component {
         const pageBoxesWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageBoxesWrapRtl : styles.pageBoxesWrapLtr;
 
         return (
-            <div className={classnames(styles.pageBoxesWrap,pageBoxesWrapDirectionClass)}>
+            <div className={classnames(styles.pageBoxesWrap, pageBoxesWrapDirectionClass)}>
                 <div className={styles.pageBoxesWrapInnerWrap}>
                     {pageBoxes}
                 </div>
@@ -355,7 +355,7 @@ class AdvancedPagination extends Component {
         if (this.props.dropdownIconStyles) {
             dropdownIconStyles = Object.assign(dropdownIconStyles, this.props.dropdownIconStyles);
         }
-        
+
         const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
         const pageSizeBoxWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageSizeBoxWrapRtl : styles.pageSizeBoxWrapLtr;
 
