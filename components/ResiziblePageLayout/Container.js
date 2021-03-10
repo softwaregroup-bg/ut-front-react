@@ -343,8 +343,6 @@ class Container extends Component {
             };
 
             const contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
-            //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-            //const resizorDirectionClass = isTextDirectionRightToLeft ? style.resizorRtl : style.resizorLtr;
 
             const colResult = (
                 <div id={col.id} key={index} className={style.col} style={currentStyles}>

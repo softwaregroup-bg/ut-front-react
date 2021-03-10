@@ -169,9 +169,7 @@ class Dropdown extends Component {
         const rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         const menuItems = this.getMenuItems(rootElementWidth);
         // let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
-        //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        //const dropdownIconWrapDirectionClass = isTextDirectionRightToLeft ? ddstyles.dropdownIconWrapRtl : ddstyles.dropdownIconWrapLtr;
-        //const dropdownWrapDirectionClass = isTextDirectionRightToLeft ? ddstyles.dropdownWrapRtl : ddstyles.dropdownWrapLtr;
+         
         return (
             <>
                 <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled ? this.handleOpen : undefined}>

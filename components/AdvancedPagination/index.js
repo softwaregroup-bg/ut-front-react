@@ -331,9 +331,6 @@ class AdvancedPagination extends Component {
             pushArrowsToPagesBoxes(false);
         }
 
-        //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        //const pageBoxesWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageBoxesWrapRtl : styles.pageBoxesWrapLtr;
-
         return (
             <div className={styles.pageBoxesWrap}>
                 <div className={styles.pageBoxesWrapInnerWrap}>
@@ -355,9 +352,6 @@ class AdvancedPagination extends Component {
         if (this.props.dropdownIconStyles) {
             dropdownIconStyles = Object.assign(dropdownIconStyles, this.props.dropdownIconStyles);
         }
-
-        //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        //const pageSizeBoxWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageSizeBoxWrapRtl : styles.pageSizeBoxWrapLtr;
 
         return (
             <div className={styles.pageSizeBoxWrap}>

@@ -48,9 +48,6 @@ class SearchBox extends Component {
 
     render() {
         const boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
-        //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        //const searchBoxWrapDirection = isTextDirectionRightToLeft ? this.getStyle('searchBoxWrapRtl') : this.getStyle('searchBoxWrapLtr');
-        //const searchBoxWrapInputDirection = isTextDirectionRightToLeft ? this.getStyle('searchBoxWrapInputRtl') : this.getStyle('searchBoxWrapInputLtr');
 
         if (!this.props.label) {
             boxStyles.push(this.getStyle('searchBoxNoLabel'));
