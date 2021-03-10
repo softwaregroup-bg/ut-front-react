@@ -1,3 +1,12 @@
+# [12.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.7...v12.3.0) (2021-03-10)
+
+
+### Features
+
+* rtl ([f792ab4](https://github.com/softwaregroup-bg/ut-front-react/commit/f792ab42f5efb400ceee0e83f02634f8599aaa4c))
+
+
+
 ## [12.2.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.6...v12.2.7) (2021-03-01)
 
 
