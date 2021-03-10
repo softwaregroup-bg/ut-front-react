@@ -83,7 +83,11 @@
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently */
 }
-.pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:first-child {
+
+:global(html[dir='rtl']) .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:last-child {
+    border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
+}
+:global(html:not([dir='rtl'])) .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:first-child {
     border-left: 1px solid var(--ut-front-react-standardPaginationBorderColor);
 }
 .pageBoxesWrap .pageBoxesWrapInnerWrap .pageBox:hover {
@@ -159,7 +163,19 @@
 .pageSizeBoxWrap .totalItemsWrap {
     margin-right: 10px;
 }
+
+:global(html[dir='rtl']) .pageSizeBoxWrap .totalItemsWrap {
+    margin-right:0px;
+    margin-left: 10px;
+}
+
 .pageSizeBoxWrap .itemPerPageDDWrap {
     width: 100px;
     margin-right: 5px;
+}
+
+
+:global(html[dir='rtl']) .pageSizeBoxWrap .itemPerPageDDWrap {
+    margin-right: 0px;
+    margin-left: 5px;
 }

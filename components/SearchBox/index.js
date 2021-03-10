@@ -48,6 +48,7 @@ class SearchBox extends Component {
 
     render() {
         const boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
+
         if (!this.props.label) {
             boxStyles.push(this.getStyle('searchBoxNoLabel'));
         }

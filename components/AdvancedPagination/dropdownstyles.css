@@ -30,6 +30,11 @@
     color: #595959 !important;
     text-align: left !important;
 }
+
+:global(html[dir='rtl']) .dropdownWrap div {
+    text-align: right !important;
+}
+
 .dropdownWrap, .dropdownWrap .dropDownRoot {
     height: 21px!important;
 }
@@ -41,15 +46,27 @@
     padding: 1px 29px 1px 10px !important;
     display: flex;
 }
+
+:global(html[dir='rtl']) .dropDownRoot {
+    padding: 1px 10px 1px 29px !important;
+}
+
 .dropDownRoot > div:first-child {
     flex-grow: 10;
 }
 .dropdownIconWrap {
     position: absolute;
     top: 1px;
-    right: 1px;
+    right:1px;
     display: flex;
 }
+
+
+:global(html[dir='rtl']) .dropdownIconWrap {
+    right:initial;
+    left: 1px;
+}
+
 .dropdownIconWrap svg,
 .dropdownIconBackground svg { /* pass over material ui styling limitations */
     background-color: var(--ut-front-react-standardPaginationBackgroundActiveColor);

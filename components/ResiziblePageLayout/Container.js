@@ -196,13 +196,24 @@ class Container extends Component {
             const secondObject = this.resizeObjects[this.resizeIndex + 1];
             let firstIndexWidthToUpdate;
             let secondIndexWidthToupdate;
+            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') && document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
 
-            if (diffPosition < 0) { // right move
-                firstIndexWidthToUpdate = firstObject.currentWidth + Math.abs(diffPosition);
-                secondIndexWidthToupdate = secondObject.currentWidth + diffPosition; // diffPosition is negative => + -: -
-            } else { // left move
-                firstIndexWidthToUpdate = firstObject.currentWidth - diffPosition;
-                secondIndexWidthToupdate = secondObject.currentWidth + diffPosition;
+            if (isTextDirectionRightToLeft) {
+                if (diffPosition < 0) { // right move
+                    firstIndexWidthToUpdate = firstObject.currentWidth - Math.abs(diffPosition);
+                    secondIndexWidthToupdate = secondObject.currentWidth - diffPosition; // diffPosition is negative => + -: -
+                } else { // left move
+                    firstIndexWidthToUpdate = firstObject.currentWidth + diffPosition;
+                    secondIndexWidthToupdate = secondObject.currentWidth - diffPosition;
+                }
+            } else {
+                if (diffPosition < 0) { // right move
+                    firstIndexWidthToUpdate = firstObject.currentWidth + Math.abs(diffPosition);
+                    secondIndexWidthToupdate = secondObject.currentWidth + diffPosition; // diffPosition is negative => + -: -
+                } else { // left move
+                    firstIndexWidthToUpdate = firstObject.currentWidth - diffPosition;
+                    secondIndexWidthToupdate = secondObject.currentWidth + diffPosition;
+                }
             }
 
             // prevent if size gets below min

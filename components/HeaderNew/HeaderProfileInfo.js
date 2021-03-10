@@ -88,6 +88,10 @@ export default class HeaderProfileInfo extends Component {
         const { className } = this.props;
         const { menuToggled } = this.state;
 
+        const direction = document.getElementsByTagName('html')[0].getAttribute('dir') || 'ltr';
+        const offsets = direction === 'ltr' ? { right: 5, bottom: 9 } : { left: 5, bottom: 9 };
+        const positioningDirections = direction === 'ltr' ? 'right-bottom' : 'bottom-left';
+
         return (
             <span className={styles.profileInfo}>
                 <span
@@ -112,8 +116,8 @@ export default class HeaderProfileInfo extends Component {
                         fields={this.getMenuItems()}
                         anchorEl={this.infoArrowNode}
                         requestClose={this.requestCloseMenu}
-                        additionalOffsets={{right: 5, bottom: 9}}
-                        positioningDirections='right-bottom'
+                        additionalOffsets={offsets}
+                        positioningDirections={positioningDirections}
                         className={styles.profileInfoPopoverMenu}
                         separatorsOnIndex={[2]}
                         closeOnSelect
