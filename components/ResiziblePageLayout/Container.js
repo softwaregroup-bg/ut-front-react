@@ -197,8 +197,8 @@ class Container extends Component {
             const secondObject = this.resizeObjects[this.resizeIndex + 1];
             let firstIndexWidthToUpdate;
             let secondIndexWidthToupdate;
-            const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-
+            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') &&  document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
+            
             if (isTextDirectionRightToLeft) {
                 if (diffPosition < 0) { // right move
                     firstIndexWidthToUpdate = firstObject.currentWidth - Math.abs(diffPosition);
@@ -343,8 +343,8 @@ class Container extends Component {
             };
 
             const contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
-            const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-            const resizorDirectionClass = isTextDirectionRightToLeft ? style.resizorRtl : style.resizorLtr;
+            //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+            //const resizorDirectionClass = isTextDirectionRightToLeft ? style.resizorRtl : style.resizorLtr;
 
             const colResult = (
                 <div id={col.id} key={index} className={style.col} style={currentStyles}>
@@ -354,7 +354,7 @@ class Container extends Component {
 
                     {
                         index !== 0 &&
-                        <span className={classnames(style.resizor, resizorDirectionClass)} onMouseDown={handleOnMouseDownEvent}>
+                        <span className={style.resizor} onMouseDown={handleOnMouseDownEvent}>
                             <span className={style.visibleResizor} />
                             <span className={style.resizorDots} />
                         </span>

@@ -93,7 +93,7 @@ class AdvancedPagination extends Component {
         };
 
         const getPageSwitcherHtml = () => {
-            const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') &&  document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
             let content = '';
 
             if (isTextDirectionRightToLeft) {
@@ -331,11 +331,11 @@ class AdvancedPagination extends Component {
             pushArrowsToPagesBoxes(false);
         }
 
-        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        const pageBoxesWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageBoxesWrapRtl : styles.pageBoxesWrapLtr;
+        //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        //const pageBoxesWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageBoxesWrapRtl : styles.pageBoxesWrapLtr;
 
         return (
-            <div className={classnames(styles.pageBoxesWrap, pageBoxesWrapDirectionClass)}>
+            <div className={styles.pageBoxesWrap}>
                 <div className={styles.pageBoxesWrapInnerWrap}>
                     {pageBoxes}
                 </div>
@@ -356,11 +356,11 @@ class AdvancedPagination extends Component {
             dropdownIconStyles = Object.assign(dropdownIconStyles, this.props.dropdownIconStyles);
         }
 
-        const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        const pageSizeBoxWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageSizeBoxWrapRtl : styles.pageSizeBoxWrapLtr;
+        //const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
+        //const pageSizeBoxWrapDirectionClass = isTextDirectionRightToLeft ? styles.pageSizeBoxWrapRtl : styles.pageSizeBoxWrapLtr;
 
         return (
-            <div className={classnames(styles.pageSizeBoxWrap, pageSizeBoxWrapDirectionClass)}>
+            <div className={styles.pageSizeBoxWrap}>
                 <div className={styles.totalItemsWrap}>
                     <span className={styles.bold}>{this.recordsTotal}</span> <span className={styles.lighColor}><Text>Items</Text></span>
                 </div>

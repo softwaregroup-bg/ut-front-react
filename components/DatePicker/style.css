@@ -21,13 +21,11 @@
 
 .dpWrap {
     display: inline-flex;
+    margin: 0 20px 0 0;
 }
 
-.dpWrapRtl {
+:global(html[dir='rtl']) .dpWrap {
     margin: 0 0 0 20px;
-}
-.dpWrapLtr {
-    margin: 0 20px 0 0;
 }
 
 .dpWrap.last {
@@ -36,16 +34,13 @@
 
 .dpWrap input {
     width: 100%;
+    padding: 4px 36px 4px 10px;
     border: none;
     height: 28px;
 }
 
-.dpWrapRtl input {
+:global(html[dir='rtl']) .dpWrap input {
     padding: 4px 10px 4px 36px;
-}
-
-.dpWrapLtr input {
-    padding: 4px 36px 4px 10px;
 }
 
 .dpWrap button {
@@ -53,6 +48,7 @@
     height: 26px;
     position: absolute;
     top: 1px;
+    right: 1px;
     border: none;
     background: var(--ut-front-react-standardDatePickerBackgroundColor);
     background-image: url('./images/calendar.png');
@@ -60,24 +56,18 @@
     background-position: center center;
 }
 
-.dpWrapRtl button {
+:global(html[dir='rtl']) .dpWrap button {
+    right: initial;
     left: 1px;
-}
-
-.dpWrapLtr button {
-    right: 1px;
 }
 
 .dpWrap .label, .masterLabel {
     align-self: center;
-}
-
-.dpWrapRtl .label, .masterLabel {
-    margin: 0 0 0 10px;
-}
-
-.dpWrapLtr .label, .masterLabel {
     margin: 0 10px 0 0;
+}
+
+:global(html[dir='rtl']) .dpWrap .label, .masterLabel {
+    margin: 0 0 0 10px;
 }
 
 .dpBoxGroupWrap {
