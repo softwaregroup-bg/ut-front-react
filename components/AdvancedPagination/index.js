@@ -93,7 +93,7 @@ class AdvancedPagination extends Component {
         };
 
         const getPageSwitcherHtml = () => {
-            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') &&  document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
+            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') && document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
             let content = '';
 
             if (isTextDirectionRightToLeft) {

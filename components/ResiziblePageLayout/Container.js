@@ -8,7 +8,6 @@ import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';
 import cssStandard from '../../assets/index.css';
 import style from './style.css';
-import classnames from 'classnames';
 
 const defaultColWidth = 200;
 const defaultMinWidth = 10;
@@ -197,8 +196,8 @@ class Container extends Component {
             const secondObject = this.resizeObjects[this.resizeIndex + 1];
             let firstIndexWidthToUpdate;
             let secondIndexWidthToupdate;
-            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') &&  document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
-            
+            const isTextDirectionRightToLeft = document.documentElement.getAttribute('dir') && document.documentElement.getAttribute('dir').toLowerCase() === 'rtl';
+
             if (isTextDirectionRightToLeft) {
                 if (diffPosition < 0) { // right move
                     firstIndexWidthToUpdate = firstObject.currentWidth - Math.abs(diffPosition);

@@ -169,7 +169,7 @@ class Dropdown extends Component {
         const rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         const menuItems = this.getMenuItems(rootElementWidth);
         // let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
-         
+
         return (
             <>
                 <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
