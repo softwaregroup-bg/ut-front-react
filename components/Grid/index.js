@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import immutable from 'immutable';
 import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 
 import Header from './Header';
 import Row from './Row';
@@ -67,7 +68,7 @@ class Grid extends Component {
     }
 
     render() {
-        const {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
+        const {classes, columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
         let rowColumns = columns;
 
         // Add empty column
@@ -80,7 +81,7 @@ class Grid extends Component {
         const thStyles = this.props.thStyles;
 
         const grid = (
-            <table className={style.dataGridTable}>
+            <table className={classnames(style.dataGridTable, classes.table)}>
                 {this.props.showTableHead &&
                     <Header
                         columns={columns}
@@ -132,6 +133,7 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
+    classes: PropTypes.object,
     columns: PropTypes.array.isRequired,
     rows: PropTypes.object.isRequired, // immutable object (array)
     checkedItems: PropTypes.object, // immutable list
@@ -173,4 +175,17 @@ Grid.defaultProps = {
     onLinkClick: function() {}
 };
 
-export default Grid;
+export default withStyles(({palette}) => ({
+    table: {
+        border: `1px solid ${palette.divider}`,
+        '& tr': {
+            background: palette.background.paper
+        },
+        '& tr:hover, & thead tr': {
+            background: palette.background.default
+        },
+        '& tr:nth-child(2n)': {
+            background: palette.background.red
+        }
+    }
+}))(Grid);

@@ -3,6 +3,9 @@
 import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
+import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+
 import resizibleTypes from './resizibleTypes';
 import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';
@@ -341,7 +344,7 @@ class Container extends Component {
                     {
                         index !== 0 &&
                         <span className={style.resizor} onMouseDown={handleOnMouseDownEvent}>
-                            <span className={style.visibleResizor} />
+                            <span className={classnames(style.visibleResizor, this.props.classes.divider)} />
                             <span className={style.resizorDots} />
                         </span>
                     }
@@ -352,7 +355,7 @@ class Container extends Component {
 
         return (
             <div style={{height: this.state.height, maxHeight: '100%'}}>
-                <div ref='tableWrap' id={style.mainContentWrap} className={this.props.externalClassName}>
+                <div ref='tableWrap' id={style.mainContentWrap} className={classnames(this.props.externalClassName, this.props.classes.default)}>
                     {renderCols}
                 </div>
             </div>
@@ -361,6 +364,7 @@ class Container extends Component {
 }
 
 Container.propTypes = {
+    classes: PropTypes.object,
     cols: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.oneOf([resizibleTypes.ASIDE, resizibleTypes.CONTENT]).isRequired,
         child: PropTypes.any.isRequired,
@@ -388,4 +392,15 @@ Container.defaultProps = {
     cssStandard: false
 };
 
-export default Container;
+export default withStyles(({palette}) => ({
+    default: {
+        borderTop: `1px solid ${palette.divider}`,
+        background: palette.action.selected
+    },
+    divider: {
+        background: palette.divider
+    },
+    paper: {
+        background: palette.background.paper
+    }
+}))(Container);

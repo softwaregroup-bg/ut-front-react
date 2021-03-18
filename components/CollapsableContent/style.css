@@ -1,16 +1,13 @@
 .collapsableContentContainer {
-    background-color: #F9F9F9;
 	position: relative;
 }
 
 .collapsableContentContainer .heading {
     position: relative;
     padding: 3px 0 3px 0px;
-    border-bottom: 1px solid #D7D6D6;
     color: #7B7B7B;
     font-weight: bold;
     font-size: 14px;
-    background-color: #F9F9F9;
     cursor: pointer;
 }
 
@@ -24,7 +21,7 @@
 }
 
 .collapsableContentContainer .headingLeftArrow {
-    padding-left: 8px !important; 
+    padding-left: 8px !important;
 }
 
 .collapsableContentContainer .headingRightArrow {

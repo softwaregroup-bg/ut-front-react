@@ -7,6 +7,7 @@ import { Header } from './Header';
 import { Body } from './Body';
 import style from './style.css';
 import cssStandard from '../../assets/index.css';
+import { Box } from '@material-ui/core';
 
 function findField(haystack, needle) {
     return haystack.findKey((piece) => {
@@ -124,7 +125,7 @@ export class SimpleGrid extends Component {
         const fields = iFields.toJS();
         const {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
         const grid = (
-            <table className={this.getStyle(this.props.mainClassName)}>
+            <Box component='table' className={this.getStyle(this.props.mainClassName)} borderColor='divider'>
                 {!this.props.hideHeader && <Header
                     externalStyle={this.props.externalStyle}
                     transformCellValue={this.props.transformCellValue}
@@ -164,7 +165,7 @@ export class SimpleGrid extends Component {
                     verticalFieldsRenderComplete={this.props.verticalFieldsRenderComplete}
                     verticalFieldsVisible={this.props.verticalFieldsVisible}
                 />
-            </table>
+            </Box>
         );
         if (!this.props.cssStandard) {
             return grid;
