@@ -8,7 +8,8 @@ import {
     CHANGE_DOCUMENT_STATUS_DELETED,
     CHANGE_DOCUMENT_STATUS_ARCHIVED,
     CHANGE_DOCUMENT_FILTER,
-    RESET_DOCUMENT_STATE
+    RESET_DOCUMENT_STATE,
+    UPLOAD_DOCUMENT
 } from './actionTypes';
 
 export function initState(identifier, pathname) {
@@ -111,5 +112,14 @@ export function changeDocumentFilter(identifier, filter) {
             identifier,
             filter
         }
+    };
+}
+
+export function uploadDocument(params) {
+    return {
+        type: UPLOAD_DOCUMENT,
+        request: 'document/document/upload',
+        method: 'document.document.upload',
+        params
     };
 }
