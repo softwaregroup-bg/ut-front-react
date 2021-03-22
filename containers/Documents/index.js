@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import immutable from 'immutable';
-import { documentTmpUploadPrefix } from '../../constants';
+import { documentPrefix } from '../../constants';
 import {
     initState,
     fetchArchivedDocuments,
@@ -12,7 +12,8 @@ import {
     replaceDocument,
     changeDocumentFilter,
     changeDocumentStatusDeleted,
-    changeDocumentStatusArchived
+    changeDocumentStatusArchived,
+    uploadDocument
 } from './actions';
 
 import DocumentsListing from '../../components/Documents/Listing';
@@ -97,9 +98,10 @@ class DocumentsContainer extends Component {
                         attachments: [
                             {
                                 filename: newObject.filename,
+                                hash: newObject.filename,
                                 extension: newObject.extension,
                                 contentType: newObject.contentType,
-                                url: documentTmpUploadPrefix + newObject.filename
+                                url: documentPrefix + newObject.filename
                             }
                         ]
                     };
@@ -116,6 +118,10 @@ class DocumentsContainer extends Component {
                 }}
                 changeDocumentFilter={(newFilter) => {
                     this.props.changeDocumentFilter(identifier, newFilter);
+                }}
+                uploadDocument={async (params) => {
+                    const result = await this.props.uploadDocument(params);
+                    return result;
                 }}
                 selectedFilter={selectedFilter}
                 documentArchived={documentArchived}
@@ -146,6 +152,7 @@ DocumentsContainer.propTypes = {
     changeDocumentStatusArchived: PropTypes.func.isRequired,
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
+    uploadDocument: PropTypes.func.isRequired,
     pathname: PropTypes.string.isRequired
 };
 
@@ -159,5 +166,5 @@ export default connect(
             documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})
         };
     },
-    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter }
+    { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter, uploadDocument }
 )(DocumentsContainer);

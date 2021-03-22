@@ -223,6 +223,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                 const attObj = {
                     attachmentId: tmpAttId,
                     filename: att.filename,
+                    hash: att.hash,
                     extension: att.extension,
                     contentType: att.contentType,
                     documentId: tmpDocId,
@@ -263,6 +264,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                 const attObj = {
                     attachmentId: att.attachmentId,
                     filename: att.filename,
+                    hash: att.hash,
                     extension: att.extension,
                     contentType: att.contentType,
                     documentId: documentId,

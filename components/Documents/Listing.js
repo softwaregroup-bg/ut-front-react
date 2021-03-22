@@ -34,6 +34,7 @@ class Documents extends Component {
                 changeDocumentFilter={this.props.changeDocumentFilter}
                 documentTypes={this.props.documentTypes}
                 uploadNewDocument={this.props.uploadNewDocument}
+                uploadDocument={this.props.uploadDocument}
                 replaceDocument={this.props.replaceDocument}
                 deleteDocument={this.props.deleteDocument}
                 archiveDocument={this.props.archiveDocument}
@@ -96,6 +97,7 @@ Documents.propTypes = {
     ),
 
     uploadNewDocument: PropTypes.func,
+    uploadDocument : PropTypes.func,
     replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
     archiveDocument: PropTypes.func,

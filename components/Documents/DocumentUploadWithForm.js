@@ -158,6 +158,7 @@ class DocumentUploadWithForm extends Component {
                 additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
                 isAdditionalContentValid={this.state.isValidForm}
                 useFile={this.useFileHandler}
+                uploadDocument={this.props.uploadDocument}
                 hideCrop
                 allowedFileTypes={this.props.allowedFileTypes}
                 uploadURL={this.props.uploadURL}
@@ -183,14 +184,16 @@ DocumentUploadWithForm.propTypes = {
     uploadURL: PropTypes.string,
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
-    uploadNewDocument: PropTypes.func
+    uploadNewDocument: PropTypes.func,
+    uploadDocument : PropTypes.func
 };
 
 DocumentUploadWithForm.defaultProps = {
     documentTypes: [],
     uploadNewDocument: () => {},
     replaceDocument: () => {},
-    closePopup: () => {}
+    closePopup: () => {},
+    uploadDocument : () => {}
 };
 
 export default DocumentUploadWithForm;
