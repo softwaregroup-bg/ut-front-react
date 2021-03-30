@@ -6,6 +6,15 @@ import DateUtils from '../DateUtils';
 const theme = createMuiTheme({
     palette: {
         type: 'light'
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                body: {
+                    lineHeight: 1.1
+                }
+            }
+        }
     }
 });
 
