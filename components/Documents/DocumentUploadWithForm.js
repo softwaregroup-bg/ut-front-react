@@ -185,7 +185,7 @@ DocumentUploadWithForm.propTypes = {
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
     uploadNewDocument: PropTypes.func,
-    uploadDocument : PropTypes.func
+    uploadDocument: PropTypes.func
 };
 
 DocumentUploadWithForm.defaultProps = {
@@ -193,7 +193,7 @@ DocumentUploadWithForm.defaultProps = {
     uploadNewDocument: () => {},
     replaceDocument: () => {},
     closePopup: () => {},
-    uploadDocument : () => {}
+    uploadDocument: () => {}
 };
 
 export default DocumentUploadWithForm;
