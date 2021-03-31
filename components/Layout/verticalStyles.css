@@ -14,9 +14,3 @@
     display: flex;
     flex-direction: column;
 }
-
-@media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
-  .innerContent {
-    overflow: auto;
-  }
-}
