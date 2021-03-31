@@ -97,7 +97,7 @@ Documents.propTypes = {
     ),
 
     uploadNewDocument: PropTypes.func,
-    uploadDocument : PropTypes.func,
+    uploadDocument: PropTypes.func,
     replaceDocument: PropTypes.func,
     deleteDocument: PropTypes.func,
     archiveDocument: PropTypes.func,

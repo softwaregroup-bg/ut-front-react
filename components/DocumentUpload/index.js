@@ -286,7 +286,7 @@ export default class DocumentUpload extends Component {
         return getViewport(fileDimensions, scaleDimensions);
     }
 
-    uploadFile = async (file, uploadURL = '/file-upload') => {
+    uploadFile = async(file, uploadURL = '/file-upload') => {
         const {
             useFile,
             uploadDocument
@@ -385,6 +385,7 @@ export default class DocumentUpload extends Component {
 }
 
 DocumentUpload.defaultProps = {
+    uploadDocument: () => ({}),
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     maxFileSize: 5 * 1024, // default maximum size 5MB
@@ -402,6 +403,7 @@ DocumentUpload.propTypes = {
         width: PropTypes.number,
         height: PropTypes.number
     }),
+    uploadDocument: PropTypes.func,
     useFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,

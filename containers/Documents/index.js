@@ -119,7 +119,7 @@ class DocumentsContainer extends Component {
                 changeDocumentFilter={(newFilter) => {
                     this.props.changeDocumentFilter(identifier, newFilter);
                 }}
-                uploadDocument={async (params) => {
+                uploadDocument={async(params) => {
                     const result = await this.props.uploadDocument(params);
                     return result;
                 }}

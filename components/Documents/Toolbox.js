@@ -333,7 +333,7 @@ Toolbox.propTypes = {
     replaceDocument: PropTypes.func.isRequired,
     deleteDocument: PropTypes.func.isRequired,
     archiveDocument: PropTypes.func.isRequired,
-    uploadDocument : PropTypes.func.isRequired,
+    uploadDocument: PropTypes.func.isRequired,
     allowedFileTypes: PropTypes.array,
 
     permissions: PropTypes.shape({
