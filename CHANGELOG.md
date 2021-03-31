@@ -1,3 +1,12 @@
+## [12.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.0...v12.3.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* Page Headings displayed cut in half ([c024796](https://github.com/softwaregroup-bg/ut-front-react/commit/c02479656b84cca2f8c3a325fbc7ae6d8e7f5696))
+
+
+
 # [12.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.7...v12.3.0) (2021-03-10)
 
 
