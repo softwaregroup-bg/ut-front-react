@@ -68,9 +68,7 @@ class Container extends Component {
             return {domId: col.id, type: col.type, height: '100%', width: col.width, minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
         });
         args.forEach((el) => {
-
-            const currentElement = document.getElementById(el.domId);
-            const currentWidth =  el.width || defaultColWidth;
+            const currentWidth = el.width || defaultColWidth;
             const currentMinWidth = el.minWidth || defaultMinWidth;
             const currentCollapsedWidth = el.collapsedWidth;
 
@@ -301,13 +299,13 @@ class Container extends Component {
         window.removeEventListener('resize', this.resize);
     }
 
-    toggleContentCols(){
+    toggleContentCols() {
         this.resizeObjects.filter(x => x.type === resizibleTypes.CONTENT).forEach(x => {
             const colDom = document.getElementById(this.resizeObjects[1].domId);
 
-            if(colDom.style.display === 'none'){
-                colDom.style.display ='table-cell';
-            }else{
+            if (colDom.style.display === 'none') {
+                colDom.style.display = 'table-cell';
+            } else {
                 colDom.style.display = 'none';
             }
         });
@@ -319,13 +317,13 @@ class Container extends Component {
                 const collapsableContenetStyles = col.styles || {};
                 const onCollapseHanlder = (isCollapsed) => {
                     if (isCollapsed) {
-                        this.setSpecificWidth(index, col.collapsedWidth, col.collapsePrev);                        
+                        this.setSpecificWidth(index, col.collapsedWidth, col.collapsePrev);
                     } else {
                         this.setSpecificWidth(index, col.normalWidth, col.collapsePrev);
                     }
                     this.resizeObjects[index].isCollapsed = isCollapsed;
 
-                    if (this.props.shouldHideContent){
+                    if (this.props.shouldHideContent) {
                         this.toggleContentCols();
                     }
                 };
@@ -363,15 +361,14 @@ class Container extends Component {
         const isAnyAsideColCollapsed = this.props.cols.some(x => x.type === resizibleTypes.ASIDE && x.width <= x.minWidth);
 
         this.props.cols.forEach((col, index) => {
-
-        const currentWidth = col.width || defaultColWidth;
+            const currentWidth = col.width || defaultColWidth;
 
             const currentStyles = {
                 width: currentWidth + 'px',
-                maxWidth: currentWidth + 'px',                
+                maxWidth: currentWidth + 'px'
             };
 
-            if (col.type === resizibleTypes.CONTENT){
+            if (col.type === resizibleTypes.CONTENT) {
                 currentStyles.display = this.props.shouldHideContent && !isAnyAsideColCollapsed ? 'none' : 'table-cell';
             }
 
@@ -428,7 +425,8 @@ Container.propTypes = {
     cssStandard: PropTypes.bool,
     externalClassName: PropTypes.string,
     localStorageType: PropTypes.string,
-    heightToSubtract: PropTypes.number
+    heightToSubtract: PropTypes.number,
+    shouldHideContent: PropTypes.bool
 };
 
 Container.defaultProps = {
