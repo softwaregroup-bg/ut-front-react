@@ -58,3 +58,15 @@
     right: 3px;
     top: 50px;
 }
+
+
+
+/* @media only screen and (min-device-width: 280px) and (max-device-width:  767px) {
+    #mainContentWrap .col .innerCol {
+        display: none
+    }
+
+    #mainContentWrap .col {
+        display: none
+    }
+  } */

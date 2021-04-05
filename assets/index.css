@@ -262,7 +262,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
      height: 55px;
      padding: 0 20px 0;
      background: #fff;
-     border-bottom: 1px solid #D7D6D6;
+     /* border-bottom: 1px solid #D7D6D6; */
      box-sizing: border-box;
      -moz-box-sizing: border-box;
      -webkit-box-sizing: border-box;
@@ -311,6 +311,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    /* background-color: cornflowerblue; */
 }
 .toolbar {
     margin: 0 15px 0 20px;
@@ -475,43 +476,43 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
 
 @media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
     .tableWrap table, thead,  th, td, tr { 
-        display: block; 
-    }
+		display: block; 
+	}
 
     .tableWrap table {
         border: none !important;
     }
 
-    .tableWrap thead tr { 
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+	.tableWrap thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
         border: 1px solid #ccc;
-    }
-    
+	}
+	
     .tableWrap tbody {
         display: table;
         width: 100%;  
     }
 
     .tableWrap tr { border: 1px solid #ccc; }
-    
-    .tableWrap td { 
-        border: none;
-        border-bottom: 1px solid #eee; 
-        position: relative;
-        padding-left: 50% !important; 
-    }
-
+	
+	.tableWrap td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50% !important; 
+	}
+	
     .tableWrap td:before { 
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        width: 45%; 
-        padding-right: 10px; 
-        white-space: nowrap;
-    }
-
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
     .tableWrap td:before { content: attr(data-title); }
 
     .actionBarWrap {
@@ -519,30 +520,48 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     }
   }
 
-@media only screen and (min-device-width: 280px) and (max-device-width:  429px) {
+  @media only screen and (min-device-width: 280px) and (max-device-width:  429px) {
     .tableWrap { 
         width: 30%;
-    }
-}
-
-@media only screen and (min-device-width: 430px) and (max-device-width:  589px) {
-    .tableWrap { 
-        width: 55%;
-    }
-}
-
-@media only screen and (min-device-width: 590px) and (max-device-width:  699px) {
-    .tableWrap { 
-        width: 70%;
-    }
-}
-
-@media only screen and (min-device-width: 700px) and (max-device-width:  800px) {
-    .tableWrap { 
-        width: 80%;
-    }
+	}
 
     .paginationWrap {
-        width: 80%;
+        width: 30%; 
     }
-}
+  }
+
+  @media only screen and (min-device-width: 430px) and (max-device-width:  589px) {
+    .tableWrap { 
+        width: 55%;
+	}
+
+    .paginationWrap {
+        width: 55%; 
+    }
+  }
+
+  @media only screen and (min-device-width: 590px) and (max-device-width:  699px) {
+    .tableWrap { 
+        width: 70%;
+	}
+
+    .paginationWrap {
+        width: 70%; 
+    }
+  }
+
+  @media only screen and (min-device-width: 700px) and (max-device-width:  800px) {
+    .tableWrap { 
+        width: 80%;
+	}
+
+    .paginationWrap {
+        width: 80%; 
+    }
+  }
+
+  @media only screen and (min-device-width: 280px) and (max-device-width: 767px) {
+    .contentTableWrap {
+        height: 99%;
+            }
+  }
