@@ -15,6 +15,11 @@
     align-items: center; 
 }
 
+.toolbarElementsContainer {
+    display: flex;
+    align-items: center; 
+}
+
 .tableButtonsShowed {
     justify-content: space-between;
 }
@@ -163,3 +168,115 @@
 .filterActionWrap button {
     float: right;
 }
+
+@media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
+    .toolbarWrap .minWidthed {
+        min-width: auto;
+    }
+
+    .table {
+        padding-top: 10px;
+    }
+  }
+
+
+@media only screen and (min-device-width: 930px) and (max-device-width:  1365px) {
+    .toolbarWrap .minWidthed {
+        min-width: auto;
+    }
+
+    .table {
+        height: auto;
+        padding-top: 10px;
+        flex-direction: column;
+        padding-bottom: 10px;
+    }
+
+    .toolbarWrap .toolbarElement {
+        padding-bottom: 10px;
+    }
+
+    .toolbarElementsContainer {
+        display: flex;
+        flex-direction: row;
+    }
+  }
+
+  @media only screen and (min-device-width: 670px) and (max-device-width: 929px) {
+    .table {
+        height: auto;
+        padding-bottom: 10px;
+        flex-direction: column;
+    }
+
+    .toolbarWrap .toolbarElement {
+        padding-right: 0px;
+        padding-bottom: 10px;
+    }
+
+    .toolbarElementsContainer {
+        flex-direction: column;
+        height: auto;
+    }
+
+  }
+
+
+  @media only screen and (min-device-width: 280px) and (max-device-width: 669px) {
+    .toolbarWrap .toolbarElement {
+        padding-right: 0px;
+        padding-bottom: 10px;
+    }
+
+    .toolbarElementsContainer {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 420px) {
+    .table {
+width: 55%;
+height: auto;
+flex-direction: column;
+align-items: flex-start;
+padding-bottom: 10px;
+    }
+}
+
+@media only screen and (min-device-width: 421px) and (max-device-width: 429px) {
+    .table {
+width: 46%;
+height: auto;
+flex-direction: column;
+padding-bottom: 10px;
+    }
+
+    .toolbarWrap .pullRight {
+text-align: -webkit-center;
+    }
+}
+
+
+@media only screen and (min-device-width: 430px) and (max-device-width: 589px) {
+    .table {
+width: 70%;
+height: auto;
+flex-direction: column;
+padding-bottom: 10px;
+    }
+
+    .toolbarWrap .pullRight {
+        text-align: -webkit-center;
+            }
+}
+
+@media only screen and (min-device-width: 590px) and (max-device-width: 669px) {
+    .table {
+width: 80%;
+height: auto;
+flex-direction: column;
+padding-bottom: 10px;
+    }
+} 
+

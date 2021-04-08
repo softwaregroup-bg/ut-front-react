@@ -455,7 +455,7 @@ class GridToolBox extends Component {
                     {leftSide}
                 </div>
                 <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div className={classnames(style.table, style.fixedHeight)}>
+                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
                         {filterElements.map((el, i) => {
                             const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                             filtersNumber += incrementNum;
