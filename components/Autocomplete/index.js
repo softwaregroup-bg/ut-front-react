@@ -1,43 +1,50 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import AutoComplete from '@material-ui/lab/AutoComplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 import style from './style.css';
-
 export default class SimpleAutoComplete extends Component {
     render() {
-        const dpStyles = {
-            border: '1px solid #D6D6D6',
-            width: '100%',
-            height: '30px'
-        };
+        const {label, placeholder, size, onChange, options} = this.props;
         return (
             <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
-                <div className={style.autoCompleteIcon} style={this.props.iconStyles} onClick={this.props.handleButtonClick} />
-                <AutoComplete
-                    className={style.autoCompletePopup}
-                    dataSource={this.props.dataSource}
-                    dataSourceConfig={this.props.dataSourceConfig}
-                    filter={AutoComplete.fuzzyFilter}
-                    openOnFocus={this.props.openOnFocus}
-                    ref={this.props.refval}
-                    maxSearchResults={this.props.maxSearchResults}
-                    animated={false}
-                    style={dpStyles}
-                    fullWidth={!(this.props.fullWidth === false)}
-                    onUpdateInput={this.props.onChange}
-                    onNewRequest={this.props.onSelect}
-                    searchText={this.props.searchText}
-                />
+                <div onClick={this.props.handleButtonClick} />
+                <Autocomplete
+                 className={style.autoCompletePopup}
+        multiple={this.props.multiple}
+        options={options}
+        getOptionLabel={(option) => option.value}
+        filterSelectedOptions
+        size={size}
+        onChange={onChange}
+        renderInput={(inputProps) => (
+          <TextField
+            {...inputProps}
+            size="small"
+            variant="outlined"
+            label={label}
+            placeholder={placeholder}
+          />
+        )}
+      />
             </div>
         );
     }
 }
 
 SimpleAutoComplete.defaultProps = {
-    filter: AutoComplete.fuzzyFilter,
+   // filter: AutoComplete.fuzzyFilter,
     maxSearchResults: 10,
-    openOnFocus: true
+    openOnFocus: true,
+    label: '',
+    placeholder: '',
+    renderTagsProps:null,
+    multiple: false,
+    size:"small",
+    options: [],
+    onChange: function () {},
+    inputProps: {}
 };
 
 SimpleAutoComplete.propTypes = {
