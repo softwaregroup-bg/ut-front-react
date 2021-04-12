@@ -48,7 +48,10 @@ class TreeNavigation extends React.Component {
 
     renderNodes(nodes, breadcrumbArr = []) {
         const {openElements, active} = this.state;
-        return nodes.map((node) => {
+
+        const sortedNodes = nodes.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+
+        return sortedNodes.map((node) => {
             let nodeStyles;
             if (this.props.styles.li) {
                 nodeStyles = this.props.styles.li.join(' ');
