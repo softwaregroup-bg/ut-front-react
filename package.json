@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "12.2.1",
+  "version": "12.2.2-bdcFixResponsive.0",
   "description": "Frontend module",
   "bin": "index.js",
   "main": "index.js",
