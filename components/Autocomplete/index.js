@@ -8,26 +8,26 @@ export default class SimpleAutoComplete extends Component {
     render() {
         const {label, placeholder, size, onChange, options} = this.props;
         return (
-            <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
-                <div onClick={this.props.handleButtonClick} />
-                <Autocomplete
-                 className={style.autoCompletePopup}
-        multiple={this.props.multiple}
-        options={options}
-        getOptionLabel={(option) => option.value}
-        filterSelectedOptions
-        size={size}
-        onChange={onChange}
-        renderInput={(inputProps) => (
-          <TextField
-            {...inputProps}
-            size="small"
-            variant="outlined"
-            label={label}
-            placeholder={placeholder}
-          />
-        )}
-      />
+        <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
+          <div onClick={this.props.handleButtonClick} />
+            <Autocomplete
+              className={style.autoCompletePopup}
+              multiple={this.props.multiple}
+              options={options}
+              getOptionLabel={(option) => option.value}
+              filterSelectedOptions
+              size={size}
+              onChange={onChange}
+              renderInput={(inputProps) => (
+                <TextField
+                  {...inputProps}
+                  size="small"
+                  variant="outlined"
+                  label={label}
+                  placeholder={placeholder}
+                />
+                )}
+              />
             </div>
         );
     }
@@ -48,7 +48,6 @@ SimpleAutoComplete.defaultProps = {
 };
 
 SimpleAutoComplete.propTypes = {
-    refval: PropTypes.func,
     open: PropTypes.bool,
     dataSource: PropTypes.array.isRequired,
     maxSearchResults: PropTypes.number,
