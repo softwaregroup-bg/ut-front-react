@@ -5,36 +5,36 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import style from './style.css';
 export default class SimpleAutoComplete extends Component {
-
     render() {
         const {label, placeholder, size, onChange, options} = this.props;
         return (
-        <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
-          <div onClick={this.props.handleButtonClick} />
-            <Autocomplete
-              className={style.autoCompletePopup}
-              multiple={this.props.multiple}
-              options={options}
-              getOptionLabel={(option) => option.value}
-              filterSelectedOptions
-              size={size}
-              onChange={onChange}
-              renderInput={(inputProps) => (
-                <TextField
-                  {...inputProps}
-                  size='small'
-                  variant='outlined'
-                  label={label}
-                  placeholder={placeholder}
+            <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
+                <div onClick={this.props.handleButtonClick} />
+                <Autocomplete
+                    className={style.autoCompletePopup}
+                    multiple={this.props.multiple}
+                    options={options}
+                    getOptionLabel={(option) => option.value}
+                    filterSelectedOptions
+                    size={size}
+                    onChange={onChange}
+                    renderInput={(inputProps) => (
+                        <TextField
+                            {...inputProps}
+                            size='small'
+                            variant='outlined'
+                            label={label}
+                            placeholder={placeholder}
+                        />
+                    )}
                 />
-                )}/>
             </div>
         );
     }
 }
 
 SimpleAutoComplete.defaultProps = {
-   // filter: AutoComplete.fuzzyFilter,
+    // filter: AutoComplete.fuzzyFilter,
     maxSearchResults: 10,
     openOnFocus: true,
     label: '',
@@ -61,5 +61,10 @@ SimpleAutoComplete.propTypes = {
     openOnFocus: PropTypes.bool,
     dataSourceConfig: PropTypes.object,
     onSelect: PropTypes.func,
+    options: PropTypes.array,
+    multiple: PropTypes.bool,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    size: PropTypes.string,
     searchText: PropTypes.string
 };
