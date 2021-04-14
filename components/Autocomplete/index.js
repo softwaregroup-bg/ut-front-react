@@ -5,6 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import style from './style.css';
 export default class SimpleAutoComplete extends Component {
+
     render() {
         const {label, placeholder, size, onChange, options} = this.props;
         return (
@@ -21,13 +22,12 @@ export default class SimpleAutoComplete extends Component {
               renderInput={(inputProps) => (
                 <TextField
                   {...inputProps}
-                  size="small"
-                  variant="outlined"
+                  size='small'
+                  variant='outlined'
                   label={label}
                   placeholder={placeholder}
                 />
-                )}
-              />
+                )}/>
             </div>
         );
     }
@@ -39,11 +39,11 @@ SimpleAutoComplete.defaultProps = {
     openOnFocus: true,
     label: '',
     placeholder: '',
-    renderTagsProps:null,
+    renderTagsProps: null,
     multiple: false,
-    size:"small",
+    size: 'small',
     options: [],
-    onChange: function () {},
+    onChange: () => {},
     inputProps: {}
 };
 
