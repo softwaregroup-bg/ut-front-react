@@ -51,7 +51,7 @@
     "bignumber.js": "^6.0.0",
     "classnames": "^2.2.5",
     "croppie": "^2.6.1",
-    "date-fns": "2.14.0",
+    "date-fns": "^2.14.0",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
     "prop-types": "^15.7.2",
