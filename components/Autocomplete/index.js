@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import style from './style.css';
 export default class SimpleAutoComplete extends Component {
     render() {
-        const {label, placeholder, size, onChange, options, inputValue} = this.props;
+        const {label, placeholder, size, onChange, options, selectedValue, inputValue} = this.props;
         return (
             <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
                 <div />
@@ -14,11 +14,13 @@ export default class SimpleAutoComplete extends Component {
                     className={style.autoCompletePopup}
                     multiple={this.props.multiple}
                     options={options}
+                    clearOnBlur={false}
+                    inputValue={inputValue}
                     getOptionLabel={(option) => option.value}
                     filterSelectedOptions
-                    inputValue={inputValue}
                     size={size}
                     onChange={onChange}
+                    value={selectedValue}
                     renderInput={(inputProps) => (
                         <TextField
                             {...inputProps}
@@ -39,7 +41,7 @@ SimpleAutoComplete.defaultProps = {
     placeholder: '',
     multiple: false,
     size: 'small',
-    inputValue: '',
+    selectedValue: null,
     options: [],
     onChange: () => {}
 };
@@ -51,6 +53,7 @@ SimpleAutoComplete.propTypes = {
     multiple: PropTypes.bool,
     label: PropTypes.string,
     placeholder: PropTypes.string,
+    selectedValue: PropTypes.object,
     size: PropTypes.string,
     inputValue: PropTypes.string
 };
