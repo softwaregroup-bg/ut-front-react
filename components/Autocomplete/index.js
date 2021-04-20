@@ -1,33 +1,35 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import AutoComplete from '@material-ui/core/AutoComplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 import style from './style.css';
-
 export default class SimpleAutoComplete extends Component {
     render() {
-        const dpStyles = {
-            border: '1px solid #D6D6D6',
-            width: '100%',
-            height: '30px'
-        };
+        const {label, placeholder, size, onChange, options, selectedValue, inputValue} = this.props;
         return (
             <div className={classnames(style.autoComplete)} style={this.props.wrapperStyles}>
-                <div className={style.autoCompleteIcon} style={this.props.iconStyles} onClick={this.props.handleButtonClick} />
-                <AutoComplete
+                <div />
+                <Autocomplete
                     className={style.autoCompletePopup}
-                    dataSource={this.props.dataSource}
-                    dataSourceConfig={this.props.dataSourceConfig}
-                    filter={AutoComplete.fuzzyFilter}
-                    openOnFocus={this.props.openOnFocus}
-                    ref={this.props.refval}
-                    maxSearchResults={this.props.maxSearchResults}
-                    animated={false}
-                    style={dpStyles}
-                    fullWidth={!(this.props.fullWidth === false)}
-                    onUpdateInput={this.props.onChange}
-                    onNewRequest={this.props.onSelect}
-                    searchText={this.props.searchText}
+                    multiple={this.props.multiple}
+                    options={options}
+                    clearOnBlur={false}
+                    inputValue={inputValue}
+                    getOptionLabel={(option) => option.value}
+                    filterSelectedOptions
+                    size={size}
+                    onChange={onChange}
+                    value={selectedValue}
+                    renderInput={(inputProps) => (
+                        <TextField
+                            {...inputProps}
+                            size='small'
+                            variant='outlined'
+                            label={label}
+                            placeholder={placeholder}
+                        />
+                    )}
                 />
             </div>
         );
@@ -35,25 +37,23 @@ export default class SimpleAutoComplete extends Component {
 }
 
 SimpleAutoComplete.defaultProps = {
-    filter: AutoComplete.fuzzyFilter,
-    maxSearchResults: 10,
-    openOnFocus: true
+    label: '',
+    placeholder: '',
+    multiple: false,
+    size: 'small',
+    selectedValue: null,
+    options: [],
+    onChange: () => {}
 };
 
 SimpleAutoComplete.propTypes = {
-    refval: PropTypes.func,
-    open: PropTypes.bool,
-    dataSource: PropTypes.array.isRequired,
-    maxSearchResults: PropTypes.number,
-    filter: PropTypes.func.isRequired,
-    onClick: PropTypes.func,
     wrapperStyles: PropTypes.object,
-    iconStyles: PropTypes.object,
-    fullWidth: PropTypes.bool,
-    handleButtonClick: PropTypes.func,
     onChange: PropTypes.func,
-    openOnFocus: PropTypes.bool,
-    dataSourceConfig: PropTypes.object,
-    onSelect: PropTypes.func,
-    searchText: PropTypes.string
+    options: PropTypes.array,
+    multiple: PropTypes.bool,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    selectedValue: PropTypes.object,
+    size: PropTypes.string,
+    inputValue: PropTypes.string
 };
