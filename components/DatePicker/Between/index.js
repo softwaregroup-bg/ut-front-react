@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import {DatePicker as DatePickerDialog} from '@material-ui/pickers';
 import style from '../style.css';
+import Text from '../../Text'
 
 const noop = () => {};
 
@@ -123,14 +124,14 @@ export default class DatePickerBetween extends Component {
                 {this.props.masterLabel ? (<span className={classnames(style.masterLabel, this.getContextStyles('masteLabelStyle'))}>{this.props.masterLabel}</span>) : ''}
                 <div className={classnames.apply(undefined, boxGroupStyles)}>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
-                        {this.props.labelFrom ? (<span className={style.label}>{this.props.labelFrom}</span>) : ''}
+                        {this.props.labelFrom ? (<span className={style.label}><Text>{this.props.labelFrom}</Text></span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
                             <input value={from ? this.formatDate(fromDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
-                        {this.props.labelTo ? (<span className={style.label}>{this.props.labelTo}</span>) : ''}
+                        {this.props.labelTo ? (<span className={style.label}><Text>{this.props.labelTo}</Text></span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
                             <input value={to ? this.formatDate(toDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
                             <button onClick={this.handleOpen('to')} />

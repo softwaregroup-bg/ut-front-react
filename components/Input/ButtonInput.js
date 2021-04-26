@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import StandardButton from '../StandardButton';
+import Text from '../Text';
 import style from './style.css';
 
 class ButtonInput extends Component {
@@ -37,7 +38,7 @@ class ButtonInput extends Component {
         return (
             <div className={style.outerWrap}>
                 <div className={classNames(style.inputButtonLabel, {[style.boldLabel]: this.props.boldLabel})}>
-                    {this.props.label}
+                    <Text>{this.props.label}</Text>
                 </div>
                 <div className={style.inputWrap}>
                     <input
