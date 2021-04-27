@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import {DatePicker as DatePickerDialog} from '@material-ui/pickers';
 import style from '../style.css';
-import Text from '../../Text'
+import Text from '../../Text';
 
 const noop = () => {};
 
