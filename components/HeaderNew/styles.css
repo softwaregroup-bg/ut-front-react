@@ -115,7 +115,7 @@ body .profileInfoPopoverMenu {
   min-width: 110px;
 }
 
-@media only screen and (min-device-width: 280px) and (max-device-width: 480px) {
+@media only screen and (min-device-width: 280px) and (max-device-width: 767px) {
   /* navigation container */
   .headerContainer {
     height: auto;
@@ -123,13 +123,7 @@ body .profileInfoPopoverMenu {
   }
   /* logo */
   .headerLogoContainer {
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin: 0 5px;
-  }
-  /* buttons */
-    .tabsContainer {
-    flex-direction: column;
+    display:none;
   }
   /* widgets */
   .profileInfo {
