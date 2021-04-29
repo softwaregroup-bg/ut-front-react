@@ -1,3 +1,12 @@
+## [12.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.4...v12.3.5) (2021-04-29)
+
+
+### Bug Fixes
+
+* enabled translation to some components ([#559](https://github.com/softwaregroup-bg/ut-front-react/issues/559)) ([1c593ec](https://github.com/softwaregroup-bg/ut-front-react/commit/1c593ecdf105a6e49fd05c1f00d842fbef8acce9))
+
+
+
 ## [12.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.3...v12.3.4) (2021-04-28)
 
 
