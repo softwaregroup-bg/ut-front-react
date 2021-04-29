@@ -292,6 +292,7 @@ class Toolbox extends Component {
                 type={this.state.popupType}
                 editValues={this.props.selectedAttachment && this.props.selectedAttachment.toJS()}
                 uploadNewDocument={this.props.uploadNewDocument}
+                uploadDocument={this.props.uploadDocument}
                 replaceDocument={this.props.replaceDocument}
                 documentTypes={this.props.documentTypes}
                 allowedFileTypes={this.props.allowedFileTypes}
@@ -332,6 +333,7 @@ Toolbox.propTypes = {
     replaceDocument: PropTypes.func.isRequired,
     deleteDocument: PropTypes.func.isRequired,
     archiveDocument: PropTypes.func.isRequired,
+    uploadDocument: PropTypes.func.isRequired,
     allowedFileTypes: PropTypes.array,
 
     permissions: PropTypes.shape({

@@ -1,3 +1,33 @@
+## [12.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.4...v12.3.5) (2021-04-29)
+
+
+### Bug Fixes
+
+* enabled translation to some components ([#559](https://github.com/softwaregroup-bg/ut-front-react/issues/559)) ([1c593ec](https://github.com/softwaregroup-bg/ut-front-react/commit/1c593ecdf105a6e49fd05c1f00d842fbef8acce9))
+
+
+
+## [12.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.3...v12.3.4) (2021-04-28)
+
+
+
+## [12.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.2...v12.3.3) (2021-04-20)
+
+
+
+## [12.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.1...v12.3.2) (2021-04-05)
+
+
+
+## [12.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.0...v12.3.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* Page Headings displayed cut in half ([c024796](https://github.com/softwaregroup-bg/ut-front-react/commit/c02479656b84cca2f8c3a325fbc7ae6d8e7f5696))
+
+
+
 # [12.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.2.7...v12.3.0) (2021-03-10)
 
 

@@ -286,48 +286,40 @@ export default class DocumentUpload extends Component {
         return getViewport(fileDimensions, scaleDimensions);
     }
 
-    uploadFile(file, uploadURL = '/file-upload') {
-        const { useFile } = this.props;
+    uploadFile = async(file, uploadURL = '/file-upload') => {
+        const {
+            useFile,
+            uploadDocument
+        } = this.props;
         const data = new window.FormData();
         const img = this.dataURItoBlob(file);
         const ext = this.state.fileExtension || 'unknown';
         data.append('file', img, 'file.' + ext);
-        const request = new window.XMLHttpRequest();
-        request.open('POST', uploadURL, true);
         this.setState({
             isUploading: true
         });
-        request.onload = (e) => {
-            this.setState({
-                isUploading: false
-            });
-            if (request.status >= 200 && request.status < 300 && request.responseText) {
-                const reader = new window.FileReader();
-                reader.onload = (data) => {
-                    try {
-                        const response = JSON.parse(request.responseText);
-                        useFile({
-                            filename: response.filename,
-                            createdDate: new Date().toISOString(),
-                            extension: getFileExtension(response.filename),
-                            contentType: response.headers['content-type']
-                        });
-                    } catch (e) {
-                        this.setError(e);
-                    }
-                };
-                reader.readAsDataURL(img);
-            } else {
-                this.setError(request.statusText);
-            }
-        };
-        request.onerror = (e) => {
-            this.setError(request.statusText);
-        };
-        request.ontimeout = (e) => {
-            this.setError(request.statusText);
-        };
-        request.send(data);
+        const attachmentResult = await uploadDocument({
+            formData: data
+        });
+        this.setState({
+            isUploading: false
+        });
+        if (attachmentResult) {
+            const reader = new window.FileReader();
+            reader.onload = (data) => {
+                try {
+                    useFile({
+                        filename: attachmentResult.result.filename,
+                        createdDate: new Date().toISOString(),
+                        extension: ext,
+                        contentType: attachmentResult.result.headers['content-type']
+                    });
+                } catch (e) {
+                    this.setError(e);
+                }
+            };
+            reader.readAsDataURL(img);
+        }
     }
 
     dataURItoBlob(dataURI) {
@@ -393,6 +385,7 @@ export default class DocumentUpload extends Component {
 }
 
 DocumentUpload.defaultProps = {
+    uploadDocument: () => ({}),
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     maxFileSize: 5 * 1024, // default maximum size 5MB
@@ -410,6 +403,7 @@ DocumentUpload.propTypes = {
         width: PropTypes.number,
         height: PropTypes.number
     }),
+    uploadDocument: PropTypes.func,
     useFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,

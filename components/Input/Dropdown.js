@@ -136,7 +136,7 @@ class Dropdown extends Component {
                 value={this.props.placeholderValue}
                 onClick={(event) => this.handleChange(event, this.props.placeholderValue)}
             >
-                <div title={this.getTitle(placeholder)}>{placeholder}</div>
+                <div title={this.getTitle(placeholder)}><Text>{placeholder}</Text></div>
             </MenuItem>
         );
 
@@ -150,7 +150,7 @@ class Dropdown extends Component {
                     onClick={(event) => this.handleChange(event, item.key)}
                 >
                     {item.leftIcon && <img src={item.leftIcon} />}
-                    <div title={this.getTitle(item.name)}>{item.name}</div>
+                    <div title={this.getTitle(item.name)}><Text>{item.name}</Text></div>
                     {item.rightIcon && <img src={item.rightIcon} />}
                 </MenuItem>
             );
@@ -176,7 +176,7 @@ class Dropdown extends Component {
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.dropdownPlaceholder}>
                             <div title={this.getTitle(this.dropdownPlaceholder)}>
-                                {this.dropdownPlaceholder}
+                                <Text>{this.dropdownPlaceholder}</Text>
                             </div>
                         </div>
                         <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
