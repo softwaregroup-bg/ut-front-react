@@ -49,6 +49,9 @@
     border: 1px solid #D7D6D6;
     position: relative;
     height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .inputWrap:nth-child(1) {
