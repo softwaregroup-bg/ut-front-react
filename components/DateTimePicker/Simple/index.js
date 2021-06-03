@@ -166,7 +166,21 @@ class DateTimePicker extends Component {
                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
                 <div className={classnames(innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
-                        <input value={defaultValue ? this.formatDate(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('date')} />
+                        <DatePicker
+                            value={date}
+                            onChange={noop}
+                            onKeyUp={this.handleKeyPress('date')}
+                            cancelLabel={cancelLabel}
+                            okLabel={okLabel}
+                            container={container}
+                            initialDate={date}
+                            mode={mode}
+                            onAccept={this.handleAccept('date')}
+                            firstDayOfWeek={firstDayOfWeek}
+                            variant='dialog'
+                            ref='date'
+                            InputProps={{disableUnderline: true}}
+                        />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>
@@ -181,17 +195,6 @@ class DateTimePicker extends Component {
                                 defaultSelected={defaultValue ? this.formatTime(date) : ''}
                             />
                         </div> : ''}
-                    <DatePicker
-                        cancelLabel={cancelLabel}
-                        okLabel={okLabel}
-                        container={container}
-                        initialDate={date}
-                        mode={mode}
-                        onAccept={this.handleAccept('date')}
-                        firstDayOfWeek={firstDayOfWeek}
-                        variant='dialog'
-                        ref='date'
-                    />
                     {timeType === 'timePicker' ? <TimePicker
                         cancelLabel={cancelLabel}
                         okLabel={okLabel}
