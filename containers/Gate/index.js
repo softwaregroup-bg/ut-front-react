@@ -51,13 +51,13 @@ class Gate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { cookieChecked, authenticated, forceLogOut, logout, match } = this.props;
+        const { cookieChecked, authenticated, forceLogOut, logout, match, login } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
         const isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
-        if (!isAuthenticated && this.context.router.route.location.pathname !== '/login') {
+        if (!isAuthenticated && this.context.router.route.location.pathname !== '/login' && this.context.router.route.location.pathname !== login) {
             if (match && match.params && match.params.ssoOrigin) {
                 this.context.router.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
             } else {
