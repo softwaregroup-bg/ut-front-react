@@ -28,6 +28,15 @@ class Gate extends Component {
         };
     }
 
+    login() {
+        const { login = '/login' } = this.props;
+        if (login.startsWith('http://') || login.startsWith('https://')) {
+            window.location.href = login;
+        } else {
+            this.context.router.history.push(login);
+        }
+    }
+
     componentWillMount() {
         const { cookieChecked, isLogout, authenticated, cookieCheck, match } = this.props;
 
@@ -37,7 +46,7 @@ class Gate extends Component {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
             this.context.router.history.push('/');
         } else {
-            this.context.router.history.push('/login');
+            this.login();
         }
     }
 
@@ -52,12 +61,12 @@ class Gate extends Component {
             if (match && match.params && match.params.ssoOrigin) {
                 this.context.router.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
             } else {
-                this.context.router.history.push('/login');
+                this.login();
             }
         } else if (nextProps.authenticated && !nextProps.gateLoaded && nextProps.result) {
             this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result.getIn(['language', 'languageId']));
         } else if (!nextProps.result && authenticated && !nextProps.authenticated) {
-            this.context.router.history.push('/login');
+            this.login();
         } else if (!forceLogOut && nextProps.forceLogOut) {
             logout();
         }
@@ -102,6 +111,7 @@ export default connect(
 
 Gate.propTypes = {
     match: PropTypes.object,
+    login: PropTypes.string,
     children: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,
@@ -118,8 +128,7 @@ Gate.propTypes = {
 
 Gate.defaultProps = {
     gateLoaded: false,
-    gate: Map(),
-    login: Map()
+    gate: Map()
 };
 
 Gate.contextTypes = {

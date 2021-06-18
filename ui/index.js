@@ -41,7 +41,7 @@ export default function ui({utMethod, config = {}}) {
         MasterComponent.propTypes = {
             location: PropTypes.object.isRequired
         };
-        const GateComponent = props => <Gate {...props}>
+        const GateComponent = props => <Gate login={config.login} {...props}>
             <Switch>
                 <Route path='/sso/:appId/:ssoOrigin' component={SsoPage} />
                 <Route component={MasterComponent} />
