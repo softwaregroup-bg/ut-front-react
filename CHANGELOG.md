@@ -1,3 +1,12 @@
+# [12.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.4.0...v12.5.0) (2021-06-18)
+
+
+### Features
+
+* configurable login page [UTCORE-121] ([8ad9666](https://github.com/softwaregroup-bg/ut-front-react/commit/8ad9666bae56594efaee54c5e159549c97d48d78))
+
+
+
 # [12.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.6...v12.4.0) (2021-06-18)
 
 
