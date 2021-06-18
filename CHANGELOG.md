@@ -1,3 +1,12 @@
+## [12.5.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.0...v12.5.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* check for configured login page [UTCORE-121] ([0e3f0f0](https://github.com/softwaregroup-bg/ut-front-react/commit/0e3f0f0a66de548d96a28d6973c8d9086015baf4))
+
+
+
 # [12.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.4.0...v12.5.0) (2021-06-18)
 
 
