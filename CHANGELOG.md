@@ -1,3 +1,12 @@
+# [12.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.6...v12.4.0) (2021-06-18)
+
+
+### Features
+
+* disable autocomplete for login [UTCORE-121] ([5f4b3c8](https://github.com/softwaregroup-bg/ut-front-react/commit/5f4b3c88da080c0420a5016d806ab644abbc8281))
+
+
+
 ## [12.3.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.5...v12.3.6) (2021-06-03)
 
 
