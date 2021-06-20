@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -25,6 +26,7 @@ class Dropdown extends Component {
     }
 
     static propTypes = {
+        classes: PropTypes.object,
         data: PropTypes.arrayOf(PropTypes.shape({
             key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
             name: PropTypes.any.isRequired,
@@ -160,7 +162,7 @@ class Dropdown extends Component {
     }
 
     renderDropDown() {
-        const { cssStyle, mergeStyles } = this.props;
+        const { cssStyle, mergeStyles, classes } = this.props;
         const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         const errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
         const arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
@@ -172,7 +174,7 @@ class Dropdown extends Component {
 
         return (
             <>
-                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
+                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled, classes.border)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.dropdownPlaceholder}>
                             <div title={this.getTitle(this.dropdownPlaceholder)}>
@@ -241,4 +243,8 @@ class Dropdown extends Component {
     }
 }
 
-export default Dropdown;
+export default withStyles(({palette}) => ({
+    border: {
+        borderColor: palette.divider
+    }
+}))(Dropdown);

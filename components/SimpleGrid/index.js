@@ -260,7 +260,7 @@ export const SimpleGrid = withStyles(({palette}) => ({
             background: palette.background.default
         },
         '& tr:nth-child(2n)': {
-            background: palette.background.red
+            background: palette.background.even
         }
     }
 }))(SimpleGridClass);

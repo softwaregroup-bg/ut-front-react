@@ -45,19 +45,19 @@ export default withStyles(({palette}) => ({
         background: palette.background.paper,
         '& input': {
             color: palette.text.primary,
-            borderColor: `${palette.divider}`,
+            borderColor: palette.divider,
             background: palette.background.paper
         },
         '& textarea': {
             color: palette.text.primary,
-            borderColor: `${palette.divider}`,
+            borderColor: palette.divider,
             background: palette.background.paper
         }
     },
     border: {
-        borderColor: `${palette.divider}`,
+        borderColor: palette.divider,
         '& div': {
-            borderColor: `${palette.divider}`
+            borderColor: palette.divider
         }
     }
 }))(TitledContentBox);
