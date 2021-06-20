@@ -11,7 +11,7 @@ import { textValidations } from '../../validator/constants';
 import Popover from '@material-ui/core/Popover';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 
-class Dropdown extends Component {
+export class Dropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
