@@ -143,9 +143,9 @@ class DateTimePicker extends Component {
         const outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         const boldLabelStyle = boldLabel ? style.boldLabel : '';
 
-        const format = timeFormat.indexOf('HH') > -1 ? '24hr' : 'ampm';
+        const format = timeFormat.indexOf('HH') > -1 ? '24h' : 'ampm';
         const defaultDate = new Date().setHours(0, 0, 0, 0);
-        const dropdownData = format === '24hr'
+        const dropdownData = format === '24h'
             ? timeValues24HrFormat
             : format === 'ampm' ? timeValues12HrFormat : '';
 
