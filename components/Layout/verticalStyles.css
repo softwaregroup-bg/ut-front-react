@@ -4,13 +4,13 @@
 }
 
 .vertical {
-    overflow: hidden;
+    // overflow: hidden;
     width: 100%;
 }
 
 .innerContent {
     height: 100%;
-    overflow: hidden;
+    //overflow: hidden;
     display: flex;
     flex-direction: column;
 }
