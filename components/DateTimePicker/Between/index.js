@@ -70,7 +70,6 @@ class DateTimePickerBetween extends Component {
             cancelLabel,
             boldLabel,
             firstDayOfWeek,
-            defaultValue,
             withVerticalClass,
             dateFormat,
             timeFormat,
@@ -81,11 +80,12 @@ class DateTimePickerBetween extends Component {
             timeDropDownData
         } = this.props;
         const layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
+        const defaultDateValue = new Date();
 
         return (
             <div className={layoutClassName}>
                 <DateTimePicker
-                    defaultValue={defaultValue.from}
+                    defaultValue={defaultDateValue}
                     dateFormat={dateFormat}
                     timeFormat={timeFormat}
                     transformDate={transformDate}
@@ -102,7 +102,7 @@ class DateTimePickerBetween extends Component {
                     boldLabel={boldLabel}
                 />
                 <DateTimePicker
-                    defaultValue={defaultValue.to}
+                    defaultValue={defaultDateValue}
                     dateFormat={dateFormat}
                     timeFormat={timeFormat}
                     transformDate={transformDate}
