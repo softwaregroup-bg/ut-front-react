@@ -23,8 +23,7 @@ class DateTimePicker extends Component {
         this.getContextStyles = this.getContextStyles.bind(this);
 
         this.state = {
-            date: new Date(),
-            time: ''
+            date: new Date()
         };
     }
 
@@ -141,6 +140,17 @@ class DateTimePicker extends Component {
         return null;
     }
 
+    setTime(time) {
+        const newDate = new Date(
+            this.state.date.getFullYear(),
+            this.state.date.getMonth(),
+            this.state.date.getDate(),
+            time.getHours(),
+            time.getMinutes());
+
+        this.setState({date: newDate});
+    }
+
     render() {
         const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
         const { defaultValue, timeType } = this.props;
@@ -178,7 +188,7 @@ class DateTimePicker extends Component {
                             cancelLabel={cancelLabel}
                             okLabel={okLabel}
                             container={container}
-                            initialDate={date}
+                            initialDate={this.state.date}
                             mode={mode}
                             onAccept={this.handleAccept('date')}
                             firstDayOfWeek={firstDayOfWeek}
@@ -190,7 +200,7 @@ class DateTimePicker extends Component {
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>
-                        <input value={this.formatTime(this.state.time)} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <input value={this.formatTime(this.state.date)} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div> : timeType === 'timeDropdown'
                         ? <div className={style.ddframe}>
@@ -202,10 +212,10 @@ class DateTimePicker extends Component {
                             />
                         </div> : ''}
                     {timeType === 'timePicker' ? <TimePicker
-                        onChange={(time) => { this.setState({time}); }}
+                        onChange={(time) => this.setTime(time)}
                         cancelLabel={cancelLabel}
                         okLabel={okLabel}
-                        initialTime={date}
+                        initialTime={this.state.date}
                         mode={mode}
                         onAccept={this.handleAccept('time')}
                         format={format}
