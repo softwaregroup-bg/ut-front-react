@@ -85,7 +85,7 @@ class DateTimePickerBetween extends Component {
         return (
             <div className={layoutClassName}>
                 <DateTimePicker
-                    defaultValue={defaultValue}
+                    defaultValue={defaultValue.from}
                     dateFormat={dateFormat}
                     timeFormat={timeFormat}
                     transformDate={transformDate}
@@ -102,7 +102,7 @@ class DateTimePickerBetween extends Component {
                     boldLabel={boldLabel}
                 />
                 <DateTimePicker
-                    defaultValue={defaultValue}
+                    defaultValue={defaultValue.to}
                     dateFormat={dateFormat}
                     timeFormat={timeFormat}
                     transformDate={transformDate}
