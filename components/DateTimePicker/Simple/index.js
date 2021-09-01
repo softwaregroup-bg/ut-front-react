@@ -201,7 +201,7 @@ class DateTimePicker extends Component {
                             ref='date'
                             InputProps={{disableUnderline: true}}
                             maxDate={maxDate}
-                        />kk
+                        />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>

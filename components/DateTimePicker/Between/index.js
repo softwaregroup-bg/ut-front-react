@@ -119,7 +119,7 @@ class DateTimePickerBetween extends Component {
                     onChange={({value}) => { this.handleChange('to', value); }}
                     boldLabel={boldLabel}
                     maxDate={maxDate}
-                />hhh
+                />
             </div>
         );
     }
