@@ -81,7 +81,7 @@ class DateTimePickerBetween extends Component {
             timeDropDownData
         } = this.props;
         const layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
-
+        const maxDate = new Date();
         return (
             <div className={layoutClassName}>
                 <DateTimePicker
@@ -100,6 +100,7 @@ class DateTimePickerBetween extends Component {
                     data={timeDropDownData}
                     onChange={({value}) => { this.handleChange('from', value); }}
                     boldLabel={boldLabel}
+                    maxDate={maxDate}
                 />
                 <DateTimePicker
                     defaultValue={defaultValue.to}
@@ -117,7 +118,8 @@ class DateTimePickerBetween extends Component {
                     data={timeDropDownData}
                     onChange={({value}) => { this.handleChange('to', value); }}
                     boldLabel={boldLabel}
-                />
+                    maxDate={maxDate}
+                />hhh
             </div>
         );
     }

@@ -24,6 +24,9 @@ class DateTimePicker extends Component {
 
         this.state = {
             date: new Date()
+            // this.props.defaultValue
+            //     ? new Date(this.props.defaultValue)
+            //     : new Date().setHours(0, 0, 0, 0)
         };
     }
 
@@ -168,6 +171,8 @@ class DateTimePicker extends Component {
             ? new Date(defaultValue)
             : new Date(defaultDate);
 
+        const maxDate = new Date();
+
         let innerWrap = style.innerWrap;
         let labelWrap = style.labelWrap;
 
@@ -195,8 +200,8 @@ class DateTimePicker extends Component {
                             variant='dialog'
                             ref='date'
                             InputProps={{disableUnderline: true}}
-                            maxDate={date}
-                        />
+                            maxDate={maxDate}
+                        />kk
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>
