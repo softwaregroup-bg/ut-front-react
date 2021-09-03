@@ -21,13 +21,6 @@ class DateTimePicker extends Component {
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
-
-        this.state = {
-            date: new Date()
-            // this.props.defaultValue
-            //     ? new Date(this.props.defaultValue)
-            //     : new Date().setHours(0, 0, 0, 0)
-        };
     }
 
     handleOpen(ref) {
@@ -143,17 +136,6 @@ class DateTimePicker extends Component {
         return null;
     }
 
-    setTime(time) {
-        const newDate = new Date(
-            this.state.date.getFullYear(),
-            this.state.date.getMonth(),
-            this.state.date.getDate(),
-            time.getHours(),
-            time.getMinutes());
-
-        this.setState({date: newDate});
-    }
-
     render() {
         const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
         const { defaultValue, timeType } = this.props;
@@ -171,8 +153,6 @@ class DateTimePicker extends Component {
             ? new Date(defaultValue)
             : new Date(defaultDate);
 
-        const maxDate = new Date();
-
         let innerWrap = style.innerWrap;
         let labelWrap = style.labelWrap;
 
@@ -187,25 +167,24 @@ class DateTimePicker extends Component {
                 <div className={classnames(innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
                         <DatePicker
-                            value={this.state.date}
-                            onChange={(date) => { this.setState({date}); }}
+                            value={date}
+                            onChange={noop}
                             onKeyUp={this.handleKeyPress('date')}
                             cancelLabel={cancelLabel}
                             okLabel={okLabel}
                             container={container}
-                            initialDate={this.state.date}
+                            initialDate={date}
                             mode={mode}
                             onAccept={this.handleAccept('date')}
                             firstDayOfWeek={firstDayOfWeek}
                             variant='dialog'
                             ref='date'
                             InputProps={{disableUnderline: true}}
-                            maxDate={maxDate}
                         />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>
-                        <input value={this.formatTime(this.state.date)} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
+                        <input value={defaultValue ? this.formatTime(date) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
                         <button className={style.timeButton} onClick={this.handleOpen('time')} />
                     </div> : timeType === 'timeDropdown'
                         ? <div className={style.ddframe}>
@@ -220,7 +199,7 @@ class DateTimePicker extends Component {
                         onChange={(time) => this.setTime(time)}
                         cancelLabel={cancelLabel}
                         okLabel={okLabel}
-                        initialTime={this.state.date}
+                        initialTime={date}
                         mode={mode}
                         onAccept={this.handleAccept('time')}
                         format={format}

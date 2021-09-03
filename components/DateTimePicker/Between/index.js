@@ -81,6 +81,7 @@ class DateTimePickerBetween extends Component {
             timeDropDownData
         } = this.props;
         const layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
+
         return (
             <div className={layoutClassName}>
                 <DateTimePicker
