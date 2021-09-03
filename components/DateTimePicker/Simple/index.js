@@ -196,7 +196,6 @@ class DateTimePicker extends Component {
                             />
                         </div> : ''}
                     {timeType === 'timePicker' ? <TimePicker
-                        onChange={(time) => this.setTime(time)}
                         cancelLabel={cancelLabel}
                         okLabel={okLabel}
                         initialTime={date}
