@@ -23,10 +23,9 @@ class DateTimePicker extends Component {
         this.getContextStyles = this.getContextStyles.bind(this);
 
         this.state = {
-            date: new Date()
-            // this.props.defaultValue
-            //     ? new Date(this.props.defaultValue)
-            //     : new Date().setHours(0, 0, 0, 0)
+            date: this.props.defaultValue
+                ? new Date(this.props.defaultValue)
+                : new Date().setHours(0, 0, 0, 0)
         };
     }
 
@@ -156,7 +155,7 @@ class DateTimePicker extends Component {
 
     render() {
         const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
-        const { defaultValue, timeType } = this.props;
+        const { defaultValue, timeType, maxDate } = this.props;
 
         const outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         const boldLabelStyle = boldLabel ? style.boldLabel : '';
@@ -170,8 +169,6 @@ class DateTimePicker extends Component {
         const date = defaultValue
             ? new Date(defaultValue)
             : new Date(defaultDate);
-
-        const maxDate = new Date();
 
         let innerWrap = style.innerWrap;
         let labelWrap = style.labelWrap;
@@ -244,6 +241,7 @@ DateTimePicker.defaultProps = {
 };
 DateTimePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+    maxDate: PropTypes.string,
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
