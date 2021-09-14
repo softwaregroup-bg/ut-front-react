@@ -1,3 +1,12 @@
+# [12.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.7...v12.6.0) (2021-09-14)
+
+
+### Features
+
+* bdc-239 - error print which allows i18n on error messages ([#572](https://github.com/softwaregroup-bg/ut-front-react/issues/572)) ([c053487](https://github.com/softwaregroup-bg/ut-front-react/commit/c0534871c90d631a09f270321045e011843925da))
+
+
+
 ## [12.5.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.6...v12.5.7) (2021-09-14)
 
 
