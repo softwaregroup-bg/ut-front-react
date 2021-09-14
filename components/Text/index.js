@@ -10,11 +10,12 @@ export default class Text extends React.Component {
     static propTypes = {
         children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         params: PropTypes.object,
-        prefix: PropTypes.string // prefix, narrowing search in translation dictionary
+        prefix: PropTypes.string, // prefix, narrowing search in translation dictionary
+        interpolate: PropTypes.interpolate
     }
 
     render() {
-        let {children, params, prefix} = this.props;
+        let {children, params, prefix, interpolate = applyTemplate} = this.props;
         if (typeof children !== 'string') return children || null;
         let template = children;
         if (typeof this.context.translate === 'function') {
@@ -26,7 +27,7 @@ export default class Text extends React.Component {
             }
         }
         // In either case - apply the params to the template
-        children = applyTemplate(template, params);
+        children = interpolate(template, params);
         return (
             <span>{children}</span>
         );
