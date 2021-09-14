@@ -1,15 +1,17 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import interpolate from 'ut-function.interpolate';
+
 import Popup from '../Popup';
 import Text from '../Text';
 
-import styles from './style.css';
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
-import classnames from 'classnames';
+import styles from './style.css';
 
 class ErrorWindow extends React.Component {
     render() {
-        const {open, message, close, title, type, clearLoginState} = this.props;
+        const {open, message, close, title, type, print, params, clearLoginState} = this.props;
         let closePopUpHandler = close;
         const header = {text: title};
         let actionButtons = [
@@ -47,7 +49,7 @@ class ErrorWindow extends React.Component {
             >
                 <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
                 <div className={styles.errorMessageWrap}>
-                    <Text>{message}</Text>
+                    <Text params={params} interpolate={interpolate}>{print || message}</Text>
                 </div>
             </Popup>
         );
@@ -62,6 +64,8 @@ class ErrorWindow extends React.Component {
         message: PropTypes.node,
         title: PropTypes.string,
         type: PropTypes.string,
+        print: PropTypes.string,
+        params: PropTypes.string,
         close: PropTypes.func,
         clearLoginState: PropTypes.func
     };
