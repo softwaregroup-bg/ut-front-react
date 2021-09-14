@@ -15,7 +15,7 @@ export default class Text extends React.Component {
     }
 
     render() {
-        let {children, params, prefix, interpolate} = this.props;
+        let {children, params, prefix, interpolate = applyTemplate} = this.props;
         if (typeof children !== 'string') return children || null;
         let template = children;
         if (typeof this.context.translate === 'function') {
@@ -27,7 +27,7 @@ export default class Text extends React.Component {
             }
         }
         // In either case - apply the params to the template
-        children = interpolate ? interpolate(template, params) : applyTemplate(template, params);
+        children = interpolate(template, params);
         return (
             <span>{children}</span>
         );
