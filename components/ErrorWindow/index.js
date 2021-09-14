@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import interpolate from 'ut-function.interpolate';
 
 import Popup from '../Popup';
 import Text from '../Text';
 
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
 import styles from './style.css';
-
-import interpolate from './interpolate';
 
 class ErrorWindow extends React.Component {
     render() {
