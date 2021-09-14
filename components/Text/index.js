@@ -33,7 +33,7 @@ export default class Text extends React.Component {
     }
 }
 
-const TOKEN = /\${([\w]*)}/g;
+const TOKEN = /\{([\w]*)}/g;
 /**
  * A very simple templating scheme:
  * template = 'This ${item} costs ${price}'

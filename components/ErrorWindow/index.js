@@ -9,7 +9,7 @@ import classnames from 'classnames';
 
 class ErrorWindow extends React.Component {
     render() {
-        const {open, message, close, title, type, clearLoginState} = this.props;
+        const {open, message, close, title, type, print, params, clearLoginState} = this.props;
         let closePopUpHandler = close;
         const header = {text: title};
         let actionButtons = [
@@ -47,7 +47,7 @@ class ErrorWindow extends React.Component {
             >
                 <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
                 <div className={styles.errorMessageWrap}>
-                    <Text>{message}</Text>
+                    <Text params={params}>{print || message}</Text>
                 </div>
             </Popup>
         );

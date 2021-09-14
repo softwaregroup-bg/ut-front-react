@@ -11,7 +11,11 @@ const defaultPreloadWindowState = immutable.fromJS({
 });
 const defaultErrorWindowState = immutable.fromJS({
     open: false,
-    message: ''
+    message: '',
+    type: null,
+    title: null,
+    print: null,
+    params: null
 });
 
 export const preloadWindow = (state = defaultPreloadWindowState, action) => {
@@ -57,11 +61,7 @@ export const preloadWindow = (state = defaultPreloadWindowState, action) => {
 export const errorWindow = (state = defaultErrorWindowState, action) => {
     if (!action.suppressErrorWindow) {
         if (action.type === actions.ERROR_WINDOW_CLOSE) {
-            return state
-                .set('open', false)
-                .delete('title')
-                .set('message', '')
-                .delete('type');
+            return defaultErrorWindowState;
         }
         if (action.type === actions.ERROR_WINDOW_TOGGLE) {
             const message = (mapErrorMessage(action.message) || mapErrorMessage(state.get('message')));
@@ -69,7 +69,9 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
                 .set('open', !state.get('open'))
                 .delete('title')
                 .set('message', message)
-                .delete('type');
+                .delete('type')
+                .delete('print')
+                .delete('params');
         }
         if (action.error) {
             const msg = (mapErrorMessage(action.error) || mapErrorMessage(state.get('message')));
@@ -82,6 +84,14 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
                 if (statusCode) {
                     title += `(${statusCode})`;
                 }
+            }
+
+            const { print, params } = action.error;
+            if (print) {
+                state = state.set('print', print);
+            }
+            if (params) {
+                state = state.set('params', params);
             }
 
             return state
@@ -97,7 +107,9 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
             .set('open', false)
             .delete('title')
             .set('message', '')
-            .delete('type');
+            .delete('type')
+            .delete('print')
+            .delete('params');
     }
     return state;
 };
