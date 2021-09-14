@@ -64,6 +64,7 @@ class DateTimePickerBetween extends Component {
     render() {
         const {
             locale,
+            maxDate,
             labelFrom,
             labelTo,
             okLabel,
@@ -81,7 +82,6 @@ class DateTimePickerBetween extends Component {
             timeDropDownData
         } = this.props;
         const layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
-
         return (
             <div className={layoutClassName}>
                 <DateTimePicker
@@ -100,6 +100,7 @@ class DateTimePickerBetween extends Component {
                     data={timeDropDownData}
                     onChange={({value}) => { this.handleChange('from', value); }}
                     boldLabel={boldLabel}
+                    maxDate={maxDate}
                 />
                 <DateTimePicker
                     defaultValue={defaultValue.to}
@@ -117,6 +118,7 @@ class DateTimePickerBetween extends Component {
                     data={timeDropDownData}
                     onChange={({value}) => { this.handleChange('to', value); }}
                     boldLabel={boldLabel}
+                    maxDate={maxDate}
                 />
             </div>
         );
@@ -129,6 +131,7 @@ DateTimePickerBetween.propTypes = {
         to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
     }),
     locale: PropTypes.string,
+    maxDate: PropTypes.string,
     timeFormat: PropTypes.string,
     dateFormat: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

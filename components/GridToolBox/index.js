@@ -188,6 +188,7 @@ class GridToolBox extends Component {
                         defaultValue={filterValue}
                         label={filterElement.label}
                         boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
                     />
                 </div>);
 
@@ -206,6 +207,7 @@ class GridToolBox extends Component {
                         labelFrom={filterElement.labelFrom}
                         labelTo={filterElement.labelTo}
                         boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
                     />
                 </div>);
             case filterElementTypes.dateTimePickerBetween:
@@ -224,6 +226,7 @@ class GridToolBox extends Component {
                         labelFrom={filterElement.labelFrom}
                         labelTo={filterElement.labelTo}
                         boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
                     />
                 </div>);
             case filterElementTypes.customSearch:
@@ -733,6 +736,7 @@ GridToolBox.propTypes = {
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
+            maxDate: PropTypes.string,
 
             // DropDown
             data: PropTypes.arrayOf(
