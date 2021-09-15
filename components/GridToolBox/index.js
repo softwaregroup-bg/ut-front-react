@@ -680,7 +680,7 @@ class GridToolBox extends Component {
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
                 {!showActionButtonsOnSelect ? <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
-                    Show filters
+                    <Text>Show filters</Text>
                 </div> : null}
                 <div className={classnames(style.pullRight, style.tableCell)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
