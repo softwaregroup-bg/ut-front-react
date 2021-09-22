@@ -77,7 +77,7 @@ export default function ui({utMethod, config = {}}) {
             const headHTML = document.getElementsByTagName('head')[0].innerHTML +
                 `<link href="${config.favicon || favicon}" rel="icon" type="image/x-icon" />`;
             document.getElementsByTagName('head')[0].innerHTML = headHTML;
-            document.title = config.title || 'Standard';
+            document.title = 'Agency Banking' || config.title;
 
             // initMirrors();
         },
