@@ -27,6 +27,11 @@
     padding: 0px 36px 0px 10px;
     border: none;
     height: 28px;
+    background-color: transparent;
+}
+
+:global(html[dir='rtl']) .searchBoxWrapInput {
+    padding: 0px 10px 0px 36px;
 }
 
 :global(html[dir='rtl']) .searchBoxWrapInput {

@@ -10,7 +10,6 @@
     width: 100%;
     height: 100%;
     position: relative;
-    background: var(--ut-front-react-standardTabNavbarBackgroundColor);
     border-bottom: 1px solid var(--ut-front-react-standardTabNavbarBorderColor);
     padding: 0;
     margin: 0;
@@ -18,20 +17,15 @@
 
 .tabMenuWrap {
     position: relative;
-    background: var(--ut-front-react-standardTabMenuBackgroundColor);
     display: inline-block;
     border-right: 1px solid var(--ut-front-react-standardTabNavbarBorderColor);
     cursor: pointer;
-}
-.tabMenuWrap {
-    color: var(--ut-front-react-standardTabMenuTextColor);
 }
 .tabMenuWrap:hover {
     text-decoration: none;
     /*background: var(--ut-front-react-standardTabHoverBackgroundColor);*/
 }
 .tabMenuWrap.selected {
-    background: var(--ut-front-react-standardTabSelectedBackgroundColor);
     color: var(--ut-front-react-standardTabTextSelectedColor);
     text-decoration: none;
 }
@@ -46,7 +40,6 @@
     width: 100%;
     position: absolute;
     bottom: -1px;
-    background: var(--ut-front-react-standardTabSelectedBackgroundColor);
     height: 1px;
 }
 
@@ -77,15 +70,13 @@
 
 .tabNavbar {
     margin-bottom: 0;
-    background: var(--ut-front-react-standardTabSelectedBackgroundColor);
     border-bottom: none;
     text-transform: uppercase;
     padding: 0;
 }
 .tabMenuWrap {
-    background: var(--ut-front-react-standardTabSelectedBackgroundColor);
     border-right: none;
-    border-bottom: 3px solid var(--ut-front-react-standardTabSelectedBackgroundColor);
+    border-bottom: 3px solid transparent;
     display: inline-block;
     letter-spacing: -0.02em;
     cursor: pointer;
@@ -96,5 +87,5 @@
     border-bottom-color: var(--ut-front-react-standardTabSelectedBorderColor);
 }
 .tabMenuWrap .tabMenu {
-    padding: 18px 35px 15px; 
+    padding: 18px 35px 15px;
 }

@@ -4,7 +4,6 @@
 table.dataGridTable {
     width: 100%;
     font-family: Roboto,Arial;
-    border: 1px solid var(--ut-front-react-standardGridTableBorderColor);
     font-size: 14px;
 }
 
@@ -22,8 +21,6 @@ table.dataGridTable tr td, table.dataGridTable tr, th {
 }
 
 table.dataGridTable tr {
-    background: var(--ut-front-react-standardGridTableBackgroundOddColor);
-    border-bottom: 1px solid var(--ut-front-react-standardGridTableBorderColor);
     -webkit-transition: background 0.2s ease-in-out;
     transition: background 0.2s ease-in-out;
 }
@@ -40,10 +37,6 @@ table.dataGridTable thead .thTitle{
     cursor: default;
 }
 
-table.dataGridTable tr:nth-child(2n) {
-    background: var(--ut-front-react-standardGridTableBackgroundEvenColor);
-}
-
 table.dataGridTable tr.checked {
     /*background: #FFFBEF !important;*/
     background: var(--ut-front-react-standardGridTableBackgroundCheckedColor);
@@ -54,17 +47,12 @@ table.dataGridTable tr.selected {
 }
 
 /*table.dataGridTable tr.checked {
-    background: #FFFCEB; 
+    background: #FFFCEB;
 }*/
-
-table.dataGridTable tr:hover {
-    background: var(--ut-front-react-standardGridTableBackgroundHoverColor);
-}
 
 table.dataGridTable thead,
 table.dataGridTable thead tr,
 table.dataGridTable thead tr td {
-    background: var(--ut-front-react-standardGridTableTheadBackgroundColor);
     color: var(--ut-front-react-standardGridTableTheadColor);
     font-weight: bold;
 }
@@ -89,12 +77,12 @@ table.dataGridTable tr th.checkBox, table.dataGridTable tr td.checkBox {
     width: 40px;
 }
 
-table.dataGridTable tr th.checkBox input[type=checkbox], 
+table.dataGridTable tr th.checkBox input[type=checkbox],
 table.dataGridTable tr td.checkBox input[type=checkbox] {
     display: none;
 }
 
-table.dataGridTable tr th.checkBox input[type=checkbox] + label span, 
+table.dataGridTable tr th.checkBox input[type=checkbox] + label span,
 table.dataGridTable tr td.checkBox input[type=checkbox] + label span {
     width: 18px;
     height: 18px;
@@ -108,7 +96,7 @@ table.dataGridTable tr td.checkBox input[type=checkbox] + label span {
 }
 */
 
-table.dataGridTable tr th.checkBox input[type=checkbox]:checked + label span, 
+table.dataGridTable tr th.checkBox input[type=checkbox]:checked + label span,
 table.dataGridTable tr td.checkBox input[type=checkbox]:checked + label span  {
     background: url('./images/checkbox.png');
     background-position: center center;

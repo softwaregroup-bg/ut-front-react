@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+
 import ToolTip from '../ToolTip';
 import Text from '../Text';
 
@@ -9,7 +11,7 @@ import toolTipStyle from './tooltipstyles.css';
 import collapableIcon from './images/collapsable.png';
 import { Vertical } from '../Layout';
 
-export default class CollapsableContent extends Component {
+class CollapsableContent extends Component {
     constructor(props, context) {
         super(props, context);
         this.toggle = this.toggle.bind(this);
@@ -34,7 +36,7 @@ export default class CollapsableContent extends Component {
     }
 
     getHeadingStyles() {
-        let classes = classnames(style.heading);
+        let classes = classnames(style.heading, this.props.classes.heading);
         if (this.props.showCollapsibleButton && this.props.orientation === 'left' && !this.state.collapsed) {
             classes = classnames(classes, style.headingLeftArrow);
         } else if (this.props.showCollapsibleButton && this.props.orientation === 'right' && !this.state.collapsed) {
@@ -69,7 +71,7 @@ export default class CollapsableContent extends Component {
     render() {
         if (this.state.collapsed) {
             return (
-                <div className={style.collapsableContentContainer} style={{...this.props.style, ...this.props.collapsedStyles}}>
+                <div className={classnames(style.collapsableContentContainer, this.props.classes.paper)} style={{...this.props.style, ...this.props.collapsedStyles}}>
                     <div className={this.getHeadingStyles()} onClick={this.toggle}>
                         <div className={this.getCollapsedArrowStyle()}>
                             <img src={collapableIcon} />
@@ -83,7 +85,7 @@ export default class CollapsableContent extends Component {
         } else {
             const currentStyles = this.props.showCollapsibleButton ? {paddingRight: '25px'} : {};
             return (
-                <div className={style.collapsableContentContainer} style={{...this.props.style, ...this.props.visibleStyles}}>
+                <div className={classnames(style.collapsableContentContainer, this.props.classes.paper)} style={{...this.props.style, ...this.props.visibleStyles}}>
                     <Vertical fixedComponent={<div className={this.getHeadingStyles()} style={currentStyles} onClick={this.toggle}>
                         <div className={style.textWrap}><Text>{this.props.heading}</Text></div>
                         {this.props.info !== '' && <div className={style.toolTipWrap}><ToolTip styles={toolTipStyle}>{this.props.info}</ToolTip></div>}
@@ -101,6 +103,7 @@ export default class CollapsableContent extends Component {
 }
 
 CollapsableContent.propTypes = {
+    classes: PropTypes.object,
     orientation: PropTypes.oneOf(['left', 'right']),
     children: PropTypes.any,
     visibleStyles: PropTypes.object,
@@ -124,3 +127,13 @@ CollapsableContent.defaultProps = {
     isCollapsed: false,
     onCollapse: function() {}
 };
+
+export default withStyles(({palette}) => ({
+    heading: {
+        borderBottom: `1px solid ${palette.divider}`,
+        background: palette.background.default
+    },
+    paper: {
+        background: palette.background.paper
+    }
+}))(CollapsableContent);

@@ -1,7 +1,7 @@
 import dateFormat from 'date-fns/format';
 
 let permissionsCache = {};
-let permissionsRegExp = [];
+let permissionsRegExp = false;
 
 export const checkPermission = (actions) => {
     if (!Array.isArray(actions)) {
@@ -10,7 +10,7 @@ export const checkPermission = (actions) => {
 
     actions.forEach((action) => {
         if (!permissionsCache[action]) {
-            permissionsCache[action] = permissionsRegExp.test(action);
+            permissionsCache[action] = permissionsRegExp && permissionsRegExp.test(action);
         }
     });
 

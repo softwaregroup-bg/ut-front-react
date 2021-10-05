@@ -8,7 +8,7 @@ import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 import Box from '@material-ui/core/Box';
 import style from './style.css';
 
-import Dropdown from './Dropdown';
+import {Dropdown} from './Dropdown';
 
 class GroupDropdown extends Dropdown {
     constructor(props) {

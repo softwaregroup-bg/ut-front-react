@@ -12,7 +12,7 @@
 
 .table {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
 .tableButtonsShowed {
@@ -122,8 +122,8 @@
 .advancedSearchPopOver {
     visibility: hidden;
     position: absolute;
-    background-color: var(--ut-front-react-standardGridToolBoxAdvancedSearchBackgroundColor);
-    border: 1px solid var(--ut-front-react-standardGridToolBoxAdvancedSearchBorderColor);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
     z-index: 1;
     padding: 5px;
     text-align: left;
