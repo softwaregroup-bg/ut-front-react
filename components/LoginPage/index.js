@@ -11,7 +11,7 @@ class LoginPage extends Component {
             <div className={styles.loginContainer}>
                 <div className={classnames(this.context.implementationStyle.loginLogoHeader, getClass(styles, 'loginLogo loginPageHeader'))} />
                 <LoginForm routerParams={this.props.match && this.props.match.params} />
-                <div className={classnames(this.context.implementationStyle.loginLogoFooter, getClass(styles, 'loginLogo loginPageFooter'))} />
+                <div/>
             </div>
         );
     }
