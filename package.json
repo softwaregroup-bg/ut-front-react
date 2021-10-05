@@ -18,6 +18,7 @@
   },
   "scripts": {
     "lint": "ut-lint .",
+    "lint-fix": "ut-lint . --fix",
     "release": "ut-release",
     "changelog": "ut-changelog",
     "check": "ut-check",

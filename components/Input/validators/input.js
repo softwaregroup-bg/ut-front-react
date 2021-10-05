@@ -1,11 +1,12 @@
-import { textValidations } from '../../../validator/constants';
-import { isRequiredRule, lengthRule, regexRule, isNumberOnlyRule, isValidUniformCivilNumberRule, isIntegerOnlyRule, isIntegerRangeRule, isDecimalOnlyRule, isValidEmailRule, isUniqueValueRule, isValidIBANRule } from '../../../validator';
+import { textValidations, customValidations } from '../../../validator/constants';
+import { isRequiredRule, lengthRule, regexRule, isNumberOnlyRule, isValidUniformCivilNumberRule, isIntegerOnlyRule, isIntegerRangeRule, isDecimalOnlyRule, isValidEmailRule, isUniqueValueRule, isValidIBANRule, customRule } from '../../../validator';
 
 export default (valueToValidate, validators) => {
     const result = { isValid: true, errors: [] };
 
     validators.forEach((validator) => {
         if (validator.type === textValidations.isRequired) isRequiredRule(valueToValidate, validator, result);
+        if (validator.type === customValidations.function) customRule(valueToValidate, validator, result);
         if (validator.type === textValidations.length) lengthRule(valueToValidate, validator.minVal, validator.maxVal, validator, result);
         if (validator.type === textValidations.regex) regexRule(valueToValidate, validator.value, validator, result);
         if (validator.type === textValidations.numberOnly) isNumberOnlyRule(valueToValidate, validator, result);

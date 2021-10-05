@@ -1,5 +1,6 @@
 export const filterElementTypes = {
     dropDown: 'dropDown',
+    multiSelect: 'multiSelect',
     searchBox: 'searchBox',
     datePicker: 'datePicker',
     datePickerBetween: 'datePickerBetween',
