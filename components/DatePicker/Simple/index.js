@@ -46,6 +46,8 @@ export default class DatePicker extends Component {
                         minDate={this.props.minDate}
                         maxDate={this.props.maxDate}
                         disabled={this.props.disabled}
+                        InputProps={this.props.InputProps}
+                        fullWidth={this.props.fullWidth || true}
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
@@ -87,7 +89,9 @@ DatePicker.propTypes = {
     errorMessage: PropTypes.string,
     hintText: PropTypes.string,
     withVerticalClass: PropTypes.bool,
-    labelWrap: PropTypes.string
+    labelWrap: PropTypes.string,
+    InputProps: PropTypes.object,
+    fullWidth: PropTypes.bool
 };
 
 DatePicker.contextTypes = {

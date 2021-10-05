@@ -42,12 +42,11 @@ export const inputs = {
         label: 'New password',
         value: '',
         error: '',
-        validateOrder: ['isRequired', 'minLength', 'maxLength', 'shouldMatchField'],
+        validateOrder: ['isRequired', 'minLength', 'maxLength'],
         validations: {
             isRequired: true,
             minLength: 2,
-            maxLength: 30,
-            shouldMatchField: 'confirmPassword'
+            maxLength: 30
         }
     },
     confirmPassword: {

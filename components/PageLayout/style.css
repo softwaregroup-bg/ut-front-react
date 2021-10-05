@@ -49,6 +49,8 @@
 }
 
 .heading {
+    font-size: 26px;
+    font-weight: normal;
     margin: 0;
     text-overflow: ellipsis;
     overflow: hidden;
