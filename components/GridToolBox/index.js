@@ -16,6 +16,7 @@ import StandardDialog from '../Popup';
 import Button from '../StandardButton';
 import ByCustomSearch from '../Filters/ByCustomSearch';
 import Text from '../Text';
+import MultiSelectDropdown from '../Input/MultiSelectDropdown';
 
 import classnames from 'classnames';
 import style from './style.css';
@@ -240,6 +241,22 @@ class GridToolBox extends Component {
                         value={filterElement.value}
                     />
                 </div>);
+            case filterElementTypes.multiSelect:
+                return (<div>
+                    <MultiSelectDropdown
+                        boldLabel
+                        disabled={filterElement.readonly}
+                        keyProp={filterElement.key}
+                        label={label}
+                        placeholder={filterElement.label}
+                        defaultSelected={Array.isArray(filterValue) ? filterValue : []}
+                        data={filterElement.data}
+                        onSelect={filterAutoFetch && !renderInDialog
+                            ? filterElement.onSelect
+                            : onSelect}
+                    />
+                </div>);
+
             default:
                 return null;
         }
