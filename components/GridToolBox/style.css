@@ -49,10 +49,6 @@
     text-decoration: underline;
 }
 
-.toolbarWrap .minWidthed {
-    min-width: 240px;
-}
-
 .toolbarWrap .pullRight {
     float: right;
     text-align: right;
