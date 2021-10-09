@@ -13,8 +13,8 @@ const KeyValueRow = ({ wrapperClass, keyClass, valueClass, keyNode, orientation 
     const valueClasses = isHorizontal(orientation) ? style.valueCell : null;
     return (
         <Grid container className={`${wrapperClass} ${wrapperClasses}`}>
-            <Grid item xs={6} className={`${keyClass} ${style.keyCell}`} style={{padding: 4}}><Text>{keyNode}</Text></Grid>
-            <Grid item xs={6} className={`${valueClass} ${valueClasses}`} style={{padding: 4}}>{children}</Grid>
+            <Grid item xs={6} className={`${keyClass} ${style.keyCell}`}><Text>{keyNode}</Text></Grid>
+            <Grid item xs={6} className={`${valueClass} ${valueClasses}`}>{children}</Grid>
         </Grid>
     );
 };
