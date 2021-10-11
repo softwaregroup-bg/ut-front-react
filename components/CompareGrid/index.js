@@ -39,7 +39,7 @@ class CompareGrid extends Component {
                 {isDeleted && <h1 className={styles.rejectTextField}><Text>{staticStrings.headingWillBeDeleted}</Text></h1>}
                 {rejectReason &&
                 <Accordion
-                    title='Changes Rejected'
+                    title='Rejection Reason'
                     marginBottom={false}
                     fullWidth
                     externalBodyClasses={styles.accordionBody}
