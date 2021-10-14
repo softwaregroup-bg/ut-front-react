@@ -27,15 +27,12 @@ class DateTimePicker extends Component {
             date: this.props.defaultValue
                 ? new Date(this.props.defaultValue)
                 : new Date().setHours(0, 0, 0, 0),
-            isOpenDate: false,
-            isOpenTime: false,
             open: null
         };
     }
 
     handleOpen(e) {
         this.setState({
-            ...this.state,
             open: e
         });
     };
@@ -191,12 +188,12 @@ class DateTimePicker extends Component {
             <div className={outerWrapStyle}>
                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
                 <div className={classnames(innerWrap, innerWrapperClassName)}>
-                    <div className={style.inputWrap} onClick={() => this.handleOpen('date')}>
+                    <div className={style.inputWrap}>
                         <DatePicker
-                            value={this.state.date}
+                            value={defaultValue}
                             open={this.state.open === 'date'}
                             onClose={this.handleClose}
-                            onChange={(date) => { this.setState({date, open: null}); }}
+                            onChange={noop}
                             onKeyUp={this.handleKeyPress('date')}
                             cancelLabel={cancelLabel}
                             okLabel={okLabel}
@@ -209,8 +206,8 @@ class DateTimePicker extends Component {
                             ref='date'
                             InputProps={{disableUnderline: true}}
                             maxDate={maxDate}
-                        />
-                        <button className={style.dateButton} />
+                        />1
+                        <button className={style.dateButton} onClick={() => this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker' ? <div className={style.inputWrap}>
                         <input value={this.formatTime(this.state.date)} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
