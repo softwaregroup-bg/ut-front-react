@@ -193,7 +193,7 @@ class DateTimePicker extends Component {
                             value={defaultValue}
                             open={this.state.open === 'date'}
                             onClose={this.handleClose}
-                            onChange={noop}
+                            onChange={(date) => { this.setState({date}); }}
                             onKeyUp={this.handleKeyPress('date')}
                             cancelLabel={cancelLabel}
                             okLabel={okLabel}
