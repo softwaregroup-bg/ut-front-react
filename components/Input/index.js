@@ -90,7 +90,7 @@ class TextField extends Component {
         const { isValid, errorMessage } = this.state.valid;
         const zeroHeightStyle = isValid ? this.style.hh : '';
 
-        const input = <input ref='textInput' type={type} className={this.inputClassName} value={renderText ? renderText(this.state.value || '') : this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        const input = <input ref='textInput' type={type} className={this.inputClassName} value={renderText(this.state.value || '')} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (
@@ -164,7 +164,7 @@ TextField.defaultProps = {
     errorMessage: '',
     onChange: () => {},
     onBlur: () => {},
-    renderText: () => {},
+    renderText: (param) => param,
     onClick: () => {}
 };
 
