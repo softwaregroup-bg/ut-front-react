@@ -1,3 +1,12 @@
+## [12.6.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.5...v12.6.6) (2021-10-18)
+
+
+### Bug Fixes
+
+* **ECNT-771:** Product Catalog - KYC Level search filter does NOT sho… ([#580](https://github.com/softwaregroup-bg/ut-front-react/issues/580)) ([569dac9](https://github.com/softwaregroup-bg/ut-front-react/commit/569dac9ac3e06fa47f7900b85e154832cd733465))
+
+
+
 ## [12.6.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.4...v12.6.5) (2021-10-14)
 
 
