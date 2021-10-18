@@ -3,10 +3,10 @@ import classnames from 'classnames';
 import Popover from '@material-ui/core/Popover';
 import MenuList from '@material-ui/core/MenuList';
 import Divider from '@material-ui/core/Divider';
-import Text from '../Text';
 import MenuItem from '@material-ui/core/MenuItem';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 import Box from '@material-ui/core/Box';
+import Text from '../Text';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
