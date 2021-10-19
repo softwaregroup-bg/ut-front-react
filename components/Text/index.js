@@ -11,7 +11,7 @@ export default class Text extends React.Component {
         children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         params: PropTypes.object,
         prefix: PropTypes.string, // prefix, narrowing search in translation dictionary
-        interpolate: PropTypes.interpolate
+        interpolate: PropTypes.func
     }
 
     render() {
