@@ -86,8 +86,9 @@ class TextField extends Component {
         const { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
         const { isValid, errorMessage } = this.state.valid;
         const zeroHeightStyle = isValid ? this.style.hh : '';
+        const value = this.state.value !== undefined && this.state.value !== null ? this.state.value : '';
 
-        const input = <input ref='textInput' type={type} className={classnames(this.inputClassName, this.props.classes.border)} value={this.state.value || ''} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        const input = <input ref='textInput' type={type} className={classnames(this.inputClassName, this.props.classes.border)} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (
