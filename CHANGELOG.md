@@ -1,3 +1,12 @@
+# [12.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.8...v12.7.0) (2021-10-20)
+
+
+### Features
+
+* **MSA-53:** add option for allowing negative decimals; fix showing empty input when valus equals 0 ([#585](https://github.com/softwaregroup-bg/ut-front-react/issues/585)) ([4c83b05](https://github.com/softwaregroup-bg/ut-front-react/commit/4c83b05d05638e30c5b02c3d94354d67c8273169))
+
+
+
 ## [12.6.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.7...v12.6.8) (2021-10-19)
 
 
