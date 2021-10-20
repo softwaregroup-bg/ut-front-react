@@ -61,7 +61,7 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                         lengthRule(currentValue, rule.minVal, rule.maxVal, rule, result);
                     }
                     if (validation.type === validationTypes.text && rule.type === textValidations.decimalOnly) {
-                        isDecimalOnlyRule(currentValue, rule.precision, rule.scale, rule, result);
+                        isDecimalOnlyRule(currentValue, rule.precision, rule.scale, rule, result, rule.allowNegative);
                     }
                     if (validation.type === validationTypes.text && rule.type === textValidations.regex) {
                         regexRule(currentValue, rule.value, rule, result);
