@@ -1,3 +1,12 @@
+## [12.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.0...v12.7.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* MUI crateTheme support ([#586](https://github.com/softwaregroup-bg/ut-front-react/issues/586)) ([dcc177c](https://github.com/softwaregroup-bg/ut-front-react/commit/dcc177c15fe5e08ce8f93f5610e7d478c637737e))
+
+
+
 # [12.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.8...v12.7.0) (2021-10-20)
 
 
