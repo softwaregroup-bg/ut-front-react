@@ -39,13 +39,13 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        const { cookieChecked, isLogout, authenticated, cookieCheck, match } = this.props;
+        const { cookieChecked, isLogout, authenticated, cookieCheck, match, location, history } = this.props;
 
         if (!cookieChecked && !isLogout) {
             cookieCheck({appId: match && match.params && match.params.appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            this.props.history.push('/');
+            history.replace('/');
         } else {
             this.login();
         }
