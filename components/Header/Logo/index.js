@@ -26,6 +26,5 @@ Logo.propTypes = {
 
 Logo.contextTypes = {
     implementationStyle: PropTypes.object,
-    mainUrl: PropTypes.string,
-    router: PropTypes.object.isRequired
+    mainUrl: PropTypes.string
 };

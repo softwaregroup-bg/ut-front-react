@@ -7,17 +7,18 @@ import Grid from '@material-ui/core/Grid';
 import Box from '../../components/Box';
 import { identityCheck, setLoginData } from './actions';
 import {UserName, Title, SubmitButton, ErrorSection, Password} from './partials';
+import { withRouter } from 'react-router';
 
 class Login extends React.Component {
     static propTypes = {
         identityCheck: PropTypes.func,
         setLoginData: PropTypes.func,
         loginData: PropTypes.object,
-        login: PropTypes.object
+        login: PropTypes.object,
+        history: PropTypes.object.isRequired
     }
 
     static contextTypes = {
-        router: PropTypes.object,
         implementationStyle: PropTypes.object,
         mainUrl: PropTypes.string,
         initialLoginFields: PropTypes.object
@@ -32,7 +33,7 @@ class Login extends React.Component {
         if (this.props.loginData.get('changeId') !== nextProps.loginData.get('changeId')) {
             this.props.identityCheck(nextProps.loginData.get('data').toJS());
         } else if (!this.props.login.get('authenticated') && nextProps.login.get('authenticated') && nextProps.login.get('reqState') === 'finished') {
-            this.context.router.history.push(this.context.mainUrl); // TODO give correct route
+            this.props.history.push(this.context.mainUrl); // TODO give correct route
         }
     }
 
@@ -129,4 +130,4 @@ export default connect(
         loginData: state.loginData
     }),
     {identityCheck, setLoginData}
-)(Login);
+)(withRouter(Login));

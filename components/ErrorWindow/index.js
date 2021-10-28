@@ -8,6 +8,7 @@ import Text from '../Text';
 
 import formErrorMessageStyles from '../Form/FormErrorMessage/styles.css';
 import styles from './style.css';
+import { withRouter } from 'react-router';
 
 class ErrorWindow extends React.Component {
     render() {
@@ -28,7 +29,7 @@ class ErrorWindow extends React.Component {
             header.closeIcon = false; // remove close icon
             const goToLoginHandler = () => {
                 clearLoginState();
-                this.context.router.history.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
+                this.props.history.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
             };
             actionButtons = [
                 {
@@ -55,10 +56,6 @@ class ErrorWindow extends React.Component {
         );
     };
 
-    static contextTypes = {
-        router: PropTypes.object
-    };
-
     static propTypes = {
         open: PropTypes.bool,
         message: PropTypes.node,
@@ -67,7 +64,8 @@ class ErrorWindow extends React.Component {
         print: PropTypes.string,
         params: PropTypes.string,
         close: PropTypes.func,
-        clearLoginState: PropTypes.func
+        clearLoginState: PropTypes.func,
+        history: PropTypes.object.isRequired
     };
 
     static defaultProps = {
@@ -78,4 +76,4 @@ class ErrorWindow extends React.Component {
     };
 }
 
-export default ErrorWindow;
+export default withRouter(ErrorWindow);

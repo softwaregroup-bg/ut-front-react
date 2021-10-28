@@ -20,10 +20,6 @@ class Main extends React.Component {
         children: PropTypes.object
     }
 
-    static contextTypes = {
-        router: PropTypes.object.isRequired
-    }
-
     render() {
         return (
             <div className={style.h100pr}>

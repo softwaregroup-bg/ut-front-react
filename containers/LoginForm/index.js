@@ -9,6 +9,7 @@ import Form from '../../components/Form';
 import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
 import { closeAllTabs } from '../TabMenu/actions';
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
+import { withRouter } from 'react-router';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -25,12 +26,12 @@ class LoginForm extends Component {
 
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
-            this.context.router.history.push('/');
+            this.props.history.push('/');
         } else if (!authenticated && nextProps.authenticated) {
             if (ssoOrigin) {
-                this.context.router.history.push(`/sso/${appId}/${ssoOrigin}`);
+                this.props.history.push(`/sso/${appId}/${ssoOrigin}`);
             } else {
-                this.context.router.history.push(this.context.mainUrl);
+                this.props.history.push(this.context.mainUrl);
             }
         }
 
@@ -50,7 +51,7 @@ class LoginForm extends Component {
             cookieCheck({appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            this.context.router.history.push('/');
+            this.props.history.push('/');
         }
 
         // if there is previously stored loginData, reset login state
@@ -141,7 +142,7 @@ export default connect(
         };
     },
     { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState, closeAllTabs }
-)(LoginForm);
+)(withRouter(LoginForm));
 
 LoginForm.propTypes = {
     match: PropTypes.object,
@@ -163,10 +164,10 @@ LoginForm.propTypes = {
     identityCheck: PropTypes.func.isRequired,
     bioScan: PropTypes.func,
     clearLoginState: PropTypes.func,
-    closeAllTabs: PropTypes.func
+    closeAllTabs: PropTypes.func,
+    history: PropTypes.object.isRequired
 };
 
 LoginForm.contextTypes = {
-    router: PropTypes.object,
     mainUrl: PropTypes.string
 };

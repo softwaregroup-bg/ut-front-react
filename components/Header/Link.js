@@ -21,7 +21,3 @@ TabLink.propTypes = {
     wideMatch: PropTypes.bool,
     children: PropTypes.any
 };
-
-TabLink.contextTypes = {
-    router: PropTypes.object.isRequired
-};

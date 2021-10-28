@@ -6,6 +6,7 @@ import {cookieCheck, logout} from '../../containers/LoginForm/actions';
 import {fetchTranslations} from './actions';
 import {translate, money, numberFormat, df, checkPermission, setPermissions} from '../../helpers.js';
 import Loader from '../../components/Loader';
+import { withRouter } from 'react-router';
 
 class Gate extends React.Component {
     static propTypes = {
@@ -14,11 +15,8 @@ class Gate extends React.Component {
         logout: PropTypes.func,
         children: PropTypes.object,
         fetchTranslations: PropTypes.func,
-        gate: PropTypes.object
-    }
-
-    static contextTypes = {
-        router: PropTypes.object
+        gate: PropTypes.object,
+        history: PropTypes.object.isRequired
     }
 
     getChildContext() {
@@ -39,7 +37,7 @@ class Gate extends React.Component {
     componentWillReceiveProps(newProps) {
         if (newProps.login.get('reqState') === 'finished' && (newProps.login.get('cookieCheckResultId') !== this.props.login.get('cookieCheckResultId'))) {
             if (!newProps.login.get('authenticated')) {
-                this.context.router.history.push('/login');
+                this.props.history.push('/login');
             } else if (!newProps.gate.get('reqState')) {
                 setPermissions(newProps.login.getIn(['result', 'permission.get']).toJS());
                 this.props.fetchTranslations({
@@ -53,7 +51,7 @@ class Gate extends React.Component {
         } else if (newProps.login.get('logOutResultId') !== this.props.login.get('logOutResultId')) {
             this.props.checkIdentity();
         } else if (newProps.gate.get('forceLogOut') && this.props.gate.get('forceLogOut') === false) {
-            this.context.router.history.push('/login');
+            this.props.history.push('/login');
             this.props.logout();
         }
     }
@@ -80,7 +78,7 @@ export default connect(
         fetchTranslations: fetchTranslations,
         logout
     }
-)(Gate);
+)(withRouter(Gate));
 
 Gate.childContextTypes = {
     translate: PropTypes.func,

@@ -3,14 +3,14 @@ import React from 'react';
 import style from './style.css';
 // import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { matchPath } from 'react-router';
+import { matchPath, withRouter } from 'react-router';
 import enhanceWithClickOutside from 'react-click-outside';
 
 import checkImage from './images/check.png';
 
 class TabDropDown extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             open: false
         };
@@ -32,7 +32,7 @@ class TabDropDown extends React.Component {
     render() {
         const list = this.props.data.map((tab, i) => {
             let activeClassName;
-            const isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
+            const isLinkActive = tab && tab.pathname && matchPath(this.props.location.pathname, {path: tab.pathname, exact: true});
             const handleClick = () => {
                 this.setState({
                     open: false
@@ -71,7 +71,8 @@ class TabDropDown extends React.Component {
 TabDropDown.propTypes = {
     data: PropTypes.array,
     onSelectItem: PropTypes.func,
-    activeItem: PropTypes.number
+    activeItem: PropTypes.number,
+    location: PropTypes.object.isRequired
 };
 
 TabDropDown.defaultProps = {
@@ -79,8 +80,4 @@ TabDropDown.defaultProps = {
     onSelectItem: () => {}
 };
 
-TabDropDown.contextTypes = {
-    router: PropTypes.object.isRequired
-};
-
-export default enhanceWithClickOutside(TabDropDown);
+export default withRouter(enhanceWithClickOutside(TabDropDown));

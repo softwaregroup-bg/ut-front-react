@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Text from '../Text';
 import { Link } from 'react-router-dom';
-import { matchPath } from 'react-router';
+import { matchPath, withRouter } from 'react-router';
 import style from './style.css';
 import classnames from 'classnames';
 
-export default class TabLink extends React.Component {
+class TabLink extends React.Component {
     renderMainContent() {
         const {title, canClose, onClose} = this.props;
 
@@ -25,7 +25,7 @@ export default class TabLink extends React.Component {
     render() {
         const {pathname, onClick} = this.props;
         let activeClassName = '';
-        if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true})) {
+        if (matchPath(this.props.location.pathname, {path: pathname, exact: true})) {
             activeClassName = this.getStyle('tabMenuWrapSelected');
         }
         const onClickHandler = () => {
@@ -50,7 +50,8 @@ TabLink.propTypes = {
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     canClose: PropTypes.bool,
     onClose: PropTypes.func,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    location: PropTypes.object.isRequired
 };
 
 TabLink.defaultProps = {
@@ -61,6 +62,7 @@ TabLink.defaultProps = {
 };
 
 TabLink.contextTypes = {
-    router: PropTypes.object.isRequired,
     implementationStyle: PropTypes.object
 };
+
+export default withRouter(TabLink);

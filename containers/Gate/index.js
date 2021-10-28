@@ -10,6 +10,7 @@ import { cookieCheck, setLoadGate, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 import style from './style.css';
+import { withRouter } from 'react-router';
 
 class Gate extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class Gate extends Component {
         if (login.startsWith('http://') || login.startsWith('https://')) {
             window.location.href = login;
         } else {
-            this.context.router.history.push(login);
+            this.props.history.push(login);
         }
     }
 
@@ -44,7 +45,7 @@ class Gate extends Component {
             cookieCheck({appId: match && match.params && match.params.appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            this.context.router.history.push('/');
+            this.props.history.push('/');
         } else {
             this.login();
         }
@@ -57,9 +58,9 @@ class Gate extends Component {
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
         const isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
-        if (!isAuthenticated && this.context.router.route.location.pathname !== '/login' && this.context.router.route.location.pathname !== login) {
+        if (!isAuthenticated && this.props.location.pathname !== '/login' && this.props.location.pathname !== login) {
             if (match && match.params && match.params.ssoOrigin) {
-                this.context.router.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
+                this.props.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
             } else {
                 this.login();
             }
@@ -107,7 +108,7 @@ export default connect(
         loaded: gate.get('loaded')
     }),
     { cookieCheck, fetchTranslations, setLoadGate, logout }
-)(Gate);
+)(withRouter(Gate));
 
 Gate.propTypes = {
     match: PropTypes.object,
@@ -123,16 +124,14 @@ Gate.propTypes = {
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
     setLoadGate: PropTypes.func,
-    logout: PropTypes.func
+    logout: PropTypes.func,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 Gate.defaultProps = {
     gateLoaded: false,
     gate: Map()
-};
-
-Gate.contextTypes = {
-    router: PropTypes.object
 };
 
 Gate.childContextTypes = {

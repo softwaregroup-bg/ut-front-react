@@ -73,7 +73,6 @@ Layout.propTypes = {
     logout: PropTypes.func
 };
 Layout.contextTypes = {
-    router: PropTypes.any,
     implementationStyle: PropTypes.object,
     mainTabset: PropTypes.array,
     checkPermission: PropTypes.func,

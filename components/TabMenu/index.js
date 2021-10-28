@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import style from './style.css';
 import TabLink from './TabLink';
 import TabDropdown from './TabDropdown';
-import { matchPath } from 'react-router';
+import { matchPath, withRouter } from 'react-router';
 
 class TabMenu extends React.Component {
     constructor(props) {
@@ -86,7 +86,7 @@ class TabMenu extends React.Component {
 
     getActiveTabIndex() {
         for (let i = 0; i < this.props.tabs.length; i++) {
-            if (matchPath(this.context.router.route.location.pathname, {path: this.props.tabs[i].pathname, exact: true})) {
+            if (matchPath(this.props.location.pathname, {path: this.props.tabs[i].pathname, exact: true})) {
                 return i; // 0 based index
             }
         }
@@ -155,7 +155,8 @@ TabMenu.propTypes = {
     defaultLocation: PropTypes.string.isRequired,
     tabs: PropTypes.array.isRequired,
     onTabClose: PropTypes.func,
-    onClick: PropTypes.func // used when pathname is not given to the tabLink
+    onClick: PropTypes.func, // used when pathname is not given to the tabLink
+    location: PropTypes.object.isRequired
 };
 
 TabMenu.defaultProps = {
@@ -163,8 +164,7 @@ TabMenu.defaultProps = {
 };
 
 TabMenu.contextTypes = {
-    router: PropTypes.object.isRequired,
     implementationStyle: PropTypes.object
 };
 
-export default TabMenu;
+export default withRouter(TabMenu);
