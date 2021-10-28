@@ -39,7 +39,7 @@ class Gate extends Component {
     }
 
     componentWillMount() {
-        const { cookieChecked, isLogout, authenticated, cookieCheck, match, location, history } = this.props;
+        const { cookieChecked, isLogout, authenticated, cookieCheck, match, history } = this.props;
 
         if (!cookieChecked && !isLogout) {
             cookieCheck({appId: match && match.params && match.params.appId});
