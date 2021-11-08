@@ -10,12 +10,13 @@ const noop = () => {};
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
+        const {from, to} = this.props.defaultValue;
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
-        this.state = { fromDialogWindow: false, toDialogWindow: false };
+        this.state = { fromDialogWindow: false, toDialogWindow: false, startDate: from || new Date(), endDate: to || new Date()};
     }
 
     handleOpen(ref) {
@@ -145,13 +146,14 @@ export default class DatePickerBetween extends Component {
                     initialFocusedDate={fromDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('from')}
-                    onChange={() => {}}
+                    onChange={(date) => { this.setState({startDate: date}); }}
                     variant='dialog'
                     ref='fromDialogWindow'
                     TextFieldComponent={() => null}
                     onOpen={this.handleOpen('from')}
                     onClose={this.handleClose('from')}
                     open={this.state.fromDialogWindow}
+                    maxDate={this.state.endDate || this.props.maxDate}
                 />
                 <DatePickerDialog
                     cancelLabel={this.props.cancelLabel}
@@ -160,13 +162,15 @@ export default class DatePickerBetween extends Component {
                     initialFocusedDate={toDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('to')}
-                    onChange={() => {}}
+                    onChange={(date) => { this.setState({endDate: date}); }}
                     variant='dialog'
                     ref='toDialogWindow'
                     TextFieldComponent={() => null}
                     onOpen={this.handleOpen('to')}
                     onClose={this.handleClose('to')}
                     open={this.state.toDialogWindow}
+                    maxDate={this.props.maxDate}
+                    minDate={this.state.startDate || undefined}
                 />
             </div>
         );
@@ -184,6 +188,7 @@ DatePickerBetween.propTypes = {
         from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
         to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
     }),
+    maxDate: PropTypes.object,
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
