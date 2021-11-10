@@ -1,3 +1,12 @@
+## [12.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.1...v12.7.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* datePicker to appear correct dates for filtering ([1c2a675](https://github.com/softwaregroup-bg/ut-front-react/commit/1c2a675f6fc2dc485b128d50978a6f3d1389f4ae))
+
+
+
 ## [12.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.0...v12.7.1) (2021-10-28)
 
 
