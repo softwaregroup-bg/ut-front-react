@@ -9,8 +9,6 @@ import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
 
 import style from './style.css';
 
-const noop = () => {};
-
 class DateTimePicker extends Component {
     constructor(props) {
         super(props);
@@ -201,29 +199,27 @@ class DateTimePicker extends Component {
                         />
                         <button className={style.dateButton} onClick={this.handleOpen('date')} />
                     </div>
-                    {timeType === 'timePicker' ? <div className={style.inputWrap}>
-                        <input value={this.formatTime(this.state.date)} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
-                        <button className={style.timeButton} onClick={this.handleOpen('time')} />
-                    </div> : timeType === 'timeDropdown'
-                        ? <div className={style.ddframe}>
-                            <Dropdown
-                                data={dropdownData}
-                                keyProp='time'
-                                onSelect={this.handleAccept('time')}
-                                defaultSelected={defaultValue ? this.formatTime(date) : ''}
-                            />
-                        </div> : ''}
-                    {timeType === 'timePicker' ? <TimePicker
-                        onChange={(time) => this.setTime(time)}
-                        cancelLabel={cancelLabel}
-                        okLabel={okLabel}
-                        initialTime={this.state.date}
-                        mode={mode}
-                        onAccept={this.handleAccept('time')}
-                        format={format}
-                        variant='dialog'
-                        ref='time'
-                    /> : ''}
+                    {timeType === 'timePicker'
+                        ? <TimePicker
+                                onChange={(time) => this.setTime(time)}
+                                cancelLabel={cancelLabel}
+                                okLabel={okLabel}
+                                initialTime={this.state.date}
+                                value={this.state.date}
+                                mode={mode}
+                                onAccept={this.handleAccept('time')}
+                                variant='dialog'
+                                ref='time'
+                        />
+                        : timeType === 'timeDropdown'
+                            ? <div className={style.ddframe}>
+                                <Dropdown
+                                    data={dropdownData}
+                                    keyProp='time'
+                                    onSelect={this.handleAccept('time')}
+                                    defaultSelected={defaultValue ? this.formatTime(date) : ''}
+                                />
+                            </div> : ''}
                 </div>
             </div>
         );
