@@ -1,3 +1,47 @@
+## [12.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.1...v12.7.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* datePicker to appear correct dates for filtering ([1c2a675](https://github.com/softwaregroup-bg/ut-front-react/commit/1c2a675f6fc2dc485b128d50978a6f3d1389f4ae))
+
+
+
+## [12.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.0...v12.7.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* MUI crateTheme support ([#586](https://github.com/softwaregroup-bg/ut-front-react/issues/586)) ([dcc177c](https://github.com/softwaregroup-bg/ut-front-react/commit/dcc177c15fe5e08ce8f93f5610e7d478c637737e))
+
+
+
+# [12.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.8...v12.7.0) (2021-10-20)
+
+
+### Features
+
+* **MSA-53:** add option for allowing negative decimals; fix showing empty input when valus equals 0 ([#585](https://github.com/softwaregroup-bg/ut-front-react/issues/585)) ([4c83b05](https://github.com/softwaregroup-bg/ut-front-react/commit/4c83b05d05638e30c5b02c3d94354d67c8273169))
+
+
+
+## [12.6.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.7...v12.6.8) (2021-10-19)
+
+
+
+## [12.6.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.6...v12.6.7) (2021-10-19)
+
+
+
+## [12.6.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.5...v12.6.6) (2021-10-18)
+
+
+### Bug Fixes
+
+* **ECNT-771:** Product Catalog - KYC Level search filter does NOT sho… ([#580](https://github.com/softwaregroup-bg/ut-front-react/issues/580)) ([569dac9](https://github.com/softwaregroup-bg/ut-front-react/commit/569dac9ac3e06fa47f7900b85e154832cd733465))
+
+
+
 ## [12.6.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.4...v12.6.5) (2021-10-14)
 
 

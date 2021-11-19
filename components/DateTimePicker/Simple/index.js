@@ -15,6 +15,7 @@ class DateTimePicker extends Component {
 
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
@@ -23,15 +24,22 @@ class DateTimePicker extends Component {
         this.state = {
             date: this.props.defaultValue
                 ? new Date(this.props.defaultValue)
-                : new Date().setHours(0, 0, 0, 0)
+                : new Date().setHours(0, 0, 0, 0),
+            open: null
         };
     }
 
-    handleOpen(ref) {
-        return () => {
-            this.refs[ref].show();
-        };
-    }
+    handleOpen(e) {
+        this.setState({
+            open: e
+        });
+    };
+
+    handleClose() {
+        this.setState({
+            open: null
+        });
+    };
 
     formatDate(date) {
         if (!date || isNaN(date.valueOf())) {
@@ -151,6 +159,10 @@ class DateTimePicker extends Component {
         this.setState({date: newDate});
     }
 
+    handleChange = (date) => {
+        this.setState({ date });
+    };
+
     render() {
         const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
         const { defaultValue, timeType, maxDate } = this.props;
@@ -183,7 +195,9 @@ class DateTimePicker extends Component {
                     <div className={style.inputWrap}>
                         <DatePicker
                             value={this.state.date}
-                            onChange={(date) => { this.setState({date}); }}
+                            onChange={this.handleChange}
+                            open={this.state.open === 'date'}
+                            onClose={this.handleClose}
                             onKeyUp={this.handleKeyPress('date')}
                             cancelLabel={cancelLabel}
                             okLabel={okLabel}
@@ -197,7 +211,7 @@ class DateTimePicker extends Component {
                             InputProps={{disableUnderline: true}}
                             maxDate={maxDate}
                         />
-                        <button className={style.dateButton} onClick={this.handleOpen('date')} />
+                        <button className={style.dateButton} onClick={() => this.handleOpen('date')} />
                     </div>
                     {timeType === 'timePicker'
                         ? <TimePicker
