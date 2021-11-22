@@ -9,6 +9,7 @@ import {
     RESET_FORGOTTEN_PASSWORD,
     CHANGE_LOGIN_TYPE
 } from './actionTypes';
+import crypto from 'crypto';
 
 const getTimezone = () => {
     let offset = (new Date()).getTimezoneOffset();
@@ -71,6 +72,11 @@ export const clearLoginState = () => ({
 });
 
 export const forgottenPasswordReset = (params = {}) => (dispatch, getStore) => {
+   let user = params.username || '';
+    params.token = crypto
+    .createHash('sha256')
+    .update(user, 'utf-8')
+    .digest('hex');
     return dispatch({
         method: 'cibUser.forgottenPasswordUser',
         type: RESET_FORGOTTEN_PASSWORD,
@@ -78,7 +84,8 @@ export const forgottenPasswordReset = (params = {}) => (dispatch, getStore) => {
             username: params.username,
             captcha: params.captcha,
             otp: params.otp,
-            newPassword: params.newPassword
+            newPassword: params.newPassword,
+            token: params.token
         },
         methodType: params.otp ? 'forgottenPasswordReset' : 'forgottenPasswordResetSendOTP'
     });
