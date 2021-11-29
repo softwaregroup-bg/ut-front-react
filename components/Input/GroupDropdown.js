@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import MenuItem from '@material-ui/core/MenuItem';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 import Box from '@material-ui/core/Box';
+import Text from '../Text';
 import style from './style.css';
 
 import Dropdown from './Dropdown';
@@ -64,7 +65,9 @@ class GroupDropdown extends Dropdown {
                         className={style.groupDropdownMenuItem}
                         disabled
                         primaryText={group}
-                    />
+                    >
+                        <div title={this.getTitle(group)}><Text>{group}</Text></div>
+                    </MenuItem>
                     <Divider />
                     {
                         groups[group].map((item, i) => {
@@ -80,7 +83,9 @@ class GroupDropdown extends Dropdown {
                                     value={item.key}
                                     onClick={() => { this.handleChange(item); }}
                                     primaryText={item.name}
-                                />
+                                >
+                                    <div title={this.getTitle(item.name)}><Text>{item.name}</Text></div>
+                                </MenuItem>
                             );
                         })
                     }
@@ -95,7 +100,9 @@ class GroupDropdown extends Dropdown {
                 value={this.props.placeholderValue}
                 onClick={() => { this.handleChange({ key: '__placeholder__' }); }}
                 primaryText={this.props.placeholder}
-            />
+            >
+                <div title={this.props.placeholder}><Text>{this.props.placeholder}</Text></div>
+            </MenuItem>
         );
         return menuItems;
     }
