@@ -10,12 +10,14 @@ export default class User extends React.Component {
         this.toggleProfileInfoMenu = this.toggleProfileInfoMenu.bind(this);
         this.getStyle = this.getStyle.bind(this);
     }
+
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
     }
+
     toggleProfileInfoMenu() {
-        let self = this;
-        let handleCloseDocFunc = function(e) {
+        const self = this;
+        const handleCloseDocFunc = function(e) {
             if (!e.target.attributes.getNamedItem('data-profileWrap')) {
                 document.removeEventListener('click', handleCloseDocFunc);
                 self.setState({userMenu: {open: false}});
@@ -29,15 +31,17 @@ export default class User extends React.Component {
         }
         this.setState({userMenu: {open: !this.state.userMenu.open}});
     }
+
     componentWillMount() {
         this.setState({userMenu: {open: false}});
     }
+
     render() {
-        let {personInfo} = this.props;
-        let person = personInfo.person;
-        let firstEmail = get(personInfo, 'emails[0].value');
-        let roles = get(personInfo, 'roles').map((role) => role.name).join(', ');
-        let headProfileInfoWrapStyles = this.state.userMenu.open ? '' : this.getStyle('headerCellProfileWrapHidden');
+        const {personInfo} = this.props;
+        const person = personInfo.person;
+        const firstEmail = get(personInfo, 'emails[0].value');
+        const roles = get(personInfo, 'roles').map((role) => role.name).join(', ');
+        const headProfileInfoWrapStyles = this.state.userMenu.open ? '' : this.getStyle('headerCellProfileWrapHidden');
         return (
             <div className={this.getStyle('headerCellProfile')}>
                 <div onClick={this.toggleProfileInfoMenu} className={this.getStyle('navigationExpandMoreIcon')}>

@@ -1,0 +1,26 @@
+@import './default-config.css';
+@import 'config.css';
+
+
+.formSuccess {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.successMessage {
+    margin-bottom: 5px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 16px;
+    color: var(--ut-front-react-formSuccessMsgColor);
+}
+
+.successIcon {
+    width: 40px;
+    height: 40px;
+    background: inline('./images/loginSuccess.png') no-repeat;
+}

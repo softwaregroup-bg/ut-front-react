@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
+import Text from '../Text';
 export default class DialogExampleModal extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +29,7 @@ export default class DialogExampleModal extends Component {
             message: this.props.message // Reset
         });
     }
+
     componentWillReceiveProps({message}) {
         if (this.props.message !== message) {
             this.setState({message});
@@ -45,7 +46,7 @@ export default class DialogExampleModal extends Component {
         return (
             <div>
                 <Dialog title={this.props.title} actions={actions} modal open={this.state.open}>
-                    {this.state.message}
+                    {this.state.message ? <Text>{this.state.message}</Text> : this.state.message}
                 </Dialog>
             </div>
         );

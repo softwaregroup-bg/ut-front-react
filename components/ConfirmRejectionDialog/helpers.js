@@ -2,7 +2,7 @@ import { textValidations } from '../../validator/constants';
 import { isRequiredRule, lengthRule } from '../../validator';
 
 export function prepareErrors(errors) {
-    let result = {};
+    const result = {};
     errors.forEach((error) => {
         result[error.key] = error.errorMessage;
     });

@@ -5,10 +5,10 @@ import { LOGIN, LOGOUT, CLEAR_LOGIN_STATE } from '../actionTypes';
 // Before login reducer
 
 export const prePopulate = (state, action) => {
-    if (!actionIsForLogin(action.type)) {
-        return state;
-    }
-    let loginStaticStorage = getLoginStaticStorage();
+    // if (!actionIsForLogin(action.type)) {
+    //     return state;
+    // }
+    const loginStaticStorage = getLoginStaticStorage();
 
     // pre-populates loginForm state
     loginFormPaths.forEach(path => {

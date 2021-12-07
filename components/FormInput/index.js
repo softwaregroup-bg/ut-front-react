@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './styles.css';
 import { getClass } from '../../utils/helpers.js';
+import Text from '../Text';
 
 export default class FormInput extends Component {
     constructor(props) {
@@ -15,9 +16,9 @@ export default class FormInput extends Component {
 
     render() {
         let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
-        let { onBlur, onChange } = this.props;
-        let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
-
+        const { onBlur, onChange } = this.props;
+        const inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
+        placeholder = placeholder ? <Text>{placeholder}</Text> : null;
         return (
             <div className={getClass(styles, inputClassName)}>
                 <input
@@ -30,8 +31,9 @@ export default class FormInput extends Component {
                     onChange={onChange}
                     onBlur={onBlur}
                     tabIndex={tabIndex}
-                    ref='inputNode' />
-                { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
+                    ref='inputNode'
+                />
+                { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > <Text>{label}</Text> </label> : false }
                 { error ? <div className={styles.errorMessage}>{error}</div> : false }
             </div>
         );

@@ -5,7 +5,7 @@ import style from './style.css';
 
 export default class SimpleAutoComplete extends Component {
     render() {
-        let dpStyles = {
+        const dpStyles = {
             border: '1px solid #D6D6D6',
             width: '100%',
             height: '30px'

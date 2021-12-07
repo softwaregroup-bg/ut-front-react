@@ -21,22 +21,25 @@ export default class DatePickerBetween extends Component {
             this.refs[`${ref}DialogWindow`].show();
         };
     }
+
     formatDate(date) {
         if (!date || isNaN(date.valueOf())) {
             return '';
         }
 
-        let { locale, dateFormat, transformDate } = this.props;
-        if (transformDate) {
-            return transformDate(date, dateFormat, locale);
-        }
+        // let { locale, dateFormat, transformDate } = this.props;
+        // dateFormat = dateFormat ? dateFormat.replace(/yyyy/g, 'YYYY').replace(/dd/g, 'DD') : 'YYYY-MM-DD';
+        // if (transformDate) {
+        //     return transformDate(date, dateFormat, locale);
+        // }
 
         return formatIso(date);
     }
-    handleAccept(ref) {
-        let {defaultValue} = this.props;
 
-        let currentDate = new Date(defaultValue);
+    handleAccept(ref) {
+        const {defaultValue} = this.props;
+
+        const currentDate = new Date(defaultValue);
         return (date) => {
             if ((currentDate && currentDate[ref] === date) || (!date && (!currentDate || !currentDate[ref]))) {
                 return;
@@ -61,22 +64,25 @@ export default class DatePickerBetween extends Component {
             });
         };
     }
+
     handleKeyPress(ref) {
         return () => {
             this.handleAccept(ref)(undefined);
         };
     }
+
     getContextStyles(className) {
         if (this.context.implementationStyle[className]) {
             return this.context.implementationStyle[className];
         }
         return null;
     }
+
     render() {
-        let boxStylesFrom = [style.dp];
-        let boxStylesTo = [style.dp];
-        let boxGroupStyles = [style.dpBoxGroupWrap];
-        let verticalClass = [];
+        const boxStylesFrom = [style.dp];
+        const boxStylesTo = [style.dp];
+        const boxGroupStyles = [style.dpBoxGroupWrap];
+        const verticalClass = [];
         if (!this.props.labelFrom) {
             boxStylesFrom.push(style.dpNoLabel);
         }
@@ -96,12 +102,12 @@ export default class DatePickerBetween extends Component {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
 
-        let {from, to} = this.props.defaultValue;
+        const {from, to} = this.props.defaultValue;
 
-        let fromDate = from
+        const fromDate = from
             ? new Date(from)
             : new Date();
-        let toDate = to
+        const toDate = to
             ? new Date(to)
             : new Date();
 

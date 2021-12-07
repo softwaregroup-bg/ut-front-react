@@ -6,11 +6,13 @@ export default class VerticalHeader extends Component {
     getStyle(name) {
         return this.props.externalStyle[name] || style[name];
     }
+
     renderTitle(title) {
         return (<span className={this.getStyle('verticalHeaderSpan')}>
             {title}
         </span>);
     }
+
     render() {
         return (
             <th className={this.getStyle('gridHeaderTrSpanColumnNotLast')} rowSpan={this.props.value.children.length}>

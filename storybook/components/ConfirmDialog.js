@@ -18,8 +18,9 @@ class Wrapper extends Component {
             hasActiveFilters: false
         };
     }
+
     render() {
-        let handleButtonClick = () => this.refs['confirmDialog'].open();
+        const handleButtonClick = () => this.refs.confirmDialog.open();
         return (
             <MaterialUILayout>
                 <div>

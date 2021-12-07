@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 
 export class DateFormatter extends Component {
     render() {
-        let date = new Date(this.props.children || 'invalid-date');
+        const date = new Date(this.props.children || 'invalid-date');
 
         return !isNaN(date.getTime())
             ? (<span>{dateFormat(date, this.props.format || this.props.userFormat)}</span>)

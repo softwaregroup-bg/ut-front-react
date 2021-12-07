@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import types from './types.js';
 import immutable from 'immutable';
-
+import Textt from '../Text';
 import Text from './sections/Text';
 import Heading from './sections/Heading';
 import Image from './sections/Image';
@@ -12,11 +12,11 @@ import classnames from 'classnames';
 import style from './style.css';
 
 const AttributesSection = (props) => {
-    let { checked, selected, isInfoLoading, multipleItemNames, checkedMapKey, selectedSourceData, singleItemName, hasPermissions } = props;
+    const { checked, selected, isInfoLoading, multipleItemNames, checkedMapKey, selectedSourceData, singleItemName, hasPermissions } = props;
 
-    let getCheckedItemsText = () => {
-        let multipleItemNamesString = multipleItemNames !== '' ? multipleItemNames : singleItemName + 's';
-        let itemPlurizationName = checked.size === 1 ? singleItemName : multipleItemNamesString;
+    const getCheckedItemsText = () => {
+        const multipleItemNamesString = multipleItemNames !== '' ? multipleItemNames : singleItemName + 's';
+        const itemPlurizationName = checked.size === 1 ? singleItemName : multipleItemNamesString;
 
         let itemNamesAsString = '';
         if (checked.size < 10) {
@@ -32,20 +32,20 @@ const AttributesSection = (props) => {
 
         return (
             <div className={style.checkedWrap}>
-                <div className={style.selectedAndCheckeLabel}>Checked</div>
+                <div className={style.selectedAndCheckeLabel}><Textt>Checked</Textt></div>
                 <div className={style.innerWrap}>
-                    <div className={style.bold}>You have checked:</div>
-                    <div><span className={style.checkedItemsNumber}>{checked.size}</span> {itemPlurizationName}</div>
+                    <div className={style.bold}><Textt>You have checked</Textt>:</div>
+                    <div><span className={style.checkedItemsNumber}>{checked.size}</span> <Textt>{itemPlurizationName}</Textt></div>
                     <div className={style.checkedItemsWrap}>{itemNamesAsString}</div>
                 </div>
             </div>
         );
     };
 
-    let getSelectedInfo = () => {
+    const getSelectedInfo = () => {
         return (
             <div>
-                <div className={style.selectedAndCheckeLabel}>Selected</div>
+                <div className={style.selectedAndCheckeLabel}><Textt>Selected</Textt></div>
                 <div className={style.innerWrap}>
                     {selectedSourceData.map((sourceData, i) => {
                         return (
@@ -61,7 +61,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderSelectedRow = (sourceData) => {
+    const renderSelectedRow = (sourceData) => {
         let value;
 
         if (Array.isArray(sourceData.key)) {
@@ -91,7 +91,7 @@ const AttributesSection = (props) => {
         }
     };
 
-    let renderChecked = () => {
+    const renderChecked = () => {
         return (
             <div className={style.wrap}>
                 {getCheckedItemsText()}
@@ -99,7 +99,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderProgress = () => {
+    const renderProgress = () => {
         return (
             <div className={classnames(style.wrap, style.progressWrap)}>
                 <div className={style.renderProgress}>
@@ -109,7 +109,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderSelected = () => {
+    const renderSelected = () => {
         return (
             <div className={style.wrap}>
                 {getSelectedInfo()}
@@ -117,7 +117,7 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderCheckedAndSelected = () => {
+    const renderCheckedAndSelected = () => {
         return (
             <div className={style.wrap}>
                 {getCheckedItemsText()}
@@ -129,21 +129,21 @@ const AttributesSection = (props) => {
         );
     };
 
-    let renderEmpty = () => {
+    const renderEmpty = () => {
         return (
             <div className={style.wrap}>
                 <div className={classnames(style.noSelectedData, style.innerWrap)}>
-                    Please select an {singleItemName} from the table to see basic info.
+                    <Textt>Please select an</Textt> <Textt>{singleItemName}</Textt> <Textt>from the table to see basic info</Textt>.
                 </div>
             </div>
         );
     };
 
-    let renderNoPermissions = () => {
+    const renderNoPermissions = () => {
         return (
             <div className={style.wrap}>
                 <div className={classnames(style.noSelectedData, style.innerWrap)}>
-                    You have no permissions to view this information.
+                    <Textt>You have no permissions to view this information</Textt>.
                 </div>
             </div>
         );

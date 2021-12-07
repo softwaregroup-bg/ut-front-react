@@ -28,8 +28,8 @@ export default function Pagination({ currentPage, visiblePages, totalPages, onCl
     const pages = [];
 
     for (let i = startPage; i <= endPage; i++) {
-        let className = currentPage === i ? style.active : '';
-        let click = function() { onClick(i); };
+        const className = currentPage === i ? style.active : '';
+        const click = function() { onClick(i); };
         pages.push(
             <span onClick={click} key={i} className={classnames(style.page, className)}>
                 {i}

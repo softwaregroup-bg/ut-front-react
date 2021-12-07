@@ -68,8 +68,8 @@ export default class DropdownSelect extends Component {
     }
 
     renderDropdownItems() {
-        let selectedItem = this.state.selected || {};
-        let items = [];
+        const selectedItem = this.state.selected || {};
+        const items = [];
 
         if (this.props.showPlaceHolderAsFirstOption) {
             items.push(
@@ -83,7 +83,7 @@ export default class DropdownSelect extends Component {
         }
 
         this.props.data.forEach((item) => {
-            let disabled = item.disabled || selectedItem[this.props.keyProp] === item[this.props.keyProp];
+            const disabled = item.disabled || selectedItem[this.props.keyProp] === item[this.props.keyProp];
             items.push(
                 <MenuItem
                     key={item[this.props.keyProp]}
@@ -102,12 +102,12 @@ export default class DropdownSelect extends Component {
     }
 
     render() {
-        let { isValid, errorMessage } = this.state.valid;
-        let errorDropDownStyle = !isValid ? style.error : '';
-        let asd = isValid ? style.hh : '';
+        const { isValid, errorMessage } = this.state.valid;
+        const errorDropDownStyle = !isValid ? style.error : '';
+        const asd = isValid ? style.hh : '';
 
         if (this.props.customTheme) {
-            let dropDownWrapStyle = [style.dropDownWrap];
+            const dropDownWrapStyle = [style.dropDownWrap];
             if (!this.props.label) {
                 dropDownWrapStyle.push(style.noLabel);
             }

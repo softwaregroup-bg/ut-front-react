@@ -12,6 +12,7 @@ class TreeNavigation extends React.Component {
             active: {id: this.props.active.id, breadcrumbs: this.props.active.breadcrumbs.toJS() || []}
         };
     }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.reset) {
             this.setState({
@@ -30,7 +31,7 @@ class TreeNavigation extends React.Component {
     }
 
     handleToggleClick(id) {
-        let openElements = this.state.openElements;
+        const openElements = this.state.openElements;
         let newOpenElementsState;
         if (openElements.get(id)) {
             newOpenElementsState = openElements.set(id, false);
@@ -45,11 +46,11 @@ class TreeNavigation extends React.Component {
     }
 
     renderNodes(nodes, breadcrumbArr = []) {
-        let {openElements, active} = this.state;
+        const {openElements, active} = this.state;
         return nodes.map((node) => {
             let nodeStyles;
-            if (this.props.styles['li']) {
-                nodeStyles = this.props.styles['li'].join(' ');
+            if (this.props.styles.li) {
+                nodeStyles = this.props.styles.li.join(' ');
             }
             let arrowClass = '';
             let activeClass = '';
@@ -62,21 +63,21 @@ class TreeNavigation extends React.Component {
                 arrowClass = style.arrow;
             }
 
-            let breadcrumbString = JSON.stringify(breadcrumbArr);
+            const breadcrumbString = JSON.stringify(breadcrumbArr);
 
             if (active.id === node.id) {
-                let asd = JSON.stringify(active.breadcrumbs);
+                const asd = JSON.stringify(active.breadcrumbs);
                 if (asd === breadcrumbString) {
                     activeClass = style.isActive;
                 }
             }
 
-            let handleSelect = () => this.setState({active: {id: node.id, breadcrumbs: breadcrumbArr}}) || this.props.onSelect(node, breadcrumbArr);
+            const handleSelect = () => this.setState({active: {id: node.id, breadcrumbs: breadcrumbArr}}) || this.props.onSelect(node, breadcrumbArr);
             if (!node.children) {
                 return <div onClick={handleSelect} key={node.id} className={classnames(activeClass, style.rowBox)} data-breadcrumb={breadcrumbString}>{node.title}</div>;
             } else {
-                let toggle = () => this.handleToggleClick(node.id);
-                let newBreadcrumbArr = breadcrumbArr.slice(0);
+                const toggle = () => this.handleToggleClick(node.id);
+                const newBreadcrumbArr = breadcrumbArr.slice(0);
                 newBreadcrumbArr.push(node.id);
                 return (
                     <div key={node.id} className={style.rowBox}>
@@ -94,7 +95,7 @@ class TreeNavigation extends React.Component {
     }
 
     calculateOpenChildrenNumber(children) {
-        let opened = this.state.openElements;
+        const opened = this.state.openElements;
         return children.length + children.reduce((result, child) => {
             if (opened.get(child.id)) {
                 result += this.calculateOpenChildrenNumber(child.children);

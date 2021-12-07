@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import Accordion from '../Accordion';
+import Text from '../Text';
 import CompareGridItem from './CompareGridItem';
 import CustomCompareGridItem from './CustomCompareGridItem';
 
@@ -33,8 +34,8 @@ class CompareGrid extends Component {
         const {isNew, isDeleted, rejectReason, staticStrings} = this.props;
         return (
             <div className={styles.wrapper}>
-                {isNew && !isDeleted && <h1 className={styles.newEntity}>{staticStrings.headingIsNew}</h1>}
-                {isDeleted && <h1 className={styles.rejectTextField}>{staticStrings.headingWillBeDeleted}</h1>}
+                {isNew && !isDeleted && <h1 className={styles.newEntity}><Text>{staticStrings.headingIsNew}</Text></h1>}
+                {isDeleted && <h1 className={styles.rejectTextField}><Text>{staticStrings.headingWillBeDeleted}</Text></h1>}
                 {rejectReason &&
                 <Accordion
                     title='Changes Rejected'
@@ -43,10 +44,11 @@ class CompareGrid extends Component {
                     externalBodyClasses={styles.accordionBody}
                     externalTitleClasses={styles.accordionTitle}
                     className={styles.accordion}
-                    collapsed={false}>
+                    collapsed={false}
+                >
                     <div className={styles.container}>
                         <div className={styles.whole}>
-                            <p className={styles.rejectTextField}>{rejectReason}</p>
+                            <p className={styles.rejectTextField}><Text>{rejectReason}</Text></p>
                         </div>
                     </div>
                 </Accordion>}

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ToolTip from '../ToolTip';
+import Text from '../Text';
 
 import classnames from 'classnames';
 import style from './style.css';
@@ -25,14 +26,14 @@ export default class CollapsableContent extends Component {
 
     toggle() {
         if (this.props.showCollapsibleButton) {
-            var newCollapsedState = !this.state.collapsed;
+            const newCollapsedState = !this.state.collapsed;
             this.setState({collapsed: newCollapsedState});
             this.props.onCollapse(newCollapsedState);
         }
     }
 
     getHeadingStyles() {
-        var classes = classnames(style.heading);
+        let classes = classnames(style.heading);
         if (this.props.showCollapsibleButton && this.props.orientation === 'left' && !this.state.collapsed) {
             classes = classnames(classes, style.headingLeftArrow);
         } else if (this.props.showCollapsibleButton && this.props.orientation === 'right' && !this.state.collapsed) {
@@ -43,7 +44,7 @@ export default class CollapsableContent extends Component {
     }
 
     getToggleArrowStyles() {
-        var classes = classnames(style.collapseArrowWrap);
+        let classes = classnames(style.collapseArrowWrap);
         if (this.props.orientation === 'left') {
             classes = classnames(classes, style.leftArrow);
         } else if (this.props.orientation === 'right') {
@@ -54,7 +55,7 @@ export default class CollapsableContent extends Component {
     }
 
     getCollapsedArrowStyle() {
-        var classes = classnames(style.collapsedArrowWrap);
+        let classes = classnames(style.collapsedArrowWrap);
         if (this.props.orientation === 'left') {
             classes = classnames(classes, style.collapsedleftArrow);
         } else if (this.props.orientation === 'right') {
@@ -79,15 +80,16 @@ export default class CollapsableContent extends Component {
                 </div>
             );
         } else {
-            let currentStyles = this.props.showCollapsibleButton ? {paddingRight: '25px'} : {};
+            const currentStyles = this.props.showCollapsibleButton ? {paddingRight: '25px'} : {};
             return (
                 <div className={style.collapsableContentContainer} style={{...this.props.style, ...this.props.visibleStyles}}>
                     <Vertical fixedComponent={<div className={this.getHeadingStyles()} style={currentStyles} onClick={this.toggle}>
-                        <div className={style.textWrap}>{this.props.heading}</div>
+                        <div className={style.textWrap}><Text>{this.props.heading}</Text></div>
                         {this.props.info !== '' && <div className={style.toolTipWrap}><ToolTip styles={toolTipStyle}>{this.props.info}</ToolTip></div>}
                         {this.props.showCollapsibleButton && <div className={this.getToggleArrowStyles()} />}
                     </div>
-                    }>
+                    }
+                    >
                         <div className={style.childWrap}>
                             {this.props.children}
                         </div>

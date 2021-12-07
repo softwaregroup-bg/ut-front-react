@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+
+import Text from '../Text';
 import style from './style.css';
 import classnames from 'classnames';
 
@@ -6,14 +8,14 @@ import classnames from 'classnames';
 const noop = function() {};
 
 const Checkbox = (props) => {
-    let {isDisabled, ...propsLeft} = props;
+    const {isDisabled, ...propsLeft} = props;
     delete propsLeft.isDisabled; // Remove wrong html input prop (no such props from input tag)
 
     let label = '';
     if (props.label) {
-        label = <p onTouchTap={isDisabled ? noop : props.onClick}>{props.label}</p>;
+        label = <p onTouchTap={isDisabled ? noop : props.onClick}><Text>{props.label}</Text></p>;
     }
-    let isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
+    const isDisabledClass = isDisabled ? classnames(style.notAllowed, style.disabledCheckbox) : style.pointer;
 
     return (
         <span className={classnames(style.checkBoxWrapper, isDisabledClass)} >

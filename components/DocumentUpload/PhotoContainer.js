@@ -35,11 +35,13 @@ const PhotoContainer = ({
                 header={header}
                 onClick={onClick}
                 onDeleteClick={onDeleteClick}
-                onChangeClick={onChangeClick} /> : <AddFileButton
-                    className={className}
-                    label={label}
-                    disabled={disabled}
-                    onClick={onClick} /> }
+                onChangeClick={onChangeClick}
+            /> : <AddFileButton
+                className={className}
+                label={label}
+                disabled={disabled}
+                onClick={onClick}
+            /> }
             { subtitle && <div className={styles.photoFooter}>{ subtitle }</div> }
         </div>
     );

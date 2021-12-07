@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "11.2.2",
+  "version": "11.2.2-visanet.0",
   "description": "Frontend module",
   "bin": "index.js",
   "main": "index.js",
@@ -11,7 +11,7 @@
     ]
   },
   "dependencies": {
-    "date-fns": "1.29.0",
+    "date-fns": "^2.14.0",
     "lodash.debounce": "4.0.8",
     "lodash.get": "4.4.2",
     "lodash.map": "4.6.0"
@@ -38,10 +38,11 @@
     "sb": "node storybook -c ./storybook -p 9008"
   },
   "devDependencies": {
+    "prop-types": "15.7.2",
     "bootstrap": "^4.3.1",
-    "tap": "^12.7.0",
+    "tap": "^15.0.9",
     "@kadira/storybook": "^2.35.1",
-    "ut-tools": "^6.30.5"
+    "ut-tools": "^6.39.0"
   },
   "peerDependencies": {
     "bignumber.js": "^6.0.0",

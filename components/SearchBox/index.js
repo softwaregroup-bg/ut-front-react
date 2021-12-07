@@ -1,16 +1,22 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
 import style from './style.css';
+import Text from '../Text';
 
 class SearchBox extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
+        this.translate = this.translate.bind(this);
         this.state = {
             value: this.props.defaultValue
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
+
+    translate(text) {
+        return typeof this.context.translate === 'function' ? this.context.translate(text) : text;
     }
 
     componentWillReceiveProps({defaultValue}) {
@@ -20,7 +26,7 @@ class SearchBox extends Component {
     }
 
     handleSearch() {
-        let value = this.state.value && this.state.value.trim();
+        const value = this.state.value && this.state.value.trim();
         this.props.onSearch(value);
         if (this.props.clearOnSearch) {
             this.setState({value: ''});
@@ -46,19 +52,19 @@ class SearchBox extends Component {
     }
 
     render() {
-        let boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
+        const boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
         if (!this.props.label) {
             boxStyles.push(this.getStyle('searchBoxNoLabel'));
         }
         if (!this.props.isValid) {
             boxStyles.push(style.error);
         }
-        let zeroHeightStyle = this.props.isValid ? style.hh : '';
+        const zeroHeightStyle = this.props.isValid ? style.hh : '';
         return (
             <div className={this.getStyle('searchBoxWrap')}>
-                {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</span>) : ''}
+                {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}><Text>{this.props.label}</Text></span>) : ''}
                 <div className={classnames.apply(undefined, boxStyles)}>
-                    <input value={this.state.value} onKeyUp={this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} />
+                    <input value={this.state.value} onKeyUp={this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder ? this.translate(this.props.placeholder) : this.props.placeholder} />
                     <button onClick={this.handleSearch} />
                 </div>
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
@@ -94,7 +100,8 @@ SearchBox.defaultProps = {
 };
 
 SearchBox.contextTypes = {
-    implementationStyle: PropTypes.object
+    implementationStyle: PropTypes.object,
+    translate: PropTypes.func
 };
 
 export default SearchBox;
