@@ -1,3 +1,12 @@
+# [12.9.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.3...v12.9.0) (2021-12-13)
+
+
+### Features
+
+* responsive and RTL ([26ef0b4](https://github.com/softwaregroup-bg/ut-front-react/commit/26ef0b491573888e71f5833ea179c8202171f4e0))
+
+
+
 ## [12.7.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.2...v12.7.3) (2021-11-29)
 
 
