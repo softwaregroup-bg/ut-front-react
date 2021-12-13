@@ -25,6 +25,7 @@
 }
 
 .buttonsWrap {
+    padding-top: 10px;
     margin-left: 60px; /* Margin between buttons and the heading */
 }
 .buttonsContainer {
@@ -64,7 +65,7 @@
     white-space: nowrap;
     vertical-align: middle;
     display: inline-block;
-}
+} 
 
 .h100pr {
     height: 100%;
@@ -74,3 +75,48 @@
     width: 100%;
 }
 
+@media only screen and (min-device-width: 280px) and (max-device-width: 360px) {
+    .headerWrapper {
+        flex-direction: column;
+        display: flex;
+        height: auto;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .buttonsWrap {
+        margin-left: 0px; /* Margin between buttons and the heading */
+    }
+
+    .headingTextWrap {
+        font-size: medium;
+    }
+
+    .heading {
+        font-size: inherit;
+        font-weight: inherit;
+    }
+  }
+
+@media only screen and (min-device-width: 361px) and (max-device-width: 767px) {
+    .headerWrapper {
+        flex-direction: column;
+        display: flex;
+        height: auto;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .buttonsWrap {
+        margin-left: 0px; /* Margin between buttons and the heading */
+    }
+
+    .headingTextWrap {
+        font-size: 14px;
+    }
+
+    .heading {
+        font-size: inherit;
+        font-weight: inherit;
+    }
+  }

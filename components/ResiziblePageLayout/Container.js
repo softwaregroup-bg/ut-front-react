@@ -9,7 +9,7 @@ import CollapsableContent from '../../components/CollapsableContent';
 import cssStandard from '../../assets/index.css';
 import style from './style.css';
 
-const defaultColWidth = 200;
+const defaultColWidth = 1000;
 const defaultMinWidth = 10;
 
 class Container extends Component {
@@ -65,16 +65,16 @@ class Container extends Component {
     updateResizableObjects() {
         this.resizeObjects = [];
         const args = this.props.cols.map((col) => {
-            return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
+            return {domId: col.id, type: col.type, height: '100%', width: col.width, minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
         });
         args.forEach((el) => {
-            const currentElement = document.getElementById(el.domId);
-            const currentWidth = (currentElement && currentElement.clientWidth) || defaultColWidth;
+            const currentWidth = el.width || defaultColWidth;
             const currentMinWidth = el.minWidth || defaultMinWidth;
             const currentCollapsedWidth = el.collapsedWidth;
 
             const resizeObject = {
                 domId: el.domId,
+                type: el.type,
                 currentWidth: currentWidth,
                 minWidth: currentMinWidth,
                 collapsedWidth: currentCollapsedWidth,
@@ -275,6 +275,14 @@ class Container extends Component {
         this.resizeObjects[index].currentWidth = width;
         this.resizeObjects[indexToShrink].currentWidth = secondColNewWidth;
         this.updateLocalStorage(index, indexToShrink);
+
+        const firstCol = this.props.cols.find(x => x.id === this.resizeObjects[index].domId);
+        const secondCol = this.props.cols.find(x => x.id === this.resizeObjects[indexToShrink].domId);
+
+        firstCol.width = width;
+        firstCol.maxWidth = width;
+        secondCol.width = secondColNewWidth;
+        secondCol.maxWidth = secondColNewWidth;
     }
 
     updateFirstAndSecondColDom(firstColWidth, secondColWidth) {
@@ -291,6 +299,18 @@ class Container extends Component {
         window.removeEventListener('resize', this.resize);
     }
 
+    toggleContentCols() {
+        this.resizeObjects.filter(x => x.type === resizibleTypes.CONTENT).forEach(x => {
+            const colDom = document.getElementById(this.resizeObjects[1].domId);
+
+            if (colDom.style.display === 'none') {
+                colDom.style.display = 'table-cell';
+            } else {
+                colDom.style.display = 'none';
+            }
+        });
+    }
+
     renderCol(col, index) {
         switch (col.type) {
             case resizibleTypes.ASIDE: {
@@ -302,6 +322,10 @@ class Container extends Component {
                         this.setSpecificWidth(index, col.normalWidth, col.collapsePrev);
                     }
                     this.resizeObjects[index].isCollapsed = isCollapsed;
+
+                    if (this.props.shouldHideContent) {
+                        this.toggleContentCols();
+                    }
                 };
                 const isCollapsed = this.resizeObjects[index] ? this.resizeObjects[index].isCollapsed : false;
 
@@ -334,9 +358,21 @@ class Container extends Component {
 
     render() {
         const renderCols = [];
+
+        const isAnyAsideColCollapsed = this.props.cols.some(x => x.type === resizibleTypes.ASIDE && x.width <= x.minWidth);
+
         this.props.cols.forEach((col, index) => {
             const currentWidth = col.width || defaultColWidth;
-            const currentStyles = {width: currentWidth + 'px', maxWidth: currentWidth + 'px'};
+
+            const currentStyles = {
+                width: currentWidth + 'px',
+                maxWidth: currentWidth + 'px'
+            };
+
+            if (col.type === resizibleTypes.CONTENT) {
+                currentStyles.display = this.props.shouldHideContent && !isAnyAsideColCollapsed ? 'none' : 'table-cell';
+            }
+
             const handleOnMouseDownEvent = (e) => {
                 this.setPosition(e, (index - 1));
             };
@@ -390,13 +426,15 @@ Container.propTypes = {
     cssStandard: PropTypes.bool,
     externalClassName: PropTypes.string,
     localStorageType: PropTypes.string,
-    heightToSubtract: PropTypes.number
+    heightToSubtract: PropTypes.number,
+    shouldHideContent: PropTypes.bool
 };
 
 Container.defaultProps = {
     localStorageType: localStorageTypes.THREE_COLS,
     heightToSubtract: 59 + 22 + 91,
-    cssStandard: false
+    cssStandard: false,
+    shouldHideContent: false
 };
 
 export default Container;

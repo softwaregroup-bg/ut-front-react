@@ -276,7 +276,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
      height: 55px;
      padding: 0 20px 0;
      background: #fff;
-     border-bottom: 1px solid #D7D6D6;
+     /* border-bottom: 1px solid #D7D6D6; */
      box-sizing: border-box;
      -moz-box-sizing: border-box;
      -webkit-box-sizing: border-box;
@@ -486,3 +486,106 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     text-decoration: underline;
     cursor: pointer;
 }*/
+
+@media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
+    .tableWrap table, thead,  th, td, tr { 
+        display: block; 
+    }
+
+    .tableWrap table {
+        border: none !important;
+    }
+
+    .tableWrap thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        border: 1px solid #ccc;
+    }
+
+    .tableWrap tbody {
+        display: table;
+        width: 100%;  
+    }
+
+    .tableWrap tr:nth-of-type(odd) { 
+        background: #f7f7f7; 
+      }
+
+    .tableWrap td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50% !important; 
+        white-space: break-spaces;
+    }
+
+    .tableWrap td:before { 
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+    }
+    
+    .tableWrap td:before { content: attr(data-title); }
+
+    .actionBarWrap {
+        height: auto;
+    }
+  }
+
+  @media only screen and (min-device-width: 280px) and (max-device-width:  420px) {
+    .tableWrap { 
+        width: 30%;
+    }
+
+    .paginationWrap {
+        width: 30%; 
+    }
+  }
+
+  @media only screen and (min-device-width: 421px) and (max-device-width: 429px) {
+    .tableWrap { 
+        width: 45%;
+    }
+
+    .paginationWrap {
+        width: 47%; 
+    }
+}
+
+  @media only screen and (min-device-width: 430px) and (max-device-width:  589px) {
+    .tableWrap { 
+        width: 55%;
+        margin: 13px 20px;
+    }
+
+    .paginationWrap {
+        width: 55%; 
+        margin: 13px 20px;
+    }
+  }
+
+  @media only screen and (min-device-width: 590px) and (max-device-width:  699px) {
+    .tableWrap { 
+        width: 70%;
+    }
+
+    .paginationWrap {
+        width: 70%; 
+        margin: 13px 20px;
+    }
+  }
+
+  @media only screen and (min-device-width: 700px) and (max-device-width:  800px) {
+    .tableWrap { 
+        width: 80%;
+    }
+
+    .paginationWrap {
+        width: 80%; 
+        margin: 13px 20px;
+    }
+  }
