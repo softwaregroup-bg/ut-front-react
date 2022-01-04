@@ -25,6 +25,12 @@ class TextField extends Component {
         this.style = props.customStyle || defaultStyle;
     }
 
+    static contextTypes = {
+        checkPermission: PropTypes.func,
+        translate: PropTypes.func,
+        portalName: PropTypes.string
+    };
+
     componentWillReceiveProps({value, isValid, errorMessage}) {
         this.initialValue = value;
 
@@ -81,8 +87,13 @@ class TextField extends Component {
         });
     }
 
+    translate(stringToTranslate) {
+        return this.context.translate(stringToTranslate);
+    }
+
     render() {
-        const { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        const { label, type, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
+        const placeholder = this.translate(this.props.placeholder);
         const { isValid, errorMessage } = this.state.valid;
         const zeroHeightStyle = isValid ? this.style.hh : '';
         const value = this.state.value !== undefined && this.state.value !== null ? this.state.value : '';
