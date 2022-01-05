@@ -288,7 +288,7 @@ export default class DocumentUpload extends Component {
 
     uploadFile = async(file, uploadURL = '/file-upload') => {
         const {
-            fileToUse,
+            useFile,
             uploadDocument
         } = this.props;
         const data = new window.FormData();
@@ -308,7 +308,8 @@ export default class DocumentUpload extends Component {
             const reader = new window.FileReader();
             reader.onload = (data) => {
                 try {
-                    fileToUse({
+                    // eslint-disable-next-line react-hooks/rules-of-hooks
+                    useFile({
                         filename: attachmentResult.result.filename,
                         createdDate: new Date().toISOString(),
                         extension: ext,
@@ -386,7 +387,7 @@ export default class DocumentUpload extends Component {
 
 DocumentUpload.defaultProps = {
     uploadDocument: () => ({}),
-    fileToUse: () => ({}),
+    useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     maxFileSize: 5 * 1024, // default maximum size 5MB
     hideCrop: false,
@@ -404,7 +405,7 @@ DocumentUpload.propTypes = {
         height: PropTypes.number
     }),
     uploadDocument: PropTypes.func,
-    fileToUse: PropTypes.func,
+    useFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
     maxFileSize: PropTypes.number, // file size in kb
