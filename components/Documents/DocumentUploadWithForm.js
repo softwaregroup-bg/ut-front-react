@@ -157,7 +157,7 @@ class DocumentUploadWithForm extends Component {
                 scaleDimensions={{width: 350, height: 350}}
                 additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
                 isAdditionalContentValid={this.state.isValidForm}
-                fileToUse={this.useFileHandler}
+                useFile={this.useFileHandler}
                 uploadDocument={this.props.uploadDocument}
                 hideCrop
                 allowedFileTypes={this.props.allowedFileTypes}
