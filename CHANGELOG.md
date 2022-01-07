@@ -1,3 +1,19 @@
+## [12.9.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.9.2...v12.9.3) (2022-01-07)
+
+
+### Bug Fixes
+
+* **VFZ-999:** new line ([f1d7938](https://github.com/softwaregroup-bg/ut-front-react/commit/f1d793823771b9aec6fdef9ee5e99a101bb7d6ee))
+* **VFZ-999:** revert changes on grid tool box ([ee1bf80](https://github.com/softwaregroup-bg/ut-front-react/commit/ee1bf805c8bc39de5e7ecfc81df1b0eb2c07004d))
+
+
+### Reverts
+
+* Revert "VFZ-2459 date picker between" ([c576c26](https://github.com/softwaregroup-bg/ut-front-react/commit/c576c26f6ec18d3f83549773ab435a829d445b5f))
+* Revert "VFZ-2459 date picker between" ([b3093d0](https://github.com/softwaregroup-bg/ut-front-react/commit/b3093d0e33d2506af63d3ec466e51c15a38884d5))
+
+
+
 ## [12.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.9.1...v12.9.2) (2022-01-07)
 
 
