@@ -1,3 +1,12 @@
+## [12.9.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.9.1...v12.9.2) (2022-01-07)
+
+
+### Bug Fixes
+
+* **VFZ-999:** datepicker between to receive dates from outside(toolbox clear case) ([334d558](https://github.com/softwaregroup-bg/ut-front-react/commit/334d558852b42e843a78e3fcf8f9b8bccf6ea58d))
+
+
+
 ## [12.9.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.9.0...v12.9.1) (2022-01-05)
 
 
