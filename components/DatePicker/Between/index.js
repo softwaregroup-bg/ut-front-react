@@ -10,14 +10,12 @@ const noop = () => {};
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
-        this.from = this.props.defaultValue.from;
-        this.to = this.props.defaultValue.to;
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
-        this.state = { fromDialogWindow: false, toDialogWindow: false, startDate: this.from || new Date(), endDate: this.to || new Date()};
+        this.state = { fromDialogWindow: false, toDialogWindow: false };
     }
 
     handleOpen(ref) {
@@ -112,11 +110,13 @@ export default class DatePickerBetween extends Component {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
 
-        const fromDate = this.from
-            ? new Date(this.state.startDate)
+        const { from, to } = this.props.defaultValue;
+
+        const fromDate = from
+            ? new Date(from)
             : new Date();
-        const toDate = this.to
-            ? new Date(this.state.endDate)
+        const toDate = to
+            ? new Date(to)
             : new Date();
 
         return (
@@ -126,14 +126,14 @@ export default class DatePickerBetween extends Component {
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
                         {this.props.labelFrom ? (<span className={style.label}><Text>{this.props.labelFrom}</Text></span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
-                            <input value={this.from ? this.formatDate(fromDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
+                            <input value={from ? this.formatDate(fromDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
                         {this.props.labelTo ? (<span className={style.label}><Text>{this.props.labelTo}</Text></span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
-                            <input value={this.to ? this.formatDate(toDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
+                            <input value={to ? this.formatDate(toDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
                             <button onClick={this.handleOpen('to')} />
                         </div>
                     </div>
@@ -145,14 +145,14 @@ export default class DatePickerBetween extends Component {
                     initialFocusedDate={fromDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('from')}
-                    onChange={(date) => { this.setState({startDate: date}); }}
+                    onChange={() => {}}
                     variant='dialog'
                     ref='fromDialogWindow'
                     TextFieldComponent={() => null}
                     onOpen={this.handleOpen('from')}
                     onClose={this.handleClose('from')}
                     open={this.state.fromDialogWindow}
-                    maxDate={this.state.endDate || this.props.maxDate}
+                    maxDate={to || this.props.maxDate}
                 />
                 <DatePickerDialog
                     cancelLabel={this.props.cancelLabel}
@@ -161,7 +161,7 @@ export default class DatePickerBetween extends Component {
                     initialFocusedDate={toDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('to')}
-                    onChange={(date) => { this.setState({endDate: date}); }}
+                    onChange={() => {}}
                     variant='dialog'
                     ref='toDialogWindow'
                     TextFieldComponent={() => null}
@@ -169,7 +169,7 @@ export default class DatePickerBetween extends Component {
                     onClose={this.handleClose('to')}
                     open={this.state.toDialogWindow}
                     maxDate={this.props.maxDate}
-                    minDate={this.state.startDate || undefined}
+                    minDate={from || undefined}
                 />
             </div>
         );
