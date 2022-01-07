@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Immutable from 'immutable';
-import {
-    filterElementTypes,
-    actionButtonElementTypes,
-    actionButtonClickFunctionality
-} from './types';
+import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
 import { Link } from 'react-router-dom';
 
 import Dropdown from '../Input/Dropdown';
@@ -42,8 +38,7 @@ class GridToolBox extends Component {
         };
 
         this.propStatus = this.propStatus.bind(this);
-        this.openRefDialogWithMessage =
-            this.openRefDialogWithMessage.bind(this);
+        this.openRefDialogWithMessage = this.openRefDialogWithMessage.bind(this);
         this.renderActionButton = this.renderActionButton.bind(this);
         this.toggleAdvancedSearch = this.toggleAdvancedSearch.bind(this);
         this.applyFilters = this.applyFilters.bind(this);
@@ -54,8 +49,8 @@ class GridToolBox extends Component {
     }
 
     componentWillReceiveProps({ selected, checked, filterElements }) {
-        const showFilters = selected.size === 0 && checked.size === 0;
-        this.setState({ showFilters });
+        const showFilters = (selected.size === 0 && checked.size === 0);
+        this.setState({showFilters});
 
         this.checkActiveFilters(filterElements);
     }
@@ -69,41 +64,30 @@ class GridToolBox extends Component {
                 case filterElementTypes.dateTimePickerBetween:
                     if (filter.defaultValue) {
                         if (!filter.initialValue) {
-                            hasValue = !!(
-                                filter.defaultValue.from ||
-                                filter.defaultValue.to
-                            );
+                            hasValue = !!(filter.defaultValue.from || filter.defaultValue.to);
                         } else {
-                            hasValue =
-                                filter.defaultValue.from !==
-                                    filter.initialValue.from ||
-                                filter.defaultValue.to !==
-                                    filter.initialValue.to;
+                            hasValue = (filter.defaultValue.from !== filter.initialValue.from) || (filter.defaultValue.to !== filter.initialValue.to);
                         }
                     }
                     break;
                 case filterElementTypes.dropDown:
-                    hasValue = !!(
-                        filter.defaultValue &&
+                    hasValue = !!(filter.defaultValue &&
                         filter.defaultValue !== dropDrownAllOptionKey &&
                         filter.defaultValue !== dropDrownPlaceholderOptionKey &&
-                        filter.defaultValue !== filter.initialValue
-                    );
+                        filter.defaultValue !== filter.initialValue);
                     break;
                 case filterElementTypes.customSearch:
                     hasValue = !!filter.value;
                     break;
                 default:
-                    hasValue =
-                        !!filter.defaultValue &&
-                        filter.defaultValue !== filter.initialValue;
+                    hasValue = !!filter.defaultValue && filter.defaultValue !== filter.initialValue;
                     break;
             }
 
             foundActiveFilter = foundActiveFilter || hasValue;
         });
 
-        this.setState({ hasActiveFilters: foundActiveFilter });
+        this.setState({hasActiveFilters: foundActiveFilter});
     }
 
     hasSelectedOrChecked() {
@@ -118,51 +102,34 @@ class GridToolBox extends Component {
 
         const onChange = (key, value) => {
             filters[key] = value;
-            this.setState({ filters });
-        };
-
-        const onDateChange = (dateForm) => {
-            const key = dateForm.key;
-            const date = dateForm.value;
-            filters.datePickerBetween[key] = date;
-            this.setState({ filters });
+            this.setState({filters});
         };
 
         let filterValue;
 
-        if (
-            filterElement.type === filterElementTypes.datePickerBetween ||
-            filterElement.type === filterElementTypes.dateTimePickerBetween
-        ) {
+        if (filterElement.type === filterElementTypes.datePickerBetween || filterElement.type === filterElementTypes.dateTimePickerBetween) {
             filterValue = {
-                from: Object.prototype.hasOwnProperty.call(
-                    filters,
-                    filterElement.name && filterElement.name.from
-                )
+                from: Object.prototype.hasOwnProperty.call(filters, filterElement.name && filterElement.name.from)
                     ? filters[filterElement.name.from]
                     : filterElement.defaultValue.from,
-                to: Object.prototype.hasOwnProperty.call(
-                    filters,
-                    filterElement.name && filterElement.name.to
-                )
+                to: Object.prototype.hasOwnProperty.call(filters, filterElement.name && filterElement.name.to)
                     ? filters[filterElement.name.to]
                     : filterElement.defaultValue.to
             };
         } else {
-            filterValue = Object.prototype.hasOwnProperty.call(
-                filters,
-                filterElement.name
-            )
+            filterValue = (Object.prototype.hasOwnProperty.call(filters, filterElement.name))
                 ? filters[filterElement.name]
                 : filterElement.defaultValue;
         }
 
         if (showFiltersPopup && !renderInDialog) {
-            // dont change values in the background when advanced is open
+        // dont change values in the background when advanced is open
             filterValue = filterElement.defaultValue;
         }
 
-        const label = renderInDialog ? filterElement.label : null;
+        const label = renderInDialog
+            ? filterElement.label
+            : null;
 
         function onSelect(obj) {
             onChange(filterElement.name, obj.value);
@@ -187,115 +154,92 @@ class GridToolBox extends Component {
                         placeholder={filterElement.placeholder}
                         placeholderValue={filterElement.placeholderValue}
                         defaultSelected={filterValue}
-                        onSelect={
-                            filterAutoFetch && !renderInDialog
-                                ? filterElement.onSelect
-                                : onSelect
-                        }
-                        canSelectPlaceholder={
-                            filterElement.canSelectPlaceholder
-                        }
+                        onSelect={filterAutoFetch && !renderInDialog
+                            ? filterElement.onSelect
+                            : onSelect}
+                        canSelectPlaceholder={filterElement.canSelectPlaceholder}
                     />
                 );
             case filterElementTypes.searchBox:
-                return filterAutoFetch && !renderInDialog ? (
-                    <div>
+                return (filterAutoFetch && !renderInDialog)
+                    ? (<div>
                         <SearchBox
                             defaultValue={filterValue}
                             placeholder={filterElement.placeholder}
                             onSearch={filterElement.onSearch}
                         />
-                    </div>
-                ) : (
-                    <div>
+                    </div>)
+                    : (<div>
                         <Input
                             label={label}
                             value={filterValue || ''}
                             placeholder={filterElement.placeholder}
                             onChange={onChangeHandler}
                         />
-                    </div>
-                );
+                    </div>);
             case filterElementTypes.datePicker:
-                return (
-                    <div>
-                        <DatePicker
-                            onChange={
-                                filterAutoFetch && !renderInDialog
-                                    ? filterElement.onChange
-                                    : onSelect
-                            }
-                            withVerticalClass={renderInDialog}
-                            locale={filterElement.locale}
-                            defaultValue={filterValue}
-                            label={filterElement.label}
-                            boldLabel={renderInDialog}
-                        />
-                    </div>
-                );
+                return (<div>
+                    <DatePicker
+                        onChange={filterAutoFetch && !renderInDialog
+                            ? filterElement.onChange
+                            : onSelect}
+                        withVerticalClass={renderInDialog}
+                        locale={filterElement.locale}
+                        defaultValue={filterValue}
+                        label={filterElement.label}
+                        boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
+                    />
+                </div>);
 
             case filterElementTypes.datePickerBetween:
-                return (
-                    <div>
-                        <DatePickerBetween
-                            onChange={
-                                filterAutoFetch && !renderInDialog
-                                    ? filterElement.onChange
-                                    : onDateChange
-                            }
-                            withVerticalClass={renderInDialog}
-                            defaultValue={filterValue}
-                            dateFormat={
-                                filterElement.dateFormat || defaultDateFormat
-                            }
-                            transformDate={filterElement.transformDate}
-                            locale={filterElement.locale}
-                            masterLabel={filterElement.masterLabel}
-                            labelFrom={filterElement.labelFrom}
-                            labelTo={filterElement.labelTo}
-                            boldLabel={renderInDialog}
-                        />
-                    </div>
-                );
+                return (<div>
+                    <DatePickerBetween
+                        onChange={filterAutoFetch && !renderInDialog
+                            ? filterElement.onChange
+                            : onChangeBetween}
+                        withVerticalClass={renderInDialog}
+                        defaultValue={filterValue}
+                        dateFormat={filterElement.dateFormat || defaultDateFormat}
+                        transformDate={filterElement.transformDate}
+                        locale={filterElement.locale}
+                        masterLabel={filterElement.masterLabel}
+                        labelFrom={filterElement.labelFrom}
+                        labelTo={filterElement.labelTo}
+                        boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
+                    />
+                </div>);
             case filterElementTypes.dateTimePickerBetween:
-                return (
-                    <div>
-                        <DateTimePickerBetween
-                            onChange={
-                                filterAutoFetch && !renderInDialog
-                                    ? filterElement.onChange
-                                    : onChangeBetween
-                            }
-                            withVerticalClass={renderInDialog}
-                            defaultValue={filterValue}
-                            timeFormat={
-                                filterElement.timeFormat || defaultTimeFormat
-                            }
-                            dateFormat={
-                                filterElement.dateFormat || defaultDateFormat
-                            }
-                            transformDate={filterElement.transformDate}
-                            transformTime={filterElement.transformTime}
-                            locale={filterElement.locale}
-                            labelFrom={filterElement.labelFrom}
-                            labelTo={filterElement.labelTo}
-                            boldLabel={renderInDialog}
-                        />
-                    </div>
-                );
+                return (<div>
+                    <DateTimePickerBetween
+                        onChange={filterAutoFetch && !renderInDialog
+                            ? filterElement.onChange
+                            : onChangeBetween}
+                        withVerticalClass={renderInDialog}
+                        defaultValue={filterValue}
+                        timeFormat={filterElement.timeFormat || defaultTimeFormat}
+                        dateFormat={filterElement.dateFormat || defaultDateFormat}
+                        transformDate={filterElement.transformDate}
+                        transformTime={filterElement.transformTime}
+                        locale={filterElement.locale}
+                        labelFrom={filterElement.labelFrom}
+                        labelTo={filterElement.labelTo}
+                        boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
+                    />
+                </div>);
             case filterElementTypes.customSearch:
-                return (
-                    <div>
-                        <ByCustomSearch
-                            fields={filterElement.fields}
-                            defaultField={filterElement.defaultField}
-                            setField={filterElement.setField}
-                            setValue={filterElement.setValue}
-                            field={filterElement.field}
-                            value={filterElement.value}
-                        />
-                    </div>
-                );
+                return (<div>
+                    <ByCustomSearch
+                        fields={filterElement.fields}
+                        defaultField={filterElement.defaultField}
+                        setField={filterElement.setField}
+                        setValue={filterElement.setValue}
+                        field={filterElement.field}
+                        value={filterElement.value}
+                    />
+                </div>);
             default:
                 return null;
         }
@@ -305,10 +249,10 @@ class GridToolBox extends Component {
         const { filterElements } = this.props;
         const defaultValues = {};
 
-        filterElements.forEach((filter) => {
+        filterElements.forEach(filter => {
             if (typeof filter.name === typeof {}) {
                 // range filters
-                Object.keys(filter.name).forEach((key) => {
+                Object.keys(filter.name).forEach(key => {
                     defaultValues[filter.name[key]] = filter.defaultValue[key];
                 });
             } else {
@@ -320,7 +264,7 @@ class GridToolBox extends Component {
     }
 
     toggleAdvancedSearch() {
-        const { showFiltersPopup } = this.state;
+        const {showFiltersPopup} = this.state;
 
         let defaultValues = {};
 
@@ -347,7 +291,7 @@ class GridToolBox extends Component {
                     const timeFormat = filter.timeFormat || defaultTimeFormat;
                     const dateFormat = filter.dateFormat || defaultDateFormat;
 
-                    Object.keys(filter.defaultValue).forEach((key) => {
+                    Object.keys(filter.defaultValue).forEach(key => {
                         if (!filter.defaultValue[key]) {
                             return;
                         }
@@ -357,80 +301,51 @@ class GridToolBox extends Component {
                         let timeValue;
 
                         if (filter.transformDate) {
-                            dateValue = filter.transformDate(
-                                date,
-                                dateFormat,
-                                filter.locale
-                            );
+                            dateValue = filter.transformDate(date, dateFormat, filter.locale);
                         } else {
                             dateValue = date.toISOString();
                         }
                         if (filter.transformTime) {
-                            timeValue = filter.transformTime(
-                                date,
-                                timeFormat,
-                                filter.locale
-                            );
+                            timeValue = filter.transformTime(date, timeFormat, filter.locale);
                         } else {
                             timeValue = date.toISOString().substr(11, 5);
                         }
 
                         let value = dateValue;
 
-                        if (
-                            filter.type ===
-                            filterElementTypes.dateTimePickerBetween
-                        ) {
+                        if (filter.type === filterElementTypes.dateTimePickerBetween) {
                             value = `${value} ${timeValue}`;
                         }
 
-                        key = `label${
-                            key.charAt(0).toUpperCase() + key.slice(1)
-                        }`;
+                        key = `label${key.charAt(0).toUpperCase() + key.slice(1)}`;
 
-                        content.push(
-                            <div key={idx + key}>
-                                <span className={style.bold}>
-                                    {filter[key]}:{' '}
-                                </span>
-                                <span> {value} </span>
-                            </div>
-                        );
+                        content.push(<div key={idx + key}>
+                            <span className={style.bold}>{filter[key]}: </span>
+                            <span> {value} </span>
+                        </div>);
                     });
                     break;
                 }
                 case filterElementTypes.dropDown:
-                    if (
-                        filter.defaultValue &&
-                        filter.defaultValue !== dropDrownAllOptionKey &&
-                        filter.defaultValue !== dropDrownPlaceholderOptionKey
-                    ) {
+                    if (filter.defaultValue && filter.defaultValue !== dropDrownAllOptionKey && filter.defaultValue !== dropDrownPlaceholderOptionKey) {
                         const obj = filter.data.filter((dropdownItem) => {
                             if (filter.defaultValue === dropdownItem.key) {
                                 return true;
                             }
                         });
 
-                        content.push(
-                            <div key={idx}>
-                                <span className={style.bold}>
-                                    {filter.label}:{' '}
-                                </span>
-                                <span>{obj[0].name}</span>
-                            </div>
-                        );
+                        content.push(<div key={idx}>
+                            <span className={style.bold}>{filter.label}: </span>
+                            <span>{obj[0].name}</span>
+                        </div>);
                     }
                     break;
                 default:
                     if (filter.defaultValue) {
-                        content.push(
-                            <div key={idx}>
-                                <span className={style.bold}>
-                                    {filter.label}:{' '}
-                                </span>
-                                <span>{filter.defaultValue}</span>
-                            </div>
-                        );
+                        content.push(<div key={idx}>
+                            <span className={style.bold}>{filter.label}: </span>
+                            <span>{filter.defaultValue}</span>
+                        </div>);
                     }
                     break;
             }
@@ -459,23 +374,12 @@ class GridToolBox extends Component {
 
     renderAdvancedButton() {
         const tooltipContent = this.getTooltip();
-        const el = (
-            <div
-                key='toggleAdv'
-                className={classnames(
-                    style.toolbarElement,
-                    style.tableCell,
-                    style.advancedSearchIconWrapper
-                )}
-            >
-                <AdvancedSearchButton onClick={this.toggleAdvancedSearch} />
-                {tooltipContent.length ? (
-                    <div className={style.advancedSearchPopOver}>
-                        {tooltipContent}
-                    </div>
-                ) : null}
-            </div>
-        );
+        const el = <div key='toggleAdv' className={classnames(style.toolbarElement, style.tableCell, style.advancedSearchIconWrapper)}>
+            <AdvancedSearchButton onClick={this.toggleAdvancedSearch} />
+            {tooltipContent.length ? <div className={style.advancedSearchPopOver}>
+                {tooltipContent}
+            </div> : null}
+        </div>;
 
         return el;
     }
@@ -491,41 +395,26 @@ class GridToolBox extends Component {
         };
 
         const actionButtons = [
-            {
-                label: 'Apply Search',
-                onClick: apply,
-                styleType: 'primaryDialog'
-            },
-            {
-                label: 'Cancel',
-                onClick: this.toggleAdvancedSearch,
-                styleType: 'secondaryDialog'
-            }
+            {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
+            {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
         ];
 
-        return (
-            <StandardDialog
-                closePopup={this.toggleAdvancedSearch}
-                header={{ text: 'Advanced Search' }}
-                isOpen={this.state.showFiltersPopup}
-                footer={{ actionButtons: actionButtons }}
-                className={style.advancedSearchDialog}
-            >
-                {this.props.filterElements.map((el, i) => {
-                    const filter = this.renderFilter(el, true);
-                    return (
-                        filter && (
-                            <div
-                                key={i}
-                                className={style.advancedSearchInputWrapper}
-                            >
-                                {filter}
-                            </div>
-                        )
-                    );
-                })}
-            </StandardDialog>
-        );
+        return <StandardDialog
+            closePopup={this.toggleAdvancedSearch}
+            header={{text: 'Advanced Search'}}
+            isOpen={this.state.showFiltersPopup}
+            footer={{actionButtons: actionButtons}}
+            className={style.advancedSearchDialog}
+        >
+            {this.props.filterElements.map((el, i) => {
+                const filter = this.renderFilter(el, true);
+                return filter && (
+                    <div key={i} className={style.advancedSearchInputWrapper}>
+                        {filter}
+                    </div>
+                );
+            })}
+        </StandardDialog>;
     }
 
     renderAdvanced() {
@@ -536,12 +425,7 @@ class GridToolBox extends Component {
             const advancedDialog = this.renderAdvancedSearchDialog();
 
             return (
-                <div
-                    className={classnames(
-                        style.toolbarElement,
-                        style.tableCell
-                    )}
-                >
+                <div className={classnames(style.toolbarElement, style.tableCell)}>
                     {advancedSearchBtn}
                     {advancedDialog}
                 </div>
@@ -555,135 +439,52 @@ class GridToolBox extends Component {
         const hasSelectedOrChecked = this.hasSelectedOrChecked();
 
         const labelClass = hasSelectedOrChecked ? style.link : '';
-        const toggle = () =>
-            hasSelectedOrChecked && this.setState({ showFilters: false });
+        const toggle = () => hasSelectedOrChecked && this.setState({showFilters: false});
         let filtersNumber = 0;
         let leftSide;
-        if (
-            filterElements.length === 1 &&
-            filterElements[0].type === filterElementTypes.searchBox
-        ) {
-            leftSide = hasSelectedOrChecked ? (
-                <span className={style.link}>
-                    <Text>Show buttons</Text>
-                </span>
-            ) : (
-                <Text>Filter by:</Text>
-            );
+        if (filterElements.length === 1 && filterElements[0].type === filterElementTypes.searchBox) {
+            leftSide = hasSelectedOrChecked ? <span className={style.link}><Text>Show buttons</Text></span> : <Text>Filter by:</Text>;
         } else {
-            leftSide = hasSelectedOrChecked ? (
-                <span className={style.link}>
-                    <Text>Show buttons</Text>
-                </span>
-            ) : (
-                <Text>Filter by:</Text>
-            );
+            leftSide = hasSelectedOrChecked ? <span className={style.link}><Text>Show buttons</Text></span> : <Text>Filter by:</Text>;
         }
 
-        const showSearchBtn =
-            this.props.filterElements.find((f) => {
-                return f.type === filterElementTypes.searchBtn;
-            }) !== undefined ||
-            (!this.state.showFiltersPopup &&
-                !this.props.filterAutoFetch &&
-                Object.keys(this.state.filters).length > 0);
+        const showSearchBtn = (this.props.filterElements.find(f => {
+            return f.type === filterElementTypes.searchBtn;
+        }) !== undefined) || (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
 
         return (
-            <div
-                className={classnames(
-                    style.toolbarWrap,
-                    style.table,
-                    style.fixedHeight
-                )}
-            >
-                <div
-                    className={classnames(
-                        style.toolbarElement,
-                        style.label,
-                        labelClass,
-                        style.tableCell
-                    )}
-                    onClick={toggle}
-                >
+            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
+                <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
                     {leftSide}
                 </div>
                 <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div
-                        className={classnames(
-                            style.toolbarElementsContainer,
-                            style.fixedHeight
-                        )}
-                    >
+                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
                         {filterElements.map((el, i) => {
-                            const incrementNum =
-                                el.type ===
-                                    filterElementTypes.datePickerBetween ||
-                                el.type ===
-                                    filterElementTypes.dateTimePickerBetween
-                                    ? 2
-                                    : 1; // datePicker has two input fields
+                            const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                             filtersNumber += incrementNum;
                             if (filtersNumber <= this.props.maxVisibleInputs) {
                                 const filter = this.renderFilter(el);
-                                return (
-                                    filter && (
-                                        <div
-                                            key={i}
-                                            className={classnames(
-                                                style.toolbarElement,
-                                                style.tableCell
-                                            )}
-                                            style={el.styles}
-                                        >
-                                            <div className={style.minWidthed}>
-                                                {filter}
-                                            </div>
+                                return filter && (
+                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell)} style={el.styles}>
+                                        <div className={style.minWidthed}>
+                                            {filter}
                                         </div>
-                                    )
+                                    </div>
                                 );
                             }
                         })}
                         {this.renderAdvanced()}
-                        {showSearchBtn && (
-                            <div
-                                key='searchBtn'
-                                className={classnames(
-                                    style.toolbarElement,
-                                    style.tableCell
-                                )}
-                            >
-                                <div
-                                    onClick={this.applyFilters}
-                                    className={style.searchIcon}
-                                />
-                            </div>
-                        )}
-                        {this.state.hasActiveFilters && (
-                            <div
-                                className={classnames(
-                                    style.toolbarElement,
-                                    style.tableCell
-                                )}
-                            >
-                                <div
-                                    title='Clear Filters'
-                                    key='clearFilters'
-                                    onClick={() => {
-                                        this.setState({ filters: {} });
-                                        this.props.clearFilters();
-                                    }}
-                                    className={style.closeArrow}
-                                />
-                            </div>
-                        )}
+                        {showSearchBtn &&
+                            <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
+                                <div onClick={this.applyFilters} className={style.searchIcon} />
+                            </div>}
+                        {this.state.hasActiveFilters &&
+                            <div className={classnames(style.toolbarElement, style.tableCell)}>
+                                <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                            </div>}
                     </div>
                 </div>
-                {filterActionElements && (
-                    <div className={style.filterActionWrap}>
-                        {' '}
-                        {filterActionElements}{' '}
-                    </div>
-                )}
+                {filterActionElements && <div className={style.filterActionWrap}> {filterActionElements} </div>}
             </div>
         );
     }
@@ -692,10 +493,7 @@ class GridToolBox extends Component {
         const result = {};
         Object.keys(this.state.filters).forEach((objKey) => {
             const objectKey = this.state.filters[objKey];
-            if (
-                objectKey === dropDrownAllOptionKey ||
-                objectKey === dropDrownPlaceholderOptionKey
-            ) {
+            if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
                 result[objKey] = '';
             } else {
                 result[objKey] = objectKey;
@@ -703,14 +501,12 @@ class GridToolBox extends Component {
         });
 
         this.props.batchChange(result);
-        this.setState({ filters: {} });
+        this.setState({filters: {}});
     }
 
     renderActionButton(actionButtonElement, index) {
         // Check if button can be clicked when multimple items are checked
-        const isSingleSelected =
-            actionButtonElement.clickFunctionality ===
-            actionButtonClickFunctionality.singleSelect;
+        const isSingleSelected = actionButtonElement.clickFunctionality === actionButtonClickFunctionality.singleSelect;
         let isDisabled = actionButtonElement.isDisabled; // false
         if (!isDisabled && isSingleSelected && this.props.checked.size >= 2) {
             isDisabled = true;
@@ -719,69 +515,36 @@ class GridToolBox extends Component {
         switch (actionButtonElement.type) {
             case actionButtonElementTypes.link:
                 if (isDisabled) {
-                    return (
-                        <Button
-                            disabled
-                            styleType='primaryLight'
-                            label={actionButtonElement.label}
-                        />
-                    );
+                    return <Button disabled styleType='primaryLight' label={actionButtonElement.label} />;
                 } else {
                     return (
-                        <Link to={actionButtonElement.path}>
-                            <Button
-                                styleType='primaryLight'
-                                label={actionButtonElement.label}
-                            />
-                        </Link>
+                        <Link to={actionButtonElement.path}><Button styleType='primaryLight' label={actionButtonElement.label} /></Link>
                     );
                 }
             case actionButtonElementTypes.button:
                 return (
-                    <Button
-                        disabled={isDisabled}
-                        onClick={actionButtonElement.onClick}
-                        styleType='primaryLight'
-                        label={actionButtonElement.label}
-                    />
+                    <Button disabled={isDisabled} onClick={actionButtonElement.onClick} styleType='primaryLight' label={actionButtonElement.label} />
                 );
             case actionButtonElementTypes.buttonWithConfirmPopUp: {
-                const handleButtonClick = () =>
-                    this.refs['confirmDialog-' + index].open();
+                const handleButtonClick = () => this.refs['confirmDialog-' + index].open();
                 return (
                     <div>
                         <ConfirmDialog
                             ref={'confirmDialog-' + index}
-                            cancelLabel={
-                                actionButtonElement.confirmDialog.cancelLabel
-                            }
-                            submitLabel={
-                                actionButtonElement.confirmDialog.submitLabel
-                            }
+                            cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
+                            submitLabel={actionButtonElement.confirmDialog.submitLabel}
                             title={actionButtonElement.confirmDialog.title}
                             message={actionButtonElement.confirmDialog.message}
                             onSubmit={actionButtonElement.onClick}
-                            cannotSubmit={
-                                actionButtonElement.confirmDialog.cannotSubmit
-                            }
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
-                        <Button
-                            disabled={isDisabled}
-                            onClick={handleButtonClick}
-                            styleType='primaryLight'
-                            label={actionButtonElement.label}
-                        />
+                        <Button disabled={isDisabled} onClick={handleButtonClick} styleType='primaryLight' label={actionButtonElement.label} />
                     </div>
                 );
             }
             case actionButtonElementTypes.buttonWithPopUpsDependingOnProperty: {
-                const propStatus = this.propStatus(
-                    actionButtonElement.property,
-                    actionButtonElement.selectProperty
-                );
-                const buttonLabel = propStatus.status
-                    ? actionButtonElement.oppositeLabel
-                    : actionButtonElement.label;
+                const propStatus = this.propStatus(actionButtonElement.property, actionButtonElement.selectProperty);
+                const buttonLabel = propStatus.status ? actionButtonElement.oppositeLabel : actionButtonElement.label;
                 const handleAction = () => {
                     if (propStatus.canDoAction) {
                         this.refs['confirmDialog-' + index].open();
@@ -794,37 +557,22 @@ class GridToolBox extends Component {
                     <div>
                         <ConfirmDialog
                             ref={'confirmDialog-' + index}
-                            cancelLabel={
-                                actionButtonElement.confirmDialog.cancelLabel
-                            }
-                            submitLabel={
-                                actionButtonElement.confirmDialog.submitLabel
-                            }
+                            cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
+                            submitLabel={actionButtonElement.confirmDialog.submitLabel}
                             title={actionButtonElement.confirmDialog.title}
                             message={actionButtonElement.confirmDialog.message}
                             onSubmit={actionButtonElement.onClick}
-                            cannotSubmit={
-                                actionButtonElement.confirmDialog.cannotSubmit
-                            }
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <ConfirmDialog
                             ref={'errorDialog-' + index}
-                            cancelLabel={
-                                actionButtonElement.errorDialog.cancelLabel
-                            }
+                            cancelLabel={actionButtonElement.errorDialog.cancelLabel}
                             submitLabel=''
                             title={actionButtonElement.errorDialog.title}
                             message={actionButtonElement.errorDialog.message}
-                            cannotSubmit={
-                                actionButtonElement.errorDialog.cannotSubmit
-                            }
+                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
                         />
-                        <Button
-                            disabled={isDisabled}
-                            onClick={handleAction}
-                            styleType='primaryLight'
-                            label={buttonLabel}
-                        />
+                        <Button disabled={isDisabled} onClick={handleAction} styleType='primaryLight' label={buttonLabel} />
                     </div>
                 );
             }
@@ -840,9 +588,7 @@ class GridToolBox extends Component {
                     }
                 } else {
                     const selected = this.props.selected;
-                    canDoAction =
-                        selected.getIn(actionButtonElement.property) ||
-                        selected.get(actionButtonElement.selectProperty);
+                    canDoAction = selected.getIn(actionButtonElement.property) || selected.get(actionButtonElement.selectProperty);
                 }
 
                 const handleActionDependingOnPropertyValue = () => {
@@ -857,37 +603,22 @@ class GridToolBox extends Component {
                     <div>
                         <ConfirmDialog
                             ref={'confirmDialog-' + index}
-                            cancelLabel={
-                                actionButtonElement.confirmDialog.cancelLabel
-                            }
-                            submitLabel={
-                                actionButtonElement.confirmDialog.submitLabel
-                            }
+                            cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
+                            submitLabel={actionButtonElement.confirmDialog.submitLabel}
                             title={actionButtonElement.confirmDialog.title}
                             message={actionButtonElement.confirmDialog.message}
                             onSubmit={actionButtonElement.onClick}
-                            cannotSubmit={
-                                actionButtonElement.confirmDialog.cannotSubmit
-                            }
+                            cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <ConfirmDialog
                             ref={'errorDialog-' + index}
-                            cancelLabel={
-                                actionButtonElement.errorDialog.cancelLabel
-                            }
+                            cancelLabel={actionButtonElement.errorDialog.cancelLabel}
                             submitLabel=''
                             title={actionButtonElement.errorDialog.title}
                             message={actionButtonElement.errorDialog.message}
-                            cannotSubmit={
-                                actionButtonElement.errorDialog.cannotSubmit
-                            }
+                            cannotSubmit={actionButtonElement.errorDialog.cannotSubmit}
                         />
-                        <Button
-                            disabled={isDisabled}
-                            onClick={handleActionDependingOnPropertyValue}
-                            styleType='primaryLight'
-                            label={actionButtonElement.label}
-                        />
+                        <Button disabled={isDisabled} onClick={handleActionDependingOnPropertyValue} styleType='primaryLight' label={actionButtonElement.label} />
                     </div>
                 );
             }
@@ -910,20 +641,14 @@ class GridToolBox extends Component {
                 return (
                     <div>
                         {dialogs}
-                        <Button
-                            disabled={isDisabled}
-                            onClick={actionButtonElement.onClick}
-                            styleType='primaryLight'
-                            label={actionButtonElement.label}
-                        />
+                        <Button disabled={isDisabled} onClick={actionButtonElement.onClick} styleType='primaryLight' label={actionButtonElement.label} />
                     </div>
                 );
             }
         }
     }
 
-    openRefDialogWithMessage({ identifier, message }) {
-        // this function is called from outside using refs
+    openRefDialogWithMessage({ identifier, message }) { // this function is called from outside using refs
         this.refs['dialog-' + identifier].open(message);
     }
 
@@ -945,52 +670,30 @@ class GridToolBox extends Component {
             status = selected.getIn(selectProperty) || selected.get(property);
         }
 
-        return { canDoAction, status: !status };
+        return {canDoAction, status: !status};
     }
 
     renderActionButtons() {
         const { showActionButtonsOnSelect } = this.props;
-        const toggle = () => this.setState({ showFilters: true });
+        const toggle = () => this.setState({showFilters: true});
 
         return (
-            <div
-                className={classnames(
-                    style.toolbarWrap,
-                    style.table,
-                    style.fixedHeight,
-                    style.tableButtonsShowed
-                )}
-            >
-                {!showActionButtonsOnSelect ? (
-                    <div
-                        className={classnames(
-                            style.toolbarElement,
-                            style.label,
-                            style.link,
-                            style.tableCell
-                        )}
-                        onClick={toggle}
-                    >
-                        Show filters
-                    </div>
-                ) : null}
+            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
+                {!showActionButtonsOnSelect ? <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
+                    <Text>Show filters</Text>
+                </div> : null}
                 <div className={classnames(style.pullRight, style.tableCell)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
                         {this.props.actionButtonElements.map((el, i) => {
                             return (
-                                <div
-                                    key={i}
-                                    className={classnames(
-                                        style.tableCell,
-                                        style.spacer
-                                    )}
-                                >
+                                <div key={i} className={classnames(style.tableCell, style.spacer)}>
                                     {this.renderActionButton(el, i)}
                                 </div>
                             );
                         })}
                     </div>
                 </div>
+
             </div>
         );
     }
@@ -1000,7 +703,11 @@ class GridToolBox extends Component {
         const { showActionButtonsOnSelect, selected } = this.props;
 
         if (showActionButtonsOnSelect && selected && selected.size) {
-            return <div>{this.renderActionButtons()}</div>;
+            return (
+                <div>
+                    {this.renderActionButtons()}
+                </div>
+            );
         }
 
         if (!this.props.cssStandard) {
@@ -1037,11 +744,9 @@ GridToolBox.propTypes = {
                 filterElementTypes.searchBtn
             ]).isRequired,
             // Common
-            placeholder: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.node
-            ]),
+            placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
+            maxDate: PropTypes.string,
 
             // DropDown
             data: PropTypes.arrayOf(
@@ -1074,10 +779,7 @@ GridToolBox.propTypes = {
             // Common
             label: PropTypes.string.isRequired,
             // Determines if the button can be clicked when multiple items are checked. If not passed by default it is multiSelect
-            clickFunctionality: PropTypes.oneOf([
-                actionButtonClickFunctionality.singleSelect,
-                actionButtonClickFunctionality.multiSelect
-            ]),
+            clickFunctionality: PropTypes.oneOf([actionButtonClickFunctionality.singleSelect, actionButtonClickFunctionality.multiSelect]),
             l: PropTypes.bool,
 
             // Link
@@ -1095,10 +797,7 @@ GridToolBox.propTypes = {
             // Button with pop ups depending on property (true/false)
             oppositeLabel: PropTypes.string,
             propery: PropTypes.string,
-            selectProperty: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.array
-            ]), // required only if checked and select properties are different
+            selectProperty: PropTypes.oneOfType([PropTypes.string, PropTypes.array]), // required only if checked and select properties are different
             errorDialog: PropTypes.shape({
                 cancelLabel: PropTypes.string,
                 title: PropTypes.string,
