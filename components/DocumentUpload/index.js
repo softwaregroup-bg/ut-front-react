@@ -308,6 +308,7 @@ export default class DocumentUpload extends Component {
             const reader = new window.FileReader();
             reader.onload = (data) => {
                 try {
+                    // eslint-disable-next-line react-hooks/rules-of-hooks
                     useFile({
                         filename: attachmentResult.result.filename,
                         createdDate: new Date().toISOString(),

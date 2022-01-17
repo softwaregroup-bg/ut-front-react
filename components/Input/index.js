@@ -25,6 +25,12 @@ class TextField extends Component {
         this.style = props.customStyle || defaultStyle;
     }
 
+    static contextTypes = {
+        checkPermission: PropTypes.func,
+        translate: PropTypes.func,
+        portalName: PropTypes.string
+    };
+
     componentWillReceiveProps({value, isValid, errorMessage}) {
         this.initialValue = value;
 
@@ -81,13 +87,17 @@ class TextField extends Component {
         });
     }
 
+    translate(stringToTranslate) {
+        return this.context.translate(stringToTranslate);
+    }
+
     render() {
         const { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
         const { isValid, errorMessage } = this.state.valid;
         const zeroHeightStyle = isValid ? this.style.hh : '';
         const value = this.state.value !== undefined && this.state.value !== null ? this.state.value : '';
 
-        const input = <input ref='textInput' type={type} className={this.inputClassName} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        const input = <input ref='textInput' type={type} className={this.inputClassName} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={this.translate(placeholder)} />;
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (
