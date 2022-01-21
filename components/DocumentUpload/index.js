@@ -288,7 +288,7 @@ export default class DocumentUpload extends Component {
 
     uploadFile = async(file, uploadURL = '/file-upload') => {
         const {
-            useFile,
+            useFile: attachFile,
             uploadDocument
         } = this.props;
         const data = new window.FormData();
@@ -308,7 +308,7 @@ export default class DocumentUpload extends Component {
             const reader = new window.FileReader();
             reader.onload = (data) => {
                 try {
-                    useFile({
+                    attachFile({
                         filename: attachmentResult.result.filename,
                         createdDate: new Date().toISOString(),
                         extension: ext,
