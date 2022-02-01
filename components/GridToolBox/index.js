@@ -357,6 +357,8 @@ class GridToolBox extends Component {
                         </div>);
                     }
                     break;
+                case filterElementTypes.multiSelect:
+                    break;
                 default:
                     if (filter.defaultValue) {
                         content.push(<div key={idx}>
