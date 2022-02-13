@@ -304,6 +304,14 @@ export default class DocumentUpload extends Component {
         this.setState({
             isUploading: false
         });
+        // fix(MSA-1185): Document upload: Show user friendly error message when document uploaded is too large
+        if (attachmentResult.error) {
+            let errorMsg = attachmentResult.error.message || attachmentResult.error.statusText;
+            if (attachmentResult.error.body?.error === 'Request Entity Too Large') {
+                errorMsg = 'Document size is greater than maximum allowed.';
+            }
+            return this.setError(errorMsg);
+        }
         if (attachmentResult) {
             const reader = new window.FileReader();
             reader.onload = (data) => {
