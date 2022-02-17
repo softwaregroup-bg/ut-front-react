@@ -252,7 +252,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     }
                 }
                 let statusId = doc.statusId;
-                if (statusId === 'approved' || statusId === 'replaced') {
+                if (statusId === 'replaced') {
                     statusId = 'pending';
                 }
                 const docObj = {
