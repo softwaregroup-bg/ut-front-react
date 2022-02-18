@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import {DatePicker as DatePickerDialog} from '@material-ui/pickers';
+import {compareAsc} from 'date-fns';
 import style from '../style.css';
 import Text from '../../Text';
 
@@ -10,14 +11,21 @@ const noop = () => {};
 export default class DatePickerBetween extends Component {
     constructor(props) {
         super(props);
-        this.from = this.props.defaultValue.from;
-        this.to = this.props.defaultValue.to;
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.getContextStyles = this.getContextStyles.bind(this);
-        this.state = { fromDialogWindow: false, toDialogWindow: false, startDate: this.from || new Date(), endDate: this.to || new Date()};
+        this.state = { fromDialogWindow: false, toDialogWindow: false, startDate: new Date(), endDate: new Date()};
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        const {
+            defaultValue: {from: startDate, to: endDate}
+        } = props;
+        if (compareAsc(startDate, state.startDate)) state.startDate = startDate;
+        if (compareAsc(endDate, state.endDate)) state.endDate = endDate;
+        return state;
     }
 
     handleOpen(ref) {
@@ -112,12 +120,7 @@ export default class DatePickerBetween extends Component {
             verticalClass.push(this.getContextStyles('dpBoxGroupWrapVertical'));
         }
 
-        const fromDate = this.from
-            ? new Date(this.state.startDate)
-            : new Date();
-        const toDate = this.to
-            ? new Date(this.state.endDate)
-            : new Date();
+        const {startDate, endDate} = this.state;
 
         return (
             <div className={classnames(style.dpBoxWrap, this.getContextStyles('dpBoxWrap'), verticalClass)}>
@@ -126,14 +129,14 @@ export default class DatePickerBetween extends Component {
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap)}>
                         {this.props.labelFrom ? (<span className={style.label}><Text>{this.props.labelFrom}</Text></span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesFrom)}>
-                            <input value={this.from ? this.formatDate(fromDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
+                            <input value={this.formatDate(startDate) } type='text' onChange={noop} onKeyUp={this.handleKeyPress('from')} />
                             <button onClick={this.handleOpen('from')} />
                         </div>
                     </div>
                     <div className={classnames(style.dpWrap, style.dpHalf, this.context.implementationStyle.dpWrap, style.last)}>
                         {this.props.labelTo ? (<span className={style.label}><Text>{this.props.labelTo}</Text></span>) : ''}
                         <div className={classnames.apply(undefined, boxStylesTo)}>
-                            <input value={this.to ? this.formatDate(toDate) : ''} type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
+                            <input value={this.formatDate(endDate) } type='text' onChange={noop} onKeyUp={this.handleKeyPress('to')} />
                             <button onClick={this.handleOpen('to')} />
                         </div>
                     </div>
@@ -142,7 +145,7 @@ export default class DatePickerBetween extends Component {
                     cancelLabel={this.props.cancelLabel}
                     okLabel={this.props.okLabel}
                     container={this.props.container}
-                    initialFocusedDate={fromDate}
+                    initialFocusedDate={startDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('from')}
                     onChange={(date) => { this.setState({startDate: date}); }}
@@ -158,7 +161,7 @@ export default class DatePickerBetween extends Component {
                     cancelLabel={this.props.cancelLabel}
                     okLabel={this.props.okLabel}
                     container={this.props.container}
-                    initialFocusedDate={toDate}
+                    initialFocusedDate={endDate}
                     mode={this.props.mode}
                     onAccept={this.handleAccept('to')}
                     onChange={(date) => { this.setState({endDate: date}); }}
@@ -180,6 +183,7 @@ DatePickerBetween.defaultProps = {
     mode: 'landscape',
     container: 'dialog',
     withVerticalClass: false,
+    defaultValue: {from: new Date(), to: new Date()},
     dateFormat: 'yyyy-MM-dd'
 };
 DatePickerBetween.propTypes = {
