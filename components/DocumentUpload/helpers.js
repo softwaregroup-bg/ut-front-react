@@ -13,3 +13,7 @@ export function shrinkFilename(filename, maxChars = 15) {
         return filename;
     }
 };
+
+export const ERROR_STATUS_CODES = {
+    request_entity_too_large: 413
+};
