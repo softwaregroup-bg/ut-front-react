@@ -43,9 +43,25 @@ export default class FileDetailsPopup extends Component {
 
     get view() {
         const { mode } = this.state;
-        const { file } = this.props;
+        const { file, file1 } = this.props;
 
         if (mode === 'details') {
+            if (file1) {
+                return (
+                    <>
+                        <FileDetailedView
+                            file={file}
+                            scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
+                            onClick={this.onImageClick}
+                        />
+                        <FileDetailedView
+                            file={file1}
+                            scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
+                            onClick={this.onImageClick}
+                        />
+                    </>
+                );
+            }
             return (
                 <FileDetailedView
                     file={file}
@@ -91,6 +107,15 @@ FileDetailsPopup.propTypes = {
     closeOnOverlayClick: PropTypes.bool,
     header: PropTypes.object,
     file: PropTypes.shape({
+        content: PropTypes.string.isRequired,
+        details: PropTypes.shape({
+            type: PropTypes.string.isRequired,
+            size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+            dateUploaded: PropTypes.string,
+            description: PropTypes.string
+        }).isRequired
+    }),
+    file1: PropTypes.shape({
         content: PropTypes.string.isRequired,
         details: PropTypes.shape({
             type: PropTypes.string.isRequired,

@@ -253,6 +253,21 @@ class Toolbox extends Component {
             const closeHandler = () => {
                 this.setState({ showDetailsPopUp: false });
             };
+            const isIdCard = selectedAttachment.toJS().attachments.length > 1;
+            let file1;
+            if (isIdCard) {
+                file1 = {
+                    content: selectedAttachment.getIn(['attachments', 1, 'url']),
+                    details: {
+                        type: selectedAttachment.getIn(['attachments', 1, 'contentType']),
+                        extension: selectedAttachment.getIn(['attachments', 1, 'extension']),
+                        dateUploaded: selectedAttachment.get('createdDate'),
+                        description: selectedAttachment.get('description'),
+                        width: selectedAttachment.get('width'),
+                        height: selectedAttachment.get('height')
+                    }
+                };
+            }
             const file = {
                 content: selectedAttachment.getIn(['attachments', 0, 'url']),
                 details: {
@@ -264,15 +279,26 @@ class Toolbox extends Component {
                     height: selectedAttachment.get('height')
                 }
             };
-
-            return (
-                <FileDetailsPopup
-                    isOpen={this.state.showDetailsPopUp}
-                    header={{text: 'Preview Document'}}
-                    closePopup={closeHandler}
-                    file={file}
-                />
-            );
+            if (isIdCard) {
+                return (
+                    <FileDetailsPopup
+                        isOpen={this.state.showDetailsPopUp}
+                        header={{text: 'Preview Document'}}
+                        closePopup={closeHandler}
+                        file={file}
+                        file1={file1}
+                    />
+                );
+            } else {
+                return (
+                    <FileDetailsPopup
+                        isOpen={this.state.showDetailsPopUp}
+                        header={{text: 'Preview Document'}}
+                        closePopup={closeHandler}
+                        file={file}
+                    />
+                );
+            }
         } else {
             return <div />;
         }
