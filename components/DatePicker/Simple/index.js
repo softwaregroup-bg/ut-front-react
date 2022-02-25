@@ -48,6 +48,8 @@ export default class DatePicker extends Component {
                         disabled={this.props.disabled}
                         InputProps={this.props.InputProps}
                         fullWidth={this.props.fullWidth || true}
+                        format={this.props.format}
+
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
@@ -91,7 +93,8 @@ DatePicker.propTypes = {
     withVerticalClass: PropTypes.bool,
     labelWrap: PropTypes.string,
     InputProps: PropTypes.object,
-    fullWidth: PropTypes.bool
+    fullWidth: PropTypes.bool,
+    format: PropTypes.string
 };
 
 DatePicker.contextTypes = {
