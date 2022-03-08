@@ -22,6 +22,7 @@ class TextField extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.notifyForChange = this.notifyForChange.bind(this);
+        this.translate = this.translate.bind(this);
         this.style = props.customStyle || defaultStyle;
     }
 
@@ -33,7 +34,6 @@ class TextField extends Component {
 
     componentWillReceiveProps({value, isValid, errorMessage}) {
         this.initialValue = value;
-
         if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
                 value: value,
@@ -88,7 +88,7 @@ class TextField extends Component {
     }
 
     translate(stringToTranslate) {
-        return this.context.translate(stringToTranslate);
+        return this.context && this.context.translate ? this.context.translate(stringToTranslate) : stringToTranslate;
     }
 
     render() {
