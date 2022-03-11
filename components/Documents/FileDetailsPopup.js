@@ -45,7 +45,7 @@ export default class FileDetailsPopup extends Component {
         const { mode } = this.state;
 
         if (mode === 'details') {
-            const filesToDisplay = this.props.files.map(file =>
+            const filesToDisplay = this.props.file.map(file =>
                 <FileDetailedView
                     file={file}
                     scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
@@ -62,7 +62,7 @@ export default class FileDetailsPopup extends Component {
             return (
                 <div className={styles.originalFilePreview}>
                     <FileView
-                        file={this.props.files[0]}
+                        file={this.props.file[0]}
                         showOriginalFileButton
                     />
                 </div>
@@ -88,21 +88,23 @@ export default class FileDetailsPopup extends Component {
     }
 }
 
+const fileSchema = PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    details: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        dateUploaded: PropTypes.string,
+        description: PropTypes.string
+    }).isRequired
+});
 FileDetailsPopup.propTypes = {
     isOpen: PropTypes.bool,
     closeOnEsc: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
     header: PropTypes.object,
-    files: PropTypes.arrayOf(
-        PropTypes.shape({
-            content: PropTypes.string.isRequired,
-            details: PropTypes.shape({
-                type: PropTypes.string.isRequired,
-                size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-                dateUploaded: PropTypes.string,
-                description: PropTypes.string
-            }).isRequired
-        })
+    file: PropTypes.oneOfType(
+        fileSchema,
+        PropTypes.arrayOf(fileSchema)
     ),
     closePopup: PropTypes.func
 };

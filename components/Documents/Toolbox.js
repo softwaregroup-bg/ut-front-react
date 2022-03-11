@@ -253,7 +253,7 @@ class Toolbox extends Component {
             const closeHandler = () => {
                 this.setState({ showDetailsPopUp: false });
             };
-            const files = selectedAttachment.toJS().attachments.map(
+            const file = selectedAttachment.toJS().attachments.map(
                 file => ({
                     content: file.url,
                     details: {
@@ -271,7 +271,7 @@ class Toolbox extends Component {
                     isOpen={this.state.showDetailsPopUp}
                     header={{text: 'Preview Document'}}
                     closePopup={closeHandler}
-                    files={files}
+                    file={file}
                 />
             );
         } else {
