@@ -217,7 +217,8 @@ export default class DocumentUpload extends Component {
                     {this.validate && <div className={styles.errorMsg}>
                         Error: {this.validate}
                     </div>}
-                </div>);
+                </div>
+            );
         }
     }
 
