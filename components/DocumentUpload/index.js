@@ -193,7 +193,7 @@ export default class DocumentUpload extends Component {
         }
 
         if (mode === 'preview') {
-                return (
+            return (
                 <div>
                     <div className={this.validate && styles.hidden}>
                         <FilePreview
