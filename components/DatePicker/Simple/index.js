@@ -38,6 +38,8 @@ export default class DatePicker extends Component {
                         className={classnames(dpStyles, readonlyStyle)}
                         cancelLabel={this.props.cancelLabel}
                         okLabel={this.props.okLabel}
+                        clearText={this.props.clearText}
+                        clearable={this.props.clearable}
                         container={this.props.container}
                         color='secondary'
                         value={dateVal}
@@ -73,6 +75,8 @@ DatePicker.propTypes = {
     locale: PropTypes.string,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
+    clearText: PropTypes.string,
+    clearable: PropTypes.bool,
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]), // 0 (Sunday) to 6 (Saturday), default is 1
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
