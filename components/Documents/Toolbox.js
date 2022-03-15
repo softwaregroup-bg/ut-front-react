@@ -253,8 +253,23 @@ class Toolbox extends Component {
             const closeHandler = () => {
                 this.setState({ showDetailsPopUp: false });
             };
-            const file = selectedAttachment.toJS().attachments.map(
-                file => ({
+            let file = selectedAttachment.get('attachments').toJS();
+            if (Array.isArray(file)) {
+                file = file.map(
+                    file => ({
+                        content: file.url,
+                        details: {
+                            type: file.contentType,
+                            extension: file.extension,
+                            dateUploaded: selectedAttachment.get('createdDate'),
+                            description: selectedAttachment.get('description'),
+                            width: selectedAttachment.get('width'),
+                            height: selectedAttachment.get('height')
+                        }
+                    })
+                );
+            } else {
+                file = {
                     content: file.url,
                     details: {
                         type: file.contentType,
@@ -264,8 +279,9 @@ class Toolbox extends Component {
                         width: selectedAttachment.get('width'),
                         height: selectedAttachment.get('height')
                     }
-                })
-            );
+                };
+            }
+
             return (
                 <FileDetailsPopup
                     isOpen={this.state.showDetailsPopUp}
