@@ -26,6 +26,9 @@ export class ByCustomSearch extends Component {
         if (nextProps.fields !== this.props.fields) {
             this.fields = nextProps.fields;
         }
+        if (nextProps.value !== this.props.value) {
+            this.props.setValue(nextProps.value);
+        }
     }
 
     handleSelect(record) {
@@ -44,6 +47,7 @@ export class ByCustomSearch extends Component {
     }
 
     render() {
+        const isDisable = !this.props.defaultField;
         return (
             <div>
                 <div className={style.customSearchDropdown}>
@@ -57,7 +61,7 @@ export class ByCustomSearch extends Component {
                     />
                 </div>
                 <div className={style.customSearchTextField}>
-                    <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} />
+                    <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} disabled={isDisable}/>
                 </div>
             </div>
         );
