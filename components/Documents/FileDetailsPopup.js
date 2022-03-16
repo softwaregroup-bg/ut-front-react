@@ -45,23 +45,15 @@ export default class FileDetailsPopup extends Component {
         const { mode } = this.state;
 
         if (mode === 'details') {
-            let filesToDisplay;
-            if (Array.isArray(this.props.file)) {
-                filesToDisplay = this.props.file.map(file =>
-                    <FileDetailedView
-                        file={file}
-                        scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
-                        onClick={this.onImageClick}
-                        key = {file.url}
-                    />
-                );
-            } else {
-                filesToDisplay = <FileDetailedView
-                    file={this.props.file}
+            const displayFiles = Array.isArray(this.props.file) ? this.props.file : [this.props.file];
+            const filesToDisplay = displayFiles.map(file =>
+                <FileDetailedView
+                    file={file}
                     scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
                     onClick={this.onImageClick}
-                />;
-            }
+                    key = {file.url}
+                />
+            );
             return (
                 <>{filesToDisplay}</>
             );

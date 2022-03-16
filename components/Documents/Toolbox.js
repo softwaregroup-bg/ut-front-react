@@ -254,22 +254,9 @@ class Toolbox extends Component {
                 this.setState({ showDetailsPopUp: false });
             };
             let file = selectedAttachment.get('attachments').toJS();
-            if (Array.isArray(file)) {
-                file = file.map(
-                    file => ({
-                        content: file.url,
-                        details: {
-                            type: file.contentType,
-                            extension: file.extension,
-                            dateUploaded: selectedAttachment.get('createdDate'),
-                            description: selectedAttachment.get('description'),
-                            width: selectedAttachment.get('width'),
-                            height: selectedAttachment.get('height')
-                        }
-                    })
-                );
-            } else {
-                file = {
+            file = Array.isArray(file) ? file : [file];
+            file = file.map(
+                file => ({
                     content: file.url,
                     details: {
                         type: file.contentType,
@@ -279,8 +266,8 @@ class Toolbox extends Component {
                         width: selectedAttachment.get('width'),
                         height: selectedAttachment.get('height')
                     }
-                };
-            }
+                })
+            );
 
             return (
                 <FileDetailsPopup
