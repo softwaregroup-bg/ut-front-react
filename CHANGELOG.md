@@ -1,3 +1,7 @@
+## [12.10.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.8...v12.10.9) (2022-03-16)
+
+
+
 ## [12.10.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.7...v12.10.8) (2022-03-14)
 
 
