@@ -133,7 +133,7 @@ class DocumentUploadWithForm extends Component {
                         disabled={disabledField}
                         wrapperClassName={style.boldLabel}
                         withVerticalClass={true}
-                    />  
+                    />
                 </div>
                 <div className={style.formRow}>
                     <DatePicker
@@ -150,9 +150,8 @@ class DocumentUploadWithForm extends Component {
                         disabled={disabledField}
                         wrapperClassName={style.boldLabel}
                         withVerticalClass={true}
-                    />  
+                    />
                 </div>
-                
                 <div className={style.formRow}>
                     <Input
                         label='Description'
