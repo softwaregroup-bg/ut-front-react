@@ -113,6 +113,7 @@ const documents = (state = defaultState, action) => {
         case REPLACE_DOCUMENT: {
             const doc = action.props.newDocumentObject;
             const newObject = action.props.oldDocumentObject;
+			newObject.attachments[0] = newObject.attachments[0] || {};
             newObject.attachments[0].filename = doc.filename;
             newObject.attachments[0].extension = doc.extension;
             newObject.attachments[0].contentType = doc.contentType;

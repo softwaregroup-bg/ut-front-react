@@ -94,6 +94,9 @@ class DocumentsContainer extends Component {
                         description: newObject.description,
                         documentType: newObject.documentType,
                         documentTypeId: newObject.documentTypeId,
+                        documentNumber: newObject.documentNumber,
+                        expirationDate: newObject.expirationDate,
+                        issueDate: newObject.issueDate,
                         statusId: newObject.statusId,
                         attachments: [
                             {

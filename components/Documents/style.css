@@ -105,6 +105,10 @@
     border-bottom: 1px solid #D6D6D6;
 }
 
+.boldLabel {
+    color: rgba(0, 0, 0, 0.87);
+}
+
 .toolbox {
     display: table;
     line-height: 1;

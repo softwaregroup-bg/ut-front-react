@@ -95,7 +95,10 @@ const fileSchema = PropTypes.shape({
         type: PropTypes.string.isRequired,
         size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         dateUploaded: PropTypes.string,
-        description: PropTypes.string
+        description: PropTypes.string,
+        documentNumber: PropTypes.string,
+        expirationDate: PropTypes.string,
+        issueDate: PropTypes.string
     }).isRequired
 });
 FileDetailsPopup.propTypes = {

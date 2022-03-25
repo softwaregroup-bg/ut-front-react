@@ -43,6 +43,9 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
                 documentId: docId,
                 documentTypeId: item.documentTypeId,
                 description: item.documentDescription || null,
+                documentNumber: item.documentNumber,
+                expirationDate: item.expirationDate || null,
+                issueDate: item.issueDate || null,
                 statusId: item.statusId
             });
             attachments.push({
@@ -218,7 +221,10 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                 const docObj = {
                     documentId: tmpDocId,
                     documentTypeId: doc.documentTypeId,
-                    description: doc.description || null
+                    description: doc.description || null,
+                    documentNumber: doc.documentNumber,
+                    expirationDate: doc.expirationDate || null,
+                    issueDate: doc.issueDate || null,
                 };
                 const attObj = {
                     attachmentId: tmpAttId,
@@ -259,7 +265,10 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     documentId: documentId,
                     documentTypeId: doc.documentTypeId,
                     statusId: statusId,
-                    description: doc.description || null
+                    description: doc.description || null,
+                    documentNumber: doc.documentNumber,
+                    expirationDate: doc.expirationDate || null,
+                    issueDate: doc.issueDate || null,
                 };
                 const attObj = {
                     attachmentId: att.attachmentId,

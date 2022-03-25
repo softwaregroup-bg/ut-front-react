@@ -51,7 +51,6 @@ export default class DatePicker extends Component {
                         InputProps={this.props.InputProps}
                         fullWidth={this.props.fullWidth || true}
                         format={this.props.format}
-
                     />
                     <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
