@@ -224,7 +224,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     description: doc.description || null,
                     documentNumber: doc.documentNumber,
                     expirationDate: doc.expirationDate || null,
-                    issueDate: doc.issueDate || null,
+                    issueDate: doc.issueDate || null
                 };
                 const attObj = {
                     attachmentId: tmpAttId,
@@ -268,7 +268,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     description: doc.description || null,
                     documentNumber: doc.documentNumber,
                     expirationDate: doc.expirationDate || null,
-                    issueDate: doc.issueDate || null,
+                    issueDate: doc.issueDate || null
                 };
                 const attObj = {
                     attachmentId: att.attachmentId,
