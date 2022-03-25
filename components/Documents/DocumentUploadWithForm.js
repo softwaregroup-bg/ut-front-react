@@ -119,40 +119,39 @@ class DocumentUploadWithForm extends Component {
                     />
                 </div>
                 <div className={style.formRow}>
-                        <DatePicker
-                            label={'Issue Date'}
-                            defaultValue= {this.state.issueDate}
-                            onChange={(obj) => {
-                                this.setState({
-                                    issueDate: obj.value
-                                }, this.handleValidation(this.state.fileType, obj.value));
-                            }}
-                            maxDate= {new Date()}
-                            format="dd/MM/yyyy"
-                            clearable={true}
-                            disabled={disabledField}
-                            wrapperClassName={style.boldLabel}
-                            withVerticalClass={true}
-                        />  
+                    <DatePicker
+                        label={'Issue Date'}
+                        defaultValue= {this.state.issueDate}
+                        onChange={(obj) => {
+                            this.setState({
+                                issueDate: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        maxDate= {new Date()}
+                        format="dd/MM/yyyy"
+                        clearable={true}
+                        disabled={disabledField}
+                        wrapperClassName={style.boldLabel}
+                        withVerticalClass={true}
+                    />
                 </div>
                 <div className={style.formRow}>
-                        <DatePicker
-                            label={'Expiration Date'}
-                            defaultValue= {this.state.expirationDate}
-                            onChange={(obj) => {
-                                this.setState({
-                                    expirationDate: obj.value
-                                }, this.handleValidation(this.state.fileType, obj.value));
-                            }}
-                            minDate= {new Date()}
-                            format="dd/MM/yyyy"
-                            clearable={true}
-                            disabled={disabledField}
-                            wrapperClassName={style.boldLabel}
-                            withVerticalClass={true}
-                        />  
+                    <DatePicker
+                        label={'Expiration Date'}
+                        defaultValue= {this.state.expirationDate}
+                        onChange={(obj) => {
+                            this.setState({
+                                expirationDate: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        minDate= {new Date()}
+                        format="dd/MM/yyyy"
+                        clearable={true}
+                        disabled={disabledField}
+                        wrapperClassName={style.boldLabel}
+                        withVerticalClass={true}
+                    />
                 </div>
-                
                 <div className={style.formRow}>
                     <Input
                         label='Description'
