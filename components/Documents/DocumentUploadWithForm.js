@@ -6,6 +6,7 @@ import { validateAll } from '../../utils/validator';
 import Input from '../Input';
 import Dropdown from '../Input/Dropdown';
 import DocumentUpload from '../DocumentUpload';
+import DatePicker from '../DatePicker/Simple';
 import style from './style.css';
 
 class DocumentUploadWithForm extends Component {
@@ -15,6 +16,9 @@ class DocumentUploadWithForm extends Component {
             fileType: '',
             description: '',
             attachmentId: 0,
+            documentNumber: '',
+            expirationDate: null,
+            issueDate: null,
             isValidForm: false,
             errors: {}
         };
@@ -36,6 +40,9 @@ class DocumentUploadWithForm extends Component {
                 this.setState({
                     fileType: nextProps.editValues.documentTypeId,
                     description: nextProps.editValues.description,
+                    documentNumber: nextProps.editValues.documentNumber,
+                    expirationDate: nextProps.editValues.expirationDate,
+                    issueDate: nextProps.editValues.issueDate,
                     isValidForm: true,
                     attachmentId: nextProps.editValues.attachmentId
                 });
@@ -43,6 +50,9 @@ class DocumentUploadWithForm extends Component {
                 this.setState({
                     fileType: '',
                     description: '',
+                    documentNumber: '',
+                    expirationDate: null,
+                    issueDate: null,
                     isValidForm: false,
                     attachmentId: 0
                 });
@@ -94,6 +104,57 @@ class DocumentUploadWithForm extends Component {
                 </div>
                 <div className={style.formRow}>
                     <Input
+                        label='Document Number'
+                        keyProp='documentNumber'
+                        placeholder='Document number'
+                        value={this.state.documentNumber}
+                        onChange={(obj) => {
+                            this.setState({
+                                documentNumber: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        isValid={this.state.errors.documentNumber === undefined}
+                        errorMessage={this.state.errors.documentNumber}
+                        readonly={disabledField}
+                    />
+                </div>
+                <div className={style.formRow}>
+                        <DatePicker
+                            label={'Issue Date'}
+                            defaultValue= {this.state.issueDate}
+                            onChange={(obj) => {
+                                this.setState({
+                                    issueDate: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            maxDate= {new Date()}
+                            format="dd/MM/yyyy"
+                            clearable={true}
+                            disabled={disabledField}
+                            wrapperClassName={style.boldLabel}
+                            withVerticalClass={true}
+                        />  
+                </div>
+                <div className={style.formRow}>
+                        <DatePicker
+                            label={'Expiration Date'}
+                            defaultValue= {this.state.expirationDate}
+                            onChange={(obj) => {
+                                this.setState({
+                                    expirationDate: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            minDate= {new Date()}
+                            format="dd/MM/yyyy"
+                            clearable={true}
+                            disabled={disabledField}
+                            wrapperClassName={style.boldLabel}
+                            withVerticalClass={true}
+                        />  
+                </div>
+                
+                <div className={style.formRow}>
+                    <Input
                         label='Description'
                         keyProp='description'
                         placeholder='Description of the document'
@@ -116,6 +177,9 @@ class DocumentUploadWithForm extends Component {
         this.setState({
             fileType: '',
             description: '',
+            documentNumber: '',
+            expirationDate: null,
+            issueDate: null,
             isValidForm: false
         });
         this.props.closePopup();
@@ -130,6 +194,10 @@ class DocumentUploadWithForm extends Component {
             }
         }
         const description = this.state.description;
+        const documentNumber = this.state.documentNumber;
+        const expirationDate = this.state.expirationDate;
+        const issueDate = this.state.issueDate;
+
         this.closeHandler();
         if (this.props.type === 'add') {
             this.props.uploadNewDocument({
@@ -137,6 +205,9 @@ class DocumentUploadWithForm extends Component {
                 documentType: type.name,
                 statusId: 'new',
                 description: description,
+                documentNumber: documentNumber,
+                issueDate: issueDate,
+                expirationDate: expirationDate,
                 ...uploadedFile
             });
         } else if (this.props.type === 'replace') {

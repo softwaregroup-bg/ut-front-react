@@ -26,7 +26,6 @@ export default class DatePicker extends Component {
         const readonlyStyle = disabled ? style.readonlyInput : '';
         const datePickerLabeled = label ? style.datePickerLabeled : '';
         const labelStyle = withVerticalClass ? style.labelWrap : style.labelWrapHorizontal;
-
         const dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
 
         return (

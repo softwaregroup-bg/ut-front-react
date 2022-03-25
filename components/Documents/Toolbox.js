@@ -253,17 +253,24 @@ class Toolbox extends Component {
             const closeHandler = () => {
                 this.setState({ showDetailsPopUp: false });
             };
-            const file = {
-                content: selectedAttachment.getIn(['attachments', 0, 'url']),
-                details: {
-                    type: selectedAttachment.getIn(['attachments', 0, 'contentType']),
-                    extension: selectedAttachment.getIn(['attachments', 0, 'extension']),
-                    dateUploaded: selectedAttachment.get('createdDate'),
-                    description: selectedAttachment.get('description'),
-                    width: selectedAttachment.get('width'),
-                    height: selectedAttachment.get('height')
-                }
-            };
+            let file = selectedAttachment.get('attachments').toJS();
+            file = Array.isArray(file) ? file : [file];
+            file = file.map(
+                file => ({
+                    content: file.url,
+                    details: {
+                        type: file.contentType,
+                        extension: file.extension,
+                        dateUploaded: selectedAttachment.get('createdDate'),
+                        description: selectedAttachment.get('description'),
+                        documentNumber: selectedAttachment.get('documentNumber'),
+                        issueDate: selectedAttachment.get('issueDate'),
+                        expirationDate: selectedAttachment.get('expirationDate'),
+                        width: selectedAttachment.get('width'),
+                        height: selectedAttachment.get('height')
+                    }
+                })
+            );
 
             return (
                 <FileDetailsPopup
