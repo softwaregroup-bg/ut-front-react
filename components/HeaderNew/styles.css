@@ -114,3 +114,23 @@ body .profileInfoPopoverMenu {
   padding: 0;
   min-width: 110px;
 }
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 767px) {
+  /* navigation container */
+  .headerContainer {
+    height: auto;
+    justify-content: space-between;
+  }
+  /* logo */
+  .headerLogoContainer {
+    display:none;
+  }
+  /* widgets */
+  .profileInfo {
+    flex: 0;
+  }
+  .profileInfoContainer {
+    margin-right: 0;
+  }
+
+}

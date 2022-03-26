@@ -60,7 +60,9 @@ class SearchBox extends Component {
             <div className={this.getStyle('searchBoxWrap')}>
                 {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</span>) : ''}
                 <div className={classnames.apply(undefined, boxStyles)}>
-                    <input value={this.state.value} onKeyUp={this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} />
+                    <input value={this.state.value} onKeyUp={this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} disabled={this.props.disabled
+                    }
+                    />
                     <button onClick={this.handleSearch} />
                 </div>
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
@@ -70,6 +72,7 @@ class SearchBox extends Component {
 }
 
 SearchBox.propTypes = {
+    disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     externalStyle: PropTypes.object,
     label: PropTypes.node,
@@ -84,6 +87,7 @@ SearchBox.propTypes = {
 };
 
 SearchBox.defaultProps = {
+    disabled: false,
     placeholder: '',
     defaultValue: '',
     useDefaultStyles: false,

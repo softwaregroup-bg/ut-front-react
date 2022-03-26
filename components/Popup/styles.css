@@ -94,3 +94,21 @@
     padding: 10px;
     max-height: 240px;
 }
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 359px) {
+    .popupContainer {
+        min-width: 240px;
+    }
+  }
+
+  @media only screen and (min-device-width: 360px) and (max-device-width: 480px) {
+    .popupContainer {
+        min-width: 320px;
+    }
+  }
+
+  @media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
+    .popupContainer {
+        min-width: 440px;
+    }
+  }

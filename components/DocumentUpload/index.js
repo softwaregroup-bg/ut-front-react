@@ -8,7 +8,7 @@ import { POPUP_MIN_OFFSETS, POPUP_HEADER_HEIGHT, POPUP_FOOTER_HEIGHT, POPUP_PADD
 import { DEFAULT_ASPECT_RATIO } from './config';
 import { getFileDimensions, getViewport } from '../../utils/image';
 import styles from './styles.css';
-import { getFileExtension } from './helpers';
+import { getFileExtension, ERROR_STATUS_CODES } from './helpers';
 
 export default class DocumentUpload extends Component {
     constructor() {
@@ -305,6 +305,14 @@ export default class DocumentUpload extends Component {
         this.setState({
             isUploading: false
         });
+        // fix(MSA-1185): Document upload: Show user friendly error message when document uploaded is too large
+        if (attachmentResult.error) {
+            let errorMsg = attachmentResult.error.message || attachmentResult.error.statusText;
+            if (attachmentResult.error.statusCode === ERROR_STATUS_CODES.request_entity_too_large) {
+                errorMsg = 'Document size is greater than maximum allowed.';
+            }
+            return this.setError(errorMsg);
+        }
         if (attachmentResult) {
             const reader = new window.FileReader();
             reader.onload = (data) => {

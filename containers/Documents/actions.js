@@ -118,6 +118,7 @@ export function changeDocumentFilter(identifier, filter) {
 export function uploadDocument(params) {
     return {
         type: UPLOAD_DOCUMENT,
+        suppressErrorWindow: true,
         request: 'document/document/upload',
         method: 'document.document.upload',
         params

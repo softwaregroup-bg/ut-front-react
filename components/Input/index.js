@@ -23,12 +23,18 @@ class TextField extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.notifyForChange = this.notifyForChange.bind(this);
+        this.translate = this.translate.bind(this);
         this.style = props.customStyle || defaultStyle;
     }
 
+    static contextTypes = {
+        checkPermission: PropTypes.func,
+        translate: PropTypes.func,
+        portalName: PropTypes.string
+    };
+
     componentWillReceiveProps({value, isValid, errorMessage}) {
         this.initialValue = value;
-
         if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
                 value: value,
@@ -82,13 +88,17 @@ class TextField extends Component {
         });
     }
 
+    translate(stringToTranslate) {
+        return this.context && this.context.translate ? this.context.translate(stringToTranslate) : stringToTranslate;
+    }
+
     render() {
         const { label, type, placeholder, onClick, onBlur, dependancyDisabledInputTooltipText, inputWrapClassName, wrapperClassName, labelClassName } = this.props;
         const { isValid, errorMessage } = this.state.valid;
         const zeroHeightStyle = isValid ? this.style.hh : '';
         const value = this.state.value !== undefined && this.state.value !== null ? this.state.value : '';
 
-        const input = <input ref='textInput' type={type} className={classnames(this.inputClassName, this.props.classes.border)} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={placeholder} />;
+        const input = <input ref='textInput' type={type} className={classnames(this.inputClassName, this.props.classes.border)} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={this.translate(placeholder)} />;
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (

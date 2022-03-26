@@ -179,3 +179,14 @@
     margin-right: 0px;
     margin-left: 5px;
 }
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 767px) {
+    /* left */
+    .pageSwitherWrap {
+        display: none;
+    }
+    /* right */
+    .pageSizeBoxWrap {
+        display: none;
+    }
+}
