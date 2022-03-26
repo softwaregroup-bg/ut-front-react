@@ -1,4 +1,5 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Popover from '@material-ui/core/Popover';
 import MenuList from '@material-ui/core/MenuList';
@@ -8,7 +9,7 @@ import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 import Box from '@material-ui/core/Box';
 import style from './style.css';
 
-import Dropdown from './Dropdown';
+import {Dropdown} from './Dropdown';
 import Checkbox from './Checkbox';
 
 class MultiSelectDropdown extends Dropdown {
@@ -107,7 +108,7 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     renderDropDown() {
-        const { cssStyle, mergeStyles, defaultSelected, isValid } = this.props;
+        const { cssStyle, mergeStyles, defaultSelected, isValid, classes } = this.props;
         const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         const arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
         const errorDropDownStyle = !isValid ? ddstyles.error : '';
@@ -121,7 +122,7 @@ class MultiSelectDropdown extends Dropdown {
 
         return (
             <>
-                <div className={classnames(ddstyles.pointer, ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
+                <div className={classnames(ddstyles.pointer, ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled, classes.border)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
@@ -152,4 +153,8 @@ class MultiSelectDropdown extends Dropdown {
     }
 }
 
-export default MultiSelectDropdown;
+export default withStyles(({palette}) => ({
+    border: {
+        borderColor: palette.divider
+    }
+}))(MultiSelectDropdown);

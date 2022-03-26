@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Immutable from 'immutable';
 import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
@@ -719,7 +720,7 @@ class GridToolBox extends Component {
             );
         }
         return (
-            <div className={cssStandard.actionBarWrap}>
+            <div className={classnames(cssStandard.actionBarWrap, this.props.classes.paper)}>
                 <div className={cssStandard.gridToolboxWrap}>
                     {showFilter && this.renderFilters()}
                     {!showFilter && this.renderActionButtons()}
@@ -730,6 +731,7 @@ class GridToolBox extends Component {
 }
 
 GridToolBox.propTypes = {
+    classes: PropTypes.object,
     cssStandard: PropTypes.bool,
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
@@ -840,4 +842,9 @@ GridToolBox.defaultProps = {
     showActionButtonsOnSelect: false
 };
 
-export default GridToolBox;
+export default withStyles(({palette}) => ({
+    paper: {
+        borderBottom: `1px solid ${palette.divider}`,
+        background: palette.background.paper
+    }
+}))(GridToolBox);

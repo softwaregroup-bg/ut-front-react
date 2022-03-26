@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
 import StandardButton from '../../components/StandardButton';
 import { Link } from 'react-router-dom';
 import Text from '../Text';
@@ -8,6 +10,7 @@ import style from './style.css';
 
 class Header extends React.Component {
     static propTypes = {
+        classes: PropTypes.object,
         text: PropTypes.node.isRequired,
         buttons: PropTypes.arrayOf(PropTypes.shape({
             text: PropTypes.string.isRequired,
@@ -15,9 +18,7 @@ class Header extends React.Component {
             onClick: PropTypes.func,
             permissions: PropTypes.array
         })),
-        location: PropTypes.object,
-        buttonsRaw: PropTypes.node,
-        breadcrumbsRemoveSlashes: PropTypes.number
+        buttonsRaw: PropTypes.node
     }
 
     static defaultProps = {
@@ -32,10 +33,10 @@ class Header extends React.Component {
     }
 
     render() {
-        const { text, buttons, buttonsRaw } = this.props;
+        const { text, buttons, buttonsRaw, classes } = this.props;
 
         return (
-            <div className={style.headerWrapper}>
+            <div className={classnames(style.headerWrapper, classes.paper)}>
                 <h1 className={style.heading}>
                     <div className={style.headingTextWrap}><Text>{text}</Text></div>
                 </h1>
@@ -83,4 +84,8 @@ class Header extends React.Component {
     }
 };
 
-export default Header;
+export default withStyles(({palette}) => ({
+    paper: {
+        background: palette.background.paper
+    }
+}))(Header);

@@ -3,8 +3,7 @@ import React from 'react';
 import style from './style.css';
 // import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { matchPath } from 'react-router';
-import enhanceWithClickOutside from 'react-click-outside';
+import { matchPath, withRouter } from 'react-router';
 
 import checkImage from './images/check.png';
 
@@ -15,12 +14,28 @@ class TabDropDown extends React.Component {
             open: false
         };
         this.toggleOpen = this.toggleOpen.bind(this);
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
     handleClickOutside(event) {
-        this.setState({
-            open: false
-        });
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.setState({
+                open: false
+            });
+        }
     }
 
     toggleOpen() {
@@ -32,7 +47,7 @@ class TabDropDown extends React.Component {
     render() {
         const list = this.props.data.map((tab, i) => {
             let activeClassName;
-            const isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
+            const isLinkActive = tab && tab.pathname && matchPath(this.props.location.pathname, {path: tab.pathname, exact: true});
             const handleClick = () => {
                 this.setState({
                     open: false
@@ -58,7 +73,7 @@ class TabDropDown extends React.Component {
         });
         const opened = this.state.open ? 'block' : 'none';
         return (
-            <div style={{height: '100%'}}>
+            <div style={{height: '100%'}} ref={this.setWrapperRef}>
                 <div className={style.tabDdBtn} onClick={this.toggleOpen} />
                 <ul className={style.tabDdList} style={{display: opened}}>
                     {list}
@@ -69,6 +84,7 @@ class TabDropDown extends React.Component {
 }
 
 TabDropDown.propTypes = {
+    location: PropTypes.object.isRequired,
     data: PropTypes.array,
     onSelectItem: PropTypes.func,
     activeItem: PropTypes.number
@@ -79,8 +95,4 @@ TabDropDown.defaultProps = {
     onSelectItem: () => {}
 };
 
-TabDropDown.contextTypes = {
-    router: PropTypes.object.isRequired
-};
-
-export default enhanceWithClickOutside(TabDropDown);
+export default withRouter(TabDropDown);

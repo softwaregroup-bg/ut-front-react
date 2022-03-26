@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
 import { textValidations, customValidations } from '../../validator/constants';
 import inputValidator from './validators/input';
@@ -97,7 +98,7 @@ class TextField extends Component {
         const zeroHeightStyle = isValid ? this.style.hh : '';
         const value = this.state.value !== undefined && this.state.value !== null ? this.state.value : '';
 
-        const input = <input ref='textInput' type={type} className={this.inputClassName} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={this.translate(placeholder)} />;
+        const input = <input ref='textInput' type={type} className={classnames(this.inputClassName, this.props.classes.border)} value={value} onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={this.translate(placeholder)} />;
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (
@@ -125,6 +126,7 @@ class TextField extends Component {
 }
 
 TextField.propTypes = {
+    classes: PropTypes.object,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     keyProp: PropTypes.oneOfType([
         PropTypes.string,
@@ -173,4 +175,8 @@ TextField.defaultProps = {
     onClick: () => {}
 };
 
-export default TextField;
+export default withStyles(({palette}) => ({
+    border: {
+        borderColor: palette.divider
+    }
+}))(TextField);
