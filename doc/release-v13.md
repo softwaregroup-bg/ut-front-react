@@ -22,4 +22,4 @@
 
 ## Full change set
 
-[https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.10...v13.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.10...v13.0.1)
+[https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.10...v13.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.10...v13.0.0)
