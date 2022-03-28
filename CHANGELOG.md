@@ -1,3 +1,12 @@
+## [13.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.1...v13.0.2) (2022-03-28)
+
+
+### Bug Fixes
+
+* remove bad width ([308d619](https://github.com/softwaregroup-bg/ut-front-react/commit/308d6192981c563b4c090dcaf34dcecbe1423cbf))
+
+
+
 ## [13.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.0...v13.0.1) (2022-03-28)
 
 
