@@ -263,6 +263,9 @@ class Toolbox extends Component {
                         extension: file.extension,
                         dateUploaded: selectedAttachment.get('createdDate'),
                         description: selectedAttachment.get('description'),
+                        documentNumber: selectedAttachment.get('documentNumber'),
+                        issueDate: selectedAttachment.get('issueDate'),
+                        expirationDate: selectedAttachment.get('expirationDate'),
                         width: selectedAttachment.get('width'),
                         height: selectedAttachment.get('height')
                     }

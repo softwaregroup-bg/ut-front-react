@@ -24,7 +24,7 @@ export default class FileDetailedView extends Component {
             let text = file.details[key] ? file.details[key] : 'None';
             const textStyle = file.details[key] ? '' : styles.fileDetailsNoText;
 
-            if (key === 'dateUploaded') {
+            if (['dateUploaded', 'issueDate', 'expirationDate'].includes(key)) {
                 text = <DateComponent>{text}</DateComponent>;
             }
 

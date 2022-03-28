@@ -33,6 +33,8 @@ class DocumentsGrid extends Component {
             case 'extension':
                 return obj.attachments && obj.attachments[0] ? obj.attachments[0].extension : '';
             case 'createdDate':
+            case 'issueDate':
+            case 'expirationDate':
                 return <DateComponent>{obj.createdDate}</DateComponent>;
             case 'statusId': {
                 let label = obj.statusId;
