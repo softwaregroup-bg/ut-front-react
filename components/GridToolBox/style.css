@@ -17,7 +17,7 @@
 
 .toolbarElementsContainer {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
 .tableButtonsShowed {
@@ -138,10 +138,6 @@
     width: 70%;
     text-align: left;
     margin: 5px auto;
-}
-
-.advancedSearchDialog {
-    width: 40%;
 }
 
 .bold {
