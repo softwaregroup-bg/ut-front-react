@@ -33,9 +33,11 @@ class DocumentsGrid extends Component {
             case 'extension':
                 return obj.attachments && obj.attachments[0] ? obj.attachments[0].extension : '';
             case 'createdDate':
+                return <DateComponent>{ obj.createdDate }</DateComponent>;
             case 'issueDate':
+                return <DateComponent>{ obj.issueDate }</DateComponent>;
             case 'expirationDate':
-                return <DateComponent>{obj.createdDate}</DateComponent>;
+                return <DateComponent>{obj.expirationDate }</DateComponent>;
             case 'statusId': {
                 let label = obj.statusId;
                 if (obj.statusId === 'approved') {
