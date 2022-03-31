@@ -1,3 +1,12 @@
+## [13.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.2...v13.0.3) (2022-03-31)
+
+
+### Bug Fixes
+
+* **ECNT-756:** Incorrect dates ([#611](https://github.com/softwaregroup-bg/ut-front-react/issues/611)) ([b9e4742](https://github.com/softwaregroup-bg/ut-front-react/commit/b9e474201f46c82c06aea393b3a1c08456db692f))
+
+
+
 ## [13.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.1...v13.0.2) (2022-03-28)
 
 
