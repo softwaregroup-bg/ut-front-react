@@ -233,12 +233,13 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     extension: att.extension,
                     contentType: att.contentType,
                     documentId: tmpDocId,
-                    attachmentSizeId: 'original'
+                    attachmentSizeId: 'original',
+                    page: att.page
                 };
                 const actorDoc = {
                     actorId: actorId,
                     documentId: tmpDocId,
-                    documentOrder: 255
+                    documentOrder: doc.documentOrder || 255
                 };
                 resultDocuments.push(docObj);
                 resultAttachments.push(attObj);
@@ -277,12 +278,13 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     extension: att.extension,
                     contentType: att.contentType,
                     documentId: documentId,
-                    attachmentSizeId: 'original'
+                    attachmentSizeId: 'original',
+                    page: att.page
                 };
                 const actorDoc = {
                     actorId: actorId,
                     documentId: documentId,
-                    documentOrder: 255
+                    documentOrder: doc.documentOrder || 255
                 };
                 if (doc.documentUnapprovedId && att.attachmentUnapprovedId) {
                     docObj.documentUnapprovedId = actorDoc.documentUnapprovedId = doc.documentUnapprovedId.replace(/\*/g, '');
