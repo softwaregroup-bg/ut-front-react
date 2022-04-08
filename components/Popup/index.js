@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog from '@material-ui/core/Dialog';
 import classnames from 'classnames';
@@ -23,7 +24,7 @@ class PopupInternal extends Component {
         } = this.props;
 
         return (
-            <div className={classnames(className)}>
+            <div className={classnames(styles.popupContainer, className)}>
                 {header && <Header className={header.className} text={header.text} closePopup={closePopup} closeIcon={header.closeIcon} />}
                 {staticContentTop && <div ref={(staticTop) => { this.staticTop = staticTop; }} className={classnames(styles.staticContentTop, staticContentTop.className)}>
                     {staticContentTop.content}
@@ -72,11 +73,11 @@ PopupInternal.propTypes = {
 
 class Popup extends Component {
     render() {
-        const { isOpen, fullWidth, closePopup, closeOnOverlayClick } = this.props;
+        const { isOpen, fullWidth, classes, closePopup, closeOnOverlayClick } = this.props;
 
         return (
             <Dialog open={isOpen} fullWidth={fullWidth} onClose={closePopup} disableBackdropClick={!closeOnOverlayClick} maxWidth='xl'>
-                <DialogContent>
+                <DialogContent className={classnames(classes.root)}>
                     <PopupInternal {...this.props} />
                 </DialogContent>
             </Dialog>
@@ -88,6 +89,7 @@ Popup.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     container: PropTypes.string,
     className: PropTypes.string,
+    classes: PropTypes.object,
     contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,
     closeOnOverlayClick: PropTypes.bool,
@@ -124,4 +126,11 @@ Popup.defaultProps = {
     closeOnOverlayClick: false
 };
 
-export default Popup;
+export default withStyles(({palette}) => ({
+    root: {
+        padding: 0,
+        '&:first-child': {
+            paddingTop: 0
+        }
+    }
+}))(Popup);
