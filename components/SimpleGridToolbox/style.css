@@ -5,6 +5,7 @@
     display: none;
 }
 .simpleToolbox.opened {
+    background: #ffffff;
     display: flex;
     align-items: center;
     flex-grow: 0;
@@ -27,5 +28,5 @@
     text-decoration: underline;
 }
 .simpleToolbox .content {
-   
+
 }
