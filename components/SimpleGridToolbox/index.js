@@ -41,7 +41,7 @@ Filters.defaultProps = {
 
 export default withStyles(({palette}) => ({
     filter: {
-        background: palette.background.default,
+        // background: palette.background.default,
         borderColor: palette.divider
     }
 }))(Filters);
