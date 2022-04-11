@@ -47,14 +47,27 @@ class Toolbox extends Component {
             this.setState({ showDetailsPopUp: true });
         };
         // Download button
+        // const downloadButtonHandler = () => {
+        //     const tempLink = document.createElement('a');
+        //     tempLink.href = selectedAttachment.getIn(['attachments', 0, 'url']);
+        //     tempLink.setAttribute('download', selectedAttachment.getIn(['attachments', 0, 'filename']));
+        //     tempLink.setAttribute('target', '_blank');
+        //     document.body.appendChild(tempLink);
+        //     tempLink.click();
+        //     document.body.removeChild(tempLink);
+        // };
         const downloadButtonHandler = () => {
             const tempLink = document.createElement('a');
-            tempLink.href = selectedAttachment.getIn(['attachments', 0, 'url']);
-            tempLink.setAttribute('download', selectedAttachment.getIn(['attachments', 0, 'filename']));
-            tempLink.setAttribute('target', '_blank');
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
+            const attachmentsToDownload = selectedAttachment.get('attachments')?.toJS();
+            const attachments = Array.isArray(attachmentsToDownload) ? attachmentsToDownload : [attachmentsToDownload];
+            attachments.forEach(element => {
+                tempLink.href = element.url;
+                tempLink.setAttribute('download', element.filename);
+                tempLink.setAttribute('target', '_blank');
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            });
         };
         // Delete
         const openDeleteConfirmationDialog = () => {
