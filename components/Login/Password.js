@@ -12,11 +12,11 @@ class Password extends React.Component {
     };
 
     getValue = () => {
-        return this.refs.f.getValue();
+        return this.f.getValue();
     };
 
     componentDidMount() {
-        this.refs.f.input.focus();
+        this.f.input.focus();
     }
 
     render() {
@@ -28,7 +28,7 @@ class Password extends React.Component {
                         type='password'
                         name='password'
                         onKeyDown={this.props.submit}
-                        ref='f'
+                        ref={(c) => { this.f = c; }}
                         style={textFieldStyle}
                         inputStyle={textFieldInputStyle}
                         underlineShow={false}

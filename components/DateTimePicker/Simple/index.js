@@ -207,7 +207,7 @@ class DateTimePicker extends Component {
                             onAccept={this.handleAccept('date')}
                             firstDayOfWeek={firstDayOfWeek}
                             variant='dialog'
-                            ref='date'
+                            ref={(c) => { this.date = c; }}
                             InputProps={{disableUnderline: true}}
                             maxDate={maxDate}
                         />
@@ -223,7 +223,7 @@ class DateTimePicker extends Component {
                                 mode={mode}
                                 onAccept={this.handleAccept('time')}
                                 variant='dialog'
-                                ref='time'
+                                ref={(c) => { this.time = c; }}
                         />
                         : timeType === 'timeDropdown'
                             ? <div className={style.ddframe}>

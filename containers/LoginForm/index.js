@@ -112,7 +112,7 @@ class LoginForm extends Component {
         const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
-                ref='loginForm'
+                ref={(c) => { this.loginForm = c; }}
                 className='loginForm'
                 inputs={inputs}
                 title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}

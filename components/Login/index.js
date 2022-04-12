@@ -26,13 +26,13 @@ class Login extends React.Component {
     loginWithUserPass = () => {
         this.props.loginRequest({
             username: this.props.values.username,
-            password: this.refs.password.getValue()
+            password: this.password.getValue()
         });
     };
 
     loginWithUser = () => {
         this.props.loginRequest({
-            username: this.refs.username.getValue()
+            username: this.username.getValue()
         });
     };
 
@@ -40,20 +40,20 @@ class Login extends React.Component {
         this.props.loginRequest({
             username: this.props.values.username,
             password: this.props.values.password,
-            otp: this.refs.otp.getValue()
+            otp: this.otp.getValue()
         });
     };
 
     loginWithBio = () => {
         this.props.loginRequest({
-            username: this.refs.username.getValue(),
-            bio: this.refs.password.getValue()
+            username: this.username.getValue(),
+            bio: this.password.getValue()
         });
     };
 
     switchTo = (to, transfer) => {
         return () => {
-            if ((to === 'bio' || to === 'otp' || to === 'password') && this.refs.username.getValue() === '') {
+            if ((to === 'bio' || to === 'otp' || to === 'password') && this.username.getValue() === '') {
                 return this.props.errorWindowToggle({message: 'Username is required'});
             }
             return this.props.switchTo(to, transfer);
@@ -73,9 +73,9 @@ class Login extends React.Component {
                     if (nextProps.loginType) {
                         const currentStep = nextProps.loginPolicy.filter((el) => (el.type === nextProps.loginType)).reduce((cur, el) => (el), {});
                         nextStep = nextProps.loginPolicy.filter((el) => (el.step > currentStep.step)).reduce((cur, el) => (el.step), 0);
-                        val[currentStep.type] = this.refs[currentStep.type].getValue(currentStep.type);
+                        val[currentStep.type] = this[currentStep.type].getValue(currentStep.type);
                     } else {
-                        val = {username: this.refs.username.getValue()};
+                        val = {username: this.username.getValue()};
                     }
                     if (nextStep) {
                         return this.props.switchTo(
@@ -122,19 +122,19 @@ class Login extends React.Component {
     }
 
     passwordLogIn = (e) => {
-        if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.password.getValue().length > 0)) {
+        if ((!e || !e.keyCode || e.keyCode === 13) && (this.password.getValue().length > 0)) {
             this.loginWithUserPass();
         }
     };
 
     userLogIn = (e) => {
-        if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.username.getValue().length > 0)) {
+        if ((!e || !e.keyCode || e.keyCode === 13) && (this.username.getValue().length > 0)) {
             this.loginWithUser();
         }
     };
 
     otpLogIn = (e) => {
-        if ((!e || !e.keyCode || e.keyCode === 13) && (this.refs.otp.getValue().length > 0)) {
+        if ((!e || !e.keyCode || e.keyCode === 13) && (this.otp.getValue().length > 0)) {
             this.loginWithOtp();
         }
     };
@@ -146,13 +146,13 @@ class Login extends React.Component {
                 r = <Bio />;
                 break;
             case 'otp':
-                r = <Otp submit={this.otpLogIn} ref='otp' />;
+                r = <Otp submit={this.otpLogIn} ref={(c) => { this.otp = c; }} />;
                 break;
             case 'password':
-                r = <Password submit={this.passwordLogIn} ref='password' />;
+                r = <Password submit={this.passwordLogIn} ref={(c) => { this.password = c; }} />;
                 break;
             default:
-                r = <Username submit={this.userLogIn} ref='username' />;
+                r = <Username submit={this.userLogIn} ref={(c) => { this.username = c; }}/>;
         }
 
         return r;
