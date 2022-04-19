@@ -48,7 +48,7 @@ class DocumentUploadWithForm extends Component {
                     issuedBy: nextProps.editValues.issuedBy,
                     isValidForm: true,
                     attachmentId: nextProps.editValues.attachmentId,
-                    countryId: nextProps.editValues.countryId,
+                    countryId: nextProps.editValues.countryId
                 });
             } else if (nextProps.type === 'add') {
                 this.setState({
