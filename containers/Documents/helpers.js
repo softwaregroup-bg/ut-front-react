@@ -46,7 +46,10 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
                 documentNumber: item.documentNumber,
                 expirationDate: item.expirationDate || null,
                 issueDate: item.issueDate || null,
-                statusId: item.statusId
+                issuedBy: item.issuedBy || null,
+                statusId: item.statusId,
+                countryId: item.countryId,
+                countryName: item.countryName || null
             });
             attachments.push({
                 contentType: item.attachments[0].contentType,
@@ -175,7 +178,7 @@ function insertAttachmentsInDocuments(documents = [], attachments = [], factor) 
     return documents.map((document) => {
         document.attachments = [];
         attachments.forEach((attachment) => {
-            if (attachment[factor] === document[factor]) {
+            if (document[factor] === attachment[factor].toString()) {
                 const identifier = attachment.hash || attachment.filename;
                 attachment.url = attachment.filename.indexOf('_file') > -1 ? documentTmpUploadPrefix + identifier : documentPrefix + identifier;
                 document.attachments.push(attachment);
@@ -225,7 +228,9 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     description: doc.description || null,
                     documentNumber: doc.documentNumber,
                     expirationDate: doc.expirationDate || null,
-                    issueDate: doc.issueDate || null
+                    issueDate: doc.issueDate || null,
+                    issuedBy: doc.issuedBy || null,
+                    countryId: doc.countryId
                 };
                 const attObj = {
                     attachmentId: tmpAttId,
@@ -270,7 +275,9 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     description: doc.description || null,
                     documentNumber: doc.documentNumber,
                     expirationDate: doc.expirationDate || null,
-                    issueDate: doc.issueDate || null
+                    issueDate: doc.issueDate || null,
+                    issuedBy: doc.issuedBy || null,
+                    countryId: doc.countryId
                 };
                 const attObj = {
                     attachmentId: att.attachmentId,

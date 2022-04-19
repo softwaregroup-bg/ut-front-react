@@ -98,7 +98,9 @@ const fileSchema = PropTypes.shape({
         description: PropTypes.string,
         documentNumber: PropTypes.string,
         expirationDate: PropTypes.string,
-        issueDate: PropTypes.string
+        issueDate: PropTypes.string,
+        countryName: PropTypes.string,
+        issuedBy: PropTypes.string
     }).isRequired
 });
 FileDetailsPopup.propTypes = {

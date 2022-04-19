@@ -268,6 +268,8 @@ class Toolbox extends Component {
                         description: selectedAttachment.get('description'),
                         documentNumber: selectedAttachment.get('documentNumber'),
                         issueDate: selectedAttachment.get('issueDate'),
+                        countryName: selectedAttachment.get('countryName'),
+                        issuedBy: selectedAttachment.get('issuedBy'),
                         expirationDate: selectedAttachment.get('expirationDate'),
                         width: selectedAttachment.get('width'),
                         height: selectedAttachment.get('height')
@@ -307,6 +309,7 @@ class Toolbox extends Component {
                 documentTypes={this.props.documentTypes}
                 allowedFileTypes={this.props.allowedFileTypes}
                 uploadURL={this.props.uploadURL}
+                countries={this.props.countries}
             />
         );
     }
@@ -324,6 +327,7 @@ class Toolbox extends Component {
 
 Toolbox.propTypes = {
     documents: PropTypes.array,
+    countries: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     documentArchived: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
