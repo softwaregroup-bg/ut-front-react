@@ -9,5 +9,5 @@ export const detailsMapping = {
 
 export const defaultImageDimensions = {
     width: 230,
-    height: 230
+    height: 300
 };
