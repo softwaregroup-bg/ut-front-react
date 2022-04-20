@@ -16,7 +16,7 @@ class DocumentUploadWithForm extends Component {
             fileType: '',
             description: '',
             attachmentId: 0,
-            countryId: 0,
+            countryId: null,
             documentNumber: '',
             expirationDate: null,
             issueDate: null,
@@ -60,7 +60,7 @@ class DocumentUploadWithForm extends Component {
                     issuedBy: null,
                     isValidForm: false,
                     attachmentId: 0,
-                    countryId: 0
+                    countryId: null
                 });
             }
         }
@@ -218,7 +218,7 @@ class DocumentUploadWithForm extends Component {
             issueDate: null,
             issuedBy: null,
             isValidForm: false,
-            countryId: 0
+            countryId: null
         });
         this.props.closePopup();
     };

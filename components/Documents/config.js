@@ -5,7 +5,7 @@ export const detailsMapping = {
     documentNumber: 'Doc. Number',
     issueDate: 'Issue Date',
     countryName: 'Issued Country',
-    issuedBy: 'Issue By',
+    issuedBy: 'Issued By',
     expirationDate: 'Expiration Date'
 };
 
