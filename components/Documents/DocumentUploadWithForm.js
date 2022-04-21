@@ -16,9 +16,11 @@ class DocumentUploadWithForm extends Component {
             fileType: '',
             description: '',
             attachmentId: 0,
+            countryId: null,
             documentNumber: '',
             expirationDate: null,
             issueDate: null,
+            issuedBy: null,
             isValidForm: false,
             errors: {}
         };
@@ -43,8 +45,10 @@ class DocumentUploadWithForm extends Component {
                     documentNumber: nextProps.editValues.documentNumber,
                     expirationDate: nextProps.editValues.expirationDate,
                     issueDate: nextProps.editValues.issueDate,
+                    issuedBy: nextProps.editValues.issuedBy,
                     isValidForm: true,
-                    attachmentId: nextProps.editValues.attachmentId
+                    attachmentId: nextProps.editValues.attachmentId,
+                    countryId: nextProps.editValues.countryId
                 });
             } else if (nextProps.type === 'add') {
                 this.setState({
@@ -53,8 +57,10 @@ class DocumentUploadWithForm extends Component {
                     documentNumber: '',
                     expirationDate: null,
                     issueDate: null,
+                    issuedBy: null,
                     isValidForm: false,
-                    attachmentId: 0
+                    attachmentId: 0,
+                    countryId: null
                 });
             }
         }
@@ -136,6 +142,37 @@ class DocumentUploadWithForm extends Component {
                     />
                 </div>
                 <div className={style.formRow}>
+                    <Dropdown
+                        label='Country'
+                        data={this.props.countries}
+                        keyProp='countryId'
+                        defaultSelected={this.state.countryId}
+                        placeholder='Select Country'
+                        onSelect={(obj) => {
+                            this.setState({
+                                countryId: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        disabled={disabledField}
+                    />
+                </div>
+                <div className={style.formRow}>
+                    <Input
+                        label='Issued By'
+                        keyProp='issuedBy'
+                        placeholder='Issued By'
+                        value={this.state.issuedBy}
+                        onChange={(obj) => {
+                            this.setState({
+                                issuedBy: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        isValid={this.state.errors.issuedBy === undefined}
+                        errorMessage={this.state.errors.issuedBy}
+                        readonly={disabledField}
+                    />
+                </div>
+                <div className={style.formRow}>
                     <DatePicker
                         label={'Expiration Date'}
                         defaultValue= {this.state.expirationDate}
@@ -179,7 +216,9 @@ class DocumentUploadWithForm extends Component {
             documentNumber: '',
             expirationDate: null,
             issueDate: null,
-            isValidForm: false
+            issuedBy: null,
+            isValidForm: false,
+            countryId: null
         });
         this.props.closePopup();
     };
@@ -196,6 +235,8 @@ class DocumentUploadWithForm extends Component {
         const documentNumber = this.state.documentNumber;
         const expirationDate = this.state.expirationDate;
         const issueDate = this.state.issueDate;
+        const issuedBy = this.state.issuedBy;
+        const countryId = this.state.countryId;
 
         this.closeHandler();
         if (this.props.type === 'add') {
@@ -206,7 +247,9 @@ class DocumentUploadWithForm extends Component {
                 description: description,
                 documentNumber: documentNumber,
                 issueDate: issueDate,
+                issuedBy: issuedBy,
                 expirationDate: expirationDate,
+                countryId: countryId,
                 ...uploadedFile
             });
         } else if (this.props.type === 'replace') {
@@ -251,6 +294,7 @@ DocumentUploadWithForm.propTypes = {
             name: PropTypes.string
         })
     ),
+    countries: PropTypes.array,
     uploadURL: PropTypes.string,
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
