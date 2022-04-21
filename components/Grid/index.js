@@ -62,7 +62,6 @@ class Grid extends Component {
         }
         this.setState({all: false});
     }
-    
 
     isAllChecked() {
         return this.state.all;
@@ -71,21 +70,21 @@ class Grid extends Component {
     render() {
         const {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
         const getRowColumns = () => {
-            let rowColumns = [];
-            if(this.props.hasIrregularHeader){
+            const rowColumns = [];
+            if (this.props.hasIrregularHeader) {
                 columns.map(col => {
-                    if(col.type === 'multi' || col.columns){
+                    if (col.type === 'multi' || col.columns) {
                         col.columns.map(lumn => {
-                            rowColumns.push(lumn)
-                        })
-                    }else {
-                        rowColumns.push(col)
+                            rowColumns.push(lumn);
+                        });
+                    } else {
+                        rowColumns.push(col);
                     }
                 });
                 return rowColumns;
             }
             return columns;
-        }
+        };
         let rowColumns = getRowColumns(columns);
 
         // Add empty column
@@ -97,23 +96,8 @@ class Grid extends Component {
         const trStyles = this.props.trStyles;
         const thStyles = this.props.thStyles;
         let header = '';
-        if(this.props.showTableHead){
+        if (this.props.showTableHead) {
             header = <Header
-            columns={columns}
-            sortable={sortableColumns}
-            onRefresh={onRefresh}
-            onCheck={this.onAllCheck}
-            canCheck={canCheck}
-            canColCustomize={canColCustomize}
-            onToggleColumn={onToggleColumn}
-            activeSort={activeSort}
-            isChecked={this.state.all}
-            onSort={onSort}
-            tdStyles={tdStyles}
-            thStyles={thStyles}
-        />
-            if(this.props.hasIrregularHeader){
-                header = <IrregularHeader
                 columns={columns}
                 sortable={sortableColumns}
                 onRefresh={onRefresh}
@@ -126,11 +110,26 @@ class Grid extends Component {
                 onSort={onSort}
                 tdStyles={tdStyles}
                 thStyles={thStyles}
-            />
+            />;
+            if (this.props.hasIrregularHeader) {
+                header = <IrregularHeader
+                    columns={columns}
+                    sortable={sortableColumns}
+                    onRefresh={onRefresh}
+                    onCheck={this.onAllCheck}
+                    canCheck={canCheck}
+                    canColCustomize={canColCustomize}
+                    onToggleColumn={onToggleColumn}
+                    activeSort={activeSort}
+                    isChecked={this.state.all}
+                    onSort={onSort}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                />;
             }
         }
         const grid = (
-            <table className={style.dataGridTable}>                
+            <table className={style.dataGridTable}>
                 {header}
                 <tbody>{rows.map((rowData, i) => {
                     const checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;

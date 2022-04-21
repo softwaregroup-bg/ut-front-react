@@ -37,20 +37,20 @@ class GridIrregularHeader extends Component {
         const { columns, sortable, onCheck, canCheck, onRefresh, isChecked, trStyles, thStyles, onToggleColumn, canColCustomize } = this.props;
         const haveSortable = sortable.length > 0;
 
-        let rowOneHeader = [];
-        let rowTwoHeader = [];
+        const rowOneHeader = [];
+        const rowTwoHeader = [];
 
         columns.map(cols => {
-            if(cols.type === 'multi' || cols.columns){
+            if (cols.type === 'multi' || cols.columns) {
                 rowOneHeader.push(
                     { name: cols.name, span: cols.columns.length }
                 );
                 cols.columns.map(col => {
-                    rowTwoHeader.push(col)
-                })                
-            }else {
-                rowOneHeader.push({name: '', span: 1})
-                rowTwoHeader.push(cols)
+                    rowTwoHeader.push(col);
+                });
+            } else {
+                rowOneHeader.push({name: '', span: 1});
+                rowTwoHeader.push(cols);
             }
         });
 
@@ -76,12 +76,12 @@ class GridIrregularHeader extends Component {
             ) : null;
         });
         const headCols1 = rowOneHeader.map((col, index) => {
-            let style = {background: '#27424D', color: 'white'}
-            if(col.span === 1){
+            let style = {background: '#27424D', color: 'white'};
+            if (col.span === 1) {
                 style = thStyles[index];
             }
             return (
-                <th style={style} colspan={col.span}>{col.name}</th>
+                <th key={col.name + index} style={style} colSpan={col.span}>{col.name}</th>
             );
         });
 
@@ -118,7 +118,7 @@ class GridIrregularHeader extends Component {
         return (
             <thead>
                 <tr>
-                {headCols1}
+                    {headCols1}
                 </tr>
                 <tr style={trStyles}>{headCols}</tr>
             </thead>

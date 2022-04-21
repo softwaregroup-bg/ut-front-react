@@ -20,11 +20,11 @@ class GridHeader extends Component {
 
         if (sortBy === col) {
             if (sortOrder + 1 > 2) {
-                this.setState({sortBy: '', sortOrder: 0});
+                this.setState({ sortBy: '', sortOrder: 0 });
                 this.props.onSort('', 0);
             } else {
                 const newSortOrder = sortOrder + 1;
-                this.setState({sortOrder: newSortOrder});
+                this.setState({ sortOrder: newSortOrder });
                 this.props.onSort(sortBy, newSortOrder);
             }
         } else {

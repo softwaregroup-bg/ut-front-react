@@ -19,12 +19,12 @@ class HeaderCell extends Component {
                 sortStyle = '';
                 break;
         }
-        if(this.props.irregularHeader){
+        if (this.props.irregularHeader) {
             return (
                 <th style={{width: 'auto', ...this.props.styles}}>
-                   <span onClick={this.props.canSort ? this.props.onSort : null} className={style.thTitle}><Text>{this.props.name}</Text> {this.props.canSort && <span className={sortStyle} />} </span>
+                    <span onClick={this.props.canSort ? this.props.onSort : null} className={style.thTitle}><Text>{this.props.name}</Text> {this.props.canSort && <span className={sortStyle} />} </span>
                 </th>
-            )
+            );
         }
 
         return (
