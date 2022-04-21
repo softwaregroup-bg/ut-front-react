@@ -1,3 +1,12 @@
+# [13.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.13...v13.1.0) (2022-04-21)
+
+
+### Features
+
+* Additional fields required in PAP for personnel data - ALZMFAC-254 ([#622](https://github.com/softwaregroup-bg/ut-front-react/issues/622)) ([1204d7d](https://github.com/softwaregroup-bg/ut-front-react/commit/1204d7d536c4043831243f703b97b7c0b5b85426))
+
+
+
 ## [13.0.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.12...v13.0.13) (2022-04-19)
 
 
