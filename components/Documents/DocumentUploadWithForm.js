@@ -141,7 +141,7 @@ class DocumentUploadWithForm extends Component {
                         withVerticalClass={true}
                     />
                 </div>
-                <div className={style.formRow}>
+                {!!this.props.countries.length && (<div className={style.formRow}>
                     <Dropdown
                         label='Country'
                         data={this.props.countries}
@@ -155,7 +155,7 @@ class DocumentUploadWithForm extends Component {
                         }}
                         disabled={disabledField}
                     />
-                </div>
+                </div>)}
                 <div className={style.formRow}>
                     <Input
                         label='Issued By'
@@ -304,6 +304,7 @@ DocumentUploadWithForm.propTypes = {
 
 DocumentUploadWithForm.defaultProps = {
     documentTypes: [],
+    countries: [],
     uploadNewDocument: () => {},
     replaceDocument: () => {},
     closePopup: () => {},
