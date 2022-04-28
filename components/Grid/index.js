@@ -4,6 +4,7 @@ import immutable from 'immutable';
 import classnames from 'classnames';
 
 import Header from './Header';
+import IrregularHeader from './IrregularHeader';
 import Row from './Row';
 
 import style from './style.css';
@@ -68,34 +69,68 @@ class Grid extends Component {
 
     render() {
         const {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
-        let rowColumns = columns;
+        const getRowColumns = () => {
+            const rowColumns = [];
+            if (this.props.hasIrregularHeader) {
+                columns.map(col => {
+                    if (col.type === 'multi' || col.columns) {
+                        col.columns.map(lumn => {
+                            rowColumns.push(lumn);
+                        });
+                    } else {
+                        rowColumns.push(col);
+                    }
+                });
+                return rowColumns;
+            }
+            return columns;
+        };
+        let rowColumns = getRowColumns(columns);
 
         // Add empty column
         if (onRefresh) {
-            rowColumns = columns.concat({});
+            rowColumns = getRowColumns(columns).concat({});
         }
 
         const tdStyles = this.props.tdStyles;
         const trStyles = this.props.trStyles;
         const thStyles = this.props.thStyles;
-
+        let header = '';
+        if (this.props.showTableHead) {
+            header = <Header
+                columns={columns}
+                sortable={sortableColumns}
+                onRefresh={onRefresh}
+                onCheck={this.onAllCheck}
+                canCheck={canCheck}
+                canColCustomize={canColCustomize}
+                onToggleColumn={onToggleColumn}
+                activeSort={activeSort}
+                isChecked={this.state.all}
+                onSort={onSort}
+                tdStyles={tdStyles}
+                thStyles={thStyles}
+            />;
+            if (this.props.hasIrregularHeader) {
+                header = <IrregularHeader
+                    columns={columns}
+                    sortable={sortableColumns}
+                    onRefresh={onRefresh}
+                    onCheck={this.onAllCheck}
+                    canCheck={canCheck}
+                    canColCustomize={canColCustomize}
+                    onToggleColumn={onToggleColumn}
+                    activeSort={activeSort}
+                    isChecked={this.state.all}
+                    onSort={onSort}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                />;
+            }
+        }
         const grid = (
             <table className={style.dataGridTable}>
-                {this.props.showTableHead &&
-                    <Header
-                        columns={columns}
-                        sortable={sortableColumns}
-                        onRefresh={onRefresh}
-                        onCheck={this.onAllCheck}
-                        canCheck={canCheck}
-                        canColCustomize={canColCustomize}
-                        onToggleColumn={onToggleColumn}
-                        activeSort={activeSort}
-                        isChecked={this.state.all}
-                        onSort={onSort}
-                        tdStyles={tdStyles}
-                        thStyles={thStyles}
-                    />}
+                {header}
                 <tbody>{rows.map((rowData, i) => {
                     const checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
 
@@ -151,6 +186,7 @@ Grid.propTypes = {
     canCheck: PropTypes.bool,
     showTableHead: PropTypes.bool,
     mapColumn: PropTypes.func,
+    hasIrregularHeader: PropTypes.bool,
 
     onSelect: PropTypes.func,
     canSelect: PropTypes.bool,
@@ -165,6 +201,7 @@ Grid.defaultProps = {
     checkedItems: immutable.List([]),
     rowIdentifier: 'actorId',
     cssStandard: false,
+    hasIrregularHeader: false,
     canCheck: true,
     showTableHead: true,
     mapColumn: (col, colData) => colData,

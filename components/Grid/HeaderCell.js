@@ -19,8 +19,16 @@ class HeaderCell extends Component {
                 sortStyle = '';
                 break;
         }
+        if (this.props.irregularHeader) {
+            return (
+                <th style={{width: 'auto', ...this.props.styles}}>
+                    <span onClick={this.props.canSort ? this.props.onSort : null} className={style.thTitle}><Text>{this.props.name}</Text> {this.props.canSort && <span className={sortStyle} />} </span>
+                </th>
+            );
+        }
 
         return (
+
             <th style={{width: 'auto', ...this.props.styles}}>
                 <span onClick={this.props.canSort ? this.props.onSort : null} className={style.thTitle}><Text>{this.props.name}</Text> {this.props.canSort && <span className={sortStyle} />} </span>
             </th>
@@ -33,14 +41,16 @@ HeaderCell.propTypes = {
     canSort: PropTypes.bool,
     onSort: PropTypes.func,
     sortState: PropTypes.number,
-    styles: PropTypes.object
+    styles: PropTypes.object,
+    irregularHeader: PropTypes.bool
 };
 
 HeaderCell.defaultProps = {
     onSort: function() {},
     styles: {},
     canSort: false,
-    sortState: 0
+    sortState: 0,
+    irregularHeader: false
 };
 
 export default HeaderCell;

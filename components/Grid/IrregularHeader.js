@@ -5,7 +5,7 @@ import Menu from '../GridMenu';
 import classnames from 'classnames';
 import style from './style.css';
 
-class GridHeader extends Component {
+class GridIrregularHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,11 +20,11 @@ class GridHeader extends Component {
 
         if (sortBy === col) {
             if (sortOrder + 1 > 2) {
-                this.setState({ sortBy: '', sortOrder: 0 });
+                this.setState({sortBy: '', sortOrder: 0});
                 this.props.onSort('', 0);
             } else {
                 const newSortOrder = sortOrder + 1;
-                this.setState({ sortOrder: newSortOrder });
+                this.setState({sortOrder: newSortOrder});
                 this.props.onSort(sortBy, newSortOrder);
             }
         } else {
@@ -37,8 +37,26 @@ class GridHeader extends Component {
         const { columns, sortable, onCheck, canCheck, onRefresh, isChecked, trStyles, thStyles, onToggleColumn, canColCustomize } = this.props;
         const haveSortable = sortable.length > 0;
 
-        const headCols = columns.map((col, index) => {
+        const rowOneHeader = [];
+        const rowTwoHeader = [];
+
+        columns.map(cols => {
+            if (cols.type === 'multi' || cols.columns) {
+                rowOneHeader.push(
+                    { name: cols.name, span: cols.columns.length }
+                );
+                cols.columns.map(col => {
+                    rowTwoHeader.push(col);
+                });
+            } else {
+                rowOneHeader.push({name: '', span: 1});
+                rowTwoHeader.push(cols);
+            }
+        });
+
+        const headCols = rowTwoHeader.map((col, index) => {
             const currentThStyle = thStyles[index];
+
             const handleSort = (e) => {
                 e.stopPropagation();
                 this.sort(col.key);
@@ -51,10 +69,20 @@ class GridHeader extends Component {
                     name={col.name}
                     canSort={haveSortable && sortable[index]}
                     onSort={handleSort}
+                    irregularHeader={true}
                     sortState={sortState}
                     styles={currentThStyle}
                 />
             ) : null;
+        });
+        const mainHeader = rowOneHeader.map((col, index) => {
+            let style = {background: '#27424D', color: 'white'};
+            if (col.span === 1) {
+                style = thStyles[index];
+            }
+            return (
+                <th key={col.name + index} style={style} colSpan={col.span}>{col.name}</th>
+            );
         });
 
         if (canCheck) {
@@ -89,13 +117,16 @@ class GridHeader extends Component {
 
         return (
             <thead>
+                <tr>
+                    {mainHeader}
+                </tr>
                 <tr style={trStyles}>{headCols}</tr>
             </thead>
         );
     }
 }
 
-GridHeader.propTypes = {
+GridIrregularHeader.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
@@ -117,7 +148,7 @@ GridHeader.propTypes = {
     onToggleColumn: PropTypes.func
 };
 
-GridHeader.defaultProps = {
+GridIrregularHeader.defaultProps = {
     sortable: [],
     activeSort: {},
     trStyles: {},
@@ -125,4 +156,4 @@ GridHeader.defaultProps = {
     onSort: () => {}
 };
 
-export default GridHeader;
+export default GridIrregularHeader;
