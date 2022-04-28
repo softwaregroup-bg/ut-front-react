@@ -75,7 +75,7 @@ class GridIrregularHeader extends Component {
                 />
             ) : null;
         });
-        const headCols1 = rowOneHeader.map((col, index) => {
+        const mainHeader = rowOneHeader.map((col, index) => {
             let style = {background: '#27424D', color: 'white'};
             if (col.span === 1) {
                 style = thStyles[index];
@@ -118,7 +118,7 @@ class GridIrregularHeader extends Component {
         return (
             <thead>
                 <tr>
-                    {headCols1}
+                    {mainHeader}
                 </tr>
                 <tr style={trStyles}>{headCols}</tr>
             </thead>
