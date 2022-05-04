@@ -61,7 +61,7 @@ export class ByCustomSearch extends Component {
                     />
                 </div>
                 <div className={style.customSearchTextField}>
-                    <SearchBox 
+                    <SearchBox
                         defaultValue={this.props.value}
                         onSearch={this.handleSearch}
                         disabled={isDisabled}
