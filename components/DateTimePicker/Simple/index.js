@@ -6,6 +6,9 @@ import {DatePicker, TimePicker} from '@material-ui/pickers';
 import Dropdown from './../../Input/Dropdown';
 import Text from '../../Text';
 import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
+import { DateTimePicker as DateAndTimePicker} from '@material-ui/pickers';
+import Today from '@material-ui/icons/Today';
+import { IconButton, InputAdornment } from '@material-ui/core';
 
 import style from './style.css';
 
@@ -163,9 +166,15 @@ class DateTimePicker extends Component {
         this.setState({ date });
     };
 
+    handleChangeDateTime = (date) => {
+        this.props.onChange({
+            value: date
+        });
+    };
+
     render() {
-        const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
-        const { defaultValue, timeType, maxDate } = this.props;
+        const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName, dateTimeCombined } = this.props;
+        const { defaultValue, timeType, maxDate, minDate, ampm, labelInternal, autoOk, formatDateTime, value } = this.props;
 
         const outerWrapStyle = label ? style.outerWrap : style.outerWrapNoLabel;
         const boldLabelStyle = boldLabel ? style.boldLabel : '';
@@ -191,7 +200,30 @@ class DateTimePicker extends Component {
         return (
             <div className={outerWrapStyle}>
                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
-                <div className={classnames(innerWrap, innerWrapperClassName)}>
+                {dateTimeCombined
+                    ? <div className={label ? classnames(style.innerWrapCombinedLabel, innerWrapperClassName) : classnames(style.innerWrapCombined, innerWrapperClassName)}>
+                            <DateAndTimePicker
+                            format={formatDateTime}
+                            value={this.props.value || this.props.defaultValue}
+                            onAccept={this.handleChangeDateTime}
+                            onChange={this.handleChange}
+                            maxDate={maxDate}
+                            minDate={minDate}
+                            ampm={ampm}
+                            label={labelInternal}
+                            autoOk={autoOk}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton>
+                                            <Today />
+                                        </IconButton>
+                                    </InputAdornment>
+                                )
+                            }}
+                            />
+                        </div>
+                    : <div className={classnames(innerWrap, innerWrapperClassName)}>
                     <div className={style.inputWrap}>
                         <DatePicker
                             value={this.state.date}
@@ -234,7 +266,7 @@ class DateTimePicker extends Component {
                                     defaultSelected={defaultValue ? this.formatTime(date) : ''}
                                 />
                             </div> : ''}
-                </div>
+                </div>}
             </div>
         );
     }
@@ -247,11 +279,21 @@ DateTimePicker.defaultProps = {
     container: 'dialog',
     timeFormat: 'HH:mm',
     dateFormat: 'yyyy-MM-dd',
-    data: timeValues24HrFormat
+    data: timeValues24HrFormat,
+    formatDateTime: 'yyyy/MM/dd HH:mm',
+    ampm: false,
+    labelInternal: '',
+    autoOk: false
 };
 DateTimePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
-    maxDate: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+    maxDate: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+    minDate: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+    formatDateTime: PropTypes.string,
+    ampm: PropTypes.bool,
+    labelInternal: PropTypes.string,
+    autoOk: PropTypes.bool,
     locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -267,7 +309,8 @@ DateTimePicker.propTypes = {
     transformTime: PropTypes.func,
     timeType: PropTypes.oneOf(['timeDropdown', 'timePicker']),
     innerWrapperClassName: PropTypes.string,
-    data: PropTypes.array
+    data: PropTypes.array,
+    dateTimeCombined: PropTypes.bool
 };
 
 DateTimePicker.contextTypes = {

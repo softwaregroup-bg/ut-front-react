@@ -29,6 +29,16 @@
     align-self: center;
 }
 
+.innerWrapCombinedLabel {
+    width: 60%;
+    align-self: center;
+}
+
+.innerWrapCombined {
+    width: 12rem;
+    align-self: center;
+}
+
 .labelWrap,
 .labelWrapTP {
     font-size: 14px;

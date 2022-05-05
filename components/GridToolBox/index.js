@@ -228,6 +228,7 @@ class GridToolBox extends Component {
                         labelTo={filterElement.labelTo}
                         boldLabel={renderInDialog}
                         maxDate={filterElement.maxDate}
+                        dateTimeCombined={filterElement.dateTimeCombined}
                     />
                 </div>);
             case filterElementTypes.customSearch:
@@ -749,6 +750,7 @@ GridToolBox.propTypes = {
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
             maxDate: PropTypes.string,
+            dateTimeCombined: PropTypes.bool,
 
             // DropDown
             data: PropTypes.arrayOf(
