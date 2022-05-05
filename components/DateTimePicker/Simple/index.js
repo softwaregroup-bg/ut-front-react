@@ -2,11 +2,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import {DatePicker, TimePicker} from '@material-ui/pickers';
+import { DatePicker, TimePicker, DateTimePicker as DateAndTimePicker } from '@material-ui/pickers';
 import Dropdown from './../../Input/Dropdown';
 import Text from '../../Text';
 import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
-import { DateTimePicker as DateAndTimePicker} from '@material-ui/pickers';
 import Today from '@material-ui/icons/Today';
 import { IconButton, InputAdornment } from '@material-ui/core';
 
@@ -73,7 +72,7 @@ class DateTimePicker extends Component {
     }
 
     handleAccept(ref) {
-        const {defaultValue, timeType} = this.props;
+        const { defaultValue, timeType } = this.props;
         const currentDate = new Date(defaultValue);
         return (newDate) => {
             if (newDate === currentDate) {
@@ -103,7 +102,7 @@ class DateTimePicker extends Component {
                     }
                 }
             } else if (ref === 'time' && timeType === 'timeDropdown') {
-                const timeSet = function() {
+                const timeSet = function () {
                     let time;
                     if (newDate.value.indexOf('am') > -1 || newDate.value.indexOf('pm') > -1) {
                         const newTime = newDate ? newDate.value.split(' ') : [];
@@ -159,7 +158,7 @@ class DateTimePicker extends Component {
             time.getHours(),
             time.getMinutes());
 
-        this.setState({date: newDate});
+        this.setState({ date: newDate });
     }
 
     handleChange = (date) => {
@@ -202,9 +201,9 @@ class DateTimePicker extends Component {
                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
                 {dateTimeCombined
                     ? <div className={label ? classnames(style.innerWrapCombinedLabel, innerWrapperClassName) : classnames(style.innerWrapCombined, innerWrapperClassName)}>
-                            <DateAndTimePicker
+                        <DateAndTimePicker
                             format={formatDateTime}
-                            value={this.props.value || this.props.defaultValue}
+                            value={value || defaultValue}
                             onAccept={this.handleChangeDateTime}
                             onChange={this.handleChange}
                             maxDate={maxDate}
@@ -221,32 +220,32 @@ class DateTimePicker extends Component {
                                     </InputAdornment>
                                 )
                             }}
-                            />
-                        </div>
-                    : <div className={classnames(innerWrap, innerWrapperClassName)}>
-                    <div className={style.inputWrap}>
-                        <DatePicker
-                            value={this.state.date}
-                            onChange={this.handleChange}
-                            open={this.state.open === 'date'}
-                            onClose={this.handleClose}
-                            onKeyUp={this.handleKeyPress('date')}
-                            cancelLabel={cancelLabel}
-                            okLabel={okLabel}
-                            container={container}
-                            initialDate={this.state.date}
-                            mode={mode}
-                            onAccept={this.handleAccept('date')}
-                            firstDayOfWeek={firstDayOfWeek}
-                            variant='dialog'
-                            ref='date'
-                            InputProps={{disableUnderline: true}}
-                            maxDate={maxDate}
                         />
-                        <button className={style.dateButton} onClick={() => this.handleOpen('date')} />
                     </div>
-                    {timeType === 'timePicker'
-                        ? <TimePicker
+                    : <div className={classnames(innerWrap, innerWrapperClassName)}>
+                        <div className={style.inputWrap}>
+                            <DatePicker
+                                value={this.state.date}
+                                onChange={this.handleChange}
+                                open={this.state.open === 'date'}
+                                onClose={this.handleClose}
+                                onKeyUp={this.handleKeyPress('date')}
+                                cancelLabel={cancelLabel}
+                                okLabel={okLabel}
+                                container={container}
+                                initialDate={this.state.date}
+                                mode={mode}
+                                onAccept={this.handleAccept('date')}
+                                firstDayOfWeek={firstDayOfWeek}
+                                variant='dialog'
+                                ref='date'
+                                InputProps={{ disableUnderline: true }}
+                                maxDate={maxDate}
+                            />
+                            <button className={style.dateButton} onClick={() => this.handleOpen('date')} />
+                        </div>
+                        {timeType === 'timePicker'
+                            ? <TimePicker
                                 onChange={(time) => this.setTime(time)}
                                 cancelLabel={cancelLabel}
                                 okLabel={okLabel}
@@ -256,17 +255,17 @@ class DateTimePicker extends Component {
                                 onAccept={this.handleAccept('time')}
                                 variant='dialog'
                                 ref='time'
-                        />
-                        : timeType === 'timeDropdown'
-                            ? <div className={style.ddframe}>
-                                <Dropdown
-                                    data={dropdownData}
-                                    keyProp='time'
-                                    onSelect={this.handleAccept('time')}
-                                    defaultSelected={defaultValue ? this.formatTime(date) : ''}
-                                />
-                            </div> : ''}
-                </div>}
+                            />
+                            : timeType === 'timeDropdown'
+                                ? <div className={style.ddframe}>
+                                    <Dropdown
+                                        data={dropdownData}
+                                        keyProp='time'
+                                        onSelect={this.handleAccept('time')}
+                                        defaultSelected={defaultValue ? this.formatTime(date) : ''}
+                                    />
+                                </div> : ''}
+                    </div>}
             </div>
         );
     }
