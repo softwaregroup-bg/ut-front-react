@@ -28,6 +28,7 @@ class ConfirmRejectionDialog extends Component {
     }
 
     renderContainer() {
+        const {messageLabel, getRejectReasonValidationRules } = this.props;
         const rejectReasonValidators = getRejectReasonValidationRules();
         const {errors} = this.props;
         if (this.props.showInput) {
@@ -35,7 +36,7 @@ class ConfirmRejectionDialog extends Component {
                 <div>
                     <TextArea
                         type='text'
-                        label='Reason:'
+                        label={ messageLabel ? `${messageLabel} :` : 'Reason :'}
                         onChange={this.onChange}
                         keyProp='rejectReason'
                         value={this.props.value}
@@ -97,7 +98,13 @@ ConfirmRejectionDialog.propTypes = {
     message: PropTypes.string,
     canSubmit: PropTypes.bool,
     value: PropTypes.string,
-    fullWidth: PropTypes.bool
+    fullWidth: PropTypes.bool,
+    messageLabel: PropTypes.string,
+    getRejectReasonValidationRules: PropTypes.func
+};
+
+ConfirmRejectionDialog.defaultProps = {
+    getRejectReasonValidationRules: getRejectReasonValidationRules
 };
 
 export default ConfirmRejectionDialog;
