@@ -20,7 +20,7 @@ class Password extends React.Component {
         return (
             <div className={classnames('margin-bottom-25', this.getStyle('loginInputContainer'))}>
                 <div />
-                <input name='password' type='password' placeholder='Password' autoFocus ref='input' />
+                <input name='password' type='password' placeholder='Password' autoFocus autoComplete='off' ref='input' />
             </div>
         );
     }

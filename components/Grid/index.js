@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import immutable from 'immutable';
 import classnames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 
 import Header from './Header';
+import IrregularHeader from './IrregularHeader';
 import Row from './Row';
 
 import style from './style.css';
@@ -68,35 +68,69 @@ class Grid extends Component {
     }
 
     render() {
-        const {classes, columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
-        let rowColumns = columns;
+        const {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
+        const getRowColumns = () => {
+            const rowColumns = [];
+            if (this.props.hasIrregularHeader) {
+                columns.map(col => {
+                    if (col.type === 'multi' || col.columns) {
+                        col.columns.map(lumn => {
+                            rowColumns.push(lumn);
+                        });
+                    } else {
+                        rowColumns.push(col);
+                    }
+                });
+                return rowColumns;
+            }
+            return columns;
+        };
+        let rowColumns = getRowColumns(columns);
 
         // Add empty column
         if (onRefresh) {
-            rowColumns = columns.concat({});
+            rowColumns = getRowColumns(columns).concat({});
         }
 
         const tdStyles = this.props.tdStyles;
         const trStyles = this.props.trStyles;
         const thStyles = this.props.thStyles;
-
+        let header = '';
+        if (this.props.showTableHead) {
+            header = <Header
+                columns={columns}
+                sortable={sortableColumns}
+                onRefresh={onRefresh}
+                onCheck={this.onAllCheck}
+                canCheck={canCheck}
+                canColCustomize={canColCustomize}
+                onToggleColumn={onToggleColumn}
+                activeSort={activeSort}
+                isChecked={this.state.all}
+                onSort={onSort}
+                tdStyles={tdStyles}
+                thStyles={thStyles}
+            />;
+            if (this.props.hasIrregularHeader) {
+                header = <IrregularHeader
+                    columns={columns}
+                    sortable={sortableColumns}
+                    onRefresh={onRefresh}
+                    onCheck={this.onAllCheck}
+                    canCheck={canCheck}
+                    canColCustomize={canColCustomize}
+                    onToggleColumn={onToggleColumn}
+                    activeSort={activeSort}
+                    isChecked={this.state.all}
+                    onSort={onSort}
+                    tdStyles={tdStyles}
+                    thStyles={thStyles}
+                />;
+            }
+        }
         const grid = (
-            <table className={classnames(style.dataGridTable, classes.table)}>
-                {this.props.showTableHead &&
-                    <Header
-                        columns={columns}
-                        sortable={sortableColumns}
-                        onRefresh={onRefresh}
-                        onCheck={this.onAllCheck}
-                        canCheck={canCheck}
-                        canColCustomize={canColCustomize}
-                        onToggleColumn={onToggleColumn}
-                        activeSort={activeSort}
-                        isChecked={this.state.all}
-                        onSort={onSort}
-                        tdStyles={tdStyles}
-                        thStyles={thStyles}
-                    />}
+            <table className={style.dataGridTable}>
+                {header}
                 <tbody>{rows.map((rowData, i) => {
                     const checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
 
@@ -133,7 +167,6 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-    classes: PropTypes.object,
     columns: PropTypes.array.isRequired,
     rows: PropTypes.object.isRequired, // immutable object (array)
     checkedItems: PropTypes.object, // immutable list
@@ -153,6 +186,7 @@ Grid.propTypes = {
     canCheck: PropTypes.bool,
     showTableHead: PropTypes.bool,
     mapColumn: PropTypes.func,
+    hasIrregularHeader: PropTypes.bool,
 
     onSelect: PropTypes.func,
     canSelect: PropTypes.bool,
@@ -167,6 +201,7 @@ Grid.defaultProps = {
     checkedItems: immutable.List([]),
     rowIdentifier: 'actorId',
     cssStandard: false,
+    hasIrregularHeader: false,
     canCheck: true,
     showTableHead: true,
     mapColumn: (col, colData) => colData,
@@ -175,17 +210,4 @@ Grid.defaultProps = {
     onLinkClick: function() {}
 };
 
-export default withStyles(({palette}) => ({
-    table: {
-        border: `1px solid ${palette.divider}`,
-        '& tr': {
-            background: palette.background.paper
-        },
-        '& tr:hover, & thead tr': {
-            background: palette.background.default
-        },
-        '& tr:nth-child(2n)': {
-            background: palette.background.red
-        }
-    }
-}))(Grid);
+export default Grid;

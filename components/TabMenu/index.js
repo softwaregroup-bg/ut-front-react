@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import style from './style.css';
 import TabLink from './TabLink';
 import TabDropdown from './TabDropdown';
-import { matchPath, withRouter } from 'react-router';
+import { matchPath } from 'react-router';
 
 class TabMenu extends React.Component {
     constructor(props) {
@@ -86,7 +86,7 @@ class TabMenu extends React.Component {
 
     getActiveTabIndex() {
         for (let i = 0; i < this.props.tabs.length; i++) {
-            if (matchPath(this.props.location.pathname, {path: this.props.tabs[i].pathname, exact: true})) {
+            if (matchPath(this.context.router.route.location.pathname, {path: this.props.tabs[i].pathname, exact: true})) {
                 return i; // 0 based index
             }
         }
@@ -114,7 +114,7 @@ class TabMenu extends React.Component {
         }
 
         const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        let tabNavBarOffset = isTextDirectionRightToLeft ? {right: offsetStyle} : {left: offsetStyle};
+        const tabNavBarOffset = isTextDirectionRightToLeft ? {right: offsetStyle} : {left: offsetStyle};
 
         return (
             <div className={classnames(style.TabMenu, this.getStyle('tabMenu'))}>
@@ -152,7 +152,6 @@ class TabMenu extends React.Component {
 }
 
 TabMenu.propTypes = {
-    location: PropTypes.object.isRequired,
     defaultLocation: PropTypes.string.isRequired,
     tabs: PropTypes.array.isRequired,
     onTabClose: PropTypes.func,
@@ -164,7 +163,8 @@ TabMenu.defaultProps = {
 };
 
 TabMenu.contextTypes = {
+    router: PropTypes.object.isRequired,
     implementationStyle: PropTypes.object
 };
 
-export default withRouter(TabMenu);
+export default TabMenu;

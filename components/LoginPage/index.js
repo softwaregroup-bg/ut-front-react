@@ -10,15 +10,14 @@ class LoginPage extends Component {
         return (
             <div className={styles.loginContainer}>
                 <div className={classnames(this.context.implementationStyle.loginLogoHeader, getClass(styles, 'loginLogo loginPageHeader'))} />
-                <LoginForm routerParams={this.props.match && this.props.match.params} history={this.props.history} />
-                <div className={classnames(this.context.implementationStyle.loginLogoFooter, getClass(styles, 'loginLogo loginPageFooter'))} />
+                <LoginForm routerParams={this.props.match && this.props.match.params} />
+                <div/>
             </div>
         );
     }
 }
 LoginPage.propTypes = {
-    match: PropTypes.object,
-    history: PropTypes.history
+    match: PropTypes.object
 };
 
 LoginPage.contextTypes = {

@@ -35,9 +35,18 @@ export default class Column extends Component {
             fieldClasses.push(this.getStyle(this.props.field.inSpanStyle));
         }
 
+        const transformedValue = this.props.transformValue(value, this.props.field, this.props.data, false, this.props.recordIndex);
+        const fieldStyling = transformedValue?.style;
+        const fieldValue = transformedValue?.value || transformedValue;
+
         return (
-            <td onClick={this.handleClick(value)} style={this.props.field.style} className={fieldClasses.join(' ')} colSpan={this.props.colspan}>
-                {this.props.transformValue(value, this.props.field, this.props.data, false, this.props.recordIndex)}
+            <td
+                onClick={this.handleClick(value)}
+                style={fieldStyling || this.props.field.style}
+                className={fieldClasses.join(' ')}
+                colSpan={this.props.colspan}
+            >
+                {fieldValue}
             </td>
         );
     }

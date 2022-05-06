@@ -40,6 +40,14 @@ export const regexRule = (val, regex, rule, result) => {
     }
 };
 
+export const customRule = (val, rule, result) => {
+    const res = rule.validator({currentValue: val});
+    if (!res.isValid) {
+        result.isValid = false;
+        result.errors.push(getErrorObject(rule));
+    }
+};
+
 export const isUniqueValueRule = (val, values, rule, result) => {
     checkPassedResultObject(result);
 

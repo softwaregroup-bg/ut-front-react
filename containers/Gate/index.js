@@ -29,37 +29,37 @@ class Gate extends Component {
     }
 
     login() {
-        const { login = '/login', history } = this.props;
+        const { login = '/login' } = this.props;
         if (login.startsWith('http://') || login.startsWith('https://')) {
             window.location.href = login;
         } else {
-            history.push(login);
+            this.context.router.history.push(login);
         }
     }
 
     componentWillMount() {
-        const { cookieChecked, isLogout, authenticated, cookieCheck, match, history } = this.props;
+        const { cookieChecked, isLogout, authenticated, cookieCheck, match } = this.props;
 
         if (!cookieChecked && !isLogout) {
             cookieCheck({appId: match && match.params && match.params.appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            history.push('/');
+            this.context.router.history.push('/');
         } else {
             this.login();
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        const { cookieChecked, authenticated, forceLogOut, logout, match, location, history, login } = this.props;
+        const { cookieChecked, authenticated, forceLogOut, logout, match, login } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
         // if the session expires, redirect to LoginPage
         const isAuthenticated = !(!cookieChecked && nextProps.cookieChecked && !nextProps.authenticated);
-        if (!isAuthenticated && location.pathname !== '/login' && location.pathname !== login) {
+        if (!isAuthenticated && this.context.router.route.location.pathname !== '/login' && this.context.router.route.location.pathname !== login) {
             if (match && match.params && match.params.ssoOrigin) {
-                history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
+                this.context.router.history.push(`/sso/${match.params.appId}/${match.params.ssoOrigin}/login`);
             } else {
                 this.login();
             }
@@ -112,8 +112,6 @@ export default connect(
 Gate.propTypes = {
     match: PropTypes.object,
     login: PropTypes.string,
-    history: PropTypes.object,
-    location: PropTypes.object,
     children: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,

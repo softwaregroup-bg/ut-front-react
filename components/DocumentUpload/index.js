@@ -217,7 +217,8 @@ export default class DocumentUpload extends Component {
                     {this.validate && <div className={styles.errorMsg}>
                         Error: {this.validate}
                     </div>}
-                </div>);
+                </div>
+            );
         }
     }
 
@@ -288,7 +289,7 @@ export default class DocumentUpload extends Component {
 
     uploadFile = async(file, uploadURL = '/file-upload') => {
         const {
-            useFile,
+            useFile: handleFile,
             uploadDocument
         } = this.props;
         const data = new window.FormData();
@@ -308,7 +309,7 @@ export default class DocumentUpload extends Component {
             const reader = new window.FileReader();
             reader.onload = (data) => {
                 try {
-                    useFile({
+                    handleFile({
                         filename: attachmentResult.result.filename,
                         createdDate: new Date().toISOString(),
                         extension: ext,

@@ -5,7 +5,7 @@ import StandardButton from '../StandardButton';
 import style from './style.css';
 
 class ButtonsHeader extends Component {
-    renderButton(label, onClick, disabled, isLeftOriented, key) {
+    renderButton(label, onClick, disabled, isLeftOriented, key, href) {
         key = key || new Date().getTime();
         if (typeof disabled === 'undefined') {
             disabled = false;
@@ -18,7 +18,7 @@ class ButtonsHeader extends Component {
 
         return (
             <div key={key} className={wrapperClassName}>
-                <StandardButton label={label} onClick={onClick} disabled={disabled} styleType='secondaryDark' />
+                <StandardButton label={label} onClick={onClick} disabled={disabled} styleType='secondaryDark' href={href} />
             </div>
         );
     }
@@ -36,7 +36,7 @@ class ButtonsHeader extends Component {
 
         if (config.right && Array.isArray(config.right) && config.right.length > 0) {
             rightButtons = config.right.reverse().map((conf, index) => {
-                return this.renderButton(conf.label, conf.onClick, conf.disabled, false, index);
+                return this.renderButton(conf.label, conf.onClick, conf.disabled, false, index, conf.href);
             });
         }
 
@@ -58,8 +58,9 @@ ButtonsHeader.propTypes = {
         })),
         right: PropTypes.arrayOf(PropTypes.shape({
             label: PropTypes.string.isRequired,
-            onClick: PropTypes.func.isRequired,
-            disabled: PropTypes.bool
+            onClick: PropTypes.func,
+            disabled: PropTypes.bool,
+            href: PropTypes.string
         }))
     }).isRequired
 };

@@ -1,3 +1,84 @@
+## [12.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.0...v12.6.1) (2021-09-15)
+
+
+
+# [12.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.7...v12.6.0) (2021-09-14)
+
+
+### Features
+
+* bdc-239 - error print which allows i18n on error messages ([#572](https://github.com/softwaregroup-bg/ut-front-react/issues/572)) ([c053487](https://github.com/softwaregroup-bg/ut-front-react/commit/c0534871c90d631a09f270321045e011843925da))
+
+
+
+## [12.5.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.6...v12.5.7) (2021-09-14)
+
+
+
+## [12.5.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.5...v12.5.6) (2021-09-03)
+
+
+
+## [12.5.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.4...v12.5.5) (2021-08-15)
+
+
+
+## [12.5.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.3...v12.5.4) (2021-08-13)
+
+
+
+## [12.5.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.2...v12.5.3) (2021-08-11)
+
+
+
+## [12.5.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.1...v12.5.2) (2021-06-21)
+
+
+
+## [12.5.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.5.0...v12.5.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* check for configured login page [UTCORE-121] ([0e3f0f0](https://github.com/softwaregroup-bg/ut-front-react/commit/0e3f0f0a66de548d96a28d6973c8d9086015baf4))
+
+
+
+# [12.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.4.0...v12.5.0) (2021-06-18)
+
+
+### Features
+
+* configurable login page [UTCORE-121] ([8ad9666](https://github.com/softwaregroup-bg/ut-front-react/commit/8ad9666bae56594efaee54c5e159549c97d48d78))
+
+
+
+# [12.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.6...v12.4.0) (2021-06-18)
+
+
+### Features
+
+* disable autocomplete for login [UTCORE-121] ([5f4b3c8](https://github.com/softwaregroup-bg/ut-front-react/commit/5f4b3c88da080c0420a5016d806ab644abbc8281))
+
+
+
+## [12.3.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.5...v12.3.6) (2021-06-03)
+
+
+
+## [12.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.4...v12.3.5) (2021-04-29)
+
+
+### Bug Fixes
+
+* enabled translation to some components ([#559](https://github.com/softwaregroup-bg/ut-front-react/issues/559)) ([1c593ec](https://github.com/softwaregroup-bg/ut-front-react/commit/1c593ecdf105a6e49fd05c1f00d842fbef8acce9))
+
+
+
+## [12.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.3...v12.3.4) (2021-04-28)
+
+
+
 ## [12.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.3.2...v12.3.3) (2021-04-20)
 
 

@@ -12,7 +12,7 @@ export function prepareErrors(errors) {
 export function getRejectReasonValidationRules() {
     return [
         {key: 'rejectReason', type: textValidations.isRequired, errorMessage: 'Reason for rejection is required.'},
-        {key: 'rejectReason', type: textValidations.length, minVal: 3, maxVal: 140, errorMessage: 'The reason should be between 3 and 140 symbols long.'}
+        {key: 'rejectReason', type: textValidations.length, minVal: 3, maxVal: 900, errorMessage: 'The reason should be between 3 and 900 symbols long.'}
     ];
 }
 

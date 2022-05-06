@@ -256,6 +256,20 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
+.contentTableWrapDisabled {
+    min-width: 800px;
+    height: 100%;
+    width: 100%;
+    background: #f2f2f2;
+    border-top: none;
+    border-bottom: none;
+    box-sizing: border-box;
+    opacity: 0.25;
+    pointer-events: 'none';
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
  .actionBarWrap {
      width: 100%;
      height: 55px;

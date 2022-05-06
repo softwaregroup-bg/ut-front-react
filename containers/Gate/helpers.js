@@ -50,7 +50,7 @@ export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
 
 export const df = (props) => (date, format) => {
     if (!format) {
-        format = props.login.get('result') && props.login.result.getIn(['localisation', 'dateFormat']) ? props.login.result.getIn(['localisation', 'dateFormat']) : 'yyyy-MM-dd';
+        format = props.result && props.result.getIn(['localisation', 'dateFormat']) ? props.result.getIn(['localisation', 'dateFormat']) : 'yyyy-MM-dd';
     }
 
     return dateFormat(new Date(date), format);
@@ -60,7 +60,7 @@ export const numberFormat = (props) => (num, format) => {
     let parts = [];
 
     if (!format) {
-        format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) ? props.login.getIn(['result', 'localisation', 'numberFormat']) : '2|.|';
+        format = props.result && props.result.getIn(['localisation', 'numberFormat']) ? props.result.getIn(['localisation', 'numberFormat']) : '2|.|';
     }
 
     parts = format.split('|');

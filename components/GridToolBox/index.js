@@ -17,6 +17,7 @@ import StandardDialog from '../Popup';
 import Button from '../StandardButton';
 import ByCustomSearch from '../Filters/ByCustomSearch';
 import Text from '../Text';
+import MultiSelectDropdown from '../Input/MultiSelectDropdown';
 
 import classnames from 'classnames';
 import style from './style.css';
@@ -189,6 +190,7 @@ class GridToolBox extends Component {
                         defaultValue={filterValue}
                         label={filterElement.label}
                         boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
                     />
                 </div>);
 
@@ -207,6 +209,7 @@ class GridToolBox extends Component {
                         labelFrom={filterElement.labelFrom}
                         labelTo={filterElement.labelTo}
                         boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
                     />
                 </div>);
             case filterElementTypes.dateTimePickerBetween:
@@ -225,6 +228,7 @@ class GridToolBox extends Component {
                         labelFrom={filterElement.labelFrom}
                         labelTo={filterElement.labelTo}
                         boldLabel={renderInDialog}
+                        maxDate={filterElement.maxDate}
                     />
                 </div>);
             case filterElementTypes.customSearch:
@@ -238,6 +242,22 @@ class GridToolBox extends Component {
                         value={filterElement.value}
                     />
                 </div>);
+            case filterElementTypes.multiSelect:
+                return (<div>
+                    <MultiSelectDropdown
+                        boldLabel
+                        disabled={filterElement.readonly}
+                        keyProp={filterElement.key}
+                        label={label}
+                        placeholder={filterElement.label}
+                        defaultSelected={Array.isArray(filterValue) ? filterValue : []}
+                        data={filterElement.data}
+                        onSelect={filterAutoFetch && !renderInDialog
+                            ? filterElement.onSelect
+                            : onSelect}
+                    />
+                </div>);
+
             default:
                 return null;
         }
@@ -337,6 +357,8 @@ class GridToolBox extends Component {
                             <span>{obj[0].name}</span>
                         </div>);
                     }
+                    break;
+                case filterElementTypes.multiSelect:
                     break;
                 default:
                     if (filter.defaultValue) {
@@ -677,7 +699,7 @@ class GridToolBox extends Component {
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
                 <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
-                    Show filters
+                    <Text>Show filters</Text>
                 </div>
 
                 <div className={classnames(style.pullRight, style.tableCell)}>
@@ -735,6 +757,7 @@ GridToolBox.propTypes = {
             // Common
             placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
             defaultValue: PropTypes.any,
+            maxDate: PropTypes.string,
 
             // DropDown
             data: PropTypes.arrayOf(
