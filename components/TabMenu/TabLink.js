@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Text from '../Text';
 import { Link } from 'react-router-dom';
-import { matchPath } from 'react-router';
+import { matchPath, withRouter } from 'react-router';
 import style from './style.css';
 import classnames from 'classnames';
-
-export default class TabLink extends React.Component {
+class TabLink extends React.Component {
     renderMainContent() {
         const {title, canClose, onClose} = this.props;
 
@@ -23,9 +22,9 @@ export default class TabLink extends React.Component {
     }
 
     render() {
-        const {pathname, onClick} = this.props;
+        const {pathname, onClick, location, search} = this.props;
         let activeClassName = '';
-        if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true})) {
+        if (matchPath(location.pathname, {path: pathname, exact: true})) {
             activeClassName = this.getStyle('tabMenuWrapSelected');
         }
         const onClickHandler = () => {
@@ -34,7 +33,7 @@ export default class TabLink extends React.Component {
         return (
             <li className={this.getStyle('tabMenuItem')}>
                 {pathname !== ''
-                    ? <Link className={classnames(this.getStyle('tabMenuWrap'), activeClassName)} to={pathname}>
+                    ? <Link className={classnames(this.getStyle('tabMenuWrap'), activeClassName)} to={{pathname, search}}>
                         {this.renderMainContent()}
                     </Link>
                     : <div className={classnames(this.getStyle('tabMenuWrap'), activeClassName)} onClick={onClickHandler}>
@@ -46,7 +45,9 @@ export default class TabLink extends React.Component {
 }
 
 TabLink.propTypes = {
+    location: PropTypes.object.isRequired,
     pathname: PropTypes.string, // If pathname is not given onClick func will be called
+    search: PropTypes.string,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     canClose: PropTypes.bool,
     onClose: PropTypes.func,
@@ -61,6 +62,7 @@ TabLink.defaultProps = {
 };
 
 TabLink.contextTypes = {
-    router: PropTypes.object.isRequired,
     implementationStyle: PropTypes.object
 };
+
+export default withRouter(TabLink);

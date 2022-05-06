@@ -9,8 +9,8 @@
 .bottomBorderderWrap {
     width: 100%;
     display: block;
-    border-bottom: 1px solid #D6D6D6;
-    border-top: 1px solid #D6D6D6;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
 }
 
 .contentComponentWrapper {

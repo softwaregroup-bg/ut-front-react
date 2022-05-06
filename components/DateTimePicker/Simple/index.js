@@ -220,7 +220,7 @@ class DateTimePicker extends Component {
                         initialTime={this.state.date}
                         mode={mode}
                         onAccept={this.handleAccept('time')}
-                        format={format}
+                        format={timeFormat}
                         variant='dialog'
                         ref='time'
                     /> : ''}
