@@ -34,10 +34,6 @@
     padding: 0px 10px 0px 36px;
 }
 
-:global(html[dir='rtl']) .searchBoxWrapInput {
-    padding: 0px 10px 0px 36px;
-}
-
 .searchBoxWrap .label {
     display: inline-block;
     width: 30%;

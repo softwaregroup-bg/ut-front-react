@@ -8,7 +8,7 @@ import style from './style.css';
 import cssStandard from '../../assets/index.css';
 export class Filters extends Component {
     render() {
-        const classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox, this.props.classes.filter];
+        const classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
         this.props.opened && classes.push(style.opened);
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
@@ -41,7 +41,7 @@ Filters.defaultProps = {
 
 export default withStyles(({palette}) => ({
     filter: {
-        background: palette.background.default,
+        background: palette.grey[50],
         borderColor: palette.divider
     }
 }))(Filters);

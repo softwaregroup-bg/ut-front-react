@@ -1,4 +1,5 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Popover from '@material-ui/core/Popover';
 import MenuList from '@material-ui/core/MenuList';
@@ -6,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import MenuItem from '@material-ui/core/MenuItem';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 import Box from '@material-ui/core/Box';
+import Text from '../Text';
 import style from './style.css';
 
 import {Dropdown} from './Dropdown';
@@ -64,7 +66,9 @@ class GroupDropdown extends Dropdown {
                         className={style.groupDropdownMenuItem}
                         disabled
                         primaryText={group}
-                    />
+                    >
+                        <div title={this.getTitle(group)}><Text>{group}</Text></div>
+                    </MenuItem>
                     <Divider />
                     {
                         groups[group].map((item, i) => {
@@ -80,7 +84,9 @@ class GroupDropdown extends Dropdown {
                                     value={item.key}
                                     onClick={() => { this.handleChange(item); }}
                                     primaryText={item.name}
-                                />
+                                >
+                                    <div title={this.getTitle(item.name)}><Text>{item.name}</Text></div>
+                                </MenuItem>
                             );
                         })
                     }
@@ -95,14 +101,16 @@ class GroupDropdown extends Dropdown {
                 value={this.props.placeholderValue}
                 onClick={() => { this.handleChange({ key: '__placeholder__' }); }}
                 primaryText={this.props.placeholder}
-            />
+            >
+                <div title={this.props.placeholder}><Text>{this.props.placeholder}</Text></div>
+            </MenuItem>
         );
         return menuItems;
     }
 
     renderDropDown() {
         const menuItems = this.getMenuItems();
-        const { cssStyle, mergeStyles } = this.props;
+        const { cssStyle, mergeStyles, classes } = this.props;
         const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         const arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
         const errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
@@ -114,7 +122,7 @@ class GroupDropdown extends Dropdown {
 
         return (
             <>
-                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
+                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle, classes.border)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.groupDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
@@ -145,4 +153,8 @@ class GroupDropdown extends Dropdown {
     }
 }
 
-export default GroupDropdown;
+export default withStyles(({palette}) => ({
+    border: {
+        borderColor: palette.divider
+    }
+}))(GroupDropdown);

@@ -11,10 +11,10 @@ const resetStore = (reducer, resetAction) => {
         return reducer(state, action);
     };
 };
-
+const devToolsExtension = window.devToolsExtension || window.__REDUX_DEVTOOLS_EXTENSION__;
 const enhancer = compose(
-    ((typeof window !== 'undefined') && window.devToolsExtension)
-        ? window.devToolsExtension({
+    ((typeof window !== 'undefined') && devToolsExtension)
+        ? devToolsExtension({
             serialize: true,
             actionSanitizer: (action) => {
                 if (typeof action.type === 'symbol') {

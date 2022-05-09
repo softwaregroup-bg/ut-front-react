@@ -9,14 +9,13 @@ import { timeValues24HrFormat, timeValues12HrFormat } from './defaultValues';
 
 import style from './style.css';
 
-const noop = () => {};
-
 class DateTimePicker extends Component {
     constructor(props) {
         super(props);
 
         this.handleAccept = this.handleAccept.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
@@ -25,15 +24,22 @@ class DateTimePicker extends Component {
         this.state = {
             date: this.props.defaultValue
                 ? new Date(this.props.defaultValue)
-                : new Date().setHours(0, 0, 0, 0)
+                : new Date().setHours(0, 0, 0, 0),
+            open: null
         };
     }
 
-    handleOpen(ref) {
-        return () => {
-            this.refs[ref].show();
-        };
-    }
+    handleOpen(e) {
+        this.setState({
+            open: e
+        });
+    };
+
+    handleClose() {
+        this.setState({
+            open: null
+        });
+    };
 
     formatDate(date) {
         if (!date || isNaN(date.valueOf())) {
@@ -153,6 +159,10 @@ class DateTimePicker extends Component {
         this.setState({date: newDate});
     }
 
+    handleChange = (date) => {
+        this.setState({ date });
+    };
+
     render() {
         const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName } = this.props;
         const { defaultValue, timeType, maxDate } = this.props;
@@ -185,7 +195,9 @@ class DateTimePicker extends Component {
                     <div className={style.inputWrap}>
                         <DatePicker
                             value={this.state.date}
-                            onChange={(date) => { this.setState({date}); }}
+                            onChange={this.handleChange}
+                            open={this.state.open === 'date'}
+                            onClose={this.handleClose}
                             onKeyUp={this.handleKeyPress('date')}
                             cancelLabel={cancelLabel}
                             okLabel={okLabel}
@@ -199,31 +211,29 @@ class DateTimePicker extends Component {
                             InputProps={{disableUnderline: true}}
                             maxDate={maxDate}
                         />
-                        <button className={style.dateButton} onClick={this.handleOpen('date')} />
+                        <button className={style.dateButton} onClick={() => this.handleOpen('date')} />
                     </div>
-                    {timeType === 'timePicker' ? <div className={style.inputWrap}>
-                        <input value={this.formatTime(this.state.date)} type='text' onChange={noop} onKeyUp={this.handleKeyPress('time')} />
-                        <button className={style.timeButton} onClick={this.handleOpen('time')} />
-                    </div> : timeType === 'timeDropdown'
-                        ? <div className={style.ddframe}>
-                            <Dropdown
-                                data={dropdownData}
-                                keyProp='time'
-                                onSelect={this.handleAccept('time')}
-                                defaultSelected={defaultValue ? this.formatTime(date) : ''}
-                            />
-                        </div> : ''}
-                    {timeType === 'timePicker' ? <TimePicker
-                        onChange={(time) => this.setTime(time)}
-                        cancelLabel={cancelLabel}
-                        okLabel={okLabel}
-                        initialTime={this.state.date}
-                        mode={mode}
-                        onAccept={this.handleAccept('time')}
-                        format={timeFormat}
-                        variant='dialog'
-                        ref='time'
-                    /> : ''}
+                    {timeType === 'timePicker'
+                        ? <TimePicker
+                                onChange={(time) => this.setTime(time)}
+                                cancelLabel={cancelLabel}
+                                okLabel={okLabel}
+                                initialTime={this.state.date}
+                                value={this.state.date}
+                                mode={mode}
+                                onAccept={this.handleAccept('time')}
+                                variant='dialog'
+                                ref='time'
+                        />
+                        : timeType === 'timeDropdown'
+                            ? <div className={style.ddframe}>
+                                <Dropdown
+                                    data={dropdownData}
+                                    keyProp='time'
+                                    onSelect={this.handleAccept('time')}
+                                    defaultSelected={defaultValue ? this.formatTime(date) : ''}
+                                />
+                            </div> : ''}
                 </div>
             </div>
         );

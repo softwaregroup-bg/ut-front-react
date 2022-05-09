@@ -13,7 +13,7 @@ class Date extends React.Component {
     render() {
         let children = this.props.children;
         if (typeof this.context.dateFormat === 'function') {
-            this.text = this.context.dateFormat(this.props.children);
+            this.text = this.props.children ? this.context.dateFormat(this.props.children) : null;
             children = this.text;
         }
         return (

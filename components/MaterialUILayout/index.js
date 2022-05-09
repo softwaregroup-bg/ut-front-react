@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import * as muiStyles from '@material-ui/core/styles';
 import DateUtils from '../DateUtils';
+// the createMuiTheme function was renamed to createTheme at some point
+const {MuiThemeProvider, createMuiTheme, createTheme = createMuiTheme} = muiStyles;
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         type: 'light'
     },

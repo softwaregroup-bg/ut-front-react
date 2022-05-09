@@ -424,7 +424,6 @@ class GridToolBox extends Component {
             header={{text: 'Advanced Search'}}
             isOpen={this.state.showFiltersPopup}
             footer={{actionButtons: actionButtons}}
-            className={style.advancedSearchDialog}
         >
             {this.props.filterElements.map((el, i) => {
                 const filter = this.renderFilter(el, true);
@@ -478,7 +477,7 @@ class GridToolBox extends Component {
                     {leftSide}
                 </div>
                 <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div className={classnames(style.table, style.fixedHeight)}>
+                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
                         {filterElements.map((el, i) => {
                             const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                             filtersNumber += incrementNum;
@@ -694,14 +693,14 @@ class GridToolBox extends Component {
     }
 
     renderActionButtons() {
+        const { showActionButtonsOnSelect } = this.props;
         const toggle = () => this.setState({showFilters: true});
 
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
-                <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
+                {!showActionButtonsOnSelect ? <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
                     <Text>Show filters</Text>
-                </div>
-
+                </div> : null}
                 <div className={classnames(style.pullRight, style.tableCell)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
                         {this.props.actionButtonElements.map((el, i) => {
@@ -720,6 +719,16 @@ class GridToolBox extends Component {
 
     render() {
         const showFilter = this.state.showFilters;
+        const { showActionButtonsOnSelect, selected } = this.props;
+
+        if (showActionButtonsOnSelect && selected && selected.size) {
+            return (
+                <div>
+                    {this.renderActionButtons()}
+                </div>
+            );
+        }
+
         if (!this.props.cssStandard) {
             return (
                 <div>
@@ -835,7 +844,8 @@ GridToolBox.propTypes = {
     clearFilters: PropTypes.func,
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
-    batchChange: PropTypes.func
+    batchChange: PropTypes.func,
+    showActionButtonsOnSelect: PropTypes.func
 };
 
 GridToolBox.defaultProps = {
@@ -846,7 +856,8 @@ GridToolBox.defaultProps = {
     clearFilters: () => {},
     batchChange: () => {},
     selected: Immutable.Map({}),
-    checked: Immutable.List()
+    checked: Immutable.List(),
+    showActionButtonsOnSelect: false
 };
 
 export default withStyles(({palette}) => ({

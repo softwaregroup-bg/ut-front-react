@@ -36,7 +36,9 @@
     background-color: #FFFFFF;
     border-top: 1px solid #E6E6E6;
     border-right: 1px solid #E6E6E6;
+    font-weight: bold;
     line-height: 14px !important;
+    padding: 20px 27px;
 }
 
 .valueCell {
@@ -44,4 +46,5 @@
     border-top: 1px solid #E6E6E6;
     /* border-left: 1px solid #E6E6E6;*/
     line-height: 14px !important;
+    padding: 20px 27px;
 }
