@@ -1,3 +1,195 @@
+## [13.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.0...v13.1.1) (2022-04-26)
+
+
+
+# [13.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.13...v13.1.0) (2022-04-21)
+
+
+### Features
+
+* Additional fields required in PAP for personnel data - ALZMFAC-254 ([#622](https://github.com/softwaregroup-bg/ut-front-react/issues/622)) ([1204d7d](https://github.com/softwaregroup-bg/ut-front-react/commit/1204d7d536c4043831243f703b97b7c0b5b85426))
+
+
+
+## [13.0.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.12...v13.0.13) (2022-04-19)
+
+
+
+## [13.0.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.11...v13.0.12) (2022-04-19)
+
+
+
+## [13.0.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.10...v13.0.11) (2022-04-14)
+
+
+
+## [13.0.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.9...v13.0.10) (2022-04-14)
+
+
+
+## [13.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.8...v13.0.9) (2022-04-11)
+
+
+
+## [13.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.7...v13.0.8) (2022-04-11)
+
+
+
+## [13.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.6...v13.0.7) (2022-04-08)
+
+
+
+## [13.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.5...v13.0.6) (2022-04-08)
+
+
+
+## [13.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.4...v13.0.5) (2022-04-08)
+
+
+
+## [13.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.3...v13.0.4) (2022-04-02)
+
+
+
+## [13.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.2...v13.0.3) (2022-03-31)
+
+
+### Bug Fixes
+
+* **ECNT-756:** Incorrect dates ([#611](https://github.com/softwaregroup-bg/ut-front-react/issues/611)) ([b9e4742](https://github.com/softwaregroup-bg/ut-front-react/commit/b9e474201f46c82c06aea393b3a1c08456db692f))
+
+
+
+## [13.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.1...v13.0.2) (2022-03-28)
+
+
+### Bug Fixes
+
+* remove bad width ([308d619](https://github.com/softwaregroup-bg/ut-front-react/commit/308d6192981c563b4c090dcaf34dcecbe1423cbf))
+
+
+
+## [13.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.0...v13.0.1) (2022-03-28)
+
+
+
+# [13.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.10...v13.0.0) (2022-03-26)
+
+
+
+## [12.10.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.9...v12.10.10) (2022-03-22)
+
+
+
+## [12.10.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.8...v12.10.9) (2022-03-16)
+
+
+
+## [12.10.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.7...v12.10.8) (2022-03-14)
+
+
+
+## [12.10.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.6...v12.10.7) (2022-03-08)
+
+
+
+## [12.10.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.5...v12.10.6) (2022-03-08)
+
+
+
+## [12.10.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.4...v12.10.5) (2022-02-25)
+
+
+
+## [12.10.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.3...v12.10.4) (2022-02-22)
+
+
+
+## [12.10.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.2...v12.10.3) (2022-02-18)
+
+
+
+## [12.10.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.1...v12.10.2) (2022-02-18)
+
+
+
+## [12.10.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.9.0...v12.10.1) (2022-02-03)
+
+
+
+# [12.9.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.3...v12.9.0) (2021-12-13)
+
+
+### Features
+
+* responsive and RTL ([26ef0b4](https://github.com/softwaregroup-bg/ut-front-react/commit/26ef0b491573888e71f5833ea179c8202171f4e0))
+
+
+
+## [12.7.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.2...v12.7.3) (2021-11-29)
+
+
+
+## [12.7.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.1...v12.7.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* datePicker to appear correct dates for filtering ([1c2a675](https://github.com/softwaregroup-bg/ut-front-react/commit/1c2a675f6fc2dc485b128d50978a6f3d1389f4ae))
+
+
+
+## [12.7.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.0...v12.7.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* MUI crateTheme support ([#586](https://github.com/softwaregroup-bg/ut-front-react/issues/586)) ([dcc177c](https://github.com/softwaregroup-bg/ut-front-react/commit/dcc177c15fe5e08ce8f93f5610e7d478c637737e))
+
+
+
+# [12.7.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.8...v12.7.0) (2021-10-20)
+
+
+### Features
+
+* **MSA-53:** add option for allowing negative decimals; fix showing empty input when valus equals 0 ([#585](https://github.com/softwaregroup-bg/ut-front-react/issues/585)) ([4c83b05](https://github.com/softwaregroup-bg/ut-front-react/commit/4c83b05d05638e30c5b02c3d94354d67c8273169))
+
+
+
+## [12.6.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.7...v12.6.8) (2021-10-19)
+
+
+
+## [12.6.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.6...v12.6.7) (2021-10-19)
+
+
+
+## [12.6.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.5...v12.6.6) (2021-10-18)
+
+
+### Bug Fixes
+
+* **ECNT-771:** Product Catalog - KYC Level search filter does NOT sho… ([#580](https://github.com/softwaregroup-bg/ut-front-react/issues/580)) ([569dac9](https://github.com/softwaregroup-bg/ut-front-react/commit/569dac9ac3e06fa47f7900b85e154832cd733465))
+
+
+
+## [12.6.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.4...v12.6.5) (2021-10-14)
+
+
+
+## [12.6.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.3...v12.6.4) (2021-10-09)
+
+
+
+## [12.6.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.2...v12.6.3) (2021-10-09)
+
+
+
+## [12.6.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.1...v12.6.2) (2021-10-09)
+
+
+
 ## [12.6.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.6.0...v12.6.1) (2021-09-15)
 
 

@@ -5,6 +5,9 @@ export const getListTableColumns = () => {
     return [
         {title: 'Group Name', name: 'documentType'},
         {title: 'Document Description', name: 'documentDescription'},
+        {title: 'Document Number', name: 'documentNumber'},
+        {title: 'Issue Date', name: 'issueDate'},
+        {title: 'Expiration Date', name: 'expirationDate'},
         {title: 'File Type', name: 'extension'},
         {title: 'Upload Date', name: 'createdDate'},
         {title: 'Status', name: 'statusId'}

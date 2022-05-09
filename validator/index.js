@@ -337,14 +337,15 @@ export const isIntegerRangeRule = (props, rule, result) => {
  * @param {String} value - the value to validate
  * @param {Number} precision - total count of number characters
  * @param {Number} scale - number of characters after the decimal point.
+ * @param {Boolean} allowNegative - allow negative numbers
  */
-export const isDecimalOnlyRule = (value, precision, scale, rule, result) => {
+export const isDecimalOnlyRule = (value, precision, scale, rule, result, allowNegative) => {
     checkPassedResultObject(result);
     if (!value) {
         return true;
     }
     const digitsLeftOfDecimalPoint = precision - scale;
-    const regex = new RegExp('^(\\d{0,' + digitsLeftOfDecimalPoint + '}\\.?\\d{0,' + scale + '}|\\.\\d{1,' + scale + '})$');
+    const regex = new RegExp(`^${allowNegative ? '-?' : ''}(\\d{0,${digitsLeftOfDecimalPoint}}\\.?\\d{0,${scale}}|\\.\\d{1,${scale}})$`);
 
     if (value !== '' && !(regex.test(value))) {
         result.isValid = false;

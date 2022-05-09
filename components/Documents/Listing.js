@@ -29,6 +29,7 @@ class Documents extends Component {
             <Toolbox
                 selectedAttachment={this.props.selectedAttachment}
                 documents={this.mergeDocuments}
+                countries={this.props.countries}
                 documentArchived={this.props.documentArchived}
                 selectedFilter={this.props.selectedFilter}
                 changeDocumentFilter={this.props.changeDocumentFilter}
@@ -76,6 +77,7 @@ Documents.propTypes = {
     identifier: PropTypes.string.isRequired,
     actorId: PropTypes.number,
     documents: PropTypes.array,
+    countries: PropTypes.array,
     documentsChanged: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     // requiresFetch: PropTypes.bool,

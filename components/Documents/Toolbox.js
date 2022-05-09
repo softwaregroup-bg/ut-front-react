@@ -46,15 +46,18 @@ class Toolbox extends Component {
         const openDetailsDialog = () => {
             this.setState({ showDetailsPopUp: true });
         };
-        // Download button
         const downloadButtonHandler = () => {
             const tempLink = document.createElement('a');
-            tempLink.href = selectedAttachment.getIn(['attachments', 0, 'url']);
-            tempLink.setAttribute('download', selectedAttachment.getIn(['attachments', 0, 'filename']));
-            tempLink.setAttribute('target', '_blank');
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
+            const attachmentsToDownload = selectedAttachment.get('attachments')?.toJS();
+            const attachments = Array.isArray(attachmentsToDownload) ? attachmentsToDownload : [attachmentsToDownload];
+            attachments.forEach(element => {
+                tempLink.href = element.url;
+                tempLink.setAttribute('download', element.filename);
+                tempLink.setAttribute('target', '_blank');
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            });
         };
         // Delete
         const openDeleteConfirmationDialog = () => {
@@ -253,17 +256,26 @@ class Toolbox extends Component {
             const closeHandler = () => {
                 this.setState({ showDetailsPopUp: false });
             };
-            const file = {
-                content: selectedAttachment.getIn(['attachments', 0, 'url']),
-                details: {
-                    type: selectedAttachment.getIn(['attachments', 0, 'contentType']),
-                    extension: selectedAttachment.getIn(['attachments', 0, 'extension']),
-                    dateUploaded: selectedAttachment.get('createdDate'),
-                    description: selectedAttachment.get('description'),
-                    width: selectedAttachment.get('width'),
-                    height: selectedAttachment.get('height')
-                }
-            };
+            let file = selectedAttachment.get('attachments').toJS();
+            file = Array.isArray(file) ? file : [file];
+            file = file.map(
+                file => ({
+                    content: file.url,
+                    details: {
+                        type: file.contentType,
+                        extension: file.extension,
+                        dateUploaded: selectedAttachment.get('createdDate'),
+                        description: selectedAttachment.get('description'),
+                        documentNumber: selectedAttachment.get('documentNumber'),
+                        issueDate: selectedAttachment.get('issueDate'),
+                        countryName: selectedAttachment.get('countryName'),
+                        issuedBy: selectedAttachment.get('issuedBy'),
+                        expirationDate: selectedAttachment.get('expirationDate'),
+                        width: selectedAttachment.get('width'),
+                        height: selectedAttachment.get('height')
+                    }
+                })
+            );
 
             return (
                 <FileDetailsPopup
@@ -297,6 +309,7 @@ class Toolbox extends Component {
                 documentTypes={this.props.documentTypes}
                 allowedFileTypes={this.props.allowedFileTypes}
                 uploadURL={this.props.uploadURL}
+                countries={this.props.countries}
             />
         );
     }
@@ -314,6 +327,7 @@ class Toolbox extends Component {
 
 Toolbox.propTypes = {
     documents: PropTypes.array,
+    countries: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     documentArchived: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,

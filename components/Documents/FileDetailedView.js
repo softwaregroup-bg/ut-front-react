@@ -21,10 +21,15 @@ export default class FileDetailedView extends Component {
                 return;
             }
 
-            let text = file.details[key] ? file.details[key] : 'None';
+            const isDateField = ['dateUploaded', 'issueDate', 'expirationDate'].includes(key);
+
+            let text;
+            if (file.details[key]) text = file.details[key];
+            else if (!isDateField) text = 'None';
+
             const textStyle = file.details[key] ? '' : styles.fileDetailsNoText;
 
-            if (key === 'dateUploaded') {
+            if (isDateField) {
                 text = <DateComponent>{text}</DateComponent>;
             }
 
@@ -72,6 +77,6 @@ FileDetailedView.propTypes = {
 FileDetailedView.defaultProps = {
     scaleDimensions: {
         width: 230,
-        height: 230
+        height: 300
     }
 };

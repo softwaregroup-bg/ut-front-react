@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import immutable from 'immutable';
 import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 
 import Header from './Header';
 import IrregularHeader from './IrregularHeader';
@@ -68,7 +69,7 @@ class Grid extends Component {
     }
 
     render() {
-        const {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
+        const {classes, columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
         const getRowColumns = () => {
             const rowColumns = [];
             if (this.props.hasIrregularHeader) {
@@ -129,7 +130,7 @@ class Grid extends Component {
             }
         }
         const grid = (
-            <table className={style.dataGridTable}>
+            <table className={classnames(style.dataGridTable, classes.table)}>
                 {header}
                 <tbody>{rows.map((rowData, i) => {
                     const checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
@@ -167,6 +168,7 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
+    classes: PropTypes.object,
     columns: PropTypes.array.isRequired,
     rows: PropTypes.object.isRequired, // immutable object (array)
     checkedItems: PropTypes.object, // immutable list
@@ -210,4 +212,17 @@ Grid.defaultProps = {
     onLinkClick: function() {}
 };
 
-export default Grid;
+export default withStyles(({palette}) => ({
+    table: {
+        border: `1px solid ${palette.divider}`,
+        '& tr': {
+            background: palette.background.paper
+        },
+        '& tr:hover, & thead tr': {
+            background: palette.background.default
+        },
+        '& tr:nth-child(2n)': {
+            background: palette.background.red
+        }
+    }
+}))(Grid);

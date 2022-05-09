@@ -56,6 +56,7 @@ class DocumentsContainer extends Component {
             actorId,
             attachments,
             documents,
+            countries,
             documentsChanged,
             fetchArchivedDocuments,
             selectAttachments,
@@ -79,6 +80,7 @@ class DocumentsContainer extends Component {
                 identifier={identifier}
                 actorId={actorId}
                 documents={docs}
+                countries={countries}
                 documentsChanged={docsChanged}
                 selectedAttachment={selectedAttachment}
                 requiresFetch={requiresFetch}
@@ -94,7 +96,12 @@ class DocumentsContainer extends Component {
                         description: newObject.description,
                         documentType: newObject.documentType,
                         documentTypeId: newObject.documentTypeId,
+                        documentNumber: newObject.documentNumber,
+                        expirationDate: newObject.expirationDate,
+                        issueDate: newObject.issueDate,
+                        issuedBy: newObject.issuedBy,
                         statusId: newObject.statusId,
+                        countryId: newObject.countryId,
                         attachments: [
                             {
                                 filename: newObject.filename,
@@ -135,6 +142,7 @@ DocumentsContainer.propTypes = {
     actorId: DocumentsListing.propTypes.actorId,
     attachments: PropTypes.object, // immutable list
     documents: PropTypes.array,
+    countries: PropTypes.array,
     documentsChanged: PropTypes.object, // immutable list
     fetchArchivedDocuments: DocumentsListing.propTypes.fetchArchivedDocuments,
     initState: PropTypes.func,
