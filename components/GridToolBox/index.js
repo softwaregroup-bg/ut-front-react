@@ -354,7 +354,7 @@ class GridToolBox extends Component {
 
                         content.push(<div key={idx}>
                             <span className={style.bold}>{filter.label}: </span>
-                            <span>{obj[0].name}</span>
+                            <span>{obj?.[0]?.name}</span>
                         </div>);
                     }
                     break;
