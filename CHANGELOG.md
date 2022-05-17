@@ -1,3 +1,13 @@
+## [13.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.1...v13.1.2) (2022-05-17)
+
+
+### Bug Fixes
+
+* missing placeholder, default selected item DIG-11 ([#625](https://github.com/softwaregroup-bg/ut-front-react/issues/625)) ([496378d](https://github.com/softwaregroup-bg/ut-front-react/commit/496378d38d53f481cf0e21aaf3b905f723e6f033))
+* resize issue DIG-51 ([#629](https://github.com/softwaregroup-bg/ut-front-react/issues/629)) ([57ae3a3](https://github.com/softwaregroup-bg/ut-front-react/commit/57ae3a365fdd0656c28762f6709445fba062176e))
+
+
+
 ## [13.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.0...v13.1.1) (2022-04-26)
 
 
