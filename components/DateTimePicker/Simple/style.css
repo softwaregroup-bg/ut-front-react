@@ -46,7 +46,7 @@
     font-weight: bold;
 }
 
-.inputWrap {
+.inputWrap, .inputWrapTP {
     border: 1px solid #D7D6D6;
     position: relative;
     height: 80%;
@@ -55,11 +55,11 @@
     align-items: center;
 }
 
-.inputWrap:nth-child(1) {
+.inputWrap:nth-child(1), .inputWrapTP:nth-child(1) {
     margin-right: 5px;
 }
 
-.inputWrap:nth-child(2){
+.inputWrap:nth-child(2), .inputWrapTP:nth-child(2) {
     margin-left: 5px;    
 }
 
@@ -70,7 +70,14 @@
     height: 28px;
 }
 
-.inputWrap button.dateButton, .inputWrap button.timeButton {
+.inputWrapTP input {
+    width: 100%;
+    padding: 4px 36px 6px 10px;
+    border: none;
+    height: auto;
+}
+
+.inputWrap button.dateButton, .inputWrap button.timeButton, .inputWrapTP button.dateButton, .inputWrapTP button.timeButton {
     width: 26px;
     height: 26px;
     position: absolute;
@@ -82,11 +89,11 @@
     background-position: center center;
 }
 
-.inputWrap button.dateButton {
+.inputWrap button.dateButton, .inputWrapTP button.dateButton {
     background-image: url('./images/calendar.png');
 }
 
-.inputWrap button.timeButton {
+.inputWrap button.timeButton, .inputWrapTP button.timeButton {
     background-image: url('./images/clock.png');
 }
 .ddframe {
