@@ -165,12 +165,6 @@ class DateTimePicker extends Component {
         this.setState({ date });
     };
 
-    handleChangeDateTime = (date) => {
-        this.props.onChange({
-            value: date
-        });
-    };
-
     render() {
         const { timeFormat, label, boldLabel, okLabel, cancelLabel, mode, firstDayOfWeek, container, innerWrapperClassName, dateTimeCombined } = this.props;
         const { defaultValue, timeType, maxDate, minDate, ampm, labelInternal, autoOk, formatDateTime, value } = this.props;
@@ -202,9 +196,10 @@ class DateTimePicker extends Component {
                 {dateTimeCombined
                     ? <div className={label ? classnames(style.innerWrapCombinedLabel, innerWrapperClassName) : classnames(style.innerWrapCombined, innerWrapperClassName)}>
                         <DateAndTimePicker
+                            timeFormat={timeFormat}
                             format={formatDateTime}
                             value={value || defaultValue}
-                            onAccept={this.handleChangeDateTime}
+                            onAccept={this.handleAccept('date')}
                             onChange={this.handleChange}
                             maxDate={maxDate}
                             minDate={minDate}
