@@ -239,6 +239,7 @@ class GridToolBox extends Component {
                         setValue={filterElement.setValue}
                         field={filterElement.field}
                         value={filterElement.value}
+                        placeholder={filterElement.placeholder}
                     />
                 </div>);
             default:

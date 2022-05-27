@@ -182,17 +182,19 @@ class DateTimePicker extends Component {
 
         let innerWrap = style.innerWrap;
         let labelWrap = style.labelWrap;
+        let inputWrap = style.inputWrap;
 
         if (timeType === 'timePicker') {
             innerWrap = style.innerWrapTP;
             labelWrap = style.labelWrapTP;
+            inputWrap = style.inputWrapTP;
         }
 
         return (
             <div className={outerWrapStyle}>
                 {label ? (<span className={classnames(labelWrap, boldLabelStyle)}><Text>{label}</Text></span>) : ''}
                 <div className={classnames(innerWrap, innerWrapperClassName)}>
-                    <div className={style.inputWrap}>
+                    <div className={inputWrap}>
                         <DatePicker
                             value={this.state.date}
                             onChange={this.handleChange}

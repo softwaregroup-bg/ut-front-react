@@ -279,6 +279,7 @@ span.checkBoxWrapper.disabledCheckbox input.checkBox:checked + .innerWrap label 
     position: relative;
     border: 1px solid;
     height: 30px;
+    text-align: left;
 }
 
 .dropdownWrap div {

@@ -1,6 +1,10 @@
 @import './default-config.css';
 @import 'config.css';
 
+table th {
+    text-align: left;
+}
+
 table.dataGridTable {
     width: 100%;
     font-family: Roboto,Arial;

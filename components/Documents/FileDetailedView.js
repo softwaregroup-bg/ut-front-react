@@ -77,6 +77,6 @@ FileDetailedView.propTypes = {
 FileDetailedView.defaultProps = {
     scaleDimensions: {
         width: 230,
-        height: 230
+        height: 300
     }
 };

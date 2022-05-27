@@ -374,6 +374,7 @@ class Container extends Component {
 
             if (col.type === resizibleTypes.CONTENT) {
                 currentStyles.display = this.props.shouldHideContent && !isAnyAsideColCollapsed ? 'none' : 'table-cell';
+                currentStyles.minWidth = col.minWidth + 'px';
             }
 
             const handleOnMouseDownEvent = (e) => {
