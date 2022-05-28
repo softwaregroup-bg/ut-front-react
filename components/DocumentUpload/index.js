@@ -104,7 +104,7 @@ export default class DocumentUpload extends Component {
     }
 
     takePhoto() {
-        const screenshot = this.refs.takePhoto.getScreenshot();
+        const screenshot = this.takePhoto.getScreenshot();
 
         // This is done so the crop gets umnounteted (in cases where an image is loaded and then changed without cropping)
         this.setState({
@@ -148,7 +148,7 @@ export default class DocumentUpload extends Component {
     }
 
     crop() {
-        this.refs.filePreview.refs.editPhoto.cropImage();
+        this.filePreview.editPhoto.cropImage();
     }
 
     onCrop(screenshot) {
@@ -185,7 +185,7 @@ export default class DocumentUpload extends Component {
         if (mode === 'takePhoto') {
             return (
                 <Camera
-                    ref='takePhoto'
+                    ref={(c) => { this.takePhoto = c; }}
                     width={fileDimensions.width}
                     height={fileDimensions.height}
                 />
@@ -197,7 +197,7 @@ export default class DocumentUpload extends Component {
                 <div>
                     <div className={this.validate && styles.hidden}>
                         <FilePreview
-                            ref='filePreview'
+                            ref={(c) => { this.filePreview = c; }}
                             file={this.state.screenshot}
                             fileExtension={this.state.fileExtension}
                             originalFilename={this.state.originalFilename}
@@ -376,7 +376,7 @@ export default class DocumentUpload extends Component {
 
         return (
             <Popup
-                ref='popup'
+                ref={(c) => { this.popup = c; }}
                 isOpen={isOpen}
                 header={header}
                 contentClassName={styles[mode + 'Container']}

@@ -527,11 +527,11 @@ class GridToolBox extends Component {
                     <Button disabled={isDisabled} onClick={actionButtonElement.onClick} styleType='primaryLight' label={actionButtonElement.label} />
                 );
             case actionButtonElementTypes.buttonWithConfirmPopUp: {
-                const handleButtonClick = () => this.refs['confirmDialog-' + index].open();
+                const handleButtonClick = () => this['confirmDialog-' + index].open();
                 return (
                     <div>
                         <ConfirmDialog
-                            ref={'confirmDialog-' + index}
+                            ref={(c) => { this[`confirmDialog-${index}`] = c; }}
                             cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
                             submitLabel={actionButtonElement.confirmDialog.submitLabel}
                             title={actionButtonElement.confirmDialog.title}
@@ -548,16 +548,16 @@ class GridToolBox extends Component {
                 const buttonLabel = propStatus.status ? actionButtonElement.oppositeLabel : actionButtonElement.label;
                 const handleAction = () => {
                     if (propStatus.canDoAction) {
-                        this.refs['confirmDialog-' + index].open();
+                        this['confirmDialog-' + index].open();
                     } else {
-                        this.refs['errorDialog-' + index].open();
+                        this['errorDialog-' + index].open();
                     }
                 };
 
                 return (
                     <div>
                         <ConfirmDialog
-                            ref={'confirmDialog-' + index}
+                            ref={(c) => { this[`confirmDialog-${index}`] = c; }}
                             cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
                             submitLabel={actionButtonElement.confirmDialog.submitLabel}
                             title={actionButtonElement.confirmDialog.title}
@@ -566,7 +566,7 @@ class GridToolBox extends Component {
                             cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <ConfirmDialog
-                            ref={'errorDialog-' + index}
+                            ref={(c) => { this[`errorDialog-${index}`] = c; }}
                             cancelLabel={actionButtonElement.errorDialog.cancelLabel}
                             submitLabel=''
                             title={actionButtonElement.errorDialog.title}
@@ -594,16 +594,16 @@ class GridToolBox extends Component {
 
                 const handleActionDependingOnPropertyValue = () => {
                     if (canDoAction) {
-                        this.refs['confirmDialog-' + index].open();
+                        this['confirmDialog-' + index].open();
                     } else {
-                        this.refs['errorDialog-' + index].open();
+                        this['errorDialog-' + index].open();
                     }
                 };
 
                 return (
                     <div>
                         <ConfirmDialog
-                            ref={'confirmDialog-' + index}
+                            ref={(c) => { this[`confirmDialog-${index}`] = c; }}
                             cancelLabel={actionButtonElement.confirmDialog.cancelLabel}
                             submitLabel={actionButtonElement.confirmDialog.submitLabel}
                             title={actionButtonElement.confirmDialog.title}
@@ -612,7 +612,7 @@ class GridToolBox extends Component {
                             cannotSubmit={actionButtonElement.confirmDialog.cannotSubmit}
                         />
                         <ConfirmDialog
-                            ref={'errorDialog-' + index}
+                            ref={(c) => { this[`errorDialog-${index}`] = c; }}
                             cancelLabel={actionButtonElement.errorDialog.cancelLabel}
                             submitLabel=''
                             title={actionButtonElement.errorDialog.title}
@@ -628,7 +628,7 @@ class GridToolBox extends Component {
                     return (
                         <ConfirmDialog
                             key={i}
-                            ref={'dialog-' + dialog.identifier}
+                            ref={(c) => { this[`dialog-${dialog.identifier}`] = c; }}
                             cancelLabel={dialog.cancelLabel}
                             submitLabel={dialog.submitLabel}
                             title={dialog.title}
@@ -650,7 +650,7 @@ class GridToolBox extends Component {
     }
 
     openRefDialogWithMessage({ identifier, message }) { // this function is called from outside using refs
-        this.refs['dialog-' + identifier].open(message);
+        this['dialog-' + identifier].open(message);
     }
 
     propStatus(property, selectProperty) {

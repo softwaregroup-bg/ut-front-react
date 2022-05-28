@@ -20,13 +20,13 @@ class Wrapper extends Component {
     }
 
     render() {
-        const handleButtonClick = () => this.refs.confirmDialog.open();
+        const handleButtonClick = () => this.confirmDialog.open();
         return (
             <MaterialUILayout>
                 <div>
                     <ConfirmDialog
                         cancelLabel='no'
-                        ref='confirmDialog'
+                        ref={(c) => { this.confirmDialog = c; }}
                         submitLabel='yes'
                         title='test title'
                         message='are you sure?'
