@@ -1,3 +1,12 @@
+## [13.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.4...v13.1.5) (2022-05-28)
+
+
+### Bug Fixes
+
+* difference between Audit log and Transfer Type Statistics Dig 50 ([#626](https://github.com/softwaregroup-bg/ut-front-react/issues/626)) ([1f62e00](https://github.com/softwaregroup-bg/ut-front-react/commit/1f62e00ba32c05180515f172baffac76111b927e))
+
+
+
 ## [13.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.3...v13.1.4) (2022-05-28)
 
 
