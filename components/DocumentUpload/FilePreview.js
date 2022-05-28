@@ -62,7 +62,7 @@ export default class FilePreview extends Component {
         return (
             <div className={classnames(styles.filePreviewContainer, className)}>
                 {showCrop ? <Cropper
-                    ref='editPhoto'
+                    ref={(c) => { this.editPhoto = c; }}
                     file={file}
                     fileDimensions={fileDimensions}
                     cropDimensions={cropDimensions}

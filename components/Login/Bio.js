@@ -9,7 +9,7 @@ class Username extends React.Component {
     };
 
     getValues = () => {
-        return this.refs.f.getValue();
+        return this.f.getValue();
     };
 
     render() {

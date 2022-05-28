@@ -150,7 +150,7 @@ export default class DatePickerBetween extends Component {
                     onAccept={this.handleAccept('from')}
                     onChange={(date) => { this.setState({startDate: date}); }}
                     variant='dialog'
-                    ref='fromDialogWindow'
+                    ref={(c) => { this.fromDialogWindow = c; }}
                     TextFieldComponent={() => null}
                     onOpen={this.handleOpen('from')}
                     onClose={this.handleClose('from')}
@@ -166,7 +166,7 @@ export default class DatePickerBetween extends Component {
                     onAccept={this.handleAccept('to')}
                     onChange={(date) => { this.setState({endDate: date}); }}
                     variant='dialog'
-                    ref='toDialogWindow'
+                    ref={(c) => { this.toDialogWindow = c; }}
                     TextFieldComponent={() => null}
                     onOpen={this.handleOpen('to')}
                     onClose={this.handleClose('to')}

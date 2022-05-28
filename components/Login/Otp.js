@@ -12,11 +12,11 @@ class Username extends React.Component {
     };
 
     getValue = () => {
-        return this.refs.f.getValue();
+        return this.f.getValue();
     };
 
     componentDidMount() {
-        this.refs.f.input.focus();
+        this.f.input.focus();
     }
 
     render() {
@@ -27,7 +27,7 @@ class Username extends React.Component {
                     <TextField
                         onKeyDown={this.props.submit}
                         name='otp'
-                        ref='f'
+                        ref={(c) => { this.f = c; }}
                         style={textFieldStyle}
                         inputStyle={textFieldInputStyle}
                         underlineShow={false}

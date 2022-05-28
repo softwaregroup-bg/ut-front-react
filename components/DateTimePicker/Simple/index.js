@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
@@ -251,7 +250,6 @@ class DateTimePicker extends Component {
                                 mode={mode}
                                 onAccept={this.handleAccept('time')}
                                 variant='dialog'
-                                ref='time'
                             />
                             : timeType === 'timeDropdown'
                                 ? <div className={style.ddframe}>

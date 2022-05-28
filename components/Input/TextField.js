@@ -14,12 +14,12 @@ class TextField extends Component {
                         {this.props.label}
                     </div>
                     <div className={style.inputWrap}>
-                        <input ref='input' className={classnames(style.input, classes.border)} {...props} />
+                        <input ref={(c) => { this.input = c; }} className={classnames(style.input, classes.border)} {...props} />
                     </div>
                 </div>
             );
         } else {
-            return <input ref='input' className={classnames(style.input, classes.border)} {...props} />;
+            return <input ref={(c) => { this.input = c; }} className={classnames(style.input, classes.border)} {...props} />;
         }
     }
 }

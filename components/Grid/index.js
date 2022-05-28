@@ -52,13 +52,13 @@ class Grid extends Component {
 
     clearSelected() {
         for (let i = 0; i < this.props.rows.size; i += 1) {
-            this.refs[i].clearSelected();
+            this[i].clearSelected();
         }
     }
 
     clearChecked() {
         for (let i = 0; i < this.props.rows.size; i += 1) {
-            this.refs[i].clearChecked();
+            this[i].clearChecked();
         }
         this.setState({all: false});
     }
@@ -113,7 +113,7 @@ class Grid extends Component {
                         canCheck={canCheck}
                         mapColumn={this.props.mapColumn}
                         subscribeUnselect={this.subscribeUnselect}
-                        ref={i}
+                        ref={(c) => { this[`${i}`] = c; }}
                         tdStyles={tdStyles}
                         trStyles={trStyles}
                     />);
