@@ -1,3 +1,12 @@
+## [13.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.3...v13.1.4) (2022-05-28)
+
+
+### Bug Fixes
+
+* login screen - password only to be mandatory, deprecated ref error DIG-28 ([#618](https://github.com/softwaregroup-bg/ut-front-react/issues/618)) ([c8bb19b](https://github.com/softwaregroup-bg/ut-front-react/commit/c8bb19b02104a437efe02a35e64416033c40e620))
+
+
+
 ## [13.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.2...v13.1.3) (2022-05-26)
 
 
