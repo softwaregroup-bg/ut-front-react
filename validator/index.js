@@ -9,8 +9,11 @@ const numbersOnlyRegex = /^[0-9]+$/;
 export const isRequiredRule = (prop, rule, result) => {
     checkPassedResultObject(result);
 
+    const isFile = prop?.getIn?.(['meta', 'fileName']);
+    const isFileDeleted = prop?.getIn?.(['meta', 'isFileRemoved']);
+
     const trimmed = prop ? (prop.trim ? prop.trim() : prop) : '';
-    if (!prop || trimmed.length === 0) {
+    if ((!prop || trimmed.length === 0) || (isFile && isFileDeleted)) {
         result.isValid = false;
         result.errors.push(getErrorObject(rule));
     }
