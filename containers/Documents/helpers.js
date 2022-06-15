@@ -253,9 +253,13 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                 break;
             }
             case 'approved':
+                break;
             case 'archived':
+                break;
             case 'deleted':
+                break;
             case 'replaced':
+                break;
             case 'pending': {
                 let documentId = null;
                 if (doc.documentId) {
