@@ -17,8 +17,7 @@ const DataList = ({data}) => {
             keyClass={row.get('keyClass')}
             valueClass={row.get('valueClass')}
             key={index}
-            keyNode={row.get('key')}
-        >
+            keyNode={row.get('key')}>
             {row.getIn(['value', 'filename']) ? <a rel='noreferrer' href={`${window.location.origin}/file-upload/${row.getIn(['value', 'filename'])}`} target='_blank'>Open File</a> : row.get('value')}
         </KeyValueRow>));
     return (
