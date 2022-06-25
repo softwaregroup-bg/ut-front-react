@@ -5,7 +5,7 @@ import style from './style.css';
 import cssStandard from '../../assets/index.css';
 export class Filters extends Component {
     render() {
-        var classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
+        const classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
         this.props.opened && classes.push(style.opened);
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (

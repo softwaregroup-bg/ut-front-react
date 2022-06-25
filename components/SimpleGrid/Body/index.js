@@ -73,7 +73,8 @@ export class Body extends Component {
                             handleDoubleClick={handleRowDoubleClick}
                             rowsChecked={rowsChecked}
                             handleCellClick={handleCellClick}
-                            rowStyleField={rowStyleField} />
+                            rowStyleField={rowStyleField}
+                        />
                     );
                 });
             }

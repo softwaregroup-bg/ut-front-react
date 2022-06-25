@@ -4,16 +4,16 @@ import classnames from 'classnames';
 
 export default class Tab extends React.Component {
     render() {
-        let style = this.props.cssStyle || defaultStyle;
-        let {isActive, onClick, title, errorsCount} = this.props;
+        const style = this.props.cssStyle || defaultStyle;
+        const {isActive, onClick, title, errorsCount} = this.props;
         let activeClassName;
         if (isActive) {
             activeClassName = style.selected;
         }
-        let onClickHanlder = () => {
+        const onClickHanlder = () => {
             onClick(this.props);
         };
-        let errCount = errorsCount > 9 ? '9+' : errorsCount.toString();
+        const errCount = errorsCount > 9 ? '9+' : errorsCount.toString();
 
         return (
             <li className={style.tabItem}>

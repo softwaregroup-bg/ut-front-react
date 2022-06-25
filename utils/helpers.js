@@ -22,7 +22,7 @@ export function deepAssign(target) {
 const isObject = (value) => value !== null && (typeof value === 'object' || typeof value === 'function');
 
 const assignKey = (to, from, key) => {
-    var val = from[key];
+    const val = from[key];
 
     if (val === undefined || val === null) {
         return;
@@ -48,14 +48,14 @@ const assign = (to, from) => {
 
     from = toObject(from);
 
-    for (let key in from) {
+    for (const key in from) {
         if (Object.prototype.hasOwnProperty.call(from, key)) {
             assignKey(to, from, key);
         }
     }
 
     if (Object.getOwnPropertySymbols) {
-        let symbols = Object.getOwnPropertySymbols(from);
+        const symbols = Object.getOwnPropertySymbols(from);
 
         for (let i = 0; i < symbols.length; i++) {
             if (Object.prototype.propertyIsEnumerable.call(from, symbols[i])) {

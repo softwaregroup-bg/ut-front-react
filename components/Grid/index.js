@@ -31,8 +31,8 @@ class Grid extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let checkedRowsCount = nextProps.checkedItems.size;
-        let gridRowsCount = nextProps.rows.size;
+        const checkedRowsCount = nextProps.checkedItems.size;
+        const gridRowsCount = nextProps.rows.size;
         if (gridRowsCount === checkedRowsCount && gridRowsCount !== 0 && !this.isAllChecked()) {
             this.setState({all: true});
         } else if (gridRowsCount !== checkedRowsCount && this.isAllChecked()) {
@@ -49,13 +49,13 @@ class Grid extends Component {
     }
 
     clearSelected() {
-        for (var i = 0; i < this.props.rows.size; i += 1) {
+        for (let i = 0; i < this.props.rows.size; i += 1) {
             this.refs[i].clearSelected();
         }
     }
 
     clearChecked() {
-        for (var i = 0; i < this.props.rows.size; i += 1) {
+        for (let i = 0; i < this.props.rows.size; i += 1) {
             this.refs[i].clearChecked();
         }
         this.setState({all: false});
@@ -66,7 +66,7 @@ class Grid extends Component {
     }
 
     render() {
-        let {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
+        const {columns, checkedItems, rowIdentifier, sortableColumns, activeSort, linkableColumns, onRefresh, onSort, rows, canCheck, canColCustomize, onToggleColumn} = this.props;
         let rowColumns = columns;
 
         // Add empty column
@@ -74,11 +74,11 @@ class Grid extends Component {
             rowColumns = columns.concat({});
         }
 
-        let tdStyles = this.props.tdStyles;
-        let trStyles = this.props.trStyles;
-        let thStyles = this.props.thStyles;
+        const tdStyles = this.props.tdStyles;
+        const trStyles = this.props.trStyles;
+        const thStyles = this.props.thStyles;
 
-        let grid = (
+        const grid = (
             <table className={style.dataGridTable}>
                 {this.props.showTableHead &&
                     <Header
@@ -97,7 +97,7 @@ class Grid extends Component {
                     />
                 }
                 <tbody>{rows.map((rowData, i) => {
-                    let checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
+                    const checked = this.state.all || checkedItems.find((i) => rowData.get(rowIdentifier) === i.get(rowIdentifier)) !== undefined;
 
                     return (<Row
                         key={i}

@@ -80,9 +80,10 @@ export default class DocumentUpload extends Component {
             mode: 'takePhoto'
         });
     }
+
     onUploadFile(file, fileObj) {
         const fileDimensions = this.getFileDimensions(file);
-        let extension = getFileExtension(fileObj.name);
+        const extension = getFileExtension(fileObj.name);
 
         // This is done so the crop gets umnounteted (in cases where an image is loaded and then changed without cropping)
         this.setState({
@@ -134,7 +135,7 @@ export default class DocumentUpload extends Component {
     }
 
     getFileDimensions(file) {
-        let fileDimensions = getFileDimensions(file);
+        const fileDimensions = getFileDimensions(file);
         const { aspectRatio } = fileDimensions;
         const scaleRatio = aspectRatio || DEFAULT_ASPECT_RATIO;
         const height = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT - 2 * POPUP_PADDING;
@@ -175,7 +176,8 @@ export default class DocumentUpload extends Component {
                     onAddFile={this.onAddFile}
                     allowedFileTypes={allowedFileTypes}
                     onFileLoaded={this.onUploadFile}
-                    uploadType={uploadType} />
+                    uploadType={uploadType}
+                />
             );
         }
 
@@ -184,53 +186,57 @@ export default class DocumentUpload extends Component {
                 <Camera
                     ref='takePhoto'
                     width={fileDimensions.width}
-                    height={fileDimensions.height} />
+                    height={fileDimensions.height}
+                />
             );
         }
 
         if (mode === 'preview') {
-            return (
-                <div>
-                    <div className={this.validate && styles.hidden}>
-                        <FilePreview
-                            ref='filePreview'
-                            file={this.state.screenshot}
-                            fileExtension={this.state.fileExtension}
-                            originalFilename={this.state.originalFilename}
-                            showCrop={!hideCrop || this.state.showCrop}
-                            onCrop={this.onCrop}
-                            fileDimensions={fileDimensions}
-                            scaleDimensions={scaleDimensions}
-                            cropDimensions={this.cropDimensions}
-                            uploadMethod={uploadMethod}
-                            uploadType={uploadType}
-                            onFileLoaded={this.onUploadFile}
-                            changeMode={this.changeMode}
-                            allowedFileTypes={allowedFileTypes.join(',')}
-                            crop={this.crop} />
-                    </div>
-                    {this.validate && <div className={styles.errorMsg}>
-                        Error: {this.validate}
-                    </div>}
-                </div>);
+            return <div>
+                <div className={this.validate && styles.hidden}>
+                    <FilePreview
+                        ref='filePreview'
+                        file={this.state.screenshot}
+                        fileExtension={this.state.fileExtension}
+                        originalFilename={this.state.originalFilename}
+                        showCrop={!hideCrop || this.state.showCrop}
+                        onCrop={this.onCrop}
+                        fileDimensions={fileDimensions}
+                        scaleDimensions={scaleDimensions}
+                        cropDimensions={this.cropDimensions}
+                        uploadMethod={uploadMethod}
+                        uploadType={uploadType}
+                        onFileLoaded={this.onUploadFile}
+                        changeMode={this.changeMode}
+                        allowedFileTypes={allowedFileTypes.join(',')}
+                        crop={this.crop}
+                    />
+                </div>
+                {this.validate && <div className={styles.errorMsg}>
+                    Error: {this.validate}
+                </div>}
+            </div>;
         }
     }
+
     get validate() {
         // file validation
-        let { allowedFileTypes, maxFileSize } = this.props;
-        let { fileExtension, fileSize } = this.state;
+        const { allowedFileTypes, maxFileSize } = this.props;
+        const { fileExtension, fileSize } = this.state;
         if ((!allowedFileTypes.map((tp) => (tp.split('.').pop() || '').toLowerCase()).includes((fileExtension || '').toLowerCase())) || (fileSize > this.maxFileSize)) {
             return `Please use file types ${allowedFileTypes.join(', ')} and file size up to ${parseInt((maxFileSize) / 1024)}MB per document`;
         } else return null;
     }
+
     get maxFileSize() {
         return this.props.maxFileSize * 1024;
     }
+
     get actionButtons() {
         const { closePopup } = this.props;
         const { mode } = this.state;
 
-        let actionButtons = [{
+        const actionButtons = [{
             label: 'Cancel',
             styleType: 'secondaryDialog',
             onClick: closePopup
@@ -246,7 +252,7 @@ export default class DocumentUpload extends Component {
         }
 
         if (mode === 'preview') {
-            let handler = this.props.isAdditionalContentValid ? this.onUseFile : this.props.additionalContentValidate;
+            const handler = this.props.isAdditionalContentValid ? this.onUseFile : this.props.additionalContentValidate;
             !this.validate && actionButtons.unshift({
                 name: 'use',
                 label: 'Use',
@@ -279,12 +285,12 @@ export default class DocumentUpload extends Component {
     }
 
     uploadFile(file) {
-        let { useFile } = this.props;
-        var data = new window.FormData();
-        var img = this.dataURItoBlob(file);
-        let ext = this.state.fileExtension || 'unknown';
+        const { useFile: fileUse } = this.props;
+        const data = new window.FormData();
+        const img = this.dataURItoBlob(file);
+        const ext = this.state.fileExtension || 'unknown';
         data.append('file', img, 'file.' + ext);
-        var request = new window.XMLHttpRequest();
+        const request = new window.XMLHttpRequest();
         request.open('POST', '/file-upload', true);
         this.setState({
             isUploading: true
@@ -294,11 +300,11 @@ export default class DocumentUpload extends Component {
                 isUploading: false
             });
             if (request.status >= 200 && request.status < 300 && request.responseText) {
-                let reader = new window.FileReader();
+                const reader = new window.FileReader();
                 reader.onload = (data) => {
                     try {
-                        let response = JSON.parse(request.responseText);
-                        useFile({
+                        const response = JSON.parse(request.responseText);
+                        fileUse({
                             filename: response.filename,
                             createdDate: new Date().toISOString(),
                             extension: getFileExtension(response.filename),
@@ -324,18 +330,18 @@ export default class DocumentUpload extends Component {
 
     dataURItoBlob(dataURI) {
         // convert base64/URLEncoded data component to raw binary data held in a string
-        var byteString;
+        let byteString;
         if (dataURI.split(',')[0].indexOf('base64') >= 0) {
             byteString = window.atob(dataURI.split(',')[1]);
         } else {
             byteString = unescape(dataURI.split(',')[1]);
         }
         // separate out the mime component
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
         // write the bytes of the string to a typed array
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
+        const ia = new Uint8Array(byteString.length);
+        for (let i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
         }
 
@@ -371,7 +377,8 @@ export default class DocumentUpload extends Component {
                 header={header}
                 contentClassName={styles[mode + 'Container']}
                 footer={{actionButtons: this.actionButtons}}
-                closePopup={closePopup}>
+                closePopup={closePopup}
+            >
                 <div>
                     { this.displayError }
                     { this.props.children }

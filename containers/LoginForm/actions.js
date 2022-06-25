@@ -10,10 +10,10 @@ import {
 } from './actionTypes';
 
 const getTimezone = () => {
-    let offset = (new Date()).getTimezoneOffset();
-    let sign = offset > 0 ? '-' : '+';
-    let hours = Math.floor(Math.abs(offset) / 60);
-    let minutes = Math.abs(offset) - (hours * 60);
+    const offset = (new Date()).getTimezoneOffset();
+    const sign = offset > 0 ? '-' : '+';
+    const hours = Math.floor(Math.abs(offset) / 60);
+    const minutes = Math.abs(offset) - (hours * 60);
     return `${sign}${('00' + hours.toString()).substr(-2)}:${('00' + minutes.toString()).substr(-2)}`;
 };
 

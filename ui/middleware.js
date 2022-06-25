@@ -16,7 +16,7 @@ const cloneParams = (params) => {
 };
 
 const getCookies = () => (typeof document === 'undefined') ? {} : document.cookie.split(';').map((c) => (c.split('='))).reduce((a, c) => {
-    var key = c.shift().trim();
+    const key = c.shift().trim();
     a[key] = c.shift();
     return a;
 }, {});
@@ -24,11 +24,11 @@ const getCookies = () => (typeof document === 'undefined') ? {} : document.cooki
 export default (utMethod, history) => {
     const rpc = (store) => (next) => (action) => {
         if (action.method) {
-            var cookies = getCookies();
-            var corsCookie = cookies['xsrf-token'];
-            var importMethodParams = {};
-            var $meta = fromJS({$http: {mtid: ((action.mtid === 'notification' && 'notification') || 'request')}});
-            var methodParams = fromJS(cloneParams(action.params))
+            const cookies = getCookies();
+            const corsCookie = cookies['xsrf-token'];
+            let importMethodParams = {};
+            const $meta = fromJS({$http: {mtid: ((action.mtid === 'notification' && 'notification') || 'request')}});
+            let methodParams = fromJS(cloneParams(action.params))
                 .mergeDeep($meta);
 
             if (action.$http) {

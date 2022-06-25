@@ -22,8 +22,8 @@ export default class Form extends Component {
     }
 
     renderInputs() {
-        let { inputs, onChange } = this.props;
-        let inputNodes = [];
+        const { inputs, onChange } = this.props;
+        const inputNodes = [];
 
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput key={index}
@@ -38,23 +38,24 @@ export default class Form extends Component {
                 name={input.get('name')}
                 placeholder={input.get('placeholder')}
                 onChange={onChange}
-                error={input.get('error')} />);
+                error={input.get('error')}
+            />);
         });
 
         return inputNodes;
     }
 
     renderButtons() {
-        let { buttons } = this.props;
+        const { buttons } = this.props;
 
         return buttons.map((button, index) => <Button key={index} {...button} />);
     }
 
     focusNextInput() {
-        let { inputs } = this.props;
+        const { inputs } = this.props;
 
         // find the first input which doesn't have value
-        let nextInput = inputs.find(input => {
+        const nextInput = inputs.find(input => {
             return !input.get('value') && !input.get('hidden');
         });
 
@@ -73,7 +74,7 @@ export default class Form extends Component {
     }
 
     render() {
-        let { className, title, error, onSubmit } = this.props;
+        const { className, title, error, onSubmit } = this.props;
 
         return (
             <div className={getClass(styles, className)}>

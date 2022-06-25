@@ -29,7 +29,7 @@ const Header = React.createClass({
         checkPermission: PropTypes.func
     },
     render() {
-        let { text, buttons, buttonsRaw } = this.props;
+        const { text, buttons, buttonsRaw } = this.props;
 
         return (
             <div className={style.headerWrapper}>
@@ -44,7 +44,7 @@ const Header = React.createClass({
                             );
                         })}
                         {buttons.map((btn, i) => {
-                            let styleType = btn.styleType || 'secondaryDark';
+                            const styleType = btn.styleType || 'secondaryDark';
                             if (btn.permissions && !this.context.checkPermission(btn.permissions)) {
                                 return <div />;
                             }
@@ -57,7 +57,8 @@ const Header = React.createClass({
                                             onClick={btn.onClick}
                                             disabled={btn.disabled === true}
                                             label={btn.text}
-                                            href={btn.href} />
+                                            href={btn.href}
+                                        />
                                     </div>
                                 );
                             } else {
@@ -66,7 +67,8 @@ const Header = React.createClass({
                                         <StandardButton
                                             styleType={styleType}
                                             disabled={btn.disabled === true}
-                                            label={btn.text} />
+                                            label={btn.text}
+                                        />
                                     </Link>
                                 );
                             }

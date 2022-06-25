@@ -20,7 +20,7 @@ class SearchBox extends Component {
     }
 
     handleSearch() {
-        let value = this.state.value && this.state.value.trim();
+        const value = this.state.value && this.state.value.trim();
         this.props.onSearch(value);
         if (this.props.clearOnSearch) {
             this.setState({value: ''});
@@ -46,14 +46,14 @@ class SearchBox extends Component {
     }
 
     render() {
-        let boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
+        const boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
         if (!this.props.label) {
             boxStyles.push(this.getStyle('searchBoxNoLabel'));
         }
         if (!this.props.isValid) {
             boxStyles.push(style.error);
         }
-        let zeroHeightStyle = this.props.isValid ? style.hh : '';
+        const zeroHeightStyle = this.props.isValid ? style.hh : '';
         return (
             <div className={this.getStyle('searchBoxWrap')}>
                 {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</span>) : ''}

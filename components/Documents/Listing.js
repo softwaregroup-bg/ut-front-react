@@ -47,7 +47,7 @@ class Documents extends Component {
     }
 
     render() {
-        let { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
                 <Vertical fixedComponent={this.header}>

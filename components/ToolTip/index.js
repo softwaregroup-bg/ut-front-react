@@ -22,7 +22,7 @@ class ToolTip extends Component {
 
     render() {
         let hoverClass = '';
-        let stylesToUse = this.props.styles || style;
+        const stylesToUse = this.props.styles || style;
 
         if (this.state.hover) {
             hoverClass =

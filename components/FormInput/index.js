@@ -14,9 +14,9 @@ export default class FormInput extends Component {
     }
 
     render() {
-        let { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
-        let { onBlur, onChange } = this.props;
-        let inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
+        const { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
+        const { onBlur, onChange } = this.props;
+        const inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
 
         return (
             <div className={getClass(styles, inputClassName)}>
@@ -30,7 +30,8 @@ export default class FormInput extends Component {
                     onChange={onChange}
                     onBlur={onBlur}
                     tabIndex={tabIndex}
-                    ref='inputNode' />
+                    ref='inputNode'
+                />
                 { label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')} > {label} </label> : false }
                 { error ? <div className={styles.errorMessage}>{error}</div> : false }
             </div>

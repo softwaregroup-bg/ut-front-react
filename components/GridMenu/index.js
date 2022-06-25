@@ -24,8 +24,8 @@ export default class GlobalMenu extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.fields.filter(f => (f.visible)).length > this.props.fields.filter(f => (f.visible)).length) {
             // prevents horizontal scroll /if any/ movement when adding visible columns
-            let fieldControlEl = document.getElementById(menuFieldControl);
-            let tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
+            const fieldControlEl = document.getElementById(menuFieldControl);
+            const tableWrap = closest(fieldControlEl, 'table').parentNode.parentNode;
 
             if (tableWrap.scrollWidth > tableWrap.clientWidth) {
                 tableWrap.scrollLeft = tableWrap.scrollWidth - tableWrap.clientWidth;
@@ -40,13 +40,16 @@ export default class GlobalMenu extends Component {
             }
         }
     }
+
     onRefresh() {
-        let {onRefresh} = this.props;
+        const {onRefresh} = this.props;
         onRefresh && onRefresh();
     }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
+
     handleMenuOpen(event) {
         event.preventDefault();
 
@@ -55,11 +58,13 @@ export default class GlobalMenu extends Component {
             anchorEl: event.currentTarget
         });
     }
+
     handleMenuClose() {
         this.setState({
             menuOpened: false
         });
     }
+
     toggleColumnVisibility(field) {
         return () => {
             if (this.props.fields.filter(f => (f.visible)).length > 1 || !field.visible) {
@@ -69,6 +74,7 @@ export default class GlobalMenu extends Component {
             return false;
         };
     }
+
     getItems() {
         return this.props
             .fields
@@ -77,14 +83,15 @@ export default class GlobalMenu extends Component {
                 <MenuItem
                     key={idx}
                     onTouchTap={this.toggleColumnVisibility(f)}
-                    children={
-                        <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
-                            <Checkbox isDisabled={false} checked={f.visible} />
-                            {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
-                        </div>
-                    } />
+                >
+                    <div className={this.getStyle('headerGlobalMenuFieldControlContainer')}>
+                        <Checkbox isDisabled={false} checked={f.visible} />
+                        {this.props.transformCellValue(f.title || '', f.name, undefined, true)}
+                    </div>
+                </MenuItem>
             ));
     }
+
     getMenu() {
         return (
             <Popover
@@ -94,16 +101,16 @@ export default class GlobalMenu extends Component {
                 targetOrigin={{horizontal: 'left', vertical: 'top'}}
                 onRequestClose={this.handleMenuClose}
                 animation={PopoverAnimationVertical}
-                className={this.getStyle('headerGlobalMenuPopoverWrap')}>
+                className={this.getStyle('headerGlobalMenuPopoverWrap')}
+            >
                 <Menu disableAutoFocus className={this.getStyle('headerGlobalMenuItemWrap')} >
                     {this.props.onRefresh && (<div className={style.refreshContainer}>
-                        <MenuItem onTouchTap={this.props.onRefresh} style={{minHeight: 'auto'}}
-                            children={
-                                <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
-                                    <div className={classnames(style.icon, style.refreshIcon)} />
-                                    <div className={style.iconLabel}> Reload Grid </div>
-                                </div>}
-                        />
+                        <MenuItem onTouchTap={this.props.onRefresh} style={{ minHeight: 'auto' }}>
+                            <div className={classnames(this.getStyle('headerGlobalMenuFieldControlContainer'), style.menuItem)}>
+                                <div className={classnames(style.icon, style.refreshIcon)} />
+                                <div className={style.iconLabel}> Reload Grid </div>
+                            </div>
+                        </MenuItem>
                     </div>)}
                     <div className={style.columnWrap}>
                         <label className={style.menuLabel}> Manage Columns </label>
@@ -113,6 +120,7 @@ export default class GlobalMenu extends Component {
             </Popover>
         );
     }
+
     render() {
         return (<th id={menuFieldControl} className={this.getStyle('headerGlobalMenuField')}>
             <div onTouchTap={this.handleMenuOpen} className={this.getStyle('headerGlobalMenuFieldControl')}><SettingsIcon /></div>

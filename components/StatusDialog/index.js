@@ -3,17 +3,17 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
 const StatusDialog = ({ status, onClose }) => {
-    var actions = [];
+    const actions = [];
 
-    let isOpen = status.size > 0;
-    let statusString = status.get('status');
+    const isOpen = status.size > 0;
+    const statusString = status.get('status');
     if (statusString !== 'pending') {
         actions.push(<FlatButton label='Ok' onTouchTap={onClose} />);
     }
 
-    let upperCasedStatus = statusString ? statusString.toUpperCase() : '';
-    let message = status.get('message');
-    let displayMsg = [];
+    const upperCasedStatus = statusString ? statusString.toUpperCase() : '';
+    const message = status.get('message');
+    const displayMsg = [];
     if (upperCasedStatus) {
         displayMsg.push(upperCasedStatus);
     }

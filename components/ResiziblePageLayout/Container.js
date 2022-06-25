@@ -41,6 +41,7 @@ class Container extends Component {
         this.updateFirstAndSecondColDom = this.updateFirstAndSecondColDom.bind(this);
         this.updateResizableObjects = this.updateResizableObjects.bind(this);
     }
+
     componentWillReceiveProps(nextProps) {
         let isUpdateResizeObjsNeeded = false;
         nextProps.cols && nextProps.cols.length && nextProps.cols.forEach(obj => {
@@ -48,6 +49,7 @@ class Container extends Component {
         });
         isUpdateResizeObjsNeeded && this.updateResizableObjects();
     }
+
     componentDidMount() {
         window.addEventListener('resize', this.resize);
         this.props.cols && this.props.cols.length && this.updateResizableObjects();
@@ -57,18 +59,19 @@ class Container extends Component {
         document.onmouseup = this.updateOnMouseUp;
         document.onmousemove = this.setNewPosition;
     }
+
     updateResizableObjects() {
         this.resizeObjects = [];
-        let args = this.props.cols.map((col) => {
+        const args = this.props.cols.map((col) => {
             return {domId: col.id, height: '100%', minWidth: col.minWidth, collapsedWidth: col.collapsedWidth, collapsePrev: col.collapsePrev};
         });
         args.forEach((el) => {
-            let currentElement = document.getElementById(el.domId);
-            let currentWidth = (currentElement && currentElement.clientWidth) || defaultColWidth;
-            let currentMinWidth = el.minWidth || defaultMinWidth;
-            let currentCollapsedWidth = el.collapsedWidth;
+            const currentElement = document.getElementById(el.domId);
+            const currentWidth = (currentElement && currentElement.clientWidth) || defaultColWidth;
+            const currentMinWidth = el.minWidth || defaultMinWidth;
+            const currentCollapsedWidth = el.collapsedWidth;
 
-            let resizeObject = {
+            const resizeObject = {
                 domId: el.domId,
                 currentWidth: currentWidth,
                 minWidth: currentMinWidth,
@@ -79,44 +82,47 @@ class Container extends Component {
             this.resizeObjects.push(resizeObject);
         });
     }
+
     /*
         Resizible logic
     */
     initResize() {
         this.resizedInit = true;
     }
+
     setResizorsHeight() {
-        let tableWrap = this.refs.tableWrap;
-        let resizorDivs = document.getElementsByClassName(style.visibleResizor);
+        const tableWrap = this.refs.tableWrap;
+        const resizorDivs = document.getElementsByClassName(style.visibleResizor);
         for (let i = 0; i < resizorDivs.length; i += 1) {
-            let currentResizor = resizorDivs[i];
+            const currentResizor = resizorDivs[i];
             currentResizor.style.height = tableWrap.clientHeight + 'px';
         }
 
-        let dotsDivs = document.getElementsByClassName(style.resizorDots);
+        const dotsDivs = document.getElementsByClassName(style.resizorDots);
         for (let i = 0; i < dotsDivs.length; i += 1) {
-            let currentDots = dotsDivs[i];
+            const currentDots = dotsDivs[i];
             currentDots.style.top = ((tableWrap.clientHeight - 12) / 2) + 'px'; // 12 --> dots image height
         }
     }
+
     updateOnMouseUp() {
         if (this.allowMove) {
             // update resizeObjects width
-            let resizeObject = this.resizeObjects[this.resizeIndex];
-            let nextResizeObject = this.resizeObjects[this.resizeIndex + 1];
+            const resizeObject = this.resizeObjects[this.resizeIndex];
+            const nextResizeObject = this.resizeObjects[this.resizeIndex + 1];
             let newFirstClientWidth = this.firstColDom.clientWidth;
             let newSecondClientWidth = this.secondColDom.clientWidth;
 
             let updateCollapsed = false;
             // < ||||| > (resize first -- <)
             if (newFirstClientWidth < resizeObject.minWidth) {
-                let diff = newFirstClientWidth - resizeObject.collapsedWidth;
+                const diff = newFirstClientWidth - resizeObject.collapsedWidth;
                 newFirstClientWidth = resizeObject.collapsedWidth;
                 newSecondClientWidth += diff;
                 this.resizeObjects[this.resizeIndex].isCollapsed = true;
                 updateCollapsed = true;
             } else if (nextResizeObject && nextResizeObject.collapsePrev && newSecondClientWidth < nextResizeObject.minWidth) { // < ||||| > (resize second -- <)
-                let diff = newSecondClientWidth - nextResizeObject.collapsedWidth;
+                const diff = newSecondClientWidth - nextResizeObject.collapsedWidth;
                 newSecondClientWidth = nextResizeObject.collapsedWidth;
                 newFirstClientWidth += diff;
                 this.resizeObjects[this.resizeIndex + 1].isCollapsed = true;
@@ -140,13 +146,14 @@ class Container extends Component {
         this.allowMove = false;
         return false;
     }
+
     updateLocalStorage(firstIndex, secondIndex) {
         let newValue;
-        let savedValue = localStorage.getItem('resizibleColumns');
-        let getNewArrayValue = () => {
-            let newValues = [];
+        const savedValue = localStorage.getItem('resizibleColumns');
+        const getNewArrayValue = () => {
+            const newValues = [];
             for (let i = 0; i < this.resizeObjects.length; i += 1) {
-                let currentNewValueObject = {};
+                const currentNewValueObject = {};
                 currentNewValueObject.width = this.resizeObjects[i].currentWidth;
                 newValues.push(currentNewValueObject);
             }
@@ -156,7 +163,7 @@ class Container extends Component {
         if (savedValue) {
             newValue = JSON.parse(savedValue);
 
-            let savedValueColObject = newValue[this.props.localStorageType];
+            const savedValueColObject = newValue[this.props.localStorageType];
             if (savedValueColObject) {
                 savedValueColObject[firstIndex] = {width: this.resizeObjects[firstIndex].currentWidth};
                 savedValueColObject[secondIndex] = {width: this.resizeObjects[secondIndex].currentWidth};
@@ -170,10 +177,11 @@ class Container extends Component {
 
         localStorage.setItem('resizibleColumns', JSON.stringify(newValue));
     }
+
     setNewPosition(e) {
         if (this.resizedInit && this.allowMove) {
             e.preventDefault(); // disable selection
-            let newPosition = e.clientX;
+            const newPosition = e.clientX;
 
             /*
                 firstObject and secondObject can be resized.
@@ -181,9 +189,9 @@ class Container extends Component {
                 secondObject will have the exact opposite done to it that firstObject has.
                 If firstObject is shrink by 60px, secondObject is grown by 60px, the opposite also holds true.
             */
-            let diffPosition = this.startPosition - newPosition;
-            let firstObject = this.resizeObjects[this.resizeIndex];
-            let secondObject = this.resizeObjects[this.resizeIndex + 1];
+            const diffPosition = this.startPosition - newPosition;
+            const firstObject = this.resizeObjects[this.resizeIndex];
+            const secondObject = this.resizeObjects[this.resizeIndex + 1];
             let firstIndexWidthToUpdate;
             let secondIndexWidthToupdate;
 
@@ -201,8 +209,8 @@ class Container extends Component {
             }
 
             // Logic for collapse if min width reached
-            let currentIsCollapsed = firstObject.isCollapsed;
-            let nextIsCollapsed = secondObject.isCollapsed;
+            const currentIsCollapsed = firstObject.isCollapsed;
+            const nextIsCollapsed = secondObject.isCollapsed;
             if (currentIsCollapsed && firstIndexWidthToUpdate > firstObject.minWidth) {
                 this.resizeObjects[this.resizeIndex].isCollapsed = false;
                 this.forceUpdate();
@@ -221,6 +229,7 @@ class Container extends Component {
         }
         return true;
     }
+
     setPosition(e, currentResizeIndex) {
         this.startPosition = e.clientX;
         this.allowMove = true;
@@ -230,6 +239,7 @@ class Container extends Component {
         this.resizeIndex = currentResizeIndex;
         return true;
     }
+
     setSpecificWidth(index, width, collapsePrev) {
         let indexToShrink;
         if (collapsePrev) {
@@ -238,11 +248,11 @@ class Container extends Component {
             indexToShrink = index + 1;
         }
 
-        let offsetToAdd = this.resizeObjects[index].currentWidth - width;
-        let secondColNewWidth = this.resizeObjects[indexToShrink].currentWidth + offsetToAdd;
+        const offsetToAdd = this.resizeObjects[index].currentWidth - width;
+        const secondColNewWidth = this.resizeObjects[indexToShrink].currentWidth + offsetToAdd;
 
-        let firstColDom = document.getElementById(this.resizeObjects[index].domId);
-        let secondColDom = document.getElementById(this.resizeObjects[indexToShrink].domId);
+        const firstColDom = document.getElementById(this.resizeObjects[index].domId);
+        const secondColDom = document.getElementById(this.resizeObjects[indexToShrink].domId);
 
         firstColDom.style.width = width + 'px';
         firstColDom.style.maxWidth = width + 'px';
@@ -253,6 +263,7 @@ class Container extends Component {
         this.resizeObjects[indexToShrink].currentWidth = secondColNewWidth;
         this.updateLocalStorage(index, indexToShrink);
     }
+
     updateFirstAndSecondColDom(firstColWidth, secondColWidth) {
         this.firstColDom.style.width = firstColWidth + 'px';
         this.firstColDom.style.maxWidth = firstColWidth + 'px';
@@ -270,8 +281,8 @@ class Container extends Component {
     renderCol(col, index) {
         switch (col.type) {
             case resizibleTypes.ASIDE:
-                let collapsableContenetStyles = col.styles || {};
-                let onCollapseHanlder = (isCollapsed) => {
+                const collapsableContenetStyles = col.styles || {};
+                const onCollapseHanlder = (isCollapsed) => {
                     if (isCollapsed) {
                         this.setSpecificWidth(index, col.collapsedWidth, col.collapsePrev);
                     } else {
@@ -279,7 +290,7 @@ class Container extends Component {
                     }
                     this.resizeObjects[index].isCollapsed = isCollapsed;
                 };
-                let isCollapsed = this.resizeObjects[index] ? this.resizeObjects[index].isCollapsed : false;
+                const isCollapsed = this.resizeObjects[index] ? this.resizeObjects[index].isCollapsed : false;
 
                 return (
                     <CollapsableContent
@@ -288,7 +299,8 @@ class Container extends Component {
                         orientation={col.right ? 'right' : 'left'}
                         visibleStyles={{height: this.state.height, ...collapsableContenetStyles}}
                         isCollapsed={isCollapsed}
-                        onCollapse={onCollapseHanlder}>
+                        onCollapse={onCollapseHanlder}
+                    >
                         {col.child}
                     </CollapsableContent>
                 );
@@ -306,17 +318,17 @@ class Container extends Component {
     }
 
     render() {
-        let renderCols = [];
+        const renderCols = [];
         this.props.cols.forEach((col, index) => {
-            let currentWidth = col.width || defaultColWidth;
-            let currentStyles = {width: currentWidth + 'px', maxWidth: currentWidth + 'px'};
-            let handleOnMouseDownEvent = (e) => {
+            const currentWidth = col.width || defaultColWidth;
+            const currentStyles = {width: currentWidth + 'px', maxWidth: currentWidth + 'px'};
+            const handleOnMouseDownEvent = (e) => {
                 this.setPosition(e, (index - 1));
             };
 
-            let contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
+            const contentClass = col.type === resizibleTypes.CONTENT ? style.innerCol : null;
 
-            let colResult = (
+            const colResult = (
                 <div id={col.id} key={index} className={style.col} style={currentStyles}>
                     <div className={contentClass} style={col.innerColStyles}>
                         {this.renderCol(col, index)}

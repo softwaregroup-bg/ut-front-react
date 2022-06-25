@@ -28,7 +28,7 @@ storiesOf('AttributesSection', module)
             checkedMapKey={'userName'}
             isInfoLoading={false}
         >
-        Content
+            Content
         </AttributesSection>
     ))
     .add('one checked', () => (
@@ -41,7 +41,7 @@ storiesOf('AttributesSection', module)
             checkedMapKey={'userName'}
             isInfoLoading={false}
         >
-        Content
+            Content
         </AttributesSection>
     ))
     .add('two checked', () => (
@@ -146,29 +146,29 @@ const twoChecked = immutable.List([
 ]);
 
 const selected = immutable.fromJS({
-    'identifier': 'ChinaMakerUser',
-    'email': [
+    identifier: 'ChinaMakerUser',
+    email: [
         {
-            'value': 'test email'
+            value: 'test email'
         }
     ],
-    'phone': [
+    phone: [
         {
-            'phoneNumber': 'phone number'
+            phoneNumber: 'phone number'
         }
     ],
-    'person': {
-        'imageSrc': 'http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg',
-        'firstName': 'China User',
-        'lastName': 'Admin'
+    person: {
+        imageSrc: 'http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg',
+        firstName: 'China User',
+        lastName: 'Admin'
     },
-    'url': '/user/users/ChinaMakerUser/1047',
-    'roles': [{
-        'isAssigned': 1,
+    url: '/user/users/ChinaMakerUser/1047',
+    roles: [{
+        isAssigned: 1,
         name: 'China_UserMaker',
         roleId: '1041'
     }],
-    'memberOf': [{
+    memberOf: [{
         object: '1028',
         organizationName: 'China'
     }]

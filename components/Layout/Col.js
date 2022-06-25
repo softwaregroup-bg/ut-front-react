@@ -3,19 +3,19 @@ import style from './style.css';
 import classnames from 'classnames';
 
 const Col = (props) => {
-    let getColumnSizeClass = (isXs, colWidth, colSize) => {
+    const getColumnSizeClass = (isXs, colWidth, colSize) => {
         let size = colSize;
         if (isXs === true && !colSize) {
             size = 12;
         }
         return formatClass(colWidth, size);
     };
-    let formatClass = (colWidth, size, type) => {
-        let pullOrPush = type ? `-${type}` : '';
+    const formatClass = (colWidth, size, type) => {
+        const pullOrPush = type ? `-${type}` : '';
         return `col-${colWidth}${pullOrPush}-${size}`;
     };
 
-    let colClasses = [];
+    const colClasses = [];
     const colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
     colWidths.forEach(colWidth => {
         const columnProp = props[colWidth];
@@ -49,7 +49,7 @@ const Col = (props) => {
             colClasses.push('col-no-gutter-right');
         }
     }
-    let classes = () => {
+    const classes = () => {
         let combinedClasses = '';
         colClasses.forEach((clss) => {
             combinedClasses = classnames(combinedClasses, style[clss]);

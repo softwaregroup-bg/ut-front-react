@@ -29,10 +29,10 @@ class TabDropDown extends React.Component {
     }
 
     render() {
-        let list = this.props.data.map((tab, i) => {
+        const list = this.props.data.map((tab, i) => {
             let activeClassName;
-            let isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
-            let handleClick = () => {
+            const isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
+            const handleClick = () => {
                 this.setState({
                     open: false
                 });
@@ -55,7 +55,7 @@ class TabDropDown extends React.Component {
                 </li>
             );
         });
-        let opened = this.state.open ? 'block' : 'none';
+        const opened = this.state.open ? 'block' : 'none';
         return (
             <div style={{height: '100%'}}>
                 <div className={style.tabDdBtn} onClick={this.toggleOpen}>{''}</div>

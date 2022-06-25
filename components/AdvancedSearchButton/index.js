@@ -18,8 +18,7 @@ export class AdvancedSearchButton extends Component {
     }
 }
 
-AdvancedSearchButton.propTypes = {
-    onClick: PropTypes.func.isRequired};
+AdvancedSearchButton.propTypes = {onClick: PropTypes.func.isRequired};
 
 AdvancedSearchButton.defaultProps = {
     show: false

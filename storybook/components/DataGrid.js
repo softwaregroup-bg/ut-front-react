@@ -8,6 +8,6 @@ storiesOf('CollapsableContent', module)
             visibleStyles={{maxWidth: '200px', minHeight: '200px'}}
             collapsedStyles={{width: '40px', minHeight: '200px'}}
         >
-        Content
+            Content
         </CollapsableContent>
     ));

@@ -12,26 +12,29 @@ const DocumentUploadMenu = ({
     onAddFile,
     uploadType
 }) => {
-    let allowedTypes = allowedFileTypes.join(',');
-    let btnPhoto = (
+    const allowedTypes = allowedFileTypes.join(',');
+    const btnPhoto = (
         <UploadFileButton
             icon={classnames(styles.uploadMenuIcon, styles.galleryIcon)}
             label='Upload photo'
             acceptType={allowedTypes}
-            onFileLoaded={onFileLoaded} />
+            onFileLoaded={onFileLoaded}
+        />
     );
-    let btnFile = (
+    const btnFile = (
         <UploadFileButton
             icon={classnames(styles.uploadMenuIcon, styles.uploadFileIcon)}
             label='Upload file'
             acceptType={allowedTypes}
-            onFileLoaded={onFileLoaded} />
+            onFileLoaded={onFileLoaded}
+        />
     );
-    let btnCamera = (
+    const btnCamera = (
         <AddFileButton
             label={'Take photo'}
             onClick={onAddFile}
-            icon={classnames(styles.uploadMenuIcon, styles.takePhotoIcon)} />
+            icon={classnames(styles.uploadMenuIcon, styles.takePhotoIcon)}
+        />
     );
     let buttons;
     if (menuItems && menuItems.length > 0) {
