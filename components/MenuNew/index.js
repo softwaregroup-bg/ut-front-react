@@ -29,7 +29,7 @@ export default class MenuNew extends Component {
             const { menu } = styles;
             const { closeOnSelect } = this.props;
 
-            let isClickInside = Boolean(closest(target, `.${menu}`));
+            const isClickInside = Boolean(closest(target, `.${menu}`));
 
             if (!isClickInside || (isClickInside && closeOnSelect)) {
                 this.props.requestClose && this.props.requestClose(e);
@@ -53,7 +53,7 @@ export default class MenuNew extends Component {
 
     addSeparators() {
         const { separatorsOnIndex } = this.props;
-        let { fields } = this.props;
+        const { fields } = this.props;
 
         return separatorsOnIndex.reduce((memo, currentIndex) => {
             memo.splice(currentIndex, 0, (<MenuSeparator key={`separator-${currentIndex}`} />));
@@ -77,7 +77,8 @@ export default class MenuNew extends Component {
         return (
             <div
                 style={positioningStyles}
-                className={classNames(styles.menu, styles.standardMenu, className)} >
+                className={classNames(styles.menu, styles.standardMenu, className)}
+            >
                 {fields}
             </div>
         );

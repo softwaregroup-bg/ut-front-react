@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = () => function utFrontReact() {
     return {
@@ -6,7 +6,7 @@ module.exports = () => function utFrontReact() {
             function http() {
                 return {
                     start: function() {
-                        let handlers = [{
+                        const handlers = [{
                             method: 'GET',
                             path: '/static/assets/react-select/{p*}',
                             options: {auth: false},

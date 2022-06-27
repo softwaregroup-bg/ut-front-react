@@ -23,6 +23,7 @@ export default function wrapper({menus = []}) {
                     .map(item => setMenuItemProps(item, {activeClassName: active}))
             };
         }
+
         render() {
             return Children.only(this.props.children);
         }

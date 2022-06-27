@@ -1,5 +1,5 @@
 export function getStorageColumns(moduleName) {
-    if (!window.localStorage.hasOwnProperty(moduleName) || !Array.isArray(JSON.parse(window.localStorage.getItem(moduleName)))) {
+    if (!Object.prototype.hasOwnProperty.call(window.localStorage, moduleName) || !Array.isArray(JSON.parse(window.localStorage.getItem(moduleName)))) {
         window.localStorage.setItem(moduleName, JSON.stringify([]));
     }
 
@@ -7,8 +7,8 @@ export function getStorageColumns(moduleName) {
 }
 
 export function toggleColumnInStorage(moduleName, column) {
-    let currentColumns = getStorageColumns(moduleName);
-    let indexInColumns = currentColumns.indexOf(column);
+    const currentColumns = getStorageColumns(moduleName);
+    const indexInColumns = currentColumns.indexOf(column);
 
     if (indexInColumns > -1) {
         currentColumns.splice(indexInColumns, 1);

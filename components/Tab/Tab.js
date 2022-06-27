@@ -43,7 +43,8 @@ export default class Tab extends Component {
                 className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
                 activeClassName={styles.navigationTabActive}
                 params={tab.routeParams}
-                onClick={this.onTabClick}>
+                onClick={this.onTabClick}
+            >
                 {tab.title}
             </Link>
         );

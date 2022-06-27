@@ -8,7 +8,7 @@ const Number = React.createClass({
         numberFormat: React.PropTypes.func
     },
     render: function() {
-        var children = this.props.children;
+        let children = this.props.children;
         if (typeof this.context.numberFormat === 'function') {
             this.text = this.context.numberFormat(this.props.children);
             children = this.text;

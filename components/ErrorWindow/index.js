@@ -7,7 +7,7 @@ import classnames from 'classnames';
 
 const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
     let closePopUpHandler = close;
-    let header = {text: title};
+    const header = {text: title};
     let actionButtons = [
         {
             label: 'Close',
@@ -20,7 +20,7 @@ const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
     if (type === 'identity.invalidCredentials') {
         closePopUpHandler = undefined;
         header.closeIcon = false; // remove close icon
-        let goToLoginHandler = () => {
+        const goToLoginHandler = () => {
             clearLoginState();
             this.context.router.history.push('/login'); // might be a good idea to pass it from outside. However, the http server handles each request, in case of invalid session redirects to the according login page
         };
@@ -39,7 +39,8 @@ const ErrorWindow = ({open, message, close, title, type, clearLoginState}) => {
             isOpen={open}
             header={header}
             footer={{ actionButtons: actionButtons }}
-            closePopup={closePopUpHandler} >
+            closePopup={closePopUpHandler}
+        >
             <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />
             <div className={styles.errorMessageWrap}>
                 {message}

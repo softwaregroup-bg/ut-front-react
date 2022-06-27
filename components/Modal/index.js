@@ -21,20 +21,20 @@ const Modal = ({
     onClickOut,
     ...props
 }) => {
-    let showModalClass = show ? style.showDialog : style.hideDialog;
+    const showModalClass = show ? style.showDialog : style.hideDialog;
     let messageNode;
     let messageBodyClasses;
     let footer;
-    let leftButton = (buttons && buttons.left) ? buttons.left : null;
-    let rightButton = (buttons && buttons.right) ? buttons.right : null;
+    const leftButton = (buttons && buttons.left) ? buttons.left : null;
+    const rightButton = (buttons && buttons.right) ? buttons.right : null;
     let classes = classnames(style.overlay, showModalClass);
-    let modalClickOut = (e) => {
+    const modalClickOut = (e) => {
         onClickOut && onClickOut();
     };
     if (onClickOut) {
         classes = classnames(classes, 'pointer');
     }
-    let stopPropagation = (e) => {
+    const stopPropagation = (e) => {
         e.stopPropagation();
     };
     if (showFooter) {

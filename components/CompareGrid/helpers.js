@@ -8,23 +8,23 @@ import immutable from 'immutable';
  */
 export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options = {}) => {
     // helper functions
-    let checkIfExist = (arr, el) => arr.find((e) => e.get('key') === el.get('key'));
-    let isBold = (el) => el.get('value') === 'Primary' ? 'bold' : '';
-    let getIndex = (arr, el) => arr.findIndex((e) => e.get('key') === el.get('key') && e.get('value') === el.get('value'));
-    let compare = (arr, el, index) => {
-        let sameKey = el.get('key') === arr.getIn([index, 'key']);
-        let sameValue = el.get('value') === arr.getIn([index, 'value']);
+    const checkIfExist = (arr, el) => arr.find((e) => e.get('key') === el.get('key'));
+    const isBold = (el) => el.get('value') === 'Primary' ? 'bold' : '';
+    const getIndex = (arr, el) => arr.findIndex((e) => e.get('key') === el.get('key') && e.get('value') === el.get('value'));
+    const compare = (arr, el, index) => {
+        const sameKey = el.get('key') === arr.getIn([index, 'key']);
+        const sameValue = el.get('value') === arr.getIn([index, 'value']);
         return sameKey && sameValue;
     };
-    let applyClass = (el, className) => {
-        let bold = isBold(el);
+    const applyClass = (el, className) => {
+        const bold = isBold(el);
         return el
             .set('keyClass', className)
             .set('valueClass', className + bold)
             .set('wrapperClass', className);
     };
-    let boxData = {};
-    let result = {
+    const boxData = {};
+    const result = {
         isOpen: false, // this is used to indicate if the accordion should be open or not
         data: []
     };
@@ -32,7 +32,7 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
     // current values
     boxData.current = arr1.map((el) => {
         // if the value passed is primary it should be bold
-        let bold = isBold(el);
+        const bold = isBold(el);
         if (options.isDeleted) {
             el = applyClass(el, 'changedCurrentValue');
         }
@@ -40,7 +40,7 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
         // check if current value exist in the array of new values
         if (checkIfExist(arr2, el)) {
             // if it exist find its index in the array with the new values
-            let index = getIndex(arr2, el);
+            const index = getIndex(arr2, el);
 
             // if the same keys and values are not changed this means that there is no change on the current value
             if (compare(arr2, el, index)) {
@@ -65,9 +65,9 @@ export const compareValuesWithDifferentLength = (arr1, arr2, next) => (options =
 
     // similar logic is used for new values too
     boxData.unapproved = arr2.map((el) => {
-        let bold = isBold(el);
+        const bold = isBold(el);
         if (checkIfExist(arr1, el)) {
-            let index = getIndex(arr1, el);
+            const index = getIndex(arr1, el);
             if (compare(arr1, el, index)) {
                 el.valueClass = bold;
                 return el;

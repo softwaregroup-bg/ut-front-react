@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import style from './style.css';
 
 const DateInput = (props) => {
-    let { placeholder, label, boldLabel } = props;
+    const { placeholder, label, boldLabel } = props;
 
     if (label) {
         return (

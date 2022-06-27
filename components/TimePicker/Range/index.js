@@ -40,8 +40,8 @@ export default class TimePickerRange extends Component {
     }
 
     convertDataFrom(selectedValueTo) {
-        let index = this.getIndexSelectedByValue(selectedValueTo);
-        let data = JSON.parse(JSON.stringify(this.props.data)); // create a copy so not to mutate props
+        const index = this.getIndexSelectedByValue(selectedValueTo);
+        const data = JSON.parse(JSON.stringify(this.props.data)); // create a copy so not to mutate props
         for (let i = 0; i < data.length; i++) {
             if (index !== -1 && i >= index) {
                 data[i].disabled = true;
@@ -51,8 +51,8 @@ export default class TimePickerRange extends Component {
     }
 
     convertDataTo(selectedValueFrom) {
-        let index = this.getIndexSelectedByValue(selectedValueFrom);
-        let data = JSON.parse(JSON.stringify(this.props.data)); // create a copy so not to mutate props
+        const index = this.getIndexSelectedByValue(selectedValueFrom);
+        const data = JSON.parse(JSON.stringify(this.props.data)); // create a copy so not to mutate props
         for (let i = 0; i < data.length; i++) {
             if (index !== -1 && i <= index) {
                 data[i].disabled = true;
@@ -62,9 +62,9 @@ export default class TimePickerRange extends Component {
     }
 
     render() {
-        let dataFrom = this.convertDataFrom(this.state.selectedValueTo.name);
-        let dataTo = this.convertDataTo(this.state.selectedValueFrom.name);
-        let handleChangeFrom = (event) => {
+        const dataFrom = this.convertDataFrom(this.state.selectedValueTo.name);
+        const dataTo = this.convertDataTo(this.state.selectedValueFrom.name);
+        const handleChangeFrom = (event) => {
             this.setState({
                 selectedValueFrom: {
                     key: event.key,
@@ -73,7 +73,7 @@ export default class TimePickerRange extends Component {
             });
             this.props.onChangeFrom(event);
         };
-        let handleChangeTo = (event) => {
+        const handleChangeTo = (event) => {
             this.setState({
                 selectedValueTo: {
                     key: event.key,

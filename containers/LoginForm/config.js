@@ -1,5 +1,5 @@
 export const inputs = {
-    'username': {
+    username: {
         name: 'username',
         type: 'text',
         label: 'Username',
@@ -12,7 +12,7 @@ export const inputs = {
             maxLength: 30
         }
     },
-    'password': {
+    password: {
         name: 'password',
         type: 'password',
         label: 'Password',
@@ -25,7 +25,7 @@ export const inputs = {
             maxLength: 30
         }
     },
-    'hiddenPassword': {
+    hiddenPassword: {
         name: 'password',
         type: 'password',
         label: 'Password',
@@ -36,7 +36,7 @@ export const inputs = {
         shouldSubmit: false,
         hidden: true
     },
-    'newPassword': {
+    newPassword: {
         name: 'newPassword',
         type: 'password',
         label: 'New password',
@@ -50,7 +50,7 @@ export const inputs = {
             shouldMatchField: 'confirmPassword'
         }
     },
-    'confirmPassword': {
+    confirmPassword: {
         name: 'confirmPassword',
         type: 'password',
         label: 'Confirm password',
@@ -65,7 +65,7 @@ export const inputs = {
         },
         skipSubmit: true
     },
-    'otp': {
+    otp: {
         name: 'otp',
         type: 'password',
         label: 'Otp code',
@@ -87,30 +87,30 @@ export const getInputs = (inputNames) => {
 };
 
 export const loginSteps = {
-    'initial': {
+    initial: {
         inputs: getInputs(['username']),
         buttonLabel: 'Next',
         title: 'System Login'
     },
-    'password': {
+    password: {
         inputs: getInputs(['username', 'hiddenPassword', 'password']),
         disabledFields: ['username'],
         buttonLabel: 'Login',
         title: 'Login with password'
     },
-    'newPassword': {
+    newPassword: {
         inputs: getInputs(['username', 'newPassword', 'confirmPassword']),
         disabledFields: ['username'],
         buttonLabel: 'Change',
         title: 'Password change required'
     },
-    'otp': {
+    otp: {
         inputs: getInputs(['username', 'otp']),
         disabledFields: ['username'],
         buttonLabel: 'Login',
         title: 'Login with OTP'
     },
-    'checkLdapUser': {
+    checkLdapUser: {
         inputs: getInputs(['username', 'hiddenPassword', 'password']),
         disabledFields: ['username'],
         buttonLabel: 'Login',

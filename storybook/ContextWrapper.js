@@ -20,7 +20,7 @@ export default class Wrap extends React.Component {
             },
             numberFormat: function(num, format) {
                 if (!format) format = '2|.|';
-                var parts = format.split('|');
+                const parts = format.split('|');
                 if (parts.length !== 3) return num;
                 num = parseInt(num).toFixed(parseInt(parts[0]));
                 if (parts[1]) num = num.toString().replace('.', parts[1]);

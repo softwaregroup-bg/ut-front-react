@@ -29,6 +29,7 @@ export default class DialogExampleModal extends Component {
             message: this.props.message // Reset
         });
     }
+
     componentWillReceiveProps({message}) {
         if (this.props.message !== message) {
             this.setState({message});

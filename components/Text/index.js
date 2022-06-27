@@ -15,7 +15,7 @@ export default function Text(props, context) {
     let {children, params, prefix} = props;
     let template = children;
     if (typeof context.translate === 'function') {
-        var text = (prefix ? [prefix, children] : [children]).join('>');
+        const text = (prefix ? [prefix, children] : [children]).join('>');
         // Translate the template
         template = context.translate(text, context.language);
         if (template === text) {

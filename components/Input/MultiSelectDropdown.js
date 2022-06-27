@@ -18,11 +18,11 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     handleChange(menuItem) {
-        let { onSelect, keyProp, defaultSelected } = this.props;
-        let itemIndex = defaultSelected.findIndex((value) => {
+        const { onSelect, keyProp, defaultSelected } = this.props;
+        const itemIndex = defaultSelected.findIndex((value) => {
             return value.key === menuItem.key;
         });
-        let values = defaultSelected.slice();
+        const values = defaultSelected.slice();
         if (itemIndex > -1) {
             values.splice(itemIndex, 1);
         } else {
@@ -33,7 +33,7 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     toggleAllChecks() {
-        let { onSelect, keyProp, data, defaultSelected } = this.props;
+        const { onSelect, keyProp, data, defaultSelected } = this.props;
 
         let values = [];
         if (defaultSelected.length !== data.length) {
@@ -43,14 +43,15 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     getMenuItems() {
-        let {data, placeholder, cssStyle, mergeStyles, defaultSelected} = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const {data, placeholder, cssStyle, mergeStyles, defaultSelected} = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
 
         let menuItems = [
             <MenuItem
                 disabled
                 className={ddstyles.multiSelectDropdownMenuItemWrap}
-                key={'ddhdr'}>
+                key={'ddhdr'}
+            >
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
                     <span>{placeholder}</span>
                 </div>
@@ -62,27 +63,32 @@ class MultiSelectDropdown extends Dropdown {
                 <MenuItem
                     className={ddstyles.multiSelectDropdownMenuItemWrap}
                     onTouchTap={this.toggleAllChecks}
-                    key={'1-ddfg'}>
+                    key={'1-ddfg'}
+                >
                     <div className={ddstyles.multiSelectDropdownMenuItem}>
                         <Checkbox
-                            checked={defaultSelected.length === data.length} />
+                            checked={defaultSelected.length === data.length}
+                        />
                         <span>{placeholder}</span>
                     </div>
                 </MenuItem>,
                 <Divider
-                    key={'2-ddfg'} />
+                    key={'2-ddfg'}
+                />
             ];
             data.forEach((item) => {
-                let isChecked = (data.length === defaultSelected.length || defaultSelected.findIndex(d => d.key === item.key) > -1);
+                const isChecked = (data.length === defaultSelected.length || defaultSelected.findIndex(d => d.key === item.key) > -1);
                 menuItems.push(
                     <MenuItem
                         className={ddstyles.multiSelectDropdownMenuItemWrap}
                         onTouchTap={() => { this.handleChange(item); }}
-                        key={item.key}>
+                        key={item.key}
+                    >
                         <div className={ddstyles.multiSelectDropdownMenuItem}>
                             <Checkbox
                                 checked={isChecked}
-                                disabled={item.disabled} />
+                                disabled={item.disabled}
+                            />
                             <span>{item.name}</span>
                         </div>
                     </MenuItem>
@@ -94,17 +100,17 @@ class MultiSelectDropdown extends Dropdown {
     }
 
     renderDropDown() {
-        let { cssStyle, mergeStyles, defaultSelected, isValid } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
-        let errorDropDownStyle = !isValid ? ddstyles.error : '';
-        let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
-        let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
-        let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
+        const { cssStyle, mergeStyles, defaultSelected, isValid } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
+        const errorDropDownStyle = !isValid ? ddstyles.error : '';
+        const iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
+        const rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        const inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
         // 30 px for dropdown icon
-        let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
+        const labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
-        let selectedItems = defaultSelected.map((value) => (value.name)).join(', ');
+        const selectedItems = defaultSelected.map((value) => (value.name)).join(', ');
 
         return (
             <div className={classnames(ddstyles.pointer, ddstyles.dropdownWrap, errorDropDownStyle, inputDisabled)} onClick={!this.props.disabled && this.toggleOpen}>
@@ -126,13 +132,15 @@ class MultiSelectDropdown extends Dropdown {
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}>
+                    animation={PopoverAnimationVertical}
+                >
                     <Menu
                         autoWidth={false}
                         disableAutoFocus
                         maxHeight={300}
                         style={{width: rootElementWidth}}
-                        className={ddstyles.multiSelectDropdownMenu}>
+                        className={ddstyles.multiSelectDropdownMenu}
+                    >
                         {this.state.open && this.getMenuItems()}
                     </Menu>
                 </Popover>

@@ -15,14 +15,14 @@ function findField(haystack, needle) {
 
 function reorderFields(fields, spanFields) {
     if (spanFields.size > 0 && fields.size > 0) {
-        let spanFieldChildren = spanFields.first().get('children');
+        const spanFieldChildren = spanFields.first().get('children');
         spanFields = spanFields.shift();
         fields = spanFieldChildren.reduce((accumulated, spanFieldChild) => {
-            let fieldIdx = findField(accumulated, spanFieldChild);
+            const fieldIdx = findField(accumulated, spanFieldChild);
             if (fieldIdx === undefined) {
                 return accumulated;
             }
-            let field = accumulated.get(fieldIdx);
+            const field = accumulated.get(fieldIdx);
             let before = List();
             let after = List();
             if (fieldIdx > 0) {
@@ -68,18 +68,22 @@ export class SimpleGrid extends Component {
         this.handleHeaderCheckboxSelect = this.handleHeaderCheckboxSelect.bind(this);
         this.handleIsChecked = this.handleIsChecked.bind(this);
     }
+
     // execution of child registered function, the result will be passed to the handler consumed outside
     handleHeaderCheckboxSelect(currentVal) {
         this.props.handleHeaderCheckboxSelect(currentVal);
     }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
+
     handleIsChecked() {
-        let rcl = (this.props.rowsChecked || []).length;
-        let dl = (this.props.data || []).length;
+        const rcl = (this.props.rowsChecked || []).length;
+        const dl = (this.props.data || []).length;
         return rcl > 0 && rcl === dl;
     }
+
     getRawFields() {
         let fields = fromJS(this.props.fields).map((v) => { // populate visible prop
             if (v.get('visible') === undefined) {
@@ -92,8 +96,9 @@ export class SimpleGrid extends Component {
         }
         return fields;
     }
+
     inSpanStyleFix(fields, newSpanFields) {
-        var fieldsInSpan = newSpanFields.reduce((a1, c1) => {
+        const fieldsInSpan = newSpanFields.reduce((a1, c1) => {
             return c1.children.reduce((a2, c2) => {
                 a2[c2] = c1.shortName;
                 return a2;
@@ -108,15 +113,16 @@ export class SimpleGrid extends Component {
             });
         });
     }
+
     render() {
-        var newSpanFields = this.props.spanFields.map((c) => {
-            let shortName = c.children.join('-').toLowerCase();
+        const newSpanFields = this.props.spanFields.map((c) => {
+            const shortName = c.children.join('-').toLowerCase();
             return {shortName: shortName, title: c.title, children: c.children};
         });
-        var iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
-        var fields = iFields.toJS();
-        let {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
-        let grid = (
+        const iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
+        const fields = iFields.toJS();
+        const {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
+        const grid = (
             <table className={this.getStyle(this.props.mainClassName)}>
                 {!this.props.hideHeader && <Header
                     externalStyle={this.props.externalStyle}

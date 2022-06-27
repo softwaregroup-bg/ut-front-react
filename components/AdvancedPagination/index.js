@@ -40,7 +40,7 @@ class AdvancedPagination extends Component {
     }
 
     handleChange(pageNumber, pageSize) {
-        let { pagination, onUpdate } = this.props;
+        const { pagination, onUpdate } = this.props;
         pageNumber = pageNumber | 0;
         let objToReturn = {};
 
@@ -63,8 +63,8 @@ class AdvancedPagination extends Component {
         // We have event for keydown and if enter is clicked request is made.
         // We do not want to make the same request once blur out of the box - it is already made
         let monitorForBlurEvent = true;
-        let handleNumberInputChange = (e) => { this.setState({pageNumberInputVal: e.target.value}); };
-        let updateNumberInput = (number) => {
+        const handleNumberInputChange = (e) => { this.setState({pageNumberInputVal: e.target.value}); };
+        const updateNumberInput = (number) => {
             number = Math.abs(Math.floor(number | 0));
             if (number === 0) number = 1;
             if (number > this.pagesTotal) {
@@ -74,17 +74,17 @@ class AdvancedPagination extends Component {
                 this.setState({pageNumberInputVal: number}, () => { this.handleChange(number); }); // to update value if user enters incorrect value
             }
         };
-        let handleNumberInputBlur = (e) => {
+        const handleNumberInputBlur = (e) => {
             if (monitorForBlurEvent) {
-                let val = e.target.value;
+                const val = e.target.value;
                 updateNumberInput(val);
             } else {
                 monitorForBlurEvent = true;
             }
         };
-        let handleNumberInputKeyDown = (e) => {
+        const handleNumberInputKeyDown = (e) => {
             if (e.keyCode === 13) {
-                let val = e.target.value;
+                const val = e.target.value;
                 monitorForBlurEvent = false;
                 updateNumberInput(val);
             }
@@ -94,7 +94,8 @@ class AdvancedPagination extends Component {
             <div className={styles.pageSwitherWrap}>
                 <div className={styles.numberInputWrap}>
                     <input type='number' value={this.state.pageNumberInputVal || 1} className={styles.numberInput} max={this.pagesTotal} min={1}
-                        onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown} />
+                        onChange={handleNumberInputChange} onBlur={handleNumberInputBlur} onKeyDown={handleNumberInputKeyDown}
+                    />
                 </div>
                 <div className={styles.rightWrap}>
                     / <span className={styles.bold}>{this.pagesTotal}</span> <span className={styles.lighColor}>Pages</span>
@@ -114,12 +115,12 @@ class AdvancedPagination extends Component {
          *  1 ..  5  6  7  8  9 .. 16    ACTIVE:7
         */
 
-        let pushBoxToPagesBoxes = (number, isActive = false) => {
+        const pushBoxToPagesBoxes = (number, isActive = false) => {
             let pageBoxClassnames = styles.pageBox;
             if (isActive) {
                 pageBoxClassnames = classnames(pageBoxClassnames, styles.active);
             }
-            let clickHandler = () => { this.handleChange(number); };
+            const clickHandler = () => { this.handleChange(number); };
 
             pageBoxes.push(
                 <div className={pageBoxClassnames} onClick={clickHandler} key={Math.random()}>
@@ -128,8 +129,8 @@ class AdvancedPagination extends Component {
             );
         };
 
-        let pushSeparateSymbol = (leftSide, start, end) => {
-            let morePagesBoxes = [];
+        const pushSeparateSymbol = (leftSide, start, end) => {
+            const morePagesBoxes = [];
             let morePagesWrapStyles = styles.morePagesWrap;
             let morePagesWrapWidth = 152;
             let arrowWrapStyles = styles.arrowWrap;
@@ -137,8 +138,8 @@ class AdvancedPagination extends Component {
             let morePagesBoxAddedNumber = 0;
 
             // More pages box
-            let pushMorePageBox = (number) => {
-                let innerClickHandler = (e) => {
+            const pushMorePageBox = (number) => {
+                const innerClickHandler = (e) => {
                     e.stopPropagation();
                     this.handleChange(number);
                 };
@@ -152,7 +153,7 @@ class AdvancedPagination extends Component {
 
             let insertedNumbers = 0;
             if (leftSide) {
-                let numbersToPush = [];
+                const numbersToPush = [];
                 for (let i = start - 1; i > end && insertedNumbers < 16; i -= 1, insertedNumbers += 1) {
                     numbersToPush.push(i);
                 }
@@ -166,10 +167,10 @@ class AdvancedPagination extends Component {
                 }
             }
 
-            let clickHandler = () => {
-                let self = this;
+            const clickHandler = () => {
+                const self = this;
                 if (leftSide) {
-                    let handleLeftDocCloseFunc = function(e) {
+                    const handleLeftDocCloseFunc = function(e) {
                         document.removeEventListener('click', handleLeftDocCloseFunc);
                         if (e.target.className !== styles.morePageBox) {
                             self.setState({showLeftMorePagesBox: false});
@@ -180,7 +181,7 @@ class AdvancedPagination extends Component {
                     }
                     this.setState({showLeftMorePagesBox: !this.state.showLeftMorePagesBox});
                 } else {
-                    let handleRightDocCloseFunc = function(e) {
+                    const handleRightDocCloseFunc = function(e) {
                         document.removeEventListener('click', handleRightDocCloseFunc);
                         if (e.target.className !== styles.morePageBox) {
                             self.setState({showRightMorePagesBox: false});
@@ -224,9 +225,9 @@ class AdvancedPagination extends Component {
         };
 
         // Next & Previous page arrows
-        let pushArrowsToPagesBoxes = (pushLeftArrow) => {
+        const pushArrowsToPagesBoxes = (pushLeftArrow) => {
             if (pushLeftArrow) {
-                let rightArrowClickHandler = () => {
+                const rightArrowClickHandler = () => {
                     if (this.pageNumber - 1 >= 1) { this.handleChange(this.pageNumber - 1); }
                 };
                 pageBoxes.unshift(
@@ -235,7 +236,7 @@ class AdvancedPagination extends Component {
                     </div>
                 );
             } else {
-                let rightArrowClickHandler = () => {
+                const rightArrowClickHandler = () => {
                     if (this.pageNumber + 1 <= this.pagesTotal) { this.handleChange(this.pageNumber + 1); }
                 };
                 pageBoxes.push(
@@ -285,8 +286,8 @@ class AdvancedPagination extends Component {
                 pushBoxToPagesBoxes(1);
                 pushSeparateSymbol(true, this.pageNumber - 2, 1);
 
-                let activPageLeftOffset = this.pageNumber - 2;
-                let activePageRightOffset = this.pageNumber + 2;
+                const activPageLeftOffset = this.pageNumber - 2;
+                const activePageRightOffset = this.pageNumber + 2;
                 for (let i = activPageLeftOffset; i <= activePageRightOffset; i += 1) {
                     pushBoxToPagesBoxes(i, i === this.pageNumber);
                 }
@@ -312,7 +313,7 @@ class AdvancedPagination extends Component {
     }
 
     renderPageSizeBox() {
-        let handlePageSizeDropDrown = (obj) => {
+        const handlePageSizeDropDrown = (obj) => {
             this.handleChange(1, obj.value);
         };
         let dropdownIconStyles = {
@@ -334,7 +335,8 @@ class AdvancedPagination extends Component {
                         defaultSelected={this.pageSize || this.props.itemsPerPageData[0]}
                         onSelect={handlePageSizeDropDrown}
                         cssStyle={dropdownstyles}
-                        iconStyles={dropdownIconStyles} />
+                        iconStyles={dropdownIconStyles}
+                    />
                 </div>
                 <div className={styles.perPageWrap}> per page</div>
             </div>
@@ -342,7 +344,7 @@ class AdvancedPagination extends Component {
     }
 
     render() {
-        let pagination = (
+        const pagination = (
             <div className={styles.wrap}>
                 {this.renderPageSwitcher()}
                 {this.renderPageBoxes()}

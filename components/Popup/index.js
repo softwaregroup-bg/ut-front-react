@@ -84,7 +84,7 @@ class PopupInternal extends Component {
 
     get contentWidth() {
         const { contentMaxWidth } = this.state;
-        var style = {
+        const style = {
             maxWidth: contentMaxWidth
         };
         if (this.props.fullWidth) {
@@ -156,7 +156,8 @@ PopupInternal.propTypes = {
             label: PropTypes.string,
             onClick: PropTypes.func
         })),
-        leftNode: PropTypes.node
+        leftNode: PropTypes.node,
+        rightNode: PropTypes.node
     }),
     fullWidth: PropTypes.bool,
     children: PropTypes.any,
@@ -216,7 +217,8 @@ Popup.propTypes = {
             label: PropTypes.string,
             onClick: PropTypes.func
         })),
-        leftNode: PropTypes.node
+        leftNode: PropTypes.node,
+        rightNode: PropTypes.node
     }),
     fullWidth: PropTypes.bool,
     children: PropTypes.any,

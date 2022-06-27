@@ -1,8 +1,8 @@
 import dateFormat from 'date-fns/format';
 
 export const objectHasProps = (object) => {
-    for (var prop in object) {
-        if (object.hasOwnProperty(prop)) {
+    for (const prop in object) {
+        if (Object.prototype.hasOwnProperty.call(object, prop)) {
             return true;
         }
     }
@@ -28,22 +28,22 @@ export function compareArrayOfObject(arr1, arr2, props) {
         return false;
     }
 
-    let result = true;
+    const result = true;
 
     if (arr1.length !== arr2.length) {
         return false;
     }
 
-    let propMapper = {};
+    const propMapper = {};
     props.forEach((prop) => {
         propMapper[prop] = {};
     });
 
     for (let i = 0; i < arr1.length; i += 1) {
-        let arr1Object = arr1[i];
+        const arr1Object = arr1[i];
 
         props.forEach((prop) => {
-            let arr1ObjectValue = arr1Object[prop];
+            const arr1ObjectValue = arr1Object[prop];
             if (!propMapper[prop][arr1ObjectValue]) {
                 propMapper[prop][arr1ObjectValue] = 0;
             }
@@ -52,19 +52,19 @@ export function compareArrayOfObject(arr1, arr2, props) {
     }
 
     for (let i = 0; i < arr2.length; i += 1) {
-        let arr2Object = arr2[i];
+        const arr2Object = arr2[i];
 
         props.forEach((prop) => {
-            let arr2ObjectValue = arr2Object[prop];
+            const arr2ObjectValue = arr2Object[prop];
             if (propMapper[prop][arr2ObjectValue]) {
                 propMapper[prop][arr2ObjectValue] -= 1;
             }
         });
     }
 
-    for (var prop in propMapper) {
-        let currentProp = propMapper[prop];
-        for (var number in currentProp) {
+    for (const prop in propMapper) {
+        const currentProp = propMapper[prop];
+        for (const number in currentProp) {
             if (currentProp[number] !== 0) {
                 return false;
             }
@@ -95,7 +95,7 @@ export const numberFormat = (props) => (num, format) => {
     if (!format) {
         format = props.login.get('result') && props.login.getIn(['result', 'localisation', 'numberFormat']) ? props.login.getIn(['result', 'localisation', 'numberFormat']) : '2|.|';
     }
-    var parts = format.split('|');
+    const parts = format.split('|');
     if (parts.length !== 3) return num;
     num = parseInt(num).toFixed(parseInt(parts[0]));
     if (parts[1]) num = num.toString().replace('.', parts[1]);
@@ -119,8 +119,8 @@ export var checkPermission = function() {
 };
 
 export const setPermissions = function(permissions) {
-    var cache = {};
-    var regExp = new RegExp(permissions.map(function(permission) {
+    const cache = {};
+    const regExp = new RegExp(permissions.map(function(permission) {
         return ['^', permission.actionId.replace('%', '(.+?)'), '$'].join('');
     }).join('|'));
     checkPermission = function(action) {
@@ -143,7 +143,7 @@ export const calculateAspectRatio = (file, scaleDimensions) => {
         };
     } else {
         // cases when base64 data is passed
-        let ratio = Math.min(scaleDimensions.width / img.width, scaleDimensions.height / img.height);
+        const ratio = Math.min(scaleDimensions.width / img.width, scaleDimensions.height / img.height);
         return {
             width: img.width * ratio,
             height: img.height * ratio

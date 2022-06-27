@@ -30,7 +30,7 @@ export const preloadWindow = (state = defaultPreloadWindowState, action) => {
             .delete('title')
             .set('message', message);
     } else if (action.methodRequestState === 'finished') {
-        let requests = state.get('requests');
+        const requests = state.get('requests');
         if (requests - 1 === 0 || requests - 1 < 0) {
             return state
                 .set('open', false)
@@ -64,7 +64,7 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
                 .delete('type');
         }
         if (action.type === actions.ERROR_WINDOW_TOGGLE) {
-            let message = (mapErrorMessage(action.message) || mapErrorMessage(state.get('message')));
+            const message = (mapErrorMessage(action.message) || mapErrorMessage(state.get('message')));
             return state
                 .set('open', !state.get('open'))
                 .delete('title')
@@ -72,11 +72,11 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
                 .delete('type');
         }
         if (action.error) {
-            let msg = (mapErrorMessage(action.error) || mapErrorMessage(state.get('message')));
-            let statusMessage = action.error.statusMessage;
-            let statusCode = action.error.statusCode;
-            let title = `Error`;
-            let type = action.error.type;
+            const msg = (mapErrorMessage(action.error) || mapErrorMessage(state.get('message')));
+            const statusMessage = action.error.statusMessage;
+            const statusCode = action.error.statusCode;
+            let title = 'Error';
+            const type = action.error.type;
             if (statusMessage) {
                 title = `${statusMessage}`;
                 if (statusCode) {
@@ -103,7 +103,7 @@ export const errorWindow = (state = defaultErrorWindowState, action) => {
 };
 
 const mapErrorMessage = (resp) => {
-    var returnMsg = resp.message;
+    let returnMsg = resp.message;
     if (resp.validation && resp.validation.keys && resp.validation.keys.length > 0) {
         returnMsg = resp.validation.keys.reduce((prev, cur) => {
             prev.push(cur);

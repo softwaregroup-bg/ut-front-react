@@ -15,15 +15,18 @@ export default class HeaderNew extends Component {
                 <HeaderLogo
                     text={headerText}
                     replaceWithBrakes={!!replaceWithBrakes}
-                    className={classNames(styles.headerLogoContainer, classLogoContainer)} />
+                    className={classNames(styles.headerLogoContainer, classLogoContainer)}
+                />
                 <TabsContainer
                     tabset={tabset}
-                    className={classNames(styles.tabsContainer, classTabsContainer)} />
+                    className={classNames(styles.tabsContainer, classTabsContainer)}
+                />
                 <HeaderProfileInfo
                     currentLocation={currentLocation}
                     personInfo={personInfo}
                     logout={logout}
-                    className={classNames(styles.profileContainer, classProfileInfoContainer)} />
+                    className={classNames(styles.profileContainer, classProfileInfoContainer)}
+                />
             </div>
         );
     }
@@ -34,9 +37,9 @@ HeaderNew.defaultProps = {
     currentLocation: '/',
     replaceWithBrakes: false,
     classes: {
-        'classLogoContainer': '',
-        'classTabsContainer': '',
-        'classProfileInfoContainer': ''
+        classLogoContainer: '',
+        classTabsContainer: '',
+        classProfileInfoContainer: ''
     }
 };
 

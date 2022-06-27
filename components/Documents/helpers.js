@@ -12,7 +12,7 @@ export const getListTableColumns = () => {
 };
 
 export const mapContentTypeToExtension = (contentType) => {
-    let config = {
+    const config = {
         'application/pdf': 'pdf',
         'text/plain': 'txt',
         'image/png': 'png',

@@ -21,7 +21,7 @@ export default class FileDetailedView extends Component {
             }
 
             let text = file.details[key] ? file.details[key] : 'None';
-            let textStyle = file.details[key] ? '' : styles.fileDetailsNoText;
+            const textStyle = file.details[key] ? '' : styles.fileDetailsNoText;
 
             if (key === 'dateUploaded') {
                 text = <DateComponent>{text}</DateComponent>;

@@ -1,5 +1,5 @@
 import map from 'lodash.map';
-var routes = {};
+const routes = {};
 
 export const registerRoute = (name) => {
     routes[name] = {
@@ -33,16 +33,16 @@ export const traceParent = (list, parent) => {
 };
 
 export const getLink = (name, paramsOrigin) => {
-    let params = Object.assign({}, paramsOrigin);
+    const params = Object.assign({}, paramsOrigin);
     if (!routes[name]) {
         return;
     }
-    var route = traceParent([routes[name].path], routes[name].parent)
+    const route = traceParent([routes[name].path], routes[name].parent)
         .reverse()
         .map((el) => {
             if (el.startsWith(':')) {
-                let k = el.substr(1);
-                let v = params[k] || '';
+                const k = el.substr(1);
+                const v = params[k] || '';
                 delete params[k];
                 return v;
             }
@@ -55,7 +55,7 @@ export const getLink = (name, paramsOrigin) => {
                 return a.length < b.length;
             })
             .reduce((prev, key) => {
-                let part = prev.split(`:${key}`);
+                const part = prev.split(`:${key}`);
                 if (part.length === 2) {
                     path = part.join(params[key]);
                 }
@@ -66,13 +66,13 @@ export const getLink = (name, paramsOrigin) => {
 };
 
 export function getBreadcrumbs(name, result) {
-    let currentBreadcrumb = routes[name];
+    const currentBreadcrumb = routes[name];
     if (currentBreadcrumb) {
         if (currentBreadcrumb.parent) {
             getBreadcrumbs(currentBreadcrumb.parent, result);
         }
 
-        let currentPath = currentBreadcrumb.path;
+        const currentPath = currentBreadcrumb.path;
         if (currentPath[0] !== ':') {
             if (currentPath[0] === '/') currentPath.substring(1, currentPath.length);
             result.push({name: currentPath, path: name});
@@ -84,8 +84,8 @@ export function getBreadcrumbs(name, result) {
 }
 
 export function getBreadcrumbsString(name) {
-    let breadcrumbs = [];
+    const breadcrumbs = [];
     getBreadcrumbs(name, breadcrumbs);
-    let breadcrumbsString = map(breadcrumbs, 'name').join('/');
+    const breadcrumbsString = map(breadcrumbs, 'name').join('/');
     return breadcrumbsString;
 };

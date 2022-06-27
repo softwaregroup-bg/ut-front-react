@@ -220,8 +220,8 @@ const Icon = ({ icon, iconURL, hover = false, className, ...props }) => {
         default:
             break;
     }
-    let hoverClass = hover ? style.hover : null;
-    let classes = classnames(style.icon, typeClass, sizeClass, hoverClass, className);
+    const hoverClass = hover ? style.hover : null;
+    const classes = classnames(style.icon, typeClass, sizeClass, hoverClass, className);
     return (
         <span className={classes} {...props} />
     );

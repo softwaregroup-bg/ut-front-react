@@ -15,15 +15,19 @@ export default class Record extends Component {
         this.handleDoubleClick = this.handleDoubleClick.bind(this);
         this.handleIsRowChecked = this.handleIsRowChecked.bind(this);
     }
+
     getStyle(name) {
         return (this.props.externalStyle && this.props.externalStyle[name]) || this.context.implementationStyle[name] || style[name];
     }
+
     handleClick() {
         this.props.handleClick(this.props.data, this.props.recordIndex);
     }
+
     handleDoubleClick() {
         this.props.handleDoubleClick(this.props.data, this.props.recordIndex);
     }
+
     handleIsRowChecked() {
         if (!this.props.rowsChecked.length) {
             return false;
@@ -62,7 +66,7 @@ export default class Record extends Component {
                         externalStyle={this.props.externalStyle}
                     />);
                 case 'verticalSpanField':
-                    let verticalSpanField = {
+                    const verticalSpanField = {
                         title: this.props.verticalSpanField.title
                     };
                     Object.assign(verticalSpanField, {children: this.props.verticalSpanField.children.sort((a, b) => (a - b))});
@@ -81,12 +85,14 @@ export default class Record extends Component {
             }
         }
     }
+
     renderRow(fields, isChecked) {
-        let totalFields = fields.size - 1;
+        const totalFields = fields.size - 1;
         return fields.map((field, idx) => {
             return this.renderField(field, idx, totalFields, isChecked);
         });
     }
+
     render() {
         let fields = fromJS(this.props.fields);
         if (this.props.multiSelect) {
@@ -99,10 +105,10 @@ export default class Record extends Component {
             fields = fields.unshift(Map({internal: 'verticalSpanField'}));
         }
 
-        let isChecked = this.handleIsRowChecked();
+        const isChecked = this.handleIsRowChecked();
 
-        let rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
-        let customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
+        const rowCheckedClass = (isChecked) ? this.getStyle('checked') : '';
+        const customClass = (this.props.rowStyleField && this.props.data[this.props.rowStyleField]) ? this.props.data[this.props.rowStyleField] : '';
         return (
             <tr onTouchTap={this.handleClick} onDoubleClick={this.handleDoubleClick} className={classnames(this.getStyle('gridBodyTr'), rowCheckedClass, this.getStyle(customClass))}>
                 {this.renderRow(fields, isChecked)}

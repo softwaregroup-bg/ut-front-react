@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import styles from './style.css';
 import classnames from 'classnames';
 
-let defaultStates = [
+const defaultStates = [
     {
         value: 1,
         name: 'None',
@@ -24,27 +24,27 @@ class MultiCheckbox extends Component {
     }
 
     handleClick(checked, states) {
-        let {onClick, readOnly, newStatusMapper} = this.props;
+        const {onClick, readOnly, newStatusMapper} = this.props;
         let value;
-        let foundNewStatusMapper = newStatusMapper.find((nsp) => {
-            return nsp.value === states[checked]['value'];
+        const foundNewStatusMapper = newStatusMapper.find((nsp) => {
+            return nsp.value === states[checked].value;
         });
         if (foundNewStatusMapper) {
             value = {
-                value: states[foundNewStatusMapper.nextValue]['value'],
-                name: states[foundNewStatusMapper.nextValue]['name']
+                value: states[foundNewStatusMapper.nextValue].value,
+                name: states[foundNewStatusMapper.nextValue].name
             };
         } else {
-            let nextState = checked + 1;
+            const nextState = checked + 1;
             if (nextState === states.length) {
                 value = {
-                    value: states[0]['value'],
-                    name: states[0]['name']
+                    value: states[0].value,
+                    name: states[0].name
                 };
             } else {
                 value = {
-                    value: states[nextState]['value'],
-                    name: states[nextState]['name']
+                    value: states[nextState].value,
+                    name: states[nextState].name
                 };
             }
         }
@@ -55,17 +55,17 @@ class MultiCheckbox extends Component {
     }
 
     render() {
-        let {checked, states, readOnly, showStateName, isValid, label} = this.props;
-        let ifReadOnly = readOnly ? styles.multiCheckboxReadOnly : '';
-        let customStyle = states[checked]['style'];
-        let handleClick = (e) => {
+        const {checked, states, readOnly, showStateName, isValid, label} = this.props;
+        const ifReadOnly = readOnly ? styles.multiCheckboxReadOnly : '';
+        const customStyle = states[checked].style;
+        const handleClick = (e) => {
             this.handleClick(checked, states);
         };
         return (
             <div className={classnames(styles.multiCheckboxWrapper)} onClick={handleClick}>
-                <span className={classnames(styles.multiCheckbox, customStyle, ifReadOnly)}>{showStateName && states[checked]['name']}</span>
+                <span className={classnames(styles.multiCheckbox, customStyle, ifReadOnly)}>{showStateName && states[checked].name}</span>
                 <span className={styles.multiCheckboxLabel}>{label}</span>
-                {!isValid && <div className={styles.multiCheckboxError}>{states[checked]['errorMessage']}</div>}
+                {!isValid && <div className={styles.multiCheckboxError}>{states[checked].errorMessage}</div>}
             </div>
         );
     }

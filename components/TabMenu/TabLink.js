@@ -6,7 +6,7 @@ import classnames from 'classnames';
 
 export default class TabLink extends React.Component {
     renderMainContent() {
-        let {title, canClose, onClose} = this.props;
+        const {title, canClose, onClose} = this.props;
 
         return (
             <div className={this.getStyle('tabMenuItemContent')}>
@@ -21,12 +21,12 @@ export default class TabLink extends React.Component {
     }
 
     render() {
-        let {pathname, onClick} = this.props;
+        const {pathname, onClick} = this.props;
         let activeClassName = '';
         if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true})) {
             activeClassName = this.getStyle('tabMenuWrapSelected');
         }
-        let onClickHandler = () => {
+        const onClickHandler = () => {
             onClick(this.props);
         };
         return (

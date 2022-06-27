@@ -13,7 +13,8 @@ export default class NavigationLink extends Component {
                 className={className}
                 activeClassName={activeClassName}
                 onClick={onClick}
-                style={style} >
+                style={style}
+            >
                 {children}
             </NavLink>
         );
