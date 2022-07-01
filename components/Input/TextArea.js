@@ -77,7 +77,7 @@ class TextArea extends Component {
 
         const textArea = <textarea
             rows='7'
-            ref='input'
+            ref={(c) => { this.input = c; }}
             className={classnames(style.textarea, errorTextAreaStyle, disabledStyle, cssClass)}
             value={this.state.value || ''}
             onChange={this.handleChange}

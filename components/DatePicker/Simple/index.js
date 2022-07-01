@@ -32,10 +32,10 @@ export default class DatePicker extends Component {
         return (
             <div className={classnames(style.wrap, this.props.wrapperClassName)}>
                 {label ? (<span className={classnames(labelStyle, labelWrap, {[style.boldLabel]: boldLabel})}>{label}</span>) : ''}
-                <div className={classnames(style.datePicker, datePickerLabeled)} style={this.props.wrapperStyles}>
+                <div className={classnames(style.datePicker, dpStyles, datePickerLabeled)} style={this.props.wrapperStyles}>
                     <div className={classnames(style.datePickerIcon, iconDisabledClassname)} style={this.props.iconStyles} />
                     <DatePickerInput
-                        className={classnames(dpStyles, readonlyStyle)}
+                        className={readonlyStyle}
                         cancelLabel={this.props.cancelLabel}
                         okLabel={this.props.okLabel}
                         clearText={this.props.clearText}
@@ -52,8 +52,8 @@ export default class DatePicker extends Component {
                         fullWidth={this.props.fullWidth || true}
                         format={this.props.format}
                     />
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
                 </div>
+                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
             </div>
         );
     }

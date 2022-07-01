@@ -42,7 +42,7 @@ export default class Camera extends Component {
 
     onVideoSupported(stream) {
         this.stream = stream;
-        this.refs.video.srcObject = stream;
+        this.video.srcObject = stream;
     }
 
     onVideoNotSupported(error) {
@@ -52,7 +52,7 @@ export default class Camera extends Component {
 
     getScreenshot() {
         if (Camera.hasUserMedia()) {
-            const video = this.refs.video;
+            const video = this.video;
             const aspectRatio = video.videoWidth / video.videoHeight;
             const canvas = document.createElement('canvas');
 
@@ -75,7 +75,7 @@ export default class Camera extends Component {
         return (
             <div style={{ height: height, width: width }} className={classnames(styles.cameraContainer, className)}>
                 <video
-                    ref='video'
+                    ref={(c) => { this.video = c; }}
                     className={styles.videoElement}
                     autoPlay={autoPlay}
                 />

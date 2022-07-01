@@ -16,8 +16,8 @@ export default class UploadFileButton extends Component {
 
     handleChange() {
         const { onFileLoaded, onFileError, onFileSelected } = this.props;
-        if (onFileSelected) onFileSelected(this.refs.fileInput.refs.inputNode.files);
-        const file = this.refs.fileInput.refs.inputNode.files[0];
+        if (onFileSelected) onFileSelected(this.fileInput.inputNode.files);
+        const file = this.fileInput.inputNode.files[0];
 
         if (file && onFileLoaded) {
             const fileReader = new window.FileReader();
@@ -41,7 +41,7 @@ export default class UploadFileButton extends Component {
     }
 
     handleClick() {
-        this.refs.fileInput.refs.inputNode.click();
+        this.fileInput.inputNode.click();
     }
 
     render() {
@@ -50,7 +50,7 @@ export default class UploadFileButton extends Component {
         return (
             <div className={classnames(fileUploadStyles.uploadFileBtn, className)} onClick={this.handleClick}>
                 <AddFileButton icon={icon} label={label} />
-                <FormInput ref='fileInput' type='file' hidden acceptType={acceptType} onChange={this.handleChange} />
+                <FormInput ref={(c) => { this.fileInput = c; }} type='file' hidden acceptType={acceptType} onChange={this.handleChange} />
             </div>
         );
     }

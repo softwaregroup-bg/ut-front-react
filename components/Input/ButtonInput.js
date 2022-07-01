@@ -23,7 +23,7 @@ class ButtonInput extends Component {
     }
 
     getValue() {
-        return this.refs.input.value;
+        return this.input.value;
     }
 
     onChange(e) {
@@ -44,7 +44,7 @@ class ButtonInput extends Component {
                     <input
                         readOnly={this.props.readOnly}
                         type={this.props.type}
-                        ref='input'
+                        ref={(c) => { this.input = c; }}
                         name={this.props.name}
                         className={classNames(style.input, style.buttonInput, {
                             [style.readonlyInput]: readOnly

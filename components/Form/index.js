@@ -29,7 +29,7 @@ export default class Form extends Component {
         inputs.toSeq().forEach((input, index) => {
             inputNodes.push(<FormInput
                 key={index}
-                ref={input.get('name')}
+                ref={(c) => { this[input.get('name')] = c; }}
                 className='loginInput'
                 hidden={input.get('hidden')}
                 disabled={input.get('disabled')}
@@ -62,7 +62,7 @@ export default class Form extends Component {
         });
 
         if (nextInput) {
-            this.refs[nextInput.get('name')].refs.inputNode.focus();
+            this[nextInput.get('name')].inputNode.focus();
         }
 
         return nextInput;
