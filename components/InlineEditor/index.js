@@ -18,7 +18,7 @@ export default class InlineEditor extends Component {
 
     keyPressed(e) {
         if (e.keyCode === 13) {
-            this.props.onFinish(this.props.item, this.props.text, this.refs.inPlace.value);
+            this.props.onFinish(this.props.item, this.props.text, this.inPlace.value);
             this.setState({
                 editing: false
             });
@@ -37,7 +37,7 @@ export default class InlineEditor extends Component {
     render() {
         if (this.state.editing) {
             const onChange = (e) => { this.keyPressed(e); };
-            return <input type='text' ref='inPlace' defaultValue={this.state.text} onKeyDown={onChange} />;
+            return <input type='text' ref={(c) => { this.inPlace = c; }} defaultValue={this.state.text} onKeyDown={onChange} />;
         } else {
             const onClick = () => { this.inPlaceEdit(); };
             const text = this.state.text || ' ';

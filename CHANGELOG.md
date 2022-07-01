@@ -1,3 +1,39 @@
+## [13.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.5...v13.1.6) (2022-06-24)
+
+
+
+## [13.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.4...v13.1.5) (2022-05-28)
+
+
+### Bug Fixes
+
+* difference between Audit log and Transfer Type Statistics Dig 50 ([#626](https://github.com/softwaregroup-bg/ut-front-react/issues/626)) ([1f62e00](https://github.com/softwaregroup-bg/ut-front-react/commit/1f62e00ba32c05180515f172baffac76111b927e))
+
+
+
+## [13.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.3...v13.1.4) (2022-05-28)
+
+
+### Bug Fixes
+
+* login screen - password only to be mandatory, deprecated ref error DIG-28 ([#618](https://github.com/softwaregroup-bg/ut-front-react/issues/618)) ([c8bb19b](https://github.com/softwaregroup-bg/ut-front-react/commit/c8bb19b02104a437efe02a35e64416033c40e620))
+
+
+
+## [13.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.2...v13.1.3) (2022-05-26)
+
+
+
+## [13.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.1...v13.1.2) (2022-05-17)
+
+
+### Bug Fixes
+
+* missing placeholder, default selected item DIG-11 ([#625](https://github.com/softwaregroup-bg/ut-front-react/issues/625)) ([496378d](https://github.com/softwaregroup-bg/ut-front-react/commit/496378d38d53f481cf0e21aaf3b905f723e6f033))
+* resize issue DIG-51 ([#629](https://github.com/softwaregroup-bg/ut-front-react/issues/629)) ([57ae3a3](https://github.com/softwaregroup-bg/ut-front-react/commit/57ae3a365fdd0656c28762f6709445fba062176e))
+
+
+
 ## [13.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.0...v13.1.1) (2022-04-26)
 
 

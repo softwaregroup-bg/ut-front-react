@@ -52,7 +52,7 @@ export class ByCustomSearch extends Component {
             <div>
                 <div className={style.customSearchDropdown}>
                     <Dropdown
-                        defaultSelected={ this.props.defaultField || this.props.field}
+                        defaultSelected={ this.props.field || this.props.defaultField}
                         placeholder={<Text>Search By</Text>}
                         keyProp='name'
                         onSelect={this.handleSelect}
@@ -61,7 +61,12 @@ export class ByCustomSearch extends Component {
                     />
                 </div>
                 <div className={style.customSearchTextField}>
-                    <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} disabled={isDisabled}/>
+                    <SearchBox
+                        defaultValue={this.props.value}
+                        onSearch={this.handleSearch}
+                        disabled={isDisabled}
+                        placeholder={this.props.placeholder || ''}
+                    />
                 </div>
             </div>
         );
@@ -77,6 +82,7 @@ ByCustomSearch.propTypes = {
     value: PropTypes.string,
     allowedFields: PropTypes.object,
     defaultField: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
 
     fields: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,

@@ -21,7 +21,7 @@ class Vertical extends Component {
     }
 
     updateHeight() {
-        const height = getMarginBox(this.refs.fixedComponent).height;
+        const height = getMarginBox(this.fixedComponent).height;
         if (height !== this.state.fixedComponent) {
             this.setState({
                 fixedComponent: height
@@ -33,7 +33,7 @@ class Vertical extends Component {
         const height = this.state.fixedComponent + 'px';
         return (
             <div className={style.verticalWrapper}>
-                <div ref='fixedComponent'>{this.props.fixedComponent}</div>
+                <div ref={(c) => { this.fixedComponent = c; }}>{this.props.fixedComponent}</div>
                 <div style={{height: 'calc(100% - ' + height + ')'}} className={style.vertical}>
                     <div className={style.innerContent}>{this.props.children}</div>
                 </div>

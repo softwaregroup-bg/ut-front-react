@@ -96,7 +96,7 @@ class Container extends Component {
     }
 
     setResizorsHeight() {
-        const tableWrap = this.refs.tableWrap;
+        const tableWrap = this.tableWrap;
         const resizorDivs = document.getElementsByClassName(style.visibleResizor);
         for (let i = 0; i < resizorDivs.length; i += 1) {
             const currentResizor = resizorDivs[i];
@@ -374,6 +374,7 @@ class Container extends Component {
 
             if (col.type === resizibleTypes.CONTENT) {
                 currentStyles.display = this.props.shouldHideContent && !isAnyAsideColCollapsed ? 'none' : 'table-cell';
+                currentStyles.minWidth = col.minWidth + 'px';
             }
 
             const handleOnMouseDownEvent = (e) => {
@@ -402,7 +403,7 @@ class Container extends Component {
 
         return (
             <div style={{height: this.state.height, maxHeight: '100%'}}>
-                <div ref='tableWrap' id={style.mainContentWrap} className={classnames(this.props.externalClassName, this.props.classes.default)}>
+                <div ref={(c) => { this.tableWrap = c; }} id={style.mainContentWrap} className={classnames(this.props.externalClassName, this.props.classes.default)}>
                     {renderCols}
                 </div>
             </div>

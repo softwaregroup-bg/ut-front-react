@@ -9,7 +9,7 @@ const cx = classnames.bind(styles);
 // [
 //   {
 //     key: string,
-//     value: string or function that returns react element or dom node,
+//     value: string or function that returns react element or dom node or an object that has a 'filename' property (eg. 1655987249251_file.png),
 //     orientation: 'horizontal' || 'vertical'
 //   }
 // ]
@@ -23,7 +23,7 @@ const DataList = ({data}) => {
             key={index}
             keyNode={row.get('key')}
         >
-            {row.get('value')}
+            {row.getIn(['value', 'filename']) ? <a rel='noreferrer' href={`${window.location.origin}/file-upload/${row.getIn(['value', 'filename'])}`} target='_blank'>Open File</a> : row.get('value')}
         </KeyValueRow>));
     return (
         <div>
