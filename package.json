@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "13.1.6",
+  "version": "13.1.7",
   "description": "Frontend module",
   "bin": "index.js",
   "main": "index.js",
