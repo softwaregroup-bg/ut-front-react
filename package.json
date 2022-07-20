@@ -1,6 +1,6 @@
 {
   "name": "ut-front-react",
-  "version": "13.1.1-nmb.6",
+  "version": "13.1.7-nmb.0",
   "description": "Frontend module",
   "bin": "index.js",
   "main": "index.js",
@@ -49,7 +49,6 @@
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/pickers": "^3.2.10",
-    "bignumber.js": "^6.0.0",
     "classnames": "^2.2.5",
     "croppie": "^2.6.1",
     "date-fns": "^2.14.0",
