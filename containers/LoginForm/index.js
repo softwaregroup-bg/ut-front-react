@@ -154,6 +154,7 @@ LoginForm.propTypes = {
     loginData: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,
+    logoutRedirectUrl: PropTypes.string,
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
     title: PropTypes.string,
