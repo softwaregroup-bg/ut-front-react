@@ -109,7 +109,10 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
+        const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel, logoutRedirectUrl } = this.props;
+        if (logoutRedirectUrl) {
+            window.location.href = logoutRedirectUrl;
+        }
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
                 ref={(c) => { this.loginForm = c; }}
@@ -131,6 +134,7 @@ export default connect(
             loginData: login.get('loginData'),
             cookieChecked: login.get('cookieChecked'),
             isLogout: login.get('isLogout'),
+            logoutRedirectUrl: login.get('logoutRedirectUrl'),
             authenticated: login.get('authenticated'),
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
