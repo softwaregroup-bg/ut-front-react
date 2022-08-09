@@ -1,3 +1,12 @@
+# [13.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.7...v13.2.0) (2022-08-09)
+
+
+### Features
+
+* ALZ-7651 load external page after logout ([#643](https://github.com/softwaregroup-bg/ut-front-react/issues/643)) ([5786546](https://github.com/softwaregroup-bg/ut-front-react/commit/5786546650e08212ac78cb51ab6a8f39f725a462))
+
+
+
 ## [13.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.6...v13.1.7) (2022-07-07)
 
 
