@@ -23,6 +23,9 @@ class LoginForm extends Component {
     componentWillReceiveProps(nextProps) {
         const { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs, history } = this.props;
 
+        if (nextProps.logoutRedirectUrl) {
+            window.location.href = nextProps.logoutRedirectUrl;
+        }
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
             history.push('/');
@@ -110,6 +113,7 @@ class LoginForm extends Component {
 
     render() {
         const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
+
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
                 ref={(c) => { this.loginForm = c; }}
@@ -131,6 +135,7 @@ export default connect(
             loginData: login.get('loginData'),
             cookieChecked: login.get('cookieChecked'),
             isLogout: login.get('isLogout'),
+            logoutRedirectUrl: login.get('logoutRedirectUrl'),
             authenticated: login.get('authenticated'),
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
@@ -150,6 +155,7 @@ LoginForm.propTypes = {
     loginData: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,
+    logoutRedirectUrl: PropTypes.string,
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
     title: PropTypes.string,
