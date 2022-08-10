@@ -59,7 +59,8 @@ const loginReducer = (state = defaultLoginState, action) => {
         case LOGOUT:
             if (action.methodRequestState === 'finished') {
                 return state
-                    .set('logoutRedirectUrl', action.result?.logoutRedirectUrl || logoutRedirectUrl);
+                    .set('logoutRedirectUrl', action.result?.logoutRedirectUrl || logoutRedirectUrl)
+                    .set('isLogout', true);
             }
             return defaultLoginState
                 .set('isLogout', true);

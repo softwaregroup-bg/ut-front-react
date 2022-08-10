@@ -26,6 +26,7 @@ class LoginForm extends Component {
         if (nextProps.logoutRedirectUrl) {
             window.location.href = nextProps.logoutRedirectUrl;
         }
+
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
             history.push('/');
