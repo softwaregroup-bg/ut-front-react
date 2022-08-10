@@ -1,3 +1,12 @@
+## [13.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.0...v13.2.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* ALZ-7651 set defaulted property back to true ([#644](https://github.com/softwaregroup-bg/ut-front-react/issues/644)) ([95fb2db](https://github.com/softwaregroup-bg/ut-front-react/commit/95fb2db0b4c5a3661f6e8b5463f7e67d83da85f2))
+
+
+
 # [13.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.7...v13.2.0) (2022-08-09)
 
 
