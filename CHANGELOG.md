@@ -1,3 +1,12 @@
+## [13.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.1...v13.2.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* **MSA-2836:** Different font size ([#645](https://github.com/softwaregroup-bg/ut-front-react/issues/645)) ([38cff4d](https://github.com/softwaregroup-bg/ut-front-react/commit/38cff4d21e65404416b573367d53d8d85e9fd798))
+
+
+
 ## [13.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.0...v13.2.1) (2022-08-10)
 
 
