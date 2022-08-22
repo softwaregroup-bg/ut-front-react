@@ -411,7 +411,7 @@ class GridToolBox extends Component {
             {this.props.filterElements.map((el, i) => {
                 const filter = this.renderFilter(el, true);
                 return filter && (
-                    <div key={i} className={style.advancedSearchInputWrapper}>
+                    <div key={i} className={classnames(style.advancedSearchInputWrapper, this.props.stylesPopup)}>
                         {filter}
                     </div>
                 );
@@ -829,7 +829,9 @@ GridToolBox.propTypes = {
     selected: PropTypes.object.isRequired, // immutable
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
-    showActionButtonsOnSelect: PropTypes.func
+    showActionButtonsOnSelect: PropTypes.func,
+    // Optional
+    stylesPopup: PropTypes.object
 };
 
 GridToolBox.defaultProps = {
