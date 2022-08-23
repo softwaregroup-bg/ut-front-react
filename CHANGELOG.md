@@ -1,3 +1,12 @@
+## [13.2.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.2...v13.2.3) (2022-08-23)
+
+
+### Bug Fixes
+
+* **MSA-2764:** It is visible gray rectangle ([#648](https://github.com/softwaregroup-bg/ut-front-react/issues/648)) ([2e35b26](https://github.com/softwaregroup-bg/ut-front-react/commit/2e35b260111c024045f026b13f5e1493a7c5774c))
+
+
+
 ## [13.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.1...v13.2.2) (2022-08-17)
 
 
