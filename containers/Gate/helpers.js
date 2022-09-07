@@ -43,7 +43,7 @@ export const translate = (props) => (text, language) => {
 export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
     return new Intl.NumberFormat(locale, {
         style: 'currency',
-        currency: currency,
+        currency,
         minimumFractionDigits: 2
     }).format(amount);
 };

@@ -8,11 +8,11 @@ import Icon from '../../../components/Icon';
 class ErrorSection extends React.Component {
     static propTypes = {
         text: PropTypes.string
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];

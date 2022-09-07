@@ -23,7 +23,7 @@ class MultiSelectDropdown extends Dropdown {
         isValid: true,
         errorMessage: '',
         defaultSelected: []
-    }
+    };
 
     handleChange(menuItem) {
         const { onSelect, keyProp, defaultSelected } = this.props;

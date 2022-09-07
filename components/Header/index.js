@@ -19,7 +19,7 @@ class Header extends React.Component {
         version: PropTypes.string,
         onLogOut: PropTypes.func,
         currentLocation: PropTypes.object
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object,
@@ -28,12 +28,12 @@ class Header extends React.Component {
                 profilePicture: PropTypes.string
             })
         })
-    }
+    };
 
     static defaultProps = {
         version: '',
         onLogOut: () => {}
-    }
+    };
 
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];

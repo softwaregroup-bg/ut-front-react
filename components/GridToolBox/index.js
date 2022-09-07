@@ -425,7 +425,7 @@ class GridToolBox extends Component {
             closePopup={this.toggleAdvancedSearch}
             header={{text: 'Advanced Search'}}
             isOpen={this.state.showFiltersPopup}
-            footer={{actionButtons: actionButtons}}
+            footer={{actionButtons}}
         >
             {this.props.filterElements.map((el, i) => {
                 const filter = this.renderFilter(el, true);

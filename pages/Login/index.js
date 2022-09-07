@@ -14,19 +14,19 @@ class Login extends React.Component {
         setLoginData: PropTypes.func,
         loginData: PropTypes.object,
         login: PropTypes.object
-    }
+    };
 
     static contextTypes = {
         router: PropTypes.object,
         implementationStyle: PropTypes.object,
         mainUrl: PropTypes.string,
         initialLoginFields: PropTypes.object
-    }
+    };
 
     static defaultProps = {
         loginData: Map(),
         login: Map()
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (this.props.loginData.get('changeId') !== nextProps.loginData.get('changeId')) {

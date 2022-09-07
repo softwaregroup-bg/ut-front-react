@@ -79,7 +79,7 @@ class TabMenu extends React.Component {
     setOffset(offset) {
         if (this.state.offset !== offset) { // DO NOT CHANGE THIS LINE
             this.setState({
-                offset: offset
+                offset
             });
         }
     }

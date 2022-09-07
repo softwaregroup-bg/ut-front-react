@@ -24,7 +24,7 @@ class ConfirmRejectionDialog extends Component {
             canSubmit = false;
             this.props.updateErrors(prepareErrors(valid.errors), this.props.id);
         }
-        this.props.changeConfirmDialogValue({value: e.value, canSubmit: canSubmit});
+        this.props.changeConfirmDialogValue({value: e.value, canSubmit});
     }
 
     renderContainer() {
@@ -104,7 +104,7 @@ ConfirmRejectionDialog.propTypes = {
 };
 
 ConfirmRejectionDialog.defaultProps = {
-    getRejectReasonValidationRules: getRejectReasonValidationRules
+    getRejectReasonValidationRules
 };
 
 export default ConfirmRejectionDialog;

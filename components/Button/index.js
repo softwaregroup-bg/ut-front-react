@@ -28,11 +28,11 @@ class Button extends React.Component {
         ]),
         sizeType: PropTypes.oneOf(['small', 'big']),
         fullWidth: PropTypes.bool
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
