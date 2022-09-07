@@ -18,11 +18,11 @@ class Main extends React.Component {
     static propTypes = {
         loadInfo: PropTypes.object,
         children: PropTypes.object
-    }
+    };
 
     static contextTypes = {
         router: PropTypes.object.isRequired
-    }
+    };
 
     render() {
         return (

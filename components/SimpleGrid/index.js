@@ -62,7 +62,7 @@ function reorderVerticalFields(verticalFields, verticalSpanFields) {
         });
     return {
         verticalFields: reorderFields(fromJS(verticalFields), fromJS(verticalSpanFields)).toJS(),
-        verticalSpanFields: verticalSpanFields
+        verticalSpanFields
     };
 }
 
@@ -121,7 +121,7 @@ class SimpleGridClass extends Component {
     render() {
         const newSpanFields = this.props.spanFields.map((c) => {
             const shortName = c.children.join('-').toLowerCase();
-            return {shortName: shortName, title: c.title, children: c.children};
+            return {shortName, title: c.title, children: c.children};
         });
         const iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         const fields = iFields.toJS();

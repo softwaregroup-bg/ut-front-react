@@ -73,7 +73,7 @@ export function convertDocumentsForSave(attachmentsList, actorId) {
     return {
         document: documents,
         attachment: attachments,
-        actorDocument: actorDocument
+        actorDocument
     };
 };
 
@@ -243,7 +243,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     page: att.page
                 };
                 const actorDoc = {
-                    actorId: actorId,
+                    actorId,
                     documentId: tmpDocId,
                     documentOrder: doc.documentOrder || 255
                 };
@@ -269,9 +269,9 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     statusId = 'pending';
                 }
                 const docObj = {
-                    documentId: documentId,
+                    documentId,
                     documentTypeId: doc.documentTypeId,
-                    statusId: statusId,
+                    statusId,
                     description: doc.description || null,
                     documentNumber: doc.documentNumber,
                     expirationDate: doc.expirationDate || null,
@@ -285,13 +285,13 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
                     hash: att.hash,
                     extension: att.extension,
                     contentType: att.contentType,
-                    documentId: documentId,
+                    documentId,
                     attachmentSizeId: 'original',
                     page: att.page
                 };
                 const actorDoc = {
-                    actorId: actorId,
-                    documentId: documentId,
+                    actorId,
+                    documentId,
                     documentOrder: doc.documentOrder || 255
                 };
                 if (doc.documentUnapprovedId && att.attachmentUnapprovedId) {

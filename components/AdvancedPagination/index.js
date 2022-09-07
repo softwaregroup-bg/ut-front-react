@@ -269,7 +269,7 @@ class AdvancedPagination extends Component {
                 };
                 pageBoxes.push(
                     <div className={styles.pageBox} onClick={rightArrowClickHandler} key={Math.random()}>
-                        >
+                        {'>'}
                     </div>
                 );
             }

@@ -330,7 +330,7 @@ export default class DocumentUpload extends Component {
             };
             reader.readAsDataURL(img);
         }
-    }
+    };
 
     dataURItoBlob(dataURI) {
         // convert base64/URLEncoded data component to raw binary data held in a string

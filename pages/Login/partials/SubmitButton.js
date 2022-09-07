@@ -7,7 +7,7 @@ class SubmitButton extends React.Component {
     static propTypes = {
         title: PropTypes.string,
         submit: PropTypes.func
-    }
+    };
 
     handleSubmit(e) {
         if (this.props.submit) {
@@ -17,7 +17,7 @@ class SubmitButton extends React.Component {
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];

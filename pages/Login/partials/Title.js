@@ -7,11 +7,11 @@ import style from '../style.css';
 class Title extends React.Component {
     static propTypes = {
         title: PropTypes.string
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];

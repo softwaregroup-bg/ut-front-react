@@ -37,8 +37,8 @@ class TextField extends Component {
         this.initialValue = value;
         if (this.state.value !== value || this.state.valid.isValid !== isValid || this.state.valid.errorMessage !== errorMessage) {
             this.setState({
-                value: value,
-                valid: {isValid: isValid, errorMessage: errorMessage}
+                value,
+                valid: {isValid, errorMessage}
             });
         }
     }
@@ -74,7 +74,7 @@ class TextField extends Component {
                 const errorMessage = valid.errors[0].errorMessage;
                 objectToPassOnChange.error = true;
                 objectToPassOnChange.errorMessage = errorMessage;
-                newState.valid = {isValid: false, errorMessage: errorMessage};
+                newState.valid = {isValid: false, errorMessage};
             } else if (!this.state.valid.isValid) {
                 newState.valid = {isValid: true, errorMessage: ''};
             }
@@ -102,7 +102,26 @@ class TextField extends Component {
         const zeroHeightStyle = isValid ? this.style.hh : '';
         const value = this.state.value !== undefined && this.state.value !== null ? this.state.value : '';
 
-        const input = <input ref='textInput' type={type} className={classnames(this.inputClassName, this.props.classes.border)} value={renderText ? renderText(value) : value } onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={this.translate(placeholder)} />;
+        const inputType = type === 'money' ? 'number' : type;
+
+        let input = <input ref='textInput' type={inputType} className={classnames(this.inputClassName, this.props.classes.border)} value={renderText ? renderText(value) : value } onClick={onClick} onBlur={onBlur} onChange={this.handleChange} readOnly={this.props.readonly} placeholder={this.translate(placeholder)} />;
+
+        if (type === 'money' && this.props.currency) {
+            input = <div className={defaultStyle.horizontalWrapper}>
+                <div>
+                    {input}
+                </div>
+                <div className={classnames(defaultStyle.currencyWrapper, defaultStyle.readonlyInput)}>
+                    <span>
+                        {this.props.currency}
+                    </span>
+                </div>
+            </div>;
+        }
+
+        let helpText = this.props.helpText;
+        helpText = <div className={classnames(this.style.errorWrap)}>{isValid && !!helpText && <div className={this.style.helpText}><Text>{helpText}</Text></div>}</div>;
+
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
             return (
@@ -114,6 +133,7 @@ class TextField extends Component {
                         {input}
                         {tooltip}
                         <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
+                        {helpText}
                     </div>
                 </div>
             );
@@ -123,6 +143,7 @@ class TextField extends Component {
                     {input}
                     {tooltip}
                     <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
+                    {helpText}
                 </div>
             );
         }
@@ -137,6 +158,7 @@ TextField.propTypes = {
         PropTypes.array
     ]),
     label: PropTypes.node,
+    currency: PropTypes.node,
     type: PropTypes.string,
     placeholder: PropTypes.string,
     wrapperClassName: PropTypes.string,
@@ -161,7 +183,8 @@ TextField.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    helpText: PropTypes.string
 };
 
 TextField.defaultProps = {

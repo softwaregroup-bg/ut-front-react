@@ -15,11 +15,11 @@ class Gate extends React.Component {
         children: PropTypes.object,
         fetchTranslations: PropTypes.func,
         gate: PropTypes.object
-    }
+    };
 
     static contextTypes = {
         router: PropTypes.object
-    }
+    };
 
     getChildContext() {
         return {
@@ -27,14 +27,14 @@ class Gate extends React.Component {
             money,
             dateFormat: df(this.props),
             numberFormat: numberFormat(this.props),
-            checkPermission: checkPermission
+            checkPermission
         };
     }
 
     static defaultProps = {
         gate: Map(),
         login: Map()
-    }
+    };
 
     componentWillReceiveProps(newProps) {
         if (newProps.login.get('reqState') === 'finished' && (newProps.login.get('cookieCheckResultId') !== this.props.login.get('cookieCheckResultId'))) {
@@ -77,7 +77,7 @@ export default connect(
     mapStateToProps,
     {
         checkIdentity: cookieCheck,
-        fetchTranslations: fetchTranslations,
+        fetchTranslations,
         logout
     }
 )(Gate);

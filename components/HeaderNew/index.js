@@ -16,7 +16,7 @@ export default class HeaderNew extends Component {
             classTabsContainer: '',
             classProfileInfoContainer: ''
         }
-    }
+    };
 
     static propTypes = {
         tabset: PropTypes.array,
@@ -26,7 +26,7 @@ export default class HeaderNew extends Component {
         currentLocation: PropTypes.string,
         replaceWithBrakes: PropTypes.bool,
         classes: PropTypes.object
-    }
+    };
 
     render() {
         const { tabset, personInfo, logout, currentLocation, headerText, replaceWithBrakes } = this.props;

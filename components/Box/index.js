@@ -38,7 +38,7 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
     const rightSection = showAccordeon ? accordeon : closeSection;
     const titleSection = title ? <div className={titleSectionClasses} onClick={onToggle}><Text>{title}</Text>{rightSection}</div> : null;
-    const minHeightStyle = minHeight ? { minHeight: minHeight } : null;
+    const minHeightStyle = minHeight ? { minHeight } : null;
     const body = !collapsed ? <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>{children}</div> : null;
     return (
         <div style={props.style} className={classes}>

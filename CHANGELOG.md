@@ -1,3 +1,43 @@
+## [13.2.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.2...v13.2.3) (2022-08-23)
+
+
+### Bug Fixes
+
+* **MSA-2764:** It is visible gray rectangle ([#648](https://github.com/softwaregroup-bg/ut-front-react/issues/648)) ([2e35b26](https://github.com/softwaregroup-bg/ut-front-react/commit/2e35b260111c024045f026b13f5e1493a7c5774c))
+
+
+
+## [13.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.1...v13.2.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* **MSA-2836:** Different font size ([#645](https://github.com/softwaregroup-bg/ut-front-react/issues/645)) ([38cff4d](https://github.com/softwaregroup-bg/ut-front-react/commit/38cff4d21e65404416b573367d53d8d85e9fd798))
+
+
+
+## [13.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.0...v13.2.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* ALZ-7651 set defaulted property back to true ([#644](https://github.com/softwaregroup-bg/ut-front-react/issues/644)) ([95fb2db](https://github.com/softwaregroup-bg/ut-front-react/commit/95fb2db0b4c5a3661f6e8b5463f7e67d83da85f2))
+
+
+
+# [13.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.7...v13.2.0) (2022-08-09)
+
+
+### Features
+
+* ALZ-7651 load external page after logout ([#643](https://github.com/softwaregroup-bg/ut-front-react/issues/643)) ([5786546](https://github.com/softwaregroup-bg/ut-front-react/commit/5786546650e08212ac78cb51ab6a8f39f725a462))
+
+
+
+## [13.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.6...v13.1.7) (2022-07-07)
+
+
+
 ## [13.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.5...v13.1.6) (2022-06-24)
 
 

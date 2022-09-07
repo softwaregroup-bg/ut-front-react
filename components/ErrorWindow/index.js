@@ -44,7 +44,7 @@ class ErrorWindow extends React.Component {
             <Popup
                 isOpen={open}
                 header={header}
-                footer={{ actionButtons: actionButtons }}
+                footer={{ actionButtons }}
                 closePopup={closePopUpHandler}
             >
                 <div className={classnames(styles.errorIconWrap, formErrorMessageStyles.errorIcon)} />

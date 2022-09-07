@@ -43,6 +43,11 @@
     margin: 5px 0 0;
 }
 
+.errorWrap .helpText {
+    color: black;
+    margin: 5px 5px 0 0;
+}
+
 .textArearErrorWrap {
     font-size: 12px;
     margin-left: 12px;
@@ -494,4 +499,26 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
 .dropdownMenu div {
     overflow-x: hidden !important;
     text-overflow: ellipsis;
+}
+
+.horizontalWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.verticalWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.currencyWrapper {
+    display: flex;
+    margin-left: 10px;
+    text-transform: capitalize;
+    border: 1px solid #EBEBEB;
+    align-items: center;
+}
+
+.currencyWrapper span {
+    padding: 5px;
 }
