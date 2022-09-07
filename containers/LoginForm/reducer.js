@@ -14,6 +14,7 @@ import { Validator } from './../../utils/validator';
 import { loginReducerProxy, prePopulate } from './storeProxy/loginReducerProxy';
 
 const validator = new Validator(inputsConfig);
+let logoutRedirectUrl = '';
 
 const updateLoginStep = (state, step) => {
     const loginStep = loginSteps[step];
@@ -43,6 +44,7 @@ const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
     isLogout: false,
+    logoutRedirectUrl: '',
     loginForm: loginSteps.initial,
     loginType: '',
     formError: '',
@@ -55,6 +57,11 @@ const loginReducer = (state = defaultLoginState, action) => {
 
     switch (action.type) {
         case LOGOUT:
+            if (action.methodRequestState === 'finished') {
+                return state
+                    .set('logoutRedirectUrl', action.result?.logoutRedirectUrl || logoutRedirectUrl)
+                    .set('isLogout', true);
+            }
             return defaultLoginState
                 .set('isLogout', true);
         case LOGIN:
@@ -114,6 +121,7 @@ const loginReducer = (state = defaultLoginState, action) => {
                         .set('cookieChecked', true)
                         .set('authenticated', false);
                 } else if (action.result) {
+                    logoutRedirectUrl = action.result.logoutRedirectUrl;
                     return state.set('result', Immutable.fromJS(action.result))
                         .set('cookieChecked', true)
                         .set('authenticated', true)
