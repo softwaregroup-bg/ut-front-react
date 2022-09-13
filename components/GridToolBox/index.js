@@ -20,7 +20,7 @@ import Text from '../Text';
 
 import classnames from 'classnames';
 import style from './style.css';
-import styleAccountReport from './styleAccountReport.css'
+import styleAccountReport from './styleAccountReport.css';
 import cssStandard from '../../assets/index.css';
 
 const dropDrownAllOptionKey = '__all__';
