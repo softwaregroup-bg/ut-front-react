@@ -77,7 +77,7 @@ export default class HeaderProfileInfo extends Component {
             // Fallback if a user does not have these field filled
             return 'n/a';
         }
-        const regex = /[a-zA-Z]?/;
+        const regex = /[a-zA-Zа-яА-Я]?/;
         firstName = firstName.match(regex)[0];
         lastName = lastName.match(regex)[0];
 
