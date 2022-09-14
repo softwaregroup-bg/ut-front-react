@@ -327,6 +327,7 @@ class Toolbox extends Component {
 }
 
 Toolbox.propTypes = {
+    children: PropTypes.node,
     documents: PropTypes.array,
     countries: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
