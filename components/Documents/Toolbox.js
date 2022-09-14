@@ -320,12 +320,14 @@ class Toolbox extends Component {
                 {this.header}
                 {this.detailsView}
                 {this.renderDocumentUplodDialog}
+                {this.props.children}
             </div>
         );
     }
 }
 
 Toolbox.propTypes = {
+    children: PropTypes.node,
     documents: PropTypes.array,
     countries: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object

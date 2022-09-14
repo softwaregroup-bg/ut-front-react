@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Vertical } from '../Layout';
 import Toolbox from './Toolbox';
 import DocumentsGrid from './DocumentsGrid';
 import { mergeDocumentsWithChanged } from './helpers';
@@ -54,7 +53,23 @@ class Documents extends Component {
         const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
         return (
             <div className={style.documentsWrap}>
-                <Vertical fixedComponent={this.header}>
+                <Toolbox
+                    selectedAttachment={this.props.selectedAttachment}
+                    documents={this.mergeDocuments}
+                    countries={this.props.countries}
+                    documentArchived={this.props.documentArchived}
+                    selectedFilter={this.props.selectedFilter}
+                    changeDocumentFilter={this.props.changeDocumentFilter}
+                    documentTypes={this.props.documentTypes}
+                    uploadNewDocument={this.props.uploadNewDocument}
+                    uploadDocument={this.props.uploadDocument}
+                    replaceDocument={this.props.replaceDocument}
+                    deleteDocument={this.props.deleteDocument}
+                    archiveDocument={this.props.archiveDocument}
+                    allowedFileTypes={this.props.allowedFileTypes}
+                    permissions={this.props.permissions}
+                    uploadURL={this.props.uploadURL}
+                >
                     <DocumentsGrid
                         identifier={identifier}
                         documents={this.mergeDocuments}
@@ -63,7 +78,7 @@ class Documents extends Component {
                         onGridSelect={onGridSelect}
                         selected={selectedAttachment}
                     />
-                </Vertical>
+                </Toolbox>
             </div>
         );
     }
