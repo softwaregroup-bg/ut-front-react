@@ -320,6 +320,7 @@ class Toolbox extends Component {
                 {this.header}
                 {this.detailsView}
                 {this.renderDocumentUplodDialog}
+                {this.props.children}
             </div>
         );
     }
