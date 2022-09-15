@@ -1,3 +1,16 @@
+## [13.2.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.4...v13.2.5) (2022-09-14)
+
+
+### Bug Fixes
+
+* show Cyrillic letters in navigation menu (user initials) UATALZ-1851 ([#646](https://github.com/softwaregroup-bg/ut-front-react/issues/646)) ([12388ad](https://github.com/softwaregroup-bg/ut-front-react/commit/12388ad0a4bef7fb2ed89187062f29bb68798770))
+
+
+
+## [13.2.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.3...v13.2.4) (2022-09-14)
+
+
+
 ## [13.2.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.2...v13.2.3) (2022-08-23)
 
 
