@@ -20,6 +20,7 @@ import Text from '../Text';
 
 import classnames from 'classnames';
 import style from './style.css';
+import styleAccountReport from './styleAccountReport.css';
 import cssStandard from '../../assets/index.css';
 
 const dropDrownAllOptionKey = '__all__';
@@ -159,6 +160,7 @@ class GridToolBox extends Component {
                             ? filterElement.onSelect
                             : onSelect}
                         canSelectPlaceholder={filterElement.canSelectPlaceholder}
+                        mergeStyles={styleAccountReport}
                     />
                 );
             case filterElementTypes.searchBox:
