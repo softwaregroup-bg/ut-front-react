@@ -6,7 +6,6 @@ import {renderToString} from 'react-dom/server';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Portal from './Portal';
-import Dashboard from './Dashboard';
 import wrapper from './wrapper';
 import MaterialUILayout from '../components/MaterialUILayout';
 import favicon from '../assets/images/favicon.ico';
@@ -15,7 +14,6 @@ import {Master} from '../pages';
 import Gate from '../containers/Gate';
 import LoginPage from '../components/LoginPage';
 import SsoPage from '../components/SsoPage';
-import {getRoute} from '../routerHelper';
 import UTFrontReactReducers from './reducers';
 import { Provider } from 'react-redux';
 import { Store } from './Store';
@@ -34,7 +32,6 @@ export default function ui({utMethod, config = {}}) {
             <ConfigProvider>
                 <Portal location={location}>
                     {routes}
-                    {/* <Route exact path={getRoute('ut-impl:dashboard')} component={Dashboard} /> */}
                 </Portal>
             </ConfigProvider>
         </Master>;
