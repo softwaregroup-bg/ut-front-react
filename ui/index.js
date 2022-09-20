@@ -34,7 +34,7 @@ export default function ui({utMethod, config = {}}) {
             <ConfigProvider>
                 <Portal location={location}>
                     {routes}
-                    <Route exact path={getRoute('ut-impl:dashboard')} component={Dashboard} />
+                    {/* <Route exact path={getRoute('ut-impl:dashboard')} component={Dashboard} /> */}
                 </Portal>
             </ConfigProvider>
         </Master>;
