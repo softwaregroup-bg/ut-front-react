@@ -120,7 +120,7 @@ class TextField extends Component {
         }
 
         let helpText = this.props.helpText;
-        helpText = <div className={classnames(this.style.errorWrap)}>{isValid && !!helpText && <div className={this.style.helpText}><Text>{helpText}</Text></div>}</div>;
+        helpText = isValid && !!helpText ? <div className={classnames(this.style.errorWrap)}><div className={this.style.helpText}><Text>{helpText}</Text></div></div> : null;
 
         const tooltip = (this.props.readonly && dependancyDisabledInputTooltipText && <span className={this.style.tooltiptext}> <Text>{dependancyDisabledInputTooltipText}</Text> </span>);
         if (label) {
