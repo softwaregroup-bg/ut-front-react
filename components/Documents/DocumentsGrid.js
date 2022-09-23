@@ -55,6 +55,8 @@ class DocumentsGrid extends Component {
             const isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
             onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
         };
+        const handleRowClick = (selectedItem) => handleSelectItem(selectedItem);
+        const handleCheckboxSelect = (isChecked, selectedItem) => handleSelectItem(selectedItem);
         let gridData = [];
         switch (selectedFilter) {
             case 'all':
@@ -65,18 +67,19 @@ class DocumentsGrid extends Component {
                 break;
         }
         if (gridData.length > 0) {
-            const selectedItem = selected ? [selected] : [];
+            const selectedItem = selected ? [selected.toJS()] : [];
             return (
-                <div>
+                <div className={style.wrapTable}>
                     <SimpleGrid
-                        multiSelect={false}
+                        multiSelect={true}
                         globalMenu={false}
                         emptyRowsMsg={<Text>No results</Text>}
                         fields={getListTableColumns()}
                         data={gridData}
                         transformCellValue={this.mapColumn}
-                        handleRowClick={handleSelectItem}
+                        handleRowClick={handleRowClick}
                         rowsChecked={selectedItem}
+                        handleCheckboxSelect={handleCheckboxSelect}
                     />
                 </div>
             );
