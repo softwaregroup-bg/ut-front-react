@@ -66,6 +66,7 @@ class DocumentsGrid extends Component {
                 gridData = documentArchived.get('data').toJS();
                 break;
         }
+
         if (gridData.length > 0) {
             const selectedItem = selected ? [selected.toJS()] : [];
             return (
