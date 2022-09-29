@@ -129,7 +129,8 @@ export default class HeaderProfileInfo extends Component {
 }
 
 HeaderProfileInfo.contextTypes = {
-    getDocsUrl: PropTypes.func
+    getDocsUrl: PropTypes.func,
+    portalName: PropTypes.string
 };
 
 HeaderProfileInfo.defaultProps = {
