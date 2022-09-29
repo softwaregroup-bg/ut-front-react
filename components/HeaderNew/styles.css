@@ -12,6 +12,7 @@
   box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
   z-index: 20;
   cursor: default;
+  justify-content: space-between;
 }
 
 .headerTitle {
@@ -60,6 +61,26 @@
   display: flex;
   justify-content: flex-end;
   flex: 1;
+}
+
+.rightEnd {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.leftEnd {
+  display: flex;
+  justify-content: start;
+}
+
+.floatBalance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -ms-flex-align: center;
+  color: gray;
+  font-weight: 100;
+  margin: 0 10px 0 10px;
 }
 
 .profileInfoContainer {

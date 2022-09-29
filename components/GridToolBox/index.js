@@ -520,7 +520,6 @@ class GridToolBox extends Component {
                 result[objKey] = objectKey;
             }
         });
-
         this.props.batchChange(result);
         this.setState({filters: {}});
     }

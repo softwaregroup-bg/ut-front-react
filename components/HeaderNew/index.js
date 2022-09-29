@@ -4,9 +4,10 @@ import classNames from 'classnames';
 import HeaderLogo from './HeaderLogo';
 import TabsContainer from './TabsContainer';
 import HeaderProfileInfo from './HeaderProfileInfo';
+import FloatBalance from './FloatBalance';
 import styles from './styles.css';
 
-export default class HeaderNew extends Component {
+class HeaderNew extends Component {
     static defaultProps = {
         headerText: '',
         currentLocation: '/',
@@ -34,22 +35,34 @@ export default class HeaderNew extends Component {
 
         return (
             <div className={styles.headerContainer}>
-                <HeaderLogo
-                    text={headerText}
-                    replaceWithBrakes={!!replaceWithBrakes}
-                    className={classNames(styles.headerLogoContainer, classLogoContainer)}
-                />
-                <TabsContainer
-                    tabset={tabset}
-                    className={classNames(styles.tabsContainer, classTabsContainer)}
-                />
-                <HeaderProfileInfo
-                    currentLocation={currentLocation}
-                    personInfo={personInfo}
-                    logout={logout}
-                    className={classNames(styles.profileContainer, classProfileInfoContainer)}
-                />
+                <div className={styles.leftEnd}>
+                    <HeaderLogo
+                        text={headerText}
+                        replaceWithBrakes={!!replaceWithBrakes}
+                        className={classNames(styles.headerLogoContainer, classLogoContainer)}
+                    />
+                    <TabsContainer
+                        tabset={tabset}
+                        className={classNames(styles.tabsContainer, classTabsContainer)}
+                    />
+                </div>
+
+                <div className={styles.rightEnd}>
+                    <FloatBalance portalName={this.context.portalName}/>
+                    <HeaderProfileInfo
+                        currentLocation={currentLocation}
+                        personInfo={personInfo}
+                        logout={logout}
+                        className={classNames(styles.profileContainer, classProfileInfoContainer)}
+                    />
+                </div>
             </div>
         );
     }
 }
+
+HeaderNew.contextTypes = {
+    portalName: PropTypes.string
+};
+
+export default HeaderNew;

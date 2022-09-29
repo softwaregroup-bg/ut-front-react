@@ -46,7 +46,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;
-    height: 71px;
+    /*height: 71px;*/
 }
 
 .heading {
@@ -65,7 +65,7 @@
     white-space: nowrap;
     vertical-align: middle;
     display: inline-block;
-} 
+}
 
 .h100pr {
     height: 100%;
