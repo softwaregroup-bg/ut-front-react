@@ -124,3 +124,7 @@
     min-width: 180px;
     background-color: #FFF;
 }
+
+.wrapTable table thead tr th:first-child span {
+    display: none;
+}
