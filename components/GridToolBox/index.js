@@ -20,7 +20,6 @@ import Text from '../Text';
 
 import classnames from 'classnames';
 import style from './style.css';
-import styleAccountReport from './styleAccountReport.css';
 import cssStandard from '../../assets/index.css';
 
 const dropDrownAllOptionKey = '__all__';
@@ -99,7 +98,7 @@ class GridToolBox extends Component {
     }
 
     renderFilter(filterElement, renderInDialog = false) {
-        const { filterAutoFetch } = this.props;
+        const { filterAutoFetch, customStyles } = this.props;
         const { filters, showFiltersPopup } = this.state;
 
         const onChange = (key, value) => {
@@ -160,7 +159,7 @@ class GridToolBox extends Component {
                             ? filterElement.onSelect
                             : onSelect}
                         canSelectPlaceholder={filterElement.canSelectPlaceholder}
-                        mergeStyles={styleAccountReport}
+                        mergeStyles={customStyles}
                     />
                 );
             case filterElementTypes.searchBox:
@@ -833,7 +832,8 @@ GridToolBox.propTypes = {
     batchChange: PropTypes.func,
     showActionButtonsOnSelect: PropTypes.func,
     // Optional
-    stylesPopup: PropTypes.object
+    stylesPopup: PropTypes.object,
+    customStyles: PropTypes.object
 };
 
 GridToolBox.defaultProps = {
