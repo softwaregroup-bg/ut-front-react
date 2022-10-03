@@ -183,6 +183,8 @@
     width: 100%;
     font-size: 14px;
     color: #595959;
+    display: flex;
+    align-items: center;
 }
 .readonlyInput {
     cursor: not-allowed;
