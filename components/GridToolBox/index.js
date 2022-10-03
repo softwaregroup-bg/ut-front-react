@@ -764,7 +764,7 @@ GridToolBox.propTypes = {
             customTheme: PropTypes.bool,
             canSelectPlaceholder: PropTypes.bool,
             onSelect: PropTypes.func,
-            mergeStyles: PropTypes.object, 
+            mergeStyles: PropTypes.object,
             // SearchBox
             onSearch: PropTypes.func,
             // Optional
