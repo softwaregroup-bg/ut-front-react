@@ -98,7 +98,7 @@ class GridToolBox extends Component {
     }
 
     renderFilter(filterElement, renderInDialog = false) {
-        const { filterAutoFetch, mergeStyles } = this.props;
+        const { filterAutoFetch, customStyles } = this.props;
         const { filters, showFiltersPopup } = this.state;
 
         const onChange = (key, value) => {
@@ -159,7 +159,7 @@ class GridToolBox extends Component {
                             ? filterElement.onSelect
                             : onSelect}
                         canSelectPlaceholder={filterElement.canSelectPlaceholder}
-                        mergeStyles={mergeStyles}
+                        mergeStyles={customStyles}
                     />
                 );
             case filterElementTypes.searchBox:
@@ -833,7 +833,7 @@ GridToolBox.propTypes = {
     showActionButtonsOnSelect: PropTypes.func,
     // Optional
     stylesPopup: PropTypes.object,
-    mergeStyles: PropTypes.object
+    customStyles: PropTypes.object
 };
 
 GridToolBox.defaultProps = {
