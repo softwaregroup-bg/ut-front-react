@@ -1,3 +1,12 @@
+## [13.2.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.7...v13.2.8) (2022-10-03)
+
+
+### Bug Fixes
+
+* **MSA- 2968:** When customer request status is already selected and the customer taps on it to change it some of the new statuses are cropped ([#658](https://github.com/softwaregroup-bg/ut-front-react/issues/658)) ([e67c110](https://github.com/softwaregroup-bg/ut-front-react/commit/e67c1101f3cfab442522bcfdc7670e59ca4df973))
+
+
+
 ## [13.2.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.6...v13.2.7) (2022-10-01)
 
 
