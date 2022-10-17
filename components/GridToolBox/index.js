@@ -407,7 +407,7 @@ class GridToolBox extends Component {
             closePopup={this.toggleAdvancedSearch}
             header={{text: 'Advanced Search'}}
             isOpen={this.state.showFiltersPopup}
-            footer={{actionButtons: actionButtons}}
+            footer={{actionButtons}}
         >
             {this.props.filterElements.map((el, i) => {
                 const filter = this.renderFilter(el, true);
@@ -493,13 +493,22 @@ class GridToolBox extends Component {
     }
 
     applyFilters() {
+        const {userGridFilter, approveValueStatusMap, approveValueUsersMap} = this.props;
         const result = {};
         Object.keys(this.state.filters).forEach((objKey) => {
             const objectKey = this.state.filters[objKey];
             if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
                 result[objKey] = '';
             } else {
-                result[objKey] = objectKey;
+                if (userGridFilter) {
+                    if (objKey === 'status') {
+                        result.statusId = approveValueStatusMap[objectKey];
+                    } else if (objKey === 'userType') {
+                        result[objKey] = approveValueUsersMap[objectKey];
+                    } else result[objKey] = objectKey;
+                } else {
+                    result[objKey] = objectKey;
+                }
             }
         });
 
@@ -831,6 +840,9 @@ GridToolBox.propTypes = {
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
     showActionButtonsOnSelect: PropTypes.func,
+    userGridFilter: PropTypes.bool,
+    approveValueStatusMap: PropTypes.array,
+    approveValueUsersMap: PropTypes.array,
     // Optional
     stylesPopup: PropTypes.object,
     customStyles: PropTypes.object
