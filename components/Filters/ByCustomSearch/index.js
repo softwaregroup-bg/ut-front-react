@@ -36,7 +36,7 @@ export class ByCustomSearch extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (!nextProps.value || nextProps.field !== this.props.field) {
+        if (!nextProps.value || nextProps.field !== this.props.field || nextProps.value !== this.props.value) {
             return true;
         }
         return false;
@@ -66,6 +66,8 @@ export class ByCustomSearch extends Component {
                         onSearch={this.handleSearch}
                         disabled={isDisabled}
                         placeholder={this.props.placeholder || ''}
+                        isValid={this.props.isValidSearchBox}
+                        errorMessage={this.props.errorMessageSearchBox}
                     />
                 </div>
             </div>
@@ -83,6 +85,8 @@ ByCustomSearch.propTypes = {
     allowedFields: PropTypes.object,
     defaultField: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
+    isValidSearchBox: PropTypes.bool,
+    errorMessageSearchBox: PropTypes.string,
 
     fields: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
