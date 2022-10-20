@@ -493,18 +493,19 @@ class GridToolBox extends Component {
     }
 
     applyFilters() {
-        const {approveValueStatusMap, approveValueUsersMap} = this.props;
+        const {filtersOverride} = this.props;
+        const {status, userType} = filtersOverride;
         const result = {};
         Object.keys(this.state.filters).forEach((objKey) => {
             const objectKey = this.state.filters[objKey];
             if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
                 result[objKey] = '';
             } else {
-                if (approveValueStatusMap && approveValueUsersMap) {
+                if (filtersOverride) {
                     if (objKey === 'status') {
-                        result.statusId = approveValueStatusMap[objectKey];
+                        result.statusId = status[objectKey];
                     } else if (objKey === 'userType') {
-                        result[objKey] = approveValueUsersMap[objectKey];
+                        result[objKey] = userType[objectKey];
                     } else result[objKey] = objectKey;
                 } else {
                     result[objKey] = objectKey;
@@ -840,8 +841,7 @@ GridToolBox.propTypes = {
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
     showActionButtonsOnSelect: PropTypes.func,
-    approveValueStatusMap: PropTypes.array,
-    approveValueUsersMap: PropTypes.array,
+    filtersOverride: PropTypes.object,
     // Optional
     stylesPopup: PropTypes.object,
     customStyles: PropTypes.object
