@@ -493,14 +493,14 @@ class GridToolBox extends Component {
     }
 
     applyFilters() {
-        const {userGridFilter, approveValueStatusMap, approveValueUsersMap} = this.props;
+        const {approveValueStatusMap, approveValueUsersMap} = this.props;
         const result = {};
         Object.keys(this.state.filters).forEach((objKey) => {
             const objectKey = this.state.filters[objKey];
             if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
                 result[objKey] = '';
             } else {
-                if (userGridFilter) {
+                if (approveValueStatusMap && approveValueUsersMap) {
                     if (objKey === 'status') {
                         result.statusId = approveValueStatusMap[objectKey];
                     } else if (objKey === 'userType') {
@@ -840,7 +840,6 @@ GridToolBox.propTypes = {
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
     showActionButtonsOnSelect: PropTypes.func,
-    userGridFilter: PropTypes.bool,
     approveValueStatusMap: PropTypes.array,
     approveValueUsersMap: PropTypes.array,
     // Optional
