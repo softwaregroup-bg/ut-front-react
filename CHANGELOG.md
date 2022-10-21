@@ -1,3 +1,12 @@
+# [13.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.9...v13.3.0) (2022-10-21)
+
+
+### Features
+
+* filtersOverride ([b259a0e](https://github.com/softwaregroup-bg/ut-front-react/commit/b259a0eb8aa85026768f59d17912c4657632bf73))
+
+
+
 ## [13.2.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.8...v13.2.9) (2022-10-06)
 
 
