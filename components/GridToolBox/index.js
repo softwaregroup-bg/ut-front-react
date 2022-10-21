@@ -407,7 +407,7 @@ class GridToolBox extends Component {
             closePopup={this.toggleAdvancedSearch}
             header={{text: 'Advanced Search'}}
             isOpen={this.state.showFiltersPopup}
-            footer={{actionButtons: actionButtons}}
+            footer={{actionButtons}}
         >
             {this.props.filterElements.map((el, i) => {
                 const filter = this.renderFilter(el, true);
@@ -493,13 +493,23 @@ class GridToolBox extends Component {
     }
 
     applyFilters() {
+        const {filtersOverride} = this.props;
         const result = {};
-        Object.keys(this.state.filters).forEach((objKey) => {
-            const objectKey = this.state.filters[objKey];
-            if (objectKey === dropDrownAllOptionKey || objectKey === dropDrownPlaceholderOptionKey) {
-                result[objKey] = '';
+        Object.entries(this.state.filters).forEach(([key, value]) => {
+            if (value === dropDrownAllOptionKey || value === dropDrownPlaceholderOptionKey) {
+                result[key] = '';
             } else {
-                result[objKey] = objectKey;
+                const override = filtersOverride?.[key]?.[value];
+                switch (typeof override) {
+                    case 'undefined':
+                        result[key] = value;
+                        break;
+                    case 'object':
+                        result[override.key || key] = (override.value !== null && override.value !== undefined) ? override.value : override;
+                        break;
+                    default:
+                        result[key] = override;
+                }
             }
         });
 
@@ -831,6 +841,7 @@ GridToolBox.propTypes = {
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
     showActionButtonsOnSelect: PropTypes.func,
+    filtersOverride: PropTypes.object,
     // Optional
     stylesPopup: PropTypes.object,
     customStyles: PropTypes.object
