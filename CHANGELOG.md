@@ -1,3 +1,12 @@
+## [13.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.0...v13.3.1) (2022-11-01)
+
+
+### Bug Fixes
+
+* add errors to ByCustomSearch BPS-221 ([#662](https://github.com/softwaregroup-bg/ut-front-react/issues/662)) ([3c18a8c](https://github.com/softwaregroup-bg/ut-front-react/commit/3c18a8c06398f8bf0b8d994c47cb187f7bd5f205))
+
+
+
 # [13.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.9...v13.3.0) (2022-10-21)
 
 
