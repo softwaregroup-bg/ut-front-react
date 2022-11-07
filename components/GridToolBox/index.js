@@ -136,8 +136,17 @@ class GridToolBox extends Component {
             onChange(filterElement.name, obj.value);
         }
 
+        function onSelectCustomSearch(value) {
+            filterElement.field = value;
+            onChange('isExternalUser', value === 'userName' ? 0 : 1);
+        }
+
         function onChangeHandler(e) {
             onChange(filterElement.name, e.target.value);
+        }
+
+        function onChangeCustomSearchHandler(value) {
+            onChange(filterElement.defaultField, value);
         }
 
         function onChangeBetween(obj) {
@@ -237,11 +246,12 @@ class GridToolBox extends Component {
                     <ByCustomSearch
                         fields={filterElement.fields}
                         defaultField={filterElement.defaultField}
-                        setField={filterElement.setField}
-                        setValue={filterElement.setValue}
+                        setField={renderInDialog ? onSelectCustomSearch : filterElement.setField}
+                        setValue={renderInDialog ? onChangeCustomSearchHandler : filterElement.setValue}
                         field={filterElement.field}
                         value={filterElement.value}
                         placeholder={filterElement.placeholder}
+                        allowInstantSearch={!renderInDialog}
                     />
                 </div>);
             default:
