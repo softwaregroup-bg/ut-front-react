@@ -136,17 +136,12 @@ class GridToolBox extends Component {
             onChange(filterElement.name, obj.value);
         }
 
-        function onSelectCustomSearch(value) {
-            filterElement.field = value;
-            onChange('isExternalUser', value === 'userName' ? 0 : 1);
-        }
-
         function onChangeHandler(e) {
             onChange(filterElement.name, e.target.value);
         }
 
-        function onChangeCustomSearchHandler(value) {
-            onChange(filterElement.defaultField, value);
+        function onChangeCustomSearch(value) {
+            onChange(filterElement.type, {field: filterElement.field, value});
         }
 
         function onChangeBetween(obj) {
@@ -246,12 +241,12 @@ class GridToolBox extends Component {
                     <ByCustomSearch
                         fields={filterElement.fields}
                         defaultField={filterElement.defaultField}
-                        setField={renderInDialog ? onSelectCustomSearch : filterElement.setField}
-                        setValue={renderInDialog ? onChangeCustomSearchHandler : filterElement.setValue}
+                        setField={filterElement.setField}
+                        setValue={renderInDialog ? onChangeCustomSearch : filterElement.setValue}
                         field={filterElement.field}
                         value={filterElement.value}
                         placeholder={filterElement.placeholder}
-                        allowInstantSearch={!renderInDialog}
+                        forbidInstantSearch={renderInDialog}
                     />
                 </div>);
             default:
@@ -503,7 +498,10 @@ class GridToolBox extends Component {
     }
 
     applyFilters() {
-        const {filtersOverride} = this.props;
+        let filtersOverride;
+        if (this.props.filtersOverride) {
+            filtersOverride = this.props.filtersOverride(this.state.filters);
+        }
         const result = {};
         Object.entries(this.state.filters).forEach(([key, value]) => {
             if (value === dropDrownAllOptionKey || value === dropDrownPlaceholderOptionKey) {
@@ -512,7 +510,13 @@ class GridToolBox extends Component {
                 const override = filtersOverride?.[key]?.[value];
                 switch (typeof override) {
                     case 'undefined':
-                        result[key] = value;
+                        if (typeof value === 'object' && filtersOverride && filtersOverride[key]) {
+                            filtersOverride[key].forEach(el => {
+                                result[el.key] = el.value;
+                            });
+                        } else {
+                            result[key] = value;
+                        }
                         break;
                     case 'object':
                         result[override.key || key] = (override.value !== null && override.value !== undefined) ? override.value : override;
@@ -851,7 +855,7 @@ GridToolBox.propTypes = {
     checked: PropTypes.object.isRequired, // immutable list
     batchChange: PropTypes.func,
     showActionButtonsOnSelect: PropTypes.func,
-    filtersOverride: PropTypes.object,
+    filtersOverride: PropTypes.func,
     // Optional
     stylesPopup: PropTypes.object,
     customStyles: PropTypes.object
