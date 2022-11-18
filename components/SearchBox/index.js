@@ -15,7 +15,7 @@ class SearchBox extends Component {
     }
 
     componentWillReceiveProps({defaultValue}) {
-        if (defaultValue !== this.state.value && !this.props.forbidInstantSearch) {
+        if (defaultValue !== this.state.value && !this.props.hideSearchButton) {
             this.setState({value: defaultValue || ''});
         }
     }
@@ -36,7 +36,7 @@ class SearchBox extends Component {
 
     handleChange(e) {
         this.setState({value: e.target.value});
-        this.props.forbidInstantSearch ? this.props.onSearch(e.target.value) : this.props.onChange({value: e.target.value});
+        this.props.hideSearchButton ? this.props.onSearch(e.target.value) : this.props.onChange({value: e.target.value});
     }
 
     getStyle(name) {
@@ -48,7 +48,7 @@ class SearchBox extends Component {
 
     render() {
         const boxStyles = [this.getStyle('searchBox'), 'boxSizing'];
-        const forbidInstantSearch = this.props.forbidInstantSearch;
+        const hideSearchButton = this.props.hideSearchButton;
 
         if (!this.props.label) {
             boxStyles.push(this.getStyle('searchBoxNoLabel'));
@@ -61,10 +61,10 @@ class SearchBox extends Component {
             <div className={this.getStyle('searchBoxWrap')}>
                 {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</span>) : ''}
                 <div className={classnames.apply(undefined, boxStyles)}>
-                    <input value={this.state.value} onKeyUp={!forbidInstantSearch && this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} disabled={this.props.disabled
+                    <input value={this.state.value} onKeyUp={!hideSearchButton && this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} disabled={this.props.disabled
                     }
                     />
-                    {forbidInstantSearch ? '' : <button onClick={this.handleSearch} />}
+                    {hideSearchButton ? '' : <button onClick={this.handleSearch} />}
                 </div>
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
             </div>
@@ -85,7 +85,7 @@ SearchBox.propTypes = {
     clearOnSearch: PropTypes.bool,
     useDefaultStyles: PropTypes.bool,
     onChange: PropTypes.func,
-    forbidInstantSearch: PropTypes.bool
+    hideSearchButton: PropTypes.bool
 };
 
 SearchBox.defaultProps = {

@@ -246,7 +246,7 @@ class GridToolBox extends Component {
                         field={filterElement.field}
                         value={filterElement.value}
                         placeholder={filterElement.placeholder}
-                        forbidInstantSearch={renderInDialog}
+                        hideSearchButton={renderInDialog}
                     />
                 </div>);
             default:
