@@ -1,3 +1,12 @@
+## [13.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.1...v13.3.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* **MSA-3046:** User Management -> Advanced Search ([#664](https://github.com/softwaregroup-bg/ut-front-react/issues/664)) ([5009aa3](https://github.com/softwaregroup-bg/ut-front-react/commit/5009aa322f16ee25d0e9bd8147c393b78dc64f23))
+
+
+
 ## [13.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.0...v13.3.1) (2022-11-01)
 
 
