@@ -68,6 +68,7 @@ export class ByCustomSearch extends Component {
                         placeholder={this.props.placeholder || ''}
                         isValid={this.props.isValidSearchBox}
                         errorMessage={this.props.errorMessageSearchBox}
+                        hideSearchButton={this.props.hideSearchButton}
                     />
                 </div>
             </div>
@@ -87,6 +88,7 @@ ByCustomSearch.propTypes = {
     placeholder: PropTypes.string,
     isValidSearchBox: PropTypes.bool,
     errorMessageSearchBox: PropTypes.string,
+    hideSearchButton: PropTypes.bool,
 
     fields: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
