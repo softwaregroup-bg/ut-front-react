@@ -57,7 +57,6 @@ export default (utMethod, history) => {
                 });
                 params.formData = formData;
             }
-
             return utMethod(action.method, importMethodParams)(params)
                 .then(result => {
                     action.result = result;
