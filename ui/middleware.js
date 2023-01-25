@@ -48,8 +48,17 @@ export default (utMethod, history) => {
             if (corsCookie) {
                 methodParams = methodParams.mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}}));
             }
+            
+            const params = methodParams.toJS();
+            if (Object.keys(params.formData || {}).length && !(params.formData instanceof window.FormData)) {
+                const formData = new window.FormData();
+                Object.keys(params.formData).forEach(key => {
+                    formData.append(key, params.formData[key]);
+                });
+                params.formData = formData;
+            }
 
-            return utMethod(action.method, importMethodParams)(methodParams.toJS())
+            return utMethod(action.method, importMethodParams)(params)
                 .then(result => {
                     action.result = result;
                     return result;
