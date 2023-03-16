@@ -483,7 +483,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     cursor: pointer;
 }*/
 
-@media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
+@media only screen and (min-device-width: 280px) and (max-device-width:  1023px) {
     .tableWrap table, thead,  th, td, tr {
         display: block;
     }
