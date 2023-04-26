@@ -28,8 +28,7 @@ App.propTypes = {
     masterRoutes: PropTypes.node,
     routes: PropTypes.node,
     extLayout: PropTypes.node,
-    extMaster: PropTypes.node,
-    images: PropTypes.object
+    extMaster: PropTypes.node
 };
 
 export default App;
