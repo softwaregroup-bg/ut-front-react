@@ -40,8 +40,7 @@
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "tap": "^12.7.0",
-    "@kadira/storybook": "^2.35.1",
-    "ut-tools": "^6.30.5"
+    "@kadira/storybook": "^2.35.1"
   },
   "peerDependencies": {
     "bignumber.js": "^6.0.0",
