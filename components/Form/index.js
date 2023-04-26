@@ -3,17 +3,15 @@ import Title from '../Title';
 import FormInput from '../FormInput';
 import Button from '../StandardButton';
 import FormErrorMessage from './FormErrorMessage';
+import FormSuccessMessage from './FormSuccessMessage';
 import styles from './styles.css';
 import { getClass } from '../../utils/helpers';
 
 export default class Form extends Component {
     constructor(props) {
         super(props);
-
         this.renderInputs = this.renderInputs.bind(this);
-
         this.renderButtons = this.renderButtons.bind(this);
-
         this.focusNextInput = this.focusNextInput.bind(this);
     }
 
@@ -22,39 +20,40 @@ export default class Form extends Component {
     }
 
     renderInputs() {
-        let { inputs, onChange } = this.props;
-        let inputNodes = [];
-
-        inputs.toSeq().forEach((input, index) => {
+        const { inputs, onChange } = this.props;
+        const inputNodes = [];
+        const inputsObject = inputs.toJS();
+        Object.keys(inputsObject).forEach((key, index) => {
             inputNodes.push(<FormInput key={index}
-                ref={input.get('name')}
+                ref={inputsObject[key].name}
                 className='loginInput'
-                hidden={input.get('hidden')}
-                disabled={input.get('disabled')}
-                type={input.get('type')}
-                value={input.get('value')}
-                label={input.get('label')}
-                tabIndex={input.get('tabIndex')}
-                name={input.get('name')}
-                placeholder={input.get('placeholder')}
+                hidden={inputsObject[key].hidden}
+                disabled={inputsObject[key].disabled}
+                type={inputsObject[key].type}
+                value={inputsObject[key].value}
+                label={inputsObject[key].label}
+                tabIndex={inputsObject[key].tabIndex}
+                name={inputsObject[key].name}
+                placeholder={inputsObject[key].placeholder}
                 onChange={onChange}
-                error={input.get('error')} />);
+                error={inputsObject[key].error}
+            />);
         });
 
         return inputNodes;
     }
 
     renderButtons() {
-        let { buttons } = this.props;
+        const { buttons } = this.props;
 
         return buttons.map((button, index) => <Button key={index} {...button} />);
     }
 
     focusNextInput() {
-        let { inputs } = this.props;
+        const { inputs } = this.props;
 
         // find the first input which doesn't have value
-        let nextInput = inputs.find(input => {
+        const nextInput = inputs.find(input => {
             return !input.get('value') && !input.get('hidden');
         });
 
@@ -73,12 +72,12 @@ export default class Form extends Component {
     }
 
     render() {
-        let { className, title, error, onSubmit } = this.props;
+        const { className, title, error, onSubmit } = this.props;
 
         return (
             <div className={getClass(styles, className)}>
                 { title ? <Title className={title.className} text={title.text} /> : false }
-                { error ? <FormErrorMessage useNew message={error} /> : false }
+                { error ? (error.includes('Email sent') ? <FormSuccessMessage useNew message={error} /> : <FormErrorMessage useNew message={error} />) : false }
                 <form className={styles.formContainer} onSubmit={onSubmit} autoComplete='off'>
                     <div className={styles.formBody}>
                         { this.renderInputs() }

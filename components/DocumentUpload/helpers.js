@@ -6,7 +6,7 @@ export function getFileExtension(filename) {
 };
 
 export function shrinkFilename(filename, maxChars = 15) {
-    let ext = getFileExtension(filename);
+    const ext = getFileExtension(filename);
     if (filename.length - (ext.length + 1) > maxChars) {
         return filename.substring(0, 15) + '....' + ext;
     } else {

@@ -42,7 +42,7 @@ const validators = {
         return value.length === length;
     },
     regex: (value, regex) => {
-        var regexPattern = new RegExp(regex);
+        const regexPattern = new RegExp(regex);
         return regexPattern.test(value);
     },
     numbersOnly: (value, shouldBeValidated) => {
@@ -55,7 +55,7 @@ const validators = {
 
 const defaultErrorMessagingMapping = {
     isRequired: ({ input }) => {
-        return `Field required`;
+        return 'Field required';
     },
     minLength: ({ input, minLength }) => {
         return `Field must be at least ${minLength} characters`;
@@ -64,16 +64,16 @@ const defaultErrorMessagingMapping = {
         return `Field must be at most ${maxLength} characters`;
     },
     shouldMatchField: ({ input, shouldMatchField }) => {
-        return `Passwords do not match`;
+        return 'Passwords do not match';
     },
     length: ({ input, length }) => {
         return `OTP code must be exactly ${length} characters long`;
     },
     numbersOnly: ({ input }) => {
-        return `Please enter only numeric characters.`;
+        return 'Please enter only numeric characters.';
     },
     regex: ({ input }) => {
-        return `Invalid field.`;
+        return 'Invalid field.';
     }
 };
 
@@ -121,10 +121,10 @@ export class Validator {
         // if input values ARE NOT objects with key value
         // inputs - immutable Map with 'data' and 'edited' key filled flat with the data
         let errors = [];
-        let computedData = inputs.get('data').merge(inputs.get('edited'));
-        let keys = computedData.keySeq().toArray();
+        const computedData = inputs.get('data').merge(inputs.get('edited'));
+        const keys = computedData.keySeq().toArray();
         keys.forEach((key) => {
-            let validationResult = this.validateInput(key, computedData.get(key), computedData);
+            const validationResult = this.validateInput(key, computedData.get(key), computedData);
             if (!validationResult.isValid) {
                 errors.push({
                     field: key,
@@ -133,14 +133,14 @@ export class Validator {
             }
         });
         // If input has orConditions array of keys -> ['someKey'] this means that is even one of these keys has a set value this error should be ignored
-        let errorsToRemove = [];
+        const errorsToRemove = [];
         errors.forEach((error) => {
             // Get OR conditions for input
-            let orConditions = this.config[error.field].orConditions || [];
+            const orConditions = this.config[error.field].orConditions || [];
             orConditions.forEach((condition) => {
                 // condition is string with input's key
                 // Check if there is an isRequired error for this key
-                let hasErrorForCondition = errors.find((err) => err.field === condition && err.error === 'Field required');
+                const hasErrorForCondition = errors.find((err) => err.field === condition && err.error === 'Field required');
                 if (!hasErrorForCondition) {
                     // If there is not isRequired error for this key this means that it has value and OR condition is fulfilled and this error should be removed
                     errorsToRemove.push(error.field);
@@ -158,7 +158,7 @@ export class Validator {
         let validationError = '';
         let invalidField = '';
 
-        let isValid = inputs.every((input, key) => {
+        const isValid = inputs.every((input, key) => {
             const value = input.get('value');
             const validationResult = this.validateInput(key, value, inputs);
             validationError = validationResult.error;
@@ -194,7 +194,7 @@ export class Validator {
  * as a result is an object containing boolean property 'isValid' and an array with error messages
  */
 export const validateAll = (sourceMap, validations) => {
-    let result = { isValid: true, errors: [] };
+    const result = { isValid: true, errors: [] };
     if (validations) {
         validations.forEach((validation) => {
             let currentValue;

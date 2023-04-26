@@ -11,17 +11,20 @@ export class Header extends Component {
         super(props);
         this.handleOrder = this.handleOrder.bind(this);
     }
+
     componentWillMount() {
         this.setState({orderDirections: {}});
     }
+
     getStyle(name) {
         return this.props.externalStyle[name] || this.context.implementationStyle[name] || style[name];
     }
+
     handleOrder(fieldName) {
         // fat and easy to read, order change
         if (~this.props.orderBy.indexOf(fieldName)) {
             let orderDirection = (this.props.orderDirections && this.props.orderDirections[fieldName]) || this.state.orderDirections[fieldName] || '';
-            let orderDirectionOld = orderDirection;
+            const orderDirectionOld = orderDirection;
 
             if (orderDirection === '') {
                 orderDirection = 'ASC';
@@ -31,14 +34,16 @@ export class Header extends Component {
                 orderDirection = '';
             }
             if (this.props.multiOrder) {
-                this.state.orderDirections[fieldName] = orderDirection;
+                const key = this.state.orderDirections[fieldName];
+                this.setState({[key]: orderDirection});
             } else {
-                this.state.orderDirections = {[fieldName]: orderDirection};
+                this.setState({orderDirections: {[fieldName]: orderDirection}});
             }
             this.props.handleOrder({field: fieldName, new: orderDirection, old: orderDirectionOld, all: this.state.orderDirections});
             this.setState(this.state);
         }
     }
+
     getFields() {
         let fields = fromJS(this.props.fields);
         if (this.props.multiSelect) {
@@ -57,9 +62,10 @@ export class Header extends Component {
         }
         return fields;
     }
+
     getSpanFields(fields) {
         // filter child fields that not shown
-        let spanFields = fromJS(this.props.spanFields).map((spanField) => {
+        const spanFields = fromJS(this.props.spanFields).map((spanField) => {
             return spanField.update('children', (child) => {
                 return child.filter((c) => {
                     return fields.find((f) => {
@@ -71,24 +77,24 @@ export class Header extends Component {
         if (!spanFields.size) {
             return null;
         }
-        let spanDrawn = {};
+        const spanDrawn = {};
 
         return (<tr className={this.getStyle('gridHeaderTr')}>
             {fields.filter((field) => { // cleanup fields that are not visible
                 return field.get('visible', true);
             })
                 .map((field, idx, array) => {
-                    var fieldsInSpanList = spanFields.filter((spanField) => {
+                    const fieldsInSpanList = spanFields.filter((spanField) => {
                         return spanField.get('children').filter((child) => {
                             return child === field.get('name');
                         }).size > 0;
                     });
                     if (fieldsInSpanList.size > 0) {
-                        let identifier = fieldsInSpanList.getIn([0, 'children']).join();
-                        let classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'shortName']).toLowerCase());
+                        const identifier = fieldsInSpanList.getIn([0, 'children']).join();
+                        const classSpanName = this.getStyle(fieldsInSpanList.getIn([0, 'shortName']).toLowerCase());
                         if (!spanDrawn[identifier]) {
                             spanDrawn[identifier] = 1;
-                            let childNum = fieldsInSpanList.getIn([0, 'children']).size;
+                            const childNum = fieldsInSpanList.getIn([0, 'children']).size;
                             let title = fieldsInSpanList.getIn([0, 'title']);
                             if (title instanceof Map) {
                                 title = title.toJS();
@@ -102,8 +108,9 @@ export class Header extends Component {
                 })}
         </tr>);
     }
+
     render() {
-        let fields = this.getFields(); // returns immutable
+        const fields = this.getFields(); // returns immutable
 
         return (
             <thead>
@@ -119,13 +126,15 @@ export class Header extends Component {
                                 orderDirection={
                                     (this.props.orderDirections && this.props.orderDirections[field.get('name')]) ||
                                   this.state.orderDirections[field.get('name')]
-                                } />;
+                                }
+                            />;
                         } else if (field.get('internal') === 'multiSelect') {
                             return <MultiSelectField
                                 field={field.toJS()}
                                 key={idx}
                                 handleCheckboxSelect={this.props.handleHeaderCheckboxSelect}
-                                isChecked={this.props.isChecked} />;
+                                isChecked={this.props.isChecked}
+                            />;
                         } else if (field.get('internal') === 'globalMenu') {
                             return <GlobalMenu
                                 externalStyle={this.props.externalStyle}
@@ -133,7 +142,8 @@ export class Header extends Component {
                                 key={idx}
                                 fields={this.props.fields}
                                 transformCellValue={this.props.transformCellValue}
-                                toggleColumnVisibility={this.props.toggleColumnVisibility} />;
+                                toggleColumnVisibility={this.props.toggleColumnVisibility}
+                            />;
                         } else if (field.get('internal') === 'verticalSpanField') {
                             return <Field
                                 field={{name: 'verticalSpanField'}}

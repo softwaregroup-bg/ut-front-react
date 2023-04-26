@@ -1,16 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
+import Text from '../Text';
 import style from './style.css';
 
 class TitledContentBox extends Component {
     render() {
-        let {externalContentClasses, externalHeaderClasses} = this.props;
+        const {externalContentClasses, externalHeaderClasses} = this.props;
         return (
             <div className={style.titledContentWrap}>
 
                 <div className={classnames(style.headerWrap, externalHeaderClasses)}>
                     <div className={this.props.centered ? style.titleCentered : style.title}>
-                        {this.props.title}
+                        <Text>{this.props.title}</Text>
                     </div>
                     <div className={style.rightWrap}>
                         {this.props.headRightWrap}

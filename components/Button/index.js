@@ -35,7 +35,7 @@ const Button = React.createClass({
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];
     },
     render() {
-        let {children, button, sizeType, fullWidth = false, ...props} = this.props;
+        const {children, button, sizeType, fullWidth = false, ...props} = this.props;
         let sizeTypeClass;
 
         switch (sizeType) {
@@ -45,7 +45,7 @@ const Button = React.createClass({
             default:
                 sizeTypeClass = this.getStyle('btnNormal');
         }
-        let fullWidthClass = fullWidth ? this.getStyle('btnFullWidth') : null;
+        const fullWidthClass = fullWidth ? this.getStyle('btnFullWidth') : null;
         let typeClass;
         switch (button) {
             case 'add':

@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import KeyValueRow from './KeyValueRow';
+import Text from '../Text';
 
 // DataList component may recieve data property which is array of objects that looks like this:
 // [
@@ -11,14 +12,15 @@ import KeyValueRow from './KeyValueRow';
 // ]
 
 const DataList = ({data}) => {
-    let rows = data.map((row, index) => (
+    const rows = data.map((row, index) => (
         <KeyValueRow
             wrapperClass={row.get('wrapperClass')}
             keyClass={row.get('keyClass')}
             valueClass={row.get('valueClass')}
             key={index}
-            keyNode={row.get('key')}>
-            {row.get('value')}
+            keyNode={row.get('key')}
+        >
+            {row.get('value') && (row.get('value') === 'Not set' || ['Block', 'Blocked', 'Lock', 'Locked', 'Unblock', 'Unblocked', 'Unlock', 'Unlocked'].includes(row.get('value'))) ? <Text>{row.get('value')}</Text> : row.get('value')}
         </KeyValueRow>));
     return (
         <div>

@@ -25,7 +25,7 @@ class FileView extends Component {
                 content = <img width={imageDimensions.width} height={imageDimensions.height} src={file.content} />;
                 break;
             default:
-                let extension = mapContentTypeToExtension(file.details.type);
+                const extension = mapContentTypeToExtension(file.details.type);
                 if (extension !== 'unknown') {
                     content = <div className={styles.noPictureDocument}>{mapContentTypeToExtension(file.details.type)}</div>;
                 } else {
@@ -33,8 +33,8 @@ class FileView extends Component {
                 }
         }
 
-        let clickOriginalButtonHandler = () => {
-            let tempLink = document.createElement('a');
+        const clickOriginalButtonHandler = () => {
+            const tempLink = document.createElement('a');
             tempLink.href = `${file.content}`;
             tempLink.setAttribute('target', '_blank');
             tempLink.click();

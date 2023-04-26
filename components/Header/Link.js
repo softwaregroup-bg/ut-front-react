@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default class TabLink extends React.Component {
     render() {
-        let {wideMatch, children, ...propsLeft} = this.props;
+        const {wideMatch, children, ...propsLeft} = this.props;
 
         return (
             <NavLink {...propsLeft} exact={!wideMatch}>

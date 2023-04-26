@@ -1,0 +1,107 @@
+@import './default-config.css';
+@import 'config.css';
+
+.captchaWrapper {
+    margin-bottom: 15px;
+}
+
+.captchaLoading {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.captchaBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.captchaBtns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.loadingLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingLabel span {
+    padding-top: 12px;
+}
+
+.reloadBtn {
+    background-image: url("./images/refresh.png");
+    background-repeat: no-repeat;
+    background-position: 12px 66%;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+    /* background-color: #cbc8ce; */
+}
+
+.reloadBtnSuccess {
+    background-image: url("./images/accessConfimed.png");
+    background-repeat: no-repeat;
+    background-position: 7px 70%;
+    width: 50px;
+    height: 50px;
+    background-size: 34px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.captchaInput {
+    position: relative;
+    margin-top: 6px;
+    margin-bottom: 15px;
+}
+
+.captchaInput input {
+    padding: 14px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--ut-front-react-loginInputBorderColor);
+    outline: none;
+    cursor: default;
+}
+
+.captchaInput.hasValue input {
+  border: 1px solid var(--ut-front-react-loginInputBorderColor);
+}
+
+.captchaInput input:focus {
+    border: 1px solid var(--ut-front-react-loginInputFocusedBorderColor);
+}
+
+.captchaInput.hasValue label,
+.captchaInput input:focus~label,
+.captchaInput.hasError label {
+    top: 0;
+    left: 10px;
+    padding: 0 5px;
+    opacity: 1;
+    background: var(--ut-front-react-loginInputLabelBackgroundColor);
+}
+
+.captchaInput.disabled input {
+    color: var(--ut-front-react-loginInputBorderColor);
+    background-color: var(--ut-front-react-loginInputLabelBackgroundColor);
+}
+
+.captchaInput.disabled .label {
+    color: var(--ut-front-react-loginInputBorderColor);
+}
+
+.captchaInput.hasError {
+    margin-bottom: 0;
+}
+
+.captchaInput.hasError input {
+    border: 1px solid #E84949;
+}

@@ -5,7 +5,7 @@ import style from './style.css';
 
 class ActionBar extends Component {
     renderButton(button, index) {
-        let handleClick = () => {
+        const handleClick = () => {
             this.props.handleActionButtonClick(index);
         };
 
@@ -20,9 +20,9 @@ class ActionBar extends Component {
     }
 
     render() {
-        let { disablePrevBtn, onPrev, disableNextBtn, onNext } = this.props;
-        let prevButtonStyles = disablePrevBtn ? '' : style.prevButtonWrapDisabled;
-        let nextButtonStyles = disableNextBtn ? '' : style.nextButtonWrapDisabled;
+        const { disablePrevBtn, onPrev, disableNextBtn, onNext } = this.props;
+        const prevButtonStyles = disablePrevBtn ? '' : style.prevButtonWrapDisabled;
+        const nextButtonStyles = disableNextBtn ? '' : style.nextButtonWrapDisabled;
 
         return (
             <div className={style.innerActionBarWrap}>

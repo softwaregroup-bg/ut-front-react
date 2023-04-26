@@ -1,13 +1,14 @@
 import * as actionTypes from './actionTypes';
 
-export function addTab(pathname, title, isMain, pagename, shouldUpdate = false) {
+export function addTab(pathname, title, isMain, pagename, shouldUpdate = false, notAddTab = false) {
     return {
         type: actionTypes.ADD_TAB,
         pathname: pathname,
         pagename: pagename,
         isMain: isMain,
         title: title,
-        shouldUpdate
+        shouldUpdate,
+        notAddTab
     };
 }
 

@@ -46,7 +46,7 @@ export default class HeaderProfileInfo extends Component {
     }
 
     getMenuItems() {
-        let items = [
+        const items = [
             {text: 'Help', onClick: this.openHelp},
             {text: 'Settings', routeName: 'ut-user:userProfile'},
             {text: 'Log out', onClick: this.onLogOutClick}
@@ -62,7 +62,8 @@ export default class HeaderProfileInfo extends Component {
                     }}
                     className={tabStyles.menuItemTab}
                     disabled={currentItem.disabled}
-                    onClick={currentItem.onClick} />
+                    onClick={currentItem.onClick}
+                />
             );
 
             return items;
@@ -70,12 +71,12 @@ export default class HeaderProfileInfo extends Component {
     }
 
     get initials() {
-        var { firstName, lastName } = this.props.personInfo.person;
+        let { firstName, lastName } = this.props.personInfo.person;
         if (!firstName || !lastName) {
             // Fallback if a user does not have these field filled
             return 'n/a';
         }
-        var regex = /[a-zA-Z]?/;
+        const regex = /[a-zA-Z]?/;
         firstName = firstName.match(regex)[0];
         lastName = lastName.match(regex)[0];
 
@@ -90,17 +91,20 @@ export default class HeaderProfileInfo extends Component {
             <span className={styles.profileInfo}>
                 <span
                     className={className}
-                    ref={(element) => { this.infoArrowNode = element; }} >
+                    ref={(element) => { this.infoArrowNode = element; }}
+                >
                     <div className={styles.profileInfoContainer}>
                         <div
                             className={styles.avatarContainer}
-                            onClick={this.onClick} >
+                            onClick={this.onClick}
+                        >
                             {this.initials}
                         </div>
                         <div
                             className={styles.avatarInfoArrow}
                             onClick={this.onClick}
-                            ref={(element) => { this.anchorEl = element; }} />
+                            ref={(element) => { this.anchorEl = element; }}
+                        />
                     </div>
                     <MenuNew
                         open={menuToggled}
@@ -111,7 +115,8 @@ export default class HeaderProfileInfo extends Component {
                         positioningDirections='right-bottom'
                         className={styles.profileInfoPopoverMenu}
                         separatorsOnIndex={[2]}
-                        closeOnSelect />
+                        closeOnSelect
+                    />
                 </span>
             </span>
         );

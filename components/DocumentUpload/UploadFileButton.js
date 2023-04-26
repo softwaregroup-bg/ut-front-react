@@ -39,6 +39,9 @@ export default class UploadFileButton extends Component {
     }
 
     onClick() {
+        if(this.props.clearBeforeOnClick) {
+            this.refs.fileInput.refs.inputNode.value = null;
+        }
         this.refs.fileInput.refs.inputNode.click();
     }
 
@@ -60,10 +63,12 @@ UploadFileButton.propTypes = {
     icon: PropTypes.string,
     acceptType: PropTypes.string,
     onFileLoaded: PropTypes.func,
-    onFileError: PropTypes.func
+    onFileError: PropTypes.func,
+    clearBeforeOnClick: PropTypes.bool
 };
 
 UploadFileButton.defaultProps = {
     onFileLoaded: () => {},
-    onFileError: () => {}
+    onFileError: () => {},
+    clearBeforeOnClick: false
 };

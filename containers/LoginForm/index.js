@@ -1,13 +1,22 @@
-/** eslint-disable react/no-unused-prop-types */
-
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash.debounce';
-
-import Form from '../../components/Form';
-import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { fromJS } from 'immutable';
+import FormCaptcha from '../../components/FormCaptcha';
+import { cookieCheck,
+    setInputValue,
+    validateForm,
+    identityCheck,
+    bioScan,
+    clearLoginState,
+    getAzureConnDetails,
+    resetPassword,
+    resetLogin,
+    getCaptcha,
+    updateErrorCaptcha
+} from './actions';
 import { closeAllTabs } from '../TabMenu/actions';
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
-
+import style from './style.css';
 class LoginForm extends Component {
     constructor(props) {
         super(props);
@@ -19,8 +28,7 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs } = this.props;
-
+        const { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs } = this.props;
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
             this.context.router.history.push('/');
@@ -37,8 +45,8 @@ class LoginForm extends Component {
         }
     }
 
-    componentWillMount() {
-        const { match, cookieChecked, isLogout, authenticated, cookieCheck } = this.props;
+    componentDidMount() {
+        const { match, cookieChecked, isLogout, authenticated, cookieCheck, azureConnDetails, captchaDetails/* , loginData */ } = this.props;
 
         if (!cookieChecked && !isLogout) {
             let appId;
@@ -51,22 +59,46 @@ class LoginForm extends Component {
             this.context.router.history.push('/');
         }
 
+        if (!azureConnDetails || azureConnDetails.size < 1) {
+            this.props.getAzureConnDetails();
+        }
+
+        if (!captchaDetails || captchaDetails.get('image') === '') {
+            this.props.getCaptcha();
+        }
         // if there is previously stored loginData, reset login state
         // this happens in cases when the user is logged in and navigates to /login again
-        // if (loginData.get('username') || loginData.get('password')) {
+        // if (loginData && loginData.has('username') && (loginData.get('username') || loginData.get('password'))) {
         //     clearLoginState();
         // }
     }
 
+    componentDidUpdate() {
+        const { userType, azureConnDetails } = this.props;
+        // if (!azureConnDetails || azureConnDetails.size < 1) {
+        //     this.props.getAzureConnDetails();
+        // }
+        const connDetails = azureConnDetails && azureConnDetails.toJS && azureConnDetails.toJS();
+
+        if (userType === 'policy.param.internalUserLogin') {
+            const redirectUrl = encodeURIComponent(window.location.origin + '/auth/azureopenid/return');
+            const azureLoginUrl = connDetails.ssoLoginUrl && connDetails.ssoLoginUrl.replace(/#tenantId#/g, connDetails.tenantId)
+                .replace(/#redirectUrl#/g, redirectUrl)
+                .replace(/#clientId#/g, connDetails.clientId)
+                .replace(/#state#/g, connDetails.state)
+                .replace(/#nonce#/g, connDetails.nonce);
+            window.open(azureLoginUrl, '_self');
+        }
+    }
+
     onChange(e) {
-        let { name, value } = e.target;
+        const { name, value } = e.target;
         e.persist();
         this.handleChange({ name, value });
     }
 
     handleChange({ name, value }) {
-        let { setInputValue } = this.props;
-
+        const { setInputValue } = this.props;
         setInputValue({
             input: name,
             value
@@ -78,9 +110,9 @@ class LoginForm extends Component {
         let allInputs = form.querySelectorAll('input');
         allInputs = Array.prototype.slice.call(allInputs); // convert NodeList to Array - required for IE
         allInputs.forEach((input) => {
-            let { name, value } = input;
+            const { name, value } = input;
             // This sync does not apply to hidden fields
-            let isHiddenField = input.getAttribute('data-hidden') === 'true';
+            const isHiddenField = input.getAttribute('data-hidden') === 'true';
 
             if (inputs.get(name) && inputs.get(name).get('value') !== value && !isHiddenField) {
                 // If change and submit events happen in the 100ms debounce range
@@ -91,33 +123,65 @@ class LoginForm extends Component {
     }
 
     validateForm(e) {
-        let { validateForm } = this.props;
-
+        const { validateForm, captchaDetails } = this.props;
         e.preventDefault();
         this.syncInputsValuesWithStore(e.target);
-        validateForm();
+        if (captchaDetails.get('isValid')) {
+            validateForm();
+        }
     }
 
     submit(loginType, loginData) {
-        let { bioScan, identityCheck, routerParams: {appId} } = this.props;
+        const { bioScan, identityCheck, routerParams: {appId}, captchaDetails } = this.props;
         if (appId) {
             loginData = loginData.set('appId', appId);
         }
-        loginType === 'bio' ? bioScan() : identityCheck(loginData);
+        if (['initial', 'password', 'newPassword', 'username'].includes(loginType)) {
+            const tmp = loginData && loginData.toJS();
+            delete tmp.email;
+            delete tmp.confirmEmail;
+            loginData = fromJS(tmp);
+        }
+
+        if (loginData && loginData.has('captcha')) {
+            loginData = loginData.delete('captcha');
+        }
+        const isValid = captchaDetails.get('isValid');
+        isValid && (loginType === 'bio' ? bioScan() : identityCheck(loginData));
     }
 
     render() {
-        let { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
+        const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel, resetPassword,
+            resetLogin, updateErrorCaptcha, captchaDetails } = this.props;
+        const canResetPassword = inputs.hasIn(['username', 'value']) && inputs.has('password');
+        const canLogin = inputs.has('email') && inputs.has('confirmEmail');
+        const disableButton = error && error.includes('Email sent') && inputs.has('email') && inputs.has('confirmEmail');
+        const isValidCaptcha = captchaDetails.get('isValid');
         return (((cookieChecked && !authenticated) || isLogout) &&
-            <Form
-                ref='loginForm'
-                className='loginForm'
-                inputs={inputs}
-                title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
-                buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit'}]}
-                onChange={this.onChange}
-                onSubmit={this.validateForm}
-                error={error} />
+            <div>
+                <FormCaptcha
+                    ref='loginForm'
+                    className='loginForm'
+                    inputs={inputs}
+                    title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
+                    buttons={[{label: buttonLabel, className: 'standardBtn loginBtn', type: 'submit', disabled: (disableButton || !isValidCaptcha)}]}
+                    onChange={this.onChange}
+                    onSubmit={this.validateForm}
+                    error={error}
+                    onCaptchaReload={this.props.getCaptcha}
+                    onCaptchaValidate={(isValid) => updateErrorCaptcha(isValid)}
+                    captchaImage={captchaDetails.get('image', '')}
+                    captchaText={captchaDetails.get('text', '')}
+                    isValidCaptcha={isValidCaptcha}
+                />
+                {(canResetPassword || canLogin) &&
+                    <div className = {style.passReset}>
+                        <a onClick = {canResetPassword ? resetPassword : resetLogin}>
+                            {`${canResetPassword ? 'Forgot Password / Has olvidado tu contraseña' : 'Login / Acceso'}`}
+                        </a>
+                    </div>
+                }
+            </div>
         );
     }
 }
@@ -134,10 +198,25 @@ export default connect(
             buttonLabel: login.getIn(['loginForm', 'buttonLabel']),
             error: login.get('formError'),
             shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
-            loginType: login.get('loginType')
+            loginType: login.get('loginType'),
+            userType: login.get('userType'),
+            azureConnDetails: login.get('azureConnDetails'),
+            captchaDetails: login.get('captchaDetails')
         };
     },
-    { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState, closeAllTabs }
+    { cookieCheck,
+        setInputValue,
+        validateForm,
+        identityCheck,
+        bioScan,
+        clearLoginState,
+        closeAllTabs,
+        getAzureConnDetails,
+        resetPassword,
+        resetLogin,
+        getCaptcha,
+        updateErrorCaptcha
+    }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -152,6 +231,8 @@ LoginForm.propTypes = {
     buttonLabel: PropTypes.string,
     error: PropTypes.string,
     loginType: PropTypes.any,
+    userType: PropTypes.any,
+    azureConnDetails: PropTypes.object,
     shouldSubmit: PropTypes.bool,
     invalidField: PropTypes.string,
     cookieCheck: PropTypes.func.isRequired,
@@ -160,7 +241,13 @@ LoginForm.propTypes = {
     identityCheck: PropTypes.func.isRequired,
     bioScan: PropTypes.func,
     clearLoginState: PropTypes.func,
-    closeAllTabs: PropTypes.func
+    closeAllTabs: PropTypes.func,
+    getAzureConnDetails: PropTypes.func,
+    resetPassword: PropTypes.func,
+    resetLogin: PropTypes.func,
+    getCaptcha: PropTypes.func,
+    updateErrorCaptcha: PropTypes.func,
+    captchaDetails: PropTypes.object
 };
 
 LoginForm.contextTypes = {

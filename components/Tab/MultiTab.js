@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Link from './../Link';
 import Tab from './Tab';
 import Menu from './../MenuNew';
+import Text from '../Text';
 import styles from './styles.css';
 import {closest} from '../../utils/dom';
 import {generateUniqueId} from '../../utils/helpers';
@@ -23,12 +24,15 @@ export default class MultiTab extends Component {
         this.getMenuItems = this.getMenuItems.bind(this);
         this.requestCloseMenu = this.requestCloseMenu.bind(this);
     }
+
     componentWillMount() {
         this.isComponentMounted = true;
     }
+
     componentWillUnmount() {
         this.isComponentMounted = false;
     }
+
     getMenuItems() {
         const { multi } = this.props.tab;
         return multi.reduce((tabs, currentTab) => {
@@ -39,12 +43,14 @@ export default class MultiTab extends Component {
                     key={generateUniqueId()}
                     positioningDirections={'top-right'}
                     rightArrowIcon
-                    className={styles.menuItemTab} />);
+                    className={styles.menuItemTab}
+                />);
             } else {
                 tab = (<Tab
                     key={generateUniqueId()}
                     tab={currentTab}
-                    className={styles.menuItemTab} />);
+                    className={styles.menuItemTab}
+                />);
             }
 
             tabs.push(tab);
@@ -71,7 +77,7 @@ export default class MultiTab extends Component {
 
     render() {
         const { className, tab } = this.props;
-        let menuItems = this.getMenuItems();
+        const menuItems = this.getMenuItems();
         if (!menuItems.length) {
             return null;
         }
@@ -88,8 +94,9 @@ export default class MultiTab extends Component {
                     to={tab.routeName}
                     params={tab.routeParams}
                     className={classNames(className, styles.navigationTab)}
-                    activeClassName={styles.navigationTabActive} >
-                    {tab.title}
+                    activeClassName={styles.navigationTabActive}
+                >
+                    <Text>{tab.title}</Text>
                     {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
                 </Link>
                 <Menu
@@ -99,7 +106,8 @@ export default class MultiTab extends Component {
                     anchorEl={this.rootElement}
                     positioningDirections={this.props.positioningDirections}
                     className={styles.multiTabMenu}
-                    closeOnSelect />
+                    closeOnSelect
+                />
             </div>
         );
     }

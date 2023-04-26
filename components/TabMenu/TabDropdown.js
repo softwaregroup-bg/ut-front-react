@@ -6,6 +6,7 @@ import { matchPath } from 'react-router';
 import enhanceWithClickOutside from 'react-click-outside';
 
 import checkImage from './images/check.png';
+import Text from '../Text';
 
 class TabDropDown extends React.Component {
     constructor(props) {
@@ -29,10 +30,10 @@ class TabDropDown extends React.Component {
     }
 
     render() {
-        let list = this.props.data.map((tab, i) => {
+        const list = this.props.data.map((tab, i) => {
             let activeClassName;
-            let isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
-            let handleClick = () => {
+            const isLinkActive = tab && tab.pathname && matchPath(this.context.router.route.location.pathname, {path: tab.pathname, exact: true});
+            const handleClick = () => {
                 this.setState({
                     open: false
                 });
@@ -51,11 +52,11 @@ class TabDropDown extends React.Component {
                         to={(tab && tab.pathname) ? tab.pathname : '#/'}
                         title={tab.title && tab.title.props && tab.title.props.children}
                         onClick={handleClick}
-                    >{ isLinkActive && <img src={checkImage} className={style.img} />}{tab.title}</NavLink>
+                    >{ isLinkActive && <img src={checkImage} className={style.img} />}{tab.title && <Text>{tab.title}</Text>}</NavLink>
                 </li>
             );
         });
-        let opened = this.state.open ? 'block' : 'none';
+        const opened = this.state.open ? 'block' : 'none';
         return (
             <div style={{height: '100%'}}>
                 <div className={style.tabDdBtn} onClick={this.toggleOpen}>{''}</div>

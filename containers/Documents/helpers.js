@@ -24,10 +24,10 @@ export function createIdentifier(moduleName, sectionName, mode, id) {
  */
 
 export function convertDocumentsForSave(attachmentsList, actorId) {
-    let allAttachments = attachmentsList.toJS();
-    let documents = [];
-    let attachments = [];
-    let actorDocument = [];
+    const allAttachments = attachmentsList.toJS();
+    const documents = [];
+    const attachments = [];
+    const actorDocument = [];
     let generatedDocumentId = -10;
     if (allAttachments.length > 0) {
         allAttachments.forEach((item) => {
@@ -89,7 +89,7 @@ export const parseFetchDocumentsResult = (documents) => {
 export function combineAttachments(state) {
     let remoteAttachments = state.getIn(['remoteDocuments', 'data']) || immutable.List();
     let changedAttachments = state.get('changedDocuments') || immutable.List();
-    let excludeIds = state.get('excludeIdsList').toJS();
+    const excludeIds = state.get('excludeIdsList').toJS();
     let tmpList = immutable.List();
     changedAttachments = changedAttachments.reverse();
     changedAttachments.forEach((item) => {
@@ -109,11 +109,11 @@ export function combineAttachments(state) {
     });
     tmpList = tmpList.concat(remoteAttachments);
     let result = immutable.List();
-    let deletedIds = [];
+    const deletedIds = [];
     tmpList.forEach((item) => {
         if (item.get('statusId') !== 'deleted') {
             if (excludeIds.length > 0) {
-                let isInArray = excludeIds.find((excludeId) => {
+                const isInArray = excludeIds.find((excludeId) => {
                     return excludeId === item.get('attachmentId');
                 });
                 if (!isInArray) {
@@ -136,7 +136,7 @@ function mergeAttachments(mainObj, overridesObj) {
 }
 
 export function mergeDocumentsAndAttachments(documents = [], attachments = [], documentsUnapproved = [], attachmentsUnapproved = []) {
-    let sameMaker = [];
+    const sameMaker = [];
     let viewer = [];
     let unapproved = [];
     let matchType;
@@ -195,9 +195,9 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
         };
     }
 
-    let resultDocuments = [];
-    let resultAttachments = [];
-    let resultActorDocuments = [];
+    const resultDocuments = [];
+    const resultAttachments = [];
+    const resultActorDocuments = [];
     let tmpDocId = -10;
     let tmpAttId = -10;
     let allDocuments = [];
@@ -210,7 +210,7 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
         if (actorId) {
             actorId = parseInt(actorId);
         }
-        let att = doc.attachments ? doc.attachments[0] : {};
+        const att = doc.attachments ? doc.attachments[0] : {};
         switch (doc.statusId) {
             case 'new':
                 tmpDocId--;
@@ -299,10 +299,10 @@ export function formatDocumentAndAttachmentsForSave(documents, actorId, unapprov
 
 // arrange documents, matched should be first and unmatxhed will next to it
 export function arrangeDocuments(currentDocs, newDocs) {
-    var arrangeCurrentDocs = []; var unmatchedCurrentDocs = [];
-    var arrangeNewDocs = []; var unmatchedNewDocs = [];
+    const arrangeCurrentDocs = []; const unmatchedCurrentDocs = [];
+    const arrangeNewDocs = []; const unmatchedNewDocs = [];
     newDocs.map((doc) => {
-        var matchedDoc = currentDocs.find((cDoc) => { return doc.documentId === cDoc.documentId && ['deleted', 'archived'].indexOf(doc.statusId) === -1; });
+        const matchedDoc = currentDocs.find((cDoc) => { return doc.documentId === cDoc.documentId && ['deleted', 'archived'].indexOf(doc.statusId) === -1; });
         if (matchedDoc) {
             arrangeNewDocs.push(doc);
             arrangeCurrentDocs.push(matchedDoc);

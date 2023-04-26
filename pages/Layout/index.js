@@ -13,17 +13,18 @@ class Layout extends Component {
     }
 
     render() {
-        let result = this.props.login.get('result');
-        let header = (
+        const result = this.props.login.get('result');
+        const header = (
             <Header
                 currentLocation={this.props.location.pathname}
                 personInfo={result && result.toJS()}
                 logout={this.props.logout}
                 replaceWithBrakes
                 tabset={this.context.mainTabset}
-                headerText={this.props.headerText} />
+                headerText={this.props.headerText}
+            />
         );
-        let tabMenu = (
+        const tabMenu = (
             <TabMenu defaultLocation={this.context.mainUrl} />
         );
         if (result) {

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import StandardButton from '../../components/StandardButton';
+import Text from '../Text';
 import { Link } from 'react-router-dom';
 
 import style from './style.css';
@@ -29,12 +30,18 @@ const Header = React.createClass({
         checkPermission: PropTypes.func
     },
     render() {
-        let { text, buttons, buttonsRaw } = this.props;
+        const { text, buttons, buttonsRaw } = this.props;
+        const translateableText = text.split(' - ');
 
         return (
             <div className={style.headerWrapper}>
                 <h1 className={style.heading}>
-                    <div className={style.headingTextWrap}>{text}</div>
+                    <div className={style.headingTextWrap}>
+                        {<Text>{translateableText[0]}</Text>}
+                        {translateableText && translateableText[1] &&
+                            <span> - <Text>{translateableText[1]}</Text></span>
+                        }
+                    </div>
                 </h1>
                 <div className={style.buttonsWrap}>
                     <div className={style.buttonsContainer}>
@@ -44,7 +51,7 @@ const Header = React.createClass({
                             );
                         })}
                         {buttons.map((btn, i) => {
-                            let styleType = btn.styleType || 'secondaryDark';
+                            const styleType = btn.styleType || 'secondaryDark';
                             if (btn.permissions && !this.context.checkPermission(btn.permissions)) {
                                 return <div />;
                             }
@@ -57,7 +64,8 @@ const Header = React.createClass({
                                             onClick={btn.onClick}
                                             disabled={btn.disabled === true}
                                             label={btn.text}
-                                            href={btn.href} />
+                                            href={btn.href}
+                                        />
                                     </div>
                                 );
                             } else {
@@ -66,7 +74,8 @@ const Header = React.createClass({
                                         <StandardButton
                                             styleType={styleType}
                                             disabled={btn.disabled === true}
-                                            label={btn.text} />
+                                            label={btn.text}
+                                        />
                                     </Link>
                                 );
                             }

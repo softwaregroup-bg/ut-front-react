@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { matchPath } from 'react-router';
+import Text from '../Text';
 import style from './style.css';
 import classnames from 'classnames';
 
 export default class TabLink extends React.Component {
     renderMainContent() {
-        let {title, canClose, onClose} = this.props;
+        const {title, canClose, onClose} = this.props;
 
         return (
             <div className={this.getStyle('tabMenuItemContent')}>
-                {title}
+                <Text>{title}</Text>
                 {canClose && <div className={this.getStyle('xicon')} onClick={onClose} />}
             </div>
         );
@@ -21,12 +22,12 @@ export default class TabLink extends React.Component {
     }
 
     render() {
-        let {pathname, onClick} = this.props;
+        const {pathname, onClick} = this.props;
         let activeClassName = '';
         if (matchPath(this.context.router.route.location.pathname, {path: pathname, exact: true})) {
             activeClassName = this.getStyle('tabMenuWrapSelected');
         }
-        let onClickHandler = () => {
+        const onClickHandler = () => {
             onClick(this.props);
         };
         return (

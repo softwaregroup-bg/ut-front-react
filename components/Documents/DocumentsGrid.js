@@ -25,7 +25,7 @@ class DocumentsGrid extends Component {
                 break;
             case 'documentDescription':
                 if (obj.description) {
-                    return obj.description;
+                    return <Text>{obj.description}</Text>;
                 } else {
                     return <span className={style.fileDetailsNoText}><Text>(no description)</Text></span>;
                 }
@@ -44,9 +44,9 @@ class DocumentsGrid extends Component {
     }
 
     get content() {
-        let { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
-        let handleSelectItem = (selectedItem) => {
-            let isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
+        const { identifier, documents, onGridSelect, selectedFilter, documentArchived, selected } = this.props;
+        const handleSelectItem = (selectedItem) => {
+            const isSelected = selected ? selected.getIn(['attachments', 0, 'filename']) === selectedItem.attachments[0].filename : false;
             onGridSelect(immutable.fromJS(selectedItem), !isSelected, identifier);
         };
         let gridData = [];
@@ -59,7 +59,7 @@ class DocumentsGrid extends Component {
                 break;
         }
         if (gridData.length > 0) {
-            let selectedItem = selected ? [selected] : [];
+            const selectedItem = selected ? [selected] : [];
             return (
                 <div>
                     <SimpleGrid

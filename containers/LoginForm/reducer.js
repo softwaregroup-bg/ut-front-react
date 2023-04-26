@@ -7,23 +7,28 @@ import {
     COOKIE_CHECK,
     LOGOUT,
     CLEAR_LOGIN_STATE,
-    SET_GATE_LOAD
+    SET_GATE_LOAD,
+    GET_AZURE_CONN_DETAILS,
+    RESET_PASSWORD,
+    RESET_LOGIN_TO_INITIAL,
+    GET_CAPTCHA,
+    UPDATE_ERROR_CAPTCHA
 } from './actionTypes';
-import { inputs as inputsConfig, loginSteps } from './config';
+import { inputs as inputsConfig, loginSteps, ERROR_CAPTCHA } from './config';
 import { Validator } from './../../utils/validator';
 import { loginReducerProxy, prePopulate } from './storeProxy/loginReducerProxy';
 
 const validator = new Validator(inputsConfig);
 
 const updateLoginStep = (state, step) => {
-    let loginStep = loginSteps[step];
-    let currentInputs = state.getIn(['loginForm', 'inputs']);
+    const loginStep = loginSteps[step];
+    const currentInputs = state.getIn(['loginForm', 'inputs']);
     let newInputs = Immutable.Map();
 
     Object.keys(loginStep.inputs).forEach(input => {
-        let inputValue = state.getIn(['loginForm', 'inputs', input, 'value']);
+        const inputValue = state.getIn(['loginForm', 'inputs', input, 'value']);
         // if the form already has this input, perserve its value only and reset its cofig
-        let newInput = currentInputs.has(input) ? Object.assign({}, loginStep.inputs[input], { value: inputValue }) : loginStep.inputs[input];
+        const newInput = currentInputs.has(input) ? Object.assign({}, loginStep.inputs[input], { value: inputValue }) : loginStep.inputs[input];
         newInputs = newInputs.set(input, Immutable.fromJS(newInput));
     });
 
@@ -43,28 +48,54 @@ const defaultLoginState = Immutable.fromJS({
     authenticated: false,
     cookieChecked: false,
     isLogout: false,
-    loginForm: loginSteps['initial'],
+    loginForm: loginSteps.initial,
     loginType: '',
+    userType: '',
     formError: '',
     shouldSubmit: false,
-    loginData: {}
+    loginData: {},
+    azureConnDetails: {},
+    captchaDetails: {
+        image: '',
+        text: '',
+        isValid: false
+    }
 });
 
 const loginReducer = (state = defaultLoginState, action) => {
     let validationResult;
 
     switch (action.type) {
+        case GET_AZURE_CONN_DETAILS:
+            if (action.methodRequestState === 'finished') {
+                if (action.error) {
+                    return state.set('azureConnDetails', Immutable.fromJS({}));
+                } else if (action.result) {
+                    return state.set('azureConnDetails', Immutable.fromJS(action.result));
+                }
+            }
+            return state.set('azureConnDetails', Immutable.fromJS({}));
         case LOGOUT:
-            return defaultLoginState
-                .set('isLogout', true);
+            if (action.methodRequestState === 'finished') {
+                if (action.error) {
+                    return defaultLoginState.set('isLogout', true);
+                } else if (action.result && action.result.isInternalUser) {
+                    window.open(action.result.url, '_self');
+                    return defaultLoginState.set('isLogout', true);
+                }
+                return defaultLoginState.set('isLogout', true);
+            }
+            return defaultLoginState.set('isLogout', true);
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
-
                 if (action.error) {
-                    let err = action.error.type.split('.');
-                    let type = err[err.length - 1];
-
+                    const err = action.error.type.split('.');
+                    const type = err[err.length - 1];
+                    if (action.error.type === 'policy.param.internalUserLogin') {
+                        return state.set('userType', action.error.type)
+                            .set('authenticated', false);
+                    }
                     return loginSteps[type] ? updateLoginStep(state, type) : state.set('formError', action.error.message);
                 } else if (action.result) {
                     return state.set('result', Immutable.fromJS(action.result))
@@ -82,7 +113,7 @@ const loginReducer = (state = defaultLoginState, action) => {
             validationResult = validator.validateAll(state.getIn(['loginForm', 'inputs']));
 
             const getLoginData = () => {
-                let inputs = state.getIn(['loginForm', 'inputs']);
+                const inputs = state.getIn(['loginForm', 'inputs']);
                 let currentLoginData = state.get('loginData');
                 inputs.toSeq().forEach(input => {
                     if (!input.get('skipSubmit')) {
@@ -93,7 +124,7 @@ const loginReducer = (state = defaultLoginState, action) => {
             };
 
             if (validationResult.isValid) {
-                let prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
+                const prevInvalidField = state.getIn(['loginForm', 'inputs']).find(input => input.get('error'));
 
                 if (prevInvalidField) {
                     state = state.setIn(['loginForm', 'inputs', prevInvalidField.get('name'), 'error'], '');
@@ -125,6 +156,40 @@ const loginReducer = (state = defaultLoginState, action) => {
             return defaultLoginState;
         case SET_GATE_LOAD:
             return state.set('gateLoaded', action.params.value);
+        case RESET_PASSWORD:
+            return updateLoginStep(state, 'resetPassword');
+        case RESET_LOGIN_TO_INITIAL:
+            return updateLoginStep(state, 'initial')
+                .set('loginData', Immutable.fromJS({}))
+                .delete('result')
+                .set('cookieChecked', true)
+                .set('authenticated', false)
+                .set('loginForm', Immutable.fromJS(loginSteps.initial))
+                .set('loginType', 'initial')
+                .set('isLogout', false)
+                .set('userType', '')
+                .set('formError', '')
+                .set('shouldSumbit', false);
+        case GET_CAPTCHA:
+            const defaultCaptchaState = defaultLoginState.get('captchaDetails').toJS();
+            if (action.methodRequestState === 'finished') {
+                if (action.error) {
+                    return state.set('captchaDetails', Immutable.fromJS(defaultCaptchaState));
+                } else if (action.result) {
+                    const currentCaptchaState = state.get('captchaDetails').toJS();
+                    const newCaptchaDetails = {
+                        ...currentCaptchaState,
+                        ...action.result
+                    };
+                    return state.set('captchaDetails', Immutable.fromJS(newCaptchaDetails))
+                        .setIn(['loginForm', 'inputs', 'captcha', 'value'], '');
+                }
+            }
+            return state.set('captchaDetails', Immutable.fromJS(defaultCaptchaState));
+        case UPDATE_ERROR_CAPTCHA:
+            const isValid = action.params && action.params.isValid;
+            return state.setIn(['captchaDetails', 'isValid'], isValid)
+                .set('formError', isValid ? '' : ERROR_CAPTCHA);
         default:
             return state;
     }

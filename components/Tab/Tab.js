@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import Link from './../Link';
+import Text from '../Text';
 import styles from './styles.css';
 
 export default class Tab extends Component {
@@ -43,8 +44,9 @@ export default class Tab extends Component {
                 className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
                 activeClassName={styles.navigationTabActive}
                 params={tab.routeParams}
-                onClick={this.onTabClick}>
-                {tab.title}
+                onClick={this.onTabClick}
+            >
+                {tab.title && <Text>{tab.title}</Text>}
             </Link>
         );
     }

@@ -1,0 +1,8 @@
+.passReset {
+    color: #007bff;
+    padding-top: 20px;
+    text-align: center;
+}
+.passReset a:hover {
+cursor: pointer;
+}

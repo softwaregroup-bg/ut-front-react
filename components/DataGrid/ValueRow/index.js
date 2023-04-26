@@ -9,13 +9,13 @@ const ValueRow = ({children = '', hoverValue, showAlert = false, onClick, readOn
     if (!hValueText) {
         hValueText = children;
     }
-    let alertNode = showAlert ? <Icon icon='status' className={classnames('pull-xs-right', style.alertIcon)} /> : '';
-    let classes = classnames('f14', style.valueRowValue, {'pointer': !readOnly});
+    const alertNode = showAlert ? <Icon icon='status' className={classnames('pull-xs-right', style.alertIcon)} /> : '';
+    const classes = classnames('f14', style.valueRowValue, {pointer: !readOnly});
     return (
         <div {...props}>
             <div className={classes} onClick={onClick}>
                 {!readOnly && <div className={classnames('f-pink', style.valueRowValue, style.valueRowHover)}>{hValueText}</div>}
-                <Text>{children}</Text>
+                {children && <Text>{children}</Text>}
                 {alertNode}
             </div>
         </div>

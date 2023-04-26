@@ -2,14 +2,15 @@ import React, { PropTypes, Component } from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import classnames from 'classnames';
+import Text from '../Text';
 import style from './style.css';
-import { textValidations } from '../../validator/constants';
+import { textValidations, dropdownValidations } from '../../validator/constants';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import SvgDropdownIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
 
 class Dropdown extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             open: false,
             value: props.defaultSelected || this.props.placeholderValue,
@@ -31,7 +32,7 @@ class Dropdown extends Component {
         }
 
         if (defaultSelected !== this.props.defaultSelected || this.props.data !== data) {
-            let value = data.find(
+            const value = data.find(
                 (item) => {
                     return item.key === defaultSelected;
                 }
@@ -43,6 +44,7 @@ class Dropdown extends Component {
             this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
         }
     }
+
     toggleOpen(event) {
         return this.setState({open: true, anchorEl: event.currentTarget});
     }
@@ -52,8 +54,8 @@ class Dropdown extends Component {
     }
 
     handleChange(event, value) {
-        let { onSelect, keyProp } = this.props;
-        let objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
+        const { onSelect, keyProp } = this.props;
+        const objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
 
         this.setState({value: value, valid: {isValid: true, errorMessage: ''}});
         onSelect(objectToPassOnChange);
@@ -65,14 +67,16 @@ class Dropdown extends Component {
         const selected = data.find(item => item.key === defaultSelected);
         return (selected && selected.name) || placeholder;
     }
+
     getTitle(name) {
-        var title = name && typeof name === 'object' ? name.props.children : name;
+        const title = name && typeof name === 'object' ? name.props.children : name;
         return title;
     }
+
     getMenuItems() {
-        let { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let menuItems = [];
+        const { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const menuItems = [];
 
         menuItems.push(
             <MenuItem
@@ -80,7 +84,8 @@ class Dropdown extends Component {
                 key={Math.random() + '-ddfg'}
                 disabled={!canSelectPlaceholder}
                 value={this.props.placeholderValue}
-                primaryText={<div title={this.getTitle(placeholder)}>{placeholder}</div>} />
+                primaryText={<div title={this.getTitle(placeholder)}><Text>{placeholder}</Text></div>}
+            />
         );
 
         data.forEach((item, i) => {
@@ -90,9 +95,10 @@ class Dropdown extends Component {
                     key={item.key + '-' + i}
                     disabled={item.disabled}
                     value={item.key}
-                    primaryText={<div title={this.getTitle(item.name)}>{item.name}</div>}
+                    primaryText={<div title={this.getTitle(item.name)}><Text>{item.name}</Text></div>}
                     leftIcon={item.leftIcon && <img src={item.leftIcon} />}
-                    rightIcon={item.rightIcon && <img src={item.rightIcon} />} />
+                    rightIcon={item.rightIcon && <img src={item.rightIcon} />}
+                />
             );
         });
 
@@ -100,14 +106,14 @@ class Dropdown extends Component {
     }
 
     renderDropDown() {
-        let menuItems = this.getMenuItems();
-        let { cssStyle, mergeStyles } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
-        let arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
-        let inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
-        let iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
-        let rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
+        const menuItems = this.getMenuItems();
+        const { cssStyle, mergeStyles } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
+        const arrowIconDisabled = this.props.disabled ? style.arrowIconDisabled : '';
+        const inputDisabled = this.props.disabled ? ddstyles.readonlyInput : '';
+        const iconBackground = this.props.disabled ? ddstyles.dropdownIconBackgroundDisabled : ddstyles.dropdownIconBackground;
+        const rootElementWidth = this.state.anchorEl && this.state.anchorEl.offsetWidth;
         // let labelMaxWidth = rootElementWidth && rootElementWidth - 30;
 
         return (
@@ -115,7 +121,7 @@ class Dropdown extends Component {
                 <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                     <div className={ddstyles.dropdownPlaceholder}>
                         <div title={this.getTitle(this.dropdownPlaceholder)}>
-                            {this.dropdownPlaceholder}
+                            {this.dropdownPlaceholder && <Text>{this.dropdownPlaceholder}</Text>}
                         </div>
                     </div>
                     <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
@@ -129,7 +135,8 @@ class Dropdown extends Component {
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    animation={PopoverAnimationVertical}>
+                    animation={PopoverAnimationVertical}
+                >
                     <Menu
                         value={this.state.value}
                         onChange={this.handleChange}
@@ -137,7 +144,8 @@ class Dropdown extends Component {
                         disabled={this.props.disabled}
                         className={classnames(ddstyles.dropdownMenu)}
                         style={{width: rootElementWidth}}
-                        maxHeight={300}>
+                        maxHeight={300}
+                    >
                         {menuItems}
                     </Menu>
                 </Popover>
@@ -146,21 +154,21 @@ class Dropdown extends Component {
     }
 
     render() {
-        let { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
-        let ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
-        let { isValid, errorMessage } = this.state.valid;
-        let invalidStyle = isValid ? ddstyles.hiddenHeight : '';
+        const { label, cssStyle, mergeStyles, containerClassName, labelWrap, inputWrap } = this.props;
+        const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+        const { isValid, errorMessage } = this.state.valid;
+        const invalidStyle = isValid ? ddstyles.hiddenHeight : '';
 
         if (label) {
             return (
                 <div className={classnames(containerClassName)}>
                     <div className={ddstyles.outerWrap}>
                         <div className={classnames(ddstyles.lableWrap, labelWrap, {[ddstyles.boldLabel]: this.props.boldLabel})}>
-                            {this.props.label} {this.props.validators && this.props.validators.find(validator => validator.type === textValidations.isRequired) && '*'}
+                            <Text>{this.props.label}</Text> {this.props.validators && this.props.validators.find && this.props.validators.find(validator => (validator.type === textValidations.isRequired || validator.type === dropdownValidations.isRequired)) && '*'}
                         </div>
                         <div className={classnames(ddstyles.inputWrap, inputWrap)}>
                             {this.renderDropDown()}
-                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
+                            <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                         </div>
                     </div>
                 </div>
@@ -171,7 +179,7 @@ class Dropdown extends Component {
                     <div className={ddstyles.outerWrap}>
                         {this.renderDropDown()}
                     </div>
-                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(ddstyles.errorWrap, invalidStyle)}>{!isValid && <div className={ddstyles.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }
@@ -213,7 +221,8 @@ Dropdown.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    translate: PropTypes.func
 };
 
 Dropdown.defaultProps = {
@@ -227,7 +236,8 @@ Dropdown.defaultProps = {
     onSelect: () => {},
     isValid: true,
     errorMessage: '',
-    menuAutoWidth: false
+    menuAutoWidth: false,
+    translate: (e) => {}
 };
 
 export default Dropdown;

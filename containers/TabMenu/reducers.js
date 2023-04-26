@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 
 export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) => {
     if (action.type === actionTypes.ADD_TAB) {
-        let tab = {
+        const tab = {
             pathname: action.pathname,
             pagename: action.pagename,
             title: action.title,
@@ -11,6 +11,21 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
         };
 
         if (!state.usedPaths[action.pathname]) {
+            /**
+             * HOT FIX:
+             * Receive notAddTab param to check strange behaviour because when triggering remove tab custom component
+             * It calls after that add tab and it generates a empty tab that should be removed from the screen.
+             */
+            if (action.notAddTab) {
+                return {
+                    tabs: state.tabs,
+                    active: state.tabs[0] || tab,
+                    usedPaths: {
+                        ...state.usedPaths,
+                        [action.pathname]: false
+                    }
+                };
+            }
             // Create new tab if this path is not already presented
             return {
                 tabs: state.tabs.concat(tab),
@@ -36,11 +51,11 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
         };
     }
     if (action.type === actionTypes.REMOVE_TAB) {
-        let tabsCount = state.tabs.length;
+        const tabsCount = state.tabs.length;
         let tab = null;
         let tabIndex = 0;
         for (tabIndex = 0; tabIndex < tabsCount; tabIndex++) {
-            let currentTab = state.tabs[tabIndex];
+            const currentTab = state.tabs[tabIndex];
             if (currentTab.pathname === action.pathname) {
                 tab = currentTab;
                 break;
@@ -53,8 +68,8 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
         if (action.pathname !== state.active.pathname) {
             active = state.active;
         } else {
-            let prev = state.tabs[tabIndex - 1];
-            let next = state.tabs[tabIndex + 1];
+            const prev = state.tabs[tabIndex - 1];
+            const next = state.tabs[tabIndex + 1];
             active = next || prev;
             if (active && action.history) {
                 action.history && action.history.push(active.pathname);

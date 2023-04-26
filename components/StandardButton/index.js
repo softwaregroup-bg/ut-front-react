@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import buttonStyles from './styles.css';
 import { getClass } from '../../utils/helpers';
+import Text from '../Text';
 import { Link } from 'react-router-dom';
 
 const getClassInternal = (className) => {
@@ -21,7 +22,7 @@ const Button = ({
 }) => {
     /* If you want to use both internal modular CSS (from the button itself) and external (in module context) use className as array.
        Pass the internal classes (from the button itself) like strings ('standardBtn') and the external ones already mapped (styles.[cssClassHere]). */
-    var cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
+    let cssClass = Array.isArray(className) ? className.map(getClassInternal) : getClassInternal(className);
     if (styleType) {
         cssClass = classNames(cssClass, buttonStyles[styleType], buttonStyles.predefined);
     }
@@ -29,14 +30,14 @@ const Button = ({
     if (!styleType && !className) {
         cssClass = classNames(cssClass, buttonStyles.standardBtn);
     }
-    var disabledClass = '';
+    let disabledClass = '';
     if (disabled) {
         disabledClass = Array.isArray(disabledClassName) ? disabledClassName.map(getClassInternal) : getClassInternal(disabledClassName);
     }
-    let button = (
+    const button = (
         <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
             {icon && <span className={icon} />}
-            {label}
+            {label && <Text>{label}</Text>}
         </button>
     );
     if (href && !disabled) {

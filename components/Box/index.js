@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Button from '../Button';
+import Text from '../Text';
 import Glyphicon from '../Glyphicon';
 import style from './style.css';
 import classnames from 'classnames';
@@ -21,23 +22,23 @@ const Box = ({ children, className, title, externalTitleClasses, externalBodyCla
         };
     }
 
-    let accordeonDirection = collapsed ? arrowDirection.collapsed : arrowDirection.expanded;
+    const accordeonDirection = collapsed ? arrowDirection.collapsed : arrowDirection.expanded;
 
-    let accordeon = showAccordeon
+    const accordeon = showAccordeon
         ? <Glyphicon glyphicon={accordeonDirection} style={{ color: '#B1B5B6' }} />
         : null;
-    let fullWidthClass = fullWidth ? style.boxFull : style.boxInnerPadding;
-    let transparentClass = transparent ? style.boxTransparent : null;
-    let marginBottomClass = marginBottom ? null : style.boxMarginBottom;
-    let classes = classnames(style.box, transparentClass, marginBottomClass, className);
-    let closeSection = showClose ? <span className={classnames(style.boxTitleClose, 'pointer')} onClick={onClose}><Button button='close' style={{ float: 'left' }} /></span> : null;
-    let ballancerClass = showClose ? style.ballancer : null;
+    const fullWidthClass = fullWidth ? style.boxFull : style.boxInnerPadding;
+    const transparentClass = transparent ? style.boxTransparent : null;
+    const marginBottomClass = marginBottom ? null : style.boxMarginBottom;
+    const classes = classnames(style.box, transparentClass, marginBottomClass, className);
+    const closeSection = showClose ? <span className={classnames(style.boxTitleClose, 'pointer')} onClick={onClose}><Button button='close' style={{ float: 'left' }} /></span> : null;
+    const ballancerClass = showClose ? style.ballancer : null;
     let titleSectionClasses = classnames('f-upper', style.boxTitle, titleTypeClass, ballancerClass, externalTitleClasses);
     titleSectionClasses = showAccordeon ? classnames(titleSectionClasses, 'pointer') : titleSectionClasses;
-    let rightSection = showAccordeon ? accordeon : closeSection;
-    let titleSection = title ? <div className={titleSectionClasses} onClick={onToggle}>{title}{rightSection}</div> : null;
-    let minHeightStyle = minHeight ? { minHeight: minHeight } : null;
-    let body = !collapsed ? <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>{children}</div> : null;
+    const rightSection = showAccordeon ? accordeon : closeSection;
+    const titleSection = title ? <div className={titleSectionClasses} onClick={onToggle}><Text>{title}</Text>{rightSection}</div> : null;
+    const minHeightStyle = minHeight ? { minHeight: minHeight } : null;
+    const body = !collapsed ? <div className={classnames(fullWidthClass, externalBodyClasses)} style={minHeightStyle}>{children}</div> : null;
     return (
         <div style={props.style} className={classes}>
             {titleSection}
