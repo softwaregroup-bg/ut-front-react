@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import { fromJS } from 'immutable';
 import FormCaptcha from '../../components/FormCaptcha';
-import { cookieCheck,
+import {
+    cookieCheck,
     setInputValue,
     validateForm,
     identityCheck,
@@ -152,8 +153,10 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel, resetPassword,
-            resetLogin, updateErrorCaptcha, captchaDetails } = this.props;
+        const {
+            cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel, resetPassword,
+            resetLogin, updateErrorCaptcha, captchaDetails
+        } = this.props;
         const canResetPassword = inputs.hasIn(['username', 'value']) && inputs.has('password');
         const canLogin = inputs.has('email') && inputs.has('confirmEmail');
         const disableButton = error && error.includes('Email sent') && inputs.has('email') && inputs.has('confirmEmail');
@@ -205,7 +208,8 @@ export default connect(
             captchaDetails: login.get('captchaDetails')
         };
     },
-    { cookieCheck,
+    {
+        cookieCheck,
         setInputValue,
         validateForm,
         identityCheck,
@@ -235,13 +239,13 @@ LoginForm.propTypes = {
     userType: PropTypes.any,
     azureConnDetails: PropTypes.object,
     shouldSubmit: PropTypes.bool,
-    invalidField: PropTypes.string,
+    // invalidField: PropTypes.string,
     cookieCheck: PropTypes.func.isRequired,
     setInputValue: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     identityCheck: PropTypes.func.isRequired,
     bioScan: PropTypes.func,
-    clearLoginState: PropTypes.func,
+    // clearLoginState: PropTypes.func,
     closeAllTabs: PropTypes.func,
     getAzureConnDetails: PropTypes.func,
     resetPassword: PropTypes.func,

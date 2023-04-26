@@ -13,8 +13,8 @@ const FormSuccessMessage = ({ message }) => {
 };
 
 FormSuccessMessage.propTypes = {
-    message: PropTypes.string.isRequired,
-    useNew: PropTypes.bool
+    message: PropTypes.string.isRequired
+    // useNew: PropTypes.bool
 };
 
 export default FormSuccessMessage;

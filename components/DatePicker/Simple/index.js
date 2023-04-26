@@ -87,22 +87,22 @@ DatePicker.defaultProps = {
 };
 DatePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), // accepts new Date() object or string
-    locale: PropTypes.string,
+    // locale: PropTypes.string,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]), // 0 (Sunday) to 6 (Saturday), default is 1
     container: PropTypes.oneOf(['dialog', 'inline']),
     mode: PropTypes.oneOf(['landscape', 'portrait']),
-    masterLabel: PropTypes.string,
+    // masterLabel: PropTypes.string,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     boldLabel: PropTypes.bool,
     DateTimeFormat: PropTypes.func,
-    onChange: PropTypes.func,
+    // onChange: PropTypes.func,
     wrapperClassName: PropTypes.string,
     wrapperStyles: PropTypes.object,
     iconStyles: PropTypes.object,
-    minDate: PropTypes.object,
-    maxDate: PropTypes.object,
+    // minDate: PropTypes.object,
+    // maxDate: PropTypes.object,
     disabled: PropTypes.bool,
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,

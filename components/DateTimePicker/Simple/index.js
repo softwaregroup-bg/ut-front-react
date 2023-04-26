@@ -228,14 +228,14 @@ DateTimePicker.propTypes = {
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     timeFormat: PropTypes.string,
-    dateFormat: PropTypes.string,
+    // dateFormat: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     boldLabel: PropTypes.bool,
-    transformDate: PropTypes.func,
+    // transformDate: PropTypes.func,
     transformTime: PropTypes.func,
     timeType: PropTypes.oneOf(['timeDropdown', 'timePicker']),
-    innerWrapperClassName: PropTypes.string,
-    data: PropTypes.array
+    innerWrapperClassName: PropTypes.string
+    // data: PropTypes.array
 };
 
 DateTimePicker.contextTypes = {

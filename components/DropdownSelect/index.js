@@ -33,11 +33,11 @@ export default class DropdownSelect extends Component {
                 (item) => item[keyProp] === defaultSelected
             );
             selected = selected || {[keyProp]: '_placeholder_'};
-            this.setState({selected: selected});
+            this.setState({selected});
         }
 
         if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
+            this.setState({valid: {isValid, errorMessage}});
         }
     }
 

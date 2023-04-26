@@ -13,8 +13,8 @@ const FormErrorMessage = ({ message }) => {
 };
 
 FormErrorMessage.propTypes = {
-    message: PropTypes.string.isRequired,
-    useNew: PropTypes.bool
+    message: PropTypes.string.isRequired
+    // useNew: PropTypes.bool
 };
 
 export default FormErrorMessage;

@@ -142,9 +142,9 @@ GlobalMenu.propTypes = {
         name: PropTypes.any,
         visible: PropTypes.bool
     })).isRequired,
-    handleCheckboxSelect: PropTypes.func,
+    // handleCheckboxSelect: PropTypes.func,
     externalStyle: PropTypes.object,
-    isChecked: PropTypes.bool,
+    // isChecked: PropTypes.bool,
     onRefresh: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,
     transformCellValue: PropTypes.func

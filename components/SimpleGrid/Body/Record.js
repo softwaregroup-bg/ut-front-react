@@ -134,8 +134,8 @@ Record.propTypes = {
     handleCellClick: PropTypes.func,
     handleDoubleClick: PropTypes.func,
     handleClick: PropTypes.func,
-    rowStyleField: PropTypes.string,
-    local: PropTypes.bool
+    rowStyleField: PropTypes.string
+    // local: PropTypes.bool
 };
 
 Record.defaultProps = {

@@ -64,7 +64,7 @@ const Col = (props) => {
         <div className={classes()}>{props.children}</div>
     );
 };
-
+/*
 const columnsNumbers = PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 const columnsStrings = PropTypes.oneOf(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']);
 const stringOrNumberProp = PropTypes.oneOfType([columnsNumbers, columnsStrings]);
@@ -77,18 +77,18 @@ const columnProps = PropTypes.oneOfType([
         offset: stringOrNumberProp
     })
 ]);
-
+*/
 Col.propTypes = {
     children: PropTypes.any,
     gutter: PropTypes.shape({
         left: PropTypes.bool,
         right: PropTypes.bool
     }),
-    className: PropTypes.string,
-    xs: columnProps,
-    sm: columnProps,
-    md: columnProps,
-    lg: columnProps,
-    xl: columnProps
+    className: PropTypes.string
+    // xs: columnProps,
+    // sm: columnProps,
+    // md: columnProps,
+    // lg: columnProps,
+    // xl: columnProps
 };
 export default Col;

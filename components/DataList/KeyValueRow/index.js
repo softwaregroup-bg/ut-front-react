@@ -40,7 +40,7 @@ function getComponentsName(orientation) {
 }
 
 KeyValueRow.propTypes = {
-    wrapper: PropTypes.object,
+    // wrapper: PropTypes.object,
     keyNode: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
@@ -48,7 +48,7 @@ KeyValueRow.propTypes = {
     wrapperClass: PropTypes.string,
     keyClass: PropTypes.string,
     valueClass: PropTypes.string,
-    valueNode: PropTypes.object,
+    // valueNode: PropTypes.object,
     children: PropTypes.node,
     orientation: PropTypes.oneOf(['horizontal', 'vertical']),
     bordered: PropTypes.bool

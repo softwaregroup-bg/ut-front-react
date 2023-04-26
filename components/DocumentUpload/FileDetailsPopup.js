@@ -35,7 +35,7 @@ export default class FileDetailsPopup extends Component {
 
         return {
             width: height * aspectRatio,
-            height: height
+            height
         };
     }
 

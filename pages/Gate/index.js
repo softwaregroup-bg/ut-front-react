@@ -25,7 +25,7 @@ const Gate = React.createClass({
             money,
             dateFormat: df(this.props),
             numberFormat: numberFormat(this.props),
-            checkPermission: checkPermission
+            checkPermission
         };
     },
     defaultProps: {
@@ -71,7 +71,7 @@ export default connect(
     mapStateToProps,
     {
         checkIdentity: cookieCheck,
-        fetchTranslations: fetchTranslations,
+        fetchTranslations,
         logout
     }
 )(Gate);

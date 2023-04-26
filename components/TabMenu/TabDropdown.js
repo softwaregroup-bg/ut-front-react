@@ -71,8 +71,8 @@ class TabDropDown extends React.Component {
 
 TabDropDown.propTypes = {
     data: PropTypes.array,
-    onSelectItem: PropTypes.func,
-    activeItem: PropTypes.number
+    onSelectItem: PropTypes.func
+    // activeItem: PropTypes.number
 };
 
 TabDropDown.defaultProps = {

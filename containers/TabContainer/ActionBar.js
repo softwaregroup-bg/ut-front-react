@@ -62,7 +62,7 @@ class ActionBar extends Component {
 }
 
 ActionBar.propTypes = {
-    sourceMap: PropTypes.object,
+    // sourceMap: PropTypes.object,
     buttons: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,

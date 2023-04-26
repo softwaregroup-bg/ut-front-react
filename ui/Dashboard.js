@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Dashboard} from '../containers/Dashboard';
 
 export default class NamedDashboard extends React.Component {
@@ -10,5 +11,5 @@ export default class NamedDashboard extends React.Component {
 };
 
 NamedDashboard.contextTypes = {
-    portalName: React.PropTypes.string
+    portalName: PropTypes.string
 };

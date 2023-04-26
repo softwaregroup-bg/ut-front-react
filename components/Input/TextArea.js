@@ -29,8 +29,8 @@ class TextArea extends Component {
 
         if (this.state.value !== value || this.state.valid.isValid !== isValid) {
             this.setState({
-                value: value,
-                valid: {isValid: isValid, errorMessage: errorMessage}
+                value,
+                valid: {isValid, errorMessage}
             });
         }
     }
@@ -59,7 +59,7 @@ class TextArea extends Component {
                 const errorMessage = valid.errors[0].errorMessage;
                 objectToPassOnChange.error = true;
                 objectToPassOnChange.errorMessage = errorMessage;
-                newState.valid = {isValid: false, errorMessage: errorMessage};
+                newState.valid = {isValid: false, errorMessage};
             } else if (!this.state.valid.isValid) {
                 newState.valid = {isValid: true, errorMessage: ''};
             }

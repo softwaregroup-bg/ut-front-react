@@ -130,8 +130,8 @@ class PopupInternal extends Component {
 }
 
 PopupInternal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    container: PropTypes.string,
+    // isOpen: PropTypes.bool.isRequired,
+    // container: PropTypes.string,
     className: PropTypes.string,
     contentClassName: PropTypes.string,
     hasOverlay: PropTypes.bool,

@@ -119,7 +119,7 @@ MultiTab.propTypes = {
     positioningDirections: PropTypes.string,
     tab: PropTypes.object,
     onClick: PropTypes.func,
-    dataType: PropTypes.string,
+    // dataType: PropTypes.string,
     rightArrowIcon: PropTypes.bool
 };
 
