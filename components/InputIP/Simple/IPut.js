@@ -2,7 +2,8 @@
  * iput v0.0.4 (https://github.com/lizheming/iput)
  * Licensed under MIT
  */
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import style from './style.css';
 
 /**

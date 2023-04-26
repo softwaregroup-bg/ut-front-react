@@ -1,6 +1,7 @@
 /* global localStorage */
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import resizibleTypes from './resizibleTypes';
 import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';

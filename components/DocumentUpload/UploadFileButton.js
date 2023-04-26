@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import FormInput from '../FormInput';
 import AddFileButton from './AddFileButton';
@@ -39,7 +40,7 @@ export default class UploadFileButton extends Component {
     }
 
     onClick() {
-        if(this.props.clearBeforeOnClick) {
+        if (this.props.clearBeforeOnClick) {
             this.refs.fileInput.refs.inputNode.value = null;
         }
         this.refs.fileInput.refs.inputNode.click();

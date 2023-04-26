@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {getLink} from '../../routerHelper';
 import Page from '../../components/PageLayout/Page';
 import { AddTab } from '../TabMenu';

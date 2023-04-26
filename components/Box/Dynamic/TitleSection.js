@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import style from '../style.css';
 const renderButtons = (buttons) => {
     return buttons && buttons.map((button, index) => (<span className={style.activeLinkButton} key={index} onClick={button.onClick}>{button.label}</span>));

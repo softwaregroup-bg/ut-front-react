@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import IPInput from '../Simple';
 import Input from '../../Input';
 import { textValidations } from '../../../validator/constants';

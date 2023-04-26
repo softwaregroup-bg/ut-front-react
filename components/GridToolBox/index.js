@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,7 @@ import DateTimePickerBetween from '../DateTimePicker/Between';
 import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
 // import { Button } from 'reactstrap';
-import { formatIso } from 'material-ui/DatePicker/dateUtils';
+// import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import { formatTime } from 'material-ui/TimePicker/timeUtils';
 import ByCustomSearch from '../Filters/ByCustomSearch';
 import Text from '../Text';
@@ -834,6 +835,6 @@ GridToolBox.defaultProps = {
 
 GridToolBox.contextTypes = {
     translate: PropTypes.func
-}
+};
 
 export default GridToolBox;

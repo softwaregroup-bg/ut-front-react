@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Tree from '../BusinessUnitsTree';
 import StandardButton from '../StandardButton';
 import CircularProgress from 'material-ui/CircularProgress';

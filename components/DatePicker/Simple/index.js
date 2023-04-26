@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import DatePickerInput from 'material-ui/DatePicker/DatePicker';
-import { formatIso } from 'material-ui/DatePicker/dateUtils';
+// import { formatIso } from 'material-ui/DatePicker/dateUtils';
 import style from '../style.css';
 import Text from '../../Text';
 

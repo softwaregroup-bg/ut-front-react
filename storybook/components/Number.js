@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { storiesOf } from '@kadira/storybook';
 import Number from '../../components/Number';
 import dateFormat from 'date-fns/format';

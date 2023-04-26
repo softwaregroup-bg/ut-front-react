@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import immutable from 'immutable';
 import Tabs from '../../components/Tabs';
 import StatusDialog from '../../components/StatusDialog';

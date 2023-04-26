@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Iput from './IPut';
 import classnames from 'classnames';
 import style from './style.css';

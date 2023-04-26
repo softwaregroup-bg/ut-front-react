@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Creatable } from 'react-select';
 import classnames from 'classnames';
 import style from './style.css';

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import UploadFileButton from './UploadFileButton';
 import AddFileButton from './AddFileButton';

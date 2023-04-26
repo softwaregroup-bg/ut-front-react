@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Vertical } from '../Layout';
 import Toolbox from './Toolbox';
 import DocumentsGrid from './DocumentsGrid';

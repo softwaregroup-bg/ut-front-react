@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import immutable from 'immutable';
 import { getListTableColumns } from './helpers';
 import DateComponent from '../Date';

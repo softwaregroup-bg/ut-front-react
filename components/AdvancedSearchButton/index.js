@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import mainStyle from './style.css';
 import SvgSearchIcon from 'material-ui/svg-icons/action/search';
 import styles from '../StandardButton/styles.css';

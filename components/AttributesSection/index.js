@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import types from './types.js';
 import immutable from 'immutable';
 import Textt from '../Text';

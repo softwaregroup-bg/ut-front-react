@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {fromJS, Map} from 'immutable';
 import { propTypeFields, propTypeField } from '../common';
 import Column from './Column.js';

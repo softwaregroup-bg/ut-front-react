@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Router, Route, Switch } from 'react-router';
 import { createHashHistory, createMemoryHistory } from 'history';
 import {renderToString} from 'react-dom/server';

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import HeaderCell from './HeaderCell';
 import Menu from '../GridMenu';
 import classnames from 'classnames';

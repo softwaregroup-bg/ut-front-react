@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Popup from '../Popup';
 import DocumentUploadMenu from './DocumentUploadMenu';
 import Camera from './Camera';
@@ -216,7 +217,8 @@ export default class DocumentUpload extends Component {
                     {this.validate && <div className={styles.errorMsg}>
                         Error: {this.validate}
                     </div>}
-                </div>);
+                </div>
+            );
         }
     }
 
