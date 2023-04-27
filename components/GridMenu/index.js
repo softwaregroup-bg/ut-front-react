@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Menu from 'material-ui/Menu';

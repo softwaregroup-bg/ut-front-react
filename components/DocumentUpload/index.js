@@ -288,7 +288,7 @@ export default class DocumentUpload extends Component {
     }
 
     uploadFile(file) {
-        const { useFile } = this.props;
+        const { handleFile } = this.props;
         const data = new window.FormData();
         const img = this.dataURItoBlob(file);
         const ext = this.state.fileExtension || 'unknown';
@@ -307,7 +307,7 @@ export default class DocumentUpload extends Component {
                 reader.onload = (data) => {
                     try {
                         const response = JSON.parse(request.responseText);
-                        useFile({
+                        handleFile({
                             filename: response.filename,
                             createdDate: new Date().toISOString(),
                             extension: getFileExtension(response.filename),
@@ -394,7 +394,7 @@ export default class DocumentUpload extends Component {
 };
 
 DocumentUpload.defaultProps = {
-    useFile: () => ({}),
+    handleFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     maxFileSize: 5 * 1024, // default maximum size 5MB
     hideCrop: false,
@@ -411,7 +411,7 @@ DocumentUpload.propTypes = {
         width: PropTypes.number,
         height: PropTypes.number
     }),
-    useFile: PropTypes.func,
+    handleFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
     maxFileSize: PropTypes.number, // file size in kb

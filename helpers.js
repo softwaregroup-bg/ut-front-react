@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import dateFormat from 'date-fns/format';
 
 export const objectHasProps = (object) => {
