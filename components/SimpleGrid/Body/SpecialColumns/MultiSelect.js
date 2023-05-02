@@ -26,8 +26,8 @@ InternalColumn.propTypes = {
     handleCheckboxSelect: PropTypes.func,
     data: PropTypes.object,
     recordIndex: PropTypes.number,
-    isChecked: PropTypes.bool,
-    field: PropTypes.object
+    isChecked: PropTypes.bool
+    // field: PropTypes.object
 };
 
 InternalColumn.defaultProps = {

@@ -6,14 +6,14 @@ export default class Text extends React.Component {
     static contextTypes = {
         language: PropTypes.string,
         translate: PropTypes.func
-    }
+    };
 
     static propTypes = {
         children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
         params: PropTypes.object,
         prefix: PropTypes.string, // prefix, narrowing search in translation dictionary
         interpolate: PropTypes.func
-    }
+    };
 
     render() {
         let {children, params, prefix, interpolate = applyTemplate} = this.props;

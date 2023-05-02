@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { propTypeField } from '../../common';
+// import { propTypeField } from '../../common';
 import style from './styles.css';
 
 export default class VerticalHeader extends Component {
@@ -25,9 +25,9 @@ export default class VerticalHeader extends Component {
 
 VerticalHeader.propTypes = {
     value: PropTypes.object,
-    recordIndex: PropTypes.number,
-    field: PropTypes.object,
-    verticalField: propTypeField,
+    // recordIndex: PropTypes.number,
+    // field: PropTypes.object,
+    // verticalField: propTypeField,
     externalStyle: PropTypes.object
 };
 

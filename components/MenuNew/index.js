@@ -101,7 +101,7 @@ MenuNew.propTypes = {
     fields: PropTypes.array.isRequired,
     requestClose: PropTypes.func.isRequired,
     anchorEl: PropTypes.any,
-    dimensions: PropTypes.object,
+    // dimensions: PropTypes.object,
     closeOnSelect: PropTypes.bool,
     positioningDirections: PropTypes.string,
     additionalOffsets: PropTypes.object,

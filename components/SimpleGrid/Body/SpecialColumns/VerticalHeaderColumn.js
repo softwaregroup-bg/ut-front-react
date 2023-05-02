@@ -17,8 +17,8 @@ export default class VerticalHeaderColumn extends Component {
 
 VerticalHeaderColumn.propTypes = {
     value: propTypeField,
-    recordIndex: PropTypes.number,
-    field: PropTypes.object,
+    // recordIndex: PropTypes.number,
+    // field: PropTypes.object,
     externalStyle: PropTypes.object
 };
 

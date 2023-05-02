@@ -414,7 +414,7 @@ class GridToolBox extends Component {
             closePopup={this.toggleAdvancedSearch}
             header={{text: 'Advanced Search'}}
             isOpen={this.state.showFiltersPopup}
-            footer={{actionButtons: actionButtons}}
+            footer={{actionButtons}}
             className={style.advancedSearchDialog}
         >
             {this.props.filterElements.map((el, i) => {

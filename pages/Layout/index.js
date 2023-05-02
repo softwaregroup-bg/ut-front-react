@@ -51,7 +51,7 @@ Layout.propTypes = {
     login: PropTypes.object,
     location: PropTypes.object,
     headerText: PropTypes.string,
-    headerCellText: PropTypes.object,
+    // headerCellText: PropTypes.object,
     logout: PropTypes.func
 };
 Layout.contextTypes = {

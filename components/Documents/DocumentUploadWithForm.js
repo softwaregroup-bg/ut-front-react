@@ -52,8 +52,8 @@ class DocumentUploadWithForm extends Component {
 
     handleValidation(fileType, description) {
         const result = validateAll(immutable.fromJS({
-            fileType: fileType,
-            description: description
+            fileType,
+            description
         }), [getDocumentTypeValidators(), getDocumentDescriptionValidators()]);
         const errors = {};
         if (result.errors && result.errors.length > 0) {
@@ -63,7 +63,7 @@ class DocumentUploadWithForm extends Component {
         }
         this.setState({
             isValidForm: result.isValid,
-            errors: errors
+            errors
         });
     };
 
@@ -136,7 +136,7 @@ class DocumentUploadWithForm extends Component {
                 documentTypeId: type.key,
                 documentType: type.name,
                 statusId: 'new',
-                description: description,
+                description,
                 ...uploadedFile
             });
         } else if (this.props.type === 'replace') {
@@ -157,7 +157,7 @@ class DocumentUploadWithForm extends Component {
                 scaleDimensions={{width: 350, height: 350}}
                 additionalContentValidate={() => { this.handleValidation(this.state.fileType, this.state.description); }}
                 isAdditionalContentValid={this.state.isValidForm}
-                useFile={this.useFileHandler}
+                handleFile={this.useFileHandler}
                 hideCrop
                 allowedFileTypes={this.props.allowedFileTypes}
             >

@@ -76,8 +76,8 @@ Documents.propTypes = {
     documents: PropTypes.array,
     documentsChanged: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
-    requiresFetch: PropTypes.bool,
-    isLoading: PropTypes.bool,
+    // requiresFetch: PropTypes.bool,
+    // isLoading: PropTypes.bool,
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
 

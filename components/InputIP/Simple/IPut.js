@@ -171,7 +171,7 @@ IPut.propTypes = {
     ]),
     isError: PropTypes.func,
     readonly: PropTypes.bool,
-    clear: PropTypes.bool,
+    // clear: PropTypes.bool,
     onChange: PropTypes.func,
     placeholder: PropTypes.oneOfType([
         PropTypes.string,

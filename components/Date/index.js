@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Date = React.createClass({
     propTypes: {
-        children: React.PropTypes.string
+        children: PropTypes.string
     },
     contextTypes: {
-        dateFormat: React.PropTypes.func
+        dateFormat: PropTypes.func
     },
     render() {
         let children = this.props.children;

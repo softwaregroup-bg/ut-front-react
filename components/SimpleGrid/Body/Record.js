@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {fromJS, Map} from 'immutable';
@@ -134,8 +135,8 @@ Record.propTypes = {
     handleCellClick: PropTypes.func,
     handleDoubleClick: PropTypes.func,
     handleClick: PropTypes.func,
-    rowStyleField: PropTypes.string,
-    local: PropTypes.bool
+    rowStyleField: PropTypes.string
+    // local: PropTypes.bool
 };
 
 Record.defaultProps = {

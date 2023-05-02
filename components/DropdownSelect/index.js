@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
@@ -33,11 +34,11 @@ export default class DropdownSelect extends Component {
                 (item) => item[keyProp] === defaultSelected
             );
             selected = selected || {[keyProp]: '_placeholder_'};
-            this.setState({selected: selected});
+            this.setState({selected});
         }
 
         if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
+            this.setState({valid: {isValid, errorMessage}});
         }
     }
 

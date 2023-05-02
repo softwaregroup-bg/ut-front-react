@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Menu from 'material-ui/Menu';
@@ -142,9 +143,9 @@ GlobalMenu.propTypes = {
         name: PropTypes.any,
         visible: PropTypes.bool
     })).isRequired,
-    handleCheckboxSelect: PropTypes.func,
+    // handleCheckboxSelect: PropTypes.func,
     externalStyle: PropTypes.object,
-    isChecked: PropTypes.bool,
+    // isChecked: PropTypes.bool,
     onRefresh: PropTypes.func,
     toggleColumnVisibility: PropTypes.func,
     transformCellValue: PropTypes.func

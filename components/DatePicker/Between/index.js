@@ -173,7 +173,7 @@ DatePickerBetween.propTypes = {
         from: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
         to: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string])
     }),
-    locale: PropTypes.string,
+    // locale: PropTypes.string,
     okLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     firstDayOfWeek: PropTypes.number,
@@ -183,8 +183,8 @@ DatePickerBetween.propTypes = {
     masterLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelFrom: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     labelTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    dateFormat: PropTypes.string,
-    transformDate: PropTypes.func,
+    // dateFormat: PropTypes.string,
+    // transformDate: PropTypes.func,
     onChange: PropTypes.func.isRequired
 };
 

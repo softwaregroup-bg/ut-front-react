@@ -73,7 +73,7 @@ export default class Camera extends Component {
         const { className, autoPlay, width, height } = this.props;
 
         return (
-            <div style={{ height: height, width: width }} className={classnames(styles.cameraContainer, className)}>
+            <div style={{ height, width }} className={classnames(styles.cameraContainer, className)}>
                 <video
                     ref='video'
                     className={styles.videoElement}

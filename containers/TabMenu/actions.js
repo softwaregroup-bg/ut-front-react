@@ -3,10 +3,10 @@ import * as actionTypes from './actionTypes';
 export function addTab(pathname, title, isMain, pagename, shouldUpdate = false, notAddTab = false) {
     return {
         type: actionTypes.ADD_TAB,
-        pathname: pathname,
-        pagename: pagename,
-        isMain: isMain,
-        title: title,
+        pathname,
+        pagename,
+        isMain,
+        title,
         shouldUpdate,
         notAddTab
     };
@@ -15,16 +15,16 @@ export function addTab(pathname, title, isMain, pagename, shouldUpdate = false, 
 export function removeTab(pathname, pagename) {
     return {
         type: actionTypes.REMOVE_TAB,
-        pathname: pathname,
-        pagename: pagename
+        pathname,
+        pagename
     };
 }
 
 export function updateTabTitle(pathname, newTitle) {
     return {
         type: actionTypes.UPDATE_TAB_TITLE,
-        pathname: pathname,
-        newTitle: newTitle
+        pathname,
+        newTitle
     };
 }
 

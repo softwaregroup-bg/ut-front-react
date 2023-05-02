@@ -58,6 +58,6 @@ FormInput.propTypes = {
     acceptType: PropTypes.string,
     tabIndex: PropTypes.number,
     onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func
+    onChange: PropTypes.func
+    // onFocus: PropTypes.func
 };

@@ -24,7 +24,7 @@ class ConfirmRejectionDialog extends Component {
             canSubmit = false;
             this.props.updateErrors(prepareErrors(valid.errors), this.props.id);
         }
-        this.props.changeConfirmDialogValue({value: e.value, canSubmit: canSubmit});
+        this.props.changeConfirmDialogValue({value: e.value, canSubmit});
     }
 
     renderContainer() {
@@ -86,7 +86,7 @@ class ConfirmRejectionDialog extends Component {
 ConfirmRejectionDialog.propTypes = {
     title: PropTypes.string,
     id: PropTypes.string,
-    contentStyle: PropTypes.object,
+    // contentStyle: PropTypes.object,
     showInput: PropTypes.bool,
     buttons: PropTypes.object.isRequired, // immutable list
     children: PropTypes.any,

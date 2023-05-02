@@ -1,3 +1,4 @@
+/* eslint-disable react/no-find-dom-node */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
@@ -25,23 +26,23 @@ class TabMenu extends React.Component {
     }
 
     componentDidUpdate() {
-        let node = ReactDom.findDOMNode(this.refs.tabset);
-        let rowNodeRect = node.getElementsByTagName('tr')[0].getBoundingClientRect();
-        let buttonWidth = 32; // the width of the dropdown button // TODO: consider taking this value dynamically
-        let windowWidth = window.innerWidth; // TODO: consider taking the wrapper of the table instead of the window's width'
+        const node = ReactDom.findDOMNode(this.refs.tabset);
+        const rowNodeRect = node.getElementsByTagName('tr')[0].getBoundingClientRect();
+        const buttonWidth = 32; // the width of the dropdown button // TODO: consider taking this value dynamically
+        const windowWidth = window.innerWidth; // TODO: consider taking the wrapper of the table instead of the window's width'
         if (rowNodeRect.width >= windowWidth - buttonWidth && this.state.showDropdown !== true) {
             this.displayBtn(true);
         } else if (rowNodeRect.width < windowWidth - buttonWidth && this.state.showDropdown !== false) {
             this.displayBtn(false);
         }
-        let tabDimensions = [];
-        let tds = node.getElementsByTagName('td');
+        const tabDimensions = [];
+        const tds = node.getElementsByTagName('td');
         let tabsTotalWidth = 0;
         for (let i = 0; i < tds.length; i++) {
             tabDimensions.push(tds[i].getBoundingClientRect());
             tabsTotalWidth += tds[i].getBoundingClientRect().width;
         }
-        let activeTabIndex = this.getActiveTabIndex();
+        const activeTabIndex = this.getActiveTabIndex();
         if (tabsTotalWidth >= windowWidth - buttonWidth && activeTabIndex && activeTabIndex < tabDimensions.length) {
             // if the tab is far left
             if (tabDimensions[activeTabIndex].left < 0 && tabDimensions[activeTabIndex].right < windowWidth - buttonWidth) {
@@ -60,6 +61,7 @@ class TabMenu extends React.Component {
                 this.setOffset(this.calculateRightCoordinate(tabDimensions, tabDimensions.length - 1, windowWidth, buttonWidth, rowNodeRect.left));
             }
         } else if (activeTabIndex && activeTabIndex >= tabDimensions.length) {
+            // do nothing for now
         } else {
             this.setOffset(0);
         }
@@ -77,7 +79,7 @@ class TabMenu extends React.Component {
     setOffset(offset) {
         if (this.state.offset !== offset) { // DO NOT CHANGE THIS LINE
             this.setState({
-                offset: offset
+                offset
             });
         }
     }
@@ -91,19 +93,19 @@ class TabMenu extends React.Component {
     }
 
     calculateLeftCoordinate(tabDimensions, activeTabIndex) {
-        let leftCoordinate = tabDimensions[0].left;
-        let activeTabCoordinate = tabDimensions[activeTabIndex].left;
+        const leftCoordinate = tabDimensions[0].left;
+        const activeTabCoordinate = tabDimensions[activeTabIndex].left;
         return leftCoordinate - activeTabCoordinate;
     }
 
     calculateRightCoordinate(tabDimensions, activeTabIndex, windowWidth, buttonWidth, currentOffset) {
-        let activeTabCoordinate = tabDimensions[activeTabIndex].right;
-        let result = ((activeTabCoordinate - windowWidth + buttonWidth) * -1) + currentOffset;
+        const activeTabCoordinate = tabDimensions[activeTabIndex].right;
+        const result = ((activeTabCoordinate - windowWidth + buttonWidth) * -1) + currentOffset;
         return result;
     }
 
     render() {
-        let displayBtnStyle = this.state.showDropdown ? 'block' : 'none';
+        const displayBtnStyle = this.state.showDropdown ? 'block' : 'none';
         let offsetStyle;
         if (this.state.offset > 0) {
             offsetStyle = '-' + this.state.offset + 'px';
@@ -121,14 +123,14 @@ class TabMenu extends React.Component {
                             <tbody>
                                 <tr>
                                     {this.props.tabs.map((tab, i) => {
-                                        let onClose = (e) => {
+                                        const onClose = (e) => {
                                             e.stopPropagation();
                                             e.preventDefault();
-                                            let prev = this.props.tabs[i - 1]; // TODO: check perf
-                                            let next = this.props.tabs[i + 1]; // TODO: check perf
+                                            const prev = this.props.tabs[i - 1]; // TODO: check perf
+                                            const next = this.props.tabs[i + 1]; // TODO: check perf
                                             this.props.onTabClose(tab, prev, next);
                                         };
-                                        let handleClick = () => this.props.onClick(tab);
+                                        const handleClick = () => this.props.onClick(tab);
                                         return (
                                             <td key={i}>
                                                 <TabLink onClose={onClose} {...tab} onClick={handleClick} />

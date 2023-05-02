@@ -42,7 +42,7 @@ class Dropdown extends Component {
         }
 
         if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
+            this.setState({valid: {isValid, errorMessage}});
         }
     }
 
@@ -56,9 +56,9 @@ class Dropdown extends Component {
 
     handleChange(event, value) {
         const { onSelect, keyProp } = this.props;
-        const objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
+        const objectToPassOnChange = {key: keyProp, value, initValue: this.state.value};
 
-        this.setState({value: value, valid: {isValid: true, errorMessage: ''}});
+        this.setState({value, valid: {isValid: true, errorMessage: ''}});
         onSelect(objectToPassOnChange);
         this.toggleClose();
     }
@@ -209,7 +209,7 @@ Dropdown.propTypes = {
     canSelectPlaceholder: PropTypes.bool,
     onSelect: PropTypes.func,
     disabled: PropTypes.bool,
-    menuAutoWidth: PropTypes.bool,
+    // menuAutoWidth: PropTypes.bool,
     mergeStyles: PropTypes.object,
     cssStyle: PropTypes.any, // css file to take styles [Should have the same classes/divs like in styles.css]
 
@@ -222,8 +222,8 @@ Dropdown.propTypes = {
         })
     ),
     isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    translate: PropTypes.func
+    errorMessage: PropTypes.string
+    // translate: PropTypes.func
 };
 
 Dropdown.defaultProps = {

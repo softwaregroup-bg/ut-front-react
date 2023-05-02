@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Number = React.createClass({
     propTypes: {
-        children: React.PropTypes.string
+        children: PropTypes.string
     },
     contextTypes: {
-        numberFormat: React.PropTypes.func
+        numberFormat: PropTypes.func
     },
     render() {
         let children = this.props.children;

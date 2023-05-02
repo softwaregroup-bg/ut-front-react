@@ -72,7 +72,7 @@ ByCustomSearch.propTypes = {
     setValue: PropTypes.func.isRequired, // action
     field: PropTypes.string,
     value: PropTypes.string,
-    allowedFields: PropTypes.object,
+    // allowedFields: PropTypes.object,
     defaultField: PropTypes.string.isRequired,
 
     fields: PropTypes.arrayOf(PropTypes.shape({

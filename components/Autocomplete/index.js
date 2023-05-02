@@ -42,11 +42,11 @@ SimpleAutoComplete.defaultProps = {
 
 SimpleAutoComplete.propTypes = {
     refval: PropTypes.func,
-    open: PropTypes.bool,
+    // open: PropTypes.bool,
     dataSource: PropTypes.array.isRequired,
     maxSearchResults: PropTypes.number,
-    filter: PropTypes.func.isRequired,
-    onClick: PropTypes.func,
+    // filter: PropTypes.func.isRequired,
+    // onClick: PropTypes.func,
     wrapperStyles: PropTypes.object,
     iconStyles: PropTypes.object,
     fullWidth: PropTypes.bool,

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import classnames from 'classnames';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';

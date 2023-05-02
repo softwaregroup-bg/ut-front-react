@@ -92,7 +92,7 @@ export default connect(
         authenticated: login.get('authenticated'),
         gateLoaded: login.get('gateLoaded'),
         result: login.get('result'),
-        gate: gate,
+        gate,
         forceLogOut: gate.get('forceLogOut'),
         loaded: gate.get('loaded')
     }),

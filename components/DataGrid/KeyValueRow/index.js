@@ -13,7 +13,7 @@ const KeyValueRow = ({ wrapperClass, keyClass, valueClass, keyNode, bordered = f
 };
 
 KeyValueRow.propTypes = {
-    wrapper: PropTypes.object,
+    // wrapper: PropTypes.object,
     keyNode: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object

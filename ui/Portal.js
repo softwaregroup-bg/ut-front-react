@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Layout from '../pages/Layout';
 
 export default class Portal extends React.Component {
@@ -10,6 +11,6 @@ export default class Portal extends React.Component {
 };
 
 Portal.contextTypes = {
-    portalName: React.PropTypes.string,
-    location: React.PropTypes.object
+    portalName: PropTypes.string,
+    location: PropTypes.object
 };

@@ -1,4 +1,0 @@
-input[type="checkbox"]:checked ~ .allIcons .icon{
-    box-sizing: content-box;
-    border: 1px solid #000000;
-}
