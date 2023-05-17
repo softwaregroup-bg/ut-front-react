@@ -1,26 +1,26 @@
+import classnames from 'classnames';
+import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Immutable from 'immutable';
-import { filterElementTypes, actionButtonElementTypes, actionButtonClickFunctionality } from './types';
 import { Link } from 'react-router-dom';
+
 import { withStyles } from '@material-ui/core/styles';
 
+import cssStandard from '../../assets/index.css';
+import DatePickerBetween from './../DatePicker/Between';
+import DatePicker from './../DatePicker/Simple';
+import AdvancedSearchButton from '../AdvancedSearchButton';
+import ConfirmDialog from '../ConfirmDialog';
+import DateTimePickerBetween from '../DateTimePicker/Between';
+import ByCustomSearch from '../Filters/ByCustomSearch';
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
-import SearchBox from '../SearchBox';
-import AdvancedSearchButton from '../AdvancedSearchButton';
-import DatePicker from './../DatePicker/Simple';
-import DatePickerBetween from './../DatePicker/Between';
-import DateTimePickerBetween from '../DateTimePicker/Between';
-import ConfirmDialog from '../ConfirmDialog';
 import StandardDialog from '../Popup';
+import SearchBox from '../SearchBox';
 import Button from '../StandardButton';
-import ByCustomSearch from '../Filters/ByCustomSearch';
 import Text from '../Text';
-
-import classnames from 'classnames';
 import style from './style.css';
-import cssStandard from '../../assets/index.css';
+import { actionButtonClickFunctionality, actionButtonElementTypes, filterElementTypes } from './types';
 
 const dropDrownAllOptionKey = '__all__';
 const dropDrownPlaceholderOptionKey = '__placeholder__';
@@ -526,6 +526,11 @@ class GridToolBox extends Component {
                 }
             }
         });
+        // Set date to UTC
+        if (this.props.filterElements.find(el => el.utcTransform)) {
+            result.endDate = new Date(result.endDate.getTime() + result.endDate.getTimezoneOffset() * 60 * 1000);
+            result.startDate = new Date(result.startDate.getTime() + result.startDate.getTimezoneOffset() * 60 * 1000);
+        }
 
         this.props.batchChange(result);
         this.setState({filters: {}});
@@ -791,7 +796,8 @@ GridToolBox.propTypes = {
             // SearchBox
             onSearch: PropTypes.func,
             // Optional
-            styles: PropTypes.object
+            styles: PropTypes.object,
+            utcTransform: PropTypes.bool
         })
     ),
     filterActionElements: PropTypes.node,
