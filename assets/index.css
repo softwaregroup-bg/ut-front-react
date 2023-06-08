@@ -483,7 +483,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     cursor: pointer;
 }*/
 
-@media only screen and (min-device-width: 280px) and (max-device-width:  1023px) {
+/* @media only screen and (min-device-width: 280px) and (max-device-width:  1023px) {
     .tableWrap table, thead,  th, td, tr {
         display: block;
     }
@@ -530,7 +530,7 @@ ui.nav.nav-tabs li.nav-item.nav-tab {
     .actionBarWrap {
         height: auto;
     }
-  }
+  } */
 
   @media only screen and (min-device-width: 280px) and (max-device-width:  420px) {
     .tableWrap {
