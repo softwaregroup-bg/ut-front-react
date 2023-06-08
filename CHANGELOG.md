@@ -1,3 +1,12 @@
+## [13.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.2...v13.3.3) (2023-06-08)
+
+
+### Bug Fixes
+
+* **MSA-2966:** grid is shown as a vertical column when Scale and Layout settings are set to be 150% or 175% ([#673](https://github.com/softwaregroup-bg/ut-front-react/issues/673)) ([4c2321c](https://github.com/softwaregroup-bg/ut-front-react/commit/4c2321c6b745a8dabf554d20943429b4e0a8b508))
+
+
+
 ## [13.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.1...v13.3.2) (2022-11-24)
 
 
