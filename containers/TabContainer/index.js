@@ -24,6 +24,12 @@ class TabContainer extends Component {
         this.mapErrorsToTabs = this.mapErrorsToTabs.bind(this);
         this.checkIfSwithToNextTabIsAble = this.checkIfSwithToNextTabIsAble.bind(this);
         this.renderStatusDialog = this.renderStatusDialog.bind(this);
+        this.translate = this.translate.bind(this);
+    }
+
+    translate(text) {
+        const lang = this.context.language || 'en';
+        return typeof this.context.translate === 'function' ? this.context.translate(text, lang) : text;
     }
 
     componentWillMount() {
@@ -83,14 +89,14 @@ class TabContainer extends Component {
                         }
                     });
 
-                    const errorString = valid.errors.length > 1 ? 'errors' : 'error';
+                    const errorString = valid.errors.length > 1 ? this.translate('errors') : 'error';
                     const tabString = Object.keys(tabErrorsCount).length > 1 ? 'tabs' : 'tab';
 
-                    let statusErrorMessage = `Your request can not be saved because you have ${errorString} in the following ${tabString}:<ul>`;
+                    let statusErrorMessage = `${this.translate('Your request can not be saved because you have')} ${errorString} ${this.translate('in the following')} ${this.translate(tabString)}:<ul>`;
                     for (const key in tabErrorsCount) {
                         if (Object.prototype.hasOwnProperty.call(tabErrorsCount, key)) {
-                            const currentErrorString = tabErrorsCount[key] > 1 ? 'errors' : 'error';
-                            statusErrorMessage += `<li>${key}: ${tabErrorsCount[key]} ${currentErrorString}</li>`;
+                            const currentErrorString = tabErrorsCount[key] > 1 ? this.translate('errors') : 'error';
+                            statusErrorMessage += `<li>${this.translate(key)}: ${tabErrorsCount[key]} ${currentErrorString}</li>`;
                         }
                     }
                     statusErrorMessage += '</ul>';
@@ -322,7 +328,8 @@ TabContainer.defaultProps = {
 };
 
 TabContainer.contextTypes = {
-    checkPermission: PropTypes.func.isRequired
+    checkPermission: PropTypes.func.isRequired,
+    translate: PropTypes.func
 };
 
 export default TabContainer;
