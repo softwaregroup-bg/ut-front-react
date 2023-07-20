@@ -11,6 +11,12 @@ class ConfirmRejectionDialog extends Component {
         super(props, context);
         this.renderContainer = this.renderContainer.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.translate = this.translate.bind(this);
+    }
+
+    translate(text) {
+        const lang = this.context.language || 'en';
+        return typeof this.context.translate === 'function' ? this.context.translate(text, lang) : text;
     }
 
     onChange(e) {
@@ -35,14 +41,14 @@ class ConfirmRejectionDialog extends Component {
                 <div>
                     <TextArea
                         type='text'
-                        label='Reason:'
+                        label={this.translate('Reason') + ':'}
                         onChange={this.onChange}
                         keyProp='rejectReason'
                         value={this.props.value}
                         isEdited={!!this.props.value}
                         validators={rejectReasonValidators}
                         isValid={!errors.get('rejectReason')}
-                        errorMessage={errors.get('rejectReason')}
+                        errorMessage={this.translate(errors.get('rejectReason'))}
                     />
                 </div>
             );
@@ -55,7 +61,7 @@ class ConfirmRejectionDialog extends Component {
         const { buttons } = this.props;
         return buttons.map((button) => {
             return {
-                label: button.get('label'),
+                label: this.translate(button.get('label')),
                 href: button.get('href') || '',
                 styleType: button.get('label').toLowerCase() !== 'cancel' ? 'primaryDialog' : 'secondaryDialog',
                 disabled: button.has('disabled') ? !this.props.canSubmit : false,
@@ -65,7 +71,7 @@ class ConfirmRejectionDialog extends Component {
     }
 
     get title() {
-        return capitalizeEveryWord(this.props.title || 'Confirm Approval');
+        return capitalizeEveryWord(this.translate(this.props.title || 'Confirm Approval'));
     }
 
     render() {
@@ -98,6 +104,10 @@ ConfirmRejectionDialog.propTypes = {
     canSubmit: PropTypes.bool,
     value: PropTypes.string,
     fullWidth: PropTypes.bool
+};
+
+ConfirmRejectionDialog.contextTypes = {
+    translate: PropTypes.func
 };
 
 export default ConfirmRejectionDialog;
