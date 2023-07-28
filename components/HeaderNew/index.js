@@ -6,7 +6,7 @@ import TabsContainer from './TabsContainer';
 import HeaderProfileInfo from './HeaderProfileInfo';
 import styles from './styles.css';
 
-export default class HeaderNew extends Component {
+class HeaderNew extends Component {
     static defaultProps = {
         headerText: '',
         currentLocation: '/',
@@ -43,6 +43,7 @@ export default class HeaderNew extends Component {
                     tabset={tabset}
                     className={classNames(styles.tabsContainer, classTabsContainer)}
                 />
+                <FloatBalance portalName={this.context.portalName}/>
                 <HeaderProfileInfo
                     currentLocation={currentLocation}
                     personInfo={personInfo}
@@ -53,3 +54,8 @@ export default class HeaderNew extends Component {
         );
     }
 }
+HeaderNew.contextTypes = {
+    portalName: PropTypes.string
+};
+
+export default HeaderNew
