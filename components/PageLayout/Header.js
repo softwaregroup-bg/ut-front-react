@@ -19,18 +19,18 @@ class Header extends React.Component {
             permissions: PropTypes.array
         })),
         buttonsRaw: PropTypes.node
-    }
+    };
 
     static defaultProps = {
         buttonsRaw: [],
         buttons: [],
         location: undefined,
         breadcrumbsRemoveSlashes: 1
-    }
+    };
 
     static contextTypes = {
         checkPermission: PropTypes.func
-    }
+    };
 
     render() {
         const { text, buttons, buttonsRaw, classes } = this.props;

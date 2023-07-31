@@ -242,14 +242,14 @@ class DateTimePicker extends Component {
                         </div>
                         {timeType === 'timePicker'
                             ? <TimePicker
-                                onChange={(time) => this.setTime(time)}
-                                cancelLabel={cancelLabel}
-                                okLabel={okLabel}
-                                initialTime={this.state.date}
-                                value={this.state.date}
-                                mode={mode}
-                                onAccept={this.handleAccept('time')}
-                                variant='dialog'
+                                    onChange={(time) => this.setTime(time)}
+                                    cancelLabel={cancelLabel}
+                                    okLabel={okLabel}
+                                    initialTime={this.state.date}
+                                    value={this.state.date}
+                                    mode={mode}
+                                    onAccept={this.handleAccept('time')}
+                                    variant='dialog'
                             />
                             : timeType === 'timeDropdown'
                                 ? <div className={style.ddframe}>

@@ -61,7 +61,7 @@ export class Dropdown extends Component {
         ),
         isValid: PropTypes.bool,
         errorMessage: PropTypes.string
-    }
+    };
 
     static defaultProps = {
         label: undefined,
@@ -74,7 +74,7 @@ export class Dropdown extends Component {
         onSelect: () => {},
         isValid: true,
         errorMessage: ''
-    }
+    };
 
     componentWillReceiveProps({defaultSelected, data, isValid, errorMessage}) {
         // when item is saved defaultSelected should be restored to placeholder
@@ -92,7 +92,7 @@ export class Dropdown extends Component {
         }
 
         if (this.state.valid.isValid !== isValid) {
-            this.setState({valid: {isValid: isValid, errorMessage: errorMessage}});
+            this.setState({valid: {isValid, errorMessage}});
         }
     }
 
@@ -107,9 +107,9 @@ export class Dropdown extends Component {
 
     handleChange(event, value) {
         const { onSelect, keyProp } = this.props;
-        const objectToPassOnChange = {key: keyProp, value: value, initValue: this.state.value};
+        const objectToPassOnChange = {key: keyProp, value, initValue: this.state.value};
 
-        this.setState({value: value, valid: {isValid: true, errorMessage: ''}});
+        this.setState({value, valid: {isValid: true, errorMessage: ''}});
         onSelect(objectToPassOnChange);
         this.handleClose(event);
     }

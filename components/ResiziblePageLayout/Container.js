@@ -78,7 +78,7 @@ class Container extends Component {
             const resizeObject = {
                 domId: el.domId,
                 type: el.type,
-                currentWidth: currentWidth,
+                currentWidth,
                 minWidth: currentMinWidth,
                 collapsedWidth: currentCollapsedWidth,
                 isCollapsed: currentWidth <= currentMinWidth,

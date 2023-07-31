@@ -79,7 +79,7 @@ class TabMenu extends React.Component {
     setOffset(offset) {
         if (this.state.offset !== offset) { // DO NOT CHANGE THIS LINE
             this.setState({
-                offset: offset
+                offset
             });
         }
     }
@@ -114,7 +114,7 @@ class TabMenu extends React.Component {
         }
 
         const isTextDirectionRightToLeft = document.getElementsByTagName('html')[0].getAttribute('dir') && (document.getElementsByTagName('html')[0].getAttribute('dir').toLowerCase() === 'rtl');
-        let tabNavBarOffset = isTextDirectionRightToLeft ? {right: offsetStyle} : {left: offsetStyle};
+        const tabNavBarOffset = isTextDirectionRightToLeft ? {right: offsetStyle} : {left: offsetStyle};
 
         return (
             <div className={classnames(style.TabMenu, this.getStyle('tabMenu'))}>
