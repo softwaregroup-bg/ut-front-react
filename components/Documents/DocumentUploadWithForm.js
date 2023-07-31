@@ -68,8 +68,8 @@ class DocumentUploadWithForm extends Component {
 
     handleValidation(fileType, description) {
         const result = validateAll(immutable.fromJS({
-            fileType: fileType,
-            description: description
+            fileType,
+            description
         }), [getDocumentTypeValidators(), getDocumentDescriptionValidators()]);
         const errors = {};
         if (result.errors && result.errors.length > 0) {
@@ -79,7 +79,7 @@ class DocumentUploadWithForm extends Component {
         }
         this.setState({
             isValidForm: result.isValid,
-            errors: errors
+            errors
         });
     };
 
@@ -244,12 +244,12 @@ class DocumentUploadWithForm extends Component {
                 documentTypeId: type.key,
                 documentType: type.name,
                 statusId: 'new',
-                description: description,
-                documentNumber: documentNumber,
-                issueDate: issueDate,
-                issuedBy: issuedBy,
-                expirationDate: expirationDate,
-                countryId: countryId,
+                description,
+                documentNumber,
+                issueDate,
+                issuedBy,
+                expirationDate,
+                countryId,
                 ...uploadedFile
             });
         } else if (this.props.type === 'replace') {

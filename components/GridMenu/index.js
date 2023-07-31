@@ -32,18 +32,18 @@ export default class GlobalMenu extends Component {
         onRefresh: PropTypes.func,
         toggleColumnVisibility: PropTypes.func,
         transformCellValue: PropTypes.func
-    }
+    };
 
     static defaultProps = {
         externalStyle: {},
         handleCheckboxSelect: (currentValue) => {},
         toggleColumnVisibility: (field) => ({}),
         transformCellValue: (value, field, data, isHeader) => (value)
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.fields.filter(f => (f.visible)).length > this.props.fields.filter(f => (f.visible)).length) {

@@ -47,6 +47,16 @@
   align-items: center;
 }
 
+.floatBalance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #000000;
+  position: relative;
+  left: 680px;
+
+}
+
 .profileContainer {
   position: relative;
   display: flex;

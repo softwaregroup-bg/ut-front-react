@@ -6,7 +6,7 @@ import style from '../style.css';
 class Password extends React.Component {
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getStyle(name) {
         return (this.context.implementationStyle && this.context.implementationStyle[name]) || style[name];

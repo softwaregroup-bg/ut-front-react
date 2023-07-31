@@ -8,7 +8,7 @@ class MultipleDialogsWrapper extends React.Component {
     render() {
         const copiedObj = Object.assign({}, actionButtonWIthMultimpleDialogs);
         const identifier = copiedObj.dialogs[0].identifier;
-        const objectToPass = {identifier: identifier, message: 'test message'};
+        const objectToPass = {identifier, message: 'test message'};
         copiedObj.onClick = () => { this.gridToolBox.openRefDialogWithMessage(objectToPass); };
         return <div>
             <GridToolBox

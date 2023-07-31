@@ -5,8 +5,9 @@ import HeaderLogo from './HeaderLogo';
 import TabsContainer from './TabsContainer';
 import HeaderProfileInfo from './HeaderProfileInfo';
 import styles from './styles.css';
+import FloatBalance from './FloatBalance';
 
-export default class HeaderNew extends Component {
+class HeaderNew extends Component {
     static defaultProps = {
         headerText: '',
         currentLocation: '/',
@@ -16,7 +17,7 @@ export default class HeaderNew extends Component {
             classTabsContainer: '',
             classProfileInfoContainer: ''
         }
-    }
+    };
 
     static propTypes = {
         tabset: PropTypes.array,
@@ -26,7 +27,7 @@ export default class HeaderNew extends Component {
         currentLocation: PropTypes.string,
         replaceWithBrakes: PropTypes.bool,
         classes: PropTypes.object
-    }
+    };
 
     render() {
         const { tabset, personInfo, logout, currentLocation, headerText, replaceWithBrakes } = this.props;
@@ -43,6 +44,7 @@ export default class HeaderNew extends Component {
                     tabset={tabset}
                     className={classNames(styles.tabsContainer, classTabsContainer)}
                 />
+                <FloatBalance portalName={this.context.portalName}/>
                 <HeaderProfileInfo
                     currentLocation={currentLocation}
                     personInfo={personInfo}
@@ -53,3 +55,8 @@ export default class HeaderNew extends Component {
         );
     }
 }
+HeaderNew.contextTypes = {
+    portalName: PropTypes.string
+};
+
+export default HeaderNew;

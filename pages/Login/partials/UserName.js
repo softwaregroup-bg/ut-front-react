@@ -6,11 +6,11 @@ import style from '../style.css';
 class Username extends React.Component {
     static propTypes = {
         value: PropTypes.string
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getInitialState() {
         return {};

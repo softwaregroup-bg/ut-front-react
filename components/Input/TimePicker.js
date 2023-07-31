@@ -47,7 +47,7 @@ class TimePicker extends Component {
 
     handleChange(value) {
         const { keyProp, onChange } = this.props;
-        const objectToPassOnChange = {key: keyProp, value: value, prevValue: this.state.value};
+        const objectToPassOnChange = {key: keyProp, value, prevValue: this.state.value};
         onChange(objectToPassOnChange);
     }
 
