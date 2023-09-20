@@ -286,7 +286,7 @@ export default class DocumentUpload extends Component {
         return getViewport(fileDimensions, scaleDimensions);
     }
 
-    uploadFile = async (file, uploadURL = '/file-upload') => {
+    uploadFile = async(file, uploadURL = '/file-upload') => {
         const {
             fileUse,
             uploadDocument
