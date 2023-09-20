@@ -102,7 +102,7 @@ class DateTimePicker extends Component {
                     }
                 }
             } else if (ref === 'time' && timeType === 'timeDropdown') {
-                const timeSet = function () {
+                const timeSet = function() {
                     let time;
                     if (newDate.value.indexOf('am') > -1 || newDate.value.indexOf('pm') > -1) {
                         const newTime = newDate ? newDate.value.split(' ') : [];

@@ -40,7 +40,7 @@ export default class DocumentUpload extends Component {
 
         this.onUploadFile = this.onUploadFile.bind(this);
 
-        this.onUseFile = this.onUseFile.bind(this);
+        this.onfileUse = this.onfileUse.bind(this);
 
         this.getFileDimensions = this.getFileDimensions.bind(this);
 
@@ -120,7 +120,7 @@ export default class DocumentUpload extends Component {
         });
     }
 
-    onUseFile() {
+    onfileUse() {
         const { screenshot, hasCropped } = this.state;
 
         // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
@@ -254,7 +254,7 @@ export default class DocumentUpload extends Component {
         }
 
         if (mode === 'preview') {
-            const handler = this.props.isAdditionalContentValid ? this.onUseFile : this.props.additionalContentValidate;
+            const handler = this.props.isAdditionalContentValid ? this.onfileUse : this.props.additionalContentValidate;
             !this.validate && actionButtons.unshift({
                 name: 'use',
                 label: 'Use',
@@ -286,9 +286,9 @@ export default class DocumentUpload extends Component {
         return getViewport(fileDimensions, scaleDimensions);
     }
 
-    uploadFile = async(file, uploadURL = '/file-upload') => {
+    uploadFile = async (file, uploadURL = '/file-upload') => {
         const {
-            useFile,
+            fileUse,
             uploadDocument
         } = this.props;
         const data = new window.FormData();
@@ -308,7 +308,7 @@ export default class DocumentUpload extends Component {
             const reader = new window.FileReader();
             reader.onload = (data) => {
                 try {
-                    useFile({
+                    fileUse({
                         filename: attachmentResult.result.filename,
                         createdDate: new Date().toISOString(),
                         extension: ext,
@@ -339,7 +339,7 @@ export default class DocumentUpload extends Component {
             ia[i] = byteString.charCodeAt(i);
         }
 
-        return new window.Blob([ia], {type: mimeString});
+        return new window.Blob([ia], { type: mimeString });
     }
 
     setError(errMsg) {
@@ -370,7 +370,7 @@ export default class DocumentUpload extends Component {
                 isOpen={isOpen}
                 header={header}
                 contentClassName={styles[mode + 'Container']}
-                footer={{actionButtons: this.actionButtons}}
+                footer={{ actionButtons: this.actionButtons }}
                 closePopup={closePopup}
             >
                 <div>
@@ -386,11 +386,11 @@ export default class DocumentUpload extends Component {
 
 DocumentUpload.defaultProps = {
     uploadDocument: () => ({}),
-    useFile: () => ({}),
+    fileUse: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
     maxFileSize: 5 * 1024, // default maximum size 5MB
     hideCrop: false,
-    additionalContentValidate: () => {},
+    additionalContentValidate: () => { },
     isAdditionalContentValid: true
 };
 
@@ -404,7 +404,7 @@ DocumentUpload.propTypes = {
         height: PropTypes.number
     }),
     uploadDocument: PropTypes.func,
-    useFile: PropTypes.func,
+    fileUse: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
     maxFileSize: PropTypes.number, // file size in kb

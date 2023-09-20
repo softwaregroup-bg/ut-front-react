@@ -8,8 +8,8 @@ const {MuiThemeProvider, createMuiTheme, createTheme = createMuiTheme} = muiStyl
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#f68932',
-        },
+            main: '#f68932'
+        }
     },
     overrides: {
         MuiCssBaseline: {
