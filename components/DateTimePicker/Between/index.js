@@ -79,6 +79,7 @@ class DateTimePickerBetween extends Component {
             transformTime,
             innerWrapperClassName,
             timeType,
+            dateTimeCombined,
             timeDropDownData
         } = this.props;
         const layoutClassName = withVerticalClass ? style.verticalAlign : style.horizontalAlign;
@@ -101,6 +102,7 @@ class DateTimePickerBetween extends Component {
                     onChange={({value}) => { this.handleChange('from', value); }}
                     boldLabel={boldLabel}
                     maxDate={maxDate}
+                    dateTimeCombined={dateTimeCombined}
                 />
                 <DateTimePicker
                     defaultValue={defaultValue.to}
@@ -119,6 +121,7 @@ class DateTimePickerBetween extends Component {
                     onChange={({value}) => { this.handleChange('to', value); }}
                     boldLabel={boldLabel}
                     maxDate={maxDate}
+                    dateTimeCombined={dateTimeCombined}
                 />
             </div>
         );
@@ -146,7 +149,8 @@ DateTimePickerBetween.propTypes = {
     transformTime: PropTypes.func,
     innerWrapperClassName: PropTypes.string,
     timeType: PropTypes.string,
-    timeDropDownData: PropTypes.array
+    timeDropDownData: PropTypes.array,
+    dateTimeCombined: PropTypes.bool
 };
 
 export default DateTimePickerBetween;
