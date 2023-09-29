@@ -210,7 +210,7 @@ class DateTimePicker extends Component {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <IconButton>
+                                        <IconButton color='primary'>
                                             <Today />
                                         </IconButton>
                                     </InputAdornment>
