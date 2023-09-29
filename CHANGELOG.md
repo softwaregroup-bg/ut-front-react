@@ -1,3 +1,12 @@
+# [13.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.5...v13.4.0) (2023-09-29)
+
+
+### Features
+
+* add option to change color in DatePicker BDC-2427 ([#679](https://github.com/softwaregroup-bg/ut-front-react/issues/679)) ([bbd8c70](https://github.com/softwaregroup-bg/ut-front-react/commit/bbd8c70e80b80a0ee31e566002c90ea3505a48b9))
+
+
+
 ## [13.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.4...v13.3.5) (2023-08-01)
 
 
