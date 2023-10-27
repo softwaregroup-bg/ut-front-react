@@ -1,3 +1,12 @@
+## [13.4.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.0...v13.4.1) (2023-10-27)
+
+
+### Bug Fixes
+
+* **MSA-4186:** additional validation ([#680](https://github.com/softwaregroup-bg/ut-front-react/issues/680)) ([1616f59](https://github.com/softwaregroup-bg/ut-front-react/commit/1616f5995eb0a5db7c8addf005dab3b259751a4c))
+
+
+
 # [13.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.5...v13.4.0) (2023-09-29)
 
 
