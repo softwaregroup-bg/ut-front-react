@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -15,6 +16,7 @@ import DateTimePickerBetween from '../DateTimePicker/Between';
 import ByCustomSearch from '../Filters/ByCustomSearch';
 import Dropdown from '../Input/Dropdown';
 import Input from '../Input/TextField';
+import IframeInput from '../Iframe';
 import StandardDialog from '../Popup';
 import SearchBox from '../SearchBox';
 import Button from '../StandardButton';
@@ -51,7 +53,7 @@ class GridToolBox extends Component {
 
     componentWillReceiveProps({ selected, checked, filterElements }) {
         const showFilters = (selected.size === 0 && checked.size === 0);
-        this.setState({showFilters});
+        this.setState({ showFilters });
 
         this.checkActiveFilters(filterElements);
     }
@@ -88,7 +90,7 @@ class GridToolBox extends Component {
             foundActiveFilter = foundActiveFilter || hasValue;
         });
 
-        this.setState({hasActiveFilters: foundActiveFilter});
+        this.setState({ hasActiveFilters: foundActiveFilter });
     }
 
     hasSelectedOrChecked() {
@@ -103,7 +105,7 @@ class GridToolBox extends Component {
 
         const onChange = (key, value) => {
             filters[key] = value;
-            this.setState({filters});
+            this.setState({ filters });
         };
 
         let filterValue;
@@ -124,7 +126,7 @@ class GridToolBox extends Component {
         }
 
         if (showFiltersPopup && !renderInDialog) {
-        // dont change values in the background when advanced is open
+            // dont change values in the background when advanced is open
             filterValue = filterElement.defaultValue;
         }
 
@@ -141,7 +143,7 @@ class GridToolBox extends Component {
         }
 
         function onChangeCustomSearch(value) {
-            onChange(filterElement.type, {field: filterElement.field, value});
+            onChange(filterElement.type, { field: filterElement.field, value });
         }
 
         function onChangeBetween(obj) {
@@ -183,6 +185,21 @@ class GridToolBox extends Component {
                             onChange={onChangeHandler}
                         />
                     </div>);
+            case filterElementTypes.iframeInput:
+                return (
+                    <IframeInput
+                        onSearch={this.handleSearchIframe}
+                        placeholder={filterElement.placeholder}
+                        iframeId={renderInDialog ? `${filterElement.iframeId}-dialog` : filterElement.iframeId}
+                        defaultValue={filterValue}
+                        authorization={this.props.authorization}
+                        clearOnSearch={filterElement.clearOnSearch}
+                        label={label}
+                        boldLabel={renderInDialog}
+                        input={true}
+                        closeDialog={renderInDialog ? this.toggleAdvancedSearch : () => { }}
+                    />
+                );
             case filterElementTypes.datePicker:
                 return (<div>
                     <DatePicker
@@ -273,9 +290,10 @@ class GridToolBox extends Component {
     }
 
     toggleAdvancedSearch() {
-        const {showFiltersPopup} = this.state;
+        const { showFiltersPopup } = this.state;
 
         let defaultValues = {};
+        this.clearIframeInput();
 
         if (!showFiltersPopup) {
             // get applied filters when opening advanced search;
@@ -399,29 +417,36 @@ class GridToolBox extends Component {
         }
 
         const apply = () => {
-            this.applyFilters();
-            this.toggleAdvancedSearch();
+            this.applyFilters('dialog');
+            const iframe = this.props.filterElements.find((filter) => filter?.type === 'iframeInput');
+            if (!iframe) {
+                this.toggleAdvancedSearch();
+            }
         };
 
         const actionButtons = [
-            {label: 'Apply Search', onClick: apply, styleType: 'primaryDialog'},
-            {label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog'}
+            { label: 'Apply Search', onClick: apply, styleType: 'primaryDialog' },
+            { label: 'Cancel', onClick: this.toggleAdvancedSearch, styleType: 'secondaryDialog' }
         ];
 
         return <StandardDialog
             closePopup={this.toggleAdvancedSearch}
-            header={{text: 'Advanced Search'}}
+            header={{ text: 'Advanced Search' }}
             isOpen={this.state.showFiltersPopup}
-            footer={{actionButtons}}
+            footer={{ actionButtons }}
         >
-            {this.props.filterElements.map((el, i) => {
-                const filter = this.renderFilter(el, true);
-                return filter && (
-                    <div key={i} className={classnames(style.advancedSearchInputWrapper, this.props.stylesPopup)}>
-                        {filter}
-                    </div>
-                );
-            })}
+            <div onKeyUp={this.onPressEnter}>
+                <div className={ style.wrapFilters} tabIndex={-1}>
+                    {this.props.filterElements.map((el, i) => {
+                        const filter = this.renderFilter(el, true);
+                        return filter && (
+                            <div key={i} className={classnames(style.advancedSearchInputWrapper, this.props.stylesPopup)} >
+                                {filter}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
         </StandardDialog>;
     }
 
@@ -433,7 +458,7 @@ class GridToolBox extends Component {
             const advancedDialog = this.renderAdvancedSearchDialog();
 
             return (
-                <div className={classnames(style.toolbarElement, style.tableCell)}>
+                <div className={classnames(style.toolbarElement, style.tableCell)} >
                     {advancedSearchBtn}
                     {advancedDialog}
                 </div>
@@ -443,11 +468,10 @@ class GridToolBox extends Component {
 
     renderFilters() {
         const { filterElements, filterActionElements } = this.props;
-
         const hasSelectedOrChecked = this.hasSelectedOrChecked();
 
         const labelClass = hasSelectedOrChecked ? style.link : '';
-        const toggle = () => hasSelectedOrChecked && this.setState({showFilters: false});
+        const toggle = () => hasSelectedOrChecked && this.setState({ showFilters: false });
         let filtersNumber = 0;
         let leftSide;
         if (filterElements.length === 1 && filterElements[0].type === filterElementTypes.searchBox) {
@@ -465,15 +489,15 @@ class GridToolBox extends Component {
                 <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
                     {leftSide}
                 </div>
-                <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
+                <div className={classnames(style.pullRight, style.tableCell)} onKeyUp={this.onPressEnter}>
+                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight, style.wrapFilters)} tabIndex={-1} >
                         {filterElements.map((el, i) => {
                             const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                             filtersNumber += incrementNum;
                             if (filtersNumber <= this.props.maxVisibleInputs) {
                                 const filter = this.renderFilter(el);
                                 return filter && (
-                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell)} style={el.styles}>
+                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell, el.type === 'iframeInput' && style.iframeWrap)} style={el.styles}>
                                         <div className={style.minWidthed}>
                                             {filter}
                                         </div>
@@ -488,7 +512,7 @@ class GridToolBox extends Component {
                             </div>}
                         {this.state.hasActiveFilters &&
                             <div className={classnames(style.toolbarElement, style.tableCell)}>
-                                <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({filters: {}}); this.props.clearFilters(); }} className={style.closeArrow} />
+                                <div title='Clear Filters' key='clearFilters' onClick={() => { this.setState({ filters: {} }); this.props.clearFilters(); this.clearIframeInput(); }} className={style.closeArrow} />
                             </div>}
                     </div>
                 </div>
@@ -497,12 +521,40 @@ class GridToolBox extends Component {
         );
     }
 
-    applyFilters() {
+    onPressEnter = (event) => {
+        if (event.keyCode === 13) {
+            this.applyFilters();
+        }
+    };
+
+    handleSearchIframe = (value) => {
+        const iframe = this.props.filterElements.find((filter) => filter?.type === 'iframeInput');
+        const filterIframe = { [iframe.name]: value || 0 };
+
+        const result = this.prepareFilters(filterIframe);
+
+        this.props.batchChange(result);
+        this.setState({ filters: {} });
+    };
+
+    clearIframeInput = () => {
+        const iframeData = this.props.filterElements.find((filter) => filter?.type === 'iframeInput');
+        const iframeId = iframeData.iframeId;
+        if (iframeData) {
+            const iframe = document.getElementById(iframeId);
+            const innerDoc = (iframe.contentDocument)
+                ? iframe.contentDocument
+                : iframe.contentWindow.document;
+            innerDoc.getElementById('cardNum').value = '';
+        }
+    };
+
+    prepareFilters = (filterIframe) => {
         let filtersOverride;
         if (this.props.filtersOverride) {
             filtersOverride = this.props.filtersOverride(this.state.filters);
         }
-        const result = {};
+        let result = {};
         Object.entries(this.state.filters).forEach(([key, value]) => {
             if (value === dropDrownAllOptionKey || value === dropDrownPlaceholderOptionKey) {
                 result[key] = '';
@@ -527,13 +579,30 @@ class GridToolBox extends Component {
             }
         });
         // Set date to UTC
-        if (this.props.filterElements.find(el => el.utcTransform)) {
+        if (result.endDate && result.startDate && this.props.filterElements.find(el => el.utcTransform)) {
             result.endDate = new Date(result.endDate.getTime() + result.endDate.getTimezoneOffset() * 60 * 1000);
             result.startDate = new Date(result.startDate.getTime() + result.startDate.getTimezoneOffset() * 60 * 1000);
         }
 
+        if (filterIframe) {
+            result = { ...result, ...filterIframe };
+        }
+
+        return result;
+    };
+
+    applyFilters(location) {
+        const iframe = this.props.filterElements.find((filter) => filter?.type === 'iframeInput');
+        if (iframe) {
+            const iframeId = location === 'dialog' ? `${iframe.iframeId}-dialog` : iframe.iframeId;
+            const ifr = document.getElementById(iframeId).contentWindow;
+            ifr.postMessage({ type: 'encrypt' }, '*');
+            return;
+        }
+        const result = this.prepareFilters();
+
         this.props.batchChange(result);
-        this.setState({filters: {}});
+        this.setState({ filters: {} });
     }
 
     renderActionButton(actionButtonElement, index) {
@@ -702,12 +771,12 @@ class GridToolBox extends Component {
             status = selected.getIn(selectProperty) || selected.get(property);
         }
 
-        return {canDoAction, status: !status};
+        return { canDoAction, status: !status };
     }
 
     renderActionButtons() {
         const { showActionButtonsOnSelect } = this.props;
-        const toggle = () => this.setState({showFilters: true});
+        const toggle = () => this.setState({ showFilters: true });
 
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
@@ -864,7 +933,8 @@ GridToolBox.propTypes = {
     filtersOverride: PropTypes.func,
     // Optional
     stylesPopup: PropTypes.object,
-    customStyles: PropTypes.object
+    customStyles: PropTypes.object,
+    authorization: PropTypes.string
 };
 
 GridToolBox.defaultProps = {
@@ -872,16 +942,23 @@ GridToolBox.defaultProps = {
     maxVisibleInputs: 4,
     showAdvanced: false,
     filterAutoFetch: true,
-    clearFilters: () => {},
-    batchChange: () => {},
+    clearFilters: () => { },
+    batchChange: () => { },
     selected: Immutable.Map({}),
     checked: Immutable.List(),
     showActionButtonsOnSelect: false
 };
 
-export default withStyles(({palette}) => ({
+export default connect(
+    (state, ownProps) => {
+        return {
+            authorization: [state.login.getIn(['result', 'token_type']), state.login.getIn(['result', 'access_token'])].join(' ')
+        };
+    },
+    {}
+)(withStyles(({ palette }) => ({
     paper: {
         borderBottom: `1px solid ${palette.divider}`,
         background: palette.background.paper
     }
-}))(GridToolBox);
+}))(GridToolBox));

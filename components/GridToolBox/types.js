@@ -5,6 +5,7 @@ export const filterElementTypes = {
     datePickerBetween: 'datePickerBetween',
     dateTimePickerBetween: 'dateTimePickerBetween',
     customSearch: 'customSearch',
+    iframeInput: 'iframeInput',
     clear: 'clear',
     searchBtn: 'searchBtn'
 };
