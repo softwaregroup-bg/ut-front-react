@@ -1,3 +1,12 @@
+## [13.4.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.1...v13.4.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* card number filter, add enter key press event PS-282 ([#681](https://github.com/softwaregroup-bg/ut-front-react/issues/681)) ([93e0717](https://github.com/softwaregroup-bg/ut-front-react/commit/93e07173437e8e4c981a37a7d4307685535e949f))
+
+
+
 ## [13.4.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.0...v13.4.1) (2023-10-27)
 
 
