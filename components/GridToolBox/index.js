@@ -251,6 +251,7 @@ class GridToolBox extends Component {
                         boldLabel={renderInDialog}
                         maxDate={filterElement.maxDate}
                         dateTimeCombined={filterElement.dateTimeCombined}
+                        innerWrapperClassName={filterElement.innerWrapperClassName}
                     />
                 </div>);
             case filterElementTypes.customSearch:
