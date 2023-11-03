@@ -490,22 +490,26 @@ class GridToolBox extends Component {
                 <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
                     {leftSide}
                 </div>
-                <div className={classnames(style.pullRight, style.tableCell)} onKeyUp={this.onPressEnter}>
-                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight, style.wrapFilters)} tabIndex={-1} >
-                        {filterElements.map((el, i) => {
-                            const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
-                            filtersNumber += incrementNum;
-                            if (filtersNumber <= this.props.maxVisibleInputs) {
-                                const filter = this.renderFilter(el);
-                                return filter && (
-                                    <div key={i} className={classnames(style.toolbarElement, style.tableCell, el.type === 'iframeInput' && style.iframeWrap)} style={el.styles}>
-                                        <div className={style.minWidthed}>
-                                            {filter}
-                                        </div>
-                                    </div>
-                                );
-                            }
-                        })}
+                <div className={classnames(style.pullRight, style.tableCell)} >
+                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
+                        <div onKeyUp={this.onPressEnter} className={style.toolbarElement}>
+                            <div tabIndex={-1} className={style.wrapFilters}>
+                                {filterElements.map((el, i) => {
+                                    const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
+                                    filtersNumber += incrementNum;
+                                    if (filtersNumber <= this.props.maxVisibleInputs) {
+                                        const filter = this.renderFilter(el);
+                                        return filter && (
+                                            <div key={i} className={classnames(style.toolbarElement, style.tableCell, el.type === 'iframeInput' && style.iframeWrap)} style={el.styles}>
+                                                <div className={style.minWidthed}>
+                                                    {filter}
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                })}
+                            </div>
+                        </div>
                         {this.renderAdvanced()}
                         {showSearchBtn &&
                             <div key='searchBtn' className={classnames(style.toolbarElement, style.tableCell)}>
@@ -524,7 +528,11 @@ class GridToolBox extends Component {
 
     onPressEnter = (event) => {
         if (event.keyCode === 13) {
-            this.applyFilters();
+            const searchBtn = this.props.filterElements.find((filter) => filter?.type === 'searchBtn');
+            const { showFiltersPopup } = this.state;
+            if (searchBtn || showFiltersPopup) {
+                this.applyFilters();
+            }
         }
     };
 
@@ -540,7 +548,7 @@ class GridToolBox extends Component {
 
     clearIframeInput = () => {
         const iframeData = this.props.filterElements.find((filter) => filter?.type === 'iframeInput');
-        const iframeId = iframeData.iframeId;
+        const iframeId = iframeData?.iframeId;
         if (iframeData) {
             const iframe = document.getElementById(iframeId);
             const innerDoc = (iframe.contentDocument)
@@ -604,6 +612,9 @@ class GridToolBox extends Component {
 
         this.props.batchChange(result);
         this.setState({ filters: {} });
+        if (this.state.showFiltersPopup) {
+            this.toggleAdvancedSearch();
+        }
     }
 
     renderActionButton(actionButtonElement, index) {
