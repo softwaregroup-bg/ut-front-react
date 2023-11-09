@@ -1,3 +1,12 @@
+## [13.4.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.4...v13.4.5) (2023-11-09)
+
+
+### Bug Fixes
+
+* refs with connect PS-283 ([#684](https://github.com/softwaregroup-bg/ut-front-react/issues/684)) ([cd511ba](https://github.com/softwaregroup-bg/ut-front-react/commit/cd511ba92d5a14b8eafee236088f60b286545aff))
+
+
+
 ## [13.4.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.3...v13.4.4) (2023-11-03)
 
 
