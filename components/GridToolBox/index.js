@@ -967,7 +967,9 @@ export default connect(
             authorization: [state.login.getIn(['result', 'token_type']), state.login.getIn(['result', 'access_token'])].join(' ')
         };
     },
-    {}
+    null,
+    null,
+    {forwardRef: true}
 )(withStyles(({ palette }) => ({
     paper: {
         borderBottom: `1px solid ${palette.divider}`,
