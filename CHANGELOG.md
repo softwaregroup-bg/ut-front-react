@@ -1,3 +1,12 @@
+## [13.4.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.5...v13.4.6) (2024-01-29)
+
+
+### Bug Fixes
+
+* introduce route permissions ([38b2bc5](https://github.com/softwaregroup-bg/ut-front-react/commit/38b2bc5eb7ca79663187cd10938bbb83b9349265))
+
+
+
 ## [13.4.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.4...v13.4.5) (2023-11-09)
 
 
