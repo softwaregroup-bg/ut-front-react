@@ -1,15 +1,44 @@
 import map from 'lodash.map';
+import { matchPath } from 'react-router';
+
 const routes = {};
 
 export const registerRoute = (name) => {
     routes[name] = {
         r: {
             up: () => { return routes[routes[name].parent].r; },
-            path: (path) => { routes[name].path = path; return routes[name].r; },
-            parent: (parent) => { routes[name].parent = parent; return routes[name].r; }
+            path: (path) => {
+                routes[name].path = path;
+                routes[name].fullPath = path.startsWith('/') ? path : `/${path}`;
+                return routes[name].r;
+            },
+            parent: (parent) => {
+                routes[name].parent = parent;
+                routes[name].fullPath = routes[parent].fullPath + routes[name].fullPath;
+                return routes[name].r;
+            },
+            permission: (permission) => { routes[name].permission = permission; return routes[name].r; }
         }
     };
     return routes[name].r;
+};
+
+export const getRouteByPath = (pathInput) => {
+    let found = null;
+    for (const key of Object.keys(routes)) {
+        const route = routes[key];
+        const { fullPath } = route;
+        const match = matchPath(pathInput, {
+            path: fullPath,
+            exact: true,
+            strict: true
+        });
+        if (match) {
+            found = route;
+            break;
+        }
+    }
+    return found;
 };
 
 export const getRoute = (name) => {
