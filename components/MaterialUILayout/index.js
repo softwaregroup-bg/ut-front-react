@@ -7,7 +7,9 @@ const {MuiThemeProvider, createMuiTheme, createTheme = createMuiTheme} = muiStyl
 
 const theme = createTheme({
     palette: {
-        type: 'light'
+        primary: {
+            main: '#f68932'
+        }
     },
     overrides: {
         MuiCssBaseline: {
@@ -20,7 +22,7 @@ const theme = createTheme({
     }
 });
 
-const MaterialUILayout = ({children}) => (
+const MaterialUILayout = ({ children }) => (
     <DateUtils>
         <MuiThemeProvider theme={theme}>
             {children}
