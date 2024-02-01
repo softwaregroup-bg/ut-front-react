@@ -50,7 +50,7 @@ export default function ui({utMethod, config = {}}) {
         const container = <Provider store={this.store}>
             <App>
                 <Wrapper>
-                    <MaterialUILayout>
+                    <MaterialUILayout utMethod={utMethod}>
                         <CssBaseline />
                         <Router history={this.history}>
                             <Switch>

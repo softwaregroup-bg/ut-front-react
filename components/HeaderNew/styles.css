@@ -47,15 +47,6 @@
   align-items: center;
 }
 
-.floatBalance {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #000000;
-  position: relative;
-  left: 500px; 
-}
-
 .profileContainer {
   position: relative;
   display: flex;
@@ -68,7 +59,6 @@
 .profileInfo {
   display: flex;
   justify-content: flex-end;
-  flex: 1;
 }
 
 .profileInfoContainer {
@@ -125,21 +115,50 @@ body .profileInfoPopoverMenu {
 }
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) {
+
   /* navigation container */
   .headerContainer {
     height: auto;
     justify-content: space-between;
   }
+
   /* logo */
   .headerLogoContainer {
-    display:none;
+    display: none;
   }
+
   /* widgets */
   .profileInfo {
     flex: 0;
   }
+
   .profileInfoContainer {
     margin-right: 0;
   }
 
+}
+
+.headerInfo {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px 0 5px;
+}
+
+.headerInfoItem {
+  display: flex;
+  flex-direction: column;
+  padding: 0 3px;
+}
+
+.headerInfoLabel {
+  text-align: left;
+  font-weight: bolder;
+}
+
+.headerInfoValue {
+  text-align: left;
+  font-weight: lighter;
+  font-style: italic;
 }
