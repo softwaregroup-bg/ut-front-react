@@ -6,6 +6,7 @@ styleguidist/node_modules
 .vscode/**
 docs
 package-lock.json
+yarn.lock
 .lint
 coverage
 .nyc_output
