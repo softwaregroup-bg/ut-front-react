@@ -6,6 +6,7 @@ import { validateAll } from '../../utils/validator';
 import Input from '../Input';
 import Dropdown from '../Input/Dropdown';
 import DocumentUpload from '../DocumentUpload';
+import DatePicker from '../DatePicker/Simple';
 import style from './style.css';
 
 class DocumentUploadWithForm extends Component {
@@ -15,6 +16,11 @@ class DocumentUploadWithForm extends Component {
             fileType: '',
             description: '',
             attachmentId: 0,
+            countryId: null,
+            documentNumber: '',
+            expirationDate: null,
+            issueDate: null,
+            issuedBy: null,
             isValidForm: false,
             errors: {}
         };
@@ -36,15 +42,25 @@ class DocumentUploadWithForm extends Component {
                 this.setState({
                     fileType: nextProps.editValues.documentTypeId,
                     description: nextProps.editValues.description,
+                    documentNumber: nextProps.editValues.documentNumber,
+                    expirationDate: nextProps.editValues.expirationDate,
+                    issueDate: nextProps.editValues.issueDate,
+                    issuedBy: nextProps.editValues.issuedBy,
                     isValidForm: true,
-                    attachmentId: nextProps.editValues.attachmentId
+                    attachmentId: nextProps.editValues.attachmentId,
+                    countryId: nextProps.editValues.countryId
                 });
             } else if (nextProps.type === 'add') {
                 this.setState({
                     fileType: '',
                     description: '',
+                    documentNumber: '',
+                    expirationDate: null,
+                    issueDate: null,
+                    issuedBy: null,
                     isValidForm: false,
-                    attachmentId: 0
+                    attachmentId: 0,
+                    countryId: null
                 });
             }
         }
@@ -52,8 +68,8 @@ class DocumentUploadWithForm extends Component {
 
     handleValidation(fileType, description) {
         const result = validateAll(immutable.fromJS({
-            fileType: fileType,
-            description: description
+            fileType,
+            description
         }), [getDocumentTypeValidators(), getDocumentDescriptionValidators()]);
         const errors = {};
         if (result.errors && result.errors.length > 0) {
@@ -63,7 +79,7 @@ class DocumentUploadWithForm extends Component {
         }
         this.setState({
             isValidForm: result.isValid,
-            errors: errors
+            errors
         });
     };
 
@@ -94,6 +110,87 @@ class DocumentUploadWithForm extends Component {
                 </div>
                 <div className={style.formRow}>
                     <Input
+                        label='Document Number'
+                        keyProp='documentNumber'
+                        placeholder='Document number'
+                        value={this.state.documentNumber}
+                        onChange={(obj) => {
+                            this.setState({
+                                documentNumber: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        isValid={this.state.errors.documentNumber === undefined}
+                        errorMessage={this.state.errors.documentNumber}
+                        readonly={disabledField}
+                    />
+                </div>
+                <div className={style.formRow}>
+                    <DatePicker
+                        label={'Issue Date'}
+                        defaultValue= {this.state.issueDate}
+                        onChange={(obj) => {
+                            this.setState({
+                                issueDate: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        maxDate= {new Date()}
+                        format="dd/MM/yyyy"
+                        clearable={true}
+                        disabled={disabledField}
+                        wrapperClassName={style.boldLabel}
+                        withVerticalClass={true}
+                    />
+                </div>
+                {!!this.props.countries.length && (<div className={style.formRow}>
+                    <Dropdown
+                        label='Country'
+                        data={this.props.countries}
+                        keyProp='countryId'
+                        defaultSelected={this.state.countryId}
+                        placeholder='Select Country'
+                        onSelect={(obj) => {
+                            this.setState({
+                                countryId: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        disabled={disabledField}
+                    />
+                </div>)}
+                <div className={style.formRow}>
+                    <Input
+                        label='Issued By'
+                        keyProp='issuedBy'
+                        placeholder='Issued By'
+                        value={this.state.issuedBy}
+                        onChange={(obj) => {
+                            this.setState({
+                                issuedBy: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        isValid={this.state.errors.issuedBy === undefined}
+                        errorMessage={this.state.errors.issuedBy}
+                        readonly={disabledField}
+                    />
+                </div>
+                <div className={style.formRow}>
+                    <DatePicker
+                        label={'Expiration Date'}
+                        defaultValue= {this.state.expirationDate}
+                        onChange={(obj) => {
+                            this.setState({
+                                expirationDate: obj.value
+                            }, this.handleValidation(this.state.fileType, obj.value));
+                        }}
+                        minDate= {new Date()}
+                        format="dd/MM/yyyy"
+                        clearable={true}
+                        disabled={disabledField}
+                        wrapperClassName={style.boldLabel}
+                        withVerticalClass={true}
+                    />
+                </div>
+                <div className={style.formRow}>
+                    <Input
                         label='Description'
                         keyProp='description'
                         placeholder='Description of the document'
@@ -116,7 +213,12 @@ class DocumentUploadWithForm extends Component {
         this.setState({
             fileType: '',
             description: '',
-            isValidForm: false
+            documentNumber: '',
+            expirationDate: null,
+            issueDate: null,
+            issuedBy: null,
+            isValidForm: false,
+            countryId: null
         });
         this.props.closePopup();
     };
@@ -130,13 +232,24 @@ class DocumentUploadWithForm extends Component {
             }
         }
         const description = this.state.description;
+        const documentNumber = this.state.documentNumber;
+        const expirationDate = this.state.expirationDate;
+        const issueDate = this.state.issueDate;
+        const issuedBy = this.state.issuedBy;
+        const countryId = this.state.countryId;
+
         this.closeHandler();
         if (this.props.type === 'add') {
             this.props.uploadNewDocument({
                 documentTypeId: type.key,
                 documentType: type.name,
                 statusId: 'new',
-                description: description,
+                description,
+                documentNumber,
+                issueDate,
+                issuedBy,
+                expirationDate,
+                countryId,
                 ...uploadedFile
             });
         } else if (this.props.type === 'replace') {
@@ -181,6 +294,7 @@ DocumentUploadWithForm.propTypes = {
             name: PropTypes.string
         })
     ),
+    countries: PropTypes.array,
     uploadURL: PropTypes.string,
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
@@ -190,6 +304,7 @@ DocumentUploadWithForm.propTypes = {
 
 DocumentUploadWithForm.defaultProps = {
     documentTypes: [],
+    countries: [],
     uploadNewDocument: () => {},
     replaceDocument: () => {},
     closePopup: () => {},

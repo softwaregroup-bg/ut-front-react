@@ -75,10 +75,7 @@ export function compareArrayOfObject(arr1, arr2, props) {
 }
 
 export const translate = (props) => (text, language) => {
-    if (!props.gate.getIn(['texts', text])) {
-        return text;
-    }
-    return props.gate.getIn(['texts', text]);
+    return props.gate.getIn(['texts', text]) || text;
 };
 
 export const money = (amount, currency, locale) => {
@@ -86,7 +83,7 @@ export const money = (amount, currency, locale) => {
     if (!locale) locale = 'en-UK';
     return new Intl.NumberFormat(locale, {
         style: 'currency',
-        currency: currency,
+        currency,
         minimumFractionDigits: 2
     }).format(amount);
 };

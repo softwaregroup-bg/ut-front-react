@@ -21,16 +21,20 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs } = this.props;
+        const { authenticated, shouldSubmit, routerParams: {ssoOrigin, appId}, closeAllTabs, history } = this.props;
+
+        if (nextProps.logoutRedirectUrl) {
+            window.location.href = nextProps.logoutRedirectUrl;
+        }
 
         if (nextProps.cookieChecked && nextProps.authenticated) {
             closeAllTabs();
-            this.context.router.history.push('/');
+            history.push('/');
         } else if (!authenticated && nextProps.authenticated) {
             if (ssoOrigin) {
-                this.context.router.history.push(`/sso/${appId}/${ssoOrigin}`);
+                history.push(`/sso/${appId}/${ssoOrigin}`);
             } else {
-                this.context.router.history.push(this.context.mainUrl);
+                history.push(this.context.mainUrl);
             }
         }
 
@@ -40,7 +44,7 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        const { match, cookieChecked, isLogout, authenticated, cookieCheck } = this.props;
+        const { match, cookieChecked, isLogout, authenticated, cookieCheck, history } = this.props;
 
         if (!cookieChecked && !isLogout) {
             let appId;
@@ -50,7 +54,7 @@ class LoginForm extends Component {
             cookieCheck({appId});
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
-            this.context.router.history.push('/');
+            history.push('/');
         }
 
         // if there is previously stored loginData, reset login state
@@ -110,9 +114,10 @@ class LoginForm extends Component {
 
     render() {
         const { cookieChecked, isLogout, authenticated, inputs, error, title, buttonLabel } = this.props;
+
         return (((cookieChecked && !authenticated) || isLogout) &&
             <Form
-                ref='loginForm'
+                ref={(c) => { this.loginForm = c; }}
                 className='loginForm'
                 inputs={inputs}
                 title={{className: 'loginTitle' + (error ? ' error' : ''), text: title}}
@@ -131,6 +136,7 @@ export default connect(
             loginData: login.get('loginData'),
             cookieChecked: login.get('cookieChecked'),
             isLogout: login.get('isLogout'),
+            logoutRedirectUrl: login.get('logoutRedirectUrl'),
             authenticated: login.get('authenticated'),
             inputs: login.getIn(['loginForm', 'inputs']),
             title: login.getIn(['loginForm', 'title']),
@@ -144,11 +150,13 @@ export default connect(
 )(LoginForm);
 
 LoginForm.propTypes = {
+    history: PropTypes.object,
     match: PropTypes.object,
     routerParams: PropTypes.object,
     loginData: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,
+    logoutRedirectUrl: PropTypes.string,
     authenticated: PropTypes.bool,
     inputs: PropTypes.object,
     title: PropTypes.string,

@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {fromJS, List} from 'immutable';
 import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+
 import { propTypeFields, propTypeData } from './common';
 import { Header } from './Header';
 import { Body } from './Body';
 import style from './style.css';
 import cssStandard from '../../assets/index.css';
+import { Box } from '@material-ui/core';
 
 function findField(haystack, needle) {
     return haystack.findKey((piece) => {
@@ -59,11 +62,11 @@ function reorderVerticalFields(verticalFields, verticalSpanFields) {
         });
     return {
         verticalFields: reorderFields(fromJS(verticalFields), fromJS(verticalSpanFields)).toJS(),
-        verticalSpanFields: verticalSpanFields
+        verticalSpanFields
     };
 }
 
-export class SimpleGrid extends Component {
+class SimpleGridClass extends Component {
     constructor(props) {
         super(props);
         this.handleHeaderCheckboxSelect = this.handleHeaderCheckboxSelect.bind(this);
@@ -118,13 +121,13 @@ export class SimpleGrid extends Component {
     render() {
         const newSpanFields = this.props.spanFields.map((c) => {
             const shortName = c.children.join('-').toLowerCase();
-            return {shortName: shortName, title: c.title, children: c.children};
+            return {shortName, title: c.title, children: c.children};
         });
         const iFields = this.inSpanStyleFix(this.getRawFields(), newSpanFields);
         const fields = iFields.toJS();
         const {verticalFields, verticalSpanFields} = reorderVerticalFields(this.props.verticalFields, this.props.verticalSpanFields);
         const grid = (
-            <table className={this.getStyle(this.props.mainClassName)}>
+            <Box component='table' className={classnames(this.getStyle(this.props.mainClassName), this.props.classes.table)} borderColor='divider'>
                 {!this.props.hideHeader && <Header
                     externalStyle={this.props.externalStyle}
                     transformCellValue={this.props.transformCellValue}
@@ -164,7 +167,7 @@ export class SimpleGrid extends Component {
                     verticalFieldsRenderComplete={this.props.verticalFieldsRenderComplete}
                     verticalFieldsVisible={this.props.verticalFieldsVisible}
                 />
-            </table>
+            </Box>
         );
         if (!this.props.cssStandard) {
             return grid;
@@ -178,7 +181,8 @@ export class SimpleGrid extends Component {
     }
 }
 
-SimpleGrid.propTypes = {
+SimpleGridClass.propTypes = {
+    classes: PropTypes.object,
     fields: propTypeFields,
     verticalFields: PropTypes.array,
     spanFields: PropTypes.arrayOf(PropTypes.shape({
@@ -221,7 +225,7 @@ SimpleGrid.propTypes = {
     cssStandard: PropTypes.bool
 };
 
-SimpleGrid.defaultProps = {
+SimpleGridClass.defaultProps = {
     fields: [],
     localData: [],
     verticalFields: [],
@@ -242,6 +246,21 @@ SimpleGrid.defaultProps = {
     cssStandard: false
 };
 
-SimpleGrid.contextTypes = {
+SimpleGridClass.contextTypes = {
     implementationStyle: PropTypes.object
 };
+
+export const SimpleGrid = withStyles(({palette}) => ({
+    table: {
+        border: `1px solid ${palette.divider}`,
+        '& tr': {
+            background: palette.background.paper
+        },
+        '& tr:hover, & thead tr, & tr.checked': {
+            background: palette.background.default
+        },
+        '& tr:nth-child(2n)': {
+            background: palette.background.even
+        }
+    }
+}))(SimpleGridClass);

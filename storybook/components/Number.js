@@ -20,7 +20,7 @@ class Wrap extends React.Component {
                 if (!locale) locale = 'en-UK';
                 return new Intl.NumberFormat(locale, {
                     style: 'currency',
-                    currency: currency,
+                    currency,
                     minimumFractionDigits: 2
                 }).format(amount);
             },

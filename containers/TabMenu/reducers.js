@@ -63,7 +63,7 @@ export const tabMenu = (state = {tabs: [], usedPaths: {}, active: {}}, action) =
             }
         }
         return {
-            active: active,
+            active,
             tabs: state.tabs.filter((tab) => tab.pathname !== action.pathname),
             usedPaths: {
                 ...state.usedPaths,

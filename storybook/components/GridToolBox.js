@@ -8,11 +8,11 @@ class MultipleDialogsWrapper extends React.Component {
     render() {
         const copiedObj = Object.assign({}, actionButtonWIthMultimpleDialogs);
         const identifier = copiedObj.dialogs[0].identifier;
-        const objectToPass = {identifier: identifier, message: 'test message'};
-        copiedObj.onClick = () => { this.refs.gridToolBox.openRefDialogWithMessage(objectToPass); };
+        const objectToPass = {identifier, message: 'test message'};
+        copiedObj.onClick = () => { this.gridToolBox.openRefDialogWithMessage(objectToPass); };
         return <div>
             <GridToolBox
-                ref='gridToolBox'
+                ref={(c) => { this.gridToolBox = c; }}
                 filterElements={[filterDropDown, filterSearchBox]}
                 actionButtonElements={[copiedObj]}
                 clearFilters={resetFiltersHanlder}

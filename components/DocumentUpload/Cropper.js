@@ -29,7 +29,7 @@ export default class Cropper extends Component {
 
         if (typeof window !== 'undefined') {
             const Croppie = require('croppie');
-            this.cropper = new Croppie(this.refs.previewImage, {
+            this.cropper = new Croppie(this.previewImage, {
                 customClass: styles.imageCrop,
                 viewport: {
                     width: cropDimensions.width,
@@ -51,7 +51,7 @@ export default class Cropper extends Component {
 
     render() {
         return (
-            <div ref='previewImage' />
+            <div ref={(c) => { this.previewImage = c; }} />
         );
     }
 }

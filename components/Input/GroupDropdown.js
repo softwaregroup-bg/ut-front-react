@@ -1,4 +1,5 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Popover from '@material-ui/core/Popover';
 import MenuList from '@material-ui/core/MenuList';
@@ -9,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import Text from '../Text';
 import style from './style.css';
 
-import Dropdown from './Dropdown';
+import {Dropdown} from './Dropdown';
 
 class GroupDropdown extends Dropdown {
     constructor(props) {
@@ -109,7 +110,7 @@ class GroupDropdown extends Dropdown {
 
     renderDropDown() {
         const menuItems = this.getMenuItems();
-        const { cssStyle, mergeStyles } = this.props;
+        const { cssStyle, mergeStyles, classes } = this.props;
         const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         const arrowIconDisabled = this.props.disabled ? ddstyles.arrowIconDisabled : '';
         const errorDropDownStyle = !this.state.valid.isValid ? ddstyles.error : '';
@@ -121,7 +122,7 @@ class GroupDropdown extends Dropdown {
 
         return (
             <>
-                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
+                <div className={classnames(ddstyles.dropdownWrap, errorDropDownStyle, cursorStyle, classes.border)} onClick={!this.props.disabled ? this.handleOpen : undefined}>
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.groupDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
@@ -152,4 +153,8 @@ class GroupDropdown extends Dropdown {
     }
 }
 
-export default GroupDropdown;
+export default withStyles(({palette}) => ({
+    border: {
+        borderColor: palette.divider
+    }
+}))(GroupDropdown);

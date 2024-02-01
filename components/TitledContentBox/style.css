@@ -4,7 +4,7 @@
 .titledContentWrap {
     width: 100%;
     /*min-width: 540px;*/
-    border: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
+    border: 1px solid;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -14,8 +14,7 @@
     width: 100%;
     padding: 13px 20px;
     display: block;
-    border-bottom: 1px solid var(--ut-front-react-standardTitledContentBoxBorderColor);
-    background: var(--ut-front-react-standardTitledContentBoxHeaderBackgroundColor);
+    border-bottom: 1px solid;
     overflow: hidden;
 }
 
@@ -23,7 +22,6 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
-    color: var(--ut-front-react-standardTitledContentBoxTextColor);
     float: left;
 }
 
@@ -31,7 +29,6 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
-    color: var(--ut-front-react-standardTitledContentBoxTextColor);
     text-align: center;
 }
 
@@ -41,5 +38,4 @@
 
 .contentWrap {
     padding: 0 20px;
-    background: var(--ut-front-react-standardTitledContentBoxBackgroundColor);
 }

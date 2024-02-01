@@ -3,6 +3,9 @@
 import PropTypes from 'prop-types';
 
 import React, { Component } from 'react';
+import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+
 import resizibleTypes from './resizibleTypes';
 import localStorageTypes from './localStorageTypes';
 import CollapsableContent from '../../components/CollapsableContent';
@@ -75,7 +78,7 @@ class Container extends Component {
             const resizeObject = {
                 domId: el.domId,
                 type: el.type,
-                currentWidth: currentWidth,
+                currentWidth,
                 minWidth: currentMinWidth,
                 collapsedWidth: currentCollapsedWidth,
                 isCollapsed: currentWidth <= currentMinWidth,
@@ -93,7 +96,7 @@ class Container extends Component {
     }
 
     setResizorsHeight() {
-        const tableWrap = this.refs.tableWrap;
+        const tableWrap = this.tableWrap;
         const resizorDivs = document.getElementsByClassName(style.visibleResizor);
         for (let i = 0; i < resizorDivs.length; i += 1) {
             const currentResizor = resizorDivs[i];
@@ -371,6 +374,7 @@ class Container extends Component {
 
             if (col.type === resizibleTypes.CONTENT) {
                 currentStyles.display = this.props.shouldHideContent && !isAnyAsideColCollapsed ? 'none' : 'table-cell';
+                currentStyles.minWidth = col.minWidth + 'px';
             }
 
             const handleOnMouseDownEvent = (e) => {
@@ -388,7 +392,7 @@ class Container extends Component {
                     {
                         index !== 0 &&
                         <span className={style.resizor} onMouseDown={handleOnMouseDownEvent}>
-                            <span className={style.visibleResizor} />
+                            <span className={classnames(style.visibleResizor, this.props.classes.divider)} />
                             <span className={style.resizorDots} />
                         </span>
                     }
@@ -399,7 +403,7 @@ class Container extends Component {
 
         return (
             <div style={{height: this.state.height, maxHeight: '100%'}}>
-                <div ref='tableWrap' id={style.mainContentWrap} className={this.props.externalClassName}>
+                <div ref={(c) => { this.tableWrap = c; }} id={style.mainContentWrap} className={classnames(this.props.externalClassName, this.props.classes.default)}>
                     {renderCols}
                 </div>
             </div>
@@ -408,6 +412,7 @@ class Container extends Component {
 }
 
 Container.propTypes = {
+    classes: PropTypes.object,
     cols: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.oneOf([resizibleTypes.ASIDE, resizibleTypes.CONTENT]).isRequired,
         child: PropTypes.any.isRequired,
@@ -437,4 +442,15 @@ Container.defaultProps = {
     shouldHideContent: false
 };
 
-export default Container;
+export default withStyles(({palette}) => ({
+    default: {
+        borderTop: `1px solid ${palette.divider}`,
+        background: palette.action.selected
+    },
+    divider: {
+        background: palette.divider
+    },
+    paper: {
+        background: palette.background.paper
+    }
+}))(Container);

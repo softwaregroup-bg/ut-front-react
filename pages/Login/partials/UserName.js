@@ -6,11 +6,11 @@ import style from '../style.css';
 class Username extends React.Component {
     static propTypes = {
         value: PropTypes.string
-    }
+    };
 
     static contextTypes = {
         implementationStyle: PropTypes.object
-    }
+    };
 
     getInitialState() {
         return {};
@@ -35,7 +35,7 @@ class Username extends React.Component {
         }
         return (
             <div className={classnames('margin-bottom-25', this.getStyle('loginInputContainer'))}>
-                <input type='text' placeholder='Username' autoFocus autoComplete='off' ref='input' value={value} onChange={this.handleChange} />
+                <input type='text' placeholder='Username' autoFocus autoComplete='off' ref={(c) => { this.input = c; }} value={value} onChange={this.handleChange} />
             </div>
         );
     }

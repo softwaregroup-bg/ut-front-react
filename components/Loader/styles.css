@@ -35,7 +35,6 @@
     left:0;
     height: 100%;
     width: 100%;
-    background-color: #f2f2f2;
     opacity: .7;
 }
 
@@ -45,7 +44,10 @@
     border-radius: 100%;
     border: 3px solid #4096fd;
     border-bottom-color: transparent;
-    animation: rotate 0.8s linear infinite;
+    animation-name: rotate;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 .message {

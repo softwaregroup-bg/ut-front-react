@@ -9,6 +9,7 @@
     align-items: center;
     flex-grow: 0;
     flex-shrink: 0;
+    background-color: #fff;
 }
 .buttonsOpened {
     justify-content: space-between;
@@ -27,5 +28,4 @@
     text-decoration: underline;
 }
 .simpleToolbox .content {
-   
 }

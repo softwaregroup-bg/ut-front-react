@@ -1,5 +1,4 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
-import { routerReducer } from 'react-router-redux';
 
 const resetStore = (reducer, resetAction) => {
     return (state, action) => {
@@ -12,10 +11,10 @@ const resetStore = (reducer, resetAction) => {
         return reducer(state, action);
     };
 };
-
+const devToolsExtension = window.devToolsExtension || window.__REDUX_DEVTOOLS_EXTENSION__;
 const enhancer = compose(
-    ((typeof window !== 'undefined') && window.devToolsExtension)
-        ? window.devToolsExtension({
+    ((typeof window !== 'undefined') && devToolsExtension)
+        ? devToolsExtension({
             serialize: true,
             actionSanitizer: (action) => {
                 if (typeof action.type === 'symbol') {
@@ -30,10 +29,7 @@ const enhancer = compose(
 );
 
 export function Store(reducers, resetAction, middlewares) {
-    const mixedReducers = combineReducers({
-        routing: routerReducer,
-        ...reducers
-    });
+    const mixedReducers = combineReducers(reducers);
     const store = applyMiddleware(...middlewares)(createStore);
     return store(resetStore(mixedReducers, resetAction), {}, enhancer);
 };

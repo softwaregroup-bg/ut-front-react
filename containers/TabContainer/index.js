@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import immutable from 'immutable';
+import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
+
 import Tabs from '../../components/Tabs';
 import StatusDialog from '../../components/StatusDialog';
 import Header from '../../components/PageLayout/Header';
@@ -177,7 +180,7 @@ class TabContainer extends Component {
     }
 
     render() {
-        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, onTabClick } = this.props;
+        let { tabs, headerTitle, headerBreadcrumbsRemoveSlashes, actionButtons, location, allowSave, onTabClick, classes } = this.props;
 
         const activeTab = tabs[this.state.active];
         const handleTabClick = (tab) => {
@@ -227,7 +230,7 @@ class TabContainer extends Component {
                 >
                     {this.renderStatusDialog()}
                     <Vertical fixedComponent={
-                        <div className={style.bottomBorderderWrap}>
+                        <div className={classnames(style.bottomBorderderWrap, classes.border)}>
                             <Tabs
                                 tabs={allowedTabs}
                                 activeTab={this.state.active}
@@ -247,6 +250,7 @@ class TabContainer extends Component {
 }
 
 TabContainer.propTypes = {
+    classes: PropTypes.object,
     location: PropTypes.object,
     headerTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     headerBreadcrumbsRemoveSlashes: PropTypes.number,
@@ -328,4 +332,8 @@ TabContainer.contextTypes = {
     checkPermission: PropTypes.func.isRequired
 };
 
-export default TabContainer;
+export default withStyles(({palette}) => ({
+    border: {
+        borderColor: `${palette.divider}`
+    }
+}))(TabContainer);

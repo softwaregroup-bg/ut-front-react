@@ -39,8 +39,8 @@ export default class Tab extends Component {
                 <span
                     style={this.props.style}
                     className={!disabled ? classNames(className, styles.navigationTab) : classNames(styles.navigationTab, styles.navigationTabDisabled)}
-                    activeClassName={styles.navigationTabActive}
                     onClick={this.onTabClick}
+                    {...{activeClassName: styles.navigationTabActive}}
                 >
                     <Text>{tab.title}</Text>
                 </span>

@@ -14,19 +14,19 @@ class Login extends React.Component {
         setLoginData: PropTypes.func,
         loginData: PropTypes.object,
         login: PropTypes.object
-    }
+    };
 
     static contextTypes = {
         router: PropTypes.object,
         implementationStyle: PropTypes.object,
         mainUrl: PropTypes.string,
         initialLoginFields: PropTypes.object
-    }
+    };
 
     static defaultProps = {
         loginData: Map(),
         login: Map()
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (this.props.loginData.get('changeId') !== nextProps.loginData.get('changeId')) {
@@ -42,11 +42,11 @@ class Login extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.refs.username) {
-            this.props.setLoginData({key: 'username', value: this.refs.username.getValue()});
+        if (this.username) {
+            this.props.setLoginData({key: 'username', value: this.username.getValue()});
         }
-        if (this.refs.password) {
-            this.props.setLoginData({key: 'password', value: this.refs.password.getValue()});
+        if (this.password) {
+            this.props.setLoginData({key: 'password', value: this.password.getValue()});
         }
     }
 
@@ -93,8 +93,8 @@ class Login extends React.Component {
             <div>
                 {err && <ErrorSection text={err.get('message')} />}
                 <Title title={loginCourse.title} />
-                {loginCourse && loginCourse.inputs.username && <UserName ref='username' value={loginData && loginData.get('data').get('username')} />}
-                {loginCourse && loginCourse.inputs.password && <Password ref='password' />}
+                {loginCourse && loginCourse.inputs.username && <UserName ref={(c) => { this.username = c; }} value={loginData && loginData.get('data').get('username')} />}
+                {loginCourse && loginCourse.inputs.password && <Password ref={(c) => { this.password = c; }}/>}
                 <SubmitButton title='Next' />
             </div>
         );

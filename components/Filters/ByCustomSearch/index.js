@@ -26,6 +26,9 @@ export class ByCustomSearch extends Component {
         if (nextProps.fields !== this.props.fields) {
             this.fields = nextProps.fields;
         }
+        if (nextProps.value !== this.props.value) {
+            this.props.setValue(nextProps.value);
+        }
     }
 
     handleSelect(record) {
@@ -33,7 +36,7 @@ export class ByCustomSearch extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (!nextProps.value || nextProps.field !== this.props.field) {
+        if (!nextProps.value || nextProps.field !== this.props.field || nextProps.value !== this.props.value) {
             return true;
         }
         return false;
@@ -44,11 +47,12 @@ export class ByCustomSearch extends Component {
     }
 
     render() {
+        const isDisabled = !this.props.defaultField;
         return (
             <div>
                 <div className={style.customSearchDropdown}>
                     <Dropdown
-                        defaultSelected={this.props.field}
+                        defaultSelected={ this.props.field || this.props.defaultField}
                         placeholder={<Text>Search By</Text>}
                         keyProp='name'
                         onSelect={this.handleSelect}
@@ -57,7 +61,15 @@ export class ByCustomSearch extends Component {
                     />
                 </div>
                 <div className={style.customSearchTextField}>
-                    <SearchBox defaultValue={this.props.value} onSearch={this.handleSearch} />
+                    <SearchBox
+                        defaultValue={this.props.value}
+                        onSearch={this.handleSearch}
+                        disabled={isDisabled}
+                        placeholder={this.props.placeholder || ''}
+                        isValid={this.props.isValidSearchBox}
+                        errorMessage={this.props.errorMessageSearchBox}
+                        hideSearchButton={this.props.hideSearchButton}
+                    />
                 </div>
             </div>
         );
@@ -73,6 +85,10 @@ ByCustomSearch.propTypes = {
     value: PropTypes.string,
     allowedFields: PropTypes.object,
     defaultField: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
+    isValidSearchBox: PropTypes.bool,
+    errorMessageSearchBox: PropTypes.string,
+    hideSearchButton: PropTypes.bool,
 
     fields: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,

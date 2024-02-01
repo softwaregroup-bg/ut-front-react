@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import Text from '../Text';
 
 import style from './style.css';
 import cssStandard from '../../assets/index.css';
 export class Filters extends Component {
     render() {
-        const classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox];
+        const classes = [(this.props.cssStandard && cssStandard.actionBarWrap), style.simpleToolbox, this.props.classes.filter];
         this.props.opened && classes.push(style.opened);
         this.props.opened && this.props.title.toLowerCase().includes('filters') && classes.push(style.buttonsOpened);
         return (
@@ -23,6 +24,7 @@ export class Filters extends Component {
     }
 }
 Filters.propTypes = {
+    classes: PropTypes.object,
     toggle: PropTypes.func,
     children: PropTypes.any.isRequired,
     contentWrapClassName: PropTypes.string,
@@ -37,4 +39,9 @@ Filters.defaultProps = {
     cssStandard: false
 };
 
-export default Filters;
+export default withStyles(({palette}) => ({
+    filter: {
+        background: palette.grey[50],
+        borderColor: palette.divider
+    }
+}))(Filters);

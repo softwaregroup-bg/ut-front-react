@@ -1,3 +1,290 @@
+## [13.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.4...v13.3.5) (2023-08-01)
+
+
+
+## [13.3.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.3...v13.3.4) (2023-07-31)
+
+
+
+## [13.3.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.2...v13.3.3) (2023-06-08)
+
+
+### Bug Fixes
+
+* **MSA-2966:** grid is shown as a vertical column when Scale and Layout settings are set to be 150% or 175% ([#673](https://github.com/softwaregroup-bg/ut-front-react/issues/673)) ([4c2321c](https://github.com/softwaregroup-bg/ut-front-react/commit/4c2321c6b745a8dabf554d20943429b4e0a8b508))
+
+
+
+## [13.3.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.1...v13.3.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* **MSA-3046:** User Management -> Advanced Search ([#664](https://github.com/softwaregroup-bg/ut-front-react/issues/664)) ([5009aa3](https://github.com/softwaregroup-bg/ut-front-react/commit/5009aa322f16ee25d0e9bd8147c393b78dc64f23))
+
+
+
+## [13.3.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.0...v13.3.1) (2022-11-01)
+
+
+### Bug Fixes
+
+* add errors to ByCustomSearch BPS-221 ([#662](https://github.com/softwaregroup-bg/ut-front-react/issues/662)) ([3c18a8c](https://github.com/softwaregroup-bg/ut-front-react/commit/3c18a8c06398f8bf0b8d994c47cb187f7bd5f205))
+
+
+
+# [13.3.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.9...v13.3.0) (2022-10-21)
+
+
+### Features
+
+* filtersOverride ([b259a0e](https://github.com/softwaregroup-bg/ut-front-react/commit/b259a0eb8aa85026768f59d17912c4657632bf73))
+
+
+
+## [13.2.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.8...v13.2.9) (2022-10-06)
+
+
+
+## [13.2.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.7...v13.2.8) (2022-10-03)
+
+
+### Bug Fixes
+
+* **MSA- 2968:** When customer request status is already selected and the customer taps on it to change it some of the new statuses are cropped ([#658](https://github.com/softwaregroup-bg/ut-front-react/issues/658)) ([e67c110](https://github.com/softwaregroup-bg/ut-front-react/commit/e67c1101f3cfab442522bcfdc7670e59ca4df973))
+
+
+
+## [13.2.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.6...v13.2.7) (2022-10-01)
+
+
+
+## [13.2.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.5...v13.2.6) (2022-09-15)
+
+
+### Bug Fixes
+
+* **MSA-2968:** When customer request status is already selected and the customer taps on it to change it some of the new statuses are cropped ([#650](https://github.com/softwaregroup-bg/ut-front-react/issues/650)) ([49dd3b6](https://github.com/softwaregroup-bg/ut-front-react/commit/49dd3b63a615f69d62cd8c9884aeedbc2bbbb4fa))
+
+
+
+## [13.2.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.4...v13.2.5) (2022-09-14)
+
+
+### Bug Fixes
+
+* show Cyrillic letters in navigation menu (user initials) UATALZ-1851 ([#646](https://github.com/softwaregroup-bg/ut-front-react/issues/646)) ([12388ad](https://github.com/softwaregroup-bg/ut-front-react/commit/12388ad0a4bef7fb2ed89187062f29bb68798770))
+
+
+
+## [13.2.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.3...v13.2.4) (2022-09-14)
+
+
+
+## [13.2.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.2...v13.2.3) (2022-08-23)
+
+
+### Bug Fixes
+
+* **MSA-2764:** It is visible gray rectangle ([#648](https://github.com/softwaregroup-bg/ut-front-react/issues/648)) ([2e35b26](https://github.com/softwaregroup-bg/ut-front-react/commit/2e35b260111c024045f026b13f5e1493a7c5774c))
+
+
+
+## [13.2.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.1...v13.2.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* **MSA-2836:** Different font size ([#645](https://github.com/softwaregroup-bg/ut-front-react/issues/645)) ([38cff4d](https://github.com/softwaregroup-bg/ut-front-react/commit/38cff4d21e65404416b573367d53d8d85e9fd798))
+
+
+
+## [13.2.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.2.0...v13.2.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* ALZ-7651 set defaulted property back to true ([#644](https://github.com/softwaregroup-bg/ut-front-react/issues/644)) ([95fb2db](https://github.com/softwaregroup-bg/ut-front-react/commit/95fb2db0b4c5a3661f6e8b5463f7e67d83da85f2))
+
+
+
+# [13.2.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.7...v13.2.0) (2022-08-09)
+
+
+### Features
+
+* ALZ-7651 load external page after logout ([#643](https://github.com/softwaregroup-bg/ut-front-react/issues/643)) ([5786546](https://github.com/softwaregroup-bg/ut-front-react/commit/5786546650e08212ac78cb51ab6a8f39f725a462))
+
+
+
+## [13.1.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.6...v13.1.7) (2022-07-07)
+
+
+
+## [13.1.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.5...v13.1.6) (2022-06-24)
+
+
+
+## [13.1.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.4...v13.1.5) (2022-05-28)
+
+
+### Bug Fixes
+
+* difference between Audit log and Transfer Type Statistics Dig 50 ([#626](https://github.com/softwaregroup-bg/ut-front-react/issues/626)) ([1f62e00](https://github.com/softwaregroup-bg/ut-front-react/commit/1f62e00ba32c05180515f172baffac76111b927e))
+
+
+
+## [13.1.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.3...v13.1.4) (2022-05-28)
+
+
+### Bug Fixes
+
+* login screen - password only to be mandatory, deprecated ref error DIG-28 ([#618](https://github.com/softwaregroup-bg/ut-front-react/issues/618)) ([c8bb19b](https://github.com/softwaregroup-bg/ut-front-react/commit/c8bb19b02104a437efe02a35e64416033c40e620))
+
+
+
+## [13.1.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.2...v13.1.3) (2022-05-26)
+
+
+
+## [13.1.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.1...v13.1.2) (2022-05-17)
+
+
+### Bug Fixes
+
+* missing placeholder, default selected item DIG-11 ([#625](https://github.com/softwaregroup-bg/ut-front-react/issues/625)) ([496378d](https://github.com/softwaregroup-bg/ut-front-react/commit/496378d38d53f481cf0e21aaf3b905f723e6f033))
+* resize issue DIG-51 ([#629](https://github.com/softwaregroup-bg/ut-front-react/issues/629)) ([57ae3a3](https://github.com/softwaregroup-bg/ut-front-react/commit/57ae3a365fdd0656c28762f6709445fba062176e))
+
+
+
+## [13.1.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.1.0...v13.1.1) (2022-04-26)
+
+
+
+# [13.1.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.13...v13.1.0) (2022-04-21)
+
+
+### Features
+
+* Additional fields required in PAP for personnel data - ALZMFAC-254 ([#622](https://github.com/softwaregroup-bg/ut-front-react/issues/622)) ([1204d7d](https://github.com/softwaregroup-bg/ut-front-react/commit/1204d7d536c4043831243f703b97b7c0b5b85426))
+
+
+
+## [13.0.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.12...v13.0.13) (2022-04-19)
+
+
+
+## [13.0.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.11...v13.0.12) (2022-04-19)
+
+
+
+## [13.0.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.10...v13.0.11) (2022-04-14)
+
+
+
+## [13.0.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.9...v13.0.10) (2022-04-14)
+
+
+
+## [13.0.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.8...v13.0.9) (2022-04-11)
+
+
+
+## [13.0.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.7...v13.0.8) (2022-04-11)
+
+
+
+## [13.0.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.6...v13.0.7) (2022-04-08)
+
+
+
+## [13.0.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.5...v13.0.6) (2022-04-08)
+
+
+
+## [13.0.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.4...v13.0.5) (2022-04-08)
+
+
+
+## [13.0.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.3...v13.0.4) (2022-04-02)
+
+
+
+## [13.0.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.2...v13.0.3) (2022-03-31)
+
+
+### Bug Fixes
+
+* **ECNT-756:** Incorrect dates ([#611](https://github.com/softwaregroup-bg/ut-front-react/issues/611)) ([b9e4742](https://github.com/softwaregroup-bg/ut-front-react/commit/b9e474201f46c82c06aea393b3a1c08456db692f))
+
+
+
+## [13.0.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.1...v13.0.2) (2022-03-28)
+
+
+### Bug Fixes
+
+* remove bad width ([308d619](https://github.com/softwaregroup-bg/ut-front-react/commit/308d6192981c563b4c090dcaf34dcecbe1423cbf))
+
+
+
+## [13.0.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.0.0...v13.0.1) (2022-03-28)
+
+
+
+# [13.0.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.10...v13.0.0) (2022-03-26)
+
+
+
+## [12.10.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.9...v12.10.10) (2022-03-22)
+
+
+
+## [12.10.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.8...v12.10.9) (2022-03-16)
+
+
+
+## [12.10.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.7...v12.10.8) (2022-03-14)
+
+
+
+## [12.10.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.6...v12.10.7) (2022-03-08)
+
+
+
+## [12.10.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.5...v12.10.6) (2022-03-08)
+
+
+
+## [12.10.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.4...v12.10.5) (2022-02-25)
+
+
+
+## [12.10.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.3...v12.10.4) (2022-02-22)
+
+
+
+## [12.10.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.2...v12.10.3) (2022-02-18)
+
+
+
+## [12.10.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.10.1...v12.10.2) (2022-02-18)
+
+
+
+## [12.10.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.9.0...v12.10.1) (2022-02-03)
+
+
+
+# [12.9.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.3...v12.9.0) (2021-12-13)
+
+
+### Features
+
+* responsive and RTL ([26ef0b4](https://github.com/softwaregroup-bg/ut-front-react/commit/26ef0b491573888e71f5833ea179c8202171f4e0))
+
+
+
 ## [12.7.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v12.7.2...v12.7.3) (2021-11-29)
 
 
