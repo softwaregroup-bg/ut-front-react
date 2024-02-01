@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/HeaderNew';
+import Header from '../../containers/HeaderNew';
 import TabMenu from '../../containers/TabMenu';
 import { logout } from '../../containers/LoginForm/actions';
 import { Vertical } from '../../components/Layout';

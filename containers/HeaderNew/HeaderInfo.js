@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
 const HeaderInfo = props => {
     const { items } = props;
 
-    if (!items.length) {
+    if (!items.size) {
         return null;
     }
 
@@ -16,8 +17,8 @@ const HeaderInfo = props => {
                 items.map((item, index) => {
                     return (
                         <div key={`headerItem-${index}`} className={styles.headerInfoItem}>
-                            <span className={styles.headerInfoLabel}>{item.label}</span>
-                            <span className={styles.headerInfoValue}>{item.value}</span>
+                            <span className={styles.headerInfoLabel}>{item.get('label')}</span>
+                            <span className={styles.headerInfoValue}>{item.get('value')}</span>
                         </div>
                     );
                 })
@@ -27,19 +28,16 @@ const HeaderInfo = props => {
 };
 
 HeaderInfo.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired
-    }))
+    items: PropTypes.instanceOf(List)
 };
 
 HeaderInfo.defaultProps = {
     items: []
 };
 
-function mapStateToProps(redux, ownProps) {
+function mapStateToProps(redux) {
     return {
-        items: redux.HeaderInfo || []
+        items: redux.headerInfo || List()
     };
 }
 
