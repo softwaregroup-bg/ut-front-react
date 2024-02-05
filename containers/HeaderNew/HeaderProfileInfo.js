@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
-import MenuNew from '../MenuNew';
-import { Tab } from '../Tab';
+import MenuNew from '../../components/MenuNew';
+import { Tab } from '../../components/Tab';
 import styles from './styles.css';
-import tabStyles from '../Tab/styles.css';
+import tabStyles from '../../components/Tab/styles.css';
 
 export default class HeaderProfileInfo extends Component {
     constructor(props) {
@@ -48,9 +48,9 @@ export default class HeaderProfileInfo extends Component {
 
     getMenuItems() {
         const items = [
-            {text: 'Help', onClick: this.openHelp},
-            {text: 'Settings', routeName: 'ut-user:userProfile'},
-            {text: 'Log out', onClick: this.onLogOutClick}
+            { text: 'Help', onClick: this.openHelp },
+            { text: 'Settings', routeName: 'ut-user:userProfile' },
+            { text: 'Log out', onClick: this.onLogOutClick }
         ];
 
         return items.reduce((items, currentItem, index) => {

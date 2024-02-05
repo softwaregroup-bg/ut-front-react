@@ -140,7 +140,6 @@ body .profileInfoPopoverMenu {
 
 .headerInfo {
   display: flex;
-  flex-grow: 1;
   align-items: center;
   justify-content: flex-end;
   padding: 0 10px 0 5px;
