@@ -10,6 +10,8 @@ import { cookieCheck, setLoadGate, logout } from '../LoginForm/actions.js';
 import { fetchTranslations } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 import style from './style.css';
+import { getRouteByPath } from '../../routerHelper';
+import PageNotFound from '../../ui/components/PageNotFound.jsx';
 
 class Gate extends Component {
     constructor(props) {
@@ -85,11 +87,19 @@ class Gate extends Component {
     }
 
     render() {
-        const { loaded } = this.props;
+        const { loaded, location } = this.props;
+
+        let hasPermission = true;
+        if (loaded) {
+            const {permission: routePermission} = getRouteByPath(location.pathname) || {};
+            if (routePermission) {
+                hasPermission = checkPermission(routePermission);
+            }
+        }
 
         return (
             <div className={style.h100pr}>
-                {loaded ? this.props.children : <Loader />}
+                {loaded ? (hasPermission ? this.props.children : <PageNotFound />) : <Loader />}
             </div>
         );
     }
@@ -102,7 +112,7 @@ export default connect(
         authenticated: login.get('authenticated'),
         gateLoaded: login.get('gateLoaded'),
         result: login.get('result'),
-        gate: gate,
+        gate,
         forceLogOut: gate.get('forceLogOut'),
         loaded: gate.get('loaded')
     }),
@@ -112,6 +122,7 @@ export default connect(
 Gate.propTypes = {
     match: PropTypes.object,
     login: PropTypes.string,
+    location: PropTypes.object,
     children: PropTypes.object,
     cookieChecked: PropTypes.bool,
     isLogout: PropTypes.bool,
