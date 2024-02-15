@@ -53,7 +53,7 @@ class Gate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { cookieChecked, authenticated, forceLogOut, logout, match, location, login } = this.props;
+        const { cookieChecked, authenticated, forceLogOut, logout, match, login } = this.props;
 
         // if cookieCheck has passed and the user is authenticated, redirect to LoginPage
         // if the user is authenticated and there is a result from identity.check, load the gate (set permissions and fetch translations)
