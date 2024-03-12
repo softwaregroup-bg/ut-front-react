@@ -1,3 +1,12 @@
+## [13.4.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.8...v13.4.9) (2024-03-12)
+
+
+### Bug Fixes
+
+* UATALZ-2982 enable shouldDisableDate property of DatePicker ([b103f74](https://github.com/softwaregroup-bg/ut-front-react/commit/b103f742c1908b8e71635ff33b6413cbee68c63f))
+
+
+
 ## [13.4.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.7...v13.4.8) (2024-02-05)
 
 
