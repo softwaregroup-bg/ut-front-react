@@ -13,13 +13,13 @@ export default class DatePicker extends Component {
     handleChange() {
         return date => {
             this.props.onChange({
-                value: date && date.toISOString()
+                value: date?.toISOString()
             });
         };
     }
 
     render() {
-        const {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, labelWrap} = this.props;
+        const {disabled, isValid, errorMessage, label, boldLabel, withVerticalClass, labelWrap, defaultValue} = this.props;
         const zeroHeightStyle = isValid ? style.hh : '';
         const dpStyles = isValid ? style.dpStylesValid : style.dpStylesNonValid;
         const iconDisabledClassname = disabled ? style.datePickerIconDisabled : '';
@@ -27,7 +27,7 @@ export default class DatePicker extends Component {
         const datePickerLabeled = label ? style.datePickerLabeled : '';
         const labelStyle = withVerticalClass ? style.labelWrap : style.labelWrapHorizontal;
 
-        const dateVal = this.props.defaultValue && new Date(this.props.defaultValue);
+        const dateVal = defaultValue && new Date(defaultValue);
 
         return (
             <div className={classnames(style.wrap, this.props.wrapperClassName)}>
@@ -51,6 +51,7 @@ export default class DatePicker extends Component {
                         InputProps={this.props.InputProps}
                         fullWidth={this.props.fullWidth || true}
                         format={this.props.format}
+                        shouldDisableDate={this.props.shouldDisableDate}
                     />
                 </div>
                 <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
@@ -67,7 +68,9 @@ DatePicker.defaultProps = {
     hintText: ' ',
     boldLabel: true,
     label: '',
-    withVerticalClass: false
+    withVerticalClass: false,
+    // https://mui.com/x/api/date-pickers/date-picker/#date-picker-prop-shouldDisableDate
+    shouldDisableDate: () => {}
 };
 DatePicker.propTypes = {
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), // accepts new Date() object or string
@@ -97,7 +100,8 @@ DatePicker.propTypes = {
     labelWrap: PropTypes.string,
     InputProps: PropTypes.object,
     fullWidth: PropTypes.bool,
-    format: PropTypes.string
+    format: PropTypes.string,
+    shouldDisableDate: PropTypes.func
 };
 
 DatePicker.contextTypes = {
