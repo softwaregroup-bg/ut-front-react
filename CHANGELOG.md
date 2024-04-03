@@ -1,3 +1,12 @@
+## [13.4.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.9...v13.4.10) (2024-04-03)
+
+
+### Bug Fixes
+
+* get the correct values for minutes and seconds from dateTimePicker UBPS-55 ([403b237](https://github.com/softwaregroup-bg/ut-front-react/commit/403b237b57e5955351eba7709753385af6112192))
+
+
+
 ## [13.4.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.8...v13.4.9) (2024-03-12)
 
 
