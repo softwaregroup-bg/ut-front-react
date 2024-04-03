@@ -12,15 +12,17 @@ class DateTimePickerBetween extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(ref, value) {
+    handleChange(ref, value, dateTimePicker) {
         const { onChange } = this.props;
         let newDate = new Date(value);
-        if (ref === 'to' || (newDate.getHours() === 23 && newDate.getMinutes() === 59)) {
-            newDate.setSeconds(59);
-            newDate.setMilliseconds(999);
-        } else {
-            newDate.setSeconds(0);
-            newDate.setMilliseconds(0);
+        if (!dateTimePicker) {
+            if (ref === 'to' || (newDate.getHours() === 23 && newDate.getMinutes() === 59)) {
+                newDate.setSeconds(59);
+                newDate.setMilliseconds(999);
+            } else {
+                newDate.setSeconds(0);
+                newDate.setMilliseconds(0);
+            }
         }
         if (newDate && !isNaN(newDate.valueOf())) {
             if (ref === 'from') {
@@ -99,7 +101,7 @@ class DateTimePickerBetween extends Component {
                     firstDayOfWeek={firstDayOfWeek}
                     timeType={timeType}
                     data={timeDropDownData}
-                    onChange={({value}) => { this.handleChange('from', value); }}
+                    onChange={({value, dateTimePicker}) => { this.handleChange('from', value, dateTimePicker); }}
                     boldLabel={boldLabel}
                     maxDate={maxDate}
                     dateTimeCombined={dateTimeCombined}
@@ -118,7 +120,7 @@ class DateTimePickerBetween extends Component {
                     firstDayOfWeek={firstDayOfWeek}
                     timeType={timeType}
                     data={timeDropDownData}
-                    onChange={({value}) => { this.handleChange('to', value); }}
+                    onChange={({value, dateTimePicker}) => { this.handleChange('to', value, dateTimePicker); }}
                     boldLabel={boldLabel}
                     maxDate={maxDate}
                     dateTimeCombined={dateTimeCombined}
