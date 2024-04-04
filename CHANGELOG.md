@@ -1,3 +1,12 @@
+## [13.4.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.10...v13.4.11) (2024-04-04)
+
+
+### Bug Fixes
+
+* remove otp error showing otp length BDC-2518 ([f01afbf](https://github.com/softwaregroup-bg/ut-front-react/commit/f01afbfc30f363d346c84173dc791de95a8af19b))
+
+
+
 ## [13.4.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.9...v13.4.10) (2024-04-03)
 
 
