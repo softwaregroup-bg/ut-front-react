@@ -13,6 +13,7 @@ const getClassInternal = (className) => {
 const Button = ({
     type,
     label,
+    id,
     icon,
     onClick,
     className,
@@ -36,7 +37,7 @@ const Button = ({
         disabledClass = Array.isArray(disabledClassName) ? disabledClassName.map(getClassInternal) : getClassInternal(disabledClassName);
     }
     const button = (
-        <button disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
+        <button id ={id} disabled={disabled} type={type} className={classNames(cssClass, disabledClass)} onClick={onClick}>
             {icon && <span className={icon} />}
             <Text>{label}</Text>
         </button>
