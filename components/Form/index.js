@@ -31,7 +31,7 @@ export default class Form extends Component {
                 key={index}
                 ref={(c) => { this[input.get('name')] = c; }}
                 className='loginInput'
-                id={input.get('id')}
+                data-testid={input.get('data-testid')}
                 hidden={input.get('hidden')}
                 disabled={input.get('disabled')}
                 type={input.get('type')}
