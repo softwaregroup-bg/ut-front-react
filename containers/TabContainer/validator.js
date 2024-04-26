@@ -44,6 +44,9 @@ export const validateTab = (sourceMap, validations, tabIndex, result, errors) =>
                         currentValue = currentValue.get('value');
                     }
                 }
+                if (validation.changeErrorPath) {
+                    validation.key = validation.changeErrorPath;
+                }
                 validation.rules.forEach((rule) => {
                     rule.key = Array.isArray(validation.key)
                         ? Array.from(validation.key) // new reference
