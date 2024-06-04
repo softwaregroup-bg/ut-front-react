@@ -145,6 +145,9 @@ class TabContainer extends Component {
                 if (tab.validations) {
                     const validation = tab.validations.find((validation) => {
                         if (validation.key) {
+                            if (validation?.changeErrorPath) {
+                                return validation.changeErrorPath[validation.changeErrorPath.length - 1] === errKey;
+                            }
                             return validation.key[validation.key.length - 1] === errKey;
                         } else if (validation.keyText && validation.keyArray) { // Array with text case
                             const concatedErrorKey = validation.keyArray[validation.keyArray.length - 1] + '-' + validation.keyText[validation.keyText.length - 1] + '-';
