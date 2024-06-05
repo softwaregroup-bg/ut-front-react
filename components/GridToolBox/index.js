@@ -453,12 +453,12 @@ class GridToolBox extends Component {
         }) !== undefined) || (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
 
         return (
-            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
-                <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
+            <div className={classnames(style.toolbarWrap, style.table)}>
+                <div className={classnames(style.toolbarText, style.label, labelClass, style.tableCell)} onClick={toggle}>
                     {leftSide}
                 </div>
                 <div className={classnames(style.pullRight, style.tableCell)}>
-                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
+                    <div className={classnames(style.toolbarElementsContainer, style.wrapFilters)}>
                         {filterElements.map((el, i) => {
                             const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                             filtersNumber += incrementNum;
@@ -679,7 +679,7 @@ class GridToolBox extends Component {
 
         return (
             <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight, style.tableButtonsShowed)}>
-                {!showActionButtonsOnSelect ? <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
+                {!showActionButtonsOnSelect ? <div className={classnames(style.toolbarText, style.label, style.link, style.tableCell)} onClick={toggle}>
                     <Text>Show filters</Text>
                 </div> : null}
                 <div className={classnames(style.pullRight, style.tableCell)}>
@@ -719,7 +719,7 @@ class GridToolBox extends Component {
             );
         }
         return (
-            <div className={cssStandard.actionBarWrap}>
+            <div className={classnames(cssStandard.actionBarWrap, style.actionBarWrap)}>
                 <div className={cssStandard.gridToolboxWrap}>
                     {showFilter && this.renderFilters()}
                     {!showFilter && this.renderActionButtons()}
