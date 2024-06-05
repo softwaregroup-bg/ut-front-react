@@ -10,6 +10,11 @@
     height: 55px;
 }
 
+.wrapFilters {
+    flex-wrap: wrap;
+    padding-top: 12px
+}
+
 .table {
     display: flex;
     align-items: center; 
@@ -20,18 +25,26 @@
     align-items: center; 
 }
 
+.actionBarWrap {
+    height: unset;
+}
+
 .tableButtonsShowed {
     justify-content: space-between;
 }
 
 .toolbarWrap>div,
 .tableCell {
-    display: table-cell;
-    vertical-align: middle;
+    display: block;
+}
+
+.toolbarWrap .toolbarText {
+    padding-right: 20px;
 }
 
 .toolbarWrap .toolbarElement {
     padding-right: 20px;
+    padding-bottom: 12px;
 }
 
 .toolbarWrap .toolbarElement:last-child {
