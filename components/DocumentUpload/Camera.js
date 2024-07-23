@@ -1,58 +1,58 @@
+import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import classnames from 'classnames';
-import styles from './styles.css';
 
-export default class Camera extends Component {
-    static hasUserMedia() {
-        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-           navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    }
+const Camera = forwardRef(({ className, autoPlay, width, height }, ref) => {
+    const videoRef = useRef(null);
+    const [stream, setStream] = useState(null);
+    const [error, setError] = useState(null);
 
-    constructor() {
-        super();
+    const getUserMedia = (constraints) => {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Modern browsers
+            return navigator.mediaDevices.getUserMedia(constraints);
+        } else {
+            // Older browsers
+            return new Promise((resolve, reject) => {
+                const getUserMedia = navigator.getUserMedia ||
+                    navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia;
 
-        this.requestUserMedia = this.requestUserMedia.bind(this);
-
-        this.onVideoSupported = this.onVideoSupported.bind(this);
-
-        this.onVideoNotSupported = this.onVideoNotSupported.bind(this);
-
-        this.getScreenshot = this.getScreenshot.bind(this);
-    }
-
-    componentDidMount() {
-        if (Camera.hasUserMedia()) {
-            this.requestUserMedia();
+                if (!getUserMedia) {
+                    reject(new Error('getUserMedia is not supported in this browser'));
+                } else {
+                    getUserMedia.call(navigator, constraints, resolve, reject);
+                }
+            });
         }
-    }
+    };
 
-    componentWillUnmount() {
-        this.stream.getTracks().forEach(stream => stream.stop());
-    }
+    useEffect(() => {
+        const startCamera = async() => {
+            try {
+                const mediaStream = await getUserMedia({ video: true });
+                setStream(mediaStream);
+                if (videoRef.current) {
+                    videoRef.current.srcObject = mediaStream;
+                }
+            } catch (err) {
+                setError(err.message);
+            }
+        };
 
-    requestUserMedia() {
-        navigator.getUserMedia = navigator.getUserMedia ||
-                                       navigator.webkitGetUserMedia ||
-                                       navigator.mozGetUserMedia ||
-                                       navigator.msGetUserMedia;
+        startCamera();
 
-        navigator.getUserMedia && navigator.getUserMedia({ video: true }, this.onVideoSupported, this.onVideoNotSupported);
-    }
+        return () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    onVideoSupported(stream) {
-        this.stream = stream;
-        this.video.srcObject = stream;
-    }
-
-    onVideoNotSupported(error) {
-        // TODO
-        return error;
-    }
-
-    getScreenshot() {
-        if (Camera.hasUserMedia()) {
-            const video = this.video;
+    const getScreenshot = () => {
+        if (videoRef.current) {
+            const video = videoRef.current;
             const aspectRatio = video.videoWidth / video.videoHeight;
             const canvas = document.createElement('canvas');
 
@@ -60,39 +60,53 @@ export default class Camera extends Component {
             canvas.height = video.clientWidth / aspectRatio;
 
             const context = canvas.getContext('2d');
-
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            return canvas.toDataURL();
+            return canvas.toDataURL('image/jpeg');
         }
-
         return null;
-    }
+    };
 
-    render() {
-        const { className, autoPlay, width, height } = this.props;
+    // Expose getScreenshot method to parent component using ref
+    useImperativeHandle(ref, () => ({
+        getScreenshot
+    }));
 
+    if (error) {
         return (
-            <div style={{ height, width }} className={classnames(styles.cameraContainer, className)}>
-                <video
-                    ref={(c) => { this.video = c; }}
-                    className={styles.videoElement}
-                    autoPlay={autoPlay}
-                />
+            <div style={{ width, height }} className={className}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    Error: {error}
+                </div>
             </div>
         );
     }
-}
+
+    return (
+        <div style={{ width, height }} className={className}>
+            <video
+                ref={videoRef}
+                autoPlay={autoPlay}
+                playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+        </div>
+    );
+});
+
+Camera.displayName = 'Camera';
 
 Camera.propTypes = {
     className: PropTypes.string,
     autoPlay: PropTypes.bool,
-    width: PropTypes.number,
-    height: PropTypes.number
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 Camera.defaultProps = {
     autoPlay: true,
-    width: '',
-    height: ''
+    width: '100%',
+    height: '100%'
 };
+
+export default Camera;
