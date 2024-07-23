@@ -1,3 +1,12 @@
+## [13.4.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.12...v13.4.13) (2024-07-23)
+
+
+### Bug Fixes
+
+* set date UTC when change startDate or endDate filter PS-289 ([#696](https://github.com/softwaregroup-bg/ut-front-react/issues/696)) ([cf085c6](https://github.com/softwaregroup-bg/ut-front-react/commit/cf085c66c75dd009ee238e904226b539c8f60b58))
+
+
+
 ## [13.4.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.11...v13.4.12) (2024-06-04)
 
 
