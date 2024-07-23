@@ -587,11 +587,6 @@ class GridToolBox extends Component {
                 }
             }
         });
-        // Set date to UTC
-        if (result.endDate && result.startDate && this.props.filterElements.find(el => el.utcTransform)) {
-            result.endDate = new Date(result.endDate.getTime() + result.endDate.getTimezoneOffset() * 60 * 1000);
-            result.startDate = new Date(result.startDate.getTime() + result.startDate.getTimezoneOffset() * 60 * 1000);
-        }
 
         if (filterIframe) {
             result = { ...result, ...filterIframe };
