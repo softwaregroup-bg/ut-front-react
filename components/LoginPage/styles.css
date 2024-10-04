@@ -21,6 +21,12 @@
     background: inline('./images/topLogo.png') no-repeat center;
 }
 
+.loginVersion {
+    width: 100%;
+    display: block;
+    margin-top: 15px;
+}
+
 .loginPageFooter {
     margin-top: 55px;
     background: inline('./images/bottomLogo.png') no-repeat center;
