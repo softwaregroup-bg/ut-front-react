@@ -1,3 +1,12 @@
+# [13.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.14...v13.5.0) (2024-10-07)
+
+
+### Features
+
+* added version number component on Login page ([#698](https://github.com/softwaregroup-bg/ut-front-react/issues/698)) ([0028571](https://github.com/softwaregroup-bg/ut-front-react/commit/0028571a067ed3ca437b9457554ad491c8482cb6))
+
+
+
 ## [13.4.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.13...v13.4.14) (2024-09-02)
 
 
