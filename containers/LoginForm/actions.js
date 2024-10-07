@@ -40,7 +40,11 @@ export const cookieCheck = (params) => ({
     type: COOKIE_CHECK,
     method: 'identity.check',
     suppressErrorWindow: true,
-    params: Object.assign({channel: 'web'}, (params || {}))
+    params: {
+        channel: 'web',
+        ...params,
+        $http: {...params.$http, returnResponseHeaders: true }
+    }
 });
 
 export const validateForm = () => ({
@@ -51,7 +55,7 @@ export const logout = (params) => ({
     type: LOGOUT,
     method: 'identity.closeSession',
     suppressErrorWindow: true,
-    params: {}
+    params: {$http: {...params?.$http, returnResponseHeaders: true }}
 });
 
 export const clearLoginState = () => {

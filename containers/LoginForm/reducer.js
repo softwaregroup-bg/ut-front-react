@@ -49,7 +49,8 @@ const defaultLoginState = Immutable.fromJS({
     loginType: '',
     formError: '',
     shouldSubmit: false,
-    loginData: {}
+    loginData: {},
+    version: ''
 });
 
 const loginReducer = (state = defaultLoginState, action) => {
@@ -60,7 +61,8 @@ const loginReducer = (state = defaultLoginState, action) => {
             if (action.methodRequestState === 'finished') {
                 return state
                     .set('logoutRedirectUrl', action.result?.logoutRedirectUrl || logoutRedirectUrl)
-                    .set('isLogout', true);
+                    .set('isLogout', true)
+                    .set('version', action.result?.responseHeaders['x-ut-version']);
             }
             return defaultLoginState
                 .set('isLogout', true);
@@ -119,7 +121,8 @@ const loginReducer = (state = defaultLoginState, action) => {
                 if (action.error) {
                     return state.delete('result')
                         .set('cookieChecked', true)
-                        .set('authenticated', false);
+                        .set('authenticated', false)
+                        .set('version', action.error?.responseHeaders['x-ut-version']);
                 } else if (action.result) {
                     logoutRedirectUrl = action.result.logoutRedirectUrl;
                     return state.set('result', Immutable.fromJS(action.result))
