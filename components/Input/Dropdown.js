@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import classnames from 'classnames';
 import Text from '../Text';
 import style from './style.css';
-import { textValidations } from '../../validator/constants';
+import { textValidations, dropdownValidations } from '../../validator/constants';
 import Popover from '@material-ui/core/Popover';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 
@@ -54,7 +54,7 @@ export class Dropdown extends Component {
         // Validation
         validators: PropTypes.arrayOf(
             PropTypes.shape({
-                type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex]).isRequired,
+                type: PropTypes.oneOf([textValidations.isRequired, textValidations.length, textValidations.numberOnly, textValidations.decimalOnly, textValidations.email, textValidations.uniqueValue, textValidations.regex, dropdownValidations.isRequired]).isRequired,
                 values: PropTypes.any,
                 errorMessage: PropTypes.string
             })

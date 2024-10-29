@@ -1,0 +1,10 @@
+@import './default-config.css';
+@import 'config.css';
+
+.wrap {
+    width: 100%;
+    display: block;
+    color: var(--ut-front-react-loginVersionColor);
+    text-align: center;
+    font-size: var(--ut-front-react-loginVersionSize);
+}

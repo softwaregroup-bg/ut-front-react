@@ -1,142 +1,124 @@
+import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 import Popup from '../Popup';
 import DocumentUploadMenu from './DocumentUploadMenu';
 import Camera from './Camera';
 import FilePreview from './FilePreview';
 import { POPUP_MIN_OFFSETS, POPUP_HEADER_HEIGHT, POPUP_FOOTER_HEIGHT, POPUP_PADDING } from '../Popup/config';
 import { DEFAULT_ASPECT_RATIO } from './config';
-import { getFileDimensions, getViewport } from '../../utils/image';
+import { getFileDimensions as getDimensions, getViewport } from '../../utils/image';
 import styles from './styles.css';
 import { getFileExtension, ERROR_STATUS_CODES } from './helpers';
 
-export default class DocumentUpload extends Component {
-    constructor() {
-        super();
+const DocumentUpload = ({
+    isOpen,
+    header,
+    closePopup,
+    popupType,
+    documentType,
+    scaleDimensions,
+    uploadDocument,
+    useFile: loadFile,
+    allowedFileTypes,
+    maxFileSize,
+    children,
+    hideCrop,
+    uploadType,
+    additionalContentValidate,
+    isAdditionalContentValid,
+    uploadURL
+}) => {
+    const initialState = useMemo(() => ({
+        mode: 'initial',
+        uploadMethod: '',
+        screenshot: null,
+        fileExtension: '',
+        fileSize: null,
+        fileDimensions: {},
+        showCrop: false,
+        hasCropped: false,
+        shouldUse: false,
+        isUploading: false,
+        errorUpload: null
+    }), []);
 
-        this.initialState = {
-            mode: 'initial',
-            uploadMethod: '',
-            screenshot: null,
-            fileExtension: '',
-            fileSize: null,
-            fileDimensions: {},
-            showCrop: false,
-            hasCropped: false,
-            shouldUse: false,
-            isUploading: false,
-            errorUpload: null
-        };
+    const [state, setState] = useState(initialState);
+    const filePreviewRef = useRef(null);
+    const takePhotoRef = useRef(null);
 
-        this.state = this.initialState;
+    const resetState = useCallback(() => {
+        setState(initialState);
+    }, [initialState]);
 
-        this.changeMode = this.changeMode.bind(this);
+    const setError = useCallback((errMsg) => {
+        setState(prevState => ({ ...prevState, errorUpload: errMsg }));
+    }, []);
 
-        this.setUploadMethod = this.setUploadMethod.bind(this);
-
-        this.takePhoto = this.takePhoto.bind(this);
-
-        this.onAddFile = this.onAddFile.bind(this);
-
-        this.onUploadFile = this.onUploadFile.bind(this);
-
-        this.onUseFile = this.onUseFile.bind(this);
-
-        this.getFileDimensions = this.getFileDimensions.bind(this);
-
-        this.crop = this.crop.bind(this);
-
-        this.onCrop = this.onCrop.bind(this);
-
-        this.uploadFile = this.uploadFile.bind(this);
-
-        this.setError = this.setError.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps, nextState) {
-        if (this.props.isOpen && !nextProps.isOpen) {
-            this.setState(this.initialState);
+    const dataURItoBlob = useCallback((dataURI) => {
+        const byteString = dataURI.split(',')[0].indexOf('base64') >= 0
+            ? atob(dataURI.split(',')[1])
+            : decodeURIComponent(dataURI.split(',')[1]);
+        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        const ia = new Uint8Array(byteString.length);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
         }
-    }
+        return new Blob([ia], { type: mimeString });
+    }, []);
 
-    changeMode(mode) {
-        this.setState({
-            mode
-        });
-    }
+    const uploadFile = useCallback(async(file, url = '/file-upload') => {
+        const data = new FormData();
+        const img = dataURItoBlob(file);
+        const ext = state.fileExtension || 'unknown';
+        data.append('file', img, `file.${ext}`);
 
-    setUploadMethod(uploadMethod) {
-        this.setState({
-            uploadMethod
-        });
-    }
+        setState(prevState => ({ ...prevState, isUploading: true }));
 
-    onAddFile() {
-        // calculate camera dimensions
-        const fileDimensions = this.getFileDimensions();
+        try {
+            const attachmentResult = await uploadDocument({ formData: data });
 
-        this.setState({
-            fileDimensions,
-            uploadMethod: 'take',
-            mode: 'takePhoto'
-        });
-    }
+            setState(prevState => ({ ...prevState, isUploading: false }));
 
-    onUploadFile(file, fileObj) {
-        const fileDimensions = this.getFileDimensions(file);
-        const extension = getFileExtension(fileObj.name);
+            if (attachmentResult.error) {
+                let errorMsg = attachmentResult.error.message || attachmentResult.error.statusText;
+                if (attachmentResult.error.statusCode === ERROR_STATUS_CODES.request_entity_too_large) {
+                    errorMsg = 'Document size is greater than maximum allowed.';
+                }
+                setError(errorMsg);
+                return;
+            }
 
-        // This is done so the crop gets umnounteted (in cases where an image is loaded and then changed without cropping)
-        this.setState({
-            showCrop: false
-        }, () => {
-            this.setState({
-                screenshot: file,
-                fileExtension: extension,
-                originalFilename: fileObj.name,
-                fileSize: fileObj.size,
-                uploadMethod: 'upload',
-                mode: 'preview',
-                fileDimensions,
-                showCrop: !this.props.hideCrop && true
-            });
-        });
-    }
-
-    takePhoto() {
-        const screenshot = this.takePhoto.getScreenshot();
-
-        // This is done so the crop gets umnounteted (in cases where an image is loaded and then changed without cropping)
-        this.setState({
-            showCrop: false
-        }, () => {
-            this.setState({
-                uploadMethod: 'take',
-                mode: 'preview',
-                showCrop: !this.props.hideCrop && true,
-                fileExtension: 'png',
-                screenshot
-            });
-        });
-    }
-
-    onUseFile() {
-        const { screenshot, hasCropped } = this.state;
-
-        // If the user has cropped, use the file, otherwise crop the visible area first and then use the file
-        if (this.props.hideCrop || hasCropped) {
-            this.uploadFile(screenshot, this.props.uploadURL);
-        } else {
-            this.crop();
-
-            this.setState({
-                shouldUse: true
-            });
+            if (attachmentResult) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    try {
+                        loadFile({
+                            filename: attachmentResult.result.filename,
+                            createdDate: new Date().toISOString(),
+                            extension: ext,
+                            contentType: attachmentResult.result.headers['content-type']
+                        });
+                    } catch (e) {
+                        setError(e.message);
+                    }
+                };
+                reader.readAsDataURL(img);
+            }
+        } catch (error) {
+            setError(error.message);
         }
-    }
+    }, [state, uploadDocument, loadFile, dataURItoBlob, setError]);
 
-    getFileDimensions(file) {
-        const fileDimensions = getFileDimensions(file);
+    const changeMode = useCallback((mode) => {
+        setState(prevState => ({ ...prevState, mode }));
+    }, []);
+
+    // const setUploadMethod = useCallback((uploadMethod) => {
+    //     setState(prevState => ({ ...prevState, uploadMethod }));
+    // }, []);
+
+    const getFileDimensions = useCallback((file) => {
+        const fileDimensions = getDimensions(file);
         const { aspectRatio } = fileDimensions;
         const scaleRatio = aspectRatio || DEFAULT_ASPECT_RATIO;
         const height = window.innerHeight - POPUP_MIN_OFFSETS - POPUP_HEADER_HEIGHT - POPUP_FOOTER_HEIGHT - 2 * POPUP_PADDING;
@@ -145,38 +127,119 @@ export default class DocumentUpload extends Component {
             width: height * scaleRatio >> 0,
             height: height >> 0
         };
-    }
+    }, []);
 
-    crop() {
-        this.filePreview.editPhoto.cropImage();
-    }
+    const onAddFile = useCallback(() => {
+        const fileDimensions = getFileDimensions();
+        setState(prevState => ({
+            ...prevState,
+            fileDimensions,
+            uploadMethod: 'take',
+            mode: 'takePhoto'
+        }));
+    }, [getFileDimensions]);
 
-    onCrop(screenshot) {
-        const { shouldUse } = this.state;
+    const onUploadFile = useCallback((file, fileObj) => {
+        const fileDimensions = getFileDimensions(file);
+        const extension = getFileExtension(fileObj.name);
+
+        setState(prevState => ({
+            ...prevState,
+            showCrop: false
+        }));
+
+        setTimeout(() => {
+            setState(prevState => ({
+                ...prevState,
+                screenshot: file,
+                fileExtension: extension,
+                originalFilename: fileObj.name,
+                fileSize: fileObj.size,
+                uploadMethod: 'upload',
+                mode: 'preview',
+                fileDimensions,
+                showCrop: !hideCrop
+            }));
+        }, 0);
+    }, [getFileDimensions, hideCrop]);
+
+    const takePhoto = useCallback(() => {
+        const screenshot = takePhotoRef.current.getScreenshot();
+
+        setState(prevState => ({
+            ...prevState,
+            showCrop: false
+        }));
+
+        setTimeout(() => {
+            setState(prevState => ({
+                ...prevState,
+                uploadMethod: 'take',
+                mode: 'preview',
+                showCrop: !hideCrop,
+                fileExtension: 'png',
+                screenshot
+            }));
+        }, 0);
+    }, [hideCrop]);
+
+    const onUseFile = useCallback(() => {
+        const { screenshot, hasCropped } = state;
+
+        if (hideCrop || hasCropped) {
+            uploadFile(screenshot, uploadURL);
+        } else {
+            filePreviewRef.current.editPhoto.cropImage();
+            setState(prevState => ({ ...prevState, shouldUse: true }));
+        }
+    }, [state, hideCrop, uploadFile, uploadURL]);
+
+    const onCrop = useCallback((screenshot) => {
+        const { shouldUse } = state;
 
         if (shouldUse) {
-            this.uploadFile(screenshot);
+            uploadFile(screenshot);
         } else {
-            this.setState({
+            setState(prevState => ({
+                ...prevState,
                 screenshot,
                 showCrop: false,
                 hasCropped: true
-            });
+            }));
         }
-    }
+    }, [state, uploadFile]);
 
-    get view() {
-        const { mode, uploadMethod, fileDimensions } = this.state;
-        const { scaleDimensions, allowedFileTypes, hideCrop, uploadType } = this.props;
+    const validate = useCallback(() => {
+        const { fileExtension, fileSize } = state;
+        if (
+            !allowedFileTypes.map(tp => (tp.split('.').pop() || '').toLowerCase()).includes((fileExtension || '').toLowerCase()) ||
+            fileSize > maxFileSize * 1024
+        ) {
+            return `Please use file types ${allowedFileTypes.join(', ')} and file size up to ${parseInt(maxFileSize / 1024)}MB per document`;
+        }
+        return null;
+    }, [state, allowedFileTypes, maxFileSize]);
+
+    const getCropDimensions = useCallback(() => {
+        const { fileDimensions, uploadMethod } = state;
+        if (documentType !== 'profilePhoto' && uploadMethod === 'take') {
+            return fileDimensions;
+        }
+        return getViewport(fileDimensions, scaleDimensions);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state, documentType, scaleDimensions]);
+
+    const renderView = useCallback(() => {
+        const { mode, uploadMethod, fileDimensions } = state;
 
         if (mode === 'initial') {
             return (
                 <DocumentUploadMenu
                     menuItems={['file', 'camera']}
                     className={styles.initialViewContainer}
-                    onAddFile={this.onAddFile}
+                    onAddFile={onAddFile}
                     allowedFileTypes={allowedFileTypes}
-                    onFileLoaded={this.onUploadFile}
+                    onFileLoaded={onUploadFile}
                     uploadType={uploadType}
                 />
             );
@@ -185,7 +248,7 @@ export default class DocumentUpload extends Component {
         if (mode === 'takePhoto') {
             return (
                 <Camera
-                    ref={(c) => { this.takePhoto = c; }}
+                    ref={takePhotoRef}
                     width={fileDimensions.width}
                     height={fileDimensions.height}
                 />
@@ -195,50 +258,33 @@ export default class DocumentUpload extends Component {
         if (mode === 'preview') {
             return (
                 <div>
-                    <div className={this.validate && styles.hidden}>
+                    <div className={validate() && styles.hidden}>
                         <FilePreview
-                            ref={(c) => { this.filePreview = c; }}
-                            file={this.state.screenshot}
-                            fileExtension={this.state.fileExtension}
-                            originalFilename={this.state.originalFilename}
-                            showCrop={!hideCrop || this.state.showCrop}
-                            onCrop={this.onCrop}
+                            ref={filePreviewRef}
+                            file={state.screenshot}
+                            fileExtension={state.fileExtension}
+                            originalFilename={state.originalFilename}
+                            showCrop={!hideCrop || state.showCrop}
+                            onCrop={onCrop}
                             fileDimensions={fileDimensions}
                             scaleDimensions={scaleDimensions}
-                            cropDimensions={this.cropDimensions}
+                            cropDimensions={getCropDimensions()}
                             uploadMethod={uploadMethod}
                             uploadType={uploadType}
-                            onFileLoaded={this.onUploadFile}
-                            changeMode={this.changeMode}
+                            onFileLoaded={onUploadFile}
+                            changeMode={changeMode}
                             allowedFileTypes={allowedFileTypes.join(',')}
-                            crop={this.crop}
+                            crop={() => filePreviewRef.current.editPhoto.cropImage()}
                         />
                     </div>
-                    {this.validate && <div className={styles.errorMsg}>
-                        Error: {this.validate}
-                    </div>}
+                    {validate() && <div className={styles.errorMsg}>Error: {validate()}</div>}
                 </div>
             );
         }
-    }
+    }, [state, allowedFileTypes, hideCrop, onAddFile, onUploadFile, onCrop, changeMode, uploadType, scaleDimensions, validate, getCropDimensions]);
 
-    get validate() {
-        // file validation
-        const { allowedFileTypes, maxFileSize } = this.props;
-        const { fileExtension, fileSize } = this.state;
-        if ((!allowedFileTypes.map((tp) => (tp.split('.').pop() || '').toLowerCase()).includes((fileExtension || '').toLowerCase())) || (fileSize > this.maxFileSize)) {
-            return `Please use file types ${allowedFileTypes.join(', ')} and file size up to ${parseInt((maxFileSize) / 1024)}MB per document`;
-        } else return null;
-    }
-
-    get maxFileSize() {
-        return this.props.maxFileSize * 1024;
-    }
-
-    get actionButtons() {
-        const { closePopup } = this.props;
-        const { mode } = this.state;
-
+    const getActionButtons = useCallback(() => {
+        const { mode } = state;
         const actionButtons = [{
             label: 'Cancel',
             styleType: 'secondaryDialog',
@@ -250,157 +296,57 @@ export default class DocumentUpload extends Component {
                 name: 'take',
                 label: 'Take',
                 styleType: 'secondaryLight',
-                onClick: this.takePhoto
+                onClick: takePhoto
             });
         }
 
         if (mode === 'preview') {
-            const handler = this.props.isAdditionalContentValid ? this.onUseFile : this.props.additionalContentValidate;
-            !this.validate && actionButtons.unshift({
-                name: 'use',
-                label: 'Use',
-                disabled: this.state.isUploading,
-                styleType: 'secondaryLight',
-                onClick: handler
-            });
+            const handler = isAdditionalContentValid ? onUseFile : additionalContentValidate;
+            if (!validate()) {
+                actionButtons.unshift({
+                    name: 'use',
+                    label: 'Use',
+                    disabled: state.isUploading,
+                    styleType: 'secondaryLight',
+                    onClick: handler
+                });
+            }
         }
 
         return actionButtons;
-    }
+    }, [state, closePopup, takePhoto, onUseFile, isAdditionalContentValid, additionalContentValidate, validate]);
 
-    get details() {
-        const { popupType } = this.props;
-
-        return popupType === 'detailed' && <div />;
-    }
-
-    get cropDimensions() {
-        const { fileDimensions, uploadMethod } = this.state;
-        const { scaleDimensions, documentType } = this.props;
-
-        // this is done for documents with aspectRatio 4/3; no crop viewport is needed in this case;
-        // the crop component is preserved, so the zoom is still available to the user
-        if (documentType !== 'profilePhoto' && uploadMethod === 'take') {
-            return fileDimensions;
+    useEffect(() => {
+        if (isOpen === false) {
+            resetState();
         }
+    }, [isOpen, resetState]);
 
-        return getViewport(fileDimensions, scaleDimensions);
-    }
-
-    uploadFile = async(file, uploadURL = '/file-upload') => {
-        const {
-            useFile,
-            uploadDocument
-        } = this.props;
-        const data = new window.FormData();
-        const img = this.dataURItoBlob(file);
-        const ext = this.state.fileExtension || 'unknown';
-        data.append('file', img, 'file.' + ext);
-        this.setState({
-            isUploading: true
-        });
-        const attachmentResult = await uploadDocument({
-            formData: data
-        });
-        this.setState({
-            isUploading: false
-        });
-        // fix(MSA-1185): Document upload: Show user friendly error message when document uploaded is too large
-        if (attachmentResult.error) {
-            let errorMsg = attachmentResult.error.message || attachmentResult.error.statusText;
-            if (attachmentResult.error.statusCode === ERROR_STATUS_CODES.request_entity_too_large) {
-                errorMsg = 'Document size is greater than maximum allowed.';
-            }
-            return this.setError(errorMsg);
-        }
-        if (attachmentResult) {
-            const reader = new window.FileReader();
-            reader.onload = (data) => {
-                try {
-                    // eslint-disable-next-line react-hooks/rules-of-hooks
-                    useFile({
-                        filename: attachmentResult.result.filename,
-                        createdDate: new Date().toISOString(),
-                        extension: ext,
-                        contentType: attachmentResult.result.headers['content-type']
-                    });
-                } catch (e) {
-                    this.setError(e);
-                }
-            };
-            reader.readAsDataURL(img);
-        }
-    };
-
-    dataURItoBlob(dataURI) {
-        // convert base64/URLEncoded data component to raw binary data held in a string
-        let byteString;
-        if (dataURI.split(',')[0].indexOf('base64') >= 0) {
-            byteString = window.atob(dataURI.split(',')[1]);
-        } else {
-            byteString = unescape(dataURI.split(',')[1]);
-        }
-        // separate out the mime component
-        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-        // write the bytes of the string to a typed array
-        const ia = new Uint8Array(byteString.length);
-        for (let i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-
-        return new window.Blob([ia], {type: mimeString});
-    }
-
-    setError(errMsg) {
-        this.setState({
-            errorUpload: errMsg
-        });
-    }
-
-    get displayError() {
-        if (this.state.errorUpload) {
-            return (
-                <div className={styles.errorBox}>
-                    {this.state.errorUpload}
-                </div>
-            );
-        } else {
-            return null;
-        }
-    }
-
-    render() {
-        const { isOpen, header, closePopup } = this.props;
-        const { mode } = this.state;
-
-        return (
-            <Popup
-                ref={(c) => { this.popup = c; }}
-                isOpen={isOpen}
-                header={header}
-                contentClassName={styles[mode + 'Container']}
-                footer={{actionButtons: this.actionButtons}}
-                closePopup={closePopup}
-            >
-                <div>
-                    {this.displayError}
-                    {this.props.children}
-                    {this.details}
-                    {this.view}
-                </div>
-            </Popup>
-        );
-    }
-}
+    return (
+        <Popup
+            isOpen={isOpen}
+            header={header}
+            contentClassName={styles[state.mode + 'Container']}
+            footer={{ actionButtons: getActionButtons() }}
+            closePopup={closePopup}
+        >
+            <div>
+                {state.errorUpload && <div className={styles.errorBox}>{state.errorUpload}</div>}
+                {children}
+                {popupType === 'detailed' && <div />}
+                {renderView()}
+            </div>
+        </Popup>
+    );
+};
 
 DocumentUpload.defaultProps = {
     uploadDocument: () => ({}),
     useFile: () => ({}),
     allowedFileTypes: ['.jpg', '.jpeg', '.png'],
-    maxFileSize: 5 * 1024, // default maximum size 5MB
+    maxFileSize: 5 * 1024,
     hideCrop: false,
-    additionalContentValidate: () => {},
+    additionalContentValidate: () => { },
     isAdditionalContentValid: true
 };
 
@@ -417,7 +363,7 @@ DocumentUpload.propTypes = {
     useFile: PropTypes.func,
     closePopup: PropTypes.func,
     allowedFileTypes: PropTypes.array,
-    maxFileSize: PropTypes.number, // file size in kb
+    maxFileSize: PropTypes.number,
     children: PropTypes.any,
     hideCrop: PropTypes.bool,
     uploadType: PropTypes.string,
@@ -425,3 +371,5 @@ DocumentUpload.propTypes = {
     isAdditionalContentValid: PropTypes.bool,
     uploadURL: PropTypes.string
 };
+
+export default DocumentUpload;

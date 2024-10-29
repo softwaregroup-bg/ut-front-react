@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Tab, MultiTab } from './../Tab';
+import { Tab, MultiTab } from '../../components/Tab';
 import { permissionPreCheck } from './helpers';
 import { fromJS } from 'immutable';
 

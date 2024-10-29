@@ -1,3 +1,117 @@
+# [13.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.14...v13.5.0) (2024-10-07)
+
+
+### Features
+
+* added version number component on Login page ([#698](https://github.com/softwaregroup-bg/ut-front-react/issues/698)) ([0028571](https://github.com/softwaregroup-bg/ut-front-react/commit/0028571a067ed3ca437b9457554ad491c8482cb6))
+
+
+
+## [13.4.14](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.13...v13.4.14) (2024-09-02)
+
+
+
+## [13.4.13](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.12...v13.4.13) (2024-07-23)
+
+
+### Bug Fixes
+
+* set date UTC when change startDate or endDate filter PS-289 ([#696](https://github.com/softwaregroup-bg/ut-front-react/issues/696)) ([cf085c6](https://github.com/softwaregroup-bg/ut-front-react/commit/cf085c66c75dd009ee238e904226b539c8f60b58))
+
+
+
+## [13.4.12](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.11...v13.4.12) (2024-06-04)
+
+
+
+## [13.4.11](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.10...v13.4.11) (2024-04-04)
+
+
+### Bug Fixes
+
+* remove otp error showing otp length BDC-2518 ([f01afbf](https://github.com/softwaregroup-bg/ut-front-react/commit/f01afbfc30f363d346c84173dc791de95a8af19b))
+
+
+
+## [13.4.10](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.9...v13.4.10) (2024-04-03)
+
+
+### Bug Fixes
+
+* get the correct values for minutes and seconds from dateTimePicker UBPS-55 ([403b237](https://github.com/softwaregroup-bg/ut-front-react/commit/403b237b57e5955351eba7709753385af6112192))
+
+
+
+## [13.4.9](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.8...v13.4.9) (2024-03-12)
+
+
+### Bug Fixes
+
+* UATALZ-2982 enable shouldDisableDate property of DatePicker ([b103f74](https://github.com/softwaregroup-bg/ut-front-react/commit/b103f742c1908b8e71635ff33b6413cbee68c63f))
+
+
+
+## [13.4.8](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.7...v13.4.8) (2024-02-05)
+
+
+
+## [13.4.7](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.6...v13.4.7) (2024-02-01)
+
+
+
+## [13.4.6](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.5...v13.4.6) (2024-01-29)
+
+
+### Bug Fixes
+
+* introduce route permissions ([38b2bc5](https://github.com/softwaregroup-bg/ut-front-react/commit/38b2bc5eb7ca79663187cd10938bbb83b9349265))
+
+
+
+## [13.4.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.4...v13.4.5) (2023-11-09)
+
+
+### Bug Fixes
+
+* refs with connect PS-283 ([#684](https://github.com/softwaregroup-bg/ut-front-react/issues/684)) ([cd511ba](https://github.com/softwaregroup-bg/ut-front-react/commit/cd511ba92d5a14b8eafee236088f60b286545aff))
+
+
+
+## [13.4.4](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.3...v13.4.4) (2023-11-03)
+
+
+
+## [13.4.3](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.2...v13.4.3) (2023-11-02)
+
+
+
+## [13.4.2](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.1...v13.4.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* card number filter, add enter key press event PS-282 ([#681](https://github.com/softwaregroup-bg/ut-front-react/issues/681)) ([93e0717](https://github.com/softwaregroup-bg/ut-front-react/commit/93e07173437e8e4c981a37a7d4307685535e949f))
+
+
+
+## [13.4.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.0...v13.4.1) (2023-10-27)
+
+
+### Bug Fixes
+
+* **MSA-4186:** additional validation ([#680](https://github.com/softwaregroup-bg/ut-front-react/issues/680)) ([1616f59](https://github.com/softwaregroup-bg/ut-front-react/commit/1616f5995eb0a5db7c8addf005dab3b259751a4c))
+
+
+
+# [13.4.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.5...v13.4.0) (2023-09-29)
+
+
+### Features
+
+* add option to change color in DatePicker BDC-2427 ([#679](https://github.com/softwaregroup-bg/ut-front-react/issues/679)) ([bbd8c70](https://github.com/softwaregroup-bg/ut-front-react/commit/bbd8c70e80b80a0ee31e566002c90ea3505a48b9))
+
+
+
 ## [13.3.5](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.3.4...v13.3.5) (2023-08-01)
 
 

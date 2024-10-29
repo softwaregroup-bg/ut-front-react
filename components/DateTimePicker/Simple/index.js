@@ -87,6 +87,12 @@ class DateTimePicker extends Component {
                         newDate.setSeconds(currentDate.getSeconds());
                     }
                 }
+            } else if (ref === 'dateTime') {
+                if (currentDate && !isNaN(currentDate.valueOf())) {
+                    if (!newDate || isNaN(newDate.valueOf())) {
+                        newDate = undefined;
+                    }
+                }
             } else if (ref === 'time' && timeType === 'timePicker') {
                 if (currentDate && !isNaN(currentDate.valueOf())) {
                     if (!newDate || isNaN(newDate.valueOf())) {
@@ -131,7 +137,8 @@ class DateTimePicker extends Component {
                 return;
             }
             this.props.onChange({
-                value: newDate
+                value: newDate,
+                dateTimePicker: (ref === 'dateTime')
             });
         };
     }
@@ -200,7 +207,7 @@ class DateTimePicker extends Component {
                             timeFormat={timeFormat}
                             format={formatDateTime}
                             value={value || defaultValue}
-                            onAccept={this.handleAccept('date')}
+                            onAccept={this.handleAccept('dateTime')}
                             onChange={this.handleChange}
                             maxDate={maxDate}
                             minDate={minDate}
@@ -210,7 +217,7 @@ class DateTimePicker extends Component {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <IconButton>
+                                        <IconButton color='primary'>
                                             <Today />
                                         </IconButton>
                                     </InputAdornment>
