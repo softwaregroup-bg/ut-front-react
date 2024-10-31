@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import { checkPermission } from '../../containers/Gate/helpers';
+import { checkPermission } from '../Gate/helpers';
 
 // filters tabs we have no permission for as well as empty multitabs
 export function permissionPreCheck(tabList) {

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import Link from './../Link';
-import { breakOnSpaceChars, getClass } from './../../utils/helpers';
-import { joinArrayWithBreakTags } from './../../utils/dom';
+import Link from '../../components/Link';
+import { breakOnSpaceChars, getClass } from '../../utils/helpers';
+import { joinArrayWithBreakTags } from '../../utils/dom';
 import styles from './styles.css';
 
 export default class HeaderLogo extends Component {

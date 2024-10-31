@@ -64,10 +64,9 @@ export const inputs = {
         label: 'Otp code',
         value: '',
         error: '',
-        validateOrder: ['isRequired', 'length'],
+        validateOrder: ['isRequired'],
         validations: {
-            isRequired: true,
-            length: 4
+            isRequired: true
         }
     }
 };
