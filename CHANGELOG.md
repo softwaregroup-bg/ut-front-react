@@ -1,3 +1,12 @@
+## [13.5.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.5.0...v13.5.1) (2024-11-15)
+
+
+### Bug Fixes
+
+* backwards compatibility ([#701](https://github.com/softwaregroup-bg/ut-front-react/issues/701)) ([64c06cb](https://github.com/softwaregroup-bg/ut-front-react/commit/64c06cbf4408b200cde8ed31ad684bed17e0172b))
+
+
+
 # [13.5.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.4.14...v13.5.0) (2024-10-07)
 
 
