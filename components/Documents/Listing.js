@@ -111,7 +111,6 @@ class Documents extends Component {
                         <Grid container style={{ gap: '1rem' }}>
                             {
                                 this.props.documentTypes.map(type => {
-                                    console.log('type', type);
                                     const uploadedDocs = documentsChanged.filter(doc => doc.documentTypeId === type.key).length;
                                     const validated = this.validateDocumentType(type.key);
                                     return <Grid>
@@ -153,7 +152,7 @@ Documents.propTypes = {
     validationConfig: PropTypes.objectOf(PropTypes.exact({
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired,
-        required: PropTypes.bool.isRequired,
+        required: PropTypes.bool.isRequired
     })),
 
     // funcs

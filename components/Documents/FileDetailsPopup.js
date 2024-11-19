@@ -42,7 +42,7 @@ export default class FileDetailsPopup extends Component {
     }
 
     get view() {
-        const { mode, mode_two } = this.state;
+        const { mode, modeTwo } = this.state;
 
         if (mode === 'details') {
             const displayFiles = Array.isArray(this.props.file) ? this.props.file : [this.props.file];
@@ -52,7 +52,7 @@ export default class FileDetailsPopup extends Component {
                     scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
                     onClick={this.onImageClick}
                     key={file.url}
-                    mode_two={mode_two}
+                    modeTwo={modeTwo}
                 />
             );
             return (
@@ -120,5 +120,5 @@ FileDetailsPopup.propTypes = {
 FileDetailsPopup.defaultProps = {
     closeOnOverlayClick: true,
     closeOnEsc: true,
-    mode_two: 'default'
+    modeTwo: 'default'
 };
