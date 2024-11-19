@@ -108,87 +108,89 @@ class DocumentUploadWithForm extends Component {
                         disabled={disabledField}
                     />
                 </div>
-                <div className={style.formRow}>
-                    <Input
-                        label='Document Number'
-                        keyProp='documentNumber'
-                        placeholder='Document number'
-                        value={this.state.documentNumber}
-                        onChange={(obj) => {
-                            this.setState({
-                                documentNumber: obj.value
-                            }, this.handleValidation(this.state.fileType, obj.value));
-                        }}
-                        isValid={this.state.errors.documentNumber === undefined}
-                        errorMessage={this.state.errors.documentNumber}
-                        readonly={disabledField}
-                    />
-                </div>
-                <div className={style.formRow}>
-                    <DatePicker
-                        label={'Issue Date'}
-                        defaultValue= {this.state.issueDate}
-                        onChange={(obj) => {
-                            this.setState({
-                                issueDate: obj.value
-                            }, this.handleValidation(this.state.fileType, obj.value));
-                        }}
-                        maxDate= {new Date()}
-                        format="dd/MM/yyyy"
-                        clearable={true}
-                        disabled={disabledField}
-                        wrapperClassName={style.boldLabel}
-                        withVerticalClass={true}
-                    />
-                </div>
-                {!!this.props.countries.length && (<div className={style.formRow}>
-                    <Dropdown
-                        label='Country'
-                        data={this.props.countries}
-                        keyProp='countryId'
-                        defaultSelected={this.state.countryId}
-                        placeholder='Select Country'
-                        onSelect={(obj) => {
-                            this.setState({
-                                countryId: obj.value
-                            }, this.handleValidation(this.state.fileType, obj.value));
-                        }}
-                        disabled={disabledField}
-                    />
-                </div>)}
-                <div className={style.formRow}>
-                    <Input
-                        label='Issued By'
-                        keyProp='issuedBy'
-                        placeholder='Issued By'
-                        value={this.state.issuedBy}
-                        onChange={(obj) => {
-                            this.setState({
-                                issuedBy: obj.value
-                            }, this.handleValidation(this.state.fileType, obj.value));
-                        }}
-                        isValid={this.state.errors.issuedBy === undefined}
-                        errorMessage={this.state.errors.issuedBy}
-                        readonly={disabledField}
-                    />
-                </div>
-                <div className={style.formRow}>
-                    <DatePicker
-                        label={'Expiration Date'}
-                        defaultValue= {this.state.expirationDate}
-                        onChange={(obj) => {
-                            this.setState({
-                                expirationDate: obj.value
-                            }, this.handleValidation(this.state.fileType, obj.value));
-                        }}
-                        minDate= {new Date()}
-                        format="dd/MM/yyyy"
-                        clearable={true}
-                        disabled={disabledField}
-                        wrapperClassName={style.boldLabel}
-                        withVerticalClass={true}
-                    />
-                </div>
+                {this.props.mode === 'default' && <>
+                    <div className={style.formRow}>
+                        <Input
+                            label='Document Number'
+                            keyProp='documentNumber'
+                            placeholder='Document number'
+                            value={this.state.documentNumber}
+                            onChange={(obj) => {
+                                this.setState({
+                                    documentNumber: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            isValid={this.state.errors.documentNumber === undefined}
+                            errorMessage={this.state.errors.documentNumber}
+                            readonly={disabledField}
+                        />
+                    </div>
+                    <div className={style.formRow}>
+                        <DatePicker
+                            label={'Issue Date'}
+                            defaultValue={this.state.issueDate}
+                            onChange={(obj) => {
+                                this.setState({
+                                    issueDate: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            maxDate={new Date()}
+                            format="dd/MM/yyyy"
+                            clearable={true}
+                            disabled={disabledField}
+                            wrapperClassName={style.boldLabel}
+                            withVerticalClass={true}
+                        />
+                    </div>
+                    {!!this.props.countries.length && (<div className={style.formRow}>
+                        <Dropdown
+                            label='Country'
+                            data={this.props.countries}
+                            keyProp='countryId'
+                            defaultSelected={this.state.countryId}
+                            placeholder='Select Country'
+                            onSelect={(obj) => {
+                                this.setState({
+                                    countryId: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            disabled={disabledField}
+                        />
+                    </div>)}
+                    <div className={style.formRow}>
+                        <Input
+                            label='Issued By'
+                            keyProp='issuedBy'
+                            placeholder='Issued By'
+                            value={this.state.issuedBy}
+                            onChange={(obj) => {
+                                this.setState({
+                                    issuedBy: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            isValid={this.state.errors.issuedBy === undefined}
+                            errorMessage={this.state.errors.issuedBy}
+                            readonly={disabledField}
+                        />
+                    </div>
+                    <div className={style.formRow}>
+                        <DatePicker
+                            label={'Expiration Date'}
+                            defaultValue={this.state.expirationDate}
+                            onChange={(obj) => {
+                                this.setState({
+                                    expirationDate: obj.value
+                                }, this.handleValidation(this.state.fileType, obj.value));
+                            }}
+                            minDate={new Date()}
+                            format="dd/MM/yyyy"
+                            clearable={true}
+                            disabled={disabledField}
+                            wrapperClassName={style.boldLabel}
+                            withVerticalClass={true}
+                        />
+                    </div>
+                </>}
                 <div className={style.formRow}>
                     <Input
                         label='Description'
@@ -296,6 +298,7 @@ DocumentUploadWithForm.propTypes = {
     ),
     countries: PropTypes.array,
     uploadURL: PropTypes.string,
+    mode: PropTypes.string,
     allowedFileTypes: PropTypes.array,
     replaceDocument: PropTypes.func,
     uploadNewDocument: PropTypes.func,
@@ -308,7 +311,8 @@ DocumentUploadWithForm.defaultProps = {
     uploadNewDocument: () => {},
     replaceDocument: () => {},
     closePopup: () => {},
-    uploadDocument: () => {}
+    uploadDocument: () => {},
+    mode: 'default'
 };
 
 export default DocumentUploadWithForm;

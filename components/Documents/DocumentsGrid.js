@@ -75,7 +75,7 @@ class DocumentsGrid extends Component {
                         multiSelect={true}
                         globalMenu={false}
                         emptyRowsMsg={<Text>No results</Text>}
-                        fields={getListTableColumns()}
+                        fields={getListTableColumns(this.props.mode)}
                         data={gridData}
                         transformCellValue={this.mapColumn}
                         handleRowClick={handleRowClick}
@@ -104,10 +104,12 @@ class DocumentsGrid extends Component {
 
 DocumentsGrid.defaultProps = {
     onGridSelect: () => {},
-    selectedFilter: 'all'
+    selectedFilter: 'all',
+    mode: 'default'
 };
 
 DocumentsGrid.propTypes = {
+    mode: PropTypes.string,
     identifier: PropTypes.string,
     documents: PropTypes.array,
     selectedFilter: PropTypes.string,

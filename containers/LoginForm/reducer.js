@@ -62,7 +62,7 @@ const loginReducer = (state = defaultLoginState, action) => {
                 return state
                     .set('logoutRedirectUrl', action.result?.logoutRedirectUrl || logoutRedirectUrl)
                     .set('isLogout', true)
-                    .set('version', action.result?.responseHeaders['x-ut-version']);
+                    .set('version', action.result?.responseHeaders?.['x-ut-version']);
             }
             return defaultLoginState
                 .set('isLogout', true);
@@ -122,7 +122,7 @@ const loginReducer = (state = defaultLoginState, action) => {
                     return state.delete('result')
                         .set('cookieChecked', true)
                         .set('authenticated', false)
-                        .set('version', action.error?.responseHeaders['x-ut-version']);
+                        .set('version', action.error?.responseHeaders?.['x-ut-version']);
                 } else if (action.result) {
                     logoutRedirectUrl = action.result.logoutRedirectUrl;
                     return state.set('result', Immutable.fromJS(action.result))

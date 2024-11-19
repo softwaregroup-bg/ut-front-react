@@ -283,6 +283,7 @@ class Toolbox extends Component {
                     header={{text: 'Preview Document'}}
                     closePopup={closeHandler}
                     file={file}
+                    mode_two={this.props.mode}
                 />
             );
         } else {
@@ -310,6 +311,7 @@ class Toolbox extends Component {
                 allowedFileTypes={this.props.allowedFileTypes}
                 uploadURL={this.props.uploadURL}
                 countries={this.props.countries}
+                mode={this.props.mode}
             />
         );
     }
@@ -334,6 +336,7 @@ Toolbox.propTypes = {
     documentArchived: PropTypes.object, // immutable object
     selectedFilter: PropTypes.string,
     uploadURL: PropTypes.string,
+    mode: PropTypes.string,
 
     // funcs
     changeDocumentFilter: PropTypes.func.isRequired,
@@ -366,7 +369,8 @@ Toolbox.propTypes = {
 
 Toolbox.defaultProps = {
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
-    documentTypes: []
+    documentTypes: [],
+    mode: 'default'
 };
 
 export default Toolbox;

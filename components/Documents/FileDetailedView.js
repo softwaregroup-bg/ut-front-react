@@ -14,9 +14,9 @@ export default class FileDetailedView extends Component {
     }
 
     get details() {
-        const { file } = this.props;
+        const { file, mode_two } = this.props;
 
-        return Object.keys(file.details).map((key, index) => {
+        return Object.keys(file.details).filter(column => mode_two === 'default' ? column : !['documentNumber', 'issueDate', 'expirationDate'].includes(column)).map((key, index) => {
             if (key === 'width' || key === 'height' || key === 'type') {
                 return;
             }
@@ -71,12 +71,14 @@ FileDetailedView.propTypes = {
     scaleDimensions: PropTypes.shape({
         width: PropTypes.number,
         height: PropTypes.number
-    })
+    }),
+    mode_two: PropTypes.string
 };
 
 FileDetailedView.defaultProps = {
     scaleDimensions: {
         width: 230,
         height: 300
-    }
+    },
+    mode_two: 'default'
 };

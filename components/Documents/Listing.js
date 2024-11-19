@@ -1,14 +1,17 @@
+import { Chip, Container, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Toolbox from './Toolbox';
 import DocumentsGrid from './DocumentsGrid';
 import { mergeDocumentsWithChanged } from './helpers';
 import style from './style.css';
+import Toolbox from './Toolbox';
 
 class Documents extends Component {
     constructor(props) {
         super(props);
         this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
+        this.validateDocumentType = this.validateDocumentType.bind(this);
+        this.filterDocumentTypes = this.filterDocumentTypes.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,6 +44,7 @@ class Documents extends Component {
                 allowedFileTypes={this.props.allowedFileTypes}
                 permissions={this.props.permissions}
                 uploadURL={this.props.uploadURL}
+                mode={this.props.mode}
             />
         );
     }
@@ -49,8 +53,31 @@ class Documents extends Component {
         return mergeDocumentsWithChanged(this.props.documents, this.props.documentsChanged);
     }
 
+    validateDocumentType(key) {
+        const { documentsChanged, validationConfig } = this.props;
+
+        const validation = validationConfig[key];
+        if (!validation) return false;
+        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
+        if (!validation.required) return true;
+        return typeDocuments.length >= validation.min && typeDocuments.length <= validation.max;
+    }
+
+    filterDocumentTypes(key) {
+        const { documentsChanged, validationConfig } = this.props;
+
+        const validation = validationConfig[key];
+        if (!validation) return false;
+        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
+        if (!validation.required) return true;
+        return !(typeDocuments.length === validation.max);
+    }
+
     render() {
-        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, documentsChanged, validationConfig } = this.props;
+
+        const docTypes = validationConfig ? documentTypes.filter(type => this.filterDocumentTypes(type.key)) : documentTypes;
+
         return (
             <div className={style.documentsWrap}>
                 <Toolbox
@@ -60,7 +87,7 @@ class Documents extends Component {
                     documentArchived={this.props.documentArchived}
                     selectedFilter={this.props.selectedFilter}
                     changeDocumentFilter={this.props.changeDocumentFilter}
-                    documentTypes={this.props.documentTypes}
+                    documentTypes={docTypes}
                     uploadNewDocument={this.props.uploadNewDocument}
                     uploadDocument={this.props.uploadDocument}
                     replaceDocument={this.props.replaceDocument}
@@ -69,6 +96,7 @@ class Documents extends Component {
                     allowedFileTypes={this.props.allowedFileTypes}
                     permissions={this.props.permissions}
                     uploadURL={this.props.uploadURL}
+                    mode={this.props.mode}
                 >
                     <DocumentsGrid
                         identifier={identifier}
@@ -77,7 +105,29 @@ class Documents extends Component {
                         documentArchived={documentArchived}
                         onGridSelect={onGridSelect}
                         selected={selectedAttachment}
+                        mode={this.props.mode}
                     />
+                    {validationConfig && <Container maxWidth disableGutters={true} style={{ position: 'absolute', bottom: '2rem' }}>
+                        <Grid container style={{ gap: '1rem' }}>
+                            {
+                                this.props.documentTypes.map(type => {
+                                    console.log('type', type);
+                                    const uploadedDocs = documentsChanged.filter(doc => doc.documentTypeId === type.key).length;
+                                    const validated = this.validateDocumentType(type.key);
+                                    return <Grid>
+                                        <Chip
+                                            label={type.name}
+                                            icon={
+                                                <span style={{ width: '17px', height: '17px', color: 'white', background: validated ? 'green' : 'red', borderRadius: '50%', marginLeft: '7px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold' }}>
+                                                    {uploadedDocs}
+                                                </span>
+                                            }
+                                        />
+                                    </Grid>;
+                                })
+                            }
+                        </Grid>
+                    </Container>}
                 </Toolbox>
             </div>
         );
@@ -100,6 +150,11 @@ Documents.propTypes = {
     selectedFilter: PropTypes.string,
     documentArchived: PropTypes.object, // immutable object
     uploadURL: PropTypes.string,
+    validationConfig: PropTypes.objectOf(PropTypes.exact({
+        min: PropTypes.number.isRequired,
+        max: PropTypes.number.isRequired,
+        required: PropTypes.bool.isRequired,
+    })),
 
     // funcs
     fetchArchivedDocuments: PropTypes.func.isRequired,
@@ -112,6 +167,8 @@ Documents.propTypes = {
             name: PropTypes.string
         })
     ),
+    documentTypeClass: PropTypes.string,
+    mode: PropTypes.string,
 
     uploadNewDocument: PropTypes.func,
     uploadDocument: PropTypes.func,
@@ -127,7 +184,8 @@ Documents.defaultProps = {
     // requiresFetch: false,
     // isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
-    documentTypes: []
+    documentTypes: [],
+    mode: 'default'
 };
 
 export default Documents;
