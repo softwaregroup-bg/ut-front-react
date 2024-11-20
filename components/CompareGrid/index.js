@@ -32,14 +32,14 @@ class CompareGrid extends Component {
     }
 
     render() {
-        const {isNew, isDeleted, rejectReason, staticStrings} = this.props;
+        const { isNew, isDeleted, rejectReason, staticStrings, isRejected } = this.props;
         return (
             <div className={styles.wrapper}>
                 {isNew && !isDeleted && <h1 className={styles.newEntity}><Text>{staticStrings.headingIsNew}</Text></h1>}
                 {isDeleted && <h1 className={styles.rejectTextField}><Text>{staticStrings.headingWillBeDeleted}</Text></h1>}
                 {rejectReason &&
                 <Accordion
-                    title='Rejection Reason'
+                    title={`${isRejected ? 'Rejection' : 'Approval'} Reason`}
                     marginBottom={false}
                     fullWidth
                     externalBodyClasses={styles.accordionBody}
@@ -59,6 +59,10 @@ class CompareGrid extends Component {
     }
 }
 
+CompareGrid.defaultProps = {
+    isRejected: true
+};
+
 CompareGrid.propTypes = {
     staticStrings: PropTypes.shape({
         headingIsNew: PropTypes.string,
@@ -66,6 +70,7 @@ CompareGrid.propTypes = {
     }),
     isNew: PropTypes.bool,
     isDeleted: PropTypes.bool,
+    isRejected: PropTypes.bool,
     rejectReason: PropTypes.string,
     data: PropTypes.object // immutable List
 };

@@ -42,7 +42,7 @@ export default class FileDetailsPopup extends Component {
     }
 
     get view() {
-        const { mode } = this.state;
+        const { mode, modeTwo } = this.state;
 
         if (mode === 'details') {
             const displayFiles = Array.isArray(this.props.file) ? this.props.file : [this.props.file];
@@ -51,7 +51,8 @@ export default class FileDetailsPopup extends Component {
                     file={file}
                     scaleDimensions={{ width: defaultImageDimensions.width, height: defaultImageDimensions.height }}
                     onClick={this.onImageClick}
-                    key = {file.url}
+                    key={file.url}
+                    modeTwo={modeTwo}
                 />
             );
             return (
@@ -101,7 +102,8 @@ const fileSchema = PropTypes.shape({
         issueDate: PropTypes.string,
         countryName: PropTypes.string,
         issuedBy: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    mode: PropTypes.string
 });
 FileDetailsPopup.propTypes = {
     isOpen: PropTypes.bool,
@@ -117,5 +119,6 @@ FileDetailsPopup.propTypes = {
 
 FileDetailsPopup.defaultProps = {
     closeOnOverlayClick: true,
-    closeOnEsc: true
+    closeOnEsc: true,
+    modeTwo: 'default'
 };

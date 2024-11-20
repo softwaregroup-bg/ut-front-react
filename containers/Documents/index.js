@@ -1,18 +1,18 @@
+import immutable from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import immutable from 'immutable';
 import { documentPrefix } from '../../constants';
 import {
-    initState,
-    fetchArchivedDocuments,
-    selectAttachments,
-    fetchDocumentTypes,
     addDocument,
-    replaceDocument,
     changeDocumentFilter,
-    changeDocumentStatusDeleted,
     changeDocumentStatusArchived,
+    changeDocumentStatusDeleted,
+    fetchArchivedDocuments,
+    fetchDocumentTypes,
+    initState,
+    replaceDocument,
+    selectAttachments,
     uploadDocument
 } from './actions';
 
@@ -45,7 +45,7 @@ class DocumentsContainer extends Component {
     }
 
     fetchDocumentTypes(requiresFetch, isLoading) {
-        if (requiresFetch && !isLoading && this.props.identifier && this.props.documentTypeClass) {
+        if (!this.props.loadTypesByParent && requiresFetch && !isLoading && this.props.identifier && this.props.documentTypeClass) {
             this.props.fetchDocumentTypes(this.props.identifier, this.props.documentTypeClass);
         }
     }
@@ -63,7 +63,9 @@ class DocumentsContainer extends Component {
             permissions,
             documentTypes,
             selectedFilter,
-            documentArchived
+            documentArchived,
+            documentTypeClass,
+            validationConfig
         } = this.props;
         const selectedAttachment = attachments.getIn([identifier, 'selected']);
         const requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
@@ -85,10 +87,12 @@ class DocumentsContainer extends Component {
                 selectedAttachment={selectedAttachment}
                 requiresFetch={requiresFetch}
                 isLoading={isLoading}
+                validationConfig={validationConfig}
                 fetchArchivedDocuments={fetchArchivedDocuments}
                 onGridSelect={selectAttachments}
                 permissions={permissions}
                 documentTypes={docTypes}
+                documentTypeClass={documentTypeClass}
                 uploadURL={this.props.uploadURL}
                 uploadNewDocument={(newObject) => {
                     const formatedObj = {
@@ -132,6 +136,7 @@ class DocumentsContainer extends Component {
                 }}
                 selectedFilter={selectedFilter}
                 documentArchived={documentArchived}
+                mode={this.props.mode}
             />
         );
     }
@@ -144,6 +149,7 @@ DocumentsContainer.propTypes = {
     documents: PropTypes.array,
     countries: PropTypes.array,
     documentsChanged: PropTypes.object, // immutable list
+    validationConfig: PropTypes.object,
     fetchArchivedDocuments: DocumentsListing.propTypes.fetchArchivedDocuments,
     initState: PropTypes.func,
     selectAttachments: PropTypes.func,
@@ -153,6 +159,7 @@ DocumentsContainer.propTypes = {
     documentArchived: PropTypes.object, // immutable object
     documentTypeClass: PropTypes.string.isRequired,
     uploadURL: PropTypes.string,
+    loadTypesByParent: PropTypes.bool,
 
     permissions: DocumentsListing.propTypes.permissions,
     documentTypes: PropTypes.object,
@@ -161,17 +168,20 @@ DocumentsContainer.propTypes = {
     replaceDocument: PropTypes.func.isRequired,
     addDocument: PropTypes.func.isRequired,
     uploadDocument: PropTypes.func.isRequired,
-    pathname: PropTypes.string.isRequired
+    pathname: PropTypes.string.isRequired,
+    mode: PropTypes.string.isRequired
 };
 
 export default connect(
-    ({frontDocuments}, props) => {
+    ({ frontDocuments }, props) => {
         return {
             attachments: frontDocuments,
             documentsChanged: frontDocuments.getIn([props.identifier, 'changedDocuments']) || immutable.fromJS([]),
-            documentTypes: frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
+            documentTypes: props.documentTypes || frontDocuments.getIn([props.identifier, 'documentTypes']) || immutable.fromJS({}),
             selectedFilter: frontDocuments.getIn([props.identifier, 'selectedFilter']),
-            documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({})
+            documentArchived: frontDocuments.getIn([props.identifier, 'documentArchived']) || immutable.fromJS({}),
+            loadTypesByParent: props.loadTypesByParent || false,
+            mode: props.mode || 'default'
         };
     },
     { initState, fetchArchivedDocuments, selectAttachments, fetchDocumentTypes, addDocument, replaceDocument, changeDocumentStatusDeleted, changeDocumentStatusArchived, changeDocumentFilter, uploadDocument }

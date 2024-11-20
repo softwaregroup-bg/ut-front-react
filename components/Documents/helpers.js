@@ -1,7 +1,7 @@
 import { validationTypes, textValidations, dropdownValidations } from '../../validator/constants.js';
 
 // Listing
-export const getListTableColumns = () => {
+export const getListTableColumns = (mode) => {
     return [
         {title: 'Group Name', name: 'documentType'},
         {title: 'Document Description', name: 'documentDescription'},
@@ -11,7 +11,7 @@ export const getListTableColumns = () => {
         {title: 'File Type', name: 'extension'},
         {title: 'Upload Date', name: 'createdDate'},
         {title: 'Status', name: 'statusId'}
-    ];
+    ].filter(column => mode === 'default' ? column : !['documentNumber', 'issueDate', 'expirationDate'].includes(column.name));
 };
 
 export const mapContentTypeToExtension = (contentType) => {
