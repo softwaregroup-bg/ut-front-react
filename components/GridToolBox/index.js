@@ -790,7 +790,7 @@ class GridToolBox extends Component {
                 {!showActionButtonsOnSelect ? <div className={classnames(style.toolbarElement, style.label, style.link, style.tableCell)} onClick={toggle}>
                     <Text>Show filters</Text>
                 </div> : null}
-                <div className={classnames(style.pullRight, style.tableCell)}>
+                <div className={classnames(style.pullRight, style.tableCell, style.actionButtonWrap)}>
                     <div className={classnames(style.table, style.fixedHeight)}>
                         {this.props.actionButtonElements.map((el, i) => {
                             return (
@@ -808,7 +808,7 @@ class GridToolBox extends Component {
 
     render() {
         const showFilter = this.state.showFilters;
-        const { showActionButtonsOnSelect, selected } = this.props;
+        const { showActionButtonsOnSelect, selected, cssImplGridToolboxWrap } = this.props;
 
         if (showActionButtonsOnSelect && selected && selected.size) {
             return (
@@ -817,10 +817,9 @@ class GridToolBox extends Component {
                 </div>
             );
         }
-
         if (!this.props.cssStandard) {
             return (
-                <div>
+                <div className={classnames(style.gridToolboxWrap, cssImplGridToolboxWrap)}>
                     {showFilter && this.renderFilters()}
                     {!showFilter && this.renderActionButtons()}
                 </div>
@@ -828,7 +827,7 @@ class GridToolBox extends Component {
         }
         return (
             <div className={classnames(cssStandard.actionBarWrap, this.props.classes.paper)}>
-                <div className={cssStandard.gridToolboxWrap}>
+                <div className={classnames(style.gridToolboxWrap, cssStandard.gridToolboxWrap, cssImplGridToolboxWrap)}>
                     {showFilter && this.renderFilters()}
                     {!showFilter && this.renderActionButtons()}
                 </div>
@@ -840,6 +839,7 @@ class GridToolBox extends Component {
 GridToolBox.propTypes = {
     classes: PropTypes.object,
     cssStandard: PropTypes.bool,
+    cssImplGridToolboxWrap: PropTypes.string,
     filterElements: PropTypes.arrayOf(
         PropTypes.shape({
             type: PropTypes.oneOf([

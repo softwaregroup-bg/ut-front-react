@@ -155,6 +155,7 @@
 .filterActionWrap {
     flex-grow: 1;
     margin-left: 20px;
+    padding-bottom: 20px;
 }
 
 .filterActionWrap button {
@@ -167,6 +168,11 @@
 
 .wrapFilters {
     outline: none;
+}
+
+.actionButtonWrap .table {
+    padding-bottom: 20px;
+    padding-top: 0px;
 }
 
 @media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
@@ -186,14 +192,14 @@
     }
 
     .table {
-        height: auto;
+        /* height: auto;
         padding-top: 10px;
-        flex-direction: column;
+        flex-direction: column; */
         padding-bottom: 10px;
     }
 
-    .toolbarWrap .toolbarElement {
-        padding-bottom: 10px;
+    .toolbarWrap > .toolbarElement, .toolbarElementsContainer > .toolbarElement {
+        padding-bottom: 20px;
     }
 
     .toolbarElementsContainer {
@@ -278,4 +284,8 @@ text-align: -webkit-center;
         flex-direction: column;
         padding-bottom: 5px;
     }
+}
+
+.gridToolboxWrap > div {
+    display: table;
 }
