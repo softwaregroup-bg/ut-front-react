@@ -279,6 +279,7 @@ class Toolbox extends Component {
 
             return (
                 <FileDetailsPopup
+                    key={selectedAttachment.get('createdDate')}
                     isOpen={this.state.showDetailsPopUp}
                     header={{text: 'Preview Document'}}
                     closePopup={closeHandler}
