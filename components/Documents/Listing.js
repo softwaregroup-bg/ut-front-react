@@ -54,27 +54,27 @@ class Documents extends Component {
     }
 
     validateDocumentType(key) {
-        const { documentsChanged, validationConfig } = this.props;
+        const { validationConfig } = this.props;
 
         const validation = validationConfig[key];
         if (!validation) return false;
-        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
+        const typeDocuments = this.mergeDocuments.filter(doc => doc.documentTypeId === key);
         if (!validation.required) return true;
         return typeDocuments.length >= validation.min && typeDocuments.length <= validation.max;
     }
 
     filterDocumentTypes(key) {
-        const { documentsChanged, validationConfig } = this.props;
+        const { validationConfig } = this.props;
 
         const validation = validationConfig[key];
         if (!validation) return false;
-        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
+        const typeDocuments = this.mergeDocuments.filter(doc => doc.documentTypeId === key);
         if (!validation.required) return true;
         return !(typeDocuments.length === validation.max);
     }
 
     render() {
-        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, documentsChanged, validationConfig } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, validationConfig } = this.props;
 
         const docTypes = validationConfig ? documentTypes.filter(type => this.filterDocumentTypes(type.key)) : documentTypes;
 
@@ -111,7 +111,7 @@ class Documents extends Component {
                         <Grid container style={{ gap: '1rem' }}>
                             {
                                 this.props.documentTypes.map(type => {
-                                    const uploadedDocs = documentsChanged.filter(doc => doc.documentTypeId === type.key).length;
+                                    const uploadedDocs = this.mergeDocuments.filter(doc => doc.documentTypeId === type.key).length;
                                     const validated = this.validateDocumentType(type.key);
                                     return <Grid>
                                         <Chip
