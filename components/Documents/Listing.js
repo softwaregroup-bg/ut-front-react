@@ -12,6 +12,7 @@ class Documents extends Component {
         this.fetchArchivedDocs = this.fetchArchivedDocs.bind(this);
         this.validateDocumentType = this.validateDocumentType.bind(this);
         this.filterDocumentTypes = this.filterDocumentTypes.bind(this);
+        this.filterDocumentsByType = this.filterDocumentsByType.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -54,35 +55,48 @@ class Documents extends Component {
     }
 
     validateDocumentType(key) {
-        const { validationConfig } = this.props;
+        const { documentsChanged, validationConfig } = this.props;
 
         const validation = validationConfig[key];
         if (!validation) return false;
-        const typeDocuments = this.mergeDocuments.filter(doc => doc.documentTypeId === key);
+        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
         if (!validation.required) return true;
         return typeDocuments.length >= validation.min && typeDocuments.length <= validation.max;
     }
 
     filterDocumentTypes(key) {
-        const { validationConfig } = this.props;
+        const { documentsChanged, validationConfig } = this.props;
 
         const validation = validationConfig[key];
         if (!validation) return false;
-        const typeDocuments = this.mergeDocuments.filter(doc => doc.documentTypeId === key);
+        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
         if (!validation.required) return true;
         return !(typeDocuments.length === validation.max);
     }
 
+    filterDocumentsByType(documentList, allowedDocumentTypes) {
+        const validDocumentTypes = new Set(allowedDocumentTypes.map(docType => docType.key));
+
+        const hiddenDocsTypeSet = new Set(this.props.hideDocumentTypeIds);
+        if (hiddenDocsTypeSet.size > 0) {
+            return documentList.filter(doc => !hiddenDocsTypeSet.has(doc.documentTypeId));
+        }
+
+        return documentList.filter(doc => validDocumentTypes.has(doc.documentTypeId));
+    }
+
     render() {
-        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, validationConfig } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, documentsChanged, validationConfig } = this.props;
 
         const docTypes = validationConfig ? documentTypes.filter(type => this.filterDocumentTypes(type.key)) : documentTypes;
+
+        const filterdDocs = this.filterDocumentsByType(this.mergeDocuments, docTypes);
 
         return (
             <div className={style.documentsWrap}>
                 <Toolbox
                     selectedAttachment={this.props.selectedAttachment}
-                    documents={this.mergeDocuments}
+                    documents={filterdDocs}
                     countries={this.props.countries}
                     documentArchived={this.props.documentArchived}
                     selectedFilter={this.props.selectedFilter}
@@ -100,7 +114,7 @@ class Documents extends Component {
                 >
                     <DocumentsGrid
                         identifier={identifier}
-                        documents={this.mergeDocuments}
+                        documents={filterdDocs}
                         selectedFilter={selectedFilter}
                         documentArchived={documentArchived}
                         onGridSelect={onGridSelect}
@@ -111,7 +125,7 @@ class Documents extends Component {
                         <Grid container style={{ gap: '1rem' }}>
                             {
                                 this.props.documentTypes.map(type => {
-                                    const uploadedDocs = this.mergeDocuments.filter(doc => doc.documentTypeId === type.key).length;
+                                    const uploadedDocs = documentsChanged.filter(doc => doc.documentTypeId === type.key).length;
                                     const validated = this.validateDocumentType(type.key);
                                     return <Grid>
                                         <Chip
@@ -143,6 +157,7 @@ Documents.propTypes = {
     documents: PropTypes.array,
     countries: PropTypes.array,
     documentsChanged: PropTypes.array,
+    hideDocumentTypeIds: PropTypes.array,
     selectedAttachment: PropTypes.object, // immutable object
     // requiresFetch: PropTypes.bool,
     // isLoading: PropTypes.bool,
@@ -184,7 +199,9 @@ Documents.defaultProps = {
     // isLoading: false,
     allowedFileTypes: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx'],
     documentTypes: [],
-    mode: 'default'
+    mode: 'default',
+    allowedDocumentTypes: [],
+    hideDocumentTypeIds: []
 };
 
 export default Documents;
