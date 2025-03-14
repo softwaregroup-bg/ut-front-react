@@ -65,7 +65,8 @@ class DocumentsContainer extends Component {
             selectedFilter,
             documentArchived,
             documentTypeClass,
-            validationConfig
+            validationConfig,
+            hideDocumentTypeIds
         } = this.props;
         const selectedAttachment = attachments.getIn([identifier, 'selected']);
         const requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
@@ -88,6 +89,7 @@ class DocumentsContainer extends Component {
                 requiresFetch={requiresFetch}
                 isLoading={isLoading}
                 validationConfig={validationConfig}
+                hideDocumentTypeIds={hideDocumentTypeIds}
                 fetchArchivedDocuments={fetchArchivedDocuments}
                 onGridSelect={selectAttachments}
                 permissions={permissions}
@@ -131,8 +133,7 @@ class DocumentsContainer extends Component {
                     this.props.changeDocumentFilter(identifier, newFilter);
                 }}
                 uploadDocument={async(params) => {
-                    const result = await this.props.uploadDocument(params);
-                    return result;
+                    return await this.props.uploadDocument(params);
                 }}
                 selectedFilter={selectedFilter}
                 documentArchived={documentArchived}
@@ -148,6 +149,7 @@ DocumentsContainer.propTypes = {
     attachments: PropTypes.object, // immutable list
     documents: PropTypes.array,
     countries: PropTypes.array,
+    hideDocumentTypeIds: PropTypes.array,
     documentsChanged: PropTypes.object, // immutable list
     validationConfig: PropTypes.object,
     fetchArchivedDocuments: DocumentsListing.propTypes.fetchArchivedDocuments,
