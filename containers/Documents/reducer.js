@@ -104,10 +104,15 @@ const documents = (state = defaultState, action) => {
                 return state.setIn([props.identifier, 'selected'], Immutable.fromJS(null));
             }
         case ADD_NEW_DOCUMENT: {
-            const docs = state.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject));
-            let newState = state.setIn([action.props.identifier, 'changedDocuments'], docs);
+            let _newState = state;
+            if (!state.getIn([action.props.identifier, 'changedDocuments'])) {
+                _newState = state.setIn([action.props.identifier], Immutable.fromJS(getDefaultAttachmentObject()))
+                    .setIn([action.props.identifier, 'pathname'], Immutable.fromJS(action.props.pathname));
+            }
+            const docs = _newState.getIn([action.props.identifier, 'changedDocuments']).reverse().push(Immutable.fromJS(action.props.newDocumentObject));
+            let newState = _newState.setIn([action.props.identifier, 'changedDocuments'], docs);
             newState = combineAttachments(newState.get(action.props.identifier));
-            return state.set(action.props.identifier, newState)
+            return _newState.set(action.props.identifier, newState)
                 .setIn([props.identifier, 'selected'], Immutable.fromJS(null));
         }
         case REPLACE_DOCUMENT: {
