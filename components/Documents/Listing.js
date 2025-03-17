@@ -31,7 +31,7 @@ class Documents extends Component {
         return (
             <Toolbox
                 selectedAttachment={this.props.selectedAttachment}
-                documents={this.mergeDocuments}
+                documents={this.filterdDocs}
                 countries={this.props.countries}
                 documentArchived={this.props.documentArchived}
                 selectedFilter={this.props.selectedFilter}
@@ -55,21 +55,21 @@ class Documents extends Component {
     }
 
     validateDocumentType(key) {
-        const { documentsChanged, validationConfig } = this.props;
+        const { validationConfig } = this.props;
 
         const validation = validationConfig[key];
         if (!validation) return false;
-        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
+        const typeDocuments = this.filterdDocs.filter(doc => doc.documentTypeId === key);
         if (!validation.required) return true;
         return typeDocuments.length >= validation.min && typeDocuments.length <= validation.max;
     }
 
     filterDocumentTypes(key) {
-        const { documentsChanged, validationConfig } = this.props;
+        const { validationConfig } = this.props;
 
         const validation = validationConfig[key];
         if (!validation) return false;
-        const typeDocuments = documentsChanged.filter(doc => doc.documentTypeId === key);
+        const typeDocuments = this.filterdDocs.filter(doc => doc.documentTypeId === key);
         if (!validation.required) return true;
         return !(typeDocuments.length === validation.max);
     }
@@ -85,18 +85,20 @@ class Documents extends Component {
         return documentList.filter(doc => validDocumentTypes.has(doc.documentTypeId));
     }
 
+    get filterdDocs() {
+        return this.filterDocumentsByType(this.mergeDocuments, this.props.documentTypes);
+    }
+
     render() {
-        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, documentsChanged, validationConfig } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, validationConfig } = this.props;
 
         const docTypes = validationConfig ? documentTypes.filter(type => this.filterDocumentTypes(type.key)) : documentTypes;
-
-        const filterdDocs = this.filterDocumentsByType(this.mergeDocuments, docTypes);
 
         return (
             <div className={style.documentsWrap}>
                 <Toolbox
                     selectedAttachment={this.props.selectedAttachment}
-                    documents={filterdDocs}
+                    documents={this.filterdDocs}
                     countries={this.props.countries}
                     documentArchived={this.props.documentArchived}
                     selectedFilter={this.props.selectedFilter}
@@ -114,7 +116,7 @@ class Documents extends Component {
                 >
                     <DocumentsGrid
                         identifier={identifier}
-                        documents={filterdDocs}
+                        documents={this.filterdDocs}
                         selectedFilter={selectedFilter}
                         documentArchived={documentArchived}
                         onGridSelect={onGridSelect}
@@ -125,7 +127,7 @@ class Documents extends Component {
                         <Grid container style={{ gap: '1rem' }}>
                             {
                                 this.props.documentTypes.map(type => {
-                                    const uploadedDocs = documentsChanged.filter(doc => doc.documentTypeId === type.key).length;
+                                    const uploadedDocs = this.filterdDocs.filter(doc => doc.documentTypeId === type.key).length;
                                     const validated = this.validateDocumentType(type.key);
                                     return <Grid>
                                         <Chip

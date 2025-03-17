@@ -161,8 +161,13 @@ const documents = (state = defaultState, action) => {
                     return state.set(action.props.identifier, newState);
                 } else {
                     const deletedDoc = action.props.documentObject.set('statusId', 'deleted');
-                    const docs = state.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
-                    newState = state.setIn([action.props.identifier, 'changedDocuments'], docs)
+                    let _newState = state;
+                    if (!state.getIn([action.props.identifier, 'changedDocuments'])) {
+                        _newState = state.setIn([action.props.identifier], Immutable.fromJS(getDefaultAttachmentObject()))
+                            .setIn([action.props.identifier, 'pathname'], Immutable.fromJS(action.props.pathname));
+                    }
+                    const docs = _newState.getIn([action.props.identifier, 'changedDocuments']).push(deletedDoc);
+                    newState = _newState.setIn([action.props.identifier, 'changedDocuments'], docs)
                         .setIn([action.props.identifier, 'selected'], null);
                     newState = combineAttachments(newState.get(action.props.identifier));
                     return state.set(action.props.identifier, newState);
