@@ -43,7 +43,14 @@ export default class HeaderProfileInfo extends Component {
 
     onLogOutClick() {
         const { logout } = this.props;
-        logout();
+        logout().then(res => {
+            if (res?.result && Array.isArray(res.result)) {
+                const data = res.result[0];
+                if (data?.azureLogoutUrl) {
+                    window.open(data.azureLogoutUrl, '_blank');
+                }
+            }
+        });
     }
 
     getMenuItems() {
