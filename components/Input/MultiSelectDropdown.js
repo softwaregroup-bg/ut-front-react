@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import SvgDropdownIcon from '@material-ui/icons/ArrowDropDown';
 import Box from '@material-ui/core/Box';
 import style from './style.css';
+import Text from '../Text';
 
 import {Dropdown} from './Dropdown';
 import Checkbox from './Checkbox';
@@ -61,7 +62,7 @@ class MultiSelectDropdown extends Dropdown {
                 key='ddhdr'
             >
                 <div className={ddstyles.multiSelectDropdownMenuItem}>
-                    <span>{placeholder}</span>
+                    <span><Text>{placeholder}</Text></span>
                 </div>
             </MenuItem>
         ];
@@ -77,7 +78,7 @@ class MultiSelectDropdown extends Dropdown {
                         <Checkbox
                             checked={defaultSelected.length === data.length}
                         />
-                        <span>{placeholder}</span>
+                        <span><Text>{placeholder}</Text></span>
                     </div>
                 </MenuItem>,
                 <Divider
@@ -97,7 +98,7 @@ class MultiSelectDropdown extends Dropdown {
                                 checked={isChecked}
                                 disabled={item.disabled}
                             />
-                            <span>{item.name}</span>
+                            <span><Text>{item.name}</Text></span>
                         </div>
                     </MenuItem>
                 );
@@ -126,7 +127,7 @@ class MultiSelectDropdown extends Dropdown {
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
-                                {selectedItems || this.props.placeholder}
+                                <Text> {selectedItems || this.props.placeholder}</Text>
                             </div>
                         </div>
                         <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
