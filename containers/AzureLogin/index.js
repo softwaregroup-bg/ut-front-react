@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Text from '../../components/Text';
 import style from './style.css';
 
 class AzureLogin extends Component {
@@ -23,7 +24,7 @@ class AzureLogin extends Component {
                     <rect x="1" y="11" width="9" height="9" fill="#ffffff" />
                     <rect x="11" y="11" width="9" height="9" fill="#ffffff" />
                 </svg>
-                Sign in with Azure AD
+               <Text>Sign in with Azure AD</Text>
             </button>
         );
     }
