@@ -127,7 +127,7 @@ class MultiSelectDropdown extends Dropdown {
                     <div className={classnames(iconBackground, ddstyles.dropDownRoot)}>
                         <div className={ddstyles.multiSelectDropdownPlaceholder}>
                             <div style={{maxWidth: labelMaxWidth}}>
-                               <Text> {selectedItems || this.props.placeholder}</Text>
+                                <Text> {selectedItems || this.props.placeholder}</Text>
                             </div>
                         </div>
                         <div className={classnames(ddstyles.dropdownIconWrap, arrowIconDisabled)}>
