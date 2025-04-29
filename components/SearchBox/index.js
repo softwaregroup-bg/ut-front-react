@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import style from './style.css';
+import Text from '../Text';
 
 class SearchBox extends Component {
     constructor(props) {
@@ -59,9 +60,9 @@ class SearchBox extends Component {
         const zeroHeightStyle = this.props.isValid ? style.hh : '';
         return (
             <div className={this.getStyle('searchBoxWrap')}>
-                {this.props.label ? (<span className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</span>) : ''}
+                {this.props.label ? (<Text className={classnames(this.getStyle('label'), {[style.boldLabel]: this.props.boldLabel})}>{this.props.label}</Text>) : ''}
                 <div className={classnames.apply(undefined, boxStyles)}>
-                    <input value={this.state.value} onKeyUp={!hideSearchButton && this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.props.placeholder} disabled={this.props.disabled
+                    <input value={this.state.value} onKeyUp={!hideSearchButton && this.handleKeyUp} type='text' onChange={this.handleChange} className={this.getStyle('searchBoxWrapInput')} placeholder={this.context.translate(this.props.placeholder, this.context.language)} disabled={this.props.disabled
                     }
                     />
                     {hideSearchButton ? '' : <button onClick={this.handleSearch} />}
@@ -102,7 +103,9 @@ SearchBox.defaultProps = {
 };
 
 SearchBox.contextTypes = {
-    implementationStyle: PropTypes.object
+    implementationStyle: PropTypes.object,
+    language: PropTypes.string,
+    translate: PropTypes.func
 };
 
 export default SearchBox;

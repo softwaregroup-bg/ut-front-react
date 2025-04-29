@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styles from './style.css';
 import classNames from 'classnames';
+import Text from '../Text';
 
 export default class CheckboxNew extends Component {
     constructor(props) {
@@ -55,10 +56,10 @@ export default class CheckboxNew extends Component {
                         className={this.checkboxClasses}
                         onClick={this.onChange}
                     />
-                    <span
+                    <Text
                         className={this.checkboxLabelClasses}
                         onClick={this.onChange}
-                    >{label}</span>
+                    >{label}</Text>
                 </span>
             </span>
         );
