@@ -1,4 +1,4 @@
-import { CORE_ITEM_TRANSLATION_FETCH } from './actions';
+import { CORE_ITEM_TRANSLATION_FETCH, CORE_LICENSE_CHECK } from './actions';
 import Immutable from 'immutable';
 
 const defaultState = Immutable.Map({});
@@ -30,6 +30,11 @@ export default (state = defaultState, action) => {
                 .set('forceLogOut', false);
         }
         return state;
+    } else if (action.type === CORE_LICENSE_CHECK) {
+        if (action.methodRequestState === 'finished') {
+            const { expired, daysLeft } = action.result;
+            return state.set('licenseChecked', true).set('licenseExpired', expired).set('licenseDaysLeft', daysLeft);
+        }
+        return state;
     }
-    return state;
 };
