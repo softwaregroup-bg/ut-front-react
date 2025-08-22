@@ -36,6 +36,7 @@ const LicenseWarning = () => {
             </div>
         );
     } else if (!!licenseInfo && licenseInfo.daysLeft < 30 && !dismissed) {
+        // eslint-disable-next-line no-template-curly-in-string
         const textTemplate = 'Your license will expire in ${daysLeft} days. Please contact your administrator.';
         return (
             <div
