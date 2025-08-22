@@ -75,7 +75,6 @@ const LicenseWarning = () => {
     return null;
 };
 
-
 LicenseWarning.propTypes = {};
 
 export default LicenseWarning;
