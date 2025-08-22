@@ -1,3 +1,19 @@
+# [13.6.0](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.5.1...v13.6.0) (2025-08-22)
+
+
+### Bug Fixes
+
+* **DI-236:** move check from Gate to ui/App ([6f9fbbe](https://github.com/softwaregroup-bg/ut-front-react/commit/6f9fbbe2287346c71cf0ef70bbcb041e601e0022))
+* **DI-236:** proper text template ([8ff23bb](https://github.com/softwaregroup-bg/ut-front-react/commit/8ff23bb7dc99cd9aae9388ede914aefddc84910d))
+* linting DI-254 ([64d57bf](https://github.com/softwaregroup-bg/ut-front-react/commit/64d57bff7bbd8792f25687d163f370ca871522e7))
+
+
+### Features
+
+* **DI-236:** Create license warings in the portals ([4a3f8c8](https://github.com/softwaregroup-bg/ut-front-react/commit/4a3f8c856c386549c433feaf5495009a4227cfe0))
+
+
+
 ## [13.5.1](https://github.com/softwaregroup-bg/ut-front-react/compare/v13.5.0...v13.5.1) (2024-11-15)
 
 
