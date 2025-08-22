@@ -36,7 +36,7 @@ const LicenseWarning = () => {
             </div>
         );
     } else if (!!licenseInfo && licenseInfo.daysLeft < 30 && !dismissed) {
-        const textTemplate = 'Your license will expire in {daysLeft} days. Please contact your administrator.';
+        const textTemplate = 'Your license will expire in ${daysLeft} days. Please contact your administrator.';
         return (
             <div
                 style={{
