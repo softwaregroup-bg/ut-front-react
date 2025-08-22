@@ -1,0 +1,1 @@
+export const CORE_LICENSE_CHECK = Symbol('CORE_LICENSE_CHECK');

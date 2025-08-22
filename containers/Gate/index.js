@@ -7,12 +7,11 @@ import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
 import { cookieCheck, setLoadGate, logout } from '../LoginForm/actions.js';
-import { fetchTranslations, licenseCheck } from './actions';
+import { fetchTranslations } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 import style from './style.css';
 import { getRouteByPath } from '../../routerHelper';
 import PageNotFound from '../../ui/components/PageNotFound.jsx';
-import LicenseWarning from '../../components/LicenseWarning';
 
 class Gate extends Component {
     constructor(props) {
@@ -45,7 +44,6 @@ class Gate extends Component {
 
         if (!cookieChecked && !isLogout) {
             cookieCheck({appId: match && match.params && match.params.appId});
-            licenseCheck();
         } else if (authenticated) {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
             history.push('/');
@@ -89,7 +87,7 @@ class Gate extends Component {
     }
 
     render() {
-        const { loaded, location, licenseChecked, licenseExpired, licenseDaysLeft } = this.props;
+        const { loaded, location } = this.props;
 
         let hasPermission = true;
         if (loaded) {
@@ -101,11 +99,6 @@ class Gate extends Component {
 
         return (
             <div className={style.h100pr}>
-                <LicenseWarning
-                    checked={licenseChecked}
-                    expired={licenseExpired}
-                    daysLeft={licenseDaysLeft}
-                />
                 {loaded ? (hasPermission ? this.props.children : <PageNotFound />) : <Loader />}
             </div>
         );
@@ -121,12 +114,9 @@ export default connect(
         result: login.get('result'),
         gate,
         forceLogOut: gate.get('forceLogOut'),
-        loaded: gate.get('loaded'),
-        licenseChecked: gate.get('licenseChecked'),
-        licenseExpired: gate.get('licenseExpired'),
-        licenseDaysLeft: gate.get('licenseDaysLeft')
+        loaded: gate.get('loaded')
     }),
-    { cookieCheck, fetchTranslations, setLoadGate, logout, licenseCheck }
+    { cookieCheck, fetchTranslations, setLoadGate, logout }
 )(Gate);
 
 Gate.propTypes = {
@@ -145,17 +135,12 @@ Gate.propTypes = {
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
     setLoadGate: PropTypes.func,
-    logout: PropTypes.func,
-    licenseCheck: PropTypes.func,
-    licenseChecked: PropTypes.bool,
-    licenseExpired: PropTypes.bool,
-    licenseDaysLeft: PropTypes.number
+    logout: PropTypes.func
 };
 
 Gate.defaultProps = {
     gateLoaded: false,
-    gate: Map(),
-    licenseChecked: false
+    gate: Map()
 };
 
 Gate.contextTypes = {

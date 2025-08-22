@@ -22,6 +22,7 @@ import { Store } from './Store';
 import UtFrontMiddleware from './middleware';
 // import { syncHistoryWithStore } from 'react-router-redux';
 import PageNotFound from './components/PageNotFound.jsx';
+import LicenseWarning from '../containers/LicenseWarning';
 
 export default function ui({utMethod, config = {}}) {
     async function render() {
@@ -52,6 +53,7 @@ export default function ui({utMethod, config = {}}) {
                 <Wrapper>
                     <MaterialUILayout utMethod={utMethod}>
                         <CssBaseline />
+                        <LicenseWarning />
                         <Router history={this.history}>
                             <Switch>
                                 <Route path='/login' component={LoginPage} />

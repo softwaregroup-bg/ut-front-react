@@ -1,18 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
-import Text from '../Text';
+import Text from '../../components/Text';
+import { coreLicenseCheck } from './actions';
 
-const LicenseWarning = ({ checked, expired, daysLeft }) => {
+const LicenseWarning = () => {
     const [dismissed, setDismissed] = React.useState(false);
 
-    if (expired) {
+    const [licenseInfo, setLicenseInfo] = React.useState(null);
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+        async function licenseCheck() {
+            const response = await dispatch(coreLicenseCheck({}));
+            if (response?.result) {
+                setLicenseInfo(response.result);
+            }
+        }
+        licenseCheck();
+    }, [dispatch]);
+
+    if (licenseInfo?.expired) {
         return (
             <div
                 style={{
-                    color: 'red',
+                    color: 'white',
+                    backgroundColor: 'red',
                     fontWeight: 'bold',
                     textAlign: 'center',
+                    padding: '8px 24px 8px 8px'
                 }}
             >
                 <Text>
@@ -20,15 +35,17 @@ const LicenseWarning = ({ checked, expired, daysLeft }) => {
                 </Text>
             </div>
         );
-    } else if (checked && daysLeft < 30 && !dismissed) {
+    } else if (!!licenseInfo && licenseInfo.daysLeft < 30 && !dismissed) {
+        const textTemplate = 'Your license will expire in {daysLeft} days. Please contact your administrator.';
         return (
             <div
                 style={{
-                    color: 'orange',
+                    color: 'white',
+                    backgroundColor: 'orange',
                     fontWeight: 'bold',
                     textAlign: 'center',
                     position: 'relative',
-                    padding: '8px 24px 8px 8px',
+                    padding: '8px 24px 8px 8px'
                 }}
             >
                 <button
@@ -40,18 +57,17 @@ const LicenseWarning = ({ checked, expired, daysLeft }) => {
                         transform: 'translateY(-50%)',
                         background: 'none',
                         border: 'none',
-                        color: 'orange',
+                        color: 'white',
                         fontSize: '16px',
                         cursor: 'pointer',
-                        fontWeight: 'bold',
+                        fontWeight: 'bold'
                     }}
                     title='Dismiss'
                 >
                     ×
                 </button>
-                <Text>
-                    Your license will expire in {daysLeft} days. Please contact
-                    your administrator.
+                <Text params={{ daysLeft: licenseInfo.daysLeft }}>
+                    {textTemplate}
                 </Text>
             </div>
         );
@@ -59,10 +75,7 @@ const LicenseWarning = ({ checked, expired, daysLeft }) => {
     return null;
 };
 
-LicenseWarning.propTypes = {
-    checked: PropTypes.bool,
-    expired: PropTypes.bool,
-    daysLeft: PropTypes.number
-};
+
+LicenseWarning.propTypes = {};
 
 export default LicenseWarning;
