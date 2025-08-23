@@ -15,7 +15,7 @@ export default class FormInput extends Component {
     }
 
     render() {
-        const { type, label, name, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
+        const { type, label, name, 'data-testid': dataTestId, value, placeholder, disabled, className, error, tabIndex, hidden, acceptType } = this.props;
         const { onBlur, onChange } = this.props;
         const inputClassName = className + (disabled ? ' disabled' : '') + (value ? ' hasValue' : '') + (error ? ' hasError' : '') + (hidden ? ' hidden' : '');
 
@@ -25,6 +25,7 @@ export default class FormInput extends Component {
                     disabled={disabled}
                     name={name}
                     type={type}
+                    data-testid={dataTestId}
                     data-hidden={!!hidden}
                     placeholder={placeholder}
                     accept={acceptType}
@@ -49,6 +50,7 @@ FormInput.propTypes = {
     value: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
+    id: PropTypes.string,
     disabled: PropTypes.bool,
     hidden: PropTypes.bool,
     placeholder: PropTypes.string,
