@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
 import style from './style.css';
+import Text from '../Text';
 
 /**
  * This is a wrapper of the react-select component
@@ -33,7 +34,7 @@ class MultiSelectBubble extends Component {
         return (
             <div className={style.outerWrap}>
                 <div className={classnames(style.lableWrap, {[style.boldLabel]: boldLabel})}>
-                    {label}
+                    <Text>{label}</Text>
                 </div>
                 <div className={style.inputWrap}>
                     <Select
