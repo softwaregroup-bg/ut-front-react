@@ -90,7 +90,7 @@ class Documents extends Component {
     }
 
     render() {
-        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, validationConfig } = this.props;
+        const { identifier, onGridSelect, selectedFilter, documentArchived, selectedAttachment, documentTypes, validationConfig, gridStyle } = this.props;
 
         const docTypes = validationConfig ? documentTypes.filter(type => this.filterDocumentTypes(type.key)) : documentTypes;
 
@@ -114,15 +114,17 @@ class Documents extends Component {
                     uploadURL={this.props.uploadURL}
                     mode={this.props.mode}
                 >
-                    <DocumentsGrid
-                        identifier={identifier}
-                        documents={this.filterdDocs}
-                        selectedFilter={selectedFilter}
-                        documentArchived={documentArchived}
-                        onGridSelect={onGridSelect}
-                        selected={selectedAttachment}
-                        mode={this.props.mode}
-                    />
+                    <div style={gridStyle}>
+                        <DocumentsGrid
+                            identifier={identifier}
+                            documents={this.filterdDocs}
+                            selectedFilter={selectedFilter}
+                            documentArchived={documentArchived}
+                            onGridSelect={onGridSelect}
+                            selected={selectedAttachment}
+                            mode={this.props.mode}
+                        />
+                    </div>
                     {validationConfig && <Container maxWidth disableGutters={true} style={{ position: 'absolute', bottom: '2rem' }}>
                         <Grid container style={{ gap: '1rem' }}>
                             {
@@ -193,7 +195,8 @@ Documents.propTypes = {
     archiveDocument: PropTypes.func,
     allowedFileTypes: PropTypes.array,
 
-    permissions: Toolbox.propTypes.permissions
+    permissions: Toolbox.propTypes.permissions,
+    gridStyle: PropTypes.object
 };
 
 Documents.defaultProps = {
@@ -203,7 +206,8 @@ Documents.defaultProps = {
     documentTypes: [],
     mode: 'default',
     allowedDocumentTypes: [],
-    hideDocumentTypeIds: []
+    hideDocumentTypeIds: [],
+    gridStyle: {}
 };
 
 export default Documents;
