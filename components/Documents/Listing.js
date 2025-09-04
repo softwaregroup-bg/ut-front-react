@@ -114,7 +114,7 @@ class Documents extends Component {
                     uploadURL={this.props.uploadURL}
                     mode={this.props.mode}
                 >
-                    <div style={gridStyle}>
+                    <div style={gridStyle || {}}>
                         <DocumentsGrid
                             identifier={identifier}
                             documents={this.filterdDocs}

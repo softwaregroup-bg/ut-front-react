@@ -66,7 +66,8 @@ class DocumentsContainer extends Component {
             documentArchived,
             documentTypeClass,
             validationConfig,
-            hideDocumentTypeIds
+            hideDocumentTypeIds,
+            gridStyle
         } = this.props;
         const selectedAttachment = attachments.getIn([identifier, 'selected']);
         const requiresFetch = attachments.getIn([identifier, 'remoteDocuments', 'requiresFetch']);
@@ -81,6 +82,7 @@ class DocumentsContainer extends Component {
         return (
             <DocumentsListing
                 identifier={identifier}
+                gridStyle={gridStyle}
                 actorId={actorId}
                 documents={docs}
                 countries={countries}
@@ -171,7 +173,8 @@ DocumentsContainer.propTypes = {
     addDocument: PropTypes.func.isRequired,
     uploadDocument: PropTypes.func.isRequired,
     pathname: PropTypes.string.isRequired,
-    mode: PropTypes.string.isRequired
+    mode: PropTypes.string.isRequired,
+    gridStyle: PropTypes.object
 };
 
 export default connect(
