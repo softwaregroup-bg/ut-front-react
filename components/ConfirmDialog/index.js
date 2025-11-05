@@ -60,7 +60,7 @@ export default class DialogExampleModal extends Component {
                     <DialogActions>
                         {!this.props.cannotSubmit && <Button disabled={this.props.cannotSubmit} onClick={this.submit}><Text>{this.props.submitLabel || 'Yes'}</Text></Button>}
                         <Button color='primary' onClick={this.close}>
-                             <Text>{this.props.cancelLabel || 'No'}</Text>
+                            <Text>{this.props.cancelLabel || 'No'}</Text>
                         </Button>
                     </DialogActions>
                 </Dialog>
