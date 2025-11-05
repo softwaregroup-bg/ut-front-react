@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
+import Text from '../Text';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -50,16 +51,16 @@ export default class DialogExampleModal extends Component {
                     aria-labelledby='alert-dialog-title'
                     aria-describedby='alert-dialog-description'
                 >
-                    <DialogTitle id='alert-dialog-title'>{this.props.title}</DialogTitle>
+                    <DialogTitle id='alert-dialog-title'><Text>{this.props.title}</Text></DialogTitle>
                     <DialogContent>
                         <DialogContentText id='alert-dialog-description'>
-                            {this.props.message}
+                            <Text>{this.props.message}</Text>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        {!this.props.cannotSubmit && <Button disabled={this.props.cannotSubmit} onClick={this.submit}>{this.props.submitLabel || 'Yes'}</Button>}
+                        {!this.props.cannotSubmit && <Button disabled={this.props.cannotSubmit} onClick={this.submit}><Text>{this.props.submitLabel || 'Yes'}</Text></Button>}
                         <Button color='primary' onClick={this.close}>
-                            {this.props.cancelLabel || 'No'}
+                             <Text>{this.props.cancelLabel || 'No'}</Text>
                         </Button>
                     </DialogActions>
                 </Dialog>

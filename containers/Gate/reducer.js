@@ -18,7 +18,7 @@ export default (state = defaultState, action) => {
                 const textsMapping = {};
 
                 texts.map((text) => {
-                    textsMapping[text.dictionaryKey] = text.translatedValue;
+                    text.dictionaryKey && (textsMapping[text.dictionaryKey.toLowerCase()] = text.translatedValue);
                 });
 
                 texts = textsMapping;

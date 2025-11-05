@@ -32,12 +32,11 @@ export const setPermissions = (permissions) => {
 
 export const translate = (props) => (text, language) => {
     const texts = props.gate.get('texts');
-
-    if (!texts || !texts.get(text)) {
+    if (!texts || typeof text !== 'string') {
         return text;
     }
 
-    return texts.get(text);
+    return texts.get(text) || texts.get(text.toLowerCase()) || texts.get(text.toUpperCase()) || text;
 };
 
 export const money = (amount, currency = 'EUR', locale = 'en-UK') => {
