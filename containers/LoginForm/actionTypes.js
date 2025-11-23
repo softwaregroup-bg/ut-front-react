@@ -7,3 +7,5 @@ export const COOKIE_CHECK = Symbol('COOKIE_CHECK');
 export const LOGOUT = Symbol('LOGOUT');
 export const CLEAR_LOGIN_STATE = Symbol('CLEAR_LOGIN_STATE');
 export const SET_GATE_LOAD = Symbol('SET_GATE_LOAD');
+export const CORE_LOCALIZATION_FETCH = Symbol('CORE_LOCALIZATION_FETCH');
+export const CHANGE_LANGUAGE = Symbol('CHANGE_LANGUAGE');

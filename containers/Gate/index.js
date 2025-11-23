@@ -7,7 +7,7 @@ import { Map } from 'immutable';
 import { connect } from 'react-redux';
 import Loader from '../../components/Loader';
 import { cookieCheck, setLoadGate, logout } from '../LoginForm/actions.js';
-import { fetchTranslations } from './actions';
+import { fetchTranslations, updateUserLanguage, fetchLanguages } from './actions';
 import { translate, money, df, numberFormat, checkPermission, setPermissions } from './helpers';
 import style from './style.css';
 import { getRouteByPath } from '../../routerHelper';
@@ -66,7 +66,7 @@ class Gate extends Component {
                 this.login();
             }
         } else if (nextProps.authenticated && !nextProps.gateLoaded && nextProps.result) {
-            this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result.getIn(['language', 'languageId']));
+            this.loadGate(nextProps.result.get('permission.get').toJS(), nextProps.result);
         } else if (!nextProps.result && authenticated && !nextProps.authenticated) {
             this.login();
         } else if (!forceLogOut && nextProps.forceLogOut) {
@@ -74,15 +74,33 @@ class Gate extends Component {
         }
     }
 
-    loadGate(permissions, languageId) {
-        const { setLoadGate, fetchTranslations } = this.props;
-
+    loadGate(permissions, result) {
+        const languageId = result.getIn(['language', 'languageId']);
+        const iso2Code = result.getIn(['language', 'iso2Code']);
+        const { setLoadGate, fetchTranslations, loginSelectedLanguage, updateUserLanguage, fetchLanguages, translationsLoaded } = this.props;
         setPermissions(permissions);
+        if (translationsLoaded && loginSelectedLanguage !== iso2Code) {
+            fetchLanguages()
+                .then(response => {
+                    const newLanguage = response.result?.[0]?.find?.(language => language.iso2Code === loginSelectedLanguage);
+                    if (newLanguage && newLanguage.languageId) {
+                        updateUserLanguage({
+                            languageId: newLanguage.languageId
+                        });
+                        fetchTranslations({
+                            languageId: newLanguage.languageId,
+                            dictName: ['text', 'actionConfirmation']
+                        });
+                    }
+                    return true;
+                }).catch(() => {});
+        } else {
+            fetchTranslations({
+                languageId,
+                dictName: ['text', 'actionConfirmation']
+            });
+        }
 
-        fetchTranslations({
-            languageId,
-            dictName: ['text', 'actionConfirmation']
-        });
         setLoadGate(true);
     }
 
@@ -114,9 +132,11 @@ export default connect(
         result: login.get('result'),
         gate,
         forceLogOut: gate.get('forceLogOut'),
-        loaded: gate.get('loaded')
+        loaded: gate.get('loaded'),
+        loginSelectedLanguage: login.get('selectedLanguage'),
+        translationsLoaded: login.get('translationsLoaded')
     }),
-    { cookieCheck, fetchTranslations, setLoadGate, logout }
+    { cookieCheck, fetchTranslations, setLoadGate, logout, updateUserLanguage, fetchLanguages }
 )(Gate);
 
 Gate.propTypes = {
@@ -135,7 +155,11 @@ Gate.propTypes = {
     cookieCheck: PropTypes.func,
     fetchTranslations: PropTypes.func,
     setLoadGate: PropTypes.func,
-    logout: PropTypes.func
+    logout: PropTypes.func,
+    loginSelectedLanguage: PropTypes.string,
+    updateUserLanguage: PropTypes.func,
+    fetchLanguages: PropTypes.func,
+    translationsLoaded: PropTypes.bool
 };
 
 Gate.defaultProps = {

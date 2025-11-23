@@ -7,7 +7,9 @@ import {
     COOKIE_CHECK,
     LOGOUT,
     CLEAR_LOGIN_STATE,
-    SET_GATE_LOAD
+    SET_GATE_LOAD,
+    CORE_LOCALIZATION_FETCH,
+    CHANGE_LANGUAGE
 } from './actionTypes';
 import { inputs as inputsConfig, loginSteps } from './config';
 import { Validator } from './../../utils/validator';
@@ -40,32 +42,59 @@ const updateLoginStep = (state, step) => {
         .set('loginType', step);
 };
 
-const defaultLoginState = Immutable.fromJS({
-    authenticated: false,
-    cookieChecked: false,
-    isLogout: false,
-    logoutRedirectUrl: '',
-    loginForm: loginSteps.initial,
-    loginType: '',
-    formError: '',
-    shouldSubmit: false,
-    loginData: {},
-    version: ''
-});
+function getTranslations() {
+    try {
+        const data = localStorage.getItem('ut_app_translations');
+        if (data) {
+            return JSON.parse(data);
+        } else {
+            return {};
+        }
+    } catch (err) {
+        localStorage.removeItem('ut_app_translations');
+    }
+}
 
-const loginReducer = (state = defaultLoginState, action) => {
+function setTranslations(data) {
+    localStorage.setItem('ut_app_translations', JSON.stringify(data));
+    return true;
+}
+
+const defaultLoginState = () => {
+    const texts = getTranslations() || {};
+    return Immutable.fromJS({
+        authenticated: false,
+        cookieChecked: false,
+        isLogout: false,
+        logoutRedirectUrl: '',
+        loginForm: loginSteps.initial,
+        loginType: '',
+        formError: '',
+        shouldSubmit: false,
+        loginData: {},
+        version: '',
+        translationsLoaded: false,
+        selectedLanguage: localStorage.getItem('ut_app_language') || 'es',
+        gate: {
+            texts: texts || {}
+        }
+    });
+};
+
+const loginReducer = (state = defaultLoginState(), action) => {
     let validationResult;
-
     switch (action.type) {
-        case LOGOUT:
+        case LOGOUT: {
             if (action.methodRequestState === 'finished') {
                 return state
                     .set('logoutRedirectUrl', action.result?.logoutRedirectUrl || logoutRedirectUrl)
                     .set('isLogout', true)
                     .set('version', action.result?.responseHeaders?.['x-ut-version']);
             }
-            return defaultLoginState
-                .set('isLogout', true);
+            return defaultLoginState()
+                .set('isLogout', true)
+                .set('translationsLoaded', state.get('translationsLoaded'));
+        }
         case LOGIN:
             if (action.methodRequestState === 'finished') {
                 state = state.setIn(['loginForm', 'shouldSubmit'], false);
@@ -133,9 +162,32 @@ const loginReducer = (state = defaultLoginState, action) => {
             }
             return state;
         case CLEAR_LOGIN_STATE:
-            return defaultLoginState;
+            return defaultLoginState();
         case SET_GATE_LOAD:
             return state.set('gateLoaded', action.params.value);
+        case CORE_LOCALIZATION_FETCH: {
+            if (action.methodRequestState === 'finished') {
+                let texts = action?.result?.translations || [];
+                if (texts.length) {
+                    const textsMapping = {};
+
+                    texts.map((text) => {
+                        text.dictionaryKey && (textsMapping[text.dictionaryKey.toLowerCase()] = text.translatedValue);
+                    });
+
+                    texts = textsMapping;
+                }
+                setTranslations(texts);
+                return state.setIn(['gate', 'texts'], Immutable.fromJS(texts))
+                    .set('translationsLoaded', true);
+            } else {
+                return state;
+            }
+        }
+        case CHANGE_LANGUAGE: {
+            localStorage.setItem('ut_app_language', action.params.selectedLanguage);
+            return state.setIn(['selectedLanguage'], Immutable.fromJS(action.params.selectedLanguage));
+        }
         default:
             return state;
     }

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import Text from '../Text';
 import style from './style.css';
 
 class SearchBox extends Component {
@@ -66,7 +67,7 @@ class SearchBox extends Component {
                     />
                     {hideSearchButton ? '' : <button onClick={this.handleSearch} />}
                 </div>
-                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
+                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}><Text>{this.props.errorMessage}</Text></div>}</div>
             </div>
         );
     }

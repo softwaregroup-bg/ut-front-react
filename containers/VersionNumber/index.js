@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './styles.css';
+import Text from '../../components/Text';
 
 class VersionNumber extends Component {
     render() {
@@ -10,7 +11,7 @@ class VersionNumber extends Component {
         if (version) {
             return (
                 <div className={styles.wrap}>
-                    Version: {version}
+                    <Text>Version</Text>: {version}
                 </div>
             );
         }

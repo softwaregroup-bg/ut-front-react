@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
-
+import Text from '../Text';
 import sbStyle from '../SearchBox/style.css';
 import style from './style.css';
 
@@ -146,7 +146,7 @@ export class Iframe extends Component {
                     </div>
                 </div>
                 <div className={classnames(this.getStyle('errorWrap'), this.props.isValid ? this.getStyle('hh') : '')}>
-                    {!this.props.isValid && <div className={this.getStyle('errorMessage')}>{this.props.errorMessage}</div>}
+                    {!this.props.isValid && <div className={this.getStyle('errorMessage')}><Text>{this.props.errorMessage}</Text></div>}
                 </div>
             </div>
         );

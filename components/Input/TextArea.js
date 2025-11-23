@@ -92,7 +92,7 @@ class TextArea extends Component {
                     </div>
                     <div className={style.textareaWrap}>
                         {textArea}
-                        <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                        <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                     </div>
                 </div>
             );
@@ -100,7 +100,7 @@ class TextArea extends Component {
             return (
                 <div>
                     {textArea}
-                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }

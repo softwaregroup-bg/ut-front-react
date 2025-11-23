@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import {DatePicker as DatePickerInput} from '@material-ui/pickers';
+import Text from '../../Text';
 import style from '../style.css';
 
 export default class DatePicker extends Component {
@@ -54,7 +55,7 @@ export default class DatePicker extends Component {
                         shouldDisableDate={this.props.shouldDisableDate}
                     />
                 </div>
-                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>
+                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
             </div>
         );
     }

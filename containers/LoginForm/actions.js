@@ -6,7 +6,9 @@ import {
     LOGOUT,
     SET_INPUT_VALUE,
     CLEAR_LOGIN_STATE,
-    SET_GATE_LOAD
+    SET_GATE_LOAD,
+    CORE_LOCALIZATION_FETCH,
+    CHANGE_LANGUAGE
 } from './actionTypes';
 
 const getTimezone = () => {
@@ -68,4 +70,19 @@ export const clearLoginState = () => {
 export const setLoadGate = (value) => ({
     type: SET_GATE_LOAD,
     params: {value}
+});
+
+export const fetchLocalization = (params) => ({
+    type: CORE_LOCALIZATION_FETCH,
+    method: 'core.localization.fetch',
+    params: {
+        languageCode: params.languageCode
+    }
+});
+
+export const changeLanguage = (params) => ({
+    type: CHANGE_LANGUAGE,
+    params: {
+        selectedLanguage: params.selectedLanguage
+    }
 });

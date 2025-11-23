@@ -118,7 +118,7 @@ class TextField extends Component {
                 <div className={classnames(this.style.inputWrap, inputWrapClassName)}>
                     {input}
                     {tooltip}
-                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}>{errorMessage}</div>}</div>
+                    <div className={classnames(this.style.errorWrap, zeroHeightStyle)}>{!isValid && <div className={this.style.errorMessage}><Text>{errorMessage}</Text></div>}</div>
                 </div>
             );
         }
