@@ -89,7 +89,7 @@ class Gate extends Component {
                         });
                         fetchTranslations({
                             languageId: newLanguage.languageId,
-                            dictName: ['text', 'actionConfirmation']
+                            dictName: ['text', 'actionConfirmation', 'error']
                         });
                     }
                     return true;
@@ -97,7 +97,7 @@ class Gate extends Component {
         } else {
             fetchTranslations({
                 languageId,
-                dictName: ['text', 'actionConfirmation']
+                dictName: ['text', 'actionConfirmation', 'error']
             });
         }
 
