@@ -86,7 +86,7 @@ export const loginSteps = {
     },
     password: {
         inputs: getInputs(['username', 'hiddenPassword', 'password']),
-        disabledFields: ['username'],
+        disabledFields: [], // username
         buttonLabel: 'Login',
         title: 'Login with password'
     },

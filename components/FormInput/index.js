@@ -26,14 +26,14 @@ export default class FormInput extends Component {
                     name={name}
                     type={type}
                     data-hidden={!!hidden}
-                    placeholder={placeholder}
+                    placeholder={this.context?.translate?.(placeholder)}
                     accept={acceptType}
                     onChange={onChange}
                     onBlur={onBlur}
                     tabIndex={tabIndex}
                     ref={(c) => { this.inputNode = c; }}
                 />
-                {label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')}> {label} </label> : false}
+                {label ? <label onClick={this.onLabelClick} className={getClass(styles, 'label')}> {this.context?.translate?.(label)} </label> : false}
                 {error ? <div className={styles.errorMessage}>{error}</div> : false}
             </div>
         );
@@ -59,4 +59,8 @@ FormInput.propTypes = {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func
+};
+
+FormInput.contextTypes = {
+    translate: PropTypes.func
 };

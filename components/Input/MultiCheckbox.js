@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Text from '../Text';
 import styles from './style.css';
 import classnames from 'classnames';
 
@@ -66,7 +67,7 @@ class MultiCheckbox extends Component {
             <div className={classnames(styles.multiCheckboxWrapper)} onClick={handleClick}>
                 <span className={classnames(styles.multiCheckbox, customStyle, ifReadOnly)}>{showStateName && states[checked].name}</span>
                 <span className={styles.multiCheckboxLabel}>{label}</span>
-                {!isValid && <div className={styles.multiCheckboxError}>{states[checked].errorMessage}</div>}
+                {!isValid && <div className={styles.multiCheckboxError}><Text>{states[checked].errorMessage}</Text></div>}
             </div>
         );
     }

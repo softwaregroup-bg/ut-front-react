@@ -112,6 +112,8 @@
 
 .datePicker input:disabled {
     cursor: not-allowed !important;
+    border-color: #ebebeb !important;
+    color: #a9a9a9 !important;
 }
 
 .datePicker input {

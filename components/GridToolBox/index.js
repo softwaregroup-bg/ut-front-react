@@ -206,6 +206,7 @@ class GridToolBox extends Component {
                         onChange={filterAutoFetch && !renderInDialog
                             ? filterElement.onChange
                             : onSelect}
+                        format={filterElement.format || defaultDateFormat}
                         withVerticalClass={renderInDialog}
                         locale={filterElement.locale}
                         defaultValue={filterValue}

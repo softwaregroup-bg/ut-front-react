@@ -31,7 +31,7 @@ export const setPermissions = (permissions) => {
 };
 
 export const translate = (props) => (text, language) => {
-    const texts = props.gate.get('texts');
+    const texts = props?.gate?.get('texts');
     if (!texts || typeof text !== 'string') {
         return text;
     }

@@ -20,7 +20,7 @@ const RadioInput = ({ label, boldLabel, errorMessage, isValid, onChange, default
                         </span>
                     );
                 })}
-                {errorMessage && <div className={classnames(style.errorWrap)}>{!isValid && <div className={style.errorMessage}>{errorMessage}</div>}</div>}
+                {errorMessage && <div className={classnames(style.errorWrap)}>{!isValid && <div className={style.errorMessage}><Text>{errorMessage}</Text></div>}</div>}
             </div>
         </div>
     );

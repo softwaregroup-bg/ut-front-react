@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 import debounce from 'lodash.debounce';
 
 import Form from '../../components/Form';
-import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState } from './actions';
+import { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState, fetchLocalization } from './actions';
+import { translate } from '../Gate/helpers';
 import { closeAllTabs } from '../TabMenu/actions';
 import { loginStoreConnectProxy as connect } from './storeProxy/loginStoreConnectProxy';
 
@@ -18,6 +19,12 @@ class LoginForm extends Component {
         this.validateForm = this.validateForm.bind(this);
         this.syncInputsValuesWithStore = this.syncInputsValuesWithStore.bind(this);
         this.submit = this.submit.bind(this);
+    }
+
+    getChildContext() {
+        return {
+            translate: translate({gate: this.props.gate})
+        };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,6 +48,12 @@ class LoginForm extends Component {
         if (!shouldSubmit && nextProps.shouldSubmit) {
             this.submit(nextProps.loginType, nextProps.loginData);
         }
+
+        if (nextProps.selectedLanguage && nextProps.selectedLanguage !== this.props.selectedLanguage) {
+            this.props.fetchLocalization({
+                languageCode: nextProps.selectedLanguage
+            });
+        }
     }
 
     componentWillMount() {
@@ -56,7 +69,9 @@ class LoginForm extends Component {
             // If user tries manually to go to /login page while he/she is logged in, redirects to
             history.push('/');
         }
-
+        this.props.fetchLocalization({
+            languageCode: this.props.selectedLanguage
+        });
         // if there is previously stored loginData, reset login state
         // this happens in cases when the user is logged in and navigates to /login again
         // if (loginData.get('username') || loginData.get('password')) {
@@ -131,8 +146,9 @@ class LoginForm extends Component {
 }
 
 export default connect(
-    ({ login }) => {
+    ({login}) => {
         return {
+            gate: login.get('gate'),
             loginData: login.get('loginData'),
             cookieChecked: login.get('cookieChecked'),
             isLogout: login.get('isLogout'),
@@ -143,10 +159,11 @@ export default connect(
             buttonLabel: login.getIn(['loginForm', 'buttonLabel']),
             error: login.get('formError'),
             shouldSubmit: login.getIn(['loginForm', 'shouldSubmit']),
-            loginType: login.get('loginType')
+            loginType: login.get('loginType'),
+            selectedLanguage: login.get('selectedLanguage')
         };
     },
-    { cookieCheck, setInputValue, validateForm, identityCheck, bioScan, clearLoginState, closeAllTabs }
+    { cookieCheck, fetchLocalization, setInputValue, validateForm, identityCheck, bioScan, clearLoginState, closeAllTabs }
 )(LoginForm);
 
 LoginForm.propTypes = {
@@ -171,7 +188,14 @@ LoginForm.propTypes = {
     identityCheck: PropTypes.func.isRequired,
     bioScan: PropTypes.func,
     clearLoginState: PropTypes.func,
-    closeAllTabs: PropTypes.func
+    closeAllTabs: PropTypes.func,
+    fetchLocalization: PropTypes.func,
+    selectedLanguage: PropTypes.string,
+    gate: PropTypes.object
+};
+
+LoginForm.childContextTypes = {
+    translate: PropTypes.func
 };
 
 LoginForm.contextTypes = {

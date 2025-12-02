@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Iput from './IPut';
+import Text from '../../Text';
 import classnames from 'classnames';
 import style from './style.css';
 
@@ -20,7 +21,7 @@ class IPInput extends Component {
                     readonly={this.props.readonly}
                     clear={clearState}
                 />
-                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}>{this.props.errorMessage}</div>}</div>
+                <div className={classnames(style.errorWrap, zeroHeightStyle)}>{!this.props.isValid && <div className={style.errorMessage}><Text>{this.props.errorMessage}</Text></div>}</div>
             </div>
         );
     }
