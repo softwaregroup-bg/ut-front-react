@@ -1,5 +1,5 @@
-import { textValidations } from '../../../validator/constants';
-import { isRequiredRule, lengthRule, regexRule, isNumberOnlyRule, isValidUniformCivilNumberRule, isIntegerOnlyRule, isIntegerRangeRule, isDecimalOnlyRule, isValidEmailRule, isUniqueValueRule, isValidIBANRule } from '../../../validator';
+import { textValidations, customValidations } from '../../../validator/constants';
+import { isRequiredRule, lengthRule, regexRule, isNumberOnlyRule, isValidUniformCivilNumberRule, isIntegerOnlyRule, isIntegerRangeRule, isDecimalOnlyRule, isValidEmailRule, isUniqueValueRule, isValidIBANRule, customFunctionRule } from '../../../validator';
 
 export default (valueToValidate, validators) => {
     const result = { isValid: true, errors: [] };
@@ -17,6 +17,7 @@ export default (valueToValidate, validators) => {
         if (validator.type === textValidations.uniqueValue) isUniqueValueRule(valueToValidate, validator.values, validator, result);
         if (validator.type === textValidations.uniqueValueCaseInsensitive) isUniqueValueRule(valueToValidate.toLowerCase(), validator.values, validator, result);
         if (validator.type === textValidations.iban) isValidIBANRule(valueToValidate, validator, result);
+        if (validator.type === customValidations.function) customFunctionRule({currentValue: valueToValidate}, validator, result);
     });
     return result;
 };
