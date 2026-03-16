@@ -90,16 +90,25 @@ export default class MultiTab extends Component {
                 ref={(element) => { this.rootElement = element; }}
                 data-type={multiTab}
             >
-                <Link
-                    onClick={this.onClick}
-                    to={tab.routeName}
-                    params={tab.routeParams}
-                    className={classNames(className, styles.navigationTab)}
-                    activeClassName={styles.navigationTabActive}
-                >
-                    <Text>{tab.title}</Text>
-                    {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
-                </Link>
+                {tab.routeName
+                    ? <Link
+                            onClick={this.onClick}
+                            to={tab.routeName}
+                            params={tab.routeParams}
+                            className={classNames(className, styles.navigationTab)}
+                            activeClassName={styles.navigationTabActive}
+                    >
+                        <Text>{tab.title}</Text>
+                        {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
+                    </Link>
+                    : <span
+                            onClick={this.onClick}
+                            className={classNames(className, styles.navigationTab)}
+                    >
+                        <Text>{tab.title}</Text>
+                        {this.props.rightArrowIcon && <span className={styles.navigationMultiTabArrow} />}
+                    </span>
+                }
                 <Menu
                     fields={menuItems}
                     open={this.state.menuToggled}

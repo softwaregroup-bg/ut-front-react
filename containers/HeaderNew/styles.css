@@ -12,6 +12,7 @@
   box-shadow: 0px 2px 3px 0px rgba(222, 222, 222, 1);
   z-index: 20;
   cursor: default;
+  box-sizing: border-box;
 }
 
 .headerTitle {
@@ -45,6 +46,8 @@
 .tabsContainer {
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .profileContainer {
@@ -107,6 +110,10 @@
 
 .tabContainer {
   display: inline-block;
+}
+
+.moreTab {
+  flex-shrink: 0;
 }
 
 body .profileInfoPopoverMenu {
