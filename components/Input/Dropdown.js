@@ -17,12 +17,14 @@ export class Dropdown extends Component {
         this.state = {
             open: false,
             value: props.defaultSelected || this.props.placeholderValue,
-            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage}
+            valid: {isValid: this.props.isValid, errorMessage: this.props.errorMessage},
+            searchQuery: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
     static propTypes = {
@@ -97,7 +99,11 @@ export class Dropdown extends Component {
     }
 
     handleOpen(event) {
-        this.setState({open: true, anchorEl: event.currentTarget});
+        this.setState({open: true, anchorEl: event.currentTarget, searchQuery: ''});
+    }
+
+    handleSearchChange(event) {
+        this.setState({searchQuery: event.target.value});
     }
 
     handleClose(event) {
@@ -127,8 +133,16 @@ export class Dropdown extends Component {
 
     getMenuItems(width) {
         const { data, placeholder, canSelectPlaceholder, cssStyle, mergeStyles } = this.props;
+        const { searchQuery } = this.state;
         const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
         const menuItems = [];
+
+        const filteredData = searchQuery
+            ? data.filter(item => {
+                const name = this.getTitle(item.name);
+                return name && String(name).toLowerCase().includes(searchQuery.toLowerCase());
+            })
+            : data;
 
         menuItems.push(
             <MenuItem
@@ -142,7 +156,7 @@ export class Dropdown extends Component {
             </MenuItem>
         );
 
-        data.forEach((item, i) => {
+        filteredData.forEach((item, i) => {
             menuItems.push(
                 <MenuItem
                     className={ddstyles.dropdownMenuItemWrap}
@@ -195,6 +209,18 @@ export class Dropdown extends Component {
                     transformOrigin={{horizontal: 'left', vertical: 'top'}}
                 >
                     <Box maxHeight={300} width={rootElementWidth}>
+                        {this.props.data.length > 10 && (
+                            <div className={ddstyles.dropdownSearchWrap}>
+                                <input
+                                    autoFocus
+                                    type='text'
+                                    className={ddstyles.dropdownSearch}
+                                    value={this.state.searchQuery}
+                                    onChange={this.handleSearchChange}
+                                    onClick={e => e.stopPropagation()}
+                                />
+                            </div>
+                        )}
                         <MenuList
                             open={this.state.open}
                             value={this.state.value}

@@ -52,7 +52,12 @@ class MultiSelectDropdown extends Dropdown {
 
     getMenuItems() {
         const {data, placeholder, cssStyle, mergeStyles, defaultSelected} = this.props;
+        const { searchQuery } = this.state;
         const ddstyles = mergeStyles ? Object.assign({}, style, mergeStyles) : cssStyle || style;
+
+        const filteredData = searchQuery
+            ? data.filter(item => item.name && String(item.name).toLowerCase().includes(searchQuery.toLowerCase()))
+            : data;
 
         let menuItems = [
             <MenuItem
@@ -67,7 +72,7 @@ class MultiSelectDropdown extends Dropdown {
         ];
 
         if (data.length) {
-            menuItems = [
+            menuItems = searchQuery ? [] : [
                 <MenuItem
                     className={ddstyles.multiSelectDropdownMenuItemWrap}
                     onClick={this.handleClick}
@@ -84,7 +89,7 @@ class MultiSelectDropdown extends Dropdown {
                     key='2-ddfg'
                 />
             ];
-            data.forEach((item) => {
+            filteredData.forEach((item) => {
                 const isChecked = (data.length === defaultSelected.length || defaultSelected.findIndex(d => d.key === item.key) > -1);
                 menuItems.push(
                     <MenuItem
@@ -143,6 +148,18 @@ class MultiSelectDropdown extends Dropdown {
                     transformOrigin={{horizontal: 'left', vertical: 'top'}}
                 >
                     <Box maxHeight={300} width={rootElementWidth}>
+                        {this.props.data.length > 10 && (
+                            <div className={ddstyles.dropdownSearchWrap}>
+                                <input
+                                    autoFocus
+                                    type='text'
+                                    className={ddstyles.dropdownSearch}
+                                    value={this.state.searchQuery}
+                                    onChange={this.handleSearchChange}
+                                    onClick={e => e.stopPropagation()}
+                                />
+                            </div>
+                        )}
                         <MenuList className={ddstyles.multiSelectDropdownMenu}>
                             {this.state.open && this.getMenuItems()}
                         </MenuList>
