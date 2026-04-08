@@ -487,21 +487,21 @@ class GridToolBox extends Component {
         }) !== undefined) || (!this.state.showFiltersPopup && !this.props.filterAutoFetch && Object.keys(this.state.filters).length > 0);
 
         return (
-            <div className={classnames(style.toolbarWrap, style.table, style.fixedHeight)}>
-                <div className={classnames(style.toolbarElement, style.label, labelClass, style.tableCell)} onClick={toggle}>
+            <div className={classnames(style.toolbarWrap, style.flex, style.fixedHeight)}>
+                <div className={classnames(style.toolbarElement, style.label, labelClass, style.flexItem)} onClick={toggle}>
                     {leftSide}
                 </div>
-                <div className={classnames(style.pullRight, style.tableCell)} >
-                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)}>
+                <div className={classnames(style.pullRight, style.flexItem2)} style={{minWidth: 'calc(100% - 480px)'}} >
+                    <div className={classnames(style.toolbarElementsContainer, style.fixedHeight)} style={{width: '100%'}}>
                         <div onKeyUp={this.onPressEnter} className={style.toolbarElement}>
-                            <div tabIndex={-1} className={style.wrapFilters}>
+                            <div tabIndex={-1} className={classnames(style.flex, style.alignStart, style.wrapFilters)}>
                                 {filterElements.map((el, i) => {
                                     const incrementNum = (el.type === filterElementTypes.datePickerBetween || el.type === filterElementTypes.dateTimePickerBetween) ? 2 : 1; // datePicker has two input fields
                                     filtersNumber += incrementNum;
                                     if (filtersNumber <= this.props.maxVisibleInputs) {
                                         const filter = this.renderFilter(el);
                                         return filter && (
-                                            <div key={i} className={classnames(style.toolbarElement, style.tableCell, el.type === 'iframeInput' && style.iframeWrap)} style={el.styles}>
+                                            <div key={i} className={classnames(style.toolbarElement, style.flexItem, style.min150, el.type === 'iframeInput' && style.iframeWrap)} style={el.styles}>
                                                 <div className={style.minWidthed}>
                                                     {filter}
                                                 </div>
