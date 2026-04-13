@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import mainStyle from './style.css';
 import SvgSearchIcon from '@material-ui/icons/Search';
 import styles from '../StandardButton/styles.css';
+import Text from '../Text';
 import classnames from 'classnames';
 
 export class AdvancedSearchButton extends Component {
@@ -12,7 +13,7 @@ export class AdvancedSearchButton extends Component {
                 <button className={classnames(styles.defaultBtn, mainStyle.defaultButton)} onClick={this.props.onClick}>
                     <span className={mainStyle.iconWrap}>
                         <SvgSearchIcon color='action' style={{display: 'flex', height: '20px'}} />
-                    </span> Advanced Search </button>
+                    </span> <Text>Advanced Search</Text></button>
             </div>
 
         );

@@ -6,6 +6,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Popover from '@material-ui/core/Popover';
 import classnames from 'classnames';
 import Checkbox from '../Input/Checkbox';
+import Text from '../Text';
 import style from './style.css';
 
 import { closest } from '../../utils/dom';
@@ -133,7 +134,7 @@ export default class GlobalMenu extends Component {
                         </MenuItem>
                     </div>)}
                     <div className={style.columnWrap}>
-                        <label className={style.menuLabel}> Manage Columns </label>
+                        <label className={style.menuLabel}><Text>Manage Columns</Text> </label>
                         {this.getItems()}
                     </div>
                 </MenuList>
