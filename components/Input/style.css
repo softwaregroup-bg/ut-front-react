@@ -495,3 +495,22 @@ div [data-reactroot] div [style*="color: rgb(255, 64, 129)"] {
     overflow-x: hidden !important;
     text-overflow: ellipsis;
 }
+
+.dropdownSearchWrap {
+    padding: 5px 8px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
+    border-bottom: 1px solid #D6D6D6;
+}
+
+.dropdownSearch {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #D6D6D6;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    outline: none;
+}

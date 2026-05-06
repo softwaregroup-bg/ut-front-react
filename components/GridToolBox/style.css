@@ -3,7 +3,6 @@
 
 .toolbarWrap {
     width: 100%;
-    overflow: hidden;
 }
 
 .fixedHeight {
@@ -24,10 +23,26 @@
     justify-content: space-between;
 }
 
-.toolbarWrap>div,
+.tableButtonsShowed .pullRight {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.tableButtonsShowed .spacer {
+    display: flex;
+    align-items: center;
+}
+
+/* Keep .tableCell for non-toolbarWrap usages elsewhere */
 .tableCell {
     display: table-cell;
     vertical-align: middle;
+}
+
+/* Override table-cell for direct children of the flex toolbar row */
+.toolbarWrap.table > div {
+    display: flex;
+    align-items: center;
 }
 
 .toolbarWrap .toolbarElement {
@@ -41,6 +56,8 @@
 .toolbarWrap .label {
     text-align: left;
     white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .toolbarWrap .link {
@@ -55,8 +72,8 @@
 }
 
 .toolbarWrap .pullRight {
-    float: right;
-    text-align: right;
+    display: flex;
+    align-items: center;
 }
 
 .toolbarWrap .noRightMargin {
@@ -153,129 +170,37 @@
 }
 
 .filterActionWrap {
-    flex-grow: 1;
-    margin-left: 20px;
-}
-
-.filterActionWrap button {
-    float: right;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-left: 20px;
 }
 
 .iframeWrap {
-    width: 13rem;;
+    width: 13rem;
 }
 
 .wrapFilters {
     outline: none;
 }
 
-@media only screen and (min-device-width: 280px) and (max-device-width:  1365px) {
-    .toolbarWrap .minWidthed {
-        min-width: auto;
-    }
-
-    .table {
-        padding-top: 10px;
-    }
-  }
-
-
-@media only screen and (min-device-width: 930px) and (max-device-width:  1365px) {
-    .toolbarWrap .minWidthed {
-        min-width: auto;
-    }
-
-    .table {
-        height: auto;
-        padding-top: 10px;
-        flex-direction: column;
-        padding-bottom: 10px;
-    }
-
-    .toolbarWrap .toolbarElement {
-        padding-bottom: 10px;
-    }
-
-    .toolbarElementsContainer {
-        display: flex;
-        flex-direction: row;
-    }
-  }
-
-  @media only screen and (min-device-width: 670px) and (max-device-width: 929px) {
-    .table {
-        height: auto;
-        padding-bottom: 10px;
-        flex-direction: column;
-    }
-
-    .toolbarWrap .toolbarElement {
-        padding-right: 0px;
-        padding-bottom: 10px;
-    }
-
-    .toolbarElementsContainer {
-        flex-direction: column;
-        height: auto;
-    }
-
-  }
-
-
-  @media only screen and (min-device-width: 280px) and (max-device-width: 669px) {
-    .toolbarWrap .toolbarElement {
-        padding-right: 0px;
-        padding-bottom: 10px;
-    }
-
-    .toolbarElementsContainer {
-        flex-direction: column;
-        height: auto;
-    }
+.flex {
+    display: flex;
+    align-items: center;
 }
 
-@media only screen and (min-device-width: 280px) and (max-device-width: 420px) {
-    .table {
-        width: 55%;
-        height: auto;
-        flex-direction: column;
-        align-items: flex-start;
-        padding-bottom: 5px;
-    }
+.alignStart {
+    align-items: start !important;
 }
 
-@media only screen and (min-device-width: 421px) and (max-device-width: 429px) {
-    .table {
-        width: 48%;
-        height: auto;
-        flex-direction: column;
-        padding-bottom: 5px;
-    }
-
-    .toolbarWrap .pullRight {
-text-align: -webkit-center;
-    }
+.flexItem1 {
+    flex: 1
 }
 
-
-@media only screen and (min-device-width: 430px) and (max-device-width: 589px) {
-    .table {
-        width: 70%;
-        height: auto;
-        flex-direction: column;
-        padding-bottom: 5px;
-    }
-
-    .toolbarWrap .pullRight {
-        text-align: -webkit-center;
-            }
+.flexItem2 {
+    flex: 2
 }
 
-@media only screen and (min-device-width: 590px) and (max-device-width: 669px) {
-    .table {
-        width: 80%;
-        height: auto;
-        flex-direction: column;
-        padding-bottom: 5px;
-    }
+.min150 {
+    min-width: 150px;
 }

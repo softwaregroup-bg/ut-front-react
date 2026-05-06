@@ -48,10 +48,10 @@ class Layout extends Component {
         );
         if (result) {
             return (
-                <div className={classnames(this.getStyle('implWrapper'), styles.h100pr)} style={{height: this.state.height}}>
+                <div className={classnames(this.getStyle('implWrapper'), styles.mainLayout, styles.h100pr)} style={{height: this.state.height}}>
                     <Vertical fixedComponent={header}>
                         <Vertical fixedComponent={tabMenu}>
-                            <div id='appContent' className={styles.h100pr}>
+                            <div id='appContent' className={classnames(styles.h100pr, styles.appContent)}>
                                 {this.props.children}
                             </div>
                         </Vertical>

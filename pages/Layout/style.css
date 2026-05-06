@@ -9,3 +9,15 @@
     line-height: 46px;
     text-decoration: none;
 }
+
+.appContent {
+    display: block;
+    width: 100%;
+    overflow: auto;
+}
+
+.mainLayout {
+    min-width: 1024px;
+    width: 100%;
+    box-sizing: border-box;
+}

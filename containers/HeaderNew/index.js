@@ -44,7 +44,7 @@ class HeaderNew extends Component {
                     tabset={tabset}
                     className={classNames(styles.tabsContainer, classTabsContainer)}
                 />
-                <span style={{ flexGrow: 1 }} className={styles.profileInfo}>
+                <span style={{ flexGrow: 1, maxWidth: '100px' }} className={styles.profileInfo}>
                     <HeaderInfo />
                     <HeaderProfileInfo
                         currentLocation={currentLocation}

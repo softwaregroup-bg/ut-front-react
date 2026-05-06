@@ -2,6 +2,17 @@ import thunk from 'redux-thunk';
 import {isImmutable, fromJS} from 'immutable';
 import {REMOVE_TAB} from '../containers/TabMenu/actionTypes';
 
+let clientIp = null;
+
+async function initClientIp() {
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        clientIp = data.ip;
+    } catch (err) {
+    }
+}
+
 /**
  * Convert action.params to plain js when action.params is immutable
  */
@@ -22,8 +33,11 @@ const getCookies = () => (typeof document === 'undefined') ? {} : document.cooki
 }, {});
 
 export default (utMethod, history) => {
-    const rpc = (store) => (next) => (action) => {
+    const rpc = (store) => (next) => async(action) => {
         if (action.method) {
+            if (!clientIp) {
+                await initClientIp();
+            }
             const cookies = getCookies();
             const corsCookie = cookies['xsrf-token'];
             let importMethodParams = {};
@@ -48,7 +62,7 @@ export default (utMethod, history) => {
             if (corsCookie) {
                 methodParams = methodParams.mergeDeep(fromJS({$http: {headers: {'x-xsrf-token': corsCookie}}}));
             }
-
+            methodParams = methodParams.mergeDeep(fromJS({$http: {headers: {'x-forwarded-for': clientIp}}}));
             return utMethod(action.method, importMethodParams)(methodParams.toJS())
                 .then(result => {
                     action.result = result;
